@@ -1,43 +1,84 @@
 {
-  "includes": {
-    "xetex": [],
-    "fontspec": [],
-    "xunicode": [],
-    "kvoptions": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "setsampletext{}": {
-      "snippet": "setsampletext{${1:text}}"
+  "deps": [
+    {
+      "name": "xetex"
     },
-    "printfont{}{}": {
-      "snippet": "printfont{${1:font}}{${2:license}}"
+    {
+      "name": "fontspec"
     },
-    "printfont[]{}{}": {
-      "snippet": "printfont[${3:options}]{${1:font}}{${2:license}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xunicode"
     },
-    "sampletext{}": {
-      "snippet": "sampletext{${1:arg}}"
+    {
+      "name": "kvoptions"
     },
-    "sampletext[]{}": {
-      "snippet": "sampletext[${2:opt}]{${1:arg}}"
-    },
-    "samplefeature{}": {
-      "snippet": "samplefeature{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [
-    "size={${1:size1,size2,...}}",
-    "features={${1:feat1,feat2,...}}",
-    "featuresize=${1:fontsize csname}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "setsampletext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "printfont",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:font}}{${2:license}}"
+      }
+    },
+    {
+      "name": "printfont",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:font}}{${2:license}}",
+        "keys": [
+          "\\printfont,\\samplefeature"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sampletext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "sampletext",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "samplefeature",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\printfont,\\samplefeature"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/fontbook#c": [
+      "size={${1:size1,size2,...}}",
+      "features={${1:feat1,feat2,...}}",
+      "featuresize=${1:fontsize csname}"
+    ],
+    "\\printfont,\\samplefeature": [
       "Alternate=${1:feature}",
       "Annotation=",
       "AutoFakeBold=${1:number}",
@@ -104,5 +145,8 @@
       "Mapping=${1:xetex-only feature}",
       "Renderer=${1:renderer}"
     ]
+  },
+  "args": [
+    "\\usepackage/fontbook#c"
   ]
 }

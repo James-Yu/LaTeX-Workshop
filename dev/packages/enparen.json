@@ -1,47 +1,103 @@
 {
-  "includes": {
-    "ltxcmds": [],
-    "protecteddef": [],
-    "atveryend": [],
-    "uniquecounter": [],
-    "zref-base": [],
-    "kvoptions": [],
-    "kvsetkeys": []
-  },
-  "macros": {
-    "enparen{}": {
-      "snippet": "enparen{${1:text}}"
+  "deps": [
+    {
+      "name": "ltxcmds"
     },
-    "enparenLeft": {},
-    "enparenRight": {},
-    "enparenSetSymbols{}{}{}": {
-      "snippet": "enparenSetSymbols{${1:level}}{${2:open}}{${3:close}}"
+    {
+      "name": "protecteddef"
     },
-    "enparenUnsetSymbols{}": {
-      "snippet": "enparenUnsetSymbols{${1:level}}"
+    {
+      "name": "atveryend"
     },
-    "enparenBeginContext{}": {
-      "snippet": "enparenBeginContext{${1:name}}"
+    {
+      "name": "uniquecounter"
     },
-    "enparenEndContext{}": {
-      "snippet": "enparenEndContext{${1:name}}"
+    {
+      "name": "zref-base"
     },
-    "enparenSetup{}": {
-      "snippet": "enparenSetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "kvoptions"
     },
-    "enparenContextDefault": {},
-    "enparenBeginContext": {},
-    "enparenEndContext": {},
-    "enparenCheckEmptyStack": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "kvsetkeys"
+    }
+  ],
+  "macros": [
+    {
+      "name": "enparen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "enparenLeft"
+    },
+    {
+      "name": "enparenRight"
+    },
+    {
+      "name": "enparenSetSymbols",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:level}}{${2:open}}{${3:close}}"
+      }
+    },
+    {
+      "name": "enparenUnsetSymbols",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:level}}"
+      }
+    },
+    {
+      "name": "enparenBeginContext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "enparenEndContext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "enparenSetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\enparenSetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "enparenContextDefault",
+      "unusual": true
+    },
+    {
+      "name": "enparenBeginContext",
+      "unusual": true
+    },
+    {
+      "name": "enparenEndContext",
+      "unusual": true
+    },
+    {
+      "name": "enparenCheckEmptyStack",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\enparenSetup": [
       "caption",
       "footnote"
     ]
-  ]
+  },
+  "args": []
 }

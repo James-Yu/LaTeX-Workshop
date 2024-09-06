@@ -1,44 +1,110 @@
 {
-  "includes": {
-    "zref-user": [],
-    "zref-abspage": [],
-    "ifdraft": [],
-    "zref-hyperref": []
-  },
-  "macros": {
-    "zcheck{}{}": {
-      "snippet": "zcheck{${1:labellist}}{${2:text}}"
+  "deps": [
+    {
+      "name": "zref-user"
     },
-    "zcheck[]{}{}": {
-      "snippet": "zcheck[${3:checks}]{${1:labellist}}{${2:text}}"
+    {
+      "name": "zref-abspage"
     },
-    "zctarget{}{}": {
-      "snippet": "zctarget{${1:label}}{${2:text}}"
+    {
+      "name": "ifdraft"
     },
-    "zrefchecksetup{}": {
-      "snippet": "zrefchecksetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "zref-hyperref"
     }
-  },
-  "envs": {
-    "zcregion{}": {
-      "name": "zcregion",
-      "snippet": "{${1:label}}"
-    }
-  },
-  "options": [
-    "msglevel=${1|warn,info,none,infoifdraft,warniffinal|}",
-    "onpage=${1|labelseq,msg,labelseqifdraft,msgiffinal|}",
-    "hyperref=${1|auto,true,false|}",
-    "closerange=${1:integer}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "zcheck",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:labellist}}{${2:text}}"
+      }
+    },
+    {
+      "name": "zcheck",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:checks%keyvals}]{${1:labellist}}{${2:text}}",
+        "keys": [
+          "\\zcheck",
+          "\\zcheck,\\zrefchecksetup,\\usepackage/zref-check#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "zctarget",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:text}}"
+      }
+    },
+    {
+      "name": "zrefchecksetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\zcheck,\\zrefchecksetup,\\usepackage/zref-check#c",
+          "\\zrefchecksetup,\\usepackage/zref-check#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "zcregion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\zcheck": [
+      "thispage",
+      "prevpage",
+      "nextpage",
+      "otherpage",
+      "pagegap",
+      "facing",
+      "above",
+      "below",
+      "pagesbefore",
+      "ppbefore",
+      "pagesafter",
+      "ppafter",
+      "before",
+      "after",
+      "thischap",
+      "prevchap",
+      "nextchap",
+      "chapsbefore",
+      "chapsafter",
+      "thissec",
+      "prevsec",
+      "nextsec",
+      "secsbefore",
+      "secsafter",
+      "close",
+      "far",
+      "manual",
+      "ignore",
+      "ok"
+    ],
+    "\\zcheck,\\zrefchecksetup,\\usepackage/zref-check#c": [
       "msglevel=${1|warn,info,none,infoifdraft,warniffinal|}",
-      "onpage=${1|labelseq,msg,labelseqifdraft,msgiffinal|}",
+      "onpage=${1|labelseq,msg,labelseqifdraft,msgiffinal|}"
+    ],
+    "\\zrefchecksetup,\\usepackage/zref-check#c": [
       "hyperref=${1|auto,true,false|}",
       "closerange=${1:integer}"
     ]
+  },
+  "args": [
+    "\\zcheck,\\zrefchecksetup,\\usepackage/zref-check#c",
+    "\\zrefchecksetup,\\usepackage/zref-check#c"
   ]
 }

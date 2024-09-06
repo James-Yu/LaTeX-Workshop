@@ -1,72 +1,193 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "bguq": [
+  "deps": [
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "bguq",
+      "if": "bguq"
+    }
+  ],
+  "macros": [
+    {
+      "name": "GGhorizontal"
+    },
+    {
+      "name": "GGnot"
+    },
+    {
+      "name": "GGconditional",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1%formula}}{${2:arg2%formula}}"
+      }
+    },
+    {
+      "name": "GGquant",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "GGjudge"
+    },
+    {
+      "name": "GGdef"
+    },
+    {
+      "name": "GGbracket",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "GGsqbracket",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "GGterm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "GGjudgelong"
+    },
+    {
+      "name": "GGjudgevar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "GGdeflong"
+    },
+    {
+      "name": "GGdefvar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "GGnotalone"
+    },
+    {
+      "name": "GGdnot"
+    },
+    {
+      "name": "GGall",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "GGnoboth"
+    },
+    {
+      "name": "GGnonotalone"
+    },
+    {
+      "name": "GGnodnot"
+    },
+    {
+      "name": "GGnoquant"
+    },
+    {
+      "name": "GGnonot"
+    },
+    {
+      "name": "GGcontent",
+      "unusual": true
+    },
+    {
+      "name": "GGassert",
+      "unusual": true
+    },
+    {
+      "name": "GGjudgealone",
+      "unusual": true
+    },
+    {
+      "name": "GGassertlong",
+      "unusual": true
+    },
+    {
+      "name": "GGassertalone",
+      "unusual": true
+    },
+    {
+      "name": "GGassertvar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "GGdefalone",
+      "unusual": true
+    },
+    {
+      "name": "GGneg",
+      "unusual": true
+    },
+    {
+      "name": "GGoddspace",
+      "unusual": true
+    },
+    {
+      "name": "GGtinyspace",
+      "unusual": true
+    },
+    {
+      "name": "GGtiniestspace",
+      "unusual": true
+    },
+    {
+      "name": "GGthickness",
+      "unusual": true
+    },
+    {
+      "name": "GGquantthickness",
+      "unusual": true
+    },
+    {
+      "name": "beforelen",
+      "unusual": true
+    },
+    {
+      "name": "GGafterlen",
+      "unusual": true
+    },
+    {
+      "name": "GGspace",
+      "unusual": true
+    },
+    {
+      "name": "GGlift",
+      "unusual": true
+    },
+    {
+      "name": "GGlinewidth",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/grundgesetze#c": [
       "bguq"
     ]
   },
-  "macros": {
-    "GGhorizontal": {},
-    "GGnot": {},
-    "GGconditional{}{}": {
-      "snippet": "GGconditional{${1:arg1}}{${2:arg2}}"
-    },
-    "GGquant{}": {
-      "snippet": "GGquant{${1:arg}}"
-    },
-    "GGjudge": {},
-    "GGdef": {},
-    "GGbracket{}": {
-      "snippet": "GGbracket{${1:arg}}"
-    },
-    "GGsqbracket{}": {
-      "snippet": "GGsqbracket{${1:arg}}"
-    },
-    "GGterm{}": {
-      "snippet": "GGterm{${1:arg}}"
-    },
-    "GGjudgelong": {},
-    "GGjudgevar{}": {
-      "snippet": "GGjudgevar{${1:length}}"
-    },
-    "GGdeflong": {},
-    "GGdefvar{}": {
-      "snippet": "GGdefvar{${1:length}}"
-    },
-    "GGnotalone": {},
-    "GGdnot": {},
-    "GGall{}": {
-      "snippet": "GGall{${1:arg}}"
-    },
-    "GGnoboth": {},
-    "GGnonotalone": {},
-    "GGnodnot": {},
-    "GGnoquant": {},
-    "GGnonot": {},
-    "GGcontent": {},
-    "GGassert": {},
-    "GGjudgealone": {},
-    "GGassertlong": {},
-    "GGassertalone": {},
-    "GGassertvar{}": {
-      "snippet": "GGassertvar{${1:length}}"
-    },
-    "GGdefalone": {},
-    "GGneg": {},
-    "GGoddspace": {},
-    "GGtinyspace": {},
-    "GGtiniestspace": {},
-    "GGthickness": {},
-    "GGquantthickness": {},
-    "beforelen": {},
-    "GGafterlen": {},
-    "GGspace": {},
-    "GGlift": {},
-    "GGlinewidth": {}
-  },
-  "envs": {},
-  "options": [
-    "bguq"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/grundgesetze#c"
+  ]
 }

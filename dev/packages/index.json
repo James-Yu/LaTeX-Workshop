@@ -1,44 +1,97 @@
 {
-  "includes": {},
-  "macros": {
-    "newindex{}{}{}{}": {
-      "snippet": "newindex{${1:author tag}}{${2:output ext}}{${3:input ext}}{${4:title}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "newindex",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:author tag}}{${2:output ext}}{${3:input ext}}{${4:title%plain}}"
+      }
     },
-    "newindex[]{}{}{}{}": {
-      "snippet": "newindex[${5:number cmd}]{${1:author tag}}{${2:output ext}}{${3:input ext}}{${4:title}}"
+    {
+      "name": "newindex",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:number cmd}]{${1:author tag}}{${2:output ext}}{${3:input ext}}{${4:title%plain}}"
+      }
     },
-    "renewindex{}{}{}{}": {
-      "snippet": "renewindex{${1:author tag}}{${2:output ext}}{${3:input ext}}{${4:title}}"
+    {
+      "name": "renewindex",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:author tag}}{${2:output ext}}{${3:input ext}}{${4:title%plain}}"
+      }
     },
-    "renewindex[]{}{}{}{}": {
-      "snippet": "renewindex[${5:number cmd}]{${1:author tag}}{${2:output ext}}{${3:input ext}}{${4:title}}"
+    {
+      "name": "renewindex",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:number cmd}]{${1:author tag}}{${2:output ext}}{${3:input ext}}{${4:title%plain}}"
+      }
     },
-    "printindex": {},
-    "printindex[]": {
-      "snippet": "printindex[${1:tag}]"
+    {
+      "name": "printindex"
     },
-    "index*{}": {
-      "snippet": "index*{${1:entry}}"
+    {
+      "name": "printindex",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:tag}]"
+      }
     },
-    "index[]{}": {
-      "snippet": "index[${2:tag}]{${1:entry}}"
+    {
+      "name": "index*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:entry}}"
+      }
     },
-    "shortindexingon": {},
-    "shortindexingoff": {},
-    "proofmodetrue": {},
-    "proofmodefalse": {},
-    "indexproofstyle{}": {
-      "snippet": "indexproofstyle{${1:code}}"
+    {
+      "name": "index",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:tag}]{${1:entry}}"
+      }
     },
-    "disableindex": {},
-    "seename": {},
-    "see{}{}": {
-      "snippet": "see{${1:text}}{${2:page number}}"
+    {
+      "name": "shortindexingon"
+    },
+    {
+      "name": "shortindexingoff"
+    },
+    {
+      "name": "proofmodetrue"
+    },
+    {
+      "name": "proofmodefalse"
+    },
+    {
+      "name": "indexproofstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "disableindex"
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "see",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:page number}}"
+      }
     }
-  },
-  "envs": {
-    "shortindexingon": {}
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "shortindexingon"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

@@ -1,18 +1,23 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "tudacolors": []
-  },
-  "macros": {
-    "filedate": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [
-    "color=",
-    "blackrule",
-    "paper=${1|dl,a6,a5,a4,a3,a2,a1,a0,slide,beamer,leaflet|}",
-    "department=${1|default,mecheng|}"
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "tudacolors"
+    }
   ],
-  "keyvals": []
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tudarules#c": [
+      "color=",
+      "blackrule",
+      "paper=${1|dl,a6,a5,a4,a3,a2,a1,a0,slide,beamer,leaflet|}",
+      "department=${1|default,mecheng|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/tudarules#c"
+  ]
 }

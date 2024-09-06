@@ -1,493 +1,1210 @@
 {
-  "includes": {
-    "tone": [
-      "tone"
-    ],
-    "extraipa": [
-      "extra"
+  "deps": [
+    {
+      "name": "tone",
+      "if": "tone"
+    },
+    {
+      "name": "extraipa",
+      "if": "extra"
+    }
+  ],
+  "macros": [
+    {
+      "name": "DH",
+      "if": "T1"
+    },
+    {
+      "name": "NG",
+      "if": "T1"
+    },
+    {
+      "name": "dj",
+      "if": "T1"
+    },
+    {
+      "name": "ng",
+      "if": "T1"
+    },
+    {
+      "name": "k",
+      "if": "T1",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "if": "T1",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "if": "T1",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft",
+      "if": "T1"
+    },
+    {
+      "name": "guilsinglright",
+      "if": "T1"
+    },
+    {
+      "name": "quotedblbase",
+      "if": "T1"
+    },
+    {
+      "name": "quotesinglbase",
+      "if": "T1"
+    },
+    {
+      "name": "textquotedbl",
+      "if": "T1"
+    },
+    {
+      "name": "DJ",
+      "if": "T1"
+    },
+    {
+      "name": "th",
+      "if": "T1"
+    },
+    {
+      "name": "TH",
+      "if": "T1"
+    },
+    {
+      "name": "dh",
+      "if": "T1"
+    },
+    {
+      "name": "Hwithstroke",
+      "if": "T1",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "if": "T1",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "if": "T1",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft",
+      "if": "T1"
+    },
+    {
+      "name": "guillemetright",
+      "if": "T1"
+    },
+    {
+      "name": "IJ"
+    },
+    {
+      "name": "ij"
+    },
+    {
+      "name": "ipabar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:symbol}}{${2:height}}{${3:width}}{${4:lkern}}{${5:rkern}}"
+      }
+    },
+    {
+      "name": "ipaclap",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "s",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
+    },
+    {
+      "name": "SS"
+    },
+    {
+      "name": "textacutemacron",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textacutewedge",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textadvancing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textbabygamma"
+    },
+    {
+      "name": "textbarb"
+    },
+    {
+      "name": "textbarc"
+    },
+    {
+      "name": "textbard"
+    },
+    {
+      "name": "textbardotlessj"
+    },
+    {
+      "name": "textbarg"
+    },
+    {
+      "name": "textbarglotstop"
+    },
+    {
+      "name": "textbari"
+    },
+    {
+      "name": "textbarl"
+    },
+    {
+      "name": "textbaro"
+    },
+    {
+      "name": "textbarrevglotstop"
+    },
+    {
+      "name": "textbaru"
+    },
+    {
+      "name": "textbeltl"
+    },
+    {
+      "name": "textbeta"
+    },
+    {
+      "name": "textbottomtiebar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textbrevemacron",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textbullseye"
+    },
+    {
+      "name": "textceltpal"
+    },
+    {
+      "name": "textchi"
+    },
+    {
+      "name": "textcircumacute",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textcircumdot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textcloseepsilon"
+    },
+    {
+      "name": "textcloseomega"
+    },
+    {
+      "name": "textcloserevepsilon"
+    },
+    {
+      "name": "textcommatailz"
+    },
+    {
+      "name": "textcorner"
+    },
+    {
+      "name": "textcrb"
+    },
+    {
+      "name": "textcrd"
+    },
+    {
+      "name": "textcrg"
+    },
+    {
+      "name": "textcrh"
+    },
+    {
+      "name": "textcrinvglotstop"
+    },
+    {
+      "name": "textcrlambda"
+    },
+    {
+      "name": "textcrtwo"
+    },
+    {
+      "name": "textctc"
+    },
+    {
+      "name": "textctd"
+    },
+    {
+      "name": "textctdctzlig"
+    },
+    {
+      "name": "textctesh"
+    },
+    {
+      "name": "textctj"
+    },
+    {
+      "name": "textctn"
+    },
+    {
+      "name": "textctt"
+    },
+    {
+      "name": "textcttctclig"
+    },
+    {
+      "name": "textctyogh"
+    },
+    {
+      "name": "textctz"
+    },
+    {
+      "name": "textdctzlig"
+    },
+    {
+      "name": "textdotacute",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textdotbreve",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textdoublebaresh"
+    },
+    {
+      "name": "textdoublebarpipe"
+    },
+    {
+      "name": "textdoublebarslash"
+    },
+    {
+      "name": "textdoublegrave",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textdoublepipe"
+    },
+    {
+      "name": "textdoublevbaraccent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textdoublevertline"
+    },
+    {
+      "name": "textdownstep"
+    },
+    {
+      "name": "textdyoghlig"
+    },
+    {
+      "name": "textdzlig"
+    },
+    {
+      "name": "textepsilon"
+    },
+    {
+      "name": "textesh"
+    },
+    {
+      "name": "textfallrise",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textfishhookr"
+    },
+    {
+      "name": "textg"
+    },
+    {
+      "name": "textgamma"
+    },
+    {
+      "name": "textglobfall"
+    },
+    {
+      "name": "textglobrise"
+    },
+    {
+      "name": "textglotstop"
+    },
+    {
+      "name": "textgravecircum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textgravedot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textgravemacron",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textgravemid",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "texthalflength"
+    },
+    {
+      "name": "texthardsign"
+    },
+    {
+      "name": "texthighrise",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "texthooktop"
+    },
+    {
+      "name": "texthtb"
+    },
+    {
+      "name": "texthtbardotlessj"
+    },
+    {
+      "name": "texthtc"
+    },
+    {
+      "name": "texthtd"
+    },
+    {
+      "name": "texthtg"
+    },
+    {
+      "name": "texthth"
+    },
+    {
+      "name": "texththeng"
+    },
+    {
+      "name": "texthtk"
+    },
+    {
+      "name": "texthtp"
+    },
+    {
+      "name": "texthtq"
+    },
+    {
+      "name": "texthtrtaild"
+    },
+    {
+      "name": "texthtscg"
+    },
+    {
+      "name": "texthtt"
+    },
+    {
+      "name": "texthvlig"
+    },
+    {
+      "name": "textinvglotstop"
+    },
+    {
+      "name": "textinvscr"
+    },
+    {
+      "name": "textinvsubbridge",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textiota"
+    },
+    {
+      "name": "textipa",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textlambda"
+    },
+    {
+      "name": "textlengthmark"
+    },
+    {
+      "name": "textlhookt"
+    },
+    {
+      "name": "textlhtlongi"
+    },
+    {
+      "name": "textlhtlongy"
+    },
+    {
+      "name": "textlonglegr"
+    },
+    {
+      "name": "textlowering",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textlowrise",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textlptr"
+    },
+    {
+      "name": "textltailm"
+    },
+    {
+      "name": "textltailn"
+    },
+    {
+      "name": "textltilde"
+    },
+    {
+      "name": "textlyoghlig"
+    },
+    {
+      "name": "textmidacute",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textObardotlessj"
+    },
+    {
+      "name": "textOlyoghlig"
+    },
+    {
+      "name": "textomega"
+    },
+    {
+      "name": "textopencorner"
+    },
+    {
+      "name": "textopeno"
+    },
+    {
+      "name": "textovercross",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textoverw",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textpalhook"
+    },
+    {
+      "name": "textphi"
+    },
+    {
+      "name": "textpipe"
+    },
+    {
+      "name": "textpolhook",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textprimstress"
+    },
+    {
+      "name": "textraiseglotstop"
+    },
+    {
+      "name": "textraisevibyi"
+    },
+    {
+      "name": "textraising",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textramshorns"
+    },
+    {
+      "name": "textretracting",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textrevapostrophe"
+    },
+    {
+      "name": "textreve"
+    },
+    {
+      "name": "textrevepsilon"
+    },
+    {
+      "name": "textrevglotstop"
+    },
+    {
+      "name": "textrevyogh"
+    },
+    {
+      "name": "textrhookrevepsilon"
+    },
+    {
+      "name": "textrhookschwa"
+    },
+    {
+      "name": "textrhoticity"
+    },
+    {
+      "name": "textringmacron",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textrisefall",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textroundcap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textrptr"
+    },
+    {
+      "name": "textrtaild"
+    },
+    {
+      "name": "textrtaill"
+    },
+    {
+      "name": "textrtailn"
+    },
+    {
+      "name": "textrtailr"
+    },
+    {
+      "name": "textrtails"
+    },
+    {
+      "name": "textrtailt"
+    },
+    {
+      "name": "textrtailz"
+    },
+    {
+      "name": "textrthook"
+    },
+    {
+      "name": "textsca"
+    },
+    {
+      "name": "textscb"
+    },
+    {
+      "name": "textsce"
+    },
+    {
+      "name": "textscg"
+    },
+    {
+      "name": "textsch"
+    },
+    {
+      "name": "textschwa"
+    },
+    {
+      "name": "textsci"
+    },
+    {
+      "name": "textscj"
+    },
+    {
+      "name": "textscl"
+    },
+    {
+      "name": "textscn"
+    },
+    {
+      "name": "textscoelig"
+    },
+    {
+      "name": "textscomega"
+    },
+    {
+      "name": "textscr"
+    },
+    {
+      "name": "textscripta"
+    },
+    {
+      "name": "textscriptg"
+    },
+    {
+      "name": "textscriptv"
+    },
+    {
+      "name": "textscu"
+    },
+    {
+      "name": "textscy"
+    },
+    {
+      "name": "textseagull",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsecstress"
+    },
+    {
+      "name": "textsoftsign"
+    },
+    {
+      "name": "textstretchc"
+    },
+    {
+      "name": "textsubacute",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsubarch",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsubbar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsubbridge",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsubcircum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsubdot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsubgrave",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsublhalfring",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsubplus",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsubrhalfring",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsubring",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsubsquare",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsubtilde",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsubumlaut",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsubw",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsubwedge",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsuperimposetilde",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsyllabic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "texttctclig"
+    },
+    {
+      "name": "textteshlig"
+    },
+    {
+      "name": "texttheta"
+    },
+    {
+      "name": "textthorn"
+    },
+    {
+      "name": "texttildedot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "texttoneletterstem"
+    },
+    {
+      "name": "texttoptiebar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "texttslig"
+    },
+    {
+      "name": "textturna"
+    },
+    {
+      "name": "textturncelig"
+    },
+    {
+      "name": "textturnh"
+    },
+    {
+      "name": "textturnk"
+    },
+    {
+      "name": "textturnlonglegr"
+    },
+    {
+      "name": "textturnm "
+    },
+    {
+      "name": "textturnmrleg"
+    },
+    {
+      "name": "textturnr"
+    },
+    {
+      "name": "textturnrrtail"
+    },
+    {
+      "name": "textturnscripta"
+    },
+    {
+      "name": "textturnt"
+    },
+    {
+      "name": "textturnv"
+    },
+    {
+      "name": "textturnw"
+    },
+    {
+      "name": "textturny"
+    },
+    {
+      "name": "textupsilon"
+    },
+    {
+      "name": "textupstep"
+    },
+    {
+      "name": "textvbaraccent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textvertline"
+    },
+    {
+      "name": "textvibyi"
+    },
+    {
+      "name": "textvibyy"
+    },
+    {
+      "name": "textwynn"
+    },
+    {
+      "name": "textyogh"
+    },
+    {
+      "name": "tipaencoding"
+    },
+    {
+      "name": "tipamedspace",
+      "unusual": true
+    },
+    {
+      "name": "tipanegthinspace",
+      "unusual": true
+    },
+    {
+      "name": "tipasafemode",
+      "unusual": true
+    },
+    {
+      "name": "tipathickspace",
+      "unusual": true
+    },
+    {
+      "name": "tsipa",
+      "unusual": true
+    },
+    {
+      "name": "tipa",
+      "unusual": true
+    },
+    {
+      "name": "tipx",
+      "unusual": true
+    },
+    {
+      "name": "super",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "nrsuper",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sups",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "upperaccent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slot}}{${2:char}}"
+      }
+    },
+    {
+      "name": "upperaccent",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:shift%l}]{${1:slot}}{${2:char}}"
+      }
+    },
+    {
+      "name": "Upperaccent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slot}}{${2:char}}"
+      }
+    },
+    {
+      "name": "Upperaccent",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:shift%l}]{${1:slot}}{${2:char}}"
+      }
+    },
+    {
+      "name": "loweraccent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slot}}{${2:char}}"
+      }
+    },
+    {
+      "name": "loweraccent",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:shift%l}]{${1:slot}}{${2:char}}"
+      }
+    },
+    {
+      "name": "Loweraccent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slot}}{${2:char}}"
+      }
+    },
+    {
+      "name": "Loweraccent",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:shift%l}]{${1:slot}}{${2:char}}"
+      }
+    },
+    {
+      "name": "tipaupperaccent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slot}}{${2:char}}"
+      }
+    },
+    {
+      "name": "tipaupperaccent",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:shift%l}]{${1:slot}}{${2:char}}"
+      }
+    },
+    {
+      "name": "tipaUpperaccent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slot}}{${2:char}}"
+      }
+    },
+    {
+      "name": "tipaUpperaccent",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:shift%l}]{${1:slot}}{${2:char}}"
+      }
+    },
+    {
+      "name": "tipaloweraccent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slot}}{${2:char}}"
+      }
+    },
+    {
+      "name": "tipaloweraccent",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:shift%l}]{${1:slot}}{${2:char}}"
+      }
+    },
+    {
+      "name": "tipaLoweraccent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slot}}{${2:char}}"
+      }
+    },
+    {
+      "name": "tipaLoweraccent",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:shift%l}]{${1:slot}}{${2:char}}"
+      }
+    },
+    {
+      "name": "*",
+      "unusual": true
+    },
+    {
+      "name": "",
+      "unusual": true,
+      "arg": {
+        "format": "|",
+        "snippet": "|"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "IPA"
+    }
+  ],
+  "keys": {
+    "\\usepackage/tipa#c": [
+      "extra",
+      "tone",
+      "safe",
+      "T1",
+      "noenc"
     ]
   },
-  "macros": {
-    "DH": {
-      "option": "T1"
-    },
-    "NG": {
-      "option": "T1"
-    },
-    "dj": {
-      "option": "T1"
-    },
-    "ng": {
-      "option": "T1"
-    },
-    "k{}": {
-      "snippet": "k{${1:arg}}",
-      "option": "T1"
-    },
-    "guillemotleft": {
-      "option": "T1"
-    },
-    "guillemotright": {
-      "option": "T1"
-    },
-    "guilsinglleft": {
-      "option": "T1"
-    },
-    "guilsinglright": {
-      "option": "T1"
-    },
-    "quotedblbase": {
-      "option": "T1"
-    },
-    "quotesinglbase": {
-      "option": "T1"
-    },
-    "textquotedbl": {
-      "option": "T1"
-    },
-    "DJ": {
-      "option": "T1"
-    },
-    "th": {
-      "option": "T1"
-    },
-    "TH": {
-      "option": "T1"
-    },
-    "dh": {
-      "option": "T1"
-    },
-    "Hwithstroke": {
-      "option": "T1"
-    },
-    "hwithstroke": {
-      "option": "T1"
-    },
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}",
-      "option": "T1"
-    },
-    "guillemetleft": {
-      "option": "T1"
-    },
-    "guillemetright": {
-      "option": "T1"
-    },
-    "IJ": {},
-    "ij": {},
-    "ipabar{}{}{}{}{}": {
-      "snippet": "ipabar{${1:symbol}}{${2:height}}{${3:width}}{${4:lkern}}{${5:rkern}}"
-    },
-    "ipaclap{}{}": {
-      "snippet": "ipaclap{${1:arg1}}{${2:arg2}}"
-    },
-    "s{}": {
-      "snippet": "s{${1:character}}"
-    },
-    "SS": {},
-    "textacutemacron{}": {
-      "snippet": "textacutemacron{${1:arg}}"
-    },
-    "textacutewedge{}": {
-      "snippet": "textacutewedge{${1:arg}}"
-    },
-    "textadvancing{}": {
-      "snippet": "textadvancing{${1:arg}}"
-    },
-    "textbabygamma": {},
-    "textbarb": {},
-    "textbarc": {},
-    "textbard": {},
-    "textbardotlessj": {},
-    "textbarg": {},
-    "textbarglotstop": {},
-    "textbari": {},
-    "textbarl": {},
-    "textbaro": {},
-    "textbarrevglotstop": {},
-    "textbaru": {},
-    "textbeltl": {},
-    "textbeta": {},
-    "textbottomtiebar{}": {
-      "snippet": "textbottomtiebar{${1:arg}}"
-    },
-    "textbrevemacron{}": {
-      "snippet": "textbrevemacron{${1:arg}}"
-    },
-    "textbullseye": {},
-    "textceltpal": {},
-    "textchi": {},
-    "textcircumacute{}": {
-      "snippet": "textcircumacute{${1:arg}}"
-    },
-    "textcircumdot{}": {
-      "snippet": "textcircumdot{${1:arg}}"
-    },
-    "textcloseepsilon": {},
-    "textcloseomega": {},
-    "textcloserevepsilon": {},
-    "textcommatailz": {},
-    "textcorner": {},
-    "textcrb": {},
-    "textcrd": {},
-    "textcrg": {},
-    "textcrh": {},
-    "textcrinvglotstop": {},
-    "textcrlambda": {},
-    "textcrtwo": {},
-    "textctc": {},
-    "textctd": {},
-    "textctdctzlig": {},
-    "textctesh": {},
-    "textctj": {},
-    "textctn": {},
-    "textctt": {},
-    "textcttctclig": {},
-    "textctyogh": {},
-    "textctz": {},
-    "textdctzlig": {},
-    "textdotacute{}": {
-      "snippet": "textdotacute{${1:arg}}"
-    },
-    "textdotbreve{}": {
-      "snippet": "textdotbreve{${1:arg}}"
-    },
-    "textdoublebaresh": {},
-    "textdoublebarpipe": {},
-    "textdoublebarslash": {},
-    "textdoublegrave{}": {
-      "snippet": "textdoublegrave{${1:arg}}"
-    },
-    "textdoublepipe": {},
-    "textdoublevbaraccent{}": {
-      "snippet": "textdoublevbaraccent{${1:arg}}"
-    },
-    "textdoublevertline": {},
-    "textdownstep": {},
-    "textdyoghlig": {},
-    "textdzlig": {},
-    "textepsilon": {},
-    "textesh": {},
-    "textfallrise{}": {
-      "snippet": "textfallrise{${1:arg}}"
-    },
-    "textfishhookr": {},
-    "textg": {},
-    "textgamma": {},
-    "textglobfall": {},
-    "textglobrise": {},
-    "textglotstop": {},
-    "textgravecircum{}": {
-      "snippet": "textgravecircum{${1:arg}}"
-    },
-    "textgravedot{}": {
-      "snippet": "textgravedot{${1:arg}}"
-    },
-    "textgravemacron{}": {
-      "snippet": "textgravemacron{${1:arg}}"
-    },
-    "textgravemid{}": {
-      "snippet": "textgravemid{${1:arg}}"
-    },
-    "texthalflength": {},
-    "texthardsign": {},
-    "texthighrise{}": {
-      "snippet": "texthighrise{${1:arg}}"
-    },
-    "texthooktop": {},
-    "texthtb": {},
-    "texthtbardotlessj": {},
-    "texthtc": {},
-    "texthtd": {},
-    "texthtg": {},
-    "texthth": {},
-    "texththeng": {},
-    "texthtk": {},
-    "texthtp": {},
-    "texthtq": {},
-    "texthtrtaild": {},
-    "texthtscg": {},
-    "texthtt": {},
-    "texthvlig": {},
-    "textinvglotstop": {},
-    "textinvscr": {},
-    "textinvsubbridge{}": {
-      "snippet": "textinvsubbridge{${1:arg}}"
-    },
-    "textiota": {},
-    "textipa{}": {
-      "snippet": "textipa{${1:arg}}"
-    },
-    "textlambda": {},
-    "textlengthmark": {},
-    "textlhookt": {},
-    "textlhtlongi": {},
-    "textlhtlongy": {},
-    "textlonglegr": {},
-    "textlowering{}": {
-      "snippet": "textlowering{${1:arg}}"
-    },
-    "textlowrise{}": {
-      "snippet": "textlowrise{${1:arg}}"
-    },
-    "textlptr": {},
-    "textltailm": {},
-    "textltailn": {},
-    "textltilde": {},
-    "textlyoghlig": {},
-    "textmidacute{}": {
-      "snippet": "textmidacute{${1:arg}}"
-    },
-    "textObardotlessj": {},
-    "textOlyoghlig": {},
-    "textomega": {},
-    "textopencorner": {},
-    "textopeno": {},
-    "textovercross{}": {
-      "snippet": "textovercross{${1:arg}}"
-    },
-    "textoverw{}": {
-      "snippet": "textoverw{${1:arg}}"
-    },
-    "textpalhook": {},
-    "textphi": {},
-    "textpipe": {},
-    "textpolhook{}": {
-      "snippet": "textpolhook{${1:arg}}"
-    },
-    "textprimstress": {},
-    "textraiseglotstop": {},
-    "textraisevibyi": {},
-    "textraising{}": {
-      "snippet": "textraising{${1:arg}}"
-    },
-    "textramshorns": {},
-    "textretracting{}": {
-      "snippet": "textretracting{${1:arg}}"
-    },
-    "textrevapostrophe": {},
-    "textreve": {},
-    "textrevepsilon": {},
-    "textrevglotstop": {},
-    "textrevyogh": {},
-    "textrhookrevepsilon": {},
-    "textrhookschwa": {},
-    "textrhoticity": {},
-    "textringmacron{}": {
-      "snippet": "textringmacron{${1:arg}}"
-    },
-    "textrisefall{}": {
-      "snippet": "textrisefall{${1:arg}}"
-    },
-    "textroundcap{}": {
-      "snippet": "textroundcap{${1:arg}}"
-    },
-    "textrptr": {},
-    "textrtaild": {},
-    "textrtaill": {},
-    "textrtailn": {},
-    "textrtailr": {},
-    "textrtails": {},
-    "textrtailt": {},
-    "textrtailz": {},
-    "textrthook": {},
-    "textsca": {},
-    "textscb": {},
-    "textsce": {},
-    "textscg": {},
-    "textsch": {},
-    "textschwa": {},
-    "textsci": {},
-    "textscj": {},
-    "textscl": {},
-    "textscn": {},
-    "textscoelig": {},
-    "textscomega": {},
-    "textscr": {},
-    "textscripta": {},
-    "textscriptg": {},
-    "textscriptv": {},
-    "textscu": {},
-    "textscy": {},
-    "textseagull{}": {
-      "snippet": "textseagull{${1:arg}}"
-    },
-    "textsecstress": {},
-    "textsoftsign": {},
-    "textstretchc": {},
-    "textsubacute{}": {
-      "snippet": "textsubacute{${1:arg}}"
-    },
-    "textsubarch{}": {
-      "snippet": "textsubarch{${1:arg}}"
-    },
-    "textsubbar{}": {
-      "snippet": "textsubbar{${1:arg}}"
-    },
-    "textsubbridge{}": {
-      "snippet": "textsubbridge{${1:arg}}"
-    },
-    "textsubcircum{}": {
-      "snippet": "textsubcircum{${1:arg}}"
-    },
-    "textsubdot{}": {
-      "snippet": "textsubdot{${1:arg}}"
-    },
-    "textsubgrave{}": {
-      "snippet": "textsubgrave{${1:arg}}"
-    },
-    "textsublhalfring{}": {
-      "snippet": "textsublhalfring{${1:arg}}"
-    },
-    "textsubplus{}": {
-      "snippet": "textsubplus{${1:arg}}"
-    },
-    "textsubrhalfring{}": {
-      "snippet": "textsubrhalfring{${1:arg}}"
-    },
-    "textsubring{}": {
-      "snippet": "textsubring{${1:arg}}"
-    },
-    "textsubsquare{}": {
-      "snippet": "textsubsquare{${1:arg}}"
-    },
-    "textsubtilde{}": {
-      "snippet": "textsubtilde{${1:arg}}"
-    },
-    "textsubumlaut{}": {
-      "snippet": "textsubumlaut{${1:arg}}"
-    },
-    "textsubw{}": {
-      "snippet": "textsubw{${1:arg}}"
-    },
-    "textsubwedge{}": {
-      "snippet": "textsubwedge{${1:arg}}"
-    },
-    "textsuperimposetilde{}": {
-      "snippet": "textsuperimposetilde{${1:arg}}"
-    },
-    "textsyllabic{}": {
-      "snippet": "textsyllabic{${1:arg}}"
-    },
-    "texttctclig": {},
-    "textteshlig": {},
-    "texttheta": {},
-    "textthorn": {},
-    "texttildedot{}": {
-      "snippet": "texttildedot{${1:arg}}"
-    },
-    "texttoneletterstem": {},
-    "texttoptiebar{}": {
-      "snippet": "texttoptiebar{${1:arg}}"
-    },
-    "texttslig": {},
-    "textturna": {},
-    "textturncelig": {},
-    "textturnh": {},
-    "textturnk": {},
-    "textturnlonglegr": {},
-    "textturnm": {
-      "snippet": "textturnm "
-    },
-    "textturnmrleg": {},
-    "textturnr": {},
-    "textturnrrtail": {},
-    "textturnscripta": {},
-    "textturnt": {},
-    "textturnv": {},
-    "textturnw": {},
-    "textturny": {},
-    "textupsilon": {},
-    "textupstep": {},
-    "textvbaraccent{}": {
-      "snippet": "textvbaraccent{${1:arg}}"
-    },
-    "textvertline": {},
-    "textvibyi": {},
-    "textvibyy": {},
-    "textwynn": {},
-    "textyogh": {},
-    "tipaencoding": {},
-    "tipamedspace": {},
-    "tipanegthinspace": {},
-    "tipasafemode": {},
-    "tipathickspace": {},
-    "tsipa": {},
-    "tipa": {},
-    "tipx": {},
-    "super{}": {
-      "snippet": "super{${1:text}}"
-    },
-    "nrsuper{}": {
-      "snippet": "nrsuper{${1:text}}"
-    },
-    "sups{}{}": {
-      "snippet": "sups{${1:arg1}}{${2:arg2}}"
-    },
-    "upperaccent{}{}": {
-      "snippet": "upperaccent{${1:slot}}{${2:char}}"
-    },
-    "upperaccent[]{}{}": {
-      "snippet": "upperaccent[${3:shift}]{${1:slot}}{${2:char}}"
-    },
-    "Upperaccent{}{}": {
-      "snippet": "Upperaccent{${1:slot}}{${2:char}}"
-    },
-    "Upperaccent[]{}{}": {
-      "snippet": "Upperaccent[${3:shift}]{${1:slot}}{${2:char}}"
-    },
-    "loweraccent{}{}": {
-      "snippet": "loweraccent{${1:slot}}{${2:char}}"
-    },
-    "loweraccent[]{}{}": {
-      "snippet": "loweraccent[${3:shift}]{${1:slot}}{${2:char}}"
-    },
-    "Loweraccent{}{}": {
-      "snippet": "Loweraccent{${1:slot}}{${2:char}}"
-    },
-    "Loweraccent[]{}{}": {
-      "snippet": "Loweraccent[${3:shift}]{${1:slot}}{${2:char}}"
-    },
-    "tipaupperaccent{}{}": {
-      "snippet": "tipaupperaccent{${1:slot}}{${2:char}}"
-    },
-    "tipaupperaccent[]{}{}": {
-      "snippet": "tipaupperaccent[${3:shift}]{${1:slot}}{${2:char}}"
-    },
-    "tipaUpperaccent{}{}": {
-      "snippet": "tipaUpperaccent{${1:slot}}{${2:char}}"
-    },
-    "tipaUpperaccent[]{}{}": {
-      "snippet": "tipaUpperaccent[${3:shift}]{${1:slot}}{${2:char}}"
-    },
-    "tipaloweraccent{}{}": {
-      "snippet": "tipaloweraccent{${1:slot}}{${2:char}}"
-    },
-    "tipaloweraccent[]{}{}": {
-      "snippet": "tipaloweraccent[${3:shift}]{${1:slot}}{${2:char}}"
-    },
-    "tipaLoweraccent{}{}": {
-      "snippet": "tipaLoweraccent{${1:slot}}{${2:char}}"
-    },
-    "tipaLoweraccent[]{}{}": {
-      "snippet": "tipaLoweraccent[${3:shift}]{${1:slot}}{${2:char}}"
-    },
-    "*": {
-      "detail": "*",
-      "documentation": "(high) ASTERISK, star"
-    },
-    "tipasterisktmp": {},
-    "tipapipetmp": {}
-  },
-  "envs": {
-    "IPA": {}
-  },
-  "options": [
-    "extra",
-    "tone",
-    "safe",
-    "T1",
-    "noenc"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/tipa#c"
+  ]
 }

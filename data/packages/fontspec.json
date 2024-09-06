@@ -1,351 +1,1107 @@
 {
-  "includes": {},
-  "macros": {
-    "liningnums{}": {
-      "snippet": "liningnums{${1:text}}"
-    },
-    "strong{}": {
-      "snippet": "strong{${1:text}}"
-    },
-    "strongfontdeclare{}": {
-      "snippet": "strongfontdeclare{${1:font-switching list}}"
-    },
-    "strongreset": {},
-    "setmainfont{}": {
-      "snippet": "setmainfont{${1:font}}"
-    },
-    "setmainfont[]{}": {
-      "snippet": "setmainfont[${2:font features}]{${1:font}}"
-    },
-    "setmainfont{}[]": {
-      "snippet": "setmainfont{${1:font}}[${2:font features}]"
-    },
-    "setmainfont[]{}[]": {
-      "snippet": "setmainfont[${2:font features}]{${1:font}}[${3:font features}]"
-    },
-    "setromanfont{}": {
-      "snippet": "setromanfont{${1:font}}"
-    },
-    "setromanfont[]{}": {
-      "snippet": "setromanfont[${2:font features}]{${1:font}}"
-    },
-    "setromanfont{}[]": {
-      "snippet": "setromanfont{${1:font}}[${2:font features}]"
-    },
-    "setromanfont[]{}[]": {
-      "snippet": "setromanfont[${2:font features}]{${1:font}}[${3:font features}]"
-    },
-    "setsansfont{}": {
-      "snippet": "setsansfont{${1:font}}"
-    },
-    "setsansfont[]{}": {
-      "snippet": "setsansfont[${2:font features}]{${1:font}}"
-    },
-    "setsansfont{}[]": {
-      "snippet": "setsansfont{${1:font}}[${2:font features}]"
-    },
-    "setsansfont[]{}[]": {
-      "snippet": "setsansfont[${2:font features}]{${1:font}}[${3:font features}]"
-    },
-    "setmonofont{}": {
-      "snippet": "setmonofont{${1:font}}"
-    },
-    "setmonofont[]{}": {
-      "snippet": "setmonofont[${2:font features}]{${1:font}}"
-    },
-    "setmonofont{}[]": {
-      "snippet": "setmonofont{${1:font}}[${2:font features}]"
-    },
-    "setmonofont[]{}[]": {
-      "snippet": "setmonofont[${2:font features}]{${1:font}}[${3:font features}]"
-    },
-    "newfontfamily{}{}": {
-      "snippet": "newfontfamily{${1:cmd}}{${2:font}}"
-    },
-    "newfontfamily{}[]{}": {
-      "snippet": "newfontfamily{${1:cmd}}[${2:font features}]{${3:font}}"
-    },
-    "newfontfamily{}{}[]": {
-      "snippet": "newfontfamily{${1:cmd}}{${2:font}}[${3:font features}]"
-    },
-    "newfontfamily{}[]{}[]": {
-      "snippet": "newfontfamily{${1:cmd}}[${2:font features}]{${3:font}}[${4:font features}]"
-    },
-    "setfontfamily{}{}": {
-      "snippet": "setfontfamily{${1:cmd}}{${2:font}}"
-    },
-    "setfontfamily{}[]{}": {
-      "snippet": "setfontfamily{${1:cmd}}[${2:font features}]{${3:font}}"
-    },
-    "setfontfamily{}{}[]": {
-      "snippet": "setfontfamily{${1:cmd}}{${2:font}}[${3:font features}]"
-    },
-    "setfontfamily{}[]{}[]": {
-      "snippet": "setfontfamily{${1:cmd}}[${2:font features}]{${3:font}}[${4:font features}]"
-    },
-    "renewfontfamily{}{}": {
-      "snippet": "renewfontfamily{${1:cmd}}{${2:font}}"
-    },
-    "renewfontfamily{}[]{}": {
-      "snippet": "renewfontfamily{${1:cmd}}[${2:font features}]{${3:font}}"
-    },
-    "renewfontfamily{}{}[]": {
-      "snippet": "renewfontfamily{${1:cmd}}{${2:font}}[${3:font features}]"
-    },
-    "renewfontfamily{}[]{}[]": {
-      "snippet": "renewfontfamily{${1:cmd}}[${2:font features}]{${3:font}}[${4:font features}]"
-    },
-    "providefontfamily{}{}": {
-      "snippet": "providefontfamily{${1:cmd}}{${2:font}}"
-    },
-    "providefontfamily{}[]{}": {
-      "snippet": "providefontfamily{${1:cmd}}[${2:font features}]{${3:font}}"
-    },
-    "providefontfamily{}{}[]": {
-      "snippet": "providefontfamily{${1:cmd}}{${2:font}}[${3:font features}]"
-    },
-    "providefontfamily{}[]{}[]": {
-      "snippet": "providefontfamily{${1:cmd}}[${2:font features}]{${3:font}}[${4:font features}]"
-    },
-    "fontspec{}": {
-      "snippet": "fontspec{${1:font}}"
-    },
-    "fontspec[]{}": {
-      "snippet": "fontspec[${2:font features}]{${1:font}}"
-    },
-    "fontspec{}[]": {
-      "snippet": "fontspec{${1:font}}[${2:font features}]"
-    },
-    "fontspec[]{}[]": {
-      "snippet": "fontspec[${2:font features}]{${1:font}}[${3:font features}]"
-    },
-    "IfFontExistsTF{}{}{}": {
-      "snippet": "IfFontExistsTF{${1:font name}}{${2:true}}{${3:false}}"
-    },
-    "newfontface{}{}": {
-      "snippet": "newfontface{${1:cmd}}{${2:font}}"
-    },
-    "newfontface{}[]{}": {
-      "snippet": "newfontface{${1:cmd}}[${2:font features}]{${3:font}}"
-    },
-    "newfontface{}{}[]": {
-      "snippet": "newfontface{${1:cmd}}{${2:font}}[${3:font features}]"
-    },
-    "newfontface{}[]{}[]": {
-      "snippet": "newfontface{${1:cmd}}[${2:font features}]{${3:font}}[${4:font features}]"
-    },
-    "setfontface{}{}": {
-      "snippet": "setfontface{${1:cmd}}{${2:font}}"
-    },
-    "setfontface{}[]{}": {
-      "snippet": "setfontface{${1:cmd}}[${2:font features}]{${3:font}}"
-    },
-    "setfontface{}{}[]": {
-      "snippet": "setfontface{${1:cmd}}{${2:font}}[${3:font features}]"
-    },
-    "setfontface{}[]{}[]": {
-      "snippet": "setfontface{${1:cmd}}[${2:font features}]{${3:font}}[${4:font features}]"
-    },
-    "renewfontface{}{}": {
-      "snippet": "renewfontface{${1:cmd}}{${2:font}}"
-    },
-    "renewfontface{}[]{}": {
-      "snippet": "renewfontface{${1:cmd}}[${2:font features}]{${3:font}}"
-    },
-    "renewfontface{}{}[]": {
-      "snippet": "renewfontface{${1:cmd}}{${2:font}}[${3:font features}]"
-    },
-    "renewfontface{}[]{}[]": {
-      "snippet": "renewfontface{${1:cmd}}[${2:font features}]{${3:font}}[${4:font features}]"
-    },
-    "providefontface{}{}": {
-      "snippet": "providefontface{${1:cmd}}{${2:font}}"
-    },
-    "providefontface{}[]{}": {
-      "snippet": "providefontface{${1:cmd}}[${2:font features}]{${3:font}}"
-    },
-    "providefontface{}{}[]": {
-      "snippet": "providefontface{${1:cmd}}{${2:font}}[${3:font features}]"
-    },
-    "providefontface{}[]{}[]": {
-      "snippet": "providefontface{${1:cmd}}[${2:font features}]{${3:font}}[${4:font features}]"
-    },
-    "setmathrm{}": {
-      "snippet": "setmathrm{${1:font}}"
-    },
-    "setmathrm[]{}": {
-      "snippet": "setmathrm[${2:font features}]{${1:font}}"
-    },
-    "setmathrm{}[]": {
-      "snippet": "setmathrm{${1:font}}[${2:font features}]"
-    },
-    "setmathrm[]{}[]": {
-      "snippet": "setmathrm[${2:font features}]{${1:font}}[${3:font features}]"
-    },
-    "setmathsf{}": {
-      "snippet": "setmathsf{${1:font}}"
-    },
-    "setmathsf[]{}": {
-      "snippet": "setmathsf[${2:font features}]{${1:font}}"
-    },
-    "setmathsf{}[]": {
-      "snippet": "setmathsf{${1:font}}[${2:font features}]"
-    },
-    "setmathsf[]{}[]": {
-      "snippet": "setmathsf[${2:font features}]{${1:font}}[${3:font features}]"
-    },
-    "setmathtt{}": {
-      "snippet": "setmathtt{${1:font}}"
-    },
-    "setmathtt[]{}": {
-      "snippet": "setmathtt[${2:font features}]{${1:font}}"
-    },
-    "setmathtt{}[]": {
-      "snippet": "setmathtt{${1:font}}[${2:font features}]"
-    },
-    "setmathtt[]{}[]": {
-      "snippet": "setmathtt[${2:font features}]{${1:font}}[${3:font features}]"
-    },
-    "setboldmathrm{}": {
-      "snippet": "setboldmathrm{${1:font}}"
-    },
-    "setboldmathrm[]{}": {
-      "snippet": "setboldmathrm[${2:font features}]{${1:font}}"
-    },
-    "setboldmathrm{}[]": {
-      "snippet": "setboldmathrm{${1:font}}[${2:font features}]"
-    },
-    "setboldmathrm[]{}[]": {
-      "snippet": "setboldmathrm[${2:font features}]{${1:font}}[${3:font features}]"
-    },
-    "defaultfontfeatures{}": {
-      "snippet": "defaultfontfeatures{${1:font features}}"
-    },
-    "defaultfontfeatures[]{}": {
-      "snippet": "defaultfontfeatures[${2:font name list}]{${1:font features}}"
-    },
-    "IfFontFeatureActiveTF{}{}{}": {
-      "snippet": "IfFontFeatureActiveTF{${1:font feature}}{${2:true}}{${3:false}}"
-    },
-    "addfontfeatures{}": {
-      "snippet": "addfontfeatures{${1:font features}}"
-    },
-    "addfontfeature{}": {
-      "snippet": "addfontfeature{${1:font features}}"
-    },
-    "EncodingCommand{}[][]{}": {
-      "snippet": "EncodingCommand{${1:cmd}}[${2:num}][${3:default}]{${4:code}}"
-    },
-    "EncodingAccent{}{}": {
-      "snippet": "EncodingAccent{${1:cmd}}{${2:code}}"
-    },
-    "EncodingSymbol{}{}": {
-      "snippet": "EncodingSymbol{${1:cmd}}{${2:code}}"
-    },
-    "EncodingComposite{}{}{}": {
-      "snippet": "EncodingComposite{${1:cmd}}{${2:letter}}{${3:slot}}"
-    },
-    "EncodingCompositeCommand(){}{}": {
-      "snippet": "EncodingCompositeCommand(${3:cmd}){${1:letter}}{${2:code}}"
-    },
-    "UndeclareSymbol{}": {
-      "snippet": "UndeclareSymbol{${1:cmd}}"
-    },
-    "UndeclareAccent{}": {
-      "snippet": "UndeclareAccent{${1:cmd}}"
-    },
-    "UndeclareCommand{}": {
-      "snippet": "UndeclareCommand{${1:cmd}}"
-    },
-    "UndeclareComposite{}{}": {
-      "snippet": "UndeclareComposite{${1:cmd}}{${2:letter}}"
-    },
-    "newAATfeature{}{}{}{}": {
-      "snippet": "newAATfeature{${1:feature}}{${2:option}}{${3:feature code}}{${4:selector code}}"
-    },
-    "newopentypefeature{}{}{}": {
-      "snippet": "newopentypefeature{${1:feature}}{${2:option}}{${3:feature tag}}"
-    },
-    "newfontfeature{}{}": {
-      "snippet": "newfontfeature{${1:name}}{${2:input string}}"
-    },
-    "newfontscript{}{}": {
-      "snippet": "newfontscript{${1:fontspec name}}{${2:OpenType tag list}}"
-    },
-    "newfontlanguage{}{}": {
-      "snippet": "newfontlanguage{${1:fontspec name}}{${2:OpenType tag list}}"
-    },
-    "aliasfontfeature{}{}": {
-      "snippet": "aliasfontfeature{${1:existing name}}{${2:new name}}"
-    },
-    "aliasfontfeatureoption{}{}{}": {
-      "snippet": "aliasfontfeatureoption{${1:font feature}}{${2:existing name}}{${3:new name}}"
-    },
-    "cyrillicencoding": {},
-    "latinencoding": {},
-    "UTFencname": {},
-    "emfontdeclare{}": {
-      "snippet": "emfontdeclare{${1:font-switching list}}"
-    },
-    "FontspecSetCheckBoolFalse": {},
-    "FontspecSetCheckBoolTrue": {},
-    "scitdefault": {},
-    "scsldefault": {},
-    "scswdefault": {},
-    "UnicodeEncodingName": {},
-    "UnicodeFontTeXLigatures": {},
-    "UnicodeFontFile{}{}": {
-      "snippet": "UnicodeFontFile{${1:arg1}}{${2:arg2}}"
-    },
-    "UnicodeFontName{}{}": {
-      "snippet": "UnicodeFontName{${1:arg1}}{${2:arg2}}"
-    },
-    "DeclareUnicodeAccent{}{}{}": {
-      "snippet": "DeclareUnicodeAccent{${1:cmd}}{${2:encoding}}{${3:char code}}"
-    },
-    "DeclareUnicodeCommand{}{}": {
-      "snippet": "DeclareUnicodeCommand{${1:command}}{${2:slot}}"
-    },
-    "DeclareUnicodeComposite{}{}{}": {
-      "snippet": "DeclareUnicodeComposite{${1:cmd}}{${2:letter}}{${3:definition}}"
-    },
-    "DeclareUnicodeSymbol{}{}": {
-      "snippet": "DeclareUnicodeSymbol{${1:command}}{${2:definition}}"
-    },
-    "textquotedbl": {},
-    "guillemetleft": {},
-    "guillemotleft": {},
-    "guillemetright": {},
-    "guillemotright": {},
-    "DH": {},
-    "TH": {},
-    "dh": {},
-    "th": {},
-    "DJ": {},
-    "dj": {},
-    "NG": {},
-    "ng": {},
-    "quotesinglbase": {},
-    "quotedblbase": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "liningnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "strong",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "strongfontdeclare",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font-switching list}}"
+      }
+    },
+    {
+      "name": "strongreset"
+    },
+    {
+      "name": "setmainfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setmainfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features}]{${1:font}}"
+      }
+    },
+    {
+      "name": "setmainfont",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:font}}[${2:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setmainfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:font features}]{${1:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "setromanfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setromanfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features}]{${1:font}}"
+      }
+    },
+    {
+      "name": "setromanfont",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:font}}[${2:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setromanfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:font features}]{${1:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "setsansfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setsansfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features}]{${1:font}}"
+      }
+    },
+    {
+      "name": "setsansfont",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:font}}[${2:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setsansfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:font features}]{${1:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "setmonofont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setmonofont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features}]{${1:font}}"
+      }
+    },
+    {
+      "name": "setmonofont",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:font}}[${2:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setmonofont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:font features}]{${1:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "newfontfamily",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:font}}"
+      }
+    },
+    {
+      "name": "newfontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:font features}]{${2:font}}"
+      }
+    },
+    {
+      "name": "newfontfamily",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:cmd}}{${2:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "newfontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "{${1:cmd}}[${3:font features}]{${2:font}}[${4:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "setfontfamily",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:font}}"
+      }
+    },
+    {
+      "name": "setfontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:font features}]{${2:font}}"
+      }
+    },
+    {
+      "name": "setfontfamily",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:cmd}}{${2:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "setfontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "{${1:cmd}}[${3:font features}]{${2:font}}[${4:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "renewfontfamily",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:font}}"
+      }
+    },
+    {
+      "name": "renewfontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:font features}]{${2:font}}"
+      }
+    },
+    {
+      "name": "renewfontfamily",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:cmd}}{${2:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "renewfontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "{${1:cmd}}[${3:font features}]{${2:font}}[${4:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "providefontfamily",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:font}}"
+      }
+    },
+    {
+      "name": "providefontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:font features}]{${2:font}}"
+      }
+    },
+    {
+      "name": "providefontfamily",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:cmd}}{${2:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "providefontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "{${1:cmd}}[${3:font features}]{${2:font}}[${4:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "fontspec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "fontspec",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features}]{${1:font}}"
+      }
+    },
+    {
+      "name": "fontspec",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:font}}[${2:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "fontspec",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:font features}]{${1:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "IfFontExistsTF",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:font name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "newfontface",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:font}}"
+      }
+    },
+    {
+      "name": "newfontface",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:font features}]{${2:font}}"
+      }
+    },
+    {
+      "name": "newfontface",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:cmd}}{${2:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "newfontface",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "{${1:cmd}}[${3:font features}]{${2:font}}[${4:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "setfontface",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:font}}"
+      }
+    },
+    {
+      "name": "setfontface",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:font features}]{${2:font}}"
+      }
+    },
+    {
+      "name": "setfontface",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:cmd}}{${2:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "setfontface",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "{${1:cmd}}[${3:font features}]{${2:font}}[${4:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "renewfontface",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:font}}"
+      }
+    },
+    {
+      "name": "renewfontface",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:font features}]{${2:font}}"
+      }
+    },
+    {
+      "name": "renewfontface",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:cmd}}{${2:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "renewfontface",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "{${1:cmd}}[${3:font features}]{${2:font}}[${4:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "providefontface",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:font}}"
+      }
+    },
+    {
+      "name": "providefontface",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:font features}]{${2:font}}"
+      }
+    },
+    {
+      "name": "providefontface",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:cmd}}{${2:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "providefontface",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "{${1:cmd}}[${3:font features}]{${2:font}}[${4:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "setmathrm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setmathrm",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features}]{${1:font}}"
+      }
+    },
+    {
+      "name": "setmathrm",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:font}}[${2:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setmathrm",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:font features}]{${1:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "setmathsf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setmathsf",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features}]{${1:font}}"
+      }
+    },
+    {
+      "name": "setmathsf",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:font}}[${2:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setmathsf",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:font features}]{${1:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "setmathtt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setmathtt",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features}]{${1:font}}"
+      }
+    },
+    {
+      "name": "setmathtt",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:font}}[${2:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setmathtt",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:font features}]{${1:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "setboldmathrm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setboldmathrm",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features}]{${1:font}}"
+      }
+    },
+    {
+      "name": "setboldmathrm",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:font}}[${2:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setboldmathrm",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:font features}]{${1:font}}[${3:font features%keyvals}]",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "defaultfontfeatures",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font features%keyvals}}",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "defaultfontfeatures",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font name list}]{${1:font features%keyvals}}",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "IfFontFeatureActiveTF",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:font feature}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "addfontfeatures",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font features%keyvals}}",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addfontfeature",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font features%keyvals}}",
+        "keys": [
+          "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "EncodingCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:num}][${4:default}]{${2:code}}"
+      }
+    },
+    {
+      "name": "EncodingAccent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:code}}"
+      }
+    },
+    {
+      "name": "EncodingSymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:code}}"
+      }
+    },
+    {
+      "name": "EncodingComposite",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:letter}}{${3:slot}}"
+      }
+    },
+    {
+      "name": "EncodingCompositeCommand",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "(${3:cmd}){${1:letter}}{${2:code}}"
+      }
+    },
+    {
+      "name": "UndeclareSymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "UndeclareAccent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "UndeclareCommand",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "UndeclareComposite",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:letter}}"
+      }
+    },
+    {
+      "name": "newAATfeature",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:feature}}{${2:option}}{${3:feature code}}{${4:selector code}}"
+      }
+    },
+    {
+      "name": "newopentypefeature",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:feature}}{${2:option}}{${3:feature tag}}"
+      }
+    },
+    {
+      "name": "newfontfeature",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:input string}}"
+      }
+    },
+    {
+      "name": "newfontscript",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:fontspec name}}{${2:OpenType tag list}}"
+      }
+    },
+    {
+      "name": "newfontlanguage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:fontspec name}}{${2:OpenType tag list}}"
+      }
+    },
+    {
+      "name": "aliasfontfeature",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:existing name}}{${2:new name}}"
+      }
+    },
+    {
+      "name": "aliasfontfeatureoption",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:font feature}}{${2:existing name}}{${3:new name}}"
+      }
+    },
+    {
+      "name": "cyrillicencoding",
+      "unusual": true
+    },
+    {
+      "name": "latinencoding",
+      "unusual": true
+    },
+    {
+      "name": "UTFencname",
+      "unusual": true
+    },
+    {
+      "name": "emfontdeclare",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font-switching list}}"
+      }
+    },
+    {
+      "name": "FontspecSetCheckBoolFalse",
+      "unusual": true
+    },
+    {
+      "name": "FontspecSetCheckBoolTrue",
+      "unusual": true
+    },
+    {
+      "name": "scitdefault",
+      "unusual": true
+    },
+    {
+      "name": "scsldefault",
+      "unusual": true
+    },
+    {
+      "name": "scswdefault",
+      "unusual": true
+    },
+    {
+      "name": "UnicodeEncodingName",
+      "unusual": true
+    },
+    {
+      "name": "UnicodeFontTeXLigatures",
+      "unusual": true
+    },
+    {
+      "name": "UnicodeFontFile",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "UnicodeFontName",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "DeclareUnicodeAccent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:encoding}}{${3:char code}}"
+      }
+    },
+    {
+      "name": "DeclareUnicodeCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:slot}}"
+      }
+    },
+    {
+      "name": "DeclareUnicodeComposite",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:letter}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "DeclareUnicodeSymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     }
-  },
-  "envs": {
-    "strongenv": {}
-  },
-  "options": [
-    "math",
-    "no-math",
-    "config",
-    "no-config",
-    "quiet",
-    "silent",
-    "verbose"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "strongenv"
+    }
+  ],
+  "keys": {
+    "\\usepackage/fontspec#c": [
+      "math",
+      "no-math",
+      "config",
+      "no-config",
+      "quiet",
+      "silent",
+      "verbose"
+    ],
+    "\\addfontfeature,\\addfontfeatures,\\defaultfontfeatures,\\fontspec,\\newfontface,\\newfontfamily,\\providefontface,\\providefontfamily,\\renewfontface,\\renewfontfamily,\\setboldmathrm,\\setfontface,\\setfontfamily,\\setmainfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmonofont,\\setromanfont,\\setsansfont": [
+      "Alternate=${1:feature}",
+      "Annotation=",
+      "AutoFakeBold=${1:number}",
+      "AutoFakeSlant=${1:number}",
+      "BoldFeatures={${1:features}}",
+      "BoldFont=${1:font name}",
+      "BoldItalicFeatures={${1:features}}",
+      "BoldItalicFont=${1:font name}",
+      "BoldSlantedFeatures={${1:features}}",
+      "BoldSlantedFont=${1:font name}",
+      "BoldSwashFeatures={${1:features}}",
+      "BoldSwashFont=${1:font name}",
+      "CJKShape=${1|Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC|}",
+      "CharacterVariant={${1:glyph num list}:${2:variety num}}",
+      "CharacterWidth=${1|Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll|}",
+      "Color=",
+      "Colour=",
+      "Contextuals=${1|Swash,SwashOff,Alternate,AlternateOff,WordInitial,WordInitialOff,WordFinal,WordFinalOff,LineFinal,LineFinalOff,Inner,InnerOff,ResetAll|}",
+      "Diacritics=${1|MarkToBase,MarkToMark,AboveBase,BelowBase,ResetAll|}",
+      "Extension=${1:extension}",
+      "FakeBold=${1:number}",
+      "FakeSlant=${1:number}",
+      "FakeStretch=${1:number}",
+      "Font=${1:font name}",
+      "FontFace={${1:series}}{${2:shape}}{${3:font name}}",
+      "Fractions=${1|On,Off,Reset,Alternate,ResetAll|}",
+      "HyphenChar=${1:character}",
+      "IgnoreFontspecFile",
+      "Instance=${1:instance}",
+      "ItalicFeatures={${1:features}}",
+      "ItalicFont=${1:font name}",
+      "Kerning=${1|On,Off,Reset,Uppercase,ResetAll|}",
+      "KpseOnly",
+      "Language=${1:language}",
+      "LetterSpace=${1:number}",
+      "Letters=${1|SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,Uppercase,Lowercase,ResetAll|}",
+      "Ligatures=${1|Required,Common,Contextual,Rare,Discretionary,Historic,TeX|}",
+      "LocalForms=${1|On,Off,Reset|}",
+      "NFSSFamily=${1:font family}",
+      "Numbers=${1|Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle,OldStyleOff,Proportional,ProportionalOff,Monospaced,MonospacedOff,SlashedZero,SlashedZeroOff,Arabic,ArabicOff,ResetAll|}",
+      "Opacity=${1:factor}",
+      "OpticalSize=${1:size}",
+      "Ornament=",
+      "Path=${1:file path}",
+      "PunctuationSpace=${1:number}",
+      "RawAxis={${1:tag=number}}",
+      "RawFeature=${1:feature tag}",
+      "Scale=${1:number}",
+      "ScaleAgain=${1:number}",
+      "Script=${1:name}",
+      "Size=${1:number}",
+      "SizeFeatures={${1:features}}",
+      "Slant=${1:number}",
+      "SlantedFeatures={${1:features}}",
+      "SlantedFont=${1:font name}",
+      "SmallCapsFeatures={${1:features}}",
+      "SmallCapsFont=${1:font name}",
+      "Style=${1|Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,Uppercase,HorizontalKana,VerticalKana,ResetAll|}",
+      "StylisticAlternates=${1:feature}",
+      "StylisticSet=${1:set number}",
+      "SwashFeatures={${1:features}}",
+      "SwashFont=${1:font name}",
+      "UprightFeatures={${1:features}}",
+      "UprightFont=${1:font name}",
+      "Variant=${1:integer}",
+      "Vertical=${1|RotatedGlyphs,AlternatesForRotation,Alternates,KanaAlternates,Kerning,AlternateMetrics,HalfMetrics,ProportionalMetrics,ResetAll|}",
+      "VerticalPosition=${1|Superior,Inferior,Numerator,Denominator,ScientificInferior,Ordinal,ResetAll|}",
+      "Weight=${1:number}",
+      "Width=${1:number}",
+      "WordSpace=${1:number}",
+      "Mapping=${1:xetex-only feature}",
+      "Renderer=${1:renderer}"
+    ]
+  },
+  "args": [
+    "\\usepackage/fontspec#c"
+  ]
 }

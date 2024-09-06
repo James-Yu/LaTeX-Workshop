@@ -1,120 +1,264 @@
 {
-  "includes": {},
-  "macros": {
-    "toolboxMakeDef{}{}": {
-      "snippet": "toolboxMakeDef{${1:name}}{${2:replacement}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "toolboxMakeDef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:replacement}}"
+      }
     },
-    "toolboxMakeDef[]{}{}": {
-      "snippet": "toolboxMakeDef[${3:prefix}]{${1:name}}{${2:replacement}}"
+    {
+      "name": "toolboxMakeDef",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:prefix}]{${1:name}}{${2:replacement}}"
+      }
     },
-    "toolboxFreeDef{}": {
-      "snippet": "toolboxFreeDef{${1:name}}"
+    {
+      "name": "toolboxFreeDef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "toolboxFreeDef[]{}": {
-      "snippet": "toolboxFreeDef[${2:prefix}]{${1:name}}"
+    {
+      "name": "toolboxFreeDef",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix}]{${1:name}}"
+      }
     },
-    "toolboxFreeDef*{}": {
-      "snippet": "toolboxFreeDef*{${1:name}}"
+    {
+      "name": "toolboxFreeDef*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "toolboxFreeDef*[]{}": {
-      "snippet": "toolboxFreeDef*[${2:prefix}]{${1:name}}"
+    {
+      "name": "toolboxFreeDef*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix}]{${1:name}}"
+      }
     },
-    "toolboxFuturelet{}": {
-      "snippet": "toolboxFuturelet{${1:cmd}}"
+    {
+      "name": "toolboxGobbleNext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
     },
-    "toolboxGobbleNext{}": {
-      "snippet": "toolboxGobbleNext{${1:cmd}}"
+    {
+      "name": "toolboxIfNextToken",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:token}}{${2:if}}{${3:else}}"
+      }
     },
-    "toolboxIfNextToken{}{}{}": {
-      "snippet": "toolboxIfNextToken{${1:token}}{${2:if}}{${3:else}}"
+    {
+      "name": "toolboxToken",
+      "unusual": true
     },
-    "toolboxToken": {},
-    "toolboxIfNextGobbling{}{}{}": {
-      "snippet": "toolboxIfNextGobbling{${1:token}}{${2:if}}{${3:else}}"
+    {
+      "name": "toolboxIfNextGobbling",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:token}}{${2:if}}{${3:else}}"
+      }
     },
-    "toolboxIfEmpty{}{}{}": {
-      "snippet": "toolboxIfEmpty{${1:arg}}{${2:if}}{${3:else}}"
+    {
+      "name": "toolboxIfEmpty",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg}}{${2:if}}{${3:else}}"
+      }
     },
-    "toolboxIfX{}{}{}{}": {
-      "snippet": "toolboxIfX{${1:arg1}}{${2:arg2}}{${3:if}}{${4:else}}"
+    {
+      "name": "toolboxIfX",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:if}}{${4:else}}"
+      }
     },
-    "toolboxIfElse{}{}{}": {
-      "snippet": "toolboxIfElse{${1:ifcmd}}{${2:if}}{${3:else}}"
+    {
+      "name": "toolboxIfElse",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:ifcmd}}{${2:if}}{${3:else}}"
+      }
     },
-    "toolboxLoop{}{}": {
-      "snippet": "toolboxLoop{${1:items}}{${2:action}}"
+    {
+      "name": "toolboxLoop",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:items}}{${2:action}}"
+      }
     },
-    "toolboxLoopName{}{}{}": {
-      "snippet": "toolboxLoopName{${1:name}}{${2:items}}{${3:action}}"
+    {
+      "name": "toolboxLoopName",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:items}}{${3:action}}"
+      }
     },
-    "toolboxTokenLoop{}{}": {
-      "snippet": "toolboxTokenLoop{${1:tokens}}{${2:action}}"
+    {
+      "name": "toolboxTokenLoop",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:tokens}}{${2:action}}"
+      }
     },
-    "toolboxTokenLoopName{}{}{}": {
-      "snippet": "toolboxTokenLoopName{${1:name}}{${2:tokens}}{${3:action}}"
+    {
+      "name": "toolboxTokenLoopName",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:tokens}}{${3:action}}"
+      }
     },
-    "toolboxDef{}": {
-      "snippet": "toolboxDef{${1:cmd}}"
+    {
+      "name": "toolboxSpace",
+      "unusual": true
     },
-    "toolboxSpace": {},
-    "toolboxAppend{}": {
-      "snippet": "toolboxAppend{${1:cmd}}"
+    {
+      "name": "toolboxSplitAt",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:argument}}{${2:search}}{${3:\\beforestring%cmd}}{${4:\\afterstring%cmd}}"
+      }
     },
-    "toolboxTokDef{}{}": {
-      "snippet": "toolboxTokDef{${1:argumentlist}}{${2:cmd}}"
+    {
+      "name": "toolboxSplitAt*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:argument}}{${2:search}}{${3:\\beforestring%cmd}}{${4:\\afterstring%cmd}}"
+      }
     },
-    "toolboxSplitAt{}{}{}{}": {
-      "snippet": "toolboxSplitAt{${1:argument}}{${2:search}}{${3:\\beforestring}}{${4:\\afterstring}}"
+    {
+      "name": "toolboxMakeSplit",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:search}}{${2:cmd}}"
+      }
     },
-    "toolboxSplitAt*{}{}{}{}": {
-      "snippet": "toolboxSplitAt*{${1:argument}}{${2:search}}{${3:\\beforestring}}{${4:\\afterstring}}"
+    {
+      "name": "toolboxMakeSplit*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:search}}{${2:cmd}}"
+      }
     },
-    "toolboxMakeSplit{}{}": {
-      "snippet": "toolboxMakeSplit{${1:search}}{${2:cmd}}"
+    {
+      "name": "toolboxFreeSplit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
     },
-    "toolboxMakeSplit*{}{}": {
-      "snippet": "toolboxMakeSplit*{${1:search}}{${2:cmd}}"
+    {
+      "name": "toolboxMakeHarmless",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
     },
-    "toolboxFreeSplit{}": {
-      "snippet": "toolboxFreeSplit{${1:cmd}}"
+    {
+      "name": "toolboxDropBrace",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
     },
-    "toolboxMakeHarmless{}": {
-      "snippet": "toolboxMakeHarmless{${1:cmd}}"
+    {
+      "name": "toolboxNewiftrue",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "toolboxDropBrace{}": {
-      "snippet": "toolboxDropBrace{${1:cmd}}"
+    {
+      "name": "toolboxNewiffalse",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "toolboxIf{}{}{}": {
-      "snippet": "toolboxIf{${1:comparison}}{${2:def cmds}}{${3:cmd}}"
+    {
+      "name": "toolboxNewifTrue",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "toolboxNewiftrue{}": {
-      "snippet": "toolboxNewiftrue{${1:name}}"
+    {
+      "name": "toolboxNewifFalse",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "toolboxNewiffalse{}": {
-      "snippet": "toolboxNewiffalse{${1:name}}"
+    {
+      "name": "toolboxEmpty",
+      "unusual": true
     },
-    "toolboxNewifTrue{}": {
-      "snippet": "toolboxNewifTrue{${1:name}}"
+    {
+      "name": "toolboxSpaceToken",
+      "unusual": true
     },
-    "toolboxNewifFalse{}": {
-      "snippet": "toolboxNewifFalse{${1:name}}"
+    {
+      "name": "toolboxFirstOfTwo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
     },
-    "toolboxLet{}": {
-      "snippet": "toolboxLet{${1:cmd}}"
+    {
+      "name": "toolboxSecondOfTwo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
     },
-    "toolboxEmpty": {},
-    "toolboxSpaceToken": {},
-    "toolboxFirstOfTwo{}{}": {
-      "snippet": "toolboxFirstOfTwo{${1:arg1}}{${2:arg2}}"
-    },
-    "toolboxSecondOfTwo{}{}": {
-      "snippet": "toolboxSecondOfTwo{${1:arg1}}{${2:arg2}}"
-    },
-    "toolboxGobbleArg{}": {
-      "snippet": "toolboxGobbleArg{${1:arg}}"
+    {
+      "name": "toolboxGobbleArg",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

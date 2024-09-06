@@ -1,129 +1,197 @@
 {
-  "includes": {
-    "mathtools": [],
-    "mathrsfs": [],
-    "amssymb": []
-  },
-  "macros": {
-    "DefineMathOperator{}": {
-      "snippet": "DefineMathOperator{${1:name}}"
+  "deps": [
+    {
+      "name": "mathtools"
     },
-    "DefineMathOperator[]{}": {
-      "snippet": "DefineMathOperator[${2:style=code}]{${1:name}}"
+    {
+      "name": "mathrsfs"
     },
-    "DefineMathOperator*{}": {
-      "snippet": "DefineMathOperator*{${1:name}}"
-    },
-    "DefineMathOperator*[]{}": {
-      "snippet": "DefineMathOperator*[${2:style=code}]{${1:name}}"
-    },
-    "DefineOperator{}": {
-      "snippet": "DefineOperator{${1:name}}"
-    },
-    "DefineOperator[]{}": {
-      "snippet": "DefineOperator[${2:style=code}]{${1:name}}"
-    },
-    "DefineOperator*{}": {
-      "snippet": "DefineOperator*{${1:name}}"
-    },
-    "DefineOperator*[]{}": {
-      "snippet": "DefineOperator*[${2:style=code}]{${1:name}}"
-    },
-    "ProjLibDefineMathOperator{}": {
-      "snippet": "ProjLibDefineMathOperator{${1:name}}"
-    },
-    "ProjLibDefineMathOperator[]{}": {
-      "snippet": "ProjLibDefineMathOperator[${2:style=code}]{${1:name}}"
-    },
-    "ProjLibDefineMathOperator*{}": {
-      "snippet": "ProjLibDefineMathOperator*{${1:name}}"
-    },
-    "ProjLibDefineMathOperator*[]{}": {
-      "snippet": "ProjLibDefineMathOperator*[${2:style=code}]{${1:name}}"
-    },
-    "DefineMathSymbol{}": {
-      "snippet": "DefineMathSymbol{${1:name}}"
-    },
-    "DefineMathSymbol[]{}": {
-      "snippet": "DefineMathSymbol[${2:options}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "DefineMathSymbol*{}": {
-      "snippet": "DefineMathSymbol*{${1:name}}"
-    },
-    "DefineMathSymbol*[]{}": {
-      "snippet": "DefineMathSymbol*[${2:options}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "DefineShortcut{}": {
-      "snippet": "DefineShortcut{${1:name}}"
-    },
-    "DefineShortcut[]{}": {
-      "snippet": "DefineShortcut[${2:options}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "DefineShortcut*{}": {
-      "snippet": "DefineShortcut*{${1:name}}"
-    },
-    "DefineShortcut*[]{}": {
-      "snippet": "DefineShortcut*[${2:options}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ProjLibDefineMathSymbol{}": {
-      "snippet": "ProjLibDefineMathSymbol{${1:name}}"
-    },
-    "ProjLibDefineMathSymbol[]{}": {
-      "snippet": "ProjLibDefineMathSymbol[${2:options}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ProjLibDefineMathSymbol*{}": {
-      "snippet": "ProjLibDefineMathSymbol*{${1:name}}"
-    },
-    "ProjLibDefineMathSymbol*[]{}": {
-      "snippet": "ProjLibDefineMathSymbol*[${2:options}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "RedefineInMathMode{}{}": {
-      "snippet": "RedefineInMathMode{${1:cmd}}{${2:def}}"
-    },
-    "ProjLibRedefineInMathMode{}{}": {
-      "snippet": "ProjLibRedefineInMathMode{${1:cmd}}{${2:def}}"
-    },
-    "ListOfSymbols{}": {
-      "snippet": "ListOfSymbols{${1:keyvals}}"
-    },
-    "ListOfSymbols[]{}": {
-      "snippet": "ListOfSymbols[${2:colwidth1}]{${1:keyvals}}"
-    },
-    "ListOfSymbols[][]{}": {
-      "snippet": "ListOfSymbols[${2:colwidth1}][${3:colwidth2}]{${1:keyvals}}"
-    },
-    "ProjLibListOfSymbols{}": {
-      "snippet": "ProjLibListOfSymbols{${1:keyvals}}"
-    },
-    "ProjLibListOfSymbols[]{}": {
-      "snippet": "ProjLibListOfSymbols[${2:colwidth1}]{${1:keyvals}}"
-    },
-    "ProjLibListOfSymbols[][]{}": {
-      "snippet": "ProjLibListOfSymbols[${2:colwidth1}][${3:colwidth2}]{${1:keyvals}}"
-    },
-    "ProvideCommandCopy{}{}": {
-      "snippet": "ProvideCommandCopy{${1:cmd}}{${2:def}}"
+    {
+      "name": "amssymb"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "DefineMathOperator",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "DefineMathOperator",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style=code}]{${1:name}}"
+      }
+    },
+    {
+      "name": "DefineMathOperator*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "DefineMathOperator*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style=code}]{${1:name}}"
+      }
+    },
+    {
+      "name": "DefineOperator",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "DefineOperator",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style=code}]{${1:name}}"
+      }
+    },
+    {
+      "name": "DefineOperator*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "DefineOperator*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style=code}]{${1:name}}"
+      }
+    },
+    {
+      "name": "DefineMathSymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "DefineMathSymbol",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:name}}",
+        "keys": [
+          "\\DefineMathSymbol,\\DefineMathSymbol*,\\DefineShortcut,\\DefineShortcut*,\\ProjLibDefineMathSymbol,\\ProjLibDefineMathSymbol*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DefineMathSymbol*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "DefineMathSymbol*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:name}}",
+        "keys": [
+          "\\DefineMathSymbol,\\DefineMathSymbol*,\\DefineShortcut,\\DefineShortcut*,\\ProjLibDefineMathSymbol,\\ProjLibDefineMathSymbol*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DefineShortcut",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "DefineShortcut",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:name}}",
+        "keys": [
+          "\\DefineMathSymbol,\\DefineMathSymbol*,\\DefineShortcut,\\DefineShortcut*,\\ProjLibDefineMathSymbol,\\ProjLibDefineMathSymbol*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DefineShortcut*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "DefineShortcut*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:name}}",
+        "keys": [
+          "\\DefineMathSymbol,\\DefineMathSymbol*,\\DefineShortcut,\\DefineShortcut*,\\ProjLibDefineMathSymbol,\\ProjLibDefineMathSymbol*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "RedefineInMathMode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
+    },
+    {
+      "name": "ListOfSymbols",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "ListOfSymbols",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:colwidth1}]{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "ListOfSymbols",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:colwidth1}][${3:colwidth2}]{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "ProvideCommandCopy",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\DefineMathSymbol,\\DefineMathSymbol*,\\DefineShortcut,\\DefineShortcut*,\\ProjLibDefineMathSymbol,\\ProjLibDefineMathSymbol*": [
       "prefix=",
       "type=",
       "style="
     ]
-  ]
+  },
+  "args": []
 }

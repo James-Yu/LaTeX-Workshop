@@ -1,96 +1,212 @@
 {
-  "includes": {
-    "xcolor": [],
-    "etoolbox": [],
-    "xkeyval": [],
-    "xstring": []
-  },
-  "macros": {
-    "setcounter{}{}": {
-      "snippet": "setcounter{${1:counter}}{${2:value}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "setcounter[]{}{}": {
-      "snippet": "setcounter[${3:options}]{${1:counter}}{${2:value}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "etoolbox"
     },
-    "DeclareAssociatedCounters{}{}": {
-      "snippet": "DeclareAssociatedCounters{${1:driver counter}}{${2:associated counters list}}"
+    {
+      "name": "xkeyval"
     },
-    "AddAssociatedCounters{}{}": {
-      "snippet": "AddAssociatedCounters{${1:driver counter}}{${2:associated counters list}}"
-    },
-    "RemoveAssociatedCounter{}{}": {
-      "snippet": "RemoveAssociatedCounter{${1:driver counter}}{${2:associated counter}}"
-    },
-    "RemoveAssociatedCounters{}{}": {
-      "snippet": "RemoveAssociatedCounters{${1:driver counter}}{${2:associated counters list}}"
-    },
-    "ClearAssociatedCounters{}": {
-      "snippet": "ClearAssociatedCounters{${1:driver counter}}"
-    },
-    "AddDriverCounter{}": {
-      "snippet": "AddDriverCounter{${1:driver counter name}}"
-    },
-    "ClearDriverCounter": {},
-    "IsAssociatedToCounter{}{}{}{}": {
-      "snippet": "IsAssociatedToCounter{${1:driver counter}}{${2:associated counter}}{${3:true}}{${4:false}}"
-    },
-    "GetDriverCounter{}": {
-      "snippet": "GetDriverCounter{${1:counter}}"
-    },
-    "IsAssociatedCounter{}{}{}": {
-      "snippet": "IsAssociatedCounter{${1:counter}}{${2:true}}{${3:false}}"
-    },
-    "IsDriverCounter{}{}{}": {
-      "snippet": "IsDriverCounter{${1:driver counter}}{${2:true}}{${3:false}}"
-    },
-    "IsSuspendedCounter{}{}{}": {
-      "snippet": "IsSuspendedCounter{${1:counter}}{${2:true}}{${3:false}}"
-    },
-    "AssociatedDriverCounterInfo{}": {
-      "snippet": "AssociatedDriverCounterInfo{${1:counter}}"
-    },
-    "LastAddedToCounter": {},
-    "LastSteppedCounter": {},
-    "LastRefSteppedCounter": {},
-    "LastSetCounter": {},
-    "PrettyPrintCounterName{}": {
-      "snippet": "PrettyPrintCounterName{${1:counter}}"
-    },
-    "PrettyPrintCounterName[]{}": {
-      "snippet": "PrettyPrintCounterName[${2:options}]{${1:counter}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "GeneralCounterInfoColor": {},
-    "DriverCounterInfoColor": {},
-    "AssociatedCounterInfoColor": {},
-    "SuspendCounters{}": {
-      "snippet": "SuspendCounters{${1:counters list}}"
-    },
-    "ResumeSuspendedCounters": {},
-    "AssociationStatistics": {},
-    "ClearAssociatedCountersList{}": {
-      "snippet": "ClearAssociatedCountersList{${1:associated counters list}}"
-    },
-    "ClearDriverCountersList": {},
-    "IsInResetList{}{}{}{}": {
-      "snippet": "IsInResetList{${1:arg1}}{${2:arg2}}{${3:true}}{${4:false}}"
-    },
-    "assoccntpackageversion": {}
-  },
-  "envs": {},
-  "options": [
-    "globalsuspend"
+    {
+      "name": "xstring"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "setcounter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:counter}}{${2:value}}"
+      }
+    },
+    {
+      "name": "setcounter",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:counter}}{${2:value}}",
+        "keys": [
+          "\\setcounter"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DeclareAssociatedCounters",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:driver counter}}{${2:associated counters list}}"
+      }
+    },
+    {
+      "name": "AddAssociatedCounters",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:driver counter}}{${2:associated counters list}}"
+      }
+    },
+    {
+      "name": "RemoveAssociatedCounter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:driver counter}}{${2:associated counter}}"
+      }
+    },
+    {
+      "name": "RemoveAssociatedCounters",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:driver counter}}{${2:associated counters list}}"
+      }
+    },
+    {
+      "name": "ClearAssociatedCounters",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:driver counter}}"
+      }
+    },
+    {
+      "name": "AddDriverCounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:driver counter name}}"
+      }
+    },
+    {
+      "name": "ClearDriverCounter"
+    },
+    {
+      "name": "IsAssociatedToCounter",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:driver counter}}{${2:associated counter}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "GetDriverCounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "IsAssociatedCounter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:counter}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "IsDriverCounter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:driver counter}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "IsSuspendedCounter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:counter}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "AssociatedDriverCounterInfo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "LastAddedToCounter"
+    },
+    {
+      "name": "LastSteppedCounter"
+    },
+    {
+      "name": "LastRefSteppedCounter"
+    },
+    {
+      "name": "LastSetCounter"
+    },
+    {
+      "name": "PrettyPrintCounterName",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "PrettyPrintCounterName",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:counter}}",
+        "keys": [
+          "\\PrettyPrintCounterName"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "GeneralCounterInfoColor"
+    },
+    {
+      "name": "DriverCounterInfoColor"
+    },
+    {
+      "name": "AssociatedCounterInfoColor"
+    },
+    {
+      "name": "SuspendCounters",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counters list}}"
+      }
+    },
+    {
+      "name": "ResumeSuspendedCounters"
+    },
+    {
+      "name": "AssociationStatistics",
+      "unusual": true
+    },
+    {
+      "name": "ClearAssociatedCountersList",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:associated counters list}}"
+      }
+    },
+    {
+      "name": "ClearDriverCountersList",
+      "unusual": true
+    },
+    {
+      "name": "IsInResetList",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:true}}{${4:false}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/assoccnt#c": [
+      "globalsuspend"
+    ],
+    "\\setcounter": [
       "AssociatedToo",
       "AssociatedCounters={${1:list of counters}}"
     ],
-    [
+    "\\PrettyPrintCounterName": [
       "countertype=${1|general,driver,associated|}"
     ]
+  },
+  "args": [
+    "\\usepackage/assoccnt#c"
   ]
 }

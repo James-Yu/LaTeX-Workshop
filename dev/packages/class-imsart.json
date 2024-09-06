@@ -1,144 +1,250 @@
 {
-  "includes": {
-    "imsart": [],
-    "amsmath": [
+  "deps": [
+    {
+      "name": "imsart"
+    },
+    {
+      "name": "amsmath",
+      "if": "amsmath"
+    },
+    {
+      "name": "amsthm",
+      "if": "amsthm"
+    },
+    {
+      "name": "natbib",
+      "if": "natbib"
+    },
+    {
+      "name": "rotating",
+      "if": "rotating"
+    },
+    {
+      "name": "lmodern",
+      "if": "ba"
+    },
+    {
+      "name": "lmodern",
+      "if": "ps"
+    },
+    {
+      "name": "lmodern",
+      "if": "ss"
+    },
+    {
+      "name": "lmodern",
+      "if": "ejs"
+    },
+    {
+      "name": "times",
+      "if": "aap"
+    },
+    {
+      "name": "helvet",
+      "if": "aap"
+    },
+    {
+      "name": "textcase",
+      "if": "aap"
+    },
+    {
+      "name": "times",
+      "if": "aop"
+    },
+    {
+      "name": "helvet",
+      "if": "aop"
+    },
+    {
+      "name": "textcase",
+      "if": "aop"
+    },
+    {
+      "name": "times",
+      "if": "aos"
+    },
+    {
+      "name": "helvet",
+      "if": "aos"
+    },
+    {
+      "name": "textcase",
+      "if": "aos"
+    },
+    {
+      "name": "times",
+      "if": "aoas"
+    },
+    {
+      "name": "helvet",
+      "if": "aoas"
+    },
+    {
+      "name": "textcase",
+      "if": "aoas"
+    },
+    {
+      "name": "helvet",
+      "if": "bj"
+    },
+    {
+      "name": "newtxmath",
+      "if": "bj"
+    },
+    {
+      "name": "graphicx",
+      "if": "bj"
+    },
+    {
+      "name": "letterspace",
+      "if": "bj"
+    },
+    {
+      "name": "enumitem",
+      "if": "bj"
+    },
+    {
+      "name": "hyperref",
+      "if": "bj"
+    },
+    {
+      "name": "amsmath",
+      "if": "bj"
+    },
+    {
+      "name": "amssymb",
+      "if": "bj"
+    },
+    {
+      "name": "mathrsfs",
+      "if": "bj"
+    },
+    {
+      "name": "bm",
+      "if": "bj"
+    },
+    {
+      "name": "amsthm",
+      "if": "bj"
+    },
+    {
+      "name": "natbib",
+      "if": "bj"
+    },
+    {
+      "name": "color",
+      "if": "bj"
+    },
+    {
+      "name": "times",
+      "if": "aihp"
+    },
+    {
+      "name": "helvet",
+      "if": "aihp"
+    },
+    {
+      "name": "times",
+      "if": "bjps"
+    },
+    {
+      "name": "helvet",
+      "if": "bjps"
+    },
+    {
+      "name": "color",
+      "if": "showframe"
+    }
+  ],
+  "macros": [
+    {
+      "name": "thline",
+      "if": "sts",
+      "unusual": true
+    },
+    {
+      "name": "thline",
+      "if": "bj",
+      "unusual": true
+    },
+    {
+      "name": "setlstracking",
+      "if": "bj",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "texttracking",
+      "if": "bj",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:value}}{${2:text}}"
+      }
+    },
+    {
+      "name": "thline",
+      "if": "bjps",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "proof",
+      "if": "amsthm",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/imsart#c": [
+      "printbiddoi",
+      "keywordsasfootnote",
+      "historyasfootnote",
+      "addressasfootnote",
+      "addressatend",
+      "autosecdot",
+      "noautosecdot",
+      "noundefthanksref",
+      "frontback",
       "amsmath",
-      "bj"
-    ],
-    "amsthm": [
       "amsthm",
-      "bj"
-    ],
-    "natbib": [
+      "seceqn",
       "natbib",
-      "bj"
-    ],
-    "rotating": [
-      "rotating"
-    ],
-    "lmodern": [
+      "linksfromyear",
+      "numbers",
+      "nameyear",
+      "authoryear",
+      "rotating",
       "ba",
       "ps",
       "ss",
-      "ejs"
-    ],
-    "times": [
+      "ejs",
       "aap",
       "aop",
       "aos",
       "aoas",
-      "aihp",
-      "bjps"
-    ],
-    "helvet": [
-      "aap",
-      "aop",
-      "aos",
-      "aoas",
+      "sts",
       "bj",
       "aihp",
-      "bjps"
-    ],
-    "textcase": [
-      "aap",
-      "aop",
-      "aos",
-      "aoas"
-    ],
-    "newtxmath": [
-      "bj"
-    ],
-    "graphicx": [
-      "bj"
-    ],
-    "letterspace": [
-      "bj"
-    ],
-    "enumitem": [
-      "bj"
-    ],
-    "hyperref": [
-      "bj"
-    ],
-    "amssymb": [
-      "bj"
-    ],
-    "mathrsfs": [
-      "bj"
-    ],
-    "bm": [
-      "bj"
-    ],
-    "color": [
-      "bj",
-      "showframe"
+      "bjps",
+      "doublespacing",
+      "singlespacing",
+      "noinfoline",
+      "infoline",
+      "linenumbers",
+      "nolinenumbers",
+      "showframe",
+      "noshowframe",
+      "submission",
+      "preedit",
+      "preprint"
     ]
   },
-  "macros": {
-    "savehline": {
-      "option": "bjps"
-    },
-    "thline": {
-      "option": "bjps"
-    },
-    "setlstracking{}": {
-      "snippet": "setlstracking{${1:value}}",
-      "option": "bj"
-    },
-    "texttracking{}{}": {
-      "snippet": "texttracking{${1:value}}{${2:text}}",
-      "option": "bj"
-    }
-  },
-  "envs": {
-    "proof[]": {
-      "name": "proof",
-      "snippet": "[${1:heading}]",
-      "option": "amsthm"
-    }
-  },
-  "options": [
-    "printbiddoi",
-    "keywordsasfootnote",
-    "historyasfootnote",
-    "addressasfootnote",
-    "addressatend",
-    "autosecdot",
-    "noautosecdot",
-    "noundefthanksref",
-    "frontback",
-    "amsmath",
-    "amsthm",
-    "seceqn",
-    "natbib",
-    "linksfromyear",
-    "numbers",
-    "nameyear",
-    "authoryear",
-    "rotating",
-    "ba",
-    "ps",
-    "ss",
-    "ejs",
-    "aap",
-    "aop",
-    "aos",
-    "aoas",
-    "sts",
-    "bj",
-    "aihp",
-    "bjps",
-    "doublespacing",
-    "singlespacing",
-    "noinfoline",
-    "infoline",
-    "linenumbers",
-    "nolinenumbers",
-    "showframe",
-    "noshowframe",
-    "submission",
-    "preedit",
-    "preprint"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/imsart#c"
+  ]
 }

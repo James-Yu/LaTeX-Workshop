@@ -1,54 +1,118 @@
 {
-  "includes": {
-    "ifthen": [],
-    "calc": []
-  },
-  "macros": {
-    "Place*": {},
-    "Place{}{}": {
-      "snippet": "Place{${1:fraction1}}{${2:fraction2}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "ffram": {},
-    "sfram": {},
-    "k": {
-      "detail": "𝑘",
-      "documentation": "MATHEMATICAL ITALIC SMALL K"
-    },
-    "cnum": {},
-    "flength": {},
-    "slength": {},
-    "ffrac": {},
-    "sfrac": {},
-    "nop": {},
-    "total": {},
-    "actualheight": {},
-    "initskip": {},
-    "colframsep": {},
-    "h": {
-      "detail": "h",
-      "documentation": "LATIN SMALL LETTER H"
-    },
-    "test": {},
-    "temp": {},
-    "rigidbalance": {},
-    "dosplits": {},
-    "splitoff": {},
-    "dobalance": {},
-    "finalbalance": {},
-    "myline": {},
-    "UserDefWidths{}{}": {
-      "snippet": "UserDefWidths{${1:fraction1}}{${2:fraction2}}"
-    },
-    "AutoCompute": {},
-    "UsefulLengthsTable": {},
-    "firsterror": {}
-  },
-  "envs": {
-    "fframe": {},
-    "sframe": {}
-  },
-  "options": [
-    "multicol"
+    {
+      "name": "calc"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "Place*"
+    },
+    {
+      "name": "Place",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:fraction1}}{${2:fraction2}}"
+      }
+    },
+    {
+      "name": "ffram",
+      "unusual": true
+    },
+    {
+      "name": "sfram",
+      "unusual": true
+    },
+    {
+      "name": "cnum",
+      "unusual": true
+    },
+    {
+      "name": "flength",
+      "unusual": true
+    },
+    {
+      "name": "slength",
+      "unusual": true
+    },
+    {
+      "name": "ffrac",
+      "unusual": true
+    },
+    {
+      "name": "sfrac",
+      "unusual": true
+    },
+    {
+      "name": "actualheight",
+      "unusual": true
+    },
+    {
+      "name": "initskip",
+      "unusual": true
+    },
+    {
+      "name": "colframsep",
+      "unusual": true
+    },
+    {
+      "name": "rigidbalance",
+      "unusual": true
+    },
+    {
+      "name": "dosplits",
+      "unusual": true
+    },
+    {
+      "name": "splitoff",
+      "unusual": true
+    },
+    {
+      "name": "dobalance",
+      "unusual": true
+    },
+    {
+      "name": "finalbalance",
+      "unusual": true
+    },
+    {
+      "name": "myline",
+      "unusual": true
+    },
+    {
+      "name": "UserDefWidths",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:fraction1}}{${2:fraction2}}"
+      }
+    },
+    {
+      "name": "AutoCompute",
+      "unusual": true
+    },
+    {
+      "name": "UsefulLengthsTable",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "fframe"
+    },
+    {
+      "name": "sframe"
+    }
+  ],
+  "keys": {
+    "\\usepackage/parrun#c": [
+      "multicol"
+    ]
+  },
+  "args": [
+    "\\usepackage/parrun#c"
+  ]
 }

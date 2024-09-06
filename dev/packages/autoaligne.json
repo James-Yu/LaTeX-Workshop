@@ -1,35 +1,69 @@
 {
-  "includes": {
-    "listofitems": []
-  },
-  "macros": {
-    "autoaligne{}": {
-      "snippet": "autoaligne{${1:eq1\\\\eq2\\\\...}}"
+  "deps": [
+    {
+      "name": "listofitems"
+    }
+  ],
+  "macros": [
+    {
+      "name": "autoaligne",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:eq1\\\\eq2\\\\...%formula}}"
+      }
     },
-    "autoaligne[]{}": {
-      "snippet": "autoaligne[${2:hor_align}]{${1:eq1\\\\eq2\\\\...}}"
+    {
+      "name": "autoaligne",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:hor_align}]{${1:eq1\\\\eq2\\\\...%formula}}"
+      }
     },
-    "autoaligne[](){}": {
-      "snippet": "autoaligne[${2:hor_align}](${3:vert_align}){${1:eq1\\\\eq2\\\\...}}"
+    {
+      "name": "autoaligne",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:hor_align}](${3:vert_align}){${1:eq1\\\\eq2\\\\...%formula}}"
+      }
     },
-    "egaldevantmembrevide": {},
-    "aavcoeff{}": {
-      "snippet": "aavcoeff{${1:value}}"
+    {
+      "name": "egaldevantmembrevide",
+      "unusual": true
     },
-    "definirseparateurs{}{}{}": {
-      "snippet": "definirseparateurs{${1:sep_line}}{${2:sep_members}}{${3:sep_terms}}"
+    {
+      "name": "aavcoeff",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
     },
-    "definirespacements{}{}": {
-      "snippet": "definirespacements{${1:space_members}}{${2:space_terms}}"
+    {
+      "name": "definirseparateurs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:sep_line}}{${2:sep_members}}{${3:sep_terms}}"
+      }
     },
-    "definirespacements[]{}{}": {
-      "snippet": "definirespacements[${3:dimen1,dimen2}]{${1:space_members}}{${2:space_terms}}"
+    {
+      "name": "definirespacements",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:space_members}}{${2:space_terms}}"
+      }
     },
-    "aanom": {},
-    "aaversion": {},
-    "aadate": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "definirespacements",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:dimen1,dimen2}]{${1:space_members}}{${2:space_terms}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

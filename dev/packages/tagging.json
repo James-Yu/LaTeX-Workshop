@@ -1,37 +1,73 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "verbatim": []
-  },
-  "macros": {
-    "tagged{}{}": {
-      "snippet": "tagged{${1:tag list}}{${2:source text}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "untagged{}{}": {
-      "snippet": "untagged{${1:tag list}}{${2:alt text}}"
-    },
-    "iftagged{}{}{}": {
-      "snippet": "iftagged{${1:tag list}}{${2:source text}}{${3:alt text}}"
-    },
-    "usetag{}": {
-      "snippet": "usetag{${1:tag list}}"
-    },
-    "droptag{}": {
-      "snippet": "droptag{${1:tag list}}"
-    },
-    "taggedy": {},
-    "taggedn": {}
-  },
-  "envs": {
-    "taggedblock{}": {
-      "name": "taggedblock",
-      "snippet": "{${1:tag list}}"
-    },
-    "untaggedblock{}": {
-      "name": "untaggedblock",
-      "snippet": "{${1:tag list}}"
+    {
+      "name": "verbatim"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "tagged",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:tag list}}{${2:source text}}"
+      }
+    },
+    {
+      "name": "untagged",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:tag list}}{${2:alt text}}"
+      }
+    },
+    {
+      "name": "iftagged",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:tag list}}{${2:source text}}{${3:alt text}}"
+      }
+    },
+    {
+      "name": "usetag",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag list}}"
+      }
+    },
+    {
+      "name": "droptag",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag list}}"
+      }
+    },
+    {
+      "name": "taggedy",
+      "unusual": true
+    },
+    {
+      "name": "taggedn",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "taggedblock",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag list}}"
+      }
+    },
+    {
+      "name": "untaggedblock",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag list}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

@@ -1,55 +1,143 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "scrlfile": [],
-    "bibleref": []
-  },
-  "macros": {
-    "biblerefparseset{}": {
-      "snippet": "biblerefparseset{${1:options}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "pbibleverse{}": {
-      "snippet": "pbibleverse{${1:passage}}"
+    {
+      "name": "scrlfile"
     },
-    "pbibleverse[]{}": {
-      "snippet": "pbibleverse[${2:options}]{${1:passage}}"
-    },
-    "BRbksep": {},
-    "pibibleverse{}": {
-      "snippet": "pibibleverse{${1:passage}}"
-    },
-    "pibibleverse[]{}": {
-      "snippet": "pibibleverse[${2:options}]{${1:passage}}"
-    },
-    "pibiblechvs{}": {
-      "snippet": "pibiblechvs{${1:passage}}"
-    },
-    "pibiblechvs[]{}": {
-      "snippet": "pibiblechvs[${2:options}]{${1:passage}}"
-    },
-    "pibiblevs{}": {
-      "snippet": "pibiblevs{${1:passage}}"
-    },
-    "pibiblevs[]{}": {
-      "snippet": "pibiblevs[${2:options}]{${1:passage}}"
-    },
-    "brpDefineBookPrefix{}{}": {
-      "snippet": "brpDefineBookPrefix{${1:new book prefix}}{${2:book name}}"
-    },
-    "brpDefineBook{}{}": {
-      "snippet": "brpDefineBook{${1:new book name}}{${2:book name}}"
-    },
-    "brpUndefBookPrefix{}{}": {
-      "snippet": "brpUndefBookPrefix{${1:new book prefix}}{${2:book name}}"
-    },
-    "brpUndefBook{}{}": {
-      "snippet": "brpUndefBook{${1:new book name}}{${2:book name}}"
-    },
-    "BRadditionsto": {}
-  },
-  "envs": {},
-  "options": [
-    "comma=${1|list,chvsep,likeBR,preferchvsep,preferlikeBR|}"
+    {
+      "name": "bibleref"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "biblerefparseset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/bibleref-parse#c,\\biblerefparseset,\\pbibleverse,\\pibibleverse,\\pibiblechvs,\\pibiblevs"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pbibleverse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:passage}}"
+      }
+    },
+    {
+      "name": "pbibleverse",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:passage}}",
+        "keys": [
+          "\\usepackage/bibleref-parse#c,\\biblerefparseset,\\pbibleverse,\\pibibleverse,\\pibiblechvs,\\pibiblevs"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "BRbksep",
+      "unusual": true
+    },
+    {
+      "name": "pibibleverse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:passage}}"
+      }
+    },
+    {
+      "name": "pibibleverse",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:passage}}",
+        "keys": [
+          "\\usepackage/bibleref-parse#c,\\biblerefparseset,\\pbibleverse,\\pibibleverse,\\pibiblechvs,\\pibiblevs"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pibiblechvs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:passage}}"
+      }
+    },
+    {
+      "name": "pibiblechvs",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:passage}}",
+        "keys": [
+          "\\usepackage/bibleref-parse#c,\\biblerefparseset,\\pbibleverse,\\pibibleverse,\\pibiblechvs,\\pibiblevs"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pibiblevs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:passage}}"
+      }
+    },
+    {
+      "name": "pibiblevs",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:passage}}",
+        "keys": [
+          "\\usepackage/bibleref-parse#c,\\biblerefparseset,\\pbibleverse,\\pibibleverse,\\pibiblechvs,\\pibiblevs"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "brpDefineBookPrefix",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:new book prefix}}{${2:book name}}"
+      }
+    },
+    {
+      "name": "brpDefineBook",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:new book name}}{${2:book name}}"
+      }
+    },
+    {
+      "name": "brpUndefBookPrefix",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:new book prefix}}{${2:book name}}"
+      }
+    },
+    {
+      "name": "brpUndefBook",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:new book name}}{${2:book name}}"
+      }
+    },
+    {
+      "name": "BRadditionsto",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bibleref-parse#c,\\biblerefparseset,\\pbibleverse,\\pibibleverse,\\pibiblechvs,\\pibiblevs": [
+      "comma=${1|list,chvsep,likeBR,preferchvsep,preferlikeBR|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/bibleref-parse#c,\\biblerefparseset,\\pbibleverse,\\pibibleverse,\\pibiblechvs,\\pibiblevs"
+  ]
 }

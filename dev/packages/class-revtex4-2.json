@@ -1,452 +1,972 @@
 {
-  "includes": {
-    "textcase": [],
-    "url": [],
-    "natbib": [],
-    "revsymb4-2": [],
-    "amsfonts": [
-      "amsfonts"
-    ],
-    "amssymb": [
-      "amssymb"
-    ],
-    "amsmath": [
-      "amsmath"
-    ],
-    "lineno": [
-      "linenumbers"
+  "deps": [
+    {
+      "name": "textcase"
+    },
+    {
+      "name": "url"
+    },
+    {
+      "name": "natbib"
+    },
+    {
+      "name": "revsymb4-2"
+    },
+    {
+      "name": "amsfonts",
+      "if": "amsfonts"
+    },
+    {
+      "name": "amssymb",
+      "if": "amssymb"
+    },
+    {
+      "name": "amsmath",
+      "if": "amsmath"
+    },
+    {
+      "name": "lineno",
+      "if": "linenumbers"
+    }
+  ],
+  "macros": [
+    {
+      "name": "absbox",
+      "unusual": true
+    },
+    {
+      "name": "accepted",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:optional text%text}]{${1:date}}"
+      }
+    },
+    {
+      "name": "accepted",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "acknowledgmentsname",
+      "unusual": true
+    },
+    {
+      "name": "addstuff",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:penalty}}{${2:glue}}"
+      }
+    },
+    {
+      "name": "affiliation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:affiliation%text}}"
+      }
+    },
+    {
+      "name": "altaffiliation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:optional text%text}]{${1:affiliation%text}}"
+      }
+    },
+    {
+      "name": "altaffiliation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:affiliation%text}}"
+      }
+    },
+    {
+      "name": "andname",
+      "unusual": true
+    },
+    {
+      "name": "appdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:code}}"
+      }
+    },
+    {
+      "name": "appendixesname",
+      "unusual": true
+    },
+    {
+      "name": "blankaffiliation",
+      "unusual": true
+    },
+    {
+      "name": "botrule"
+    },
+    {
+      "name": "checkindate",
+      "unusual": true
+    },
+    {
+      "name": "collaboration",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:collaboration%text}}"
+      }
+    },
+    {
+      "name": "colrule"
+    },
+    {
+      "name": "copyrightname",
+      "unusual": true
+    },
+    {
+      "name": "doauthor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "doi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:DOI}}"
+      }
+    },
+    {
+      "name": "doibase",
+      "unusual": true
+    },
+    {
+      "name": "eid",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:eid}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:optional text%text}]{${1:email address%URL}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email address%URL}}"
+      }
+    },
+    {
+      "name": "endpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:endpage}}"
+      }
+    },
+    {
+      "name": "eprint",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "eqncolsep",
+      "unusual": true
+    },
+    {
+      "name": "figuresname",
+      "unusual": true
+    },
+    {
+      "name": "firstname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:firstname}}"
+      }
+    },
+    {
+      "name": "flushing"
+    },
+    {
+      "name": "footsofar",
+      "unusual": true
+    },
+    {
+      "name": "frstrut",
+      "unusual": true
+    },
+    {
+      "name": "fullinterlineskip",
+      "unusual": true
+    },
+    {
+      "name": "gappdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:code}}"
+      }
+    },
+    {
+      "name": "homepage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:optional text%text}]{${1:URL}}"
+      }
+    },
+    {
+      "name": "homepage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "href",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:URL}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "intertabularlinepenalty",
+      "unusual": true
+    },
+    {
+      "name": "issuenumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "journalname",
+      "unusual": true
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:word1; word2; ...%text}}"
+      }
+    },
+    {
+      "name": "linefoot",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "lineloop",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "listofvideos"
+    },
+    {
+      "name": "lofname",
+      "unusual": true
+    },
+    {
+      "name": "loopuntil",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "loopwhile",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "lotname",
+      "unusual": true
+    },
+    {
+      "name": "lovname",
+      "unusual": true
+    },
+    {
+      "name": "lrstrut",
+      "unusual": true
+    },
+    {
+      "name": "mit",
+      "unusual": true
+    },
+    {
+      "name": "noaffiliation"
+    },
+    {
+      "name": "numbername",
+      "unusual": true
+    },
+    {
+      "name": "oneapage",
+      "unusual": true
+    },
+    {
+      "name": "onecolumngrid",
+      "unusual": true
+    },
+    {
+      "name": "onlinecite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "onlinecite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "other",
+      "unusual": true
+    },
+    {
+      "name": "pacs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:PACS codes}}"
+      }
+    },
+    {
+      "name": "pagesofar",
+      "unusual": true
+    },
+    {
+      "name": "phantomsection",
+      "unusual": true
+    },
+    {
+      "name": "ppname",
+      "unusual": true
+    },
+    {
+      "name": "prepdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:code}}"
+      }
+    },
+    {
+      "name": "preprint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "printfigures"
+    },
+    {
+      "name": "printindex"
+    },
+    {
+      "name": "printtables"
+    },
+    {
+      "name": "printvideos"
+    },
+    {
+      "name": "published",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:optional text%text}]{${1:date}}"
+      }
+    },
+    {
+      "name": "published",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "received",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:optional text%text}]{${1:date}}"
+      }
+    },
+    {
+      "name": "received",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "removephantombox",
+      "unusual": true
+    },
+    {
+      "name": "removestuff",
+      "unusual": true
+    },
+    {
+      "name": "replacestuff",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:penalty}}{${2:glue}}"
+      }
+    },
+    {
+      "name": "restorecolumngrid",
+      "unusual": true
+    },
+    {
+      "name": "revised",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:optional text%text}]{${1:date}}"
+      }
+    },
+    {
+      "name": "revised",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "say",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "saythe",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:count}}"
+      }
+    },
+    {
+      "name": "setfloatlink",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "squeezetable"
+    },
+    {
+      "name": "startpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:startpage}}"
+      }
+    },
+    {
+      "name": "surname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:surname}}"
+      }
+    },
+    {
+      "name": "tableftsep",
+      "unusual": true
+    },
+    {
+      "name": "tablesname",
+      "unusual": true
+    },
+    {
+      "name": "tabmidsep",
+      "unusual": true
+    },
+    {
+      "name": "tabrightsep",
+      "unusual": true
+    },
+    {
+      "name": "textcite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "theaffil",
+      "unusual": true
+    },
+    {
+      "name": "thecollab",
+      "unusual": true
+    },
+    {
+      "name": "theHvideo",
+      "unusual": true
+    },
+    {
+      "name": "thelinecount",
+      "unusual": true
+    },
+    {
+      "name": "thepagegrid",
+      "unusual": true
+    },
+    {
+      "name": "thevideo",
+      "unusual": true
+    },
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "tocname",
+      "unusual": true
+    },
+    {
+      "name": "toprule"
+    },
+    {
+      "name": "traceoutput",
+      "unusual": true
+    },
+    {
+      "name": "tracingplain",
+      "unusual": true
+    },
+    {
+      "name": "triggerpar",
+      "unusual": true
+    },
+    {
+      "name": "twocolumngrid",
+      "unusual": true
+    },
+    {
+      "name": "volumename",
+      "unusual": true
+    },
+    {
+      "name": "volumenumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "volumeyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "adv",
+      "unusual": true
+    },
+    {
+      "name": "ao",
+      "unusual": true
+    },
+    {
+      "name": "ap",
+      "unusual": true
+    },
+    {
+      "name": "apl",
+      "unusual": true
+    },
+    {
+      "name": "apm",
+      "unusual": true
+    },
+    {
+      "name": "apj",
+      "unusual": true
+    },
+    {
+      "name": "bell",
+      "unusual": true
+    },
+    {
+      "name": "bmf",
+      "unusual": true
+    },
+    {
+      "name": "cha",
+      "unusual": true
+    },
+    {
+      "name": "jqe",
+      "unusual": true
+    },
+    {
+      "name": "assp",
+      "unusual": true
+    },
+    {
+      "name": "aprop",
+      "unusual": true
+    },
+    {
+      "name": "mtt",
+      "unusual": true
+    },
+    {
+      "name": "iovs",
+      "unusual": true
+    },
+    {
+      "name": "jcp",
+      "unusual": true
+    },
+    {
+      "name": "jap",
+      "unusual": true
+    },
+    {
+      "name": "jmp",
+      "unusual": true
+    },
+    {
+      "name": "jmo",
+      "unusual": true
+    },
+    {
+      "name": "josa",
+      "unusual": true
+    },
+    {
+      "name": "josaa",
+      "unusual": true
+    },
+    {
+      "name": "josab",
+      "unusual": true
+    },
+    {
+      "name": "jpp",
+      "unusual": true
+    },
+    {
+      "name": "jpr",
+      "unusual": true
+    },
+    {
+      "name": "ltp",
+      "unusual": true
+    },
+    {
+      "name": "nat",
+      "unusual": true
+    },
+    {
+      "name": "oc",
+      "unusual": true
+    },
+    {
+      "name": "ol",
+      "unusual": true
+    },
+    {
+      "name": "pl",
+      "unusual": true
+    },
+    {
+      "name": "pop",
+      "unusual": true
+    },
+    {
+      "name": "pof",
+      "unusual": true
+    },
+    {
+      "name": "pra",
+      "unusual": true
+    },
+    {
+      "name": "prb",
+      "unusual": true
+    },
+    {
+      "name": "prc",
+      "unusual": true
+    },
+    {
+      "name": "prd",
+      "unusual": true
+    },
+    {
+      "name": "pre",
+      "unusual": true
+    },
+    {
+      "name": "prl",
+      "unusual": true
+    },
+    {
+      "name": "rmp",
+      "unusual": true
+    },
+    {
+      "name": "rsi",
+      "unusual": true
+    },
+    {
+      "name": "rse",
+      "unusual": true
+    },
+    {
+      "name": "pspie",
+      "unusual": true
+    },
+    {
+      "name": "sjqe",
+      "unusual": true
+    },
+    {
+      "name": "vr",
+      "unusual": true
+    },
+    {
+      "name": "sd",
+      "unusual": true
+    },
+    {
+      "name": "jor",
+      "unusual": true
+    },
+    {
+      "name": "cp",
+      "unusual": true
+    },
+    {
+      "name": "byrevtex",
+      "unusual": true
+    },
+    {
+      "name": "aapmreprint",
+      "if": "aapm",
+      "unusual": true
+    },
+    {
+      "name": "aapmpreprint",
+      "if": "aapm",
+      "unusual": true
+    },
+    {
+      "name": "aipreprint",
+      "if": "aip",
+      "unusual": true
+    },
+    {
+      "name": "aippreprint",
+      "if": "aip",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "acknowledgments"
+    },
+    {
+      "name": "acknowledgements",
+      "unusual": true
+    },
+    {
+      "name": "ruledtabular"
+    },
+    {
+      "name": "turnpage"
+    },
+    {
+      "name": "video"
+    },
+    {
+      "name": "video",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:placement}]"
+      }
+    },
+    {
+      "name": "video*"
+    },
+    {
+      "name": "video*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:placement}]"
+      }
+    },
+    {
+      "name": "widetext"
+    }
+  ],
+  "keys": {
+    "\\documentclass/revtex4-2#c": [
+      "checkin",
+      "preprint",
+      "reprint",
+      "showpacs",
+      "noshowpacs",
+      "showkeys",
+      "noshowkeys",
+      "balancelastpage",
+      "nobalancelastpage",
+      "nopreprintnumbers",
+      "preprintnumbers",
+      "10pt",
+      "11pt",
+      "12pt",
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "bibnotes",
+      "nobibnotes",
+      "footinbib",
+      "nofootinbib",
+      "altaffilletter",
+      "altaffilsymbol",
+      "superbib",
+      "citeautoscript",
+      "longbibliography",
+      "nolongbibliography",
+      "eprint",
+      "noeprint",
+      "twoside",
+      "oneside",
+      "onecolumn",
+      "twocolumn",
+      "author",
+      "numerical",
+      "galley",
+      "raggedbottom",
+      "flushbottom",
+      "tightenlines",
+      "lengthcheck",
+      "draft",
+      "final",
+      "eqsecnum",
+      "secnumarabic",
+      "fleqn",
+      "floats",
+      "endfloats",
+      "endfloats",
+      "titlepage",
+      "notitlepage",
+      "osa",
+      "osameet",
+      "opex",
+      "tops",
+      "josa",
+      "amsfonts",
+      "amssymb",
+      "noamssymb",
+      "amsmath",
+      "noamsmath",
+      "byrevtex",
+      "floatfix",
+      "nofloatfix",
+      "ltxgridinfo",
+      "outputdebug",
+      "raggedfooter",
+      "noraggedfooter",
+      "frontmatterverbose",
+      "linenumbers",
+      "nomerge",
+      "hypertext",
+      "frontmatterverbose",
+      "inactive",
+      "groupedaddress",
+      "unsortedaddress",
+      "runinaddress",
+      "superscriptaddress",
+      "aapm",
+      "aip",
+      "aps",
+      "aps10pt",
+      "aps11pt",
+      "aps12pt",
+      "apsrmp",
+      "sor",
+      "pra",
+      "prb",
+      "prc",
+      "prd",
+      "pre",
+      "prl",
+      "prab",
+      "prper",
+      "rmp",
+      "prx",
+      "prapplied",
+      "prmaterials",
+      "prfluids",
+      "physrev",
+      "mph",
+      "jcp",
+      "pop",
+      "rsi",
+      "jap",
+      "apl",
+      "apm",
+      "cha",
+      "pof",
+      "bmf",
+      "rse",
+      "jmp",
+      "adv",
+      "sd",
+      "jor",
+      "cp",
+      "author-numerical",
+      "article-title",
+      "jor",
+      "author-numerical",
+      "article-title"
     ]
   },
-  "macros": {
-    "absbox": {},
-    "accepted[]{}": {
-      "snippet": "accepted[${2:optional text}]{${1:date}}"
-    },
-    "accepted{}": {
-      "snippet": "accepted{${1:date}}"
-    },
-    "acknowledgmentsname": {},
-    "addstuff{}{}": {
-      "snippet": "addstuff{${1:penalty}}{${2:glue}}"
-    },
-    "affiliation{}": {
-      "snippet": "affiliation{${1:affiliation}}"
-    },
-    "altaffiliation[]{}": {
-      "snippet": "altaffiliation[${2:optional text}]{${1:affiliation}}"
-    },
-    "altaffiliation{}": {
-      "snippet": "altaffiliation{${1:affiliation}}"
-    },
-    "andname": {},
-    "appdef{}{}": {
-      "snippet": "appdef{${1:command}}{${2:code}}"
-    },
-    "appendixesname": {},
-    "blankaffiliation": {},
-    "botrule": {},
-    "checkindate": {},
-    "collaboration{}": {
-      "snippet": "collaboration{${1:collaboration}}"
-    },
-    "colrule": {},
-    "copyrightname": {},
-    "doauthor{}{}{}": {
-      "snippet": "doauthor{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "doi{}": {
-      "snippet": "doi{${1:DOI}}"
-    },
-    "doibase": {},
-    "eid{}": {
-      "snippet": "eid{${1:eid}}"
-    },
-    "email[]{}": {
-      "snippet": "email[${2:optional text}]{${1:email address}}"
-    },
-    "email{}": {
-      "snippet": "email{${1:email address}}"
-    },
-    "endpage{}": {
-      "snippet": "endpage{${1:endpage}}"
-    },
-    "eprint{}": {
-      "snippet": "eprint{${1:text}}"
-    },
-    "eqncolsep": {},
-    "figuresname": {},
-    "firstname{}": {
-      "snippet": "firstname{${1:firstname}}"
-    },
-    "flushing": {},
-    "footsofar": {},
-    "frstrut": {},
-    "fullinterlineskip": {},
-    "gappdef{}{}": {
-      "snippet": "gappdef{${1:command}}{${2:code}}"
-    },
-    "homepage[]{}": {
-      "snippet": "homepage[${2:optional text}]{${1:URL}}"
-    },
-    "homepage{}": {
-      "snippet": "homepage{${1:URL}}"
-    },
-    "href{}{}": {
-      "snippet": "href{${1:URL}}{${2:text}}"
-    },
-    "intertabularlinepenalty": {},
-    "issuenumber{}": {
-      "snippet": "issuenumber{${1:number}}"
-    },
-    "journalname": {},
-    "keywords{}": {
-      "snippet": "keywords{${1:word1; word2; ...}}"
-    },
-    "linefoot{}": {
-      "snippet": "linefoot{${1:label}}"
-    },
-    "lineloop{}": {
-      "snippet": "lineloop{${1:number}}"
-    },
-    "listofvideos": {},
-    "lofname": {},
-    "loopuntil{}": {
-      "snippet": "loopuntil{${1:arg}}"
-    },
-    "loopwhile{}": {
-      "snippet": "loopwhile{${1:arg}}"
-    },
-    "lotname": {},
-    "lovname": {},
-    "lrstrut": {},
-    "mit": {},
-    "noaffiliation": {},
-    "numbername": {},
-    "oneapage": {},
-    "onecolumngrid": {},
-    "onlinecite[]{}": {
-      "snippet": "onlinecite[${2:postfix}]{${1:keylist}}"
-    },
-    "onlinecite{}": {
-      "snippet": "onlinecite{${1:keylist}}"
-    },
-    "other": {},
-    "pacs{}": {
-      "snippet": "pacs{${1:PACS codes}}"
-    },
-    "pagesofar": {},
-    "phantomsection": {},
-    "ppname": {},
-    "prepdef{}{}": {
-      "snippet": "prepdef{${1:command}}{${2:code}}"
-    },
-    "preprint{}": {
-      "snippet": "preprint{${1:text}}"
-    },
-    "printfigures": {},
-    "printindex": {},
-    "printtables": {},
-    "printvideos": {},
-    "published[]{}": {
-      "snippet": "published[${2:optional text}]{${1:date}}"
-    },
-    "published{}": {
-      "snippet": "published{${1:date}}"
-    },
-    "received[]{}": {
-      "snippet": "received[${2:optional text}]{${1:date}}"
-    },
-    "received{}": {
-      "snippet": "received{${1:date}}"
-    },
-    "removephantombox": {},
-    "removestuff": {},
-    "replacestuff{}{}": {
-      "snippet": "replacestuff{${1:penalty}}{${2:glue}}"
-    },
-    "restorecolumngrid": {},
-    "revised[]{}": {
-      "snippet": "revised[${2:optional text}]{${1:date}}"
-    },
-    "revised{}": {
-      "snippet": "revised{${1:date}}"
-    },
-    "say{}": {
-      "snippet": "say{${1:cmd}}"
-    },
-    "saythe{}": {
-      "snippet": "saythe{${1:count}}"
-    },
-    "setfloatlink{}": {
-      "snippet": "setfloatlink{${1:URL}}"
-    },
-    "squeezetable": {},
-    "startpage{}": {
-      "snippet": "startpage{${1:startpage}}"
-    },
-    "surname{}": {
-      "snippet": "surname{${1:surname}}"
-    },
-    "tableftsep": {},
-    "tablesname": {},
-    "tabmidsep": {},
-    "tabrightsep": {},
-    "textcite[]{}": {
-      "snippet": "textcite[${2:postfix}]{${1:keylist}}"
-    },
-    "theaffil": {},
-    "thecollab": {},
-    "theHvideo": {},
-    "thelinecount": {},
-    "thepagegrid": {},
-    "thevideo": {},
-    "title[]{}": {
-      "snippet": "title[${2:short title}]{${1:text}}"
-    },
-    "tocname": {},
-    "toprule": {},
-    "traceoutput": {},
-    "tracingplain": {},
-    "triggerpar": {},
-    "twocolumngrid": {},
-    "volumename": {},
-    "volumenumber{}": {
-      "snippet": "volumenumber{${1:number}}"
-    },
-    "volumeyear{}": {
-      "snippet": "volumeyear{${1:year}}"
-    },
-    "endfirstfoot": {},
-    "endlastfoot": {},
-    "endfirsthead": {},
-    "endfoot": {},
-    "endhead": {},
-    "adv": {},
-    "ao": {},
-    "ap": {},
-    "apl": {},
-    "apm": {},
-    "apj": {},
-    "bell": {},
-    "bmf": {},
-    "cha": {},
-    "jqe": {},
-    "assp": {},
-    "aprop": {},
-    "mtt": {},
-    "iovs": {},
-    "jcp": {},
-    "jap": {},
-    "jmp": {},
-    "jmo": {},
-    "josa": {},
-    "josaa": {},
-    "josab": {},
-    "jpp": {},
-    "jpr": {},
-    "ltp": {},
-    "nat": {},
-    "oc": {},
-    "ol": {},
-    "pl": {},
-    "pop": {},
-    "pof": {},
-    "pra": {},
-    "prb": {},
-    "prc": {},
-    "prd": {},
-    "pre": {},
-    "prl": {},
-    "rmp": {},
-    "rsi": {},
-    "rse": {},
-    "pspie": {},
-    "sjqe": {},
-    "vr": {},
-    "sd": {},
-    "jor": {},
-    "cp": {},
-    "byrevtex": {},
-    "aapmreprint": {
-      "option": "aapm"
-    },
-    "aapmpreprint": {
-      "option": "aapm"
-    },
-    "aipreprint": {
-      "option": "aip"
-    },
-    "aippreprint": {
-      "option": "aip"
-    },
-    "address{}": {
-      "snippet": "address{${1:text}}"
-    },
-    "altaddress{}": {
-      "snippet": "altaddress{${1:text}}"
-    },
-    "case{}{}": {
-      "snippet": "case{${1:arg1}}{${2:arg2}}"
-    },
-    "draft": {},
-    "slantfrac{}{}": {
-      "snippet": "slantfrac{${1:arg1}}{${2:arg2}}"
-    },
-    "tablenote{}": {
-      "snippet": "tablenote{${1:text}}"
-    },
-    "tablenotemark": {},
-    "tablenotetext{}": {
-      "snippet": "tablenotetext{${1:text}}"
-    }
-  },
-  "envs": {
-    "acknowledgments": {},
-    "acknowledgements": {},
-    "ruledtabular": {},
-    "turnpage": {},
-    "video": {},
-    "video[]": {
-      "name": "video",
-      "snippet": "[${1:placement}]"
-    },
-    "video*": {},
-    "video*[]": {
-      "name": "video*",
-      "snippet": "[${1:placement}]"
-    },
-    "widetext": {},
-    "longtable*{}": {
-      "name": "longtable*",
-      "snippet": "{${1:preamble}}"
-    },
-    "quasitable": {}
-  },
-  "options": [
-    "checkin",
-    "preprint",
-    "reprint",
-    "showpacs",
-    "noshowpacs",
-    "showkeys",
-    "noshowkeys",
-    "balancelastpage",
-    "nobalancelastpage",
-    "nopreprintnumbers",
-    "preprintnumbers",
-    "10pt",
-    "11pt",
-    "12pt",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "bibnotes",
-    "nobibnotes",
-    "footinbib",
-    "nofootinbib",
-    "altaffilletter",
-    "altaffilsymbol",
-    "superbib",
-    "citeautoscript",
-    "longbibliography",
-    "nolongbibliography",
-    "eprint",
-    "noeprint",
-    "twoside",
-    "oneside",
-    "onecolumn",
-    "twocolumn",
-    "author",
-    "numerical",
-    "galley",
-    "raggedbottom",
-    "flushbottom",
-    "tightenlines",
-    "lengthcheck",
-    "draft",
-    "final",
-    "eqsecnum",
-    "secnumarabic",
-    "fleqn",
-    "floats",
-    "endfloats",
-    "endfloats",
-    "titlepage",
-    "notitlepage",
-    "osa",
-    "osameet",
-    "opex",
-    "tops",
-    "josa",
-    "amsfonts",
-    "amssymb",
-    "noamssymb",
-    "amsmath",
-    "noamsmath",
-    "byrevtex",
-    "floatfix",
-    "nofloatfix",
-    "ltxgridinfo",
-    "outputdebug",
-    "raggedfooter",
-    "noraggedfooter",
-    "frontmatterverbose",
-    "linenumbers",
-    "nomerge",
-    "hypertext",
-    "frontmatterverbose",
-    "inactive",
-    "groupedaddress",
-    "unsortedaddress",
-    "runinaddress",
-    "superscriptaddress",
-    "aapm",
-    "aip",
-    "aps",
-    "aps10pt",
-    "aps11pt",
-    "aps12pt",
-    "apsrmp",
-    "sor",
-    "pra",
-    "prb",
-    "prc",
-    "prd",
-    "pre",
-    "prl",
-    "prab",
-    "prper",
-    "rmp",
-    "prx",
-    "prapplied",
-    "prmaterials",
-    "prfluids",
-    "physrev",
-    "mph",
-    "jcp",
-    "pop",
-    "rsi",
-    "jap",
-    "apl",
-    "apm",
-    "cha",
-    "pof",
-    "bmf",
-    "rse",
-    "jmp",
-    "adv",
-    "sd",
-    "jor",
-    "cp",
-    "author-numerical",
-    "article-title",
-    "jor",
-    "author-numerical",
-    "article-title"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/revtex4-2#c",
+    "\\documentclass/revtex4-2#c",
+    "\\documentclass/revtex4-2#c",
+    "\\documentclass/revtex4-2#c"
+  ]
 }

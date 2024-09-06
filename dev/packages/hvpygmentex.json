@@ -1,86 +1,132 @@
 {
-  "includes": {
-    "caption": [],
-    "color": [],
-    "efbox": [],
-    "fancyvrb": [],
-    "ifthen": [],
-    "pgfkeys": [],
-    "shellesc": [],
-    "mdframed": [],
-    "tikz": []
-  },
-  "macros": {
-    "inputpygmented{}": {
-      "snippet": "inputpygmented{${1:file}}"
+  "deps": [
+    {
+      "name": "caption"
     },
-    "inputpygmented[]{}": {
-      "snippet": "inputpygmented[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "color"
     },
-    "pyginline": {
-      "snippet": "pyginline|${1:code}|"
+    {
+      "name": "efbox"
     },
-    "pyginline[]": {
-      "snippet": "pyginline[${1:options}]|${2:code}|",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "fancyvrb"
     },
-    "pyginline[]{}": {
-      "snippet": "pyginline[${2:options}]{${1:verbatimSymbol}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "ifthen"
     },
-    "setpygmented{}": {
-      "snippet": "setpygmented{${1:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "pgfkeys"
     },
-    "widest(){}{}": {
-      "snippet": "widest(${3:string list}){${1:code}}{${2:cmd}}"
+    {
+      "name": "shellesc"
     },
-    "VerbatimOutAppend": {},
-    "remainingglobaloptions": {},
-    "remaininguseroptions": {},
-    "remainingoptions": {},
-    "FormatLineNumber{}": {
-      "snippet": "FormatLineNumber{${1:arg}}"
+    {
+      "name": "mdframed"
+    },
+    {
+      "name": "tikz"
     }
-  },
-  "envs": {
-    "pygmented": {},
-    "pygmented[]": {
-      "name": "pygmented",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "VerbatimOutAppend": {}
-  },
-  "options": [
-    "force"
   ],
-  "keyvals": [
-    [
-      "lang=${1:language}",
-      "sty=${1:pygments style}",
-      "font=${1:font commands}",
-      "colback=",
-      "gobble=${1:integer}",
-      "tabsize=${1:integer}",
-      "linenos",
-      "linenostart=${1:integer}",
-      "linenostep=${1:integer}",
-      "linenosep=",
-      "caption=${1:caption}",
-      "label=",
-      "texcomments",
-      "mathescape",
-      "escapeinside=${1:two chars}",
-      "boxing method=${1:envname}"
+  "macros": [
+    {
+      "name": "inputpygmented",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "inputpygmented",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{pygmented}#c,\\inputpygmented#c,\\pyginline#c,\\setpygmented#c",
+          "\\begin{pygmented}#c,\\inputpygmented#c,\\setpygmented#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pyginline",
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:code}|"
+      }
+    },
+    {
+      "name": "pyginline",
+      "arg": {
+        "format": "[]||",
+        "snippet": "[${1:options}]|${2:code}|",
+        "keys": [
+          "\\begin{pygmented}#c,\\inputpygmented#c,\\pyginline#c,\\setpygmented#c",
+          "\\pyginline#c,\\setpygmented#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setpygmented",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{pygmented}#c,\\inputpygmented#c,\\pyginline#c,\\setpygmented#c",
+          "\\pyginline#c,\\setpygmented#c",
+          "\\begin{pygmented}#c,\\inputpygmented#c,\\setpygmented#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "widest",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "(${3:string list}){${1:code}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "VerbatimOutAppend",
+      "unusual": true
+    },
+    {
+      "name": "FormatLineNumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "pygmented"
+    },
+    {
+      "name": "pygmented",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{pygmented}#c,\\inputpygmented#c,\\pyginline#c,\\setpygmented#c",
+          "\\begin{pygmented}#c,\\inputpygmented#c,\\setpygmented#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "VerbatimOutAppend",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/hvpygmentex#c": [
+      "force"
     ],
-    [
+    "\\begin{pygmented}#c,\\inputpygmented#c,\\pyginline#c,\\setpygmented#c": [
       "lang=${1:language}",
       "sty=${1:pygments style}",
       "font=${1:font commands}",
@@ -95,27 +141,16 @@
       "label=",
       "texcomments",
       "mathescape",
-      "escapeinside=${1:two chars}",
+      "escapeinside=${1:two chars}"
+    ],
+    "\\pyginline#c,\\setpygmented#c": [
       "inline method=${1:csname}"
     ],
-    [
-      "lang=${1:language}",
-      "sty=${1:pygments style}",
-      "font=${1:font commands}",
-      "colback=",
-      "gobble=${1:integer}",
-      "tabsize=${1:integer}",
-      "linenos",
-      "linenostart=${1:integer}",
-      "linenostep=${1:integer}",
-      "linenosep=",
-      "caption=${1:caption}",
-      "label=",
-      "texcomments",
-      "mathescape",
-      "escapeinside=${1:two chars}",
-      "inline method=${1:csname}",
+    "\\begin{pygmented}#c,\\inputpygmented#c,\\setpygmented#c": [
       "boxing method=${1:envname}"
     ]
+  },
+  "args": [
+    "\\usepackage/hvpygmentex#c"
   ]
 }

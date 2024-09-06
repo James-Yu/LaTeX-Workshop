@@ -1,87 +1,217 @@
 {
-  "includes": {
-    "class-scrartcl": [],
-    "babel": [],
-    "datetime2": [],
-    "schulma": [],
-    "schulma-physik": []
-  },
-  "macros": {
-    "Schule{}": {
-      "snippet": "Schule{${1:Schulname}}"
+  "deps": [
+    {
+      "name": "class-scrartcl"
     },
-    "Datum{}": {
-      "snippet": "Datum{${1:Datum}}"
+    {
+      "name": "babel"
     },
-    "Fach{}": {
-      "snippet": "Fach{${1:Unterrichtsfach}}"
+    {
+      "name": "datetime2"
     },
-    "Vorbereitungsraum{}": {
-      "snippet": "Vorbereitungsraum{${1:Raum}}"
+    {
+      "name": "schulma"
     },
-    "Vorbereitungszeit{}": {
-      "snippet": "Vorbereitungszeit{${1:Zeit}}"
-    },
-    "Pruefungsraum{}": {
-      "snippet": "Pruefungsraum{${1:Raum}}"
-    },
-    "Pruefer{}": {
-      "snippet": "Pruefer{${1:Name}}"
-    },
-    "PNummer{}": {
-      "snippet": "PNummer{${1:Nummer}}"
-    },
-    "Hilfsmittel{}": {
-      "snippet": "Hilfsmittel{${1:Hilfsmittel}}"
-    },
-    "Aufgabe{}": {
-      "snippet": "Aufgabe{${1:Aufgabentext}}"
-    },
-    "Erwartungshorizont{}": {
-      "snippet": "Erwartungshorizont{${1:Lösung}}"
-    },
-    "WeitereThemen{}": {
-      "snippet": "WeitereThemen{${1:Themen}}"
-    },
-    "Pruefung{}{}": {
-      "snippet": "Pruefung{${1:Name}}{${2:Uhrzeit}}"
-    },
-    "captionsngerman": {},
-    "datengerman": {},
-    "extrasngerman": {},
-    "noextrasngerman": {},
-    "dq": {},
-    "ntosstrue": {},
-    "ntossfalse": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "mdqon": {},
-    "mdqoff": {},
-    "captionsnaustrian": {
-      "option": "AT"
-    },
-    "datenaustrian": {
-      "option": "AT"
-    },
-    "extrasnaustrian": {
-      "option": "AT"
-    },
-    "noextrasnaustrian": {
-      "option": "AT"
+    {
+      "name": "schulma-physik"
     }
-  },
-  "envs": {},
-  "options": [
-    "AT",
-    "Prueferin"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "Schule",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Schulname}}"
+      }
+    },
+    {
+      "name": "Datum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Datum}}"
+      }
+    },
+    {
+      "name": "Fach",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Unterrichtsfach%text}}"
+      }
+    },
+    {
+      "name": "Vorbereitungsraum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Raum}}"
+      }
+    },
+    {
+      "name": "Vorbereitungszeit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Zeit}}"
+      }
+    },
+    {
+      "name": "Pruefungsraum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Raum}}"
+      }
+    },
+    {
+      "name": "Pruefer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Name}}"
+      }
+    },
+    {
+      "name": "PNummer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Nummer}}"
+      }
+    },
+    {
+      "name": "Hilfsmittel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Hilfsmittel%text}}"
+      }
+    },
+    {
+      "name": "Aufgabe",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Aufgabentext%text}}"
+      }
+    },
+    {
+      "name": "Erwartungshorizont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Lösung%text}}"
+      }
+    },
+    {
+      "name": "WeitereThemen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Themen%text}}"
+      }
+    },
+    {
+      "name": "Pruefung",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:Name}}{${2:Uhrzeit}}"
+      }
+    },
+    {
+      "name": "captionsngerman",
+      "unusual": true
+    },
+    {
+      "name": "datengerman",
+      "unusual": true
+    },
+    {
+      "name": "extrasngerman",
+      "unusual": true
+    },
+    {
+      "name": "noextrasngerman",
+      "unusual": true
+    },
+    {
+      "name": "dq"
+    },
+    {
+      "name": "ntosstrue",
+      "unusual": true
+    },
+    {
+      "name": "ntossfalse",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "mdqon",
+      "unusual": true
+    },
+    {
+      "name": "mdqoff",
+      "unusual": true
+    },
+    {
+      "name": "captionsnaustrian",
+      "if": "AT",
+      "unusual": true
+    },
+    {
+      "name": "datenaustrian",
+      "if": "AT",
+      "unusual": true
+    },
+    {
+      "name": "extrasnaustrian",
+      "if": "AT",
+      "unusual": true
+    },
+    {
+      "name": "noextrasnaustrian",
+      "if": "AT",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/schulma-mdlprf#c": [
+      "AT",
+      "Prueferin"
+    ]
+  },
+  "args": [
+    "\\documentclass/schulma-mdlprf#c"
+  ]
 }

@@ -1,63 +1,138 @@
 {
-  "includes": {},
-  "macros": {
-    "columnbreak": {},
-    "columnseprulecolor": {},
-    "docolaction{}{}{}": {
-      "snippet": "docolaction{${1:first}}{${2:middle}}{${3:last}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "columnbreak"
     },
-    "flushcolumns": {},
-    "LRmulticolcolumns": {},
-    "maxbalancingoverflow": {},
-    "multicolbaselineskip": {},
-    "multicolmindepthstring": {},
-    "multicolpretolerance": {},
-    "multicolsep": {},
-    "multicoltolerance": {},
-    "newcolumn": {},
-    "postmulticols": {},
-    "premulticols": {},
-    "raggedcolumns": {},
-    "RLmulticolcolumns": {},
-    "setemergencystretch{}{}": {
-      "snippet": "setemergencystretch{${1:num of cols}}{${2:hsize}}"
+    {
+      "name": "columnseprulecolor",
+      "unusual": true
     },
-    "vfilmaxdepth": {}
-  },
-  "envs": {
-    "multicols*{}": {
-      "name": "multicols*",
-      "snippet": "{${1:n}}"
+    {
+      "name": "docolaction",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:first}}{${2:middle}}{${3:last}}"
+      }
     },
-    "multicols*{}[]": {
-      "name": "multicols*",
-      "snippet": "{${1:n}}[${2:preface}]"
+    {
+      "name": "flushcolumns"
     },
-    "multicols*{}[][]": {
-      "name": "multicols*",
-      "snippet": "{${1:n}}[${2:preface}][${3:skip}]"
+    {
+      "name": "LRmulticolcolumns",
+      "unusual": true
     },
-    "multicols{}": {
-      "name": "multicols",
-      "snippet": "{${1:n}}"
+    {
+      "name": "maxbalancingoverflow",
+      "unusual": true
     },
-    "multicols{}[]": {
-      "name": "multicols",
-      "snippet": "{${1:n}}[${2:preface}]"
+    {
+      "name": "multicolbaselineskip",
+      "unusual": true
     },
-    "multicols{}[][]": {
-      "name": "multicols",
-      "snippet": "{${1:n}}[${2:preface}][${3:skip}]"
+    {
+      "name": "multicolmindepthstring",
+      "unusual": true
+    },
+    {
+      "name": "multicolpretolerance",
+      "unusual": true
+    },
+    {
+      "name": "multicolsep",
+      "unusual": true
+    },
+    {
+      "name": "multicoltolerance",
+      "unusual": true
+    },
+    {
+      "name": "newcolumn"
+    },
+    {
+      "name": "postmulticols",
+      "unusual": true
+    },
+    {
+      "name": "premulticols",
+      "unusual": true
+    },
+    {
+      "name": "raggedcolumns"
+    },
+    {
+      "name": "RLmulticolcolumns",
+      "unusual": true
+    },
+    {
+      "name": "setemergencystretch",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num of cols}}{${2:hsize}}"
+      }
+    },
+    {
+      "name": "vfilmaxdepth",
+      "unusual": true
     }
-  },
-  "options": [
-    "errorshow",
-    "infoshow",
-    "balancingshow",
-    "markshow",
-    "debugshow",
-    "grid",
-    "colaction"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "multicols*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
+    },
+    {
+      "name": "multicols*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:n}}[${2:preface}]"
+      }
+    },
+    {
+      "name": "multicols*",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:n}}[${2:preface}][${3:skip}]"
+      }
+    },
+    {
+      "name": "multicols",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
+    },
+    {
+      "name": "multicols",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:n}}[${2:preface}]"
+      }
+    },
+    {
+      "name": "multicols",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:n}}[${2:preface}][${3:skip}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/multicol#c": [
+      "errorshow",
+      "infoshow",
+      "balancingshow",
+      "markshow",
+      "debugshow",
+      "grid",
+      "colaction"
+    ]
+  },
+  "args": [
+    "\\usepackage/multicol#c"
+  ]
 }

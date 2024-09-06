@@ -1,99 +1,198 @@
 {
-  "includes": {
-    "shellesc": [],
-    "xkeyval": [],
-    "graphicx": [],
-    "comment": [],
-    "fancyvrb": [],
-    "tikz": [],
-    "listings": [],
-    "ifplatform": [],
-    "iftex": [],
-    "ifoddpage": [],
-    "filemod": [],
-    "tcolorbox": [],
-    "tcolorboxlibraryskins": [],
-    "tcolorboxlibrarybreakable": []
-  },
-  "macros": {
-    "runExtCmd{}{}": {
-      "snippet": "runExtCmd{${1:command with arguments}}{${2:filename}}"
+  "deps": [
+    {
+      "name": "shellesc"
     },
-    "runExtCmd[]{}{}": {
-      "snippet": "runExtCmd[${3:options}]{${1:command with arguments}}{${2:filename}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xkeyval"
     },
-    "hvExternSetKeys{}": {
-      "snippet": "hvExternSetKeys{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "graphicx"
     },
-    "defMarkerType{}{}{}{}{}": {
-      "snippet": "defMarkerType{${1:name}}{${2:start-main}}{${3:stop-main}}{${4:start-preamble}}{${5:stop-preamble}}"
+    {
+      "name": "comment"
     },
-    "ResetKeys": {},
-    "PreambleVerbatim{}": {
-      "snippet": "PreambleVerbatim{${1:file}}"
+    {
+      "name": "fancyvrb"
     },
-    "PreambleVerbatim[]{}": {
-      "snippet": "PreambleVerbatim[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     },
-    "BodyVerbatim{}": {
-      "snippet": "BodyVerbatim{${1:file}}"
+    {
+      "name": "listings"
     },
-    "BodyVerbatim[]{}": {
-      "snippet": "BodyVerbatim[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "ifplatform"
     },
-    "PreambleListing{}": {
-      "snippet": "PreambleListing{${1:file}}"
+    {
+      "name": "iftex"
     },
-    "PreambleListing[]{}": {
-      "snippet": "PreambleListing[${2:options}]{${1:file}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "ifoddpage"
     },
-    "BodyListing{}": {
-      "snippet": "BodyListing{${1:file}}"
+    {
+      "name": "filemod"
     },
-    "BodyListing[]{}": {
-      "snippet": "BodyListing[${2:options}]{${1:file}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "tcolorbox"
     },
-    "hvExternLineWidth": {},
-    "perCent": {},
-    "DoubleperCent": {},
-    "NumChar": {},
-    "DoubleNumChar": {},
-    "hvExternFilename": {},
-    "hvexternFileversion": {},
-    "BeginPSTcode": {},
-    "EndPSTcode": {}
-  },
-  "envs": {
-    "externalDocument{}": {
-      "name": "externalDocument",
-      "snippet": "{${1:filename}}"
+    {
+      "name": "tcolorboxlibraryskins"
     },
-    "externalDocument[]{}": {
-      "name": "externalDocument",
-      "snippet": "[${2:options}]{${1:filename}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "WriteVerb": {},
-    "createPNGfromPSTricks": {}
-  },
-  "options": [
-    "checkCode"
+    {
+      "name": "tcolorboxlibrarybreakable"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "runExtCmd",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command with arguments%definition}}{${2:filename%file}}"
+      }
+    },
+    {
+      "name": "runExtCmd",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:command with arguments%definition}}{${2:filename%file}}",
+        "keys": [
+          "\\begin{externalDocument},\\runExtCmd,\\hvExternSetKeys"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hvExternSetKeys",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{externalDocument},\\runExtCmd,\\hvExternSetKeys"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "defMarkerType",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:name}}{${2:start-main}}{${3:stop-main}}{${4:start-preamble}}{${5:stop-preamble}}"
+      }
+    },
+    {
+      "name": "ResetKeys"
+    },
+    {
+      "name": "PreambleVerbatim",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "PreambleVerbatim",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\PreambleVerbatim,\\BodyVerbatim"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "BodyVerbatim",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "BodyVerbatim",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\PreambleVerbatim,\\BodyVerbatim"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PreambleListing",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "PreambleListing",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\PreambleListing,\\BodyListing"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "BodyListing",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "BodyListing",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\PreambleListing,\\BodyListing"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hvExternLineWidth",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "externalDocument",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename%file}}"
+      }
+    },
+    {
+      "name": "externalDocument",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:filename%file}}",
+        "keys": [
+          "\\begin{externalDocument},\\runExtCmd,\\hvExternSetKeys"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/hvextern#c": [
+      "checkCode"
+    ],
+    "\\begin{externalDocument},\\runExtCmd,\\hvExternSetKeys": [
       "progpath=${1:path}",
       "runsequence={${1:command sequence}}",
       "runs=${1:integer}",
@@ -148,7 +247,7 @@
       "mposttex=${1|tex,latex|}",
       "shellesc"
     ],
-    [
+    "\\PreambleVerbatim,\\BodyVerbatim": [
       "commentchar=${1:single char}",
       "gobble=${1:integer}",
       "formatcom=${1:commands}",
@@ -191,7 +290,7 @@
       "vspace=",
       "listparameters={${1:code}}"
     ],
-    [
+    "\\PreambleListing,\\BodyListing": [
       "inputpath=${1:path}",
       "aboveskip=",
       "belowskip=",
@@ -380,5 +479,8 @@
       "keywordcommentsemicolon={${1:keywords}}{${2:keywords}}{${3:keywords}}",
       "podcomment"
     ]
+  },
+  "args": [
+    "\\usepackage/hvextern#c"
   ]
 }

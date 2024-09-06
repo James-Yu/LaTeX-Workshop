@@ -1,19 +1,50 @@
 {
-  "includes": {
-    "tikzlibrarycalendar": [],
-    "pgfcalendar-ext": []
-  },
-  "macros": {
-    "pgfmathweeksinmonthofyear{}{}{}": {
-      "snippet": "pgfmathweeksinmonthofyear{${1:first weekday}}{${2:month}}{${3:year}}"
+  "deps": [
+    {
+      "name": "tikzlibrarycalendar"
     },
-    "pgfmathlastdayinmonthofyear{}{}": {
-      "snippet": "pgfmathlastdayinmonthofyear{${1:month}}{${2:year}}"
+    {
+      "name": "pgfcalendar-ext"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pgfmathweeksinmonthofyear",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:first weekday}}{${2:month}}{${3:year}}"
+      }
     },
-    "tikzweekcode": {},
-    "tikzweektext": {}
+    {
+      "name": "pgfmathlastdayinmonthofyear",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:month}}{${2:year}}"
+      }
+    },
+    {
+      "name": "tikzweekcode",
+      "unusual": true
+    },
+    {
+      "name": "tikzweektext",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\calendar#c": [
+      "day xshift=",
+      "day yshift=",
+      "month xshift=",
+      "month yshift=",
+      "week code=${1:code}",
+      "week text=${1:text}",
+      "every week/.append style={${1:TikZ keys}}",
+      "week label left"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

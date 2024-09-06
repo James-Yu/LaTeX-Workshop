@@ -1,32 +1,41 @@
 {
-  "includes": {
-    "amsmath": []
-  },
-  "macros": {
-    "sphat": {
-      "detail": "",
-      "documentation": "CIRCUMFLEX ACCENT, TeX superscript operator"
-    },
-    "sptilde": {
-      "detail": "~",
-      "documentation": "TILDE"
-    },
-    "spbreve": {},
-    "spcheck": {},
-    "spdddot": {},
-    "spddot": {
-      "detail": "¨",
-      "documentation": "Do alias for 0308"
-    },
-    "spdot": {},
-    "accentedsymbol{}{}": {
-      "snippet": "accentedsymbol{${1:cmd}}{${2:symbol}}"
-    },
-    "fracwithdelims{}{}{}{}": {
-      "snippet": "fracwithdelims{${1:ldelim}}{${2:rdelim}}{${3:numer}}{${4:denom}}"
+  "deps": [
+    {
+      "name": "amsmath"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "sphat"
+    },
+    {
+      "name": "sptilde"
+    },
+    {
+      "name": "spbreve"
+    },
+    {
+      "name": "spcheck"
+    },
+    {
+      "name": "spdddot"
+    },
+    {
+      "name": "spddot"
+    },
+    {
+      "name": "spdot"
+    },
+    {
+      "name": "accentedsymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:symbol}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

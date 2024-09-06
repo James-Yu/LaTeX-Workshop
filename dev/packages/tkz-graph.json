@@ -1,197 +1,468 @@
 {
-  "includes": {
-    "tikz": []
-  },
-  "macros": {
-    "Vertex{}": {
-      "snippet": "Vertex{${1:name}}"
+  "deps": [
+    {
+      "name": "tikz"
+    }
+  ],
+  "macros": [
+    {
+      "name": "Vertex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "Vertex[]{}": {
-      "snippet": "Vertex[${2:options}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "Vertex",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\Vertex,\\Vertices"
+        ],
+        "keyPos": 0
+      }
     },
-    "Vertices{}{}": {
-      "snippet": "Vertices{${1:type}}{${2:vertex1,${3:vertex2},...}}"
+    {
+      "name": "Vertices",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type}}{${2:vertex1,vertex2,...}}"
+      }
     },
-    "Vertices[]{}{}": {
-      "snippet": "Vertices[${3:options}]{${1:type}}{${2:vertex1,${4:vertex2},...}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "Vertices",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:type}}{${2:vertex1,vertex2,...}}",
+        "keys": [
+          "\\Vertex,\\Vertices"
+        ],
+        "keyPos": 0
+      }
     },
-    "EA(){}": {
-      "snippet": "EA(${2:vertex1}){${1:vertex2}}"
+    {
+      "name": "EA",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:vertex1}){${1:vertex2}}"
+      }
     },
-    "EA[](){}": {
-      "snippet": "EA[${2:options}](${3:vertex1}){${1:vertex2}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "EA",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:vertex1}){${1:vertex2}}",
+        "keys": [
+          "\\EA,\\WE,\\NO,\\SO,\\NOEA,\\NOWE,\\SOEA,\\SOWE"
+        ],
+        "keyPos": 0
+      }
     },
-    "WE(){}": {
-      "snippet": "WE(${2:vertex1}){${1:vertex2}}"
+    {
+      "name": "WE",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:vertex1}){${1:vertex2}}"
+      }
     },
-    "WE[](){}": {
-      "snippet": "WE[${2:options}](${3:vertex1}){${1:vertex2}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "WE",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:vertex1}){${1:vertex2}}",
+        "keys": [
+          "\\EA,\\WE,\\NO,\\SO,\\NOEA,\\NOWE,\\SOEA,\\SOWE"
+        ],
+        "keyPos": 0
+      }
     },
-    "NO(){}": {
-      "snippet": "NO(${2:vertex1}){${1:vertex2}}"
+    {
+      "name": "NO",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:vertex1}){${1:vertex2}}"
+      }
     },
-    "NO[](){}": {
-      "snippet": "NO[${2:options}](${3:vertex1}){${1:vertex2}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "NO",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:vertex1}){${1:vertex2}}",
+        "keys": [
+          "\\EA,\\WE,\\NO,\\SO,\\NOEA,\\NOWE,\\SOEA,\\SOWE"
+        ],
+        "keyPos": 0
+      }
     },
-    "SO(){}": {
-      "snippet": "SO(${2:vertex1}){${1:vertex2}}"
+    {
+      "name": "SO",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:vertex1}){${1:vertex2}}"
+      }
     },
-    "SO[](){}": {
-      "snippet": "SO[${2:options}](${3:vertex1}){${1:vertex2}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "SO",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:vertex1}){${1:vertex2}}",
+        "keys": [
+          "\\EA,\\WE,\\NO,\\SO,\\NOEA,\\NOWE,\\SOEA,\\SOWE"
+        ],
+        "keyPos": 0
+      }
     },
-    "NOEA(){}": {
-      "snippet": "NOEA(${2:vertex1}){${1:vertex2}}"
+    {
+      "name": "NOEA",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:vertex1}){${1:vertex2}}"
+      }
     },
-    "NOEA[](){}": {
-      "snippet": "NOEA[${2:options}](${3:vertex1}){${1:vertex2}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "NOEA",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:vertex1}){${1:vertex2}}",
+        "keys": [
+          "\\EA,\\WE,\\NO,\\SO,\\NOEA,\\NOWE,\\SOEA,\\SOWE"
+        ],
+        "keyPos": 0
+      }
     },
-    "NOWE(){}": {
-      "snippet": "NOWE(${2:vertex1}){${1:vertex2}}"
+    {
+      "name": "NOWE",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:vertex1}){${1:vertex2}}"
+      }
     },
-    "NOWE[](){}": {
-      "snippet": "NOWE[${2:options}](${3:vertex1}){${1:vertex2}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "NOWE",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:vertex1}){${1:vertex2}}",
+        "keys": [
+          "\\EA,\\WE,\\NO,\\SO,\\NOEA,\\NOWE,\\SOEA,\\SOWE"
+        ],
+        "keyPos": 0
+      }
     },
-    "SOEA(){}": {
-      "snippet": "SOEA(${2:vertex1}){${1:vertex2}}"
+    {
+      "name": "SOEA",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:vertex1}){${1:vertex2}}"
+      }
     },
-    "SOEA[](){}": {
-      "snippet": "SOEA[${2:options}](${3:vertex1}){${1:vertex2}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "SOEA",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:vertex1}){${1:vertex2}}",
+        "keys": [
+          "\\EA,\\WE,\\NO,\\SO,\\NOEA,\\NOWE,\\SOEA,\\SOWE"
+        ],
+        "keyPos": 0
+      }
     },
-    "SOWE(){}": {
-      "snippet": "SOWE(${2:vertex1}){${1:vertex2}}"
+    {
+      "name": "SOWE",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:vertex1}){${1:vertex2}}"
+      }
     },
-    "SOWE[](){}": {
-      "snippet": "SOWE[${2:options}](${3:vertex1}){${1:vertex2}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "SOWE",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:vertex1}){${1:vertex2}}",
+        "keys": [
+          "\\EA,\\WE,\\NO,\\SO,\\NOEA,\\NOWE,\\SOEA,\\SOWE"
+        ],
+        "keyPos": 0
+      }
     },
-    "SetGraphUnit{}": {
-      "snippet": "SetGraphUnit{${1:number}}"
+    {
+      "name": "SetGraphUnit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "SetVertexNoLabel": {},
-    "SetVertexMath": {},
-    "SetVertexLabel": {},
-    "SetVertexLabelOut": {},
-    "SetVertexLabelIn": {},
-    "Edge()()": {
-      "snippet": "Edge(${1:vertex1})(${2:vertex2})"
+    {
+      "name": "SetVertexNoLabel"
     },
-    "Edge[]()()": {
-      "snippet": "Edge[${1:options}](${2:vertex1})(${3:vertex2})",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "SetVertexMath"
     },
-    "Loop()": {
-      "snippet": "Loop(${1:vertex})"
+    {
+      "name": "SetVertexLabel"
     },
-    "Loop[]()": {
-      "snippet": "Loop[${1:options}](${2:vertex})",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "SetVertexLabelOut"
     },
-    "Edges()": {
-      "snippet": "Edges(${1:vertex1},${2:vertex2},${3:...})"
+    {
+      "name": "SetVertexLabelIn"
     },
-    "Edges[]()": {
-      "snippet": "Edges[${1:options}](${2:vertex1},${3:vertex2},${4:...})"
+    {
+      "name": "Edge",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:vertex1})(${2:vertex2})"
+      }
     },
-    "GraphInit[]": {
-      "snippet": "GraphInit[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "Edge",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:vertex1})(${3:vertex2})",
+        "keys": [
+          "\\Edge"
+        ],
+        "keyPos": 0
+      }
     },
-    "VertexInnerSep": {},
-    "VertexOuterSep": {},
-    "VertexDistance": {},
-    "VertexShape": {},
-    "VertexLineWidth": {},
-    "VertexLineColor": {},
-    "VertexLightFillColor": {},
-    "VertexDarkFillColor": {},
-    "VertexTextColor": {},
-    "VertexFillColor": {},
-    "VertexBallColor": {},
-    "VertexBigMinSize": {},
-    "VertexInterMinSize": {},
-    "VertexSmallMinSize": {},
-    "EdgeFillColor": {},
-    "EdgeArtColor": {},
-    "EdgeColor": {},
-    "EdgeDoubleDistance": {},
-    "EdgeLineWidth": {},
-    "SetVertexSimple": {},
-    "SetVertexSimple[]": {
-      "snippet": "SetVertexSimple[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
+    {
+      "name": "Loop",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:vertex})"
+      }
     },
-    "SetVertexNormal[]": {
-      "snippet": "SetVertexNormal[${1:options}]",
-      "keyvalindex": 6,
-      "keyvalpos": 0
+    {
+      "name": "Loop",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:vertex})",
+        "keys": [
+          "\\Loop"
+        ],
+        "keyPos": 0
+      }
     },
-    "SetUpVertex[]": {
-      "snippet": "SetUpVertex[${1:options}]",
-      "keyvalindex": 7,
-      "keyvalpos": 0
+    {
+      "name": "Edges",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:vertex1},${2:vertex2},${3:...})"
+      }
     },
-    "SetUpEdge[]": {
-      "snippet": "SetUpEdge[${1:options}]",
-      "keyvalindex": 8,
-      "keyvalpos": 0
+    {
+      "name": "Edges",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:vertex1},${3:vertex2},${4:...})"
+      }
     },
-    "SetGraphShadeColor{}{}{}": {
-      "snippet": "SetGraphShadeColor{${1:vertexcolor}}{${2:color1}}{${3:color2}}"
+    {
+      "name": "GraphInit",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\GraphInit"
+        ],
+        "keyPos": 0
+      }
     },
-    "SetGraphArtColor{}{}": {
-      "snippet": "SetGraphArtColor{${1:vertexcolor}}{${2:edgecolor}}"
+    {
+      "name": "VertexInnerSep",
+      "unusual": true
     },
-    "SetGraphColor{}{}": {
-      "snippet": "SetGraphColor{${1:vertexcolor}}{${2:edgecolor}}"
+    {
+      "name": "VertexOuterSep",
+      "unusual": true
     },
-    "grProb{}{}{}{}{}{}": {
-      "snippet": "grProb{${1:left-vertex}}{${2:right-vertex}}{${3:toplabel}}{${4:bottomlabel}}{${5:leftlabel}}{${6:rightlabel}}"
+    {
+      "name": "VertexDistance",
+      "unusual": true
     },
-    "grProb[]{}{}{}{}{}{}": {
-      "snippet": "grProb[${7:options}]{${1:left-vertex}}{${2:right-vertex}}{${3:toplabel}}{${4:bottomlabel}}{${5:leftlabel}}{${6:rightlabel}}",
-      "keyvalindex": 9,
-      "keyvalpos": 0
+    {
+      "name": "VertexShape",
+      "unusual": true
     },
-    "grProbThree{}{}{}{}{}{}": {
-      "snippet": "grProbThree{${1:right-vertex}}{${2:up-vertex}}{${3:down-vertex}}{${4:rr/ru/rd}}{${5:uu/ud/ur}}{${6:dd/dr/du}}"
+    {
+      "name": "VertexLineWidth",
+      "unusual": true
     },
-    "grProbThree[]{}{}{}{}{}{}": {
-      "snippet": "grProbThree[${7:options}]{${1:right-vertex}}{${2:up-vertex}}{${3:down-vertex}}{${4:rr/ru/rd}}{${5:uu/ud/ur}}{${6:dd/dr/du}}",
-      "keyvalindex": 9,
-      "keyvalpos": 0
+    {
+      "name": "VertexLineColor",
+      "unusual": true
     },
-    "AddVertexColor{}{}": {
-      "snippet": "AddVertexColor{${1:color}}{${2:vertex1,${3:vertex2},...}}"
+    {
+      "name": "VertexLightFillColor",
+      "unusual": true
     },
-    "SetVertexArt": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "VertexDarkFillColor",
+      "unusual": true
+    },
+    {
+      "name": "VertexTextColor",
+      "unusual": true
+    },
+    {
+      "name": "VertexFillColor",
+      "unusual": true
+    },
+    {
+      "name": "VertexBallColor",
+      "unusual": true
+    },
+    {
+      "name": "VertexBigMinSize",
+      "unusual": true
+    },
+    {
+      "name": "VertexInterMinSize",
+      "unusual": true
+    },
+    {
+      "name": "VertexSmallMinSize",
+      "unusual": true
+    },
+    {
+      "name": "EdgeFillColor",
+      "unusual": true
+    },
+    {
+      "name": "EdgeArtColor",
+      "unusual": true
+    },
+    {
+      "name": "EdgeColor",
+      "unusual": true
+    },
+    {
+      "name": "EdgeDoubleDistance",
+      "unusual": true
+    },
+    {
+      "name": "EdgeLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "SetVertexSimple"
+    },
+    {
+      "name": "SetVertexSimple",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\SetVertexSimple"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SetVertexNormal",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\SetVertexNormal"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SetUpVertex",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\SetUpVertex"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SetUpEdge",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\SetUpEdge"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SetGraphShadeColor",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:vertexcolor}}{${2:color1}}{${3:color2}}"
+      }
+    },
+    {
+      "name": "SetGraphArtColor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:vertexcolor}}{${2:edgecolor}}"
+      }
+    },
+    {
+      "name": "SetGraphColor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:vertexcolor}}{${2:edgecolor}}"
+      }
+    },
+    {
+      "name": "grProb",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:left-vertex}}{${2:right-vertex}}{${3:toplabel}}{${4:bottomlabel}}{${5:leftlabel}}{${6:rightlabel}}"
+      }
+    },
+    {
+      "name": "grProb",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}",
+        "snippet": "[${7:options%keyvals}]{${1:left-vertex}}{${2:right-vertex}}{${3:toplabel}}{${4:bottomlabel}}{${5:leftlabel}}{${6:rightlabel}}",
+        "keys": [
+          "\\grProb,\\grProbThree"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "grProbThree",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:right-vertex}}{${2:up-vertex}}{${3:down-vertex}}{${4:rr/ru/rd}}{${5:uu/ud/ur}}{${6:dd/dr/du}}"
+      }
+    },
+    {
+      "name": "grProbThree",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}",
+        "snippet": "[${7:options%keyvals}]{${1:right-vertex}}{${2:up-vertex}}{${3:down-vertex}}{${4:rr/ru/rd}}{${5:uu/ud/ur}}{${6:dd/dr/du}}",
+        "keys": [
+          "\\grProb,\\grProbThree"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "AddVertexColor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:vertex1,vertex2,...}}"
+      }
+    },
+    {
+      "name": "SetVertexArt",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\Vertex,\\Vertices": [
       "x=",
       "y=",
       "a=",
@@ -206,7 +477,7 @@
       "Ldist=",
       "Lpos="
     ],
-    [
+    "\\EA,\\WE,\\NO,\\SO,\\NOEA,\\NOWE,\\SOEA,\\SOWE": [
       "x=",
       "y=",
       "a=",
@@ -222,7 +493,7 @@
       "Lpos=",
       "unit="
     ],
-    [
+    "\\Edge": [
       "local",
       "color=",
       "lw=",
@@ -232,7 +503,7 @@
       "labelstyle=",
       "style="
     ],
-    [
+    "\\Loop": [
       "color=",
       "lw=",
       "label=",
@@ -246,17 +517,17 @@
       "dir=${1|EA,WE,NO,SO,NOEA,NOWE,SOEA,SOWE|}",
       "dist="
     ],
-    [
+    "\\GraphInit": [
       "vstyle=${1|Empty,Hasse,Simple,Classic,Normal,Shade,Dijkstra,Welsh,Art,Shade Art|}"
     ],
-    [
+    "\\SetVertexSimple": [
       "Shape=",
       "MinSize=",
       "LineWidth=",
       "LineColor=",
       "FillColor="
     ],
-    [
+    "\\SetVertexNormal": [
       "color=",
       "label=",
       "labelstyle=",
@@ -268,14 +539,14 @@
       "LineWidth=",
       "FillColor="
     ],
-    [
+    "\\SetUpVertex": [
       "Lpos=",
       "Ldist=",
       "style=",
       "NoLabel",
       "LabelOut"
     ],
-    [
+    "\\SetUpEdge": [
       "color=",
       "label=",
       "labelstyle=",
@@ -284,12 +555,13 @@
       "style=",
       "lw="
     ],
-    [
+    "\\grProb,\\grProbThree": [
       "unit=",
       "LposA=",
       "LposB=",
       "Ldist=",
       "LoopDist="
     ]
-  ]
+  },
+  "args": []
 }

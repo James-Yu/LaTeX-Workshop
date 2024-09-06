@@ -1,81 +1,72 @@
 {
-  "includes": {
-    "simplekv": [],
-    "graphicx": [],
-    "tikz": [],
-    "tikzlibrarypatterns": [],
-    "tikzlibraryshadows": [],
-    "contour": [],
-    "anttor": [
-      "anttor"
-    ]
-  },
-  "macros": {
-    "drawcardsrecto{}": {
-      "snippet": "drawcardsrecto{${1:text}}"
+  "deps": [
+    {
+      "name": "simplekv"
     },
-    "drawcardsrecto[]{}": {
-      "snippet": "drawcardsrecto[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "graphicx"
     },
-    "drawcardsverso{}": {
-      "snippet": "drawcardsverso{${1:text}}"
+    {
+      "name": "tikz"
     },
-    "drawcardsverso[]{}": {
-      "snippet": "drawcardsverso[${2:options}]{${1:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarypatterns"
     },
-    "cardbackgroundverso[]{}": {
-      "snippet": "cardbackgroundverso[${2:opt}]{${1:arg}}"
+    {
+      "name": "tikzlibraryshadows"
     },
-    "cardbackgroundverso{}": {
-      "snippet": "cardbackgroundverso{${1:arg}}"
+    {
+      "name": "contour"
     },
-    "cardborder": {},
-    "cardcontent[]{}": {
-      "snippet": "cardcontent[${2:opt}]{${1:arg}}"
-    },
-    "cardcontent{}": {
-      "snippet": "cardcontent{${1:arg}}"
-    },
-    "cardcorner{}": {
-      "snippet": "cardcorner{${1:arg}}"
-    },
-    "carddebug": {},
-    "cardheight": {},
-    "cardheightbody": {},
-    "cardmargin": {},
-    "cardpadding": {},
-    "cardwidth": {},
-    "cardwidthbody": {},
-    "drawcardrecto[]{}": {
-      "snippet": "drawcardrecto[${2:opt}]{${1:arg}}"
-    },
-    "drawcardrecto{}": {
-      "snippet": "drawcardrecto{${1:arg}}"
-    },
-    "drawcardverso[]{}": {
-      "snippet": "drawcardverso[${2:opt}]{${1:arg}}"
-    },
-    "drawcardverso{}": {
-      "snippet": "drawcardverso{${1:arg}}"
-    },
-    "shapeCard": {},
-    "shapeCardBody": {},
-    "shapeMargin": {},
-    "strippadding": {},
-    "stripwidth": {},
-    "textlineskip": {},
-    "textsize": {}
-  },
-  "envs": {},
-  "options": [
-    "anttor"
+    {
+      "name": "anttor",
+      "if": "anttor"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "drawcardsrecto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "drawcardsrecto",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\drawcardsrecto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "drawcardsverso",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "drawcardsverso",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\drawcardsverso"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/playcards#c": [
+      "anttor"
+    ],
+    "\\drawcardsrecto": [
       "borders",
       "trame",
       "corners",
@@ -85,10 +76,13 @@
       "contentsFontSize=${1:number}",
       "circleRay=${1:number}"
     ],
-    [
+    "\\drawcardsverso": [
       "backgroundImg",
       "trame",
       "contentsFontSize=${1:number}"
     ]
+  },
+  "args": [
+    "\\usepackage/playcards#c"
   ]
 }

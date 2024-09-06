@@ -1,307 +1,732 @@
 {
-  "includes": {
-    "amsmath": [],
-    "amssymb": [],
-    "amsthm": [],
-    "lscape": [],
-    "setspace": [],
-    "calc": [],
-    "ifthen": [],
-    "caption": [],
-    "subcaption": [],
-    "tabularx": [],
-    "booktabs": [],
-    "multirow": [],
-    "siunitx": [],
-    "float": [],
-    "nomencl": [],
-    "csquotes": [],
-    "biblatex": [],
-    "imakeidx": [],
-    "indentfirst": []
-  },
-  "macros": {
-    "CClicence{}": {
-      "snippet": "CClicence{${1:text}}"
-    },
-    "CycleNumber{}": {
-      "snippet": "CycleNumber{${1:number}}"
-    },
-    "diff": {},
-    "Disclaimer{}": {
-      "snippet": "Disclaimer{${1:text}}"
-    },
-    "eu": {},
-    "ExaminationDate{}": {
-      "snippet": "ExaminationDate{${1:date}}"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "ExaminerList{}": {
-      "snippet": "ExaminerList{${1:list of examiners}}"
+    {
+      "name": "amssymb"
     },
-    "fivestars": {},
-    "gei": {},
-    "ifmybibstyle": {},
-    "iu": {},
-    "ju": {},
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}"
+    {
+      "name": "amsthm"
     },
-    "mybibstylefalse": {},
-    "mybibstyletrue": {},
-    "Ndissertation{}": {
-      "snippet": "Ndissertation{${1:dissertation name}}"
+    {
+      "name": "lscape"
     },
-    "Ndoctoralprogram{}": {
-      "snippet": "Ndoctoralprogram{${1:doctoral program}}"
+    {
+      "name": "setspace"
     },
-    "Nexaminationcommittee{}": {
-      "snippet": "Nexaminationcommittee{${1:heading}}"
+    {
+      "name": "calc"
     },
-    "Nlocation{}": {
-      "snippet": "Nlocation{${1:location}}"
+    {
+      "name": "ifthen"
     },
-    "NSupervisor{}{}": {
-      "snippet": "NSupervisor{${1:singular}}{${2:plural}}"
+    {
+      "name": "caption"
     },
-    "PhDschoolLogo[]{}": {
-      "snippet": "PhDschoolLogo[${2:height}]{${1:imagefile}}"
+    {
+      "name": "subcaption"
     },
-    "PhDschoolLogo{}": {
-      "snippet": "PhDschoolLogo{${1:imagefile}}"
+    {
+      "name": "tabularx"
     },
-    "printloghi": {},
-    "printnomencl": {},
-    "printnomencl[]": {
-      "snippet": "printnomencl[${1:space}]"
+    {
+      "name": "booktabs"
     },
-    "ProgramName{}": {
-      "snippet": "ProgramName{${1:name}}"
+    {
+      "name": "multirow"
     },
-    "setlogodistance{}": {
-      "snippet": "setlogodistance{${1:distance}}"
+    {
+      "name": "siunitx"
     },
-    "Signature{}": {
-      "snippet": "Signature{${1:signature}}"
+    {
+      "name": "float"
     },
-    "subject{}": {
-      "snippet": "subject{${1:subject}}"
+    {
+      "name": "nomencl"
     },
-    "subtitle{}": {
-      "snippet": "subtitle{${1:text}}"
+    {
+      "name": "csquotes"
     },
-    "SupervisorList{}": {
-      "snippet": "SupervisorList{${1:list of supervisors}}"
+    {
+      "name": "biblatex"
     },
-    "SupervisorNumber{}": {
-      "snippet": "SupervisorNumber{${1:number}}"
+    {
+      "name": "imakeidx"
     },
-    "citet[][]{}": {
-      "snippet": "citet[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "citet[]{}": {
-      "snippet": "citet[${2:postnote}]{${1:bibid}}"
-    },
-    "citet{}": {
-      "snippet": "citet{${1:bibid}}"
-    },
-    "citet*[][]{}": {
-      "snippet": "citet*[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "citet*[]{}": {
-      "snippet": "citet*[${2:postnote}]{${1:bibid}}"
-    },
-    "citet*{}": {
-      "snippet": "citet*{${1:bibid}}"
-    },
-    "citep[][]{}": {
-      "snippet": "citep[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "citep[]{}": {
-      "snippet": "citep[${2:postnote}]{${1:bibid}}"
-    },
-    "citep{}": {
-      "snippet": "citep{${1:bibid}}"
-    },
-    "citep*[][]{}": {
-      "snippet": "citep*[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "citep*[]{}": {
-      "snippet": "citep*[${2:postnote}]{${1:bibid}}"
-    },
-    "citep*{}": {
-      "snippet": "citep*{${1:bibid}}"
-    },
-    "citealt[][]{}": {
-      "snippet": "citealt[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "citealt[]{}": {
-      "snippet": "citealt[${2:postnote}]{${1:bibid}}"
-    },
-    "citealt{}": {
-      "snippet": "citealt{${1:bibid}}"
-    },
-    "citealt*[][]{}": {
-      "snippet": "citealt*[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "citealt*[]{}": {
-      "snippet": "citealt*[${2:postnote}]{${1:bibid}}"
-    },
-    "citealt*{}": {
-      "snippet": "citealt*{${1:bibid}}"
-    },
-    "citealp[][]{}": {
-      "snippet": "citealp[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "citealp[]{}": {
-      "snippet": "citealp[${2:postnote}]{${1:bibid}}"
-    },
-    "citealp{}": {
-      "snippet": "citealp{${1:bibid}}"
-    },
-    "citealp*[][]{}": {
-      "snippet": "citealp*[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "citealp*[]{}": {
-      "snippet": "citealp*[${2:postnote}]{${1:bibid}}"
-    },
-    "citealp*{}": {
-      "snippet": "citealp*{${1:bibid}}"
-    },
-    "citeauthor[][]{}": {
-      "snippet": "citeauthor[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "citeauthor[]{}": {
-      "snippet": "citeauthor[${2:postnote}]{${1:bibid}}"
-    },
-    "citeauthor{}": {
-      "snippet": "citeauthor{${1:bibid}}"
-    },
-    "citeauthor*[][]{}": {
-      "snippet": "citeauthor*[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "citeauthor*[]{}": {
-      "snippet": "citeauthor*[${2:postnote}]{${1:bibid}}"
-    },
-    "citeauthor*{}": {
-      "snippet": "citeauthor*{${1:bibid}}"
-    },
-    "citeyearpar[][]{}": {
-      "snippet": "citeyearpar[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "citeyearpar[]{}": {
-      "snippet": "citeyearpar[${2:postnote}]{${1:bibid}}"
-    },
-    "citeyearpar{}": {
-      "snippet": "citeyearpar{${1:bibid}}"
-    },
-    "Citet[][]{}": {
-      "snippet": "Citet[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "Citet[]{}": {
-      "snippet": "Citet[${2:postnote}]{${1:bibid}}"
-    },
-    "Citet{}": {
-      "snippet": "Citet{${1:bibid}}"
-    },
-    "Citet*[][]{}": {
-      "snippet": "Citet*[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "Citet*[]{}": {
-      "snippet": "Citet*[${2:postnote}]{${1:bibid}}"
-    },
-    "Citet*{}": {
-      "snippet": "Citet*{${1:bibid}}"
-    },
-    "Citep[][]{}": {
-      "snippet": "Citep[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "Citep[]{}": {
-      "snippet": "Citep[${2:postnote}]{${1:bibid}}"
-    },
-    "Citep{}": {
-      "snippet": "Citep{${1:bibid}}"
-    },
-    "Citep*[][]{}": {
-      "snippet": "Citep*[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "Citep*[]{}": {
-      "snippet": "Citep*[${2:postnote}]{${1:bibid}}"
-    },
-    "Citep*{}": {
-      "snippet": "Citep*{${1:bibid}}"
-    },
-    "Citealt[][]{}": {
-      "snippet": "Citealt[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "Citealt[]{}": {
-      "snippet": "Citealt[${2:postnote}]{${1:bibid}}"
-    },
-    "Citealt{}": {
-      "snippet": "Citealt{${1:bibid}}"
-    },
-    "Citealt*[][]{}": {
-      "snippet": "Citealt*[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "Citealt*[]{}": {
-      "snippet": "Citealt*[${2:postnote}]{${1:bibid}}"
-    },
-    "Citealt*{}": {
-      "snippet": "Citealt*{${1:bibid}}"
-    },
-    "Citealp[][]{}": {
-      "snippet": "Citealp[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "Citealp[]{}": {
-      "snippet": "Citealp[${2:postnote}]{${1:bibid}}"
-    },
-    "Citealp{}": {
-      "snippet": "Citealp{${1:bibid}}"
-    },
-    "Citealp*[][]{}": {
-      "snippet": "Citealp*[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "Citealp*[]{}": {
-      "snippet": "Citealp*[${2:postnote}]{${1:bibid}}"
-    },
-    "Citealp*{}": {
-      "snippet": "Citealp*{${1:bibid}}"
-    },
-    "citefullauthor[][]{}": {
-      "snippet": "citefullauthor[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "citefullauthor[]{}": {
-      "snippet": "citefullauthor[${2:postnote}]{${1:bibid}}"
-    },
-    "citefullauthor{}": {
-      "snippet": "citefullauthor{${1:bibid}}"
-    },
-    "Citefullauthor[][]{}": {
-      "snippet": "Citefullauthor[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "Citefullauthor[]{}": {
-      "snippet": "Citefullauthor[${2:postnote}]{${1:bibid}}"
-    },
-    "Citefullauthor{}": {
-      "snippet": "Citefullauthor{${1:bibid}}"
-    },
-    "citetext{}": {
-      "snippet": "citetext{${1:text}}"
-    },
-    "defcitealias{}{}": {
-      "snippet": "defcitealias{${1:bibid}}{${2:alias}}"
-    },
-    "citetalias{}": {
-      "snippet": "citetalias{${1:bibid}}"
-    },
-    "citepalias{}": {
-      "snippet": "citepalias{${1:bibid}}"
+    {
+      "name": "indentfirst"
     }
-  },
-  "envs": {
-    "ThesisTitlePage": {}
-  },
-  "options": [
-    "mybibliostyle"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "CClicence",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "CycleNumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "diff"
+    },
+    {
+      "name": "Disclaimer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "eu"
+    },
+    {
+      "name": "ExaminationDate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "ExaminerList",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list of examiners}}"
+      }
+    },
+    {
+      "name": "fivestars",
+      "unusual": true
+    },
+    {
+      "name": "gei"
+    },
+    {
+      "name": "ifmybibstyle",
+      "unusual": true
+    },
+    {
+      "name": "iu"
+    },
+    {
+      "name": "ju"
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "mybibstylefalse",
+      "unusual": true
+    },
+    {
+      "name": "mybibstyletrue",
+      "unusual": true
+    },
+    {
+      "name": "Ndissertation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dissertation name%text}}"
+      }
+    },
+    {
+      "name": "Ndoctoralprogram",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:doctoral program%text}}"
+      }
+    },
+    {
+      "name": "Nexaminationcommittee",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "Nlocation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:location}}"
+      }
+    },
+    {
+      "name": "NSupervisor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:singular%text}}{${2:plural%text}}"
+      }
+    },
+    {
+      "name": "PhDschoolLogo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:height}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "PhDschoolLogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "printloghi",
+      "unusual": true
+    },
+    {
+      "name": "printnomencl",
+      "unusual": true
+    },
+    {
+      "name": "printnomencl",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:space}]"
+      }
+    },
+    {
+      "name": "ProgramName",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%text}}"
+      }
+    },
+    {
+      "name": "setlogodistance",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:distance%l}}"
+      }
+    },
+    {
+      "name": "Signature",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:signature}}"
+      }
+    },
+    {
+      "name": "subject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subject%text}}"
+      }
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "SupervisorList",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list of supervisors}}"
+      }
+    },
+    {
+      "name": "SupervisorNumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "citet",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citet",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citet*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citet*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citet*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citep",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citep",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citep",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citep*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citep*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citep*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citealt",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citealt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citealt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citealt*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citealt*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citealt*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citealp",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citealp",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citealp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citealp*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citealp*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citealp*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citeauthor",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citeauthor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citeauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citeauthor*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citeauthor*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citeauthor*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citeyearpar",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citeyearpar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citeyearpar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citet",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citet",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citet*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citet*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citet*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citep",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citep",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citep",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citep*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citep*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citep*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citealt",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citealt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citealt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citealt*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citealt*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citealt*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citealp",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citealp",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citealp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citealp*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citealp*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citealp*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citefullauthor",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citefullauthor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citefullauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citefullauthor",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citefullauthor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citefullauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citetext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "defcitealias",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bibid}}{${2:alias}}"
+      }
+    },
+    {
+      "name": "citetalias",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citepalias",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "ThesisTitlePage"
+    }
+  ],
+  "keys": {
+    "\\documentclass/toptesi#c": [
+      "mybibliostyle"
+    ]
+  },
+  "args": [
+    "\\documentclass/toptesi#c"
+  ]
 }

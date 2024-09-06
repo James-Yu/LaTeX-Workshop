@@ -1,93 +1,154 @@
 {
-  "includes": {
-    "graphicx": [],
-    "verbatim": []
-  },
-  "macros": {
-    "fmpfigure{}": {
-      "snippet": "fmpfigure{${1:IDstring}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "fmpfigure[]{}": {
-      "snippet": "fmpfigure[${2:options}]{${1:IDstring}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "fmpsourcefilename{}": {
-      "snippet": "fmpsourcefilename{${1:filename}}"
-    },
-    "fmpscriptfilename{}": {
-      "snippet": "fmpscriptfilename{${1:filename}}"
-    },
-    "fmpfigurebasename{}": {
-      "snippet": "fmpfigurebasename{${1:filename}}"
-    },
-    "fmpsourcepreamble{}": {
-      "snippet": "fmpsourcepreamble{${1:preamble}}"
-    },
-    "fmpaddtosourcepreamble{}": {
-      "snippet": "fmpaddtosourcepreamble{${1:code}}"
-    },
-    "fmpscriptpreamble{}": {
-      "snippet": "fmpscriptpreamble{${1:preamble}}"
-    },
-    "fmpaddtoscriptpreamble{}": {
-      "snippet": "fmpaddtoscriptpreamble{${1:code}}"
-    },
-    "fmpsourcepostamble{}": {
-      "snippet": "fmpsourcepostamble{${1:preamble}}"
-    },
-    "fmpaddtosourcepostamble{}": {
-      "snippet": "fmpaddtosourcepostamble{${1:code}}"
-    },
-    "fmpscriptpostamble{}": {
-      "snippet": "fmpscriptpostamble{${1:preamble}}"
-    },
-    "fmpaddtoscriptpostamble{}": {
-      "snippet": "fmpaddtoscriptpostamble{${1:code}}"
-    },
-    "thefmpfigure": {},
-    "fmp": {},
-    "endfmp": {}
-  },
-  "envs": {
-    "fmp": {}
-  },
-  "options": [
-    "unknownkeysallowed",
-    "draft",
-    "final",
-    "hiresbb",
-    "demo",
-    "setpagesize",
-    "nosetpagesize",
-    "dvips",
-    "xdvi",
-    "dvipdf",
-    "dvipdfm",
-    "dvipdfmx",
-    "xetex",
-    "pdftex",
-    "luatex",
-    "dvisvgm",
-    "dvipsone",
-    "dviwindo",
-    "emtex",
-    "dviwin",
-    "oztex",
-    "textures",
-    "pctexps",
-    "pctexwin",
-    "pctexhp",
-    "pctex32",
-    "truetex",
-    "tcidvi",
-    "vtex",
-    "debugshow",
-    "hiderotate",
-    "hidescale"
+    {
+      "name": "verbatim"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "fmpfigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:IDstring}}"
+      }
+    },
+    {
+      "name": "fmpfigure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:IDstring}}",
+        "keys": [
+          "\\fmpfigure"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fmpsourcefilename",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename%file}}"
+      }
+    },
+    {
+      "name": "fmpscriptfilename",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename%file}}"
+      }
+    },
+    {
+      "name": "fmpfigurebasename",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename%file}}"
+      }
+    },
+    {
+      "name": "fmpsourcepreamble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preamble%definition}}"
+      }
+    },
+    {
+      "name": "fmpaddtosourcepreamble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%definition}}"
+      }
+    },
+    {
+      "name": "fmpscriptpreamble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preamble%definition}}"
+      }
+    },
+    {
+      "name": "fmpaddtoscriptpreamble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%definition}}"
+      }
+    },
+    {
+      "name": "fmpsourcepostamble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preamble%definition}}"
+      }
+    },
+    {
+      "name": "fmpaddtosourcepostamble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%definition}}"
+      }
+    },
+    {
+      "name": "fmpscriptpostamble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preamble%definition}}"
+      }
+    },
+    {
+      "name": "fmpaddtoscriptpostamble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%definition}}"
+      }
+    },
+    {
+      "name": "thefmpfigure",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "fmp"
+    }
+  ],
+  "keys": {
+    "\\usepackage/fmp#c": [
+      "unknownkeysallowed",
+      "draft",
+      "final",
+      "hiresbb",
+      "demo",
+      "setpagesize",
+      "nosetpagesize",
+      "dvips",
+      "xdvi",
+      "dvipdf",
+      "dvipdfm",
+      "dvipdfmx",
+      "xetex",
+      "pdftex",
+      "luatex",
+      "dvisvgm",
+      "dvipsone",
+      "dviwindo",
+      "emtex",
+      "dviwin",
+      "oztex",
+      "textures",
+      "pctexps",
+      "pctexwin",
+      "pctexhp",
+      "pctex32",
+      "truetex",
+      "tcidvi",
+      "vtex",
+      "debugshow",
+      "hiderotate",
+      "hidescale"
+    ],
+    "\\fmpfigure": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -118,5 +179,8 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
+  },
+  "args": [
+    "\\usepackage/fmp#c"
   ]
 }

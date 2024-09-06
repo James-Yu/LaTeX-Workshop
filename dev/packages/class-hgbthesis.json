@@ -1,161 +1,341 @@
 {
-  "includes": {
-    "xifthen": [],
-    "ifpdf": [],
-    "class-book": [],
-    "geometry": [],
-    "hgb": [],
-    "hgbmath": [],
-    "hgbalgo": [],
-    "hgbheadings": [],
-    "hgbabbrev": [],
-    "hgblistings": [],
-    "hgbbib": []
-  },
-  "macros": {
-    "foreverunspace": {
-      "option": "apa"
+  "deps": [
+    {
+      "name": "xifthen"
     },
-    "printtexte{}": {
-      "snippet": "printtexte{${1:text}}",
-      "option": "apa"
+    {
+      "name": "ifpdf"
     },
-    "printtexte[]{}": {
-      "snippet": "printtexte[${2:format}]{${1:text}}",
-      "option": "apa"
+    {
+      "name": "class-book"
     },
-    "maxprtauth": {
-      "option": "apa"
+    {
+      "name": "geometry"
     },
-    "apanum{}": {
-      "snippet": "apanum{${1:num}}",
-      "option": "apa"
+    {
+      "name": "hgb"
     },
-    "mkdaterangeapalong{}": {
-      "snippet": "mkdaterangeapalong{${1:datetype}}",
-      "option": "apa"
+    {
+      "name": "hgbmath"
     },
-    "mkdaterangeapalongextra{}": {
-      "snippet": "mkdaterangeapalongextra{${1:datetype}}",
-      "option": "apa"
+    {
+      "name": "hgbalgo"
     },
-    "begrelateddelimcommenton": {
-      "option": "apa"
+    {
+      "name": "hgbheadings"
     },
-    "begrelateddelimreviewof": {
-      "option": "apa"
+    {
+      "name": "hgbabbrev"
     },
-    "begrelateddelimreprintfrom": {
-      "option": "apa"
+    {
+      "name": "hgblistings"
     },
-    "urldatecomma": {
-      "option": "apa"
-    },
-    "apashortdash": {
-      "option": "apa"
-    },
-    "citeresetapa": {
-      "option": "apa"
-    },
-    "fullcitebib[][]{}": {
-      "snippet": "fullcitebib[${2:prenote}][${3:postnote}]{${1:bibid}}",
-      "option": "apa"
-    },
-    "fullcitebib[]{}": {
-      "snippet": "fullcitebib[${2:postnote}]{${1:bibid}}",
-      "option": "apa"
-    },
-    "fullcitebib{}": {
-      "snippet": "fullcitebib{${1:bibid}}",
-      "option": "apa"
-    },
-    "nptextcite[][]{}": {
-      "snippet": "nptextcite[${2:prenote}][${3:postnote}]{${1:bibid}}",
-      "option": "apa"
-    },
-    "nptextcite[]{}": {
-      "snippet": "nptextcite[${2:postnote}]{${1:bibid}}",
-      "option": "apa"
-    },
-    "nptextcite{}": {
-      "snippet": "nptextcite{${1:bibid}}",
-      "option": "apa"
-    },
-    "nptextcites{}{}": {
-      "snippet": "nptextcites{${1:bibid}}{${2:bibid}}",
-      "option": "apa"
-    },
-    "nptextcites(){}{}": {
-      "snippet": "nptextcites(${3:post}){${1:bibid}}{${2:bibid}}",
-      "option": "apa"
-    },
-    "nptextcites()(){}{}": {
-      "snippet": "nptextcites(${3:pre})(${4:post}){${1:bibid}}{${2:bibid}}",
-      "option": "apa"
-    },
-    "nptextcites()()[]{}[]{}": {
-      "snippet": "nptextcites(${5:pre})(${6:post})[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}",
-      "option": "apa"
-    },
-    "nptextcites[]{}[]{}": {
-      "snippet": "nptextcites[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}",
-      "option": "apa"
-    },
-    "nptextcites[][]{}[][]{}": {
-      "snippet": "nptextcites[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}",
-      "option": "apa"
-    },
-    "nptextcites()()[][]{}[][]{}": {
-      "snippet": "nptextcites(${7:pre})(${8:post})[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}",
-      "option": "apa"
-    },
-    "advisor{}": {
-      "snippet": "advisor{${1:name}}"
-    },
-    "cclicense": {},
-    "companyName{}": {
-      "snippet": "companyName{${1:name}}"
-    },
-    "companyUrl{}": {
-      "snippet": "companyUrl{${1:URL}}"
-    },
-    "dateofsubmission{}{}{}": {
-      "snippet": "dateofsubmission{${1:YYYY}}{${2:MM}}{${3:DD}}"
-    },
-    "leadingzero{}": {
-      "snippet": "leadingzero{${1:count}}"
-    },
-    "license{}": {
-      "snippet": "license{${1:text}}"
-    },
-    "logofile{}": {
-      "snippet": "logofile{${1:imagefile}}"
-    },
-    "makelogo": {},
-    "placeofstudy{}": {
-      "snippet": "placeofstudy{${1:place}}"
-    },
-    "programname{}": {
-      "snippet": "programname{${1:name}}"
-    },
-    "programtype{}": {
-      "snippet": "programtype{${1:type}}"
-    },
-    "strictlicense": {}
-  },
-  "envs": {},
-  "options": [
-    "bachelor",
-    "master",
-    "diploma",
-    "internship",
-    "apa",
-    "proposal",
-    "english",
-    "german",
-    "smartquotes",
-    "noUpdateCheck",
-    "apamaxprtauth=${1:number}"
+    {
+      "name": "hgbbib"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "foreverunspace",
+      "if": "apa",
+      "unusual": true
+    },
+    {
+      "name": "printtexte",
+      "if": "apa",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "printtexte",
+      "if": "apa",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:format}]{${1:text}}"
+      }
+    },
+    {
+      "name": "maxprtauth",
+      "if": "apa",
+      "unusual": true
+    },
+    {
+      "name": "apanum",
+      "if": "apa",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:num}}"
+      }
+    },
+    {
+      "name": "mkdaterangeapalong",
+      "if": "apa",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:datetype}}"
+      }
+    },
+    {
+      "name": "mkdaterangeapalongextra",
+      "if": "apa",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:datetype}}"
+      }
+    },
+    {
+      "name": "begrelateddelimcommenton",
+      "if": "apa",
+      "unusual": true
+    },
+    {
+      "name": "begrelateddelimreviewof",
+      "if": "apa",
+      "unusual": true
+    },
+    {
+      "name": "begrelateddelimreprintfrom",
+      "if": "apa",
+      "unusual": true
+    },
+    {
+      "name": "urldatecomma",
+      "if": "apa",
+      "unusual": true
+    },
+    {
+      "name": "apashortdash",
+      "if": "apa",
+      "unusual": true
+    },
+    {
+      "name": "citeresetapa",
+      "if": "apa",
+      "unusual": true
+    },
+    {
+      "name": "fullcitebib",
+      "if": "apa",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "fullcitebib",
+      "if": "apa",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "fullcitebib",
+      "if": "apa",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "nptextcite",
+      "if": "apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "nptextcite",
+      "if": "apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "nptextcite",
+      "if": "apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "nptextcites",
+      "if": "apa",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bibid}}{${2:bibid}}"
+      }
+    },
+    {
+      "name": "nptextcites",
+      "if": "apa",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "(${3:post}){${1:bibid}}{${2:bibid}}"
+      }
+    },
+    {
+      "name": "nptextcites",
+      "if": "apa",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "(${3:pre})(${4:post}){${1:bibid}}{${2:bibid}}"
+      }
+    },
+    {
+      "name": "nptextcites",
+      "if": "apa",
+      "unusual": true,
+      "arg": {
+        "format": "()()[]{}[]{}",
+        "snippet": "(${5:pre})(${6:post})[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "nptextcites",
+      "if": "apa",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "nptextcites",
+      "if": "apa",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}[][]{}",
+        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "nptextcites",
+      "if": "apa",
+      "unusual": true,
+      "arg": {
+        "format": "()()[][]{}[][]{}",
+        "snippet": "(${7:pre})(${8:post})[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "advisor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "cclicense"
+    },
+    {
+      "name": "companyName",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "companyUrl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "dateofsubmission",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:YYYY}}{${2:MM}}{${3:DD}}"
+      }
+    },
+    {
+      "name": "leadingzero",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:count}}"
+      }
+    },
+    {
+      "name": "license",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "logofile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "makelogo",
+      "unusual": true
+    },
+    {
+      "name": "placeofstudy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:place}}"
+      }
+    },
+    {
+      "name": "programname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%text}}"
+      }
+    },
+    {
+      "name": "programtype",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type%text}}"
+      }
+    },
+    {
+      "name": "strictlicense"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/hgbthesis#c": [
+      "bachelor",
+      "master",
+      "diploma",
+      "internship",
+      "apa",
+      "proposal",
+      "english",
+      "german",
+      "smartquotes",
+      "noUpdateCheck"
+    ],
+    "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c": [
+      "apamaxprtauth=${1:number}"
+    ]
+  },
+  "args": [
+    "\\documentclass/hgbthesis#c",
+    "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c"
+  ]
 }

@@ -1,20 +1,35 @@
 {
-  "includes": {},
-  "macros": {
-    "truncate{}{}": {
-      "snippet": "truncate{${1:width}}{${2:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "truncate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:text}}"
+      }
     },
-    "truncate[]{}{}": {
-      "snippet": "truncate[${3:marker}]{${1:width}}{${2:text}}"
+    {
+      "name": "truncate",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:marker}]{${1:width}}{${2:text}}"
+      }
     },
-    "TruncateMarker": {}
-  },
-  "envs": {},
-  "options": [
-    "breakwords",
-    "breakall",
-    "hyphenate",
-    "fit"
+    {
+      "name": "TruncateMarker",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/truncate#c": [
+      "breakwords",
+      "breakall",
+      "hyphenate",
+      "fit"
+    ]
+  },
+  "args": [
+    "\\usepackage/truncate#c"
+  ]
 }

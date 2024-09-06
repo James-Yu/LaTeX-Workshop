@@ -1,29 +1,58 @@
 {
-  "includes": {
-    "pict2e": []
-  },
-  "macros": {
-    "actuarialangle{}": {
-      "snippet": "actuarialangle{${1:arg}}"
-    },
-    "angl{}": {
-      "snippet": "angl{${1:arg}}"
-    },
-    "angln": {},
-    "anglr": {},
-    "anglk": {},
-    "overanglebracket{}": {
-      "snippet": "overanglebracket{${1:arg}}"
-    },
-    "group{}": {
-      "snippet": "group{${1:arg}}"
+  "deps": [
+    {
+      "name": "pict2e"
     }
-  },
-  "envs": {},
-  "options": [
-    "thinspace",
-    "thickspace",
-    "nobracket"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "actuarialangle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "angl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "angln"
+    },
+    {
+      "name": "anglr"
+    },
+    {
+      "name": "anglk"
+    },
+    {
+      "name": "overanglebracket",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "group",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/actuarialangle#c": [
+      "thinspace",
+      "thickspace",
+      "nobracket"
+    ]
+  },
+  "args": [
+    "\\usepackage/actuarialangle#c"
+  ]
 }

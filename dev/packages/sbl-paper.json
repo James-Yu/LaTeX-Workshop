@@ -1,168 +1,397 @@
 {
-  "includes": {
-    "geometry": [],
-    "textcase": [],
-    "setspace": [],
-    "titlesec": [],
-    "titletoc": [],
-    "fancyhdr": [],
-    "footmisc": [],
-    "bibleref-parse": [],
-    "biblatex": [],
-    "imakeidx": [],
-    "hyperref": []
-  },
-  "macros": {
-    "firstsection{}": {
-      "snippet": "firstsection{${1:title}}"
+  "deps": [
+    {
+      "name": "geometry"
     },
-    "firstsection[]{}": {
-      "snippet": "firstsection[${2:short title}]{${1:title}}"
+    {
+      "name": "textcase"
     },
-    "institution{}": {
-      "snippet": "institution{${1:institution}}"
+    {
+      "name": "setspace"
     },
-    "professor{}": {
-      "snippet": "professor{${1:name}}"
+    {
+      "name": "titlesec"
     },
-    "course{}": {
-      "snippet": "course{${1:course}}"
+    {
+      "name": "titletoc"
     },
-    "Pbibleverse{}": {
-      "snippet": "Pbibleverse{${1:passage}}"
+    {
+      "name": "fancyhdr"
     },
-    "Pbibleverse[]{}": {
-      "snippet": "Pbibleverse[${2:options}]{${1:passage}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "footmisc"
     },
-    "Pibibleverse{}": {
-      "snippet": "Pibibleverse{${1:passage}}"
+    {
+      "name": "bibleref-parse"
     },
-    "Pibibleverse[]{}": {
-      "snippet": "Pibibleverse[${2:options}]{${1:passage}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "biblatex"
     },
-    "printsblversion": {},
-    "printsbldate": {},
-    "xprintsbldateiso": {},
-    "xprintsbldateau": {},
-    "ifciteidemsbl{}{}": {
-      "snippet": "ifciteidemsbl{${1:true}}{${2:false}}"
+    {
+      "name": "imakeidx"
     },
-    "namedashpunct": {},
-    "lexiconfinalnamedelim": {},
-    "volpostnotedelim": {},
-    "mkibid{}": {
-      "snippet": "mkibid{${1:arg}}"
-    },
-    "addskipentry{}": {
-      "snippet": "addskipentry{${1:arg}}"
-    },
-    "addincludeentry{}": {
-      "snippet": "addincludeentry{${1:arg}}"
-    },
-    "abbrevwidth": {},
-    "setmaxlength{}{}": {
-      "snippet": "setmaxlength{${1:length1}}{${2:length2}}"
-    },
-    "iffirstcharsec{}{}{}": {
-      "snippet": "iffirstcharsec{${1:arg}}{${2:true}}{${3:false}}"
-    },
-    "iffirstcharnum{}{}{}": {
-      "snippet": "iffirstcharnum{${1:arg}}{${2:true}}{${3:false}}"
-    },
-    "thecurrentpublisher": {},
-    "thecurrentlocation": {},
-    "thecurrentorganization": {},
-    "thecurrentinstitution": {},
-    "thepublishertotal": {},
-    "thelocationtotal": {},
-    "theorganizationtotal": {},
-    "theinstitutiontotal": {},
-    "savepostnotes": {},
-    "postnotefirst": {},
-    "postnotelast": {},
-    "splitpostnote": {},
-    "volsplitpostnote{}{}": {
-      "snippet": "volsplitpostnote{${1:arg1}}{${2:arg2}}"
-    },
-    "volvol": {},
-    "setuppostnotes": {},
-    "citefullauthor{}": {
-      "snippet": "citefullauthor{${1:bibid}}"
-    },
-    "citefullauthor[]{}": {
-      "snippet": "citefullauthor[${2:postnote}]{${1:bibid}}"
-    },
-    "citefullauthor[][]{}": {
-      "snippet": "citefullauthor[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "citefullauthor*{}": {
-      "snippet": "citefullauthor*{${1:bibid}}"
-    },
-    "citefullauthor*[]{}": {
-      "snippet": "citefullauthor*[${2:postnote}]{${1:bibid}}"
-    },
-    "citefullauthor*[][]{}": {
-      "snippet": "citefullauthor*[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "Citefullauthor{}": {
-      "snippet": "Citefullauthor{${1:bibid}}"
-    },
-    "Citefullauthor[]{}": {
-      "snippet": "Citefullauthor[${2:postnote}]{${1:bibid}}"
-    },
-    "Citefullauthor[][]{}": {
-      "snippet": "Citefullauthor[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "Citefullauthor*{}": {
-      "snippet": "Citefullauthor*{${1:bibid}}"
-    },
-    "Citefullauthor*[]{}": {
-      "snippet": "Citefullauthor*[${2:postnote}]{${1:bibid}}"
-    },
-    "Citefullauthor*[][]{}": {
-      "snippet": "Citefullauthor*[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "citejournal{}": {
-      "snippet": "citejournal{${1:bibid}}"
-    },
-    "citeseries{}": {
-      "snippet": "citeseries{${1:bibid}}"
-    },
-    "citeshorthand{}": {
-      "snippet": "citeshorthand{${1:bibid}}"
-    },
-    "bibentrycite{}": {
-      "snippet": "bibentrycite{${1:bibid}}"
-    },
-    "biblistcite{}": {
-      "snippet": "biblistcite{${1:bibid}}"
-    },
-    "DeclareNestableCiteCommand{}{}": {
-      "snippet": "DeclareNestableCiteCommand{${1:cmd}}{${2:def}}"
+    {
+      "name": "hyperref"
     }
-  },
-  "envs": {},
-  "options": [
-    "jblstyle",
-    "accessdate",
-    "citepages=${1|sbl,permit,omit,separate|}",
-    "eprintdate=${1|year,short,long,terse,comp,iso8601|}",
-    "fullbibrefs",
-    "idemtracker=${1|true,false,context,strict,constrict,citation,sbl|}",
-    "sblfootnotes",
-    "shorthand=${1|true,false,short,intro|}",
-    "useshorttitle",
-    "usefullcite",
-    "usevolume",
-    "useseries"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "firstsection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "firstsection",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "institution",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:institution%text}}"
+      }
+    },
+    {
+      "name": "professor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "course",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:course%text}}"
+      }
+    },
+    {
+      "name": "Pbibleverse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:passage}}"
+      }
+    },
+    {
+      "name": "Pbibleverse",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:passage}}",
+        "keys": [
+          "\\Pbibleverse,\\Pibibleverse"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Pibibleverse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:passage}}"
+      }
+    },
+    {
+      "name": "Pibibleverse",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:passage}}",
+        "keys": [
+          "\\Pbibleverse,\\Pibibleverse"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ifciteidemsbl",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "namedashpunct",
+      "unusual": true
+    },
+    {
+      "name": "lexiconfinalnamedelim",
+      "unusual": true
+    },
+    {
+      "name": "volpostnotedelim",
+      "unusual": true
+    },
+    {
+      "name": "mkibid",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "addskipentry",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "addincludeentry",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "abbrevwidth",
+      "unusual": true
+    },
+    {
+      "name": "setmaxlength",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:length1}}{${2:length2}}"
+      }
+    },
+    {
+      "name": "iffirstcharsec",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "iffirstcharnum",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "thecurrentpublisher",
+      "unusual": true
+    },
+    {
+      "name": "thecurrentlocation",
+      "unusual": true
+    },
+    {
+      "name": "thecurrentorganization",
+      "unusual": true
+    },
+    {
+      "name": "thecurrentinstitution",
+      "unusual": true
+    },
+    {
+      "name": "thepublishertotal",
+      "unusual": true
+    },
+    {
+      "name": "thelocationtotal",
+      "unusual": true
+    },
+    {
+      "name": "theorganizationtotal",
+      "unusual": true
+    },
+    {
+      "name": "theinstitutiontotal",
+      "unusual": true
+    },
+    {
+      "name": "savepostnotes",
+      "unusual": true
+    },
+    {
+      "name": "postnotefirst",
+      "unusual": true
+    },
+    {
+      "name": "postnotelast",
+      "unusual": true
+    },
+    {
+      "name": "splitpostnote",
+      "unusual": true
+    },
+    {
+      "name": "volsplitpostnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "setuppostnotes",
+      "unusual": true
+    },
+    {
+      "name": "citefullauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citefullauthor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citefullauthor",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citefullauthor*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citefullauthor*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citefullauthor*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citefullauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citefullauthor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citefullauthor",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citefullauthor*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citefullauthor*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Citefullauthor*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citejournal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citeseries",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citeshorthand",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "bibentrycite",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "biblistcite",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "DeclareNestableCiteCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/sbl-paper#c": [
+      "jblstyle"
+    ],
+    "\\Pbibleverse,\\Pibibleverse": [
       "comma=${1|list,chvsep,likeBR,preferchvsep,preferlikeBR|}"
+    ],
+    "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c": [
+      "accessdate",
+      "citepages=${1|sbl,permit,omit,separate|}",
+      "eprintdate=${1|year,short,long,terse,comp,iso8601|}",
+      "fullbibrefs",
+      "idemtracker=${1|true,false,context,strict,constrict,citation,sbl|}",
+      "sblfootnotes",
+      "shorthand=${1|true,false,short,intro|}",
+      "useshorttitle",
+      "usefullcite",
+      "usevolume",
+      "useseries"
     ]
+  },
+  "args": [
+    "\\usepackage/sbl-paper#c",
+    "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c"
   ]
 }

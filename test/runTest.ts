@@ -34,7 +34,7 @@ async function main() {
         await runTestSuites('unittest')
         await runTestSuites('testground')
         await runTestSuites('multiroot')
-    } catch (err) {
+    } catch (_) {
         console.error('Failed to run tests')
         process.exit(1)
     }

@@ -1,44 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "xstring": [],
-    "calc": [],
-    "simplekv": []
-  },
-  "macros": {
-    "CircGlyph{}": {
-      "snippet": "CircGlyph{${1:text}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "CircGlyph[]{}": {
-      "snippet": "CircGlyph[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xstring"
     },
-    "CircGlyph*{}": {
-      "snippet": "CircGlyph*{${1:text}}"
+    {
+      "name": "calc"
     },
-    "CircGlyph*[]{}": {
-      "snippet": "CircGlyph*[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "simplekv"
+    }
+  ],
+  "macros": [
+    {
+      "name": "CircGlyph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "GenereCircGlyp{}{}": {
-      "snippet": "GenereCircGlyp{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "CircGlyph",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\CircGlyph,\\CircGlyph*"
+        ],
+        "keyPos": 0
+      }
     },
-    "GenereCircGlypAux": {},
-    "CircGlyphChar{}": {
-      "snippet": "CircGlyphChar{${1:arg}}"
+    {
+      "name": "CircGlyph*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "CircGlyphCharAux": {},
-    "CircGlyphAux": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "CircGlyph*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\CircGlyph,\\CircGlyph*"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\CircGlyph,\\CircGlyph*": [
       "Inline",
       "Ext",
       "Color="
     ]
-  ]
+  },
+  "args": []
 }

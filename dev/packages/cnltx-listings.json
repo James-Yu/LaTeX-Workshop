@@ -1,23 +1,49 @@
 {
-  "includes": {
-    "cnltx-base": [],
-    "listings": [],
-    "catchfile": []
-  },
-  "macros": {
-    "listsilentcmds": {},
-    "listsilentenvs": {},
-    "listbibfilekeys{}": {
-      "snippet": "listbibfilekeys{${1:file}}"
+  "deps": [
+    {
+      "name": "cnltx-base"
     },
-    "listbibfiletypes{}": {
-      "snippet": "listbibfiletypes{${1:file}}"
+    {
+      "name": "listings"
     },
-    "listbibfileentries{}": {
-      "snippet": "listbibfileentries{${1:file}}"
+    {
+      "name": "catchfile"
     }
+  ],
+  "macros": [
+    {
+      "name": "listsilentcmds"
+    },
+    {
+      "name": "listsilentenvs"
+    },
+    {
+      "name": "listbibfilekeys",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "listbibfiletypes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "listbibfileentries",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setcnltx#c": [
+      "list-sep=${1:separator}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,16 +1,26 @@
 {
-  "includes": {
-    "calc": []
-  },
-  "macros": {
-    "makebase{}": {
-      "snippet": "makebase{${1:counter}}"
-    },
-    "makebase[]{}": {
-      "snippet": "makebase[${2:base}]{${1:counter}}"
+  "deps": [
+    {
+      "name": "calc"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "makebase",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "makebase",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:base}]{${1:counter}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

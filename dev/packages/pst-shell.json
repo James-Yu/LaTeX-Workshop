@@ -1,25 +1,39 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-solides3d": []
-  },
-  "macros": {
-    "psShell[]": {
-      "snippet": "psShell[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psShell[]()": {
-      "snippet": "psShell[${1:options}](${2:x},${3:y},${4:z})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-solides3d"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psShell",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\psShell"
+        ],
+        "keyPos": 0
+      }
     },
-    "PSTSHELLLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "psShell",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y},${4:z})",
+        "keys": [
+          "\\psShell"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psShell": [
       "A=${1:number}",
       "a=${1:number}",
       "action=${1|none,draw,draw*,draw**,writesolid,writeobj,writeoff|}",
@@ -55,5 +69,6 @@
       "W2=${1:number}",
       "writedata"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,75 +1,189 @@
 {
-  "includes": {
-    "CJK": [],
-    "CJKulem": []
-  },
-  "macros": {
-    "CJKunderdot{}": {
-      "snippet": "CJKunderdot{${1:contents}}"
+  "deps": [
+    {
+      "name": "CJK"
     },
-    "CJKunderline{}": {
-      "snippet": "CJKunderline{${1:contents}}"
-    },
-    "CJKunderline*{}": {
-      "snippet": "CJKunderline*{${1:contents}}"
-    },
-    "CJKunderdblline{}": {
-      "snippet": "CJKunderdblline{${1:contents}}"
-    },
-    "CJKunderdblline*{}": {
-      "snippet": "CJKunderdblline*{${1:contents}}"
-    },
-    "CJKunderwave{}": {
-      "snippet": "CJKunderwave{${1:contents}}"
-    },
-    "CJKunderwave*{}": {
-      "snippet": "CJKunderwave*{${1:contents}}"
-    },
-    "CJKsout{}": {
-      "snippet": "CJKsout{${1:contents}}"
-    },
-    "CJKsout*{}": {
-      "snippet": "CJKsout*{${1:contents}}"
-    },
-    "CJKxout{}": {
-      "snippet": "CJKxout{${1:contents}}"
-    },
-    "CJKxout*{}": {
-      "snippet": "CJKxout*{${1:contents}}"
-    },
-    "varCJKunderline{}": {
-      "snippet": "varCJKunderline{${1:contents}}"
-    },
-    "CJKunderanyline{}{}{}": {
-      "snippet": "CJKunderanyline{${1:depth}}{${2:underline code}}{${3:contents}}"
-    },
-    "CJKunderanysymbol{}{}{}": {
-      "snippet": "CJKunderanysymbol{${1:depth}}{${2:under-symbol code}}{${3:contents}}"
-    },
-    "CJKsoutcolor": {},
-    "CJKsoutheight": {},
-    "CJKulineleftskip": {},
-    "CJKulinerightskip": {},
-    "CJKunderdbllinebasesep": {},
-    "CJKunderdbllinecolor": {},
-    "CJKunderdbllinesep": {},
-    "CJKunderdotbasesep": {},
-    "CJKunderdotcolor": {},
-    "CJKunderdotsep": {},
-    "CJKunderlinebasesep": {},
-    "CJKunderlinecolor": {},
-    "CJKunderlinesep": {},
-    "CJKunderwavebasesep": {},
-    "CJKunderwavecolor": {},
-    "CJKunderwavesep": {},
-    "CJKxoutcolor": {}
-  },
-  "envs": {
-    "CJKfilltwosides{}": {
-      "name": "CJKfilltwosides",
-      "snippet": "{${1:width}}"
+    {
+      "name": "CJKulem"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "CJKunderdot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents}}"
+      }
+    },
+    {
+      "name": "CJKunderline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents}}"
+      }
+    },
+    {
+      "name": "CJKunderline*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents}}"
+      }
+    },
+    {
+      "name": "CJKunderdblline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents}}"
+      }
+    },
+    {
+      "name": "CJKunderdblline*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents}}"
+      }
+    },
+    {
+      "name": "CJKunderwave",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents}}"
+      }
+    },
+    {
+      "name": "CJKunderwave*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents}}"
+      }
+    },
+    {
+      "name": "CJKsout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents}}"
+      }
+    },
+    {
+      "name": "CJKsout*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents}}"
+      }
+    },
+    {
+      "name": "CJKxout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents}}"
+      }
+    },
+    {
+      "name": "CJKxout*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents}}"
+      }
+    },
+    {
+      "name": "varCJKunderline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents}}"
+      }
+    },
+    {
+      "name": "CJKunderanyline",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:depth%l}}{${2:underline code}}{${3:contents}}"
+      }
+    },
+    {
+      "name": "CJKunderanysymbol",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:depth%l}}{${2:under-symbol code}}{${3:contents}}"
+      }
+    },
+    {
+      "name": "CJKsoutcolor",
+      "unusual": true
+    },
+    {
+      "name": "CJKsoutheight",
+      "unusual": true
+    },
+    {
+      "name": "CJKulineleftskip",
+      "unusual": true
+    },
+    {
+      "name": "CJKulinerightskip",
+      "unusual": true
+    },
+    {
+      "name": "CJKunderdbllinebasesep",
+      "unusual": true
+    },
+    {
+      "name": "CJKunderdbllinecolor",
+      "unusual": true
+    },
+    {
+      "name": "CJKunderdbllinesep",
+      "unusual": true
+    },
+    {
+      "name": "CJKunderdotbasesep",
+      "unusual": true
+    },
+    {
+      "name": "CJKunderdotcolor",
+      "unusual": true
+    },
+    {
+      "name": "CJKunderdotsep",
+      "unusual": true
+    },
+    {
+      "name": "CJKunderlinebasesep",
+      "unusual": true
+    },
+    {
+      "name": "CJKunderlinecolor",
+      "unusual": true
+    },
+    {
+      "name": "CJKunderlinesep",
+      "unusual": true
+    },
+    {
+      "name": "CJKunderwavebasesep",
+      "unusual": true
+    },
+    {
+      "name": "CJKunderwavecolor",
+      "unusual": true
+    },
+    {
+      "name": "CJKunderwavesep",
+      "unusual": true
+    },
+    {
+      "name": "CJKxoutcolor",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "CJKfilltwosides",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

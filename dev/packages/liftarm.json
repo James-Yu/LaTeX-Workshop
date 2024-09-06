@@ -1,43 +1,82 @@
 {
-  "includes": {
-    "xcolor": [],
-    "tikz": [],
-    "tikzlibrarycalc": []
-  },
-  "macros": {
-    "liftarm{}{}{}": {
-      "snippet": "liftarm{${1:point}}{${2:length}}{${3:angle}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "liftarm[]{}{}{}": {
-      "snippet": "liftarm[${4:options}]{${1:point}}{${2:length}}{${3:angle}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     },
-    "liftarmconstruct{}": {
-      "snippet": "liftarmconstruct{${1:commands}}"
-    },
-    "liftarmconstructclear": {},
-    "liftarmanimate{}{}{}": {
-      "snippet": "liftarmanimate{${1:frame rate}}{${2:list}}{${3:commands}}"
-    },
-    "liftarmanimate[]{}{}{}": {
-      "snippet": "liftarmanimate[${4:options}]{${1:frame rate}}{${2:list}}{${3:commands}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarycalc"
     }
-  },
-  "envs": {
-    "liftarmconnect": {},
-    "liftarmconnect[]": {
+  ],
+  "macros": [
+    {
+      "name": "liftarm",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:point}}{${2:length%plain}}{${3:angle}}"
+      }
+    },
+    {
+      "name": "liftarm",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:point}}{${2:length%plain}}{${3:angle}}",
+        "keys": [
+          "\\liftarm#c,\\begin{liftarmconnect}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "liftarmconstruct",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:commands}}"
+      }
+    },
+    {
+      "name": "liftarmconstructclear"
+    },
+    {
+      "name": "liftarmanimate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:frame rate}}{${2:list}}{${3:commands}}"
+      }
+    },
+    {
+      "name": "liftarmanimate",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:frame rate}}{${2:list}}{${3:commands}}",
+        "keys": [
+          "\\liftarmanimate#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "liftarmconnect"
+    },
+    {
       "name": "liftarmconnect",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\liftarm#c,\\begin{liftarmconnect}#c",
+          "\\begin{liftarmconnect}#c"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\liftarm#c,\\begin{liftarmconnect}#c": [
       "axle holes={${1:values}}",
       "brick",
       "color={${1:number}}{${2:color}}",
@@ -60,11 +99,14 @@
       "trace={${1:num1/numframes1/code1,...}}",
       "type=${1|liftarm,line segment|}"
     ],
-    [
+    "\\begin{liftarmconnect}#c": [
+      "connect stop=${1|1-norm,2-norm,iterations|}"
+    ],
+    "\\liftarmanimate#c": [
       "label=${1:label}",
       "type=${1:file ext}",
       "poster",
-      "poster=${1|first,last,none,${1:number}|}",
+      "poster=${2|first,last,none,${1:number}|}",
       "every=${1:number}",
       "autopause",
       "autoplay",
@@ -95,34 +137,11 @@
       "nomouse",
       "method=${1|icon,widget,ocg|}",
       "measure",
-      "alttext=${1|none,${1:alt description}|}",
+      "alttext=${2|none,${1:alt description}|}",
       "begin={${1:begin code}}",
       "end={${1:end code}}",
       "timeline=${1:file}"
-    ],
-    [
-      "axle holes={${1:values}}",
-      "brick",
-      "color={${1:number}}{${2:color}}",
-      "color modulo=${1:number}",
-      "contour",
-      "contour style={${1:options}}",
-      "coordinate={${1:num1/name1,num2/name2/...}}",
-      "hole radius=${1:number}",
-      "liftarm style={${1:options}}",
-      "liftarm thickness=${1:number}",
-      "mark holes={${1:values}}",
-      "mark radius=${1:factor}",
-      "mark style={${1:options}}",
-      "origin=${1:number}",
-      "scalefactor=${1:factor}",
-      "screw angle=${1:degrees}",
-      "screw holes={${1:values}}",
-      "screw radius=${1:factor}",
-      "screw style={${1:options}}",
-      "trace={${1:num1/numframes1/code1,...}}",
-      "type=${1|liftarm,line segment|}",
-      "connect stop=${1|1-norm,2-norm,iterations|}"
     ]
-  ]
+  },
+  "args": []
 }

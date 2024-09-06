@@ -1,20 +1,43 @@
 {
-  "includes": {},
-  "macros": {
-    "addheadboxtemplate{}{}": {
-      "snippet": "addheadboxtemplate{${1:beamer color}}{${2:definition}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "addheadboxtemplate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:beamer color}}{${2:definition}}"
+      }
     },
-    "addheadbox{}{}": {
-      "snippet": "addheadbox{${1:beamer color}}{${2:box template}}"
+    {
+      "name": "addheadbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:beamer color}}{${2:box template}}"
+      }
     },
-    "addfootboxtemplate{}{}": {
-      "snippet": "addfootboxtemplate{${1:beamer color}}{${2:definition}}"
+    {
+      "name": "addfootboxtemplate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:beamer color}}{${2:definition}}"
+      }
     },
-    "addfootbox{}{}": {
-      "snippet": "addfootbox{${1:beamer color}}{${2:box template}}"
+    {
+      "name": "addfootbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:beamer color}}{${2:box template}}"
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usetheme/boxes": [
+      "headheight=",
+      "footheight="
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

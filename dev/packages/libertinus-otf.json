@@ -1,764 +1,1260 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "unicode-math": [],
-    "newunicodechar": [
+  "deps": [
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "unicode-math"
+    },
+    {
+      "name": "newunicodechar",
+      "if": "greek"
+    },
+    {
+      "name": "newunicodechar",
+      "if": "greek=true"
+    },
+    {
+      "name": "newunicodechar",
+      "if": "greekitalic"
+    },
+    {
+      "name": "newunicodechar",
+      "if": "greekitalic=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "BiolinumKeyboard",
+      "unusual": true
+    },
+    {
+      "name": "biolinumKeyGlyph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "BiolinumKeyGlyph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Land"
+    },
+    {
+      "name": "Lcase",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "LCPSP"
+    },
+    {
+      "name": "Lcpsp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Lctosc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Lctosmcp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Ldlig",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Lfrac",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Lhlig",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "LibertinusDisplay",
+      "unusual": true
+    },
+    {
+      "name": "LibertinusInitials",
+      "unusual": true
+    },
+    {
+      "name": "LibertinusKeyboard",
+      "unusual": true
+    },
+    {
+      "name": "LibertinusSansOsF"
+    },
+    {
+      "name": "LibertinusSansTLF"
+    },
+    {
+      "name": "LibertinusSerifOsF"
+    },
+    {
+      "name": "LibertinusSerifSB"
+    },
+    {
+      "name": "LibertinusSerifTLF"
+    },
+    {
+      "name": "LKey",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
+    },
+    {
+      "name": "LKeyAlt"
+    },
+    {
+      "name": "LKeyAltApple"
+    },
+    {
+      "name": "LKeyAltAppleX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
+    },
+    {
+      "name": "LKeyAltF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "LKeyAltGr"
+    },
+    {
+      "name": "LKeyAltGrX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
+    },
+    {
+      "name": "LKeyAltX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
+    },
+    {
+      "name": "LKeyAt"
+    },
+    {
+      "name": "LKeyBack"
+    },
+    {
+      "name": "LKeyBildDown",
+      "unusual": true
+    },
+    {
+      "name": "LKeyBildUp",
+      "unusual": true
+    },
+    {
+      "name": "LKeyCapslock"
+    },
+    {
+      "name": "LKeyCommand"
+    },
+    {
+      "name": "LKeyCtrl"
+    },
+    {
+      "name": "LKeyDel"
+    },
+    {
+      "name": "LKeyDown"
+    },
+    {
+      "name": "LKeyEinf"
+    },
+    {
+      "name": "LKeyEnd"
+    },
+    {
+      "name": "LKeyEnde"
+    },
+    {
+      "name": "LKeyEnter"
+    },
+    {
+      "name": "LKeyEntf"
+    },
+    {
+      "name": "LKeyEsc"
+    },
+    {
+      "name": "LKeyF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "LKeyFn"
+    },
+    {
+      "name": "LKeyGNU"
+    },
+    {
+      "name": "LKeyHome"
+    },
+    {
+      "name": "LKeyIns"
+    },
+    {
+      "name": "LKeyLeer"
+    },
+    {
+      "name": "LKeyLeft"
+    },
+    {
+      "name": "LKeyMenu"
+    },
+    {
+      "name": "LKeyOptionKey"
+    },
+    {
+      "name": "LKeyPad",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "LKeyPageDown"
+    },
+    {
+      "name": "LKeyPageUp"
+    },
+    {
+      "name": "LKeyPos"
+    },
+    {
+      "name": "LKeyReset"
+    },
+    {
+      "name": "LKeyRight"
+    },
+    {
+      "name": "LKeyShift"
+    },
+    {
+      "name": "LKeyShiftAltGrX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
+    },
+    {
+      "name": "LKeyShiftAltX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
+    },
+    {
+      "name": "LKeyShiftStrgX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
+    },
+    {
+      "name": "LKeyShiftX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
+    },
+    {
+      "name": "LKeySpace"
+    },
+    {
+      "name": "LKeyStrg"
+    },
+    {
+      "name": "LKeyStrgAltEntf"
+    },
+    {
+      "name": "LKeyStrgAltF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "LKeyStrgAltX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
+    },
+    {
+      "name": "LKeyStrgX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
+    },
+    {
+      "name": "LKeyTab"
+    },
+    {
+      "name": "LKeyTux"
+    },
+    {
+      "name": "LKeyUp"
+    },
+    {
+      "name": "LKeyWin"
+    },
+    {
+      "name": "LKeyWindows"
+    },
+    {
+      "name": "Lliga",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Lsalt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Lsinf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Lss"
+    },
+    {
+      "name": "LSS"
+    },
+    {
+      "name": "Lsup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "textinit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsbf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Wikipedia"
+    },
+    {
+      "name": "WikipediaW"
+    },
+    {
+      "name": "acwgapcirclearrow",
+      "detail": "⟲",
+      "doc": "Anticlockwise gapped circle arrow"
+    },
+    {
+      "name": "astrosun",
+      "detail": "☉ (\"mathabx\" command)",
+      "doc": "Sun"
+    },
+    {
+      "name": "barleftarrow",
+      "detail": "⇤ (\"wrisym\" command)",
+      "doc": "Leftwards arrow to bar"
+    },
+    {
+      "name": "barleftarrowrightarrowbar"
+    },
+    {
+      "name": "barovernorthwestarrow",
+      "detail": "↸",
+      "doc": "North west arrow to long bar"
+    },
+    {
+      "name": "blackcircleulquadwhite",
+      "detail": "◕",
+      "doc": "Circle with all but upper left quadrant black"
+    },
+    {
+      "name": "blacklefthalfcircle",
+      "detail": "◖ (\"wasysym\" command)",
+      "doc": "Left half black circle"
+    },
+    {
+      "name": "blackrighthalfcircle",
+      "detail": "◗ (\"wasysym\" command)",
+      "doc": "Right half black circle"
+    },
+    {
+      "name": "blacksmiley",
+      "detail": "☻ (\"wasysym\" command)",
+      "doc": "\\invsmileface (arevmath), black smiling face"
+    },
+    {
+      "name": "bullseye",
+      "detail": "◎",
+      "doc": "\\circledcirc (amssymb), bullseye"
+    },
+    {
+      "name": "candra",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": " ̐",
+      "doc": "Candrabindu (non-spacing)"
+    },
+    {
+      "name": "caretinsert",
+      "detail": "‸",
+      "doc": "Caret (insertion mark)"
+    },
+    {
+      "name": "circlebottomhalfblack",
+      "detail": "◒",
+      "doc": "Circle, filled bottom half"
+    },
+    {
+      "name": "circlelefthalfblack",
+      "detail": "◐ (\"wasysym\" command)",
+      "doc": "Circle, filled left half [harvey ball]"
+    },
+    {
+      "name": "circleonleftarrow",
+      "detail": "⬰",
+      "doc": "Left arrow with small circle"
+    },
+    {
+      "name": "circleonrightarrow",
+      "detail": "⇴",
+      "doc": "Right arrow with small circle"
+    },
+    {
+      "name": "circlerighthalfblack",
+      "detail": "◑ (\"wasysym\" command)",
+      "doc": "Circle, filled right half"
+    },
+    {
+      "name": "circletophalfblack",
+      "detail": "◓",
+      "doc": "Circle, filled top half"
+    },
+    {
+      "name": "circleurquadblack",
+      "detail": "◔",
+      "doc": "Circle with upper right quadrant black"
+    },
+    {
+      "name": "cuberoot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": "∛",
+      "doc": "Cube root"
+    },
+    {
+      "name": "cwgapcirclearrow",
+      "detail": "⟳",
+      "doc": "Clockwise gapped circle arrow"
+    },
+    {
+      "name": "Ddownarrow",
+      "detail": "⤋",
+      "doc": "Downwards triple arrow"
+    },
+    {
+      "name": "downdasharrow",
+      "detail": "⇣",
+      "doc": "Downwards dashed arrow"
+    },
+    {
+      "name": "downzigzagarrow",
+      "detail": "↯ (\"stmaryrd -wasysym\" command)",
+      "doc": "T \\lightning (marvosym), downwards zigzag arrow"
+    },
+    {
+      "name": "droang",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": " ̚",
+      "doc": "Left angle above (non-spacing)"
+    },
+    {
+      "name": "dsol",
+      "detail": "⧶",
+      "doc": "Solidus with overbar"
+    },
+    {
+      "name": "enleadertwodots",
+      "detail": "‥",
+      "doc": "Double baseline dot (en leader)"
+    },
+    {
+      "name": "equalrightarrow",
+      "detail": "⥱",
+      "doc": "Equals sign above rightwards arrow"
+    },
+    {
+      "name": "Exclam",
+      "detail": "‼",
+      "doc": "!!, double exclamation mark"
+    },
+    {
+      "name": "fcmp",
+      "detail": "⨾ (\"oz\" command)",
+      "doc": "\\comp (oz), relational composition"
+    },
+    {
+      "name": "female",
+      "detail": "♀ (\"wasysym\" command)",
+      "doc": "\\venus (mathabx), \\girl (mathabx), venus, female"
+    },
+    {
+      "name": "fisheye",
+      "detail": "◉",
+      "doc": "Fisheye"
+    },
+    {
+      "name": "fourthroot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": "∜",
+      "doc": "Fourth root"
+    },
+    {
+      "name": "harrowextender",
+      "unusual": true,
+      "detail": "⎯",
+      "doc": "Horizontal line extension (used to extend arrows)"
+    },
+    {
+      "name": "Hermaphrodite",
+      "detail": "⚥",
+      "doc": "Male and female sign"
+    },
+    {
+      "name": "house",
+      "detail": "⌂",
+      "doc": "House"
+    },
+    {
+      "name": "intextender",
+      "unusual": true,
+      "detail": "⎮",
+      "doc": "Integral extension"
+    },
+    {
+      "name": "Lbrbrak",
+      "detail": "〘",
+      "doc": "Left white tortoise shell bracket"
+    },
+    {
+      "name": "lcurvyangle",
+      "detail": "⧼",
+      "doc": "Left pointing curved angle bracket"
+    },
+    {
+      "name": "leftarrowsimilar",
+      "detail": "⥳",
+      "doc": "Leftwards arrow above tilde operator"
+    },
+    {
+      "name": "leftarrowtriangle",
+      "detail": "⇽ (\"stmaryrd\" command)",
+      "doc": "Leftwards open-headed arrow"
+    },
+    {
+      "name": "leftdasharrow",
+      "detail": "⇠ (\"amsfonts\" command)",
+      "doc": "Leftwards dashed arrow"
+    },
+    {
+      "name": "leftmoon",
+      "detail": "☾ (\"wasysym mathabx\" command)",
+      "doc": "Last quarter moon"
+    },
+    {
+      "name": "leftrightarrowtriangle",
+      "detail": "⇿ (\"stmaryrd\" command)",
+      "doc": "Left right open-headed arrow"
+    },
+    {
+      "name": "leftwavearrow",
+      "detail": "↜",
+      "doc": "Left arrow-wavy"
+    },
+    {
+      "name": "llparenthesis",
+      "detail": "⦇ (\"oz\" command)",
+      "doc": "\\llparenthesis (stmaryrd), left image bracket"
+    },
+    {
+      "name": "male",
+      "detail": "♂ (\"wasysym\" command)",
+      "doc": "\\mars (mathabx), \\boy (mathabx), mars, male"
+    },
+    {
+      "name": "mbfDigamma",
+      "unusual": true,
+      "detail": "𝟊",
+      "doc": "Mathematical bold capital digamma"
+    },
+    {
+      "name": "mbfdigamma",
+      "unusual": true,
+      "detail": "𝟋",
+      "doc": "Mathematical bold small digamma"
+    },
+    {
+      "name": "mbfscra",
+      "unusual": true,
+      "detail": "𝓪",
+      "doc": "Mathematical bold script small a"
+    },
+    {
+      "name": "mbfscrb",
+      "unusual": true,
+      "detail": "𝓫",
+      "doc": "Mathematical bold script small b"
+    },
+    {
+      "name": "mbfscrc",
+      "unusual": true,
+      "detail": "𝓬",
+      "doc": "Mathematical bold script small c"
+    },
+    {
+      "name": "mbfscrd",
+      "unusual": true,
+      "detail": "𝓭",
+      "doc": "Mathematical bold script small d"
+    },
+    {
+      "name": "mbfscre",
+      "unusual": true,
+      "detail": "𝓮",
+      "doc": "Mathematical bold script small e"
+    },
+    {
+      "name": "mbfscrf",
+      "unusual": true,
+      "detail": "𝓯",
+      "doc": "Mathematical bold script small f"
+    },
+    {
+      "name": "mbfscrg",
+      "unusual": true,
+      "detail": "𝓰",
+      "doc": "Mathematical bold script small g"
+    },
+    {
+      "name": "mbfscrh",
+      "unusual": true,
+      "detail": "𝓱",
+      "doc": "Mathematical bold script small h"
+    },
+    {
+      "name": "mbfscri",
+      "unusual": true,
+      "detail": "𝓲",
+      "doc": "Mathematical bold script small i"
+    },
+    {
+      "name": "mbfscrj",
+      "unusual": true,
+      "detail": "𝓳",
+      "doc": "Mathematical bold script small j"
+    },
+    {
+      "name": "mbfscrk",
+      "unusual": true,
+      "detail": "𝓴",
+      "doc": "Mathematical bold script small k"
+    },
+    {
+      "name": "mbfscrl",
+      "unusual": true,
+      "detail": "𝓵",
+      "doc": "Mathematical bold script small l"
+    },
+    {
+      "name": "mbfscrm",
+      "unusual": true,
+      "detail": "𝓶",
+      "doc": "Mathematical bold script small m"
+    },
+    {
+      "name": "mbfscrn",
+      "unusual": true,
+      "detail": "𝓷",
+      "doc": "Mathematical bold script small n"
+    },
+    {
+      "name": "mbfscro",
+      "unusual": true,
+      "detail": "𝓸",
+      "doc": "Mathematical bold script small o"
+    },
+    {
+      "name": "mbfscrp",
+      "unusual": true,
+      "detail": "𝓹",
+      "doc": "Mathematical bold script small p"
+    },
+    {
+      "name": "mbfscrq",
+      "unusual": true,
+      "detail": "𝓺",
+      "doc": "Mathematical bold script small q"
+    },
+    {
+      "name": "mbfscrr",
+      "unusual": true,
+      "detail": "𝓻",
+      "doc": "Mathematical bold script small r"
+    },
+    {
+      "name": "mbfscrs",
+      "unusual": true,
+      "detail": "𝓼",
+      "doc": "Mathematical bold script small s"
+    },
+    {
+      "name": "mbfscrt",
+      "unusual": true,
+      "detail": "𝓽",
+      "doc": "Mathematical bold script small t"
+    },
+    {
+      "name": "mbfscru",
+      "unusual": true,
+      "detail": "𝓾",
+      "doc": "Mathematical bold script small u"
+    },
+    {
+      "name": "mbfscrv",
+      "unusual": true,
+      "detail": "𝓿",
+      "doc": "Mathematical bold script small v"
+    },
+    {
+      "name": "mbfscrw",
+      "unusual": true,
+      "detail": "𝔀",
+      "doc": "Mathematical bold script small w"
+    },
+    {
+      "name": "mbfscrx",
+      "unusual": true,
+      "detail": "𝔁",
+      "doc": "Mathematical bold script small x"
+    },
+    {
+      "name": "mbfscry",
+      "unusual": true,
+      "detail": "𝔂",
+      "doc": "Mathematical bold script small y"
+    },
+    {
+      "name": "mbfscrz",
+      "unusual": true,
+      "detail": "𝔃",
+      "doc": "Mathematical bold script small z"
+    },
+    {
+      "name": "mdlgblkdiamond",
+      "detail": "◆ (\"txfonts\" command)",
+      "doc": "Black diamond"
+    },
+    {
+      "name": "mdlgwhtdiamond",
+      "detail": "◇ (\"amssymb\" command)",
+      "doc": "White diamond; diamond, open"
+    },
+    {
+      "name": "mdsmwhtcircle",
+      "detail": "⚬",
+      "doc": "Medium small white circle"
+    },
+    {
+      "name": "mscra",
+      "unusual": true,
+      "detail": "𝒶 (\"urwchancal\" command)",
+      "doc": "Mathematical script small a"
+    },
+    {
+      "name": "mscrb",
+      "unusual": true,
+      "detail": "𝒷 (\"urwchancal\" command)",
+      "doc": "Mathematical script small b"
+    },
+    {
+      "name": "mscrc",
+      "unusual": true,
+      "detail": "𝒸 (\"urwchancal\" command)",
+      "doc": "Mathematical script small c"
+    },
+    {
+      "name": "mscrd",
+      "unusual": true,
+      "detail": "𝒹 (\"urwchancal\" command)",
+      "doc": "Mathematical script small d"
+    },
+    {
+      "name": "mscre",
+      "unusual": true,
+      "detail": "ℯ (\"urwchancal\" command)",
+      "doc": "/scr e, script small letter e"
+    },
+    {
+      "name": "mscrf",
+      "unusual": true,
+      "detail": "𝒻 (\"urwchancal\" command)",
+      "doc": "Mathematical script small f"
+    },
+    {
+      "name": "mscrg",
+      "unusual": true,
+      "detail": "ℊ (\"urwchancal\" command)",
+      "doc": "/scr g, script small letter g"
+    },
+    {
+      "name": "mscrh",
+      "unusual": true,
+      "detail": "𝒽 (\"urwchancal\" command)",
+      "doc": "Mathematical script small h"
+    },
+    {
+      "name": "mscri",
+      "unusual": true,
+      "detail": "𝒾 (\"urwchancal\" command)",
+      "doc": "Mathematical script small i"
+    },
+    {
+      "name": "mscrj",
+      "unusual": true,
+      "detail": "𝒿 (\"urwchancal\" command)",
+      "doc": "Mathematical script small j"
+    },
+    {
+      "name": "mscrk",
+      "unusual": true,
+      "detail": "𝓀 (\"urwchancal\" command)",
+      "doc": "Mathematical script small k"
+    },
+    {
+      "name": "mscrl",
+      "unusual": true,
+      "detail": "𝓁 (\"urwchancal\" command)",
+      "doc": "Mathematical script small l"
+    },
+    {
+      "name": "mscrm",
+      "unusual": true,
+      "detail": "𝓂 (\"urwchancal\" command)",
+      "doc": "Mathematical script small m"
+    },
+    {
+      "name": "mscrn",
+      "unusual": true,
+      "detail": "𝓃 (\"urwchancal\" command)",
+      "doc": "Mathematical script small n"
+    },
+    {
+      "name": "mscro",
+      "unusual": true,
+      "detail": "ℴ (\"urwchancal\" command)",
+      "doc": "Order of (script small o)"
+    },
+    {
+      "name": "mscrp",
+      "unusual": true,
+      "detail": "𝓅 (\"urwchancal\" command)",
+      "doc": "Mathematical script small p"
+    },
+    {
+      "name": "mscrq",
+      "unusual": true,
+      "detail": "𝓆 (\"urwchancal\" command)",
+      "doc": "Mathematical script small q"
+    },
+    {
+      "name": "mscrr",
+      "unusual": true,
+      "detail": "𝓇 (\"urwchancal\" command)",
+      "doc": "Mathematical script small r"
+    },
+    {
+      "name": "mscrs",
+      "unusual": true,
+      "detail": "𝓈 (\"urwchancal\" command)",
+      "doc": "Mathematical script small s"
+    },
+    {
+      "name": "mscrt",
+      "unusual": true,
+      "detail": "𝓉 (\"urwchancal\" command)",
+      "doc": "Mathematical script small t"
+    },
+    {
+      "name": "mscru",
+      "unusual": true,
+      "detail": "𝓊 (\"urwchancal\" command)",
+      "doc": "Mathematical script small u"
+    },
+    {
+      "name": "mscrv",
+      "unusual": true,
+      "detail": "𝓋 (\"urwchancal\" command)",
+      "doc": "Mathematical script small v"
+    },
+    {
+      "name": "mscrw",
+      "unusual": true,
+      "detail": "𝓌 (\"urwchancal\" command)",
+      "doc": "Mathematical script small w"
+    },
+    {
+      "name": "mscrx",
+      "unusual": true,
+      "detail": "𝓍 (\"urwchancal\" command)",
+      "doc": "Mathematical script small x"
+    },
+    {
+      "name": "mscry",
+      "unusual": true,
+      "detail": "𝓎 (\"urwchancal\" command)",
+      "doc": "Mathematical script small y"
+    },
+    {
+      "name": "mscrz",
+      "unusual": true,
+      "detail": "𝓏 (\"urwchancal\" command)",
+      "doc": "Mathematical script small z"
+    },
+    {
+      "name": "nHdownarrow",
+      "detail": "⇟",
+      "doc": "Downwards arrow with double stroke"
+    },
+    {
+      "name": "nHuparrow",
+      "detail": "⇞",
+      "doc": "Upwards arrow with double stroke"
+    },
+    {
+      "name": "nvleftarrow",
+      "detail": "⇷",
+      "doc": "Leftwards arrow with vertical stroke"
+    },
+    {
+      "name": "nVleftarrow",
+      "detail": "⇺",
+      "doc": "Leftwards arrow with double vertical stroke"
+    },
+    {
+      "name": "nvLeftarrow",
+      "detail": "⤂",
+      "doc": "Leftwards double arrow with vertical stroke"
+    },
+    {
+      "name": "nvleftrightarrow",
+      "detail": "⇹",
+      "doc": "Left right arrow with vertical stroke, partial relation"
+    },
+    {
+      "name": "nVleftrightarrow",
+      "detail": "⇼",
+      "doc": "Left right arrow with double vertical stroke, finite relation"
+    },
+    {
+      "name": "nvLeftrightarrow",
+      "detail": "⤄",
+      "doc": "Left right double arrow with vertical stroke"
+    },
+    {
+      "name": "nvrightarrow",
+      "detail": "⇸ (\"oz\" command)",
+      "doc": "Rightwards arrow with vertical stroke, partial function"
+    },
+    {
+      "name": "nVrightarrow",
+      "detail": "⇻ (\"oz\" command)",
+      "doc": "Rightwards arrow with double vertical stroke, finite function"
+    },
+    {
+      "name": "nvRightarrow",
+      "detail": "⤃",
+      "doc": "Rightwards double arrow with vertical stroke"
+    },
+    {
+      "name": "ocommatopright",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": " ̕",
+      "doc": "Combining comma above right"
+    },
+    {
+      "name": "otimeshat",
+      "detail": "⨶",
+      "doc": "Circled multiplication sign with circumflex accent"
+    },
+    {
+      "name": "oturnedcomma",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": " ̒",
+      "doc": "Combining turned comma above"
+    },
+    {
+      "name": "preceqq",
+      "detail": "⪳ (\"txfonts\" command)",
+      "doc": "Precedes above equals sign"
+    },
+    {
+      "name": "precneq",
+      "detail": "⪱",
+      "doc": "Precedes above single-line not equal to"
+    },
+    {
+      "name": "quarternote",
+      "detail": "♩ (\"arevmath wasysym\" command)",
+      "doc": "Music note (sung text sign)"
+    },
+    {
+      "name": "Question",
+      "detail": "⁇",
+      "doc": "??, double question mark"
+    },
+    {
+      "name": "Rbrbrak",
+      "detail": "〙",
+      "doc": "Right white tortoise shell bracket"
+    },
+    {
+      "name": "rcurvyangle",
+      "detail": "⧽",
+      "doc": "Right pointing curved angle bracket"
+    },
+    {
+      "name": "rightarrowapprox",
+      "detail": "⥵",
+      "doc": "Rightwards arrow above almost equal to"
+    },
+    {
+      "name": "rightarrowbar",
+      "detail": "⇥ (\"wrisym\" command)",
+      "doc": "Rightwards arrow to bar"
+    },
+    {
+      "name": "rightarrowsimilar",
+      "detail": "⥴",
+      "doc": "Rightwards arrow above tilde operator"
+    },
+    {
+      "name": "rightarrowtriangle",
+      "detail": "⇾ (\"stmaryrd\" command)",
+      "doc": "Rightwards open-headed arrow"
+    },
+    {
+      "name": "rightdasharrow",
+      "detail": "⇢ (\"amsfonts\" command)",
+      "doc": "\\dasharrow (amsfonts), rightwards dashed arrow"
+    },
+    {
+      "name": "rightmoon",
+      "detail": "☽ (\"wasysym mathabx\" command)",
+      "doc": "First quarter moon"
+    },
+    {
+      "name": "rightwavearrow",
+      "detail": "↝",
+      "doc": "Right arrow-wavy"
+    },
+    {
+      "name": "rrparenthesis",
+      "detail": "⦈ (\"oz\" command)",
+      "doc": "\\rrparenthesis (stmaryrd), right image bracket"
+    },
+    {
+      "name": "rsolbar",
+      "detail": "⧷",
+      "doc": "Reverse solidus with horizontal stroke"
+    },
+    {
+      "name": "similarrightarrow",
+      "detail": "⥲",
+      "doc": "Tilde operator above rightwards arrow"
+    },
+    {
+      "name": "succeqq",
+      "detail": "⪴ (\"txfonts\" command)",
+      "doc": "Succeeds above equals sign"
+    },
+    {
+      "name": "succneq",
+      "detail": "⪲",
+      "doc": "Succeeds above single-line not equal to"
+    },
+    {
+      "name": "sun",
+      "detail": "☼ (\"wasysym\" command)",
+      "doc": "White sun with rays"
+    },
+    {
+      "name": "twonotes",
+      "detail": "♫ (\"wasysym\" command)",
+      "doc": "Beamed eighth notes"
+    },
+    {
+      "name": "typecolon",
+      "detail": "⦂",
+      "doc": "Z notation type colon, (present in bbold font but no command)"
+    },
+    {
+      "name": "upbackepsilon",
+      "detail": "϶ (\"amssymb wrisym\" command)",
+      "doc": "Greek reversed lunate epsilon symbol"
+    },
+    {
+      "name": "updasharrow",
+      "detail": "⇡",
+      "doc": "Upwards dashed arrow"
+    },
+    {
+      "name": "upDigamma",
+      "unusual": true,
+      "detail": "Ϝ (\"wrisym\" command)",
+      "doc": "Capital digamma"
+    },
+    {
+      "name": "updigamma",
+      "unusual": true,
+      "detail": "ϝ (\"amssymb arevmath wrisym\" command)",
+      "doc": "Greek small letter digamma"
+    },
+    {
+      "name": "updownarrowbar",
+      "detail": "↨",
+      "doc": "Up down arrow with base (perpendicular)"
+    },
+    {
+      "name": "Uuparrow",
+      "detail": "⤊",
+      "doc": "Upwards triple arrow"
+    },
+    {
+      "name": "whitearrowupfrombar",
+      "detail": "⇪",
+      "doc": "Upwards white arrow from bar"
+    },
+    {
+      "name": "Zbar",
+      "detail": "Ƶ",
+      "doc": "Impedance"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/libertinus-otf#c": [
+      "oldstyle",
+      "lining",
+      "proportional",
+      "tabular",
+      "semibold",
+      "bold",
+      "ScaleRM=${1:factor}",
+      "ScaleSF=${1:factor}",
+      "ScaleTT=${1:factor}",
+      "StretchTT=${1:factor}",
+      "defaultfeatures={${1:fontspec features}}",
+      "uni={${1:unicode-math options}}",
+      "mathfeature={${1:\\setmathfont options}}",
       "greek",
-      "greek=true",
       "greekitalic",
-      "greekitalic=true"
+      "nomath",
+      "mono"
     ]
   },
-  "macros": {
-    "BiolinumKeyboard": {},
-    "biolinumKeyGlyph{}": {
-      "snippet": "biolinumKeyGlyph{${1:arg}}"
-    },
-    "BiolinumKeyGlyph{}": {
-      "snippet": "BiolinumKeyGlyph{${1:arg}}"
-    },
-    "Land": {},
-    "Lcase{}": {
-      "snippet": "Lcase{${1:arg}}"
-    },
-    "LCPSP": {},
-    "Lcpsp{}": {
-      "snippet": "Lcpsp{${1:arg}}"
-    },
-    "Lctosc{}": {
-      "snippet": "Lctosc{${1:arg}}"
-    },
-    "Lctosmcp{}": {
-      "snippet": "Lctosmcp{${1:arg}}"
-    },
-    "Ldlig{}": {
-      "snippet": "Ldlig{${1:arg}}"
-    },
-    "Lfrac{}": {
-      "snippet": "Lfrac{${1:arg}}"
-    },
-    "Lhlig{}": {
-      "snippet": "Lhlig{${1:arg}}"
-    },
-    "LibertinusDisplay": {},
-    "LibertinusInitials": {},
-    "LibertinusKeyboard": {},
-    "LibertinusSansOsF": {},
-    "LibertinusSansTLF": {},
-    "LibertinusSerifOsF": {},
-    "LibertinusSerifSB": {},
-    "LibertinusSerifTLF": {},
-    "LKey{}": {
-      "snippet": "LKey{${1:character}}"
-    },
-    "LKeyAlt": {},
-    "LKeyAltApple": {},
-    "LKeyAltAppleX{}": {
-      "snippet": "LKeyAltAppleX{${1:character}}"
-    },
-    "LKeyAltF{}": {
-      "snippet": "LKeyAltF{${1:number}}"
-    },
-    "LKeyAltGr": {},
-    "LKeyAltGrX{}": {
-      "snippet": "LKeyAltGrX{${1:character}}"
-    },
-    "LKeyAltX{}": {
-      "snippet": "LKeyAltX{${1:character}}"
-    },
-    "LKeyAt": {},
-    "LKeyBack": {},
-    "LKeyBildDown": {},
-    "LKeyBildUp": {},
-    "LKeyCapslock": {},
-    "LKeyCommand": {},
-    "LKeyCtrl": {},
-    "LKeyDel": {},
-    "LKeyDown": {},
-    "LKeyEinf": {},
-    "LKeyEnd": {},
-    "LKeyEnde": {},
-    "LKeyEnter": {},
-    "LKeyEntf": {},
-    "LKeyEsc": {},
-    "LKeyF{}": {
-      "snippet": "LKeyF{${1:number}}"
-    },
-    "LKeyFn": {},
-    "LKeyGNU": {},
-    "LKeyHome": {},
-    "LKeyIns": {},
-    "LKeyLeer": {},
-    "LKeyLeft": {},
-    "LKeyMenu": {},
-    "LKeyOptionKey": {},
-    "LKeyPad{}": {
-      "snippet": "LKeyPad{${1:number}}"
-    },
-    "LKeyPageDown": {},
-    "LKeyPageUp": {},
-    "LKeyPos": {},
-    "LKeyReset": {},
-    "LKeyRight": {},
-    "LKeyShift": {},
-    "LKeyShiftAltGrX{}": {
-      "snippet": "LKeyShiftAltGrX{${1:character}}"
-    },
-    "LKeyShiftAltX{}": {
-      "snippet": "LKeyShiftAltX{${1:character}}"
-    },
-    "LKeyShiftStrgX{}": {
-      "snippet": "LKeyShiftStrgX{${1:character}}"
-    },
-    "LKeyShiftX{}": {
-      "snippet": "LKeyShiftX{${1:character}}"
-    },
-    "LKeySpace": {},
-    "LKeyStrg": {},
-    "LKeyStrgAltEntf": {},
-    "LKeyStrgAltF{}": {
-      "snippet": "LKeyStrgAltF{${1:number}}"
-    },
-    "LKeyStrgAltX{}": {
-      "snippet": "LKeyStrgAltX{${1:character}}"
-    },
-    "LKeyStrgX{}": {
-      "snippet": "LKeyStrgX{${1:character}}"
-    },
-    "LKeyTab": {},
-    "LKeyTux": {},
-    "LKeyUp": {},
-    "LKeyWin": {},
-    "LKeyWindows": {},
-    "Lliga{}": {
-      "snippet": "Lliga{${1:arg}}"
-    },
-    "Lsalt{}": {
-      "snippet": "Lsalt{${1:arg}}"
-    },
-    "Lsinf{}": {
-      "snippet": "Lsinf{${1:arg}}"
-    },
-    "Lss": {},
-    "LSS": {},
-    "Lsup{}": {
-      "snippet": "Lsup{${1:arg}}"
-    },
-    "sufigures": {},
-    "textinit{}": {
-      "snippet": "textinit{${1:text}}"
-    },
-    "textsbf{}": {
-      "snippet": "textsbf{${1:text}}"
-    },
-    "textsup{}": {
-      "snippet": "textsup{${1:text}}"
-    },
-    "Wikipedia": {},
-    "WikipediaW": {},
-    "acwgapcirclearrow": {
-      "detail": "⟲",
-      "documentation": "ANTICLOCKWISE GAPPED CIRCLE ARROW"
-    },
-    "astrosun": {
-      "detail": "☉",
-      "documentation": "SUN"
-    },
-    "barleftarrow": {
-      "detail": "⇤",
-      "documentation": "LEFTWARDS ARROW TO BAR"
-    },
-    "barleftarrowrightarrowbar": {},
-    "barovernorthwestarrow": {
-      "detail": "↸",
-      "documentation": "NORTH WEST ARROW TO LONG BAR"
-    },
-    "blackcircleulquadwhite": {
-      "detail": "◕",
-      "documentation": "CIRCLE WITH ALL BUT UPPER LEFT QUADRANT BLACK"
-    },
-    "blacklefthalfcircle": {
-      "detail": "◖",
-      "documentation": "LEFT HALF BLACK CIRCLE"
-    },
-    "blackrighthalfcircle": {
-      "detail": "◗",
-      "documentation": "RIGHT HALF BLACK CIRCLE"
-    },
-    "blacksmiley": {
-      "detail": "☻",
-      "documentation": "BLACK SMILING FACE"
-    },
-    "bullseye": {
-      "detail": "◎",
-      "documentation": "BULLSEYE"
-    },
-    "candra{}": {
-      "snippet": "candra{${1:arg}}"
-    },
-    "caretinsert": {
-      "detail": "‸",
-      "documentation": "CARET (insertion mark)"
-    },
-    "circlebottomhalfblack": {
-      "detail": "◒",
-      "documentation": "circle, filled bottom half"
-    },
-    "circlelefthalfblack": {
-      "detail": "◐",
-      "documentation": "circle, filled left half [harvey ball]"
-    },
-    "circleonleftarrow": {
-      "detail": "⬰",
-      "documentation": "LEFT ARROW WITH SMALL CIRCLE"
-    },
-    "circleonrightarrow": {
-      "detail": "⇴",
-      "documentation": "RIGHT ARROW WITH SMALL CIRCLE"
-    },
-    "circlerighthalfblack": {
-      "detail": "◑",
-      "documentation": "circle, filled right half"
-    },
-    "circletophalfblack": {
-      "detail": "◓",
-      "documentation": "circle, filled top half"
-    },
-    "circleurquadblack": {
-      "detail": "◔",
-      "documentation": "CIRCLE WITH UPPER RIGHT QUADRANT BLACK"
-    },
-    "cuberoot{}": {
-      "snippet": "cuberoot{${1:arg}}"
-    },
-    "cwgapcirclearrow": {
-      "detail": "⟳",
-      "documentation": "CLOCKWISE GAPPED CIRCLE ARROW"
-    },
-    "Ddownarrow": {
-      "detail": "⤋",
-      "documentation": "DOWNWARDS TRIPLE ARROW"
-    },
-    "downdasharrow": {
-      "detail": "⇣",
-      "documentation": "DOWNWARDS DASHED ARROW"
-    },
-    "downzigzagarrow": {
-      "detail": "↯",
-      "documentation": "DOWNWARDS ZIGZAG ARROW"
-    },
-    "droang{}": {
-      "snippet": "droang{${1:arg}}"
-    },
-    "dsol": {
-      "detail": "⧶",
-      "documentation": "SOLIDUS WITH OVERBAR"
-    },
-    "enleadertwodots": {
-      "detail": "‥",
-      "documentation": "double baseline dot (en leader)"
-    },
-    "equalrightarrow": {
-      "detail": "⥱",
-      "documentation": "EQUALS SIGN ABOVE RIGHTWARDS ARROW"
-    },
-    "Exclam": {
-      "detail": "‼",
-      "documentation": "DOUBLE EXCLAMATION MARK"
-    },
-    "fcmp": {
-      "detail": "⨾",
-      "documentation": "Z NOTATION RELATIONAL COMPOSITION"
-    },
-    "female": {
-      "detail": "♀",
-      "documentation": "venus, female"
-    },
-    "fisheye": {
-      "detail": "◉",
-      "documentation": "FISHEYE"
-    },
-    "fourthroot{}": {
-      "snippet": "fourthroot{${1:arg}}"
-    },
-    "harrowextender": {
-      "detail": "⎯",
-      "documentation": "HORIZONTAL LINE EXTENSION (used to extend arrows)"
-    },
-    "Hermaphrodite": {
-      "detail": "⚥",
-      "documentation": "MALE AND FEMALE SIGN"
-    },
-    "house": {
-      "detail": "⌂",
-      "documentation": "HOUSE"
-    },
-    "intextender": {
-      "detail": "⎮",
-      "documentation": "INTEGRAL EXTENSION"
-    },
-    "Lbrbrak": {
-      "detail": "〘",
-      "documentation": "LEFT WHITE TORTOISE SHELL BRACKET"
-    },
-    "lcurvyangle": {
-      "detail": "⧼",
-      "documentation": "left pointing curved angle bracket"
-    },
-    "leftarrowsimilar": {
-      "detail": "⥳",
-      "documentation": "LEFTWARDS ARROW ABOVE TILDE OPERATOR"
-    },
-    "leftarrowtriangle": {
-      "detail": "⇽",
-      "documentation": "LEFTWARDS OPEN-HEADED ARROW"
-    },
-    "leftdasharrow": {
-      "detail": "⇠",
-      "documentation": "LEFTWARDS DASHED ARROW"
-    },
-    "leftmoon": {
-      "detail": "☾",
-      "documentation": "LAST QUARTER MOON"
-    },
-    "leftrightarrowtriangle": {
-      "detail": "⇿",
-      "documentation": "LEFT RIGHT OPEN-HEADED ARROW"
-    },
-    "leftwavearrow": {
-      "detail": "↜",
-      "documentation": "left arrow-wavy"
-    },
-    "llparenthesis": {
-      "detail": "⦇",
-      "documentation": "Z NOTATION LEFT IMAGE BRACKET"
-    },
-    "male": {
-      "detail": "♂",
-      "documentation": "mars, male"
-    },
-    "mbfDigamma": {
-      "detail": "𝟊",
-      "documentation": "MATHEMATICAL BOLD CAPITAL DIGAMMA"
-    },
-    "mbfdigamma": {
-      "detail": "𝟋",
-      "documentation": "MATHEMATICAL BOLD SMALL DIGAMMA"
-    },
-    "mbfscra": {
-      "detail": "𝓪",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL A"
-    },
-    "mbfscrb": {
-      "detail": "𝓫",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL B"
-    },
-    "mbfscrc": {
-      "detail": "𝓬",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL C"
-    },
-    "mbfscrd": {
-      "detail": "𝓭",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL D"
-    },
-    "mbfscre": {
-      "detail": "𝓮",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL E"
-    },
-    "mbfscrf": {
-      "detail": "𝓯",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL F"
-    },
-    "mbfscrg": {
-      "detail": "𝓰",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL G"
-    },
-    "mbfscrh": {
-      "detail": "𝓱",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL H"
-    },
-    "mbfscri": {
-      "detail": "𝓲",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL I"
-    },
-    "mbfscrj": {
-      "detail": "𝓳",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL J"
-    },
-    "mbfscrk": {
-      "detail": "𝓴",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL K"
-    },
-    "mbfscrl": {
-      "detail": "𝓵",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL L"
-    },
-    "mbfscrm": {
-      "detail": "𝓶",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL M"
-    },
-    "mbfscrn": {
-      "detail": "𝓷",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL N"
-    },
-    "mbfscro": {
-      "detail": "𝓸",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL O"
-    },
-    "mbfscrp": {
-      "detail": "𝓹",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL P"
-    },
-    "mbfscrq": {
-      "detail": "𝓺",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL Q"
-    },
-    "mbfscrr": {
-      "detail": "𝓻",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL R"
-    },
-    "mbfscrs": {
-      "detail": "𝓼",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL S"
-    },
-    "mbfscrt": {
-      "detail": "𝓽",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL T"
-    },
-    "mbfscru": {
-      "detail": "𝓾",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL U"
-    },
-    "mbfscrv": {
-      "detail": "𝓿",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL V"
-    },
-    "mbfscrw": {
-      "detail": "𝔀",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL W"
-    },
-    "mbfscrx": {
-      "detail": "𝔁",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL X"
-    },
-    "mbfscry": {
-      "detail": "𝔂",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL Y"
-    },
-    "mbfscrz": {
-      "detail": "𝔃",
-      "documentation": "MATHEMATICAL BOLD SCRIPT SMALL Z"
-    },
-    "mdlgblkdiamond": {
-      "detail": "◆",
-      "documentation": "BLACK DIAMOND"
-    },
-    "mdlgwhtdiamond": {
-      "detail": "◇",
-      "documentation": "WHITE DIAMOND; diamond, open"
-    },
-    "mdsmwhtcircle": {
-      "detail": "⚬",
-      "documentation": "MEDIUM SMALL WHITE CIRCLE"
-    },
-    "mscra": {
-      "detail": "𝒶",
-      "documentation": "MATHEMATICAL SCRIPT SMALL A"
-    },
-    "mscrb": {
-      "detail": "𝒷",
-      "documentation": "MATHEMATICAL SCRIPT SMALL B"
-    },
-    "mscrc": {
-      "detail": "𝒸",
-      "documentation": "MATHEMATICAL SCRIPT SMALL C"
-    },
-    "mscrd": {
-      "detail": "𝒹",
-      "documentation": "MATHEMATICAL SCRIPT SMALL D"
-    },
-    "mscre": {
-      "detail": "ℯ",
-      "documentation": "/scr e, script small letter e"
-    },
-    "mscrf": {
-      "detail": "𝒻",
-      "documentation": "MATHEMATICAL SCRIPT SMALL F"
-    },
-    "mscrg": {
-      "detail": "ℊ",
-      "documentation": "/scr g, script small letter g"
-    },
-    "mscrh": {
-      "detail": "𝒽",
-      "documentation": "MATHEMATICAL SCRIPT SMALL H"
-    },
-    "mscri": {
-      "detail": "𝒾",
-      "documentation": "MATHEMATICAL SCRIPT SMALL I"
-    },
-    "mscrj": {
-      "detail": "𝒿",
-      "documentation": "MATHEMATICAL SCRIPT SMALL J"
-    },
-    "mscrk": {
-      "detail": "𝓀",
-      "documentation": "MATHEMATICAL SCRIPT SMALL K"
-    },
-    "mscrl": {
-      "detail": "𝓁",
-      "documentation": "MATHEMATICAL SCRIPT SMALL L"
-    },
-    "mscrm": {
-      "detail": "𝓂",
-      "documentation": "MATHEMATICAL SCRIPT SMALL M"
-    },
-    "mscrn": {
-      "detail": "𝓃",
-      "documentation": "MATHEMATICAL SCRIPT SMALL N"
-    },
-    "mscro": {
-      "detail": "ℴ",
-      "documentation": "order of (SCRIPT SMALL O)"
-    },
-    "mscrp": {
-      "detail": "𝓅",
-      "documentation": "MATHEMATICAL SCRIPT SMALL P"
-    },
-    "mscrq": {
-      "detail": "𝓆",
-      "documentation": "MATHEMATICAL SCRIPT SMALL Q"
-    },
-    "mscrr": {
-      "detail": "𝓇",
-      "documentation": "MATHEMATICAL SCRIPT SMALL R"
-    },
-    "mscrs": {
-      "detail": "𝓈",
-      "documentation": "MATHEMATICAL SCRIPT SMALL S"
-    },
-    "mscrt": {
-      "detail": "𝓉",
-      "documentation": "MATHEMATICAL SCRIPT SMALL T"
-    },
-    "mscru": {
-      "detail": "𝓊",
-      "documentation": "MATHEMATICAL SCRIPT SMALL U"
-    },
-    "mscrv": {
-      "detail": "𝓋",
-      "documentation": "MATHEMATICAL SCRIPT SMALL V"
-    },
-    "mscrw": {
-      "detail": "𝓌",
-      "documentation": "MATHEMATICAL SCRIPT SMALL W"
-    },
-    "mscrx": {
-      "detail": "𝓍",
-      "documentation": "MATHEMATICAL SCRIPT SMALL X"
-    },
-    "mscry": {
-      "detail": "𝓎",
-      "documentation": "MATHEMATICAL SCRIPT SMALL Y"
-    },
-    "mscrz": {
-      "detail": "𝓏",
-      "documentation": "MATHEMATICAL SCRIPT SMALL Z"
-    },
-    "nHdownarrow": {
-      "detail": "⇟",
-      "documentation": "DOWNWARDS ARROW WITH DOUBLE STROKE"
-    },
-    "nHuparrow": {
-      "detail": "⇞",
-      "documentation": "UPWARDS ARROW WITH DOUBLE STROKE"
-    },
-    "nvleftarrow": {
-      "detail": "⇷",
-      "documentation": "LEFTWARDS ARROW WITH VERTICAL STROKE"
-    },
-    "nVleftarrow": {
-      "detail": "⇺",
-      "documentation": "LEFTWARDS ARROW WITH DOUBLE VERTICAL STROKE"
-    },
-    "nvLeftarrow": {
-      "detail": "⤂",
-      "documentation": "LEFTWARDS DOUBLE ARROW WITH VERTICAL STROKE"
-    },
-    "nvleftrightarrow": {
-      "detail": "⇹",
-      "documentation": "LEFT RIGHT ARROW WITH VERTICAL STROKE, z notation partial relation"
-    },
-    "nVleftrightarrow": {
-      "detail": "⇼",
-      "documentation": "LEFT RIGHT ARROW WITH DOUBLE VERTICAL STROKE, z notation finite relation"
-    },
-    "nvLeftrightarrow": {
-      "detail": "⤄",
-      "documentation": "LEFT RIGHT DOUBLE ARROW WITH VERTICAL STROKE"
-    },
-    "nvrightarrow": {
-      "detail": "⇸",
-      "documentation": "RIGHTWARDS ARROW WITH VERTICAL STROKE, z notation partial function"
-    },
-    "nVrightarrow": {
-      "detail": "⇻",
-      "documentation": "RIGHTWARDS ARROW WITH DOUBLE VERTICAL STROKE, z notation finite function"
-    },
-    "nvRightarrow": {
-      "detail": "⤃",
-      "documentation": "RIGHTWARDS DOUBLE ARROW WITH VERTICAL STROKE"
-    },
-    "ocommatopright{}": {
-      "snippet": "ocommatopright{${1:arg}}"
-    },
-    "otimeshat": {
-      "detail": "⨶",
-      "documentation": "CIRCLED MULTIPLICATION SIGN WITH CIRCUMFLEX ACCENT"
-    },
-    "oturnedcomma{}": {
-      "snippet": "oturnedcomma{${1:arg}}"
-    },
-    "preceqq": {
-      "detail": "⪳",
-      "documentation": "PRECEDES ABOVE EQUALS SIGN"
-    },
-    "precneq": {
-      "detail": "⪱",
-      "documentation": "PRECEDES ABOVE SINGLE-LINE NOT EQUAL TO"
-    },
-    "quarternote": {
-      "detail": "♩",
-      "documentation": "music note (sung text sign)"
-    },
-    "Question": {
-      "detail": "⁇",
-      "documentation": "DOUBLE QUESTION MARK"
-    },
-    "Rbrbrak": {
-      "detail": "〙",
-      "documentation": "RIGHT WHITE TORTOISE SHELL BRACKET"
-    },
-    "rcurvyangle": {
-      "detail": "⧽",
-      "documentation": "right pointing curved angle bracket"
-    },
-    "rightarrowapprox": {
-      "detail": "⥵",
-      "documentation": "RIGHTWARDS ARROW ABOVE ALMOST EQUAL TO"
-    },
-    "rightarrowbar": {
-      "detail": "⇥",
-      "documentation": "RIGHTWARDS ARROW TO BAR"
-    },
-    "rightarrowsimilar": {
-      "detail": "⥴",
-      "documentation": "RIGHTWARDS ARROW ABOVE TILDE OPERATOR"
-    },
-    "rightarrowtriangle": {
-      "detail": "⇾",
-      "documentation": "RIGHTWARDS OPEN-HEADED ARROW"
-    },
-    "rightdasharrow": {
-      "detail": "⇢",
-      "documentation": "RIGHTWARDS DASHED ARROW"
-    },
-    "rightmoon": {
-      "detail": "☽",
-      "documentation": "FIRST QUARTER MOON"
-    },
-    "rightwavearrow": {
-      "detail": "↝",
-      "documentation": "right arrow-wavy"
-    },
-    "rrparenthesis": {
-      "detail": "⦈",
-      "documentation": "Z NOTATION RIGHT IMAGE BRACKET"
-    },
-    "rsolbar": {
-      "detail": "⧷",
-      "documentation": "REVERSE SOLIDUS WITH HORIZONTAL STROKE"
-    },
-    "similarrightarrow": {
-      "detail": "⥲",
-      "documentation": "TILDE OPERATOR ABOVE RIGHTWARDS ARROW"
-    },
-    "succeqq": {
-      "detail": "⪴",
-      "documentation": "SUCCEEDS ABOVE EQUALS SIGN"
-    },
-    "succneq": {
-      "detail": "⪲",
-      "documentation": "SUCCEEDS ABOVE SINGLE-LINE NOT EQUAL TO"
-    },
-    "sun": {
-      "detail": "☼",
-      "documentation": "WHITE SUN WITH RAYS"
-    },
-    "twonotes": {
-      "detail": "♫",
-      "documentation": "BEAMED EIGHTH NOTES"
-    },
-    "typecolon": {
-      "detail": "⦂",
-      "documentation": "Z NOTATION TYPE COLON, (present in bbold font but no command)"
-    },
-    "upbackepsilon": {
-      "detail": "϶",
-      "documentation": "GREEK REVERSED LUNATE EPSILON SYMBOL"
-    },
-    "updasharrow": {
-      "detail": "⇡",
-      "documentation": "UPWARDS DASHED ARROW"
-    },
-    "upDigamma": {
-      "detail": "Ϝ",
-      "documentation": "capital digamma"
-    },
-    "updigamma": {
-      "detail": "ϝ",
-      "documentation": "GREEK SMALL LETTER DIGAMMA"
-    },
-    "updownarrowbar": {
-      "detail": "↨",
-      "documentation": "UP DOWN ARROW WITH BASE (perpendicular)"
-    },
-    "Uuparrow": {
-      "detail": "⤊",
-      "documentation": "UPWARDS TRIPLE ARROW"
-    },
-    "whitearrowupfrombar": {
-      "detail": "⇪",
-      "documentation": "UPWARDS WHITE ARROW FROM BAR"
-    },
-    "Zbar": {
-      "detail": "Ƶ",
-      "documentation": "impedance"
-    },
-    "IgnoreWhiteSpace": {},
-    "ObeyWhiteSpace": {}
-  },
-  "envs": {},
-  "options": [
-    "oldstyle",
-    "lining",
-    "proportional",
-    "tabular",
-    "semibold",
-    "bold",
-    "ScaleRM=${1:factor}",
-    "ScaleSF=${1:factor}",
-    "ScaleTT=${1:factor}",
-    "StretchTT=${1:factor}",
-    "defaultfeatures={${1:fontspec features}}",
-    "uni={${1:unicode-math options}}",
-    "mathfeature={${1:\\setmathfont options}}",
-    "greek",
-    "greekitalic",
-    "nomath",
-    "mono"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/libertinus-otf#c"
+  ]
 }

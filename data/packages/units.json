@@ -1,28 +1,52 @@
 {
-  "includes": {
-    "ifthen": [],
-    "nicefrac": []
-  },
-  "macros": {
-    "unit[]{}": {
-      "snippet": "unit[${2:value}]{${1:dimension}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "unit{}": {
-      "snippet": "unit{${1:dimension}}"
-    },
-    "unitfrac[]{}{}": {
-      "snippet": "unitfrac[${3:value}]{${1:num}}{${2:den}}"
-    },
-    "unitfrac{}{}": {
-      "snippet": "unitfrac{${1:num}}{${2:den}}"
+    {
+      "name": "nicefrac"
     }
-  },
-  "envs": {},
-  "options": [
-    "tight",
-    "loose",
-    "nice",
-    "ugly"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "unit",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:value}]{${1:dimension}}"
+      }
+    },
+    {
+      "name": "unit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimension}}"
+      }
+    },
+    {
+      "name": "unitfrac",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:value%:translatable}]{${1:num%:translatable}}{${2:den%:translatable}}"
+      }
+    },
+    {
+      "name": "unitfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num%:translatable}}{${2:den%:translatable}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/units#c": [
+      "tight",
+      "loose",
+      "nice",
+      "ugly"
+    ]
+  },
+  "args": [
+    "\\usepackage/units#c"
+  ]
 }

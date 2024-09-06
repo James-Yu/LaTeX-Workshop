@@ -1,19 +1,36 @@
 {
-  "includes": {
-    "ifthen": [],
-    "calc": [],
-    "fp": []
-  },
-  "macros": {
-    "scalebar{}{}{}{}{}{}": {
-      "snippet": "scalebar{${1:length}}{${2:minordivs}}{${3:majordivs}}{${4:start}}{${5:end}}{${6:units}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "scalebar[]{}{}{}{}{}{}": {
-      "snippet": "scalebar[${7:inverse}]{${1:length}}{${2:minordivs}}{${3:majordivs}}{${4:start}}{${5:end}}{${6:units}}"
+    {
+      "name": "calc"
     },
-    "SBRound": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "fp"
+    }
+  ],
+  "macros": [
+    {
+      "name": "scalebar",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:length}}{${2:minordivs}}{${3:majordivs}}{${4:start}}{${5:end}}{${6:units}}"
+      }
+    },
+    {
+      "name": "scalebar",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}",
+        "snippet": "[${7:inverse}]{${1:length}}{${2:minordivs}}{${3:majordivs}}{${4:start}}{${5:end}}{${6:units}}"
+      }
+    },
+    {
+      "name": "SBRound",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

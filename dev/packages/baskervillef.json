@@ -1,96 +1,225 @@
 {
-  "includes": {
-    "fontenc": [],
-    "mweights": [],
-    "etoolbox": [],
-    "xstring": [],
-    "ifthen": [],
-    "fontaxes": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "lfstyle": {},
-    "osfstyle": {},
-    "sufigures": {},
-    "textfrac{}{}": {
-      "snippet": "textfrac{${1:numerator}}{${2:denominator}}"
+  "deps": [
+    {
+      "name": "fontenc"
     },
-    "textfrac[]{}{}": {
-      "snippet": "textfrac[${3:whole part}]{${1:numerator}}{${2:denominator}}"
+    {
+      "name": "mweights"
     },
-    "textlf{}": {
-      "snippet": "textlf{${1:text}}"
+    {
+      "name": "etoolbox"
     },
-    "textosf{}": {
-      "snippet": "textosf{${1:text}}"
+    {
+      "name": "xstring"
     },
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+    {
+      "name": "ifthen"
     },
-    "textsuperior{}": {
-      "snippet": "textsuperior{${1:text}}"
+    {
+      "name": "fontaxes"
     },
-    "textde{}": {
-      "snippet": "textde{${1:text}}"
-    },
-    "textdenominators{}": {
-      "snippet": "textdenominators{${1:text}}"
-    },
-    "defigures": {},
-    "texttlf{}": {
-      "snippet": "texttlf{${1:text}}"
-    },
-    "texttosf{}": {
-      "snippet": "texttosf{${1:text}}"
-    },
-    "tlfstyle": {},
-    "tosfstyle": {},
-    "useosf": {},
-    "useproportional": {},
-    "DH": {},
-    "NG": {},
-    "dj": {},
-    "ng": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textquotedbl": {},
-    "DJ": {},
-    "th": {},
-    "TH": {},
-    "dh": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "guillemetleft": {},
-    "guillemetright": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "scaled=${1:factor}",
-    "spacing=",
-    "stretch=",
-    "shrink=",
-    "theoremfont",
-    "lining",
-    "lf",
-    "oldstyle",
-    "osf",
-    "tabular",
-    "t",
-    "proportional",
-    "p",
-    "sups",
-    "scosf"
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "lfstyle"
+    },
+    {
+      "name": "osfstyle"
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "textfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "textfrac",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:whole part}]{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "textlf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textosf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsuperior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textde",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textdenominators",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "defigures"
+    },
+    {
+      "name": "texttlf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texttosf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tlfstyle"
+    },
+    {
+      "name": "tosfstyle"
+    },
+    {
+      "name": "useosf",
+      "unusual": true
+    },
+    {
+      "name": "useproportional",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/baskervillef#c": [
+      "scale=${1:factor}",
+      "scaled=${1:factor}",
+      "spacing=",
+      "stretch=",
+      "shrink=",
+      "theoremfont",
+      "lining",
+      "lf",
+      "oldstyle",
+      "osf",
+      "tabular",
+      "t",
+      "proportional",
+      "p",
+      "sups",
+      "scosf"
+    ]
+  },
+  "args": [
+    "\\usepackage/baskervillef#c"
+  ]
 }

@@ -1,183 +1,603 @@
 {
-  "includes": {
-    "collectbox": [],
-    "adjcalc": [],
-    "color": [
-      "color"
-    ],
-    "xcolor": [
+  "deps": [
+    {
+      "name": "collectbox"
+    },
+    {
+      "name": "adjcalc"
+    },
+    {
+      "name": "color",
+      "if": "color"
+    },
+    {
+      "name": "xcolor",
+      "if": "xcolor"
+    },
+    {
+      "name": "graphics",
+      "if": "graphics"
+    },
+    {
+      "name": "graphicx",
+      "if": "graphicx"
+    },
+    {
+      "name": "dashbox",
+      "if": "dashbox"
+    },
+    {
+      "name": "fancybox",
+      "if": "fancybox"
+    },
+    {
+      "name": "xcolor",
+      "if": "all"
+    },
+    {
+      "name": "graphicx",
+      "if": "all"
+    },
+    {
+      "name": "dashbox",
+      "if": "all"
+    },
+    {
+      "name": "fancybox",
+      "if": "all"
+    }
+  ],
+  "macros": [
+    {
+      "name": "Mbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Makebox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Makebox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Makebox",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:width}][${3:position}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Fbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Framebox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Framebox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Framebox",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:width}][${3:position}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Raisebox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:length}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Raisebox",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:length}}[${3:height}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Raisebox",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:length}}[${3:height}][${4:depth}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Centerline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Leftline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Rightline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Rlap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Llap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "parbox",
+      "arg": {
+        "format": "[][][]{}{}",
+        "snippet": "[${3:position}][${4:height}][${5:inner-pos}]{${1:width}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "parbox",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:position}][${4:height}]{${1:width}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Sbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:register}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Savebox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:register}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Savebox",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:register}}[${3:width}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Savebox",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:register}}[${3:width}][${4:position}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Colorbox",
+      "if": "color",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Colorbox",
+      "if": "color",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:color model}]{${1:color}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Fcolorbox",
+      "if": "color",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:fcolor}}{${2:bgcolor}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "Fcolorbox",
+      "if": "color",
+      "arg": {
+        "format": "[]{}[]{}{}",
+        "snippet": "[${4:fc model}]{${1:fcolor}}[${5:bg model}]{${2:bgcolor}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "Colorbox",
+      "if": "xcolor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Colorbox",
+      "if": "xcolor",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:color model}]{${1:color}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Fcolorbox",
+      "if": "xcolor",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:fcolor}}{${2:bgcolor}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "Fcolorbox",
+      "if": "xcolor",
+      "arg": {
+        "format": "[]{}[]{}{}",
+        "snippet": "[${4:fc model}]{${1:fcolor}}[${5:bg model}]{${2:bgcolor}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "Rotatebox",
+      "if": "graphics",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:angle}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Scalebox",
+      "if": "graphics",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:h-scale}}{${2:contents%text}}"
+      }
+    },
+    {
+      "name": "Scalebox",
+      "if": "graphics",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:h-scale}}[${3:v-scale}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Reflectbox",
+      "if": "graphics",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "Resizebox",
+      "if": "graphics",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:width}}{${2:height}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "Resizebox*",
+      "if": "graphics",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:width}}{${2:totalheight}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "Rotatebox",
+      "if": "graphicx",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:angle}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Scalebox",
+      "if": "graphicx",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:h-scale}}{${2:contents%text}}"
+      }
+    },
+    {
+      "name": "Scalebox",
+      "if": "graphicx",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:h-scale}}[${3:v-scale}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Reflectbox",
+      "if": "graphicx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "Resizebox",
+      "if": "graphicx",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:width}}{${2:height}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "Resizebox*",
+      "if": "graphicx",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:width}}{${2:totalheight}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "Dbox",
+      "if": "dashbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Dashbox",
+      "if": "dashbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Dashbox",
+      "if": "dashbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Dashbox",
+      "if": "dashbox",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:width}][${3:position}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Lbox",
+      "if": "dashbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Lbox",
+      "if": "dashbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:layers}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Dlbox",
+      "if": "dashbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Dlbox",
+      "if": "dashbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:layers}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Colorbox",
+      "if": "all",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Colorbox",
+      "if": "all",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:color model}]{${1:color}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Fcolorbox",
+      "if": "all",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:fcolor}}{${2:bgcolor}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "Fcolorbox",
+      "if": "all",
+      "arg": {
+        "format": "[]{}[]{}{}",
+        "snippet": "[${4:fc model}]{${1:fcolor}}[${5:bg model}]{${2:bgcolor}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "Rotatebox",
+      "if": "all",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:angle}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Scalebox",
+      "if": "all",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:h-scale}}{${2:contents%text}}"
+      }
+    },
+    {
+      "name": "Scalebox",
+      "if": "all",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:h-scale}}[${3:v-scale}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "Reflectbox",
+      "if": "all",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "Resizebox",
+      "if": "all",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:width}}{${2:height}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "Resizebox*",
+      "if": "all",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:width}}{${2:totalheight}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "Dbox",
+      "if": "all",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Dashbox",
+      "if": "all",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Dashbox",
+      "if": "all",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Dashbox",
+      "if": "all",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:width}][${3:position}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Lbox",
+      "if": "all",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Lbox",
+      "if": "all",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:layers}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Dlbox",
+      "if": "all",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "Dlbox",
+      "if": "all",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:layers}]{${1:content%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/realboxes#c": [
       "xcolor",
-      "all"
-    ],
-    "graphics": [
-      "graphics"
-    ],
-    "graphicx": [
+      "color",
+      "graphics",
       "graphicx",
-      "all"
-    ],
-    "dashbox": [
       "dashbox",
-      "all"
-    ],
-    "fancybox": [
       "fancybox",
       "all"
+    ],
+    "\\Rotatebox": [
+      "x=",
+      "y=",
+      "origin=",
+      "units=${1:number}",
+      "x=",
+      "y=",
+      "origin=",
+      "units=${1:number}",
+      "x=",
+      "y=",
+      "origin=",
+      "units=${1:number}"
     ]
   },
-  "macros": {
-    "Mbox{}": {
-      "snippet": "Mbox{${1:content}}"
-    },
-    "Makebox{}": {
-      "snippet": "Makebox{${1:content}}"
-    },
-    "Makebox[]{}": {
-      "snippet": "Makebox[${2:width}]{${1:content}}"
-    },
-    "Makebox[][]{}": {
-      "snippet": "Makebox[${2:width}][${3:position}]{${1:content}}"
-    },
-    "Fbox{}": {
-      "snippet": "Fbox{${1:content}}"
-    },
-    "Framebox{}": {
-      "snippet": "Framebox{${1:content}}"
-    },
-    "Framebox[]{}": {
-      "snippet": "Framebox[${2:width}]{${1:content}}"
-    },
-    "Framebox[][]{}": {
-      "snippet": "Framebox[${2:width}][${3:position}]{${1:content}}"
-    },
-    "Raisebox{}{}": {
-      "snippet": "Raisebox{${1:length}}{${2:content}}"
-    },
-    "Raisebox{}[]{}": {
-      "snippet": "Raisebox{${1:length}}[${2:height}]{${3:content}}"
-    },
-    "Raisebox{}[][]{}": {
-      "snippet": "Raisebox{${1:length}}[${2:height}][${3:depth}]{${4:content}}"
-    },
-    "Centerline{}": {
-      "snippet": "Centerline{${1:content}}"
-    },
-    "Leftline{}": {
-      "snippet": "Leftline{${1:content}}"
-    },
-    "Rightline{}": {
-      "snippet": "Rightline{${1:content}}"
-    },
-    "Rlap{}": {
-      "snippet": "Rlap{${1:content}}"
-    },
-    "Llap{}": {
-      "snippet": "Llap{${1:content}}"
-    },
-    "parbox[][][]{}{}": {
-      "snippet": "parbox[${3:position}][${4:height}][${5:inner-pos}]{${1:width}}{${2:content}}"
-    },
-    "parbox[][]{}{}": {
-      "snippet": "parbox[${3:position}][${4:height}]{${1:width}}{${2:content}}"
-    },
-    "Sbox{}{}": {
-      "snippet": "Sbox{${1:register}}{${2:content}}"
-    },
-    "Savebox{}{}": {
-      "snippet": "Savebox{${1:register}}{${2:content}}"
-    },
-    "Savebox{}[]{}": {
-      "snippet": "Savebox{${1:register}}[${2:width}]{${3:content}}"
-    },
-    "Savebox{}[][]{}": {
-      "snippet": "Savebox{${1:register}}[${2:width}][${3:position}]{${4:content}}"
-    },
-    "Colorbox{}{}": {
-      "snippet": "Colorbox{${1:color}}{${2:content}}",
-      "option": "all"
-    },
-    "Colorbox[]{}{}": {
-      "snippet": "Colorbox[${3:color model}]{${1:color}}{${2:content}}",
-      "option": "all"
-    },
-    "Fcolorbox{}{}{}": {
-      "snippet": "Fcolorbox{${1:fcolor}}{${2:bgcolor}}{${3:content}}",
-      "option": "all"
-    },
-    "Fcolorbox[]{}[]{}{}": {
-      "snippet": "Fcolorbox[${4:fc model}]{${1:fcolor}}[${5:bg model}]{${2:bgcolor}}{${3:content}}",
-      "option": "all"
-    },
-    "Rotatebox{}{}": {
-      "snippet": "Rotatebox{${1:angle}}{${2:content}}",
-      "option": "all"
-    },
-    "Rotatebox[}{}{}": {
-      "snippet": "Rotatebox[options}{${1:angle}}{${2:content}}",
-      "option": "all"
-    },
-    "Scalebox{}{}": {
-      "snippet": "Scalebox{${1:h-scale}}{${2:contents}}",
-      "option": "all"
-    },
-    "Scalebox{}[]{}": {
-      "snippet": "Scalebox{${1:h-scale}}[${2:v-scale}]{${3:content}}",
-      "option": "all"
-    },
-    "Reflectbox{}": {
-      "snippet": "Reflectbox{${1:contents}}",
-      "option": "all"
-    },
-    "Resizebox{}{}{}": {
-      "snippet": "Resizebox{${1:width}}{${2:height}}{${3:content}}",
-      "option": "all"
-    },
-    "Resizebox*{}{}{}": {
-      "snippet": "Resizebox*{${1:width}}{${2:totalheight}}{${3:content}}",
-      "option": "all"
-    },
-    "Dbox{}": {
-      "snippet": "Dbox{${1:content}}",
-      "option": "all"
-    },
-    "Dashbox{}": {
-      "snippet": "Dashbox{${1:content}}",
-      "option": "all"
-    },
-    "Dashbox[]{}": {
-      "snippet": "Dashbox[${2:width}]{${1:content}}",
-      "option": "all"
-    },
-    "Dashbox[][]{}": {
-      "snippet": "Dashbox[${2:width}][${3:position}]{${1:content}}",
-      "option": "all"
-    },
-    "Lbox{}": {
-      "snippet": "Lbox{${1:content}}",
-      "option": "all"
-    },
-    "Lbox[]{}": {
-      "snippet": "Lbox[${2:layers}]{${1:content}}",
-      "option": "all"
-    },
-    "Dlbox{}": {
-      "snippet": "Dlbox{${1:content}}",
-      "option": "all"
-    },
-    "Dlbox[]{}": {
-      "snippet": "Dlbox[${2:layers}]{${1:content}}",
-      "option": "all"
-    }
-  },
-  "envs": {},
-  "options": [
-    "xcolor",
-    "color",
-    "graphics",
-    "graphicx",
-    "dashbox",
-    "fancybox",
-    "all"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/realboxes#c"
+  ]
 }

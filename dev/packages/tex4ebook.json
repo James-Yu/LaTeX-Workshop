@@ -1,36 +1,53 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "kvoptions": [],
-    "graphicx": []
-  },
-  "macros": {
-    "coverimage{}": {
-      "snippet": "coverimage{${1:imagefile}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "coverimage[]{}": {
-      "snippet": "coverimage[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "kvoptions"
     },
-    "epubpage": {},
-    "DeclareLanguageEbook{}{}": {
-      "snippet": "DeclareLanguageEbook{${1:lang name}}{${2:lang code}}"
-    },
-    "GetLanguage": {},
-    "ncxtable": {},
-    "opftable": {},
-    "Title": {},
-    "Author": {},
-    "Date": {},
-    "origdate{}": {
-      "snippet": "origdate{${1:date}}"
+    {
+      "name": "graphicx"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "coverimage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "coverimage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\coverimage"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "epubpage"
+    },
+    {
+      "name": "DeclareLanguageEbook",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:lang name}}{${2:lang code}}"
+      }
+    },
+    {
+      "name": "GetLanguage",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\coverimage": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -61,5 +78,6 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
-  ]
+  },
+  "args": []
 }

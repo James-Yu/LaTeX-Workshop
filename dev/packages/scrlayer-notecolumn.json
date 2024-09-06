@@ -1,75 +1,164 @@
 {
-  "includes": {
-    "scrlayer": [],
-    "scrlogo": []
-  },
-  "macros": {
-    "DeclareNoteColumn{}": {
-      "snippet": "DeclareNoteColumn{${1:note-column name}}"
+  "deps": [
+    {
+      "name": "scrlayer"
     },
-    "DeclareNoteColumn[]{}": {
-      "snippet": "DeclareNoteColumn[${2:options}]{${1:note-column name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "DeclareNewNoteColumn{}": {
-      "snippet": "DeclareNewNoteColumn{${1:note-column name}}"
-    },
-    "DeclareNewNoteColumn[]{}": {
-      "snippet": "DeclareNewNoteColumn[${2:options}]{${1:note-column name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ProvideNoteColumn{}": {
-      "snippet": "ProvideNoteColumn{${1:note-column name}}"
-    },
-    "ProvideNoteColumn[]{}": {
-      "snippet": "ProvideNoteColumn[${2:options}]{${1:note-column name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "RedeclareNoteColumn{}": {
-      "snippet": "RedeclareNoteColumn{${1:note-column name}}"
-    },
-    "RedeclareNoteColumn[]{}": {
-      "snippet": "RedeclareNoteColumn[${2:options}]{${1:note-column name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "makenote{}": {
-      "snippet": "makenote{${1:note}}"
-    },
-    "makenote[]{}": {
-      "snippet": "makenote[${2:note-column name}]{${1:note}}"
-    },
-    "makenote*{}": {
-      "snippet": "makenote*{${1:note}}"
-    },
-    "makenote*[]{}": {
-      "snippet": "makenote*[${2:note-column name}]{${1:note}}"
-    },
-    "restoreinnote": {},
-    "clearnotecolumn": {},
-    "clearnotecolumn[]": {
-      "snippet": "clearnotecolumn[${1:note-column name}]"
-    },
-    "clearnotecolumns": {},
-    "clearnotecolumns[]": {
-      "snippet": "clearnotecolumns[${1:note-column name list}]"
-    },
-    "syncwithnotecolumn": {},
-    "syncwithnotecolumn[]": {
-      "snippet": "syncwithnotecolumn[${1:note-column name}]"
-    },
-    "syncwithnotecolumns": {},
-    "syncwithnotecolumns[]": {
-      "snippet": "syncwithnotecolumns[${1:note-column name list}]"
+    {
+      "name": "scrlogo"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "DeclareNoteColumn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note-column name}}"
+      }
+    },
+    {
+      "name": "DeclareNoteColumn",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:note-column name}}",
+        "keys": [
+          "\\DeclareNoteColumn#c,\\DeclareNewNoteColumn#c,\\ProvideNoteColumn#c,\\RedeclareNoteColumn#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DeclareNewNoteColumn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note-column name}}"
+      }
+    },
+    {
+      "name": "DeclareNewNoteColumn",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:note-column name}}",
+        "keys": [
+          "\\DeclareNoteColumn#c,\\DeclareNewNoteColumn#c,\\ProvideNoteColumn#c,\\RedeclareNoteColumn#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ProvideNoteColumn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note-column name}}"
+      }
+    },
+    {
+      "name": "ProvideNoteColumn",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:note-column name}}",
+        "keys": [
+          "\\DeclareNoteColumn#c,\\DeclareNewNoteColumn#c,\\ProvideNoteColumn#c,\\RedeclareNoteColumn#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "RedeclareNoteColumn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note-column name}}"
+      }
+    },
+    {
+      "name": "RedeclareNoteColumn",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:note-column name}}",
+        "keys": [
+          "\\DeclareNoteColumn#c,\\DeclareNewNoteColumn#c,\\ProvideNoteColumn#c,\\RedeclareNoteColumn#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "makenote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note%text}}"
+      }
+    },
+    {
+      "name": "makenote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:note-column name}]{${1:note%text}}"
+      }
+    },
+    {
+      "name": "makenote*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note%text}}"
+      }
+    },
+    {
+      "name": "makenote*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:note-column name}]{${1:note%text}}"
+      }
+    },
+    {
+      "name": "restoreinnote",
+      "unusual": true
+    },
+    {
+      "name": "clearnotecolumn"
+    },
+    {
+      "name": "clearnotecolumn",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:note-column name}]"
+      }
+    },
+    {
+      "name": "clearnotecolumns"
+    },
+    {
+      "name": "clearnotecolumns",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:note-column name list}]"
+      }
+    },
+    {
+      "name": "syncwithnotecolumn"
+    },
+    {
+      "name": "syncwithnotecolumn",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:note-column name}]"
+      }
+    },
+    {
+      "name": "syncwithnotecolumns"
+    },
+    {
+      "name": "syncwithnotecolumns",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:note-column name list}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\KOMAoptions#c": [
+      "autoclearnotecolumns=${1|true,on,yes,false,off,no|}"
+    ],
+    "\\DeclareNoteColumn#c,\\DeclareNewNoteColumn#c,\\ProvideNoteColumn#c,\\RedeclareNoteColumn#c": [
       "font=${1:font attribute}",
       "marginpar",
       "normalmarginpar",
@@ -77,5 +166,6 @@
       "reversemarginpar",
       "width="
     ]
-  ]
+  },
+  "args": []
 }

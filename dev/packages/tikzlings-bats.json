@@ -1,28 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "bat": {},
-    "bat[]": {
-      "snippet": "bat[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "bathookbackground": {},
-    "bathookbelly": {},
-    "bathookbody": {},
-    "bathookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "bat"
+    },
+    {
+      "name": "bat",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "bat#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bathookbackground",
+      "unusual": true
+    },
+    {
+      "name": "bathookbelly",
+      "unusual": true
+    },
+    {
+      "name": "bathookbody",
+      "unusual": true
+    },
+    {
+      "name": "bathookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "bat#c": [
       "body=",
       "eye=",
       "pupil=",
@@ -149,5 +184,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

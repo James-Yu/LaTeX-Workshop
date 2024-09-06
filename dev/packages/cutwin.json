@@ -1,25 +1,47 @@
 {
-  "includes": {},
-  "macros": {
-    "opencutleft": {},
-    "opencutright": {},
-    "opencutcenter": {},
-    "cutfuzz": {},
-    "pageinwindow": {},
-    "windowpagestuff": {},
-    "picinwindow": {},
-    "putstuffinpic": {}
-  },
-  "envs": {
-    "cutout{}{}{}{}": {
-      "name": "cutout",
-      "snippet": "{${1:num top}}{${2:left width}}{${3:right width}}{${4:num cut}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "opencutleft"
     },
-    "shapedcutout{}{}{}": {
-      "name": "shapedcutout",
-      "snippet": "{${1:num top}}{${2:num cut}}{${3:shape sec}}"
+    {
+      "name": "opencutright"
+    },
+    {
+      "name": "opencutcenter"
+    },
+    {
+      "name": "cutfuzz"
+    },
+    {
+      "name": "pageinwindow"
+    },
+    {
+      "name": "windowpagestuff"
+    },
+    {
+      "name": "picinwindow"
+    },
+    {
+      "name": "putstuffinpic"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "cutout",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:num top}}{${2:left width}}{${3:right width}}{${4:num cut}}"
+      }
+    },
+    {
+      "name": "shapedcutout",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:num top}}{${2:num cut}}{${3:shape sec}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

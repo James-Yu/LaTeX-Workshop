@@ -1,140 +1,304 @@
 {
-  "includes": {},
-  "macros": {
-    "didecnew{}": {
-      "snippet": "didecnew{${1:var}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "didecnew",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
     },
-    "didecset{}{}": {
-      "snippet": "didecset{${1:var}}{${2:expr}}"
+    {
+      "name": "didecset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:var}}{${2:expr}}"
+      }
     },
-    "didecsetequal{}{}": {
-      "snippet": "didecsetequal{${1:var1}}{${2:var2}}"
+    {
+      "name": "didecsetequal",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:var1}}{${2:var2}}"
+      }
     },
-    "didecsetnegative{}{}": {
-      "snippet": "didecsetnegative{${1:var}}{${2:expr}}"
+    {
+      "name": "didecsetnegative",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:var}}{${2:expr}}"
+      }
     },
-    "didecsetfp{}{}": {
-      "snippet": "didecsetfp{${1:var}}{${2:fp expr}}"
+    {
+      "name": "didecsetfp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:var}}{${2:fp expr}}"
+      }
     },
-    "didecadd{}{}": {
-      "snippet": "didecadd{${1:expr1}}{${2:expr2}}"
+    {
+      "name": "didecadd",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expr1}}{${2:expr2}}"
+      }
     },
-    "didecadd[]{}{}": {
-      "snippet": "didecadd[${3:var}]{${1:expr1}}{${2:expr2}}"
+    {
+      "name": "didecadd",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:var}]{${1:expr1}}{${2:expr2}}"
+      }
     },
-    "didecsub{}{}": {
-      "snippet": "didecsub{${1:expr1}}{${2:expr2}}"
+    {
+      "name": "didecsub",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expr1}}{${2:expr2}}"
+      }
     },
-    "didecsub[]{}{}": {
-      "snippet": "didecsub[${3:var}]{${1:expr1}}{${2:expr2}}"
+    {
+      "name": "didecsub",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:var}]{${1:expr1}}{${2:expr2}}"
+      }
     },
-    "didecmulfp{}{}": {
-      "snippet": "didecmulfp{${1:var}}{${2:fp expr}}"
+    {
+      "name": "didecmulfp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:var}}{${2:fp expr}}"
+      }
     },
-    "didecmulfp[]{}{}": {
-      "snippet": "didecmulfp[${3:var2}]{${1:var1}}{${2:fp expr}}"
+    {
+      "name": "didecmulfp",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:var2}]{${1:var1}}{${2:fp expr}}"
+      }
     },
-    "didecdivfp{}{}": {
-      "snippet": "didecdivfp{${1:var}}{${2:fp expr}}"
+    {
+      "name": "didecdivfp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:var}}{${2:fp expr}}"
+      }
     },
-    "didecdivfp[]{}{}": {
-      "snippet": "didecdivfp[${3:var2}]{${1:var1}}{${2:fp expr}}"
+    {
+      "name": "didecdivfp",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:var2}]{${1:var1}}{${2:fp expr}}"
+      }
     },
-    "didecsetsum{}": {
-      "snippet": "didecsetsum{${1:sum of exprs}}"
+    {
+      "name": "didecsetsum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sum of exprs}}"
+      }
     },
-    "didecsetsum{}{}": {
-      "snippet": "didecsetsum{${1:var}}{${2:sum of exprs}}"
+    {
+      "name": "didecsetsum",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:var}}{${2:sum of exprs}}"
+      }
     },
-    "didectoint{}": {
-      "snippet": "didectoint{${1:var}}"
+    {
+      "name": "didectoint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
     },
-    "didectofp{}": {
-      "snippet": "didectofp{${1:var}}"
+    {
+      "name": "didectofp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
     },
-    "didectofc{}": {
-      "snippet": "didectofc{${1:var}}"
+    {
+      "name": "didectofc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
     },
-    "didecuse{}": {
-      "snippet": "didecuse{${1:var}}"
+    {
+      "name": "didecuse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
     },
-    "didecuse[]{}": {
-      "snippet": "didecuse[${2:keyvals}]{${1:var}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "didecuse",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:keyvals}]{${1:var}}",
+        "keys": [
+          "\\didecuse,\\dideccolinvuse,\\didecformat,\\dideccolformat,\\dideccolinvformat,\\didecsetup"
+        ],
+        "keyPos": 0
+      }
     },
-    "dideccoluse{}": {
-      "snippet": "dideccoluse{${1:var}}"
+    {
+      "name": "dideccoluse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
     },
-    "dideccoluse[]{}": {
-      "snippet": "dideccoluse[${2:keyvals}]{${1:var}}"
+    {
+      "name": "dideccoluse",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:keyvals}]{${1:var}}"
+      }
     },
-    "dideccolinvuse{}": {
-      "snippet": "dideccolinvuse{${1:var}}"
+    {
+      "name": "dideccolinvuse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
     },
-    "dideccolinvuse[]{}": {
-      "snippet": "dideccolinvuse[${2:keyvals}]{${1:var}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "dideccolinvuse",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:keyvals}]{${1:var}}",
+        "keys": [
+          "\\didecuse,\\dideccolinvuse,\\didecformat,\\dideccolformat,\\dideccolinvformat,\\didecsetup"
+        ],
+        "keyPos": 0
+      }
     },
-    "didecformat{}": {
-      "snippet": "didecformat{${1:expr}}"
+    {
+      "name": "didecformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr}}"
+      }
     },
-    "didecformat[]{}": {
-      "snippet": "didecformat[${2:keyvals}]{${1:expr}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "didecformat",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:keyvals}]{${1:expr}}",
+        "keys": [
+          "\\didecuse,\\dideccolinvuse,\\didecformat,\\dideccolformat,\\dideccolinvformat,\\didecsetup"
+        ],
+        "keyPos": 0
+      }
     },
-    "dideccolformat{}": {
-      "snippet": "dideccolformat{${1:expr}}"
+    {
+      "name": "dideccolformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr}}"
+      }
     },
-    "dideccolformat[]{}": {
-      "snippet": "dideccolformat[${2:keyvals}]{${1:expr}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "dideccolformat",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:keyvals}]{${1:expr}}",
+        "keys": [
+          "\\didecuse,\\dideccolinvuse,\\didecformat,\\dideccolformat,\\dideccolinvformat,\\didecsetup"
+        ],
+        "keyPos": 0
+      }
     },
-    "dideccolinvformat{}": {
-      "snippet": "dideccolinvformat{${1:expr}}"
+    {
+      "name": "dideccolinvformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr}}"
+      }
     },
-    "dideccolinvformat[]{}": {
-      "snippet": "dideccolinvformat[${2:keyvals}]{${1:expr}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "dideccolinvformat",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:keyvals}]{${1:expr}}",
+        "keys": [
+          "\\didecuse,\\dideccolinvuse,\\didecformat,\\dideccolformat,\\dideccolinvformat,\\didecsetup"
+        ],
+        "keyPos": 0
+      }
     },
-    "didecsetup{}": {
-      "snippet": "didecsetup{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "didecsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\didecuse,\\dideccolinvuse,\\didecformat,\\dideccolformat,\\dideccolinvformat,\\didecsetup"
+        ],
+        "keyPos": 0
+      }
     },
-    "didecwrite{}{}": {
-      "snippet": "didecwrite{${1:var}}{${2:stream}}"
+    {
+      "name": "didecwrite",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:var}}{${2:stream}}"
+      }
     },
-    "didecifpositive{}{}{}": {
-      "snippet": "didecifpositive{${1:var}}{${2:true code}}{${3:false code}}"
+    {
+      "name": "didecifpositive",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:var}}{${2:true code}}{${3:false code}}"
+      }
     },
-    "didecifnegative{}{}{}": {
-      "snippet": "didecifnegative{${1:var}}{${2:true code}}{${3:false code}}"
+    {
+      "name": "didecifnegative",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:var}}{${2:true code}}{${3:false code}}"
+      }
     },
-    "didecifzero{}{}{}": {
-      "snippet": "didecifzero{${1:var}}{${2:true code}}{${3:false code}}"
+    {
+      "name": "didecifzero",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:var}}{${2:true code}}{${3:false code}}"
+      }
     },
-    "dideciflowerthan{}{}{}{}": {
-      "snippet": "dideciflowerthan{${1:expr1}}{${2:expr2}}{${3:true code}}{${4:false code}}"
+    {
+      "name": "dideciflowerthan",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:expr1}}{${2:expr2}}{${3:true code}}{${4:false code}}"
+      }
     },
-    "didecifequal{}{}{}{}": {
-      "snippet": "didecifequal{${1:expr1}}{${2:expr2}}{${3:true code}}{${4:false code}}"
+    {
+      "name": "didecifequal",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:expr1}}{${2:expr2}}{${3:true code}}{${4:false code}}"
+      }
     },
-    "didecifgreaterthan{}{}{}{}": {
-      "snippet": "didecifgreaterthan{${1:expr1}}{${2:expr2}}{${3:true code}}{${4:false code}}"
+    {
+      "name": "didecifgreaterthan",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:expr1}}{${2:expr2}}{${3:true code}}{${4:false code}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "int",
-    "fp"
   ],
-  "keyvals": [
-    [
+  "envs": [],
+  "keys": {
+    "\\usepackage/didec#c": [
+      "int",
+      "fp"
+    ],
+    "\\didecuse,\\dideccolinvuse,\\didecformat,\\dideccolformat,\\dideccolinvformat,\\didecsetup": [
       "decimal-separator=${1:separator}",
       "grouping-separator=${1:separator}",
       "currency={${1:prefix}}{${2:postfix}}",
@@ -146,5 +310,8 @@
       "color-positive=",
       "color-negative="
     ]
+  },
+  "args": [
+    "\\usepackage/didec#c"
   ]
 }

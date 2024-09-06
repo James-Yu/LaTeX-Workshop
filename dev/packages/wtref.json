@@ -1,31 +1,48 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "newref{}": {
-      "snippet": "newref{${1:ref types}}"
-    },
-    "newref[]{}": {
-      "snippet": "newref[${2:options}]{${1:ref types}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "setrefstyle{}{}": {
-      "snippet": "setrefstyle{${1:ref types}}{${2:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
+  "deps": [
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "newref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ref types}}"
+      }
+    },
+    {
+      "name": "newref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:ref types}}",
+        "keys": [
+          "\\newref"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setrefstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ref types}}{${2:options%keyvals}}",
+        "keys": [
+          "\\setrefstyle"
+        ],
+        "keyPos": 1
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\newref": [
       "namespace=${1:string}",
       "nonamespace",
       "scope=${1:counter}"
     ],
-    [
+    "\\setrefstyle": [
       "refcmd=${1:command}",
       "sep=${1:command}",
       "last sep",
@@ -33,5 +50,6 @@
       "prefix=${1:command}",
       "suffix=${1:command}"
     ]
-  ]
+  },
+  "args": []
 }

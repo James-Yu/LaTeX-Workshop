@@ -1,383 +1,1334 @@
 {
-  "includes": {
-    "scrkbase": [],
-    "typearea": [],
-    "scrlogo": [],
-    "eso-pic": [
-      "visualize"
+  "deps": [
+    {
+      "name": "scrkbase"
+    },
+    {
+      "name": "typearea"
+    },
+    {
+      "name": "scrlogo"
+    },
+    {
+      "name": "eso-pic",
+      "if": "visualize"
+    },
+    {
+      "name": "xcolor",
+      "if": "copy"
+    },
+    {
+      "name": "graphicx",
+      "if": "copy"
+    }
+  ],
+  "macros": [
+    {
+      "name": "addrchar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:initial letter}}"
+      }
+    },
+    {
+      "name": "addrentry",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "{${1:last name}}{${2:first name}}{${3:address}}{${4:phone}}{${5:F1}}{${6:F2}}{${7:F3}}{${8:F4}}{${9:key%plain}}"
+      }
+    },
+    {
+      "name": "addtolengthplength",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:factor}]{${1:length}}{${2:pseudo-length%keyvals}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "addtolengthplength",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:length}}{${2:pseudo-length%keyvals}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "addtoplength",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:factor}]{${1:pseudo-length%keyvals}}{${2:value}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "addtoplength",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pseudo-length%keyvals}}{${2:value}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addtoreffields",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "AtBeginLetter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "AtEndLetter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "bankname",
+      "unusual": true
+    },
+    {
+      "name": "cc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:distribution list%text}}"
+      }
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "ClassName",
+      "unusual": true
+    },
+    {
+      "name": "cleardoubleemptypage"
+    },
+    {
+      "name": "cleardoubleevenemptypage"
+    },
+    {
+      "name": "cleardoubleevenpage"
+    },
+    {
+      "name": "cleardoubleevenpageusingstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pagestyle%keyvals}}",
+        "keys": [
+          "\\cleardoublepageusingstyle#c,\\cleardoubleoddpageusingstyle#c,\\cleardoubleevenpageusingstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cleardoubleevenplainpage"
+    },
+    {
+      "name": "cleardoubleevenstandardpage"
+    },
+    {
+      "name": "cleardoubleoddemptypage"
+    },
+    {
+      "name": "cleardoubleoddpage"
+    },
+    {
+      "name": "cleardoubleoddpageusingstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pagestyle%keyvals}}",
+        "keys": [
+          "\\cleardoublepageusingstyle#c,\\cleardoubleoddpageusingstyle#c,\\cleardoubleevenpageusingstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cleardoubleoddplainpage"
+    },
+    {
+      "name": "cleardoubleoddstandardpage"
+    },
+    {
+      "name": "cleardoublepageusingstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pagestyle%keyvals}}",
+        "keys": [
+          "\\cleardoublepageusingstyle#c,\\cleardoubleoddpageusingstyle#c,\\cleardoubleevenpageusingstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cleardoubleplainpage"
+    },
+    {
+      "name": "cleardoublestandardpage"
+    },
+    {
+      "name": "closing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:concluding text%text}}"
+      }
+    },
+    {
+      "name": "customername",
+      "unusual": true
+    },
+    {
+      "name": "datename",
+      "unusual": true
+    },
+    {
+      "name": "defaultreffields"
+    },
+    {
+      "name": "deffootnote",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:mark width%l}]{${1:indent%l}}{${2:parindent%l}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "deffootnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:indent%l}}{${2:parindent%l}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "deffootnotemark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:definition}}"
+      }
+    },
+    {
+      "name": "descfont",
+      "unusual": true
+    },
+    {
+      "name": "emailname",
+      "unusual": true
+    },
+    {
+      "name": "encl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:enclosures%text}}"
+      }
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "faxname",
+      "unusual": true
+    },
+    {
+      "name": "footfont",
+      "unusual": true
+    },
+    {
+      "name": "foreachemptykomavar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list of variables}}{${2:command}}"
+      }
+    },
+    {
+      "name": "foreachkomavar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list of variables}}{${2:command}}"
+      }
+    },
+    {
+      "name": "foreachkomavarifempty",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:list of variables}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "foreachnonemptykomavar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list of variables}}{${2:command}}"
+      }
+    },
+    {
+      "name": "headfont",
+      "unusual": true
+    },
+    {
+      "name": "headfromname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "Ifkomavar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifkomavarempty*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "Ifkomavarempty",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "Ifplength",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:pseudo-length}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifthispageodd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true code}}{${2:false code}}"
+      }
+    },
+    {
+      "name": "ifthispagewasodd",
+      "unusual": true
+    },
+    {
+      "name": "invoicename",
+      "unusual": true
+    },
+    {
+      "name": "KOMAClassFileName",
+      "unusual": true
+    },
+    {
+      "name": "KOMAClassName",
+      "unusual": true
+    },
+    {
+      "name": "labelinglabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "labelitemfont",
+      "unusual": true
+    },
+    {
+      "name": "letterlastpage",
+      "unusual": true
+    },
+    {
+      "name": "LetterOptionNeedsPapersize",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option name}}{${2:paper size}}"
+      }
+    },
+    {
+      "name": "letterpagemark",
+      "unusual": true
+    },
+    {
+      "name": "letterpagestyle",
+      "unusual": true
+    },
+    {
+      "name": "LoadLetterOption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}",
+        "keys": [
+          "\\LoadLetterOption#c,\\LoadLetterOptions#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "LoadLetterOptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list of names%keyvals}}",
+        "keys": [
+          "\\LoadLetterOption#c,\\LoadLetterOptions#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "marginline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:margin note%text}}"
+      }
+    },
+    {
+      "name": "maybesffamily"
+    },
+    {
+      "name": "mobilephonename",
+      "unusual": true
+    },
+    {
+      "name": "multfootsep",
+      "unusual": true
+    },
+    {
+      "name": "multiplefootnotemarker",
+      "unusual": true
+    },
+    {
+      "name": "multiplefootnoteseparator",
+      "unusual": true
+    },
+    {
+      "name": "myrefname",
+      "unusual": true
+    },
+    {
+      "name": "newkomavar*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:description}]{${1:name}}"
+      }
+    },
+    {
+      "name": "newkomavar*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "newkomavar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:description}]{${1:name}}"
+      }
+    },
+    {
+      "name": "newkomavar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "newplength",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "opening",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:salutation%text}}"
+      }
+    },
+    {
+      "name": "phonename",
+      "unusual": true
+    },
+    {
+      "name": "pnumfont",
+      "unusual": true
+    },
+    {
+      "name": "ps"
+    },
+    {
+      "name": "raggedfootnote",
+      "unusual": true
+    },
+    {
+      "name": "raggedsignature",
+      "unusual": true
+    },
+    {
+      "name": "raggedsubject",
+      "unusual": true
+    },
+    {
+      "name": "removereffields"
+    },
+    {
+      "name": "setfootnoterule",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:thickness}]{${1:length}}"
+      }
+    },
+    {
+      "name": "setfootnoterule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "setkomavar*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%keyvals}}{${2:description%text}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setkomavar*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%keyvals}}{${2:description%text}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setkomavar",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name%keyvals}}[${3:description%text}]{${2:content%text}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setkomavar",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%keyvals}}{${2:content%text}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setlengthtoplength",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:factor}]{${1:length}}{${2:pseudo-length%keyvals}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "setlengthtoplength",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:length}}{${2:pseudo-length%keyvals}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setparsizes",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:indent%l}}{${2:distance%l}}{${3:last-line end space}}"
+      }
+    },
+    {
+      "name": "setplength",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:factor}]{${1:pseudo-length%keyvals}}{${2:value}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setplength",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pseudo-length%keyvals}}{${2:value}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setplengthtodepth",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:factor}]{${1:pseudo-length%keyvals}}{${2:content}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setplengthtodepth",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pseudo-length%keyvals}}{${2:content}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setplengthtoheight",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:factor}]{${1:pseudo-length%keyvals}}{${2:content}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setplengthtoheight",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pseudo-length%keyvals}}{${2:content}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setplengthtototalheight",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:factor}]{${1:pseudo-length%keyvals}}{${2:content}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setplengthtototalheight",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pseudo-length%keyvals}}{${2:content}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setplengthtowidth",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:factor}]{${1:pseudo-length%keyvals}}{${2:content}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setplengthtowidth",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pseudo-length%keyvals}}{${2:content}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "startbreaks",
+      "unusual": true
+    },
+    {
+      "name": "stopbreaks",
+      "unusual": true
+    },
+    {
+      "name": "stopletter",
+      "unusual": true
+    },
+    {
+      "name": "subjectname",
+      "unusual": true
+    },
+    {
+      "name": "textmaybesf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "thefootnotemark",
+      "unusual": true
+    },
+    {
+      "name": "thisletter",
+      "unusual": true
+    },
+    {
+      "name": "thispagewasoddfalse",
+      "unusual": true
+    },
+    {
+      "name": "thispagewasoddtrue",
+      "unusual": true
+    },
+    {
+      "name": "usekomavar*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:command}]{${1:name%keyvals}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "usekomavar*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "usekomavar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:command}]{${1:name%keyvals}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "usekomavar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "useplength",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pseudo-length%keyvals}}",
+        "keys": [
+          "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "wwwname",
+      "unusual": true
+    },
+    {
+      "name": "yourmailname",
+      "unusual": true
+    },
+    {
+      "name": "yourrefname",
+      "unusual": true
+    },
+    {
+      "name": "showfields",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:field list%keyvals}}",
+        "keys": [
+          "\\showfields"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setshowstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style%keyvals}}",
+        "keys": [
+          "\\setshowstyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "edgesize",
+      "unusual": true
+    },
+    {
+      "name": "showenvelope",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:width},${2:height})(${3:h-offset},${4:v-offset})"
+      }
+    },
+    {
+      "name": "showenvelope",
+      "unusual": true,
+      "arg": {
+        "format": "()()[]",
+        "snippet": "(${2:width},${3:height})(${4:h-offset},${5:v-offset})[${1:instructions}]"
+      }
+    },
+    {
+      "name": "showISOenvelope",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:format%keyvals}}",
+        "keys": [
+          "\\showISOenvelope#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "showISOenvelope",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:format%keyvals}}[${2:instructions}]",
+        "keys": [
+          "\\showISOenvelope#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "showUScommercial",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:format%keyvals}}",
+        "keys": [
+          "\\showUScommercial#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "showUScommercial",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:format%keyvals}}[${2:instructions}]",
+        "keys": [
+          "\\showUScommercial#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "showUScheck",
+      "unusual": true
+    },
+    {
+      "name": "showUScheck",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:instructions}]"
+      }
+    },
+    {
+      "name": "unitfactor",
+      "unusual": true
+    },
+    {
+      "name": "showfields",
+      "if": "visualize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:field list%keyvals}}"
+      }
+    },
+    {
+      "name": "setshowstyle",
+      "if": "visualize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style%keyvals}}"
+      }
+    },
+    {
+      "name": "edgesize",
+      "if": "visualize"
+    },
+    {
+      "name": "showenvelope",
+      "if": "visualize",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:width},${2:height})(${3:h-offset},${4:v-offset})"
+      }
+    },
+    {
+      "name": "showenvelope",
+      "if": "visualize",
+      "arg": {
+        "format": "()()[]",
+        "snippet": "(${2:width},${3:height})(${4:h-offset},${5:v-offset})[${1:instructions}]"
+      }
+    },
+    {
+      "name": "showISOenvelope",
+      "if": "visualize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:format%keyvals}}"
+      }
+    },
+    {
+      "name": "showISOenvelope",
+      "if": "visualize",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:format%keyvals}}[${2:instructions}]"
+      }
+    },
+    {
+      "name": "showUScommercial",
+      "if": "visualize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:format%keyvals}}"
+      }
+    },
+    {
+      "name": "showUScommercial",
+      "if": "visualize",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:format%keyvals}}[${2:instructions}]"
+      }
+    },
+    {
+      "name": "showUScheck",
+      "if": "visualize"
+    },
+    {
+      "name": "showUScheck",
+      "if": "visualize",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:instructions}]"
+      }
+    },
+    {
+      "name": "unitfactor",
+      "if": "visualize"
+    },
+    {
+      "name": "makelabels",
+      "if": "makelabels"
+    },
+    {
+      "name": "selectlabeltype",
+      "if": "makelabels",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type%keyvals}}",
+        "keys": [
+          "\\selectlabeltype#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "selectlabeltype",
+      "if": "makelabels",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:integer}]{${1:type%keyvals}}",
+        "keys": [
+          "\\selectlabeltype#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "startlabels",
+      "if": "makelabels",
+      "unusual": true
+    },
+    {
+      "name": "mlabel",
+      "if": "makelabels",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "mlabeltype",
+      "if": "makelabels",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:integer}}{${2:type}}"
+      }
+    },
+    {
+      "name": "LetterCopyMarker",
+      "if": "copy",
+      "unusual": true
+    },
+    {
+      "name": "copyname",
+      "if": "copy",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "addmargin*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:inner indent%l}]{${1:indent%l}}"
+      }
+    },
+    {
+      "name": "addmargin*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:indent%l}}"
+      }
+    },
+    {
+      "name": "addmargin",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:left indent%l}]{${1:indent%l}}"
+      }
+    },
+    {
+      "name": "addmargin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:indent%l}}"
+      }
+    },
+    {
+      "name": "labeling",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:delimiter}]{${1:widest pattern}}"
+      }
+    },
+    {
+      "name": "labeling",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:widest pattern}}"
+      }
+    },
+    {
+      "name": "letter",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:recipient}}"
+      }
+    },
+    {
+      "name": "letter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:recipient}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\KOMAoptions#c": [
+      "draft=${1|true,on,yes,false,off,no|}",
+      "overfullrule=${1|true,on,yes,false,off,no|}",
+      "fontsize=",
+      "foldmarks=${1:setting}",
+      "firsthead=${1|true,on,yes,false,off,no|}",
+      "fromalign=${1|center,centered,middle,false,no,off,left,locationleft,leftlocation,locationright,rightlocation,location,right|}",
+      "fromrule=${1|afteraddress,below,on,true,yes,aftername,false,no,off|}",
+      "symbolicnames=${1|true,on,yes,false,off,no,marvosym,fontawesome,awesome|}",
+      "fromphone=${1|true,on,yes,false,off,no|}",
+      "frommobilephone=${1|true,on,yes,false,off,no|}",
+      "fromfax=${1|true,on,yes,false,off,no|}",
+      "fromemail=${1|true,on,yes,false,off,no|}",
+      "fromurl=${1|true,on,yes,false,off,no|}",
+      "fromlogo=${1|true,on,yes,false,off,no|}",
+      "addrfield=${1|backgroundimage,PPbackgroundimage,PPBackgroundImage,PPBackGroundImage,ppbackgroundimage,ppBackgroundImage,ppBackGroundImage,false,off,no,image,Image,PPimage,PPImage,ppimage,ppImage,PP,pp,PPexplicite,PPExplicite,ppexplicite,ppExplicite,topaligned,alignedtop,true,on,yes|}",
+      "backaddress=${1|true,on,yes,false,off,no,underlined,plain|}",
+      "priority=${1|false,off,no,manual,B,b,economy,Economy,ECONOMY,B-ECONOMY,B-Economy,b-economy,A,a,priority,Priority,PRIORITY,A-PRIORITY,A-Priority,a-priority|}",
+      "locfield=${1|narrow,wide|}",
+      "numericaldate=${1|true,on,yes,false,off,no|}",
+      "refline=${1|dateleft,dateright,narrow,nodate,wide|}",
+      "subject=${1|afteropening,beforeopening,centered,left,right,titled,underlined,untitled|}",
+      "enlargefirstpage=${1|true,on,yes,false,off,no|}",
+      "firstfoot=${1|true,on,yes,false,off,no|}",
+      "parskip=${1|false,off,no,full,true,yes,full-,full+,full*,half,half-,half+,half*,never|}",
+      "pagenumber=${1|bot,foot,botcenter,botcentered,botmittle,footcenter,footcentered,footmiddle,botleft,footleft,botright,footright,center,centered,middle,false,no,off,head,top,headcenter,headcentered,headmiddle,topcenter,topcentered,topmiddle,headleft,topleft,headright,topright,left,right|}",
+      "cleardoublepage=${1|empty,headings,myheadings,plain,current|}",
+      "footnotes=${1|multiple,nomultiple|}"
     ],
-    "xcolor": [
-      "copy"
+    "\\showfields": [
+      "test",
+      "head",
+      "foot",
+      "address",
+      "location",
+      "refline"
     ],
-    "graphicx": [
-      "copy"
+    "\\setshowstyle": [
+      "frame",
+      "rule",
+      "edges"
+    ],
+    "\\showISOenvelope#c": [
+      "C4",
+      "C5",
+      "C5/6",
+      "DL",
+      "C6"
+    ],
+    "\\showUScommercial#c": [
+      "9",
+      "10"
+    ],
+    "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c": [
+      "addresseeimage",
+      "backaddress",
+      "backaddressseparator",
+      "ccseparator",
+      "customer",
+      "date",
+      "emailseparator",
+      "enclseparator",
+      "faxseparator",
+      "firstfoot",
+      "firsthead",
+      "fromaddress",
+      "frombank",
+      "fromemail",
+      "fromfax",
+      "fromlogo",
+      "frommobilephone",
+      "fromname",
+      "fromphone",
+      "fromurl",
+      "fromzipcode",
+      "invoice",
+      "location",
+      "myref",
+      "nextfoot",
+      "nexthead",
+      "phoneseparator",
+      "place",
+      "placeseparator",
+      "PPdatamatrix",
+      "PPcode",
+      "signature",
+      "specialmail",
+      "subject",
+      "subjectseparator",
+      "title",
+      "toaddress",
+      "toname",
+      "yourmail",
+      "yourref",
+      "zipcodeseparator"
+    ],
+    "\\useplength#c,\\setplength#c,\\addtoplength#c,\\setlengthtoplength#c,\\addtolengthplength#c,\\setplengthtowidth#c,\\setplengthtoheight#c,\\setplengthtodepth#c,\\setplengthtototalheight#c": [
+      "backaddrheight",
+      "bfoldmarklength",
+      "bfoldmarkvpos",
+      "firstfoothpos",
+      "firstfootvpos",
+      "firstfootwidth",
+      "firstheadhpos",
+      "firstheadvpos",
+      "firstheadwidth",
+      "foldmarkhpos",
+      "foldmarkvpos",
+      "fromrulethickness",
+      "fromrulewidth",
+      "lfoldmarkhpos",
+      "lfoldmarklength",
+      "locheight",
+      "lochpos",
+      "locvpos",
+      "locwidth",
+      "mfoldmarklength",
+      "mfoldmarkvpos",
+      "pfoldmarklength",
+      "PPdatamatrixvskip",
+      "PPheadheight",
+      "PPheadwidth",
+      "refaftervskip",
+      "refhpos",
+      "refvpos",
+      "refwidth",
+      "sigbeforevskip",
+      "sigindent",
+      "specialmailindent",
+      "specialmailrightindent",
+      "subjectaftervskip",
+      "subjectbeforevskip",
+      "additional verti",
+      "subjectvpos",
+      "tfoldmarklength",
+      "tfoldmarkvpos",
+      "toaddrheight",
+      "toaddrhpos",
+      "toaddrindent",
+      "toaddrvpos",
+      "toaddrwidth"
+    ],
+    "\\setkomafont#c,\\addtokomafont#c,\\usekomafont#c,\\usesizeofkomafont#c,\\usefamilyofkomafont#c,\\useseriesofkomafont#c,\\useshapeofkomafont#c,\\useencodingofkomafont#c,\\usefontofkomafont#c": [
+      "addressee",
+      "backaddress",
+      "descriptionlabel",
+      "foldmark",
+      "footnote",
+      "footnotelabel",
+      "footnotereference",
+      "footnoterule",
+      "fromaddress",
+      "fromname",
+      "fromrule",
+      "itemizelabel",
+      "labelinglabel",
+      "labelingseparator",
+      "labelitemi",
+      "labelitemii",
+      "labelitemiii",
+      "labelitemiv",
+      "pagefoot",
+      "pagehead",
+      "pageheadfoot",
+      "pagenumber",
+      "pagination",
+      "placeanddate",
+      "refname",
+      "refvalue",
+      "specialmail",
+      "lettersubject",
+      "lettertitle",
+      "toaddress",
+      "toname"
+    ],
+    "\\LoadLetterOption#c,\\LoadLetterOptions#c": [
+      "DIN",
+      "DINmtext",
+      "KakuLL",
+      "KOMAold",
+      "NF",
+      "NipponEH",
+      "NipponEL",
+      "NipponLH",
+      "NipponLL",
+      "NipponRL",
+      "SN",
+      "SNleft",
+      "UScommercial9",
+      "UScommercial9DW"
+    ],
+    "\\cleardoublepageusingstyle#c,\\cleardoubleoddpageusingstyle#c,\\cleardoubleevenpageusingstyle#c": [
+      "empty",
+      "headings",
+      "myheadings",
+      "plain"
+    ],
+    "\\selectlabeltype#c": [
+      "avery_5162"
     ]
   },
-  "macros": {
-    "addrchar{}": {
-      "snippet": "addrchar{${1:initial letter}}"
-    },
-    "addrentry{}{}{}{}{}{}{}{}{}": {
-      "snippet": "addrentry{${1:last name}}{${2:first name}}{${3:address}}{${4:phone}}{${5:F1}}{${6:F2}}{${7:F3}}{${8:F4}}{${9:key}}"
-    },
-    "addtolengthplength[]{}{}": {
-      "snippet": "addtolengthplength[${3:factor}]{${1:length}}{${2:pseudo-length}}"
-    },
-    "addtolengthplength{}{}": {
-      "snippet": "addtolengthplength{${1:length}}{${2:pseudo-length}}"
-    },
-    "addtoplength[]{}{}": {
-      "snippet": "addtoplength[${3:factor}]{${1:pseudo-length}}{${2:value}}"
-    },
-    "addtoplength{}{}": {
-      "snippet": "addtoplength{${1:pseudo-length}}{${2:value}}"
-    },
-    "addtoreffields{}": {
-      "snippet": "addtoreffields{${1:name}}"
-    },
-    "AtBeginLetter{}": {
-      "snippet": "AtBeginLetter{${1:code}}"
-    },
-    "AtEndLetter{}": {
-      "snippet": "AtEndLetter{${1:code}}"
-    },
-    "bankname": {},
-    "cc{}": {
-      "snippet": "cc{${1:distribution list}}"
-    },
-    "ccname": {},
-    "ClassName": {},
-    "cleardoubleemptypage": {},
-    "cleardoubleevenemptypage": {},
-    "cleardoubleevenpage": {},
-    "cleardoubleevenpageusingstyle{}": {
-      "snippet": "cleardoubleevenpageusingstyle{${1:pagestyle}}"
-    },
-    "cleardoubleevenplainpage": {},
-    "cleardoubleevenstandardpage": {},
-    "cleardoubleoddemptypage": {},
-    "cleardoubleoddpage": {},
-    "cleardoubleoddpageusingstyle{}": {
-      "snippet": "cleardoubleoddpageusingstyle{${1:pagestyle}}"
-    },
-    "cleardoubleoddplainpage": {},
-    "cleardoubleoddstandardpage": {},
-    "cleardoublepageusingstyle{}": {
-      "snippet": "cleardoublepageusingstyle{${1:pagestyle}}"
-    },
-    "cleardoubleplainpage": {},
-    "cleardoublestandardpage": {},
-    "closing{}": {
-      "snippet": "closing{${1:concluding text}}"
-    },
-    "customername": {},
-    "datename": {},
-    "defaultreffields": {},
-    "deffootnote[]{}{}{}": {
-      "snippet": "deffootnote[${4:mark width}]{${1:indent}}{${2:parindent}}{${3:definition}}"
-    },
-    "deffootnote{}{}{}": {
-      "snippet": "deffootnote{${1:indent}}{${2:parindent}}{${3:definition}}"
-    },
-    "deffootnotemark{}": {
-      "snippet": "deffootnotemark{${1:definition}}"
-    },
-    "descfont": {},
-    "emailname": {},
-    "encl{}": {
-      "snippet": "encl{${1:enclosures}}"
-    },
-    "enclname": {},
-    "faxname": {},
-    "footfont": {},
-    "foreachemptykomavar{}{}": {
-      "snippet": "foreachemptykomavar{${1:list of variables}}{${2:command}}"
-    },
-    "foreachkomavar{}{}": {
-      "snippet": "foreachkomavar{${1:list of variables}}{${2:command}}"
-    },
-    "foreachkomavarifempty{}{}{}": {
-      "snippet": "foreachkomavarifempty{${1:list of variables}}{${2:then code}}{${3:else code}}"
-    },
-    "foreachnonemptykomavar{}{}": {
-      "snippet": "foreachnonemptykomavar{${1:list of variables}}{${2:command}}"
-    },
-    "headfont": {},
-    "headfromname": {},
-    "headtoname": {},
-    "Ifkomavar{}{}{}": {
-      "snippet": "Ifkomavar{${1:name}}{${2:then code}}{${3:else code}}"
-    },
-    "Ifkomavarempty*{}{}{}": {
-      "snippet": "Ifkomavarempty*{${1:name}}{${2:true}}{${3:false}}"
-    },
-    "Ifkomavarempty{}{}{}": {
-      "snippet": "Ifkomavarempty{${1:name}}{${2:true}}{${3:false}}"
-    },
-    "Ifplength{}{}{}": {
-      "snippet": "Ifplength{${1:pseudo-length}}{${2:then code}}{${3:else code}}"
-    },
-    "Ifthispageodd{}{}": {
-      "snippet": "Ifthispageodd{${1:true code}}{${2:false code}}"
-    },
-    "ifthispagewasodd": {},
-    "invoicename": {},
-    "KOMAClassFileName": {},
-    "KOMAClassName": {},
-    "labelinglabel{}": {
-      "snippet": "labelinglabel{${1:arg}}"
-    },
-    "labelitemfont": {},
-    "letterlastpage": {},
-    "LetterOptionNeedsPapersize{}{}": {
-      "snippet": "LetterOptionNeedsPapersize{${1:option name}}{${2:paper size}}"
-    },
-    "letterpagemark": {},
-    "letterpagestyle": {},
-    "LoadLetterOption{}": {
-      "snippet": "LoadLetterOption{${1:name}}"
-    },
-    "LoadLetterOptions{}": {
-      "snippet": "LoadLetterOptions{${1:list of names}}"
-    },
-    "marginline{}": {
-      "snippet": "marginline{${1:margin note}}"
-    },
-    "maybesffamily": {},
-    "mobilephonename": {},
-    "multfootsep": {},
-    "multiplefootnotemarker": {},
-    "multiplefootnoteseparator": {},
-    "myrefname": {},
-    "newkomavar*[]{}": {
-      "snippet": "newkomavar*[${2:description}]{${1:name}}"
-    },
-    "newkomavar*{}": {
-      "snippet": "newkomavar*{${1:name}}"
-    },
-    "newkomavar[]{}": {
-      "snippet": "newkomavar[${2:description}]{${1:name}}"
-    },
-    "newkomavar{}": {
-      "snippet": "newkomavar{${1:name}}"
-    },
-    "newplength{}": {
-      "snippet": "newplength{${1:name}}"
-    },
-    "opening{}": {
-      "snippet": "opening{${1:salutation}}"
-    },
-    "phonename": {},
-    "pnumfont": {},
-    "ps": {},
-    "raggedfootnote": {},
-    "raggedsignature": {},
-    "raggedsubject": {},
-    "removereffields": {},
-    "setfootnoterule[]{}": {
-      "snippet": "setfootnoterule[${2:thickness}]{${1:length}}"
-    },
-    "setfootnoterule{}": {
-      "snippet": "setfootnoterule{${1:length}}"
-    },
-    "setkomavar*{}{}": {
-      "snippet": "setkomavar*{${1:name}}{${2:description}}"
-    },
-    "setkomavar{}[]{}": {
-      "snippet": "setkomavar{${1:name}}[${2:description}]{${3:content}}"
-    },
-    "setkomavar{}{}": {
-      "snippet": "setkomavar{${1:name}}{${2:content}}"
-    },
-    "setlengthtoplength[]{}{}": {
-      "snippet": "setlengthtoplength[${3:factor}]{${1:length}}{${2:pseudo-length}}"
-    },
-    "setlengthtoplength{}{}": {
-      "snippet": "setlengthtoplength{${1:length}}{${2:pseudo-length}}"
-    },
-    "setparsizes{}{}{}": {
-      "snippet": "setparsizes{${1:indent}}{${2:distance}}{${3:last-line end space}}"
-    },
-    "setplength[]{}{}": {
-      "snippet": "setplength[${3:factor}]{${1:pseudo-length}}{${2:value}}"
-    },
-    "setplength{}{}": {
-      "snippet": "setplength{${1:pseudo-length}}{${2:value}}"
-    },
-    "setplengthtodepth[]{}{}": {
-      "snippet": "setplengthtodepth[${3:factor}]{${1:pseudo-length}}{${2:content}}"
-    },
-    "setplengthtodepth{}{}": {
-      "snippet": "setplengthtodepth{${1:pseudo-length}}{${2:content}}"
-    },
-    "setplengthtoheight[]{}{}": {
-      "snippet": "setplengthtoheight[${3:factor}]{${1:pseudo-length}}{${2:content}}"
-    },
-    "setplengthtoheight{}{}": {
-      "snippet": "setplengthtoheight{${1:pseudo-length}}{${2:content}}"
-    },
-    "setplengthtototalheight[]{}{}": {
-      "snippet": "setplengthtototalheight[${3:factor}]{${1:pseudo-length}}{${2:content}}"
-    },
-    "setplengthtototalheight{}{}": {
-      "snippet": "setplengthtototalheight{${1:pseudo-length}}{${2:content}}"
-    },
-    "setplengthtowidth[]{}{}": {
-      "snippet": "setplengthtowidth[${3:factor}]{${1:pseudo-length}}{${2:content}}"
-    },
-    "setplengthtowidth{}{}": {
-      "snippet": "setplengthtowidth{${1:pseudo-length}}{${2:content}}"
-    },
-    "startbreaks": {},
-    "stopbreaks": {},
-    "stopletter": {},
-    "subjectname": {},
-    "textmaybesf{}": {
-      "snippet": "textmaybesf{${1:text}}"
-    },
-    "thefootnotemark": {},
-    "thisletter": {},
-    "thispagewasoddfalse": {},
-    "thispagewasoddtrue": {},
-    "usekomavar*[]{}": {
-      "snippet": "usekomavar*[${2:command}]{${1:name}}"
-    },
-    "usekomavar*{}": {
-      "snippet": "usekomavar*{${1:name}}"
-    },
-    "usekomavar[]{}": {
-      "snippet": "usekomavar[${2:command}]{${1:name}}"
-    },
-    "usekomavar{}": {
-      "snippet": "usekomavar{${1:name}}"
-    },
-    "useplength{}": {
-      "snippet": "useplength{${1:pseudo-length}}"
-    },
-    "wwwname": {},
-    "yourmailname": {},
-    "yourrefname": {},
-    "showfields{}": {
-      "snippet": "showfields{${1:field list}}",
-      "option": "visualize"
-    },
-    "setshowstyle{}": {
-      "snippet": "setshowstyle{${1:style}}",
-      "option": "visualize"
-    },
-    "edgesize": {
-      "option": "visualize"
-    },
-    "showenvelope()()": {
-      "snippet": "showenvelope(${1:width},${2:height})(${3:h-offset},${4:v-offset})",
-      "option": "visualize"
-    },
-    "showenvelope()()[]": {
-      "snippet": "showenvelope(${2:width},${3:height})(${4:h-offset},${5:v-offset})[${1:instructions}]",
-      "option": "visualize"
-    },
-    "showISOenvelope{}": {
-      "snippet": "showISOenvelope{${1:format}}",
-      "option": "visualize"
-    },
-    "showISOenvelope{}[]": {
-      "snippet": "showISOenvelope{${1:format}}[${2:instructions}]",
-      "option": "visualize"
-    },
-    "showUScommercial{}": {
-      "snippet": "showUScommercial{${1:format}}",
-      "option": "visualize"
-    },
-    "showUScommercial{}[]": {
-      "snippet": "showUScommercial{${1:format}}[${2:instructions}]",
-      "option": "visualize"
-    },
-    "showUScheck": {
-      "option": "visualize"
-    },
-    "showUScheck[]": {
-      "snippet": "showUScheck[${1:instructions}]",
-      "option": "visualize"
-    },
-    "unitfactor": {
-      "option": "visualize"
-    },
-    "adrchar{}": {
-      "snippet": "adrchar{${1:initial letter}}"
-    },
-    "adrentry{}{}{}{}{}{}{}{}": {
-      "snippet": "adrentry{${1:last name}}{${2:first name}}{${3:address}}{${4:phone}}{${5:F1}}{${6:F2}}{${7:comment}}{${8:key}}"
-    },
-    "ifkomavar": {},
-    "ifkomavarempty": {},
-    "ifthispageodd": {},
-    "firsthead": {},
-    "firstfoot": {},
-    "nexthead": {},
-    "nextfoot": {},
-    "makelabels": {
-      "option": "makelabels"
-    },
-    "selectlabeltype{}": {
-      "snippet": "selectlabeltype{${1:type}}",
-      "option": "makelabels"
-    },
-    "selectlabeltype[]{}": {
-      "snippet": "selectlabeltype[${2:integer}]{${1:type}}",
-      "option": "makelabels"
-    },
-    "startlabels": {
-      "option": "makelabels"
-    },
-    "mlabel{}{}": {
-      "snippet": "mlabel{${1:arg1}}{${2:arg2}}",
-      "option": "makelabels"
-    },
-    "mlabeltype{}{}": {
-      "snippet": "mlabeltype{${1:integer}}{${2:type}}",
-      "option": "makelabels"
-    },
-    "LetterCopyMarker": {
-      "option": "copy"
-    },
-    "copyname": {
-      "option": "copy"
-    }
-  },
-  "envs": {
-    "addmargin*[]{}": {
-      "name": "addmargin*",
-      "snippet": "[${2:inner indent}]{${1:indent}}"
-    },
-    "addmargin*{}": {
-      "name": "addmargin*",
-      "snippet": "{${1:indent}}"
-    },
-    "addmargin[]{}": {
-      "name": "addmargin",
-      "snippet": "[${2:left indent}]{${1:indent}}"
-    },
-    "addmargin{}": {
-      "name": "addmargin",
-      "snippet": "{${1:indent}}"
-    },
-    "labeling[]{}": {
-      "name": "labeling",
-      "snippet": "[${2:delimiter}]{${1:widest pattern}}"
-    },
-    "labeling{}": {
-      "name": "labeling",
-      "snippet": "{${1:widest pattern}}"
-    },
-    "letter[]{}": {
-      "name": "letter",
-      "snippet": "[${2:options}]{${1:recipient}}"
-    },
-    "letter{}": {
-      "name": "letter",
-      "snippet": "{${1:recipient}}"
-    }
-  },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

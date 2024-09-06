@@ -1,117 +1,258 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "abstract{}": {
-      "snippet": "abstract{${1:text}}"
-    },
-    "acknowledgename": {},
-    "acknowledgments{}": {
-      "snippet": "acknowledgments{${1:text}}"
-    },
-    "authordegrees{}": {
-      "snippet": "authordegrees{${1:degree1 \\\\ degree2 \\\\ ...}}"
-    },
-    "bibname": {},
-    "chaptername": {},
-    "chapternamefont{}": {
-      "snippet": "chapternamefont{${1:font cmds}}"
-    },
-    "chapternamesize{}": {
-      "snippet": "chapternamesize{${1:size cmd}}"
-    },
-    "chaptertitlefont{}": {
-      "snippet": "chaptertitlefont{${1:font cmds}}"
-    },
-    "chaptertitlesize{}": {
-      "snippet": "chaptertitlesize{${1:size cmd}}"
-    },
-    "ColumnRestore": {},
-    "ColumnSave": {},
-    "ColumnSaveHeading{}": {
-      "snippet": "ColumnSaveHeading{${1:text}}"
-    },
-    "committee{}{}{}{}{}": {
-      "snippet": "committee{${1:member1}}{${2:member2}}{${3:member3}}{${4:member4}}{${5:member5}}"
-    },
-    "copyrightyear{}": {
-      "snippet": "copyrightyear{${1:year}}"
-    },
-    "dedication{}": {
-      "snippet": "dedication{${1:text}}"
-    },
-    "dedicationname": {},
-    "degreemonth{}": {
-      "snippet": "degreemonth{${1:month}}"
-    },
-    "degreeyear{}": {
-      "snippet": "degreeyear{${1:year}}"
-    },
-    "dissertation": {},
-    "graduateprogram{}": {
-      "snippet": "graduateprogram{${1:program}}"
-    },
-    "makeintropages": {},
-    "nocopyright": {},
-    "officialmajor{}": {
-      "snippet": "officialmajor{${1:major}}"
-    },
-    "secfontsize{}": {
-      "snippet": "secfontsize{${1:size cmd}}"
-    },
-    "SetSinglespace{}": {
-      "snippet": "SetSinglespace{${1:factor}}"
-    },
-    "setstretch{}": {
-      "snippet": "setstretch{${1:factor}}"
-    },
-    "singlespacing": {},
-    "ssubsecfontsize{}": {
-      "snippet": "ssubsecfontsize{${1:size cmd}}"
-    },
-    "subsecfontsize{}": {
-      "snippet": "subsecfontsize{${1:size cmd}}"
-    },
-    "thechapter": {},
-    "thesis": {},
-    "theUMIpagetemp": {},
-    "TitleHyphenation": {},
-    "titlesize{}": {
-      "snippet": "titlesize{${1:size cmd}}"
-    },
-    "UMIabstract": {},
-    "UMIabstract[]": {
-      "snippet": "UMIabstract[${1:text}]"
-    },
-    "UMIfoliosep": {}
-  },
-  "envs": {
-    "code": {},
-    "UMImargins": {}
-  },
-  "options": [
-    "MA",
-    "MS",
-    "ME",
-    "PhD",
-    "DEngr",
-    "single",
-    "double",
-    "twoside",
-    "openright",
-    "openany",
-    "draft",
-    "draftcls",
-    "final",
-    "nofigureslist",
-    "notableslist",
-    "nohyphenatetitles",
-    "hyphenatetitles",
-    "10pt",
-    "11pt",
-    "12pt",
-    "13pt"
+  "deps": [
+    {
+      "name": "ifthen"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "abstract",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "acknowledgename",
+      "unusual": true
+    },
+    {
+      "name": "acknowledgments",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "authordegrees",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:degree1 \\\\ degree2 \\\\ ...%text}}"
+      }
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "chapternamefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font cmds}}"
+      }
+    },
+    {
+      "name": "chapternamesize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size cmd}}"
+      }
+    },
+    {
+      "name": "chaptertitlefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font cmds}}"
+      }
+    },
+    {
+      "name": "chaptertitlesize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size cmd}}"
+      }
+    },
+    {
+      "name": "ColumnRestore",
+      "unusual": true
+    },
+    {
+      "name": "ColumnSave",
+      "unusual": true
+    },
+    {
+      "name": "ColumnSaveHeading",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "committee",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:member1}}{${2:member2}}{${3:member3}}{${4:member4}}{${5:member5}}"
+      }
+    },
+    {
+      "name": "copyrightyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "dedication",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "dedicationname",
+      "unusual": true
+    },
+    {
+      "name": "degreemonth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:month}}"
+      }
+    },
+    {
+      "name": "degreeyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "dissertation",
+      "unusual": true
+    },
+    {
+      "name": "graduateprogram",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:program%text}}"
+      }
+    },
+    {
+      "name": "makeintropages"
+    },
+    {
+      "name": "nocopyright"
+    },
+    {
+      "name": "officialmajor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:major%text}}"
+      }
+    },
+    {
+      "name": "secfontsize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size cmd}}"
+      }
+    },
+    {
+      "name": "SetSinglespace",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "setstretch",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "singlespacing"
+    },
+    {
+      "name": "ssubsecfontsize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size cmd}}"
+      }
+    },
+    {
+      "name": "subsecfontsize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size cmd}}"
+      }
+    },
+    {
+      "name": "thechapter",
+      "unusual": true
+    },
+    {
+      "name": "thesis",
+      "unusual": true
+    },
+    {
+      "name": "TitleHyphenation",
+      "unusual": true
+    },
+    {
+      "name": "titlesize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size cmd}}"
+      }
+    },
+    {
+      "name": "UMIabstract"
+    },
+    {
+      "name": "UMIabstract",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:text}]"
+      }
+    },
+    {
+      "name": "UMIfoliosep",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "code"
+    },
+    {
+      "name": "UMImargins",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\documentclass/ucdavisthesis#c": [
+      "MA",
+      "MS",
+      "ME",
+      "PhD",
+      "DEngr",
+      "single",
+      "double",
+      "twoside",
+      "openright",
+      "openany",
+      "draft",
+      "draftcls",
+      "final",
+      "nofigureslist",
+      "notableslist",
+      "nohyphenatetitles",
+      "hyphenatetitles",
+      "10pt",
+      "11pt",
+      "12pt",
+      "13pt"
+    ]
+  },
+  "args": [
+    "\\documentclass/ucdavisthesis#c"
+  ]
 }

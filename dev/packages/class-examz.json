@@ -1,95 +1,220 @@
 {
-  "includes": {
-    "environ": [],
-    "xpatch": [],
-    "counterz": [],
-    "class-exam": []
-  },
-  "macros": {
-    "coursename": {},
-    "coveranswers": {},
-    "covernoanswers": {},
-    "examname": {},
-    "instructions": {},
-    "instructorname": {},
-    "namespace": {},
-    "printcover": {},
-    "printworkspace": {},
-    "promptrandomexam": {},
-    "promptversions": {},
-    "questionfrombank[]{}": {
-      "snippet": "questionfrombank[${2:points}]{${1:file}}"
+  "deps": [
+    {
+      "name": "environ"
     },
-    "questionfrombank{}": {
-      "snippet": "questionfrombank{${1:file}}"
+    {
+      "name": "xpatch"
     },
-    "setcoursename{}": {
-      "snippet": "setcoursename{${1:text}}"
+    {
+      "name": "counterz"
     },
-    "setcoveranswers{}": {
-      "snippet": "setcoveranswers{${1:format}}"
-    },
-    "setcovernoanswers{}": {
-      "snippet": "setcovernoanswers{${1:format}}"
-    },
-    "setexamname{}": {
-      "snippet": "setexamname{${1:text}}"
-    },
-    "setinstructions{}": {
-      "snippet": "setinstructions{${1:text}}"
-    },
-    "setinstructorname{}": {
-      "snippet": "setinstructorname{${1:text}}"
-    },
-    "setnamespace{}": {
-      "snippet": "setnamespace{${1:format}}"
-    },
-    "setnumberofquestions{}": {
-      "snippet": "setnumberofquestions{${1:number}}"
-    },
-    "setquestionpath{}": {
-      "snippet": "setquestionpath{${1:path}}"
-    },
-    "setsolutionspace{}": {
-      "snippet": "setsolutionspace{${1:length}}"
-    },
-    "settermname{}": {
-      "snippet": "settermname{${1:text}}"
-    },
-    "setworkspace{}": {
-      "snippet": "setworkspace{${1:format}}"
-    },
-    "termname": {},
-    "thenumversions": {},
-    "theversion": {},
-    "workspace": {}
-  },
-  "envs": {
-    "qbitem{}": {
-      "name": "qbitem",
-      "snippet": "{${1:item number}}"
-    },
-    "qbsolution": {},
-    "qbsolutionbox": {},
-    "qbsolutionorbox": {},
-    "qbsolutionordottedlines": {},
-    "qbsolutionorgrid": {},
-    "qbsolutionorlines": {},
-    "questionbank": {},
-    "versions": {},
-    "versions[]": {
-      "name": "versions",
-      "snippet": "[${1:number}]"
+    {
+      "name": "class-exam"
     }
-  },
-  "options": [
-    "complete",
-    "randomize",
-    "norandomize",
-    "prompt",
-    "answers",
-    "cancelspace",
-    "addpoints"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "coursename",
+      "unusual": true
+    },
+    {
+      "name": "coveranswers"
+    },
+    {
+      "name": "covernoanswers"
+    },
+    {
+      "name": "examname",
+      "unusual": true
+    },
+    {
+      "name": "instructions",
+      "unusual": true
+    },
+    {
+      "name": "instructorname",
+      "unusual": true
+    },
+    {
+      "name": "namespace",
+      "unusual": true
+    },
+    {
+      "name": "printcover"
+    },
+    {
+      "name": "printworkspace"
+    },
+    {
+      "name": "promptrandomexam"
+    },
+    {
+      "name": "promptversions"
+    },
+    {
+      "name": "questionfrombank",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:points}]{${1:file}}"
+      }
+    },
+    {
+      "name": "questionfrombank",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "setcoursename",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setcoveranswers",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:format}}"
+      }
+    },
+    {
+      "name": "setcovernoanswers",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:format}}"
+      }
+    },
+    {
+      "name": "setexamname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setinstructions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setinstructorname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setnamespace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:format}}"
+      }
+    },
+    {
+      "name": "setnumberofquestions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "setquestionpath",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path%definition}}"
+      }
+    },
+    {
+      "name": "setsolutionspace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "settermname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setworkspace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:format}}"
+      }
+    },
+    {
+      "name": "termname",
+      "unusual": true
+    },
+    {
+      "name": "theversion",
+      "unusual": true
+    },
+    {
+      "name": "workspace",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "qbitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:item number}}"
+      }
+    },
+    {
+      "name": "qbsolution"
+    },
+    {
+      "name": "qbsolutionbox"
+    },
+    {
+      "name": "qbsolutionorbox"
+    },
+    {
+      "name": "qbsolutionordottedlines"
+    },
+    {
+      "name": "qbsolutionorgrid"
+    },
+    {
+      "name": "qbsolutionorlines"
+    },
+    {
+      "name": "questionbank"
+    },
+    {
+      "name": "versions"
+    },
+    {
+      "name": "versions",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/examz#c": [
+      "complete",
+      "randomize",
+      "norandomize",
+      "prompt",
+      "answers",
+      "cancelspace",
+      "addpoints"
+    ]
+  },
+  "args": [
+    "\\documentclass/examz#c"
+  ]
 }

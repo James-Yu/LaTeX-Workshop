@@ -1,34 +1,70 @@
 {
-  "includes": {
-    "tikz": [],
-    "xstring": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "byoTwemoji{}": {
-      "snippet": "byoTwemoji{${1:elmt1;elmt2;...}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "byoTwemoji[]{}": {
-      "snippet": "byoTwemoji[${2:options}]{${1:elmt1;elmt2;...}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xstring"
     },
-    "forElementInList{}{}": {
-      "snippet": "forElementInList{${1:macro}}{${2:list}}"
-    },
-    "byoTwemojiShadowTransparency": {},
-    "twemojiDefaultHeight": {},
-    "defineByoTwemojiElement{}{}": {
-      "snippet": "defineByoTwemojiElement{${1:elmt name}}{${2:elmt TikZ paths}}"
-    },
-    "byoTwemojiElement{}": {
-      "snippet": "byoTwemojiElement{${1:name!TikZ options}}"
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "byoTwemoji",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:elmt1;elmt2;...}}"
+      }
+    },
+    {
+      "name": "byoTwemoji",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:elmt1;elmt2;...}}",
+        "keys": [
+          "\\byoTwemoji#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "forElementInList",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:macro}}{${2:list}}"
+      }
+    },
+    {
+      "name": "byoTwemojiShadowTransparency",
+      "unusual": true
+    },
+    {
+      "name": "twemojiDefaultHeight",
+      "unusual": true
+    },
+    {
+      "name": "defineByoTwemojiElement",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:elmt name}}{${2:elmt TikZ paths}}"
+      }
+    },
+    {
+      "name": "byoTwemojiElement",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name!TikZ options}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\byoTwemoji#c": [
       "let White=",
       "let WhiteGray=",
       "let LightGray=",
@@ -88,5 +124,6 @@
       "set Purple=",
       "set Shadow="
     ]
-  ]
+  },
+  "args": []
 }

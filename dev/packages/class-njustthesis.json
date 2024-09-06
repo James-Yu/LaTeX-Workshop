@@ -1,57 +1,127 @@
 {
-  "includes": {
-    "kvdefinekeys": [],
-    "kvsetkeys": [],
-    "kvoptions": [],
-    "class-ctexbook": [],
-    "xeCJK": [],
-    "csquotes": [],
-    "indentfirst": [],
-    "setspace": [],
-    "titletoc": [],
-    "tocbibind": [],
-    "fancyhdr": [],
-    "pifont": [],
-    "footmisc": [],
-    "natbib": [],
-    "graphicx": [],
-    "cnlogo": [],
-    "tabu": [],
-    "multicol": [],
-    "newtxmath": [],
-    "exercise": [],
-    "enumitem": [],
-    "boxedminipage": []
-  },
-  "macros": {
-    "njustsetup{}": {
-      "snippet": "njustsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "kvdefinekeys"
     },
-    "copyrightpage": {},
-    "reviewpage": {},
-    "filedate": {},
-    "filename": {},
-    "fileversion": {},
-    "njustwhole": {},
-    "njustwhole[]": {
-      "snippet": "njustwhole[${1:color}]"
+    {
+      "name": "kvsetkeys"
     },
-    "njustwhole[][]": {
-      "snippet": "njustwhole[${1:color}][${2:scale}]"
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "class-ctexbook"
+    },
+    {
+      "name": "xeCJK"
+    },
+    {
+      "name": "csquotes"
+    },
+    {
+      "name": "indentfirst"
+    },
+    {
+      "name": "setspace"
+    },
+    {
+      "name": "titletoc"
+    },
+    {
+      "name": "tocbibind"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "pifont"
+    },
+    {
+      "name": "footmisc"
+    },
+    {
+      "name": "natbib"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "cnlogo"
+    },
+    {
+      "name": "tabu"
+    },
+    {
+      "name": "multicol"
+    },
+    {
+      "name": "newtxmath"
+    },
+    {
+      "name": "exercise"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "boxedminipage"
     }
-  },
-  "envs": {
-    "abstract": {},
-    "abstract*": {},
-    "acknowledgement": {},
-    "keyword": {},
-    "keyword*": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "njustsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\njustsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "copyrightpage"
+    },
+    {
+      "name": "reviewpage"
+    },
+    {
+      "name": "njustwhole"
+    },
+    {
+      "name": "njustwhole",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:color}]"
+      }
+    },
+    {
+      "name": "njustwhole",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:color}][${2:scale}]"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "abstract"
+    },
+    {
+      "name": "abstract*"
+    },
+    {
+      "name": "acknowledgement"
+    },
+    {
+      "name": "keyword"
+    },
+    {
+      "name": "keyword*"
+    }
+  ],
+  "keys": {
+    "\\njustsetup": [
       "logo=${1:logo code}",
       "cover-title=${1:text}",
       "author=${1:name}",
@@ -76,5 +146,6 @@
       "subtitle*=${1:English text}",
       "header-title=${1:text}"
     ]
-  ]
+  },
+  "args": []
 }

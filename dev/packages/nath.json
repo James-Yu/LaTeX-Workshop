@@ -1,145 +1,327 @@
 {
-  "includes": {},
-  "macros": {
-    "nathstyle{}": {
-      "snippet": "nathstyle{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [],
+  "macros": [
+    {
+      "name": "nathstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\nathstyle"
+        ],
+        "keyPos": 0
+      }
     },
-    "abbreviation": {},
-    "adot": {},
-    "arraycolsepdim": {},
-    "arrayrowsep": {},
-    "arrayrowsepdim": {},
-    "arraystrut": {},
-    "biggg": {},
-    "binom{}{}": {
-      "snippet": "binom{${1:m}}{${2:n}}"
+    {
+      "name": "abbreviation",
+      "unusual": true
     },
-    "displaybaselineskip": {},
-    "displayed{}": {
-      "snippet": "displayed{${1:math}}"
+    {
+      "name": "adot"
     },
-    "displaylineskip": {},
-    "displaylineskiplimit": {},
-    "factorial": {},
-    "framed{}": {
-      "snippet": "framed{${1:arg}}"
+    {
+      "name": "arraycolsepdim",
+      "unusual": true
     },
-    "gt": {},
-    "inline{}": {
-      "snippet": "inline{${1:math}}"
+    {
+      "name": "arrayrowsep",
+      "unusual": true
     },
-    "interdisplayskip": {},
-    "intereqnsskip": {},
-    "lAngle": {
-      "detail": "⟪",
-      "documentation": "MATHEMATICAL LEFT DOUBLE ANGLE BRACKET, z notation left chevron bracket"
+    {
+      "name": "arrayrowsepdim",
+      "unusual": true
     },
-    "lBrack": {
-      "detail": "⟦",
-      "documentation": "MATHEMATICAL LEFT WHITE SQUARE BRACKET"
+    {
+      "name": "arraystrut",
+      "unusual": true
     },
-    "lCeil": {},
-    "lFloor": {},
-    "lnull": {},
-    "longleftarrowfill": {},
-    "longleftrightarrowfill": {},
-    "longrightarrowfill": {},
-    "lt": {},
-    "lVert": {},
-    "lvert": {},
-    "makerobust{}": {
-      "snippet": "makerobust{${1:cmd}}"
+    {
+      "name": "bigg"
     },
-    "mex": {},
-    "Mid": {},
-    "Nath": {},
-    "natherrormark": {},
-    "niv": {},
-    "numbered": {},
-    "old{}": {
-      "snippet": "old{${1:csname}}"
+    {
+      "name": "binom",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:m}}{${2:n}}"
+      }
     },
-    "ot": {},
-    "otto": {},
-    "overleftrightarrow{}": {
-      "snippet": "overleftrightarrow{${1:arg}}"
+    {
+      "name": "displaybaselineskip",
+      "unusual": true
     },
-    "padded{}": {
-      "snippet": "padded{${1:arg}}"
+    {
+      "name": "displayed",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math%formula}}"
+      }
     },
-    "paritem{}": {
-      "snippet": "paritem{${1:item label}}"
+    {
+      "name": "displaylineskip",
+      "unusual": true
     },
-    "paritemwd": {},
-    "pdef{}{}": {
-      "snippet": "pdef{${1:cmd}}{${2:def}}"
+    {
+      "name": "displaylineskiplimit",
+      "unusual": true
     },
-    "punctpenalty": {},
-    "qqquad": {},
-    "rAngle": {
-      "detail": "⟫",
-      "documentation": "MATHEMATICAL RIGHT DOUBLE ANGLE BRACKET, z notation right chevron bracket"
+    {
+      "name": "factorial"
     },
-    "rBrack": {
-      "detail": "⟧",
-      "documentation": "MATHEMATICAL RIGHT WHITE SQUARE BRACKET"
+    {
+      "name": "framed",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "rCeil": {},
-    "return": {},
-    "rFloor": {},
-    "rnull": {},
-    "rVert": {},
-    "rvert": {},
-    "showverticaldimensionsofthebox{}": {
-      "snippet": "showverticaldimensionsofthebox{${1:arg}}"
+    {
+      "name": "gt"
     },
-    "sizebox": {},
-    "underleftarrow{}": {
-      "snippet": "underleftarrow{${1:arg}}"
+    {
+      "name": "inline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math}}"
+      }
     },
-    "underleftrightarrow{}": {
-      "snippet": "underleftrightarrow{${1:arg}}"
+    {
+      "name": "interdisplayskip",
+      "unusual": true
     },
-    "underrightarrow{}": {
-      "snippet": "underrightarrow{${1:arg}}"
+    {
+      "name": "intereqnsskip",
+      "unusual": true
     },
-    "uo{}": {
-      "snippet": "uo{${1:arg}}"
+    {
+      "name": "lAngle",
+      "detail": "⟪ (\"oz\" command)",
+      "doc": "Mathematical left double angle bracket, left chevron bracket"
     },
-    "vin": {},
-    "wall": {},
-    "widebar{}": {
-      "snippet": "widebar{${1:arg}}"
+    {
+      "name": "lBrack",
+      "detail": "⟦ (\"stmaryrd wrisym kpfonts fourier\" command)",
+      "doc": "\\lbrack (mathbbol), \\lbag (oz -stmaryrd), mathematical left white square bracket"
     },
-    "ifgeometry": {},
-    "geometrytrue": {},
-    "geometryfalse": {},
-    "iftensors": {},
-    "tensorstrue": {},
-    "tensorsfalse": {},
-    "ifleqno": {},
-    "leqnotrue": {},
-    "leqnofalse": {},
-    "ifdebug": {},
-    "debugtrue": {},
-    "debugfalse": {},
-    "ifsilent": {},
-    "silenttrue": {},
-    "silentfalse": {}
-  },
-  "envs": {
-    "cases": {},
-    "eqnarrayabc": {},
-    "eqns": {},
-    "eqnsabc": {},
-    "subabc": {},
-    "tight": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "lCeil"
+    },
+    {
+      "name": "lFloor"
+    },
+    {
+      "name": "lnull"
+    },
+    {
+      "name": "longleftarrowfill",
+      "unusual": true
+    },
+    {
+      "name": "longleftrightarrowfill",
+      "unusual": true
+    },
+    {
+      "name": "longrightarrowfill",
+      "unusual": true
+    },
+    {
+      "name": "lt"
+    },
+    {
+      "name": "lVert"
+    },
+    {
+      "name": "lvert"
+    },
+    {
+      "name": "makerobust",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "mex",
+      "unusual": true
+    },
+    {
+      "name": "Mid"
+    },
+    {
+      "name": "Nath",
+      "unusual": true
+    },
+    {
+      "name": "natherrormark"
+    },
+    {
+      "name": "niv"
+    },
+    {
+      "name": "numbered"
+    },
+    {
+      "name": "old",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "ot"
+    },
+    {
+      "name": "otto"
+    },
+    {
+      "name": "overleftrightarrow",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": "x⃡ (\"amsmath\" command)",
+      "doc": "Combining left right arrow above"
+    },
+    {
+      "name": "padded",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "paritem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:item label}}"
+      }
+    },
+    {
+      "name": "paritemwd",
+      "unusual": true
+    },
+    {
+      "name": "pdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
+    },
+    {
+      "name": "punctpenalty",
+      "unusual": true
+    },
+    {
+      "name": "qqquad"
+    },
+    {
+      "name": "rAngle",
+      "detail": "⟫ (\"oz\" command)",
+      "doc": "Mathematical right double angle bracket, right chevron bracket"
+    },
+    {
+      "name": "rBrack",
+      "detail": "⟧ (\"stmaryrd wrisym kpfonts fourier\" command)",
+      "doc": "\\rbrack (mathbbol), \\rbag (oz -stmaryrd), mathematical right white square bracket"
+    },
+    {
+      "name": "rCeil"
+    },
+    {
+      "name": "return"
+    },
+    {
+      "name": "rFloor"
+    },
+    {
+      "name": "rnull"
+    },
+    {
+      "name": "rVert"
+    },
+    {
+      "name": "rvert"
+    },
+    {
+      "name": "showverticaldimensionsofthebox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "sizebox",
+      "unusual": true
+    },
+    {
+      "name": "underleftarrow",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": "x⃮ (\"amsmath\" command)",
+      "doc": "Combining left arrow below"
+    },
+    {
+      "name": "underleftrightarrow",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "underrightarrow",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": "x⃯ (\"amsmath\" command)",
+      "doc": "Combining right arrow below"
+    },
+    {
+      "name": "uo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "vin"
+    },
+    {
+      "name": "wall"
+    },
+    {
+      "name": "widebar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "cases"
+    },
+    {
+      "name": "eqnarrayabc"
+    },
+    {
+      "name": "eqns"
+    },
+    {
+      "name": "eqnsabc"
+    },
+    {
+      "name": "subabc"
+    },
+    {
+      "name": "tight"
+    }
+  ],
+  "keys": {
+    "\\nathstyle": [
       "geometry",
       "geometry=${1|on,off|}",
       "tensors",
@@ -151,5 +333,6 @@
       "debug",
       "debug=${1|on,off|}"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,28 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "bee": {},
-    "bee[]": {
-      "snippet": "bee[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "beehookbackground": {},
-    "beehookbelly": {},
-    "beehookbody": {},
-    "beehookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "bee"
+    },
+    {
+      "name": "bee",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\bee#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "beehookbackground",
+      "unusual": true
+    },
+    {
+      "name": "beehookbelly",
+      "unusual": true
+    },
+    {
+      "name": "beehookbody",
+      "unusual": true
+    },
+    {
+      "name": "beehookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\bee#c": [
       "body=",
       "antennas=",
       "eye=",
@@ -148,5 +183,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

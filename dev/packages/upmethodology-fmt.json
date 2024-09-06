@@ -1,571 +1,1248 @@
 {
-  "includes": {
-    "upmethodology-p-common": [],
-    "graphicx": [],
-    "subcaption": [],
-    "tabularx": [],
-    "multicol": [],
-    "colortbl": [],
-    "picinpar": [],
-    "amsmath": [],
-    "amsthm": [],
-    "thmtools": [],
-    "pifont": [],
-    "setspace": [],
-    "varioref": [],
-    "txfonts": [],
-    "relsize": [],
-    "xkeyval": [],
-    "hyphenat": [],
-    "bbm": [],
-    "environ": []
-  },
-  "macros": {
-    "textsup{}": {
-      "snippet": "textsup{${1:text}}"
+  "deps": [
+    {
+      "name": "upmethodology-p-common"
     },
-    "textsub{}": {
-      "snippet": "textsub{${1:text}}"
+    {
+      "name": "graphicx"
     },
-    "Emph{}": {
-      "snippet": "Emph{${1:text}}"
+    {
+      "name": "subcaption"
     },
-    "trademark": {},
-    "regmark": {},
-    "smalltrade": {},
-    "smallreg": {},
-    "smallcopy": {},
-    "ust": {},
-    "und": {},
-    "urd": {},
-    "uth": {},
-    "R": {
-      "detail": "𝑅",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL R"
+    {
+      "name": "tabularx"
     },
-    "N": {
-      "detail": "𝑁",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL N"
+    {
+      "name": "multicol"
     },
-    "Z": {
-      "detail": "𝑍",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL Z"
+    {
+      "name": "colortbl"
     },
-    "C": {
-      "detail": "𝐶",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL C"
+    {
+      "name": "picinpar"
     },
-    "Q": {
-      "detail": "𝑄",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL Q"
+    {
+      "name": "amsmath"
     },
-    "powerset": {},
-    "sgn": {},
-    "mfigure{}{}{}{}": {
-      "snippet": "mfigure{${1:options}}{${2:imagefile}}{${3:caption}}{${4:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "amsthm"
     },
-    "mfigure[]{}{}{}{}": {
-      "snippet": "mfigure[${5:position}]{${1:options}}{${2:imagefile}}{${3:caption}}{${4:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "thmtools"
     },
-    "mfigure*{}{}{}{}": {
-      "snippet": "mfigure*{${1:options}}{${2:imagefile}}{${3:caption}}{${4:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pifont"
     },
-    "mfigure*[]{}{}{}{}": {
-      "snippet": "mfigure*[${5:position}]{${1:options}}{${2:imagefile}}{${3:caption}}{${4:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "setspace"
     },
-    "figref{}": {
-      "snippet": "figref{${1:label}}"
+    {
+      "name": "varioref"
     },
-    "figpageref{}": {
-      "snippet": "figpageref{${1:label}}"
+    {
+      "name": "txfonts"
     },
-    "msubfigure{}{}{}": {
-      "snippet": "msubfigure{${1:options}}{${2:imagefile}}{${3:caption}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "relsize"
     },
-    "DeclareGraphicsExtensionsWtex{}": {
-      "snippet": "DeclareGraphicsExtensionsWtex{${1:extensions}}"
+    {
+      "name": "xkeyval"
     },
-    "includegraphicswtex{}": {
-      "snippet": "includegraphicswtex{${1:imagefile}}"
+    {
+      "name": "hyphenat"
     },
-    "includegraphicswtex[]{}": {
-      "snippet": "includegraphicswtex[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "bbm"
     },
-    "includefigurewtex{}": {
-      "snippet": "includefigurewtex{${1:imagefile}}"
-    },
-    "includefigurewtex[]{}": {
-      "snippet": "includefigurewtex[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "figmath{}{}": {
-      "snippet": "figmath{${1:id}}{${2:expr}}"
-    },
-    "figtext{}{}": {
-      "snippet": "figtext{${1:id}}{${2:expr}}"
-    },
-    "mfigurewtex{}{}{}{}": {
-      "snippet": "mfigurewtex{${1:options}}{${2:imagefile}}{${3:caption}}{${4:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "mfigurewtex[]{}{}{}{}": {
-      "snippet": "mfigurewtex[${5:position}]{${1:options}}{${2:imagefile}}{${3:caption}}{${4:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "mfigurewtex*{}{}{}{}": {
-      "snippet": "mfigurewtex*{${1:options}}{${2:imagefile}}{${3:caption}}{${4:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "mfigurewtex*[]{}{}{}{}": {
-      "snippet": "mfigurewtex*[${5:position}]{${1:options}}{${2:imagefile}}{${3:caption}}{${4:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "tabularheaderstyle{}": {
-      "snippet": "tabularheaderstyle{${1:text}}"
-    },
-    "tabulartitlespec{}": {
-      "snippet": "tabulartitlespec{${1:colspec}}"
-    },
-    "tabulartitle{}": {
-      "snippet": "tabulartitle{${1:title}}"
-    },
-    "tabulartitleinside{}": {
-      "snippet": "tabulartitleinside{${1:title}}"
-    },
-    "tabularrowheader{}": {
-      "snippet": "tabularrowheader{${1:title}}"
-    },
-    "captionastitle": {},
-    "tablenote{}": {
-      "snippet": "tablenote{${1:text}}"
-    },
-    "tabref{}": {
-      "snippet": "tabref{${1:label}}"
-    },
-    "tabpageref{}": {
-      "snippet": "tabpageref{${1:label}}"
-    },
-    "parttoc{}": {
-      "snippet": "parttoc{${1:title}}"
-    },
-    "parttoc[]{}": {
-      "snippet": "parttoc[${2:short title}]{${1:title}}"
-    },
-    "parttoc*{}": {
-      "snippet": "parttoc*{${1:title}}"
-    },
-    "parttoc*[]{}": {
-      "snippet": "parttoc*[${2:short title}]{${1:title}}"
-    },
-    "chaptertoc{}": {
-      "snippet": "chaptertoc{${1:title}}"
-    },
-    "chaptertoc[]{}": {
-      "snippet": "chaptertoc[${2:short title}]{${1:title}}"
-    },
-    "chaptertoc*{}": {
-      "snippet": "chaptertoc*{${1:title}}"
-    },
-    "chaptertoc*[]{}": {
-      "snippet": "chaptertoc*[${2:short title}]{${1:title}}"
-    },
-    "sectiontoc{}": {
-      "snippet": "sectiontoc{${1:title}}"
-    },
-    "sectiontoc[]{}": {
-      "snippet": "sectiontoc[${2:short title}]{${1:title}}"
-    },
-    "sectiontoc*{}": {
-      "snippet": "sectiontoc*{${1:title}}"
-    },
-    "sectiontoc*[]{}": {
-      "snippet": "sectiontoc*[${2:short title}]{${1:title}}"
-    },
-    "subsectiontoc{}": {
-      "snippet": "subsectiontoc{${1:title}}"
-    },
-    "subsectiontoc[]{}": {
-      "snippet": "subsectiontoc[${2:short title}]{${1:title}}"
-    },
-    "subsectiontoc*{}": {
-      "snippet": "subsectiontoc*{${1:title}}"
-    },
-    "subsectiontoc*[]{}": {
-      "snippet": "subsectiontoc*[${2:short title}]{${1:title}}"
-    },
-    "subsubsectiontoc{}": {
-      "snippet": "subsubsectiontoc{${1:title}}"
-    },
-    "subsubsectiontoc[]{}": {
-      "snippet": "subsubsectiontoc[${2:short title}]{${1:title}}"
-    },
-    "subsubsectiontoc*{}": {
-      "snippet": "subsubsectiontoc*{${1:title}}"
-    },
-    "subsubsectiontoc*[]{}": {
-      "snippet": "subsubsectiontoc*[${2:short title}]{${1:title}}"
-    },
-    "chapterfull{}{}": {
-      "snippet": "chapterfull{${1:title}}{${2:header}}"
-    },
-    "chapterfull[]{}{}": {
-      "snippet": "chapterfull[${3:short title}]{${1:title}}{${2:header}}"
-    },
-    "chapterfull*{}{}": {
-      "snippet": "chapterfull*{${1:title}}{${2:header}}"
-    },
-    "chapterfull*[]{}{}": {
-      "snippet": "chapterfull*[${3:short title}]{${1:title}}{${2:header}}"
-    },
-    "sectionfull{}{}": {
-      "snippet": "sectionfull{${1:title}}{${2:header}}"
-    },
-    "sectionfull[]{}{}": {
-      "snippet": "sectionfull[${3:short title}]{${1:title}}{${2:header}}"
-    },
-    "sectionfull*{}{}": {
-      "snippet": "sectionfull*{${1:title}}{${2:header}}"
-    },
-    "sectionfull*[]{}{}": {
-      "snippet": "sectionfull*[${3:short title}]{${1:title}}{${2:header}}"
-    },
-    "bibsize{}": {
-      "snippet": "bibsize{${1:size cmd}}"
-    },
-    "savecounter{}": {
-      "snippet": "savecounter{${1:counter}}"
-    },
-    "restorecounter{}": {
-      "snippet": "restorecounter{${1:counter}}"
-    },
-    "saveenumcounter": {},
-    "restoreenumcounter": {},
-    "setenumcounter{}": {
-      "snippet": "setenumcounter{${1:value}}"
-    },
-    "getenumcounter": {},
-    "savefootnote{}{}": {
-      "snippet": "savefootnote{${1:text}}{${2:id}}"
-    },
-    "savefootnote*{}{}": {
-      "snippet": "savefootnote*{${1:text}}{${2:id}}"
-    },
-    "reffootnote{}": {
-      "snippet": "reffootnote{${1:id}}"
-    },
-    "makedate{}{}{}": {
-      "snippet": "makedate{${1:day}}{${2:month}}{${3:year}}"
-    },
-    "extractyear{}": {
-      "snippet": "extractyear{${1:date}}"
-    },
-    "extractmonth{}": {
-      "snippet": "extractmonth{${1:date}}"
-    },
-    "extractday{}": {
-      "snippet": "extractday{${1:date}}"
-    },
-    "makenamespacing{}": {
-      "snippet": "makenamespacing{${1:text}}"
-    },
-    "upmmakename{}{}{}": {
-      "snippet": "upmmakename{${1:first}}{${2:last}}{${3:separator}}"
-    },
-    "upmmakename[]{}{}{}": {
-      "snippet": "upmmakename[${4:von}]{${1:first}}{${2:last}}{${3:separator}}"
-    },
-    "upmmakenamestar{}{}{}": {
-      "snippet": "upmmakenamestar{${1:first}}{${2:last}}{${3:separator}}"
-    },
-    "upmmakenamestar[]{}{}{}": {
-      "snippet": "upmmakenamestar[${4:von}]{${1:first}}{${2:last}}{${3:separator}}"
-    },
-    "makename{}{}": {
-      "snippet": "makename{${1:first}}{${2:last}}"
-    },
-    "makename[]{}{}": {
-      "snippet": "makename[${3:von}]{${1:first}}{${2:last}}"
-    },
-    "makelastname{}": {
-      "snippet": "makelastname{${1:last name}}"
-    },
-    "makelastname[]{}": {
-      "snippet": "makelastname[${2:von}]{${1:last name}}"
-    },
-    "makefirstname{}": {
-      "snippet": "makefirstname{${1:first name}}"
-    },
-    "prname{}{}": {
-      "snippet": "prname{${1:first}}{${2:last}}"
-    },
-    "prname[]{}{}": {
-      "snippet": "prname[${3:von}]{${1:first}}{${2:last}}"
-    },
-    "prname*{}{}": {
-      "snippet": "prname*{${1:first}}{${2:last}}"
-    },
-    "prname*[]{}{}": {
-      "snippet": "prname*[${3:von}]{${1:first}}{${2:last}}"
-    },
-    "drname{}{}": {
-      "snippet": "drname{${1:first}}{${2:last}}"
-    },
-    "drname[]{}{}": {
-      "snippet": "drname[${3:von}]{${1:first}}{${2:last}}"
-    },
-    "drname*{}{}": {
-      "snippet": "drname*{${1:first}}{${2:last}}"
-    },
-    "drname*[]{}{}": {
-      "snippet": "drname*[${3:von}]{${1:first}}{${2:last}}"
-    },
-    "phdname{}{}": {
-      "snippet": "phdname{${1:first}}{${2:last}}"
-    },
-    "phdname[]{}{}": {
-      "snippet": "phdname[${3:von}]{${1:first}}{${2:last}}"
-    },
-    "phdname*{}{}": {
-      "snippet": "phdname*{${1:first}}{${2:last}}"
-    },
-    "phdname*[]{}{}": {
-      "snippet": "phdname*[${3:von}]{${1:first}}{${2:last}}"
-    },
-    "scdname{}{}": {
-      "snippet": "scdname{${1:first}}{${2:last}}"
-    },
-    "scdname[]{}{}": {
-      "snippet": "scdname[${3:von}]{${1:first}}{${2:last}}"
-    },
-    "scdname*{}{}": {
-      "snippet": "scdname*{${1:first}}{${2:last}}"
-    },
-    "scdname*[]{}{}": {
-      "snippet": "scdname*[${3:von}]{${1:first}}{${2:last}}"
-    },
-    "mdname{}{}": {
-      "snippet": "mdname{${1:first}}{${2:last}}"
-    },
-    "mdname[]{}{}": {
-      "snippet": "mdname[${3:von}]{${1:first}}{${2:last}}"
-    },
-    "mdname*{}{}": {
-      "snippet": "mdname*{${1:first}}{${2:last}}"
-    },
-    "mdname*[]{}{}": {
-      "snippet": "mdname*[${3:von}]{${1:first}}{${2:last}}"
-    },
-    "pengname{}{}": {
-      "snippet": "pengname{${1:first}}{${2:last}}"
-    },
-    "pengname[]{}{}": {
-      "snippet": "pengname[${3:von}]{${1:first}}{${2:last}}"
-    },
-    "pengname*{}{}": {
-      "snippet": "pengname*{${1:first}}{${2:last}}"
-    },
-    "pengname*[]{}{}": {
-      "snippet": "pengname*[${3:von}]{${1:first}}{${2:last}}"
-    },
-    "iengname{}{}": {
-      "snippet": "iengname{${1:first}}{${2:last}}"
-    },
-    "iengname[]{}{}": {
-      "snippet": "iengname[${3:von}]{${1:first}}{${2:last}}"
-    },
-    "iengname*{}{}": {
-      "snippet": "iengname*{${1:first}}{${2:last}}"
-    },
-    "iengname*[]{}{}": {
-      "snippet": "iengname*[${3:von}]{${1:first}}{${2:last}}"
-    },
-    "inlineenumerationlabel{}": {
-      "snippet": "inlineenumerationlabel{${1:text}}"
-    },
-    "enumdescriptionlabel{}": {
-      "snippet": "enumdescriptionlabel{${1:text}}"
-    },
-    "enumdescriptioncounterseparator": {},
-    "enumdescriptionlabelseparator": {},
-    "url{}": {
-      "snippet": "url{${1:URL}}"
-    },
-    "href{}{}": {
-      "snippet": "href{${1:URL}}{${2:text}}"
-    },
-    "textdown{}": {
-      "snippet": "textdown{${1:text}}"
-    },
-    "definitionname": {},
-    "listdefinitionname": {},
-    "declareupmtheorem{}{}{}": {
-      "snippet": "declareupmtheorem{${1:envname}}{${2:label}}{${3:list title}}"
-    },
-    "declareupmtheorem[]{}{}{}": {
-      "snippet": "declareupmtheorem[${4:theoremstyle}]{${1:envname}}{${2:label}}{${3:list title}}"
-    },
-    "upmtheoremopt{}": {
-      "snippet": "upmtheoremopt{${1:arg}}"
-    },
-    "overridedescriptionenvironment": {},
-    "restoredescriptionenvironment": {}
-  },
-  "envs": {
-    "graphicspathcontext{}": {
-      "name": "graphicspathcontext",
-      "snippet": "{${1:path}}"
-    },
-    "mfigures{}{}": {
-      "name": "mfigures",
-      "snippet": "{${1:caption}}{${2:label}}"
-    },
-    "mfigures[]{}{}": {
-      "name": "mfigures",
-      "snippet": "[${3:position}]{${1:caption}}{${2:label}}"
-    },
-    "mfigures*{}{}": {
-      "name": "mfigures*",
-      "snippet": "{${1:caption}}{${2:label}}"
-    },
-    "mfigures*[]{}{}": {
-      "name": "mfigures*",
-      "snippet": "[${3:position}]{${1:caption}}{${2:label}}"
-    },
-    "mtabular{}{}": {
-      "name": "mtabular",
-      "snippet": "{${1:N}}{${2:cols}}"
-    },
-    "mtabular[]{}{}": {
-      "name": "mtabular",
-      "snippet": "[${3:width}]{${1:N}}{${2:cols}}"
-    },
-    "mtable{}{}{}{}{}": {
-      "name": "mtable",
-      "snippet": "{${1:width}}{${2:N}}{${3:cols}}{${4:caption}}{${5:label}}"
-    },
-    "mtable[]{}{}{}{}{}": {
-      "name": "mtable",
-      "snippet": "[${6:options}]{${1:width}}{${2:N}}{${3:cols}}{${4:caption}}{${5:label}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "umlinpar{}": {
-      "name": "umlinpar",
-      "snippet": "{${1:imagefile}}"
-    },
-    "umlinpar[]{}": {
-      "name": "umlinpar",
-      "snippet": "[${2:width}]{${1:imagefile}}"
-    },
-    "inlineenumeration": {},
-    "description[]": {
-      "name": "description",
-      "snippet": "[${1:separator}]"
-    },
-    "enumdescriptionx": {},
-    "enumdescriptionx[]": {
-      "name": "enumdescriptionx",
-      "snippet": "[${1:type}]"
-    },
-    "enumdescription{}{}": {
-      "name": "enumdescription",
-      "snippet": "{${1:counter prefix}}{${2:counter postfix}}"
-    },
-    "enumdescription[]{}{}": {
-      "name": "enumdescription",
-      "snippet": "[${3:type}]{${1:counter prefix}}{${2:counter postfix}}"
-    },
-    "enumerate[]": {
-      "name": "enumerate",
-      "snippet": "[${1:labeltype}]"
-    },
-    "upmfontsize{}": {
-      "name": "upmfontsize",
-      "snippet": "{${1:size cmd}}"
-    },
-    "framedminipage{}": {
-      "name": "framedminipage",
-      "snippet": "{${1:width}}"
-    },
-    "framedcolorminipage{}{}{}": {
-      "name": "framedcolorminipage",
-      "snippet": "{${1:width}}{${2:color}}{${3:color}}"
-    },
-    "upmcaution": {},
-    "upmcaution[]": {
-      "name": "upmcaution",
-      "snippet": "[${1:width}]"
-    },
-    "upminfo": {},
-    "upminfo[]": {
-      "name": "upminfo",
-      "snippet": "[${1:width}]"
-    },
-    "upmquestion": {},
-    "upmquestion[]": {
-      "name": "upmquestion",
-      "snippet": "[${1:width}]"
-    },
-    "definition": {},
-    "definition[]": {
-      "name": "definition",
-      "snippet": "[${1:header}]"
-    },
-    "emphbox": {},
-    "emphbox[]": {
-      "name": "emphbox",
-      "snippet": "[${1:width}]"
-    },
-    "titleemphbox{}": {
-      "name": "titleemphbox",
-      "snippet": "{${1:title}}"
-    },
-    "titleemphbox[]{}": {
-      "name": "titleemphbox",
-      "snippet": "[${2:width}]{${1:title}}"
-    },
-    "titleemphbox2{}": {
-      "name": "titleemphbox2",
-      "snippet": "{${1:title}}"
-    },
-    "titleemphbox2[]{}": {
-      "name": "titleemphbox2",
-      "snippet": "[${2:width}]{${1:title}}"
-    },
-    "titleemphbox3{}": {
-      "name": "titleemphbox3",
-      "snippet": "{${1:title}}"
-    },
-    "titleemphbox3[]{}": {
-      "name": "titleemphbox3",
-      "snippet": "[${2:width}]{${1:title}}"
+    {
+      "name": "environ"
     }
-  },
-  "options": [
-    "french",
-    "francais",
-    "english",
-    "standardlists"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "textsup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "textsub",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "Emph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "trademark"
+    },
+    {
+      "name": "regmark"
+    },
+    {
+      "name": "smalltrade"
+    },
+    {
+      "name": "smallreg"
+    },
+    {
+      "name": "smallcopy"
+    },
+    {
+      "name": "ust"
+    },
+    {
+      "name": "und"
+    },
+    {
+      "name": "urd"
+    },
+    {
+      "name": "uth"
+    },
+    {
+      "name": "R"
+    },
+    {
+      "name": "N"
+    },
+    {
+      "name": "Z"
+    },
+    {
+      "name": "C"
+    },
+    {
+      "name": "Q"
+    },
+    {
+      "name": "powerset"
+    },
+    {
+      "name": "sgn"
+    },
+    {
+      "name": "mfigure",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:options%keyvals}}{${2:imagefile}}{${3:caption%text}}{${4:label}}",
+        "keys": [
+          "\\mfigure,\\mfigure*,\\msubfigure,\\mfigurewtex,\\mfigurewtex*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mfigure",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:position}]{${1:options%keyvals}}{${2:imagefile}}{${3:caption%text}}{${4:label}}",
+        "keys": [
+          "\\mfigure,\\mfigure*,\\msubfigure,\\mfigurewtex,\\mfigurewtex*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "mfigure*",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:options%keyvals}}{${2:imagefile}}{${3:caption%text}}{${4:label}}",
+        "keys": [
+          "\\mfigure,\\mfigure*,\\msubfigure,\\mfigurewtex,\\mfigurewtex*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mfigure*",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:position}]{${1:options%keyvals}}{${2:imagefile}}{${3:caption%text}}{${4:label}}",
+        "keys": [
+          "\\mfigure,\\mfigure*,\\msubfigure,\\mfigurewtex,\\mfigurewtex*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "figref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "figpageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "msubfigure",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:options%keyvals}}{${2:imagefile}}{${3:caption%text}}",
+        "keys": [
+          "\\mfigure,\\mfigure*,\\msubfigure,\\mfigurewtex,\\mfigurewtex*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DeclareGraphicsExtensionsWtex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:extensions}}"
+      }
+    },
+    {
+      "name": "includegraphicswtex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "includegraphicswtex",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\includegraphicswtex,\\includefigurewtex"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "includefigurewtex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "includefigurewtex",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\includegraphicswtex,\\includefigurewtex"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "figmath",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id}}{${2:expr%formula}}"
+      }
+    },
+    {
+      "name": "figtext",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id}}{${2:expr}}"
+      }
+    },
+    {
+      "name": "mfigurewtex",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:options%keyvals}}{${2:imagefile}}{${3:caption%text}}{${4:label}}",
+        "keys": [
+          "\\mfigure,\\mfigure*,\\msubfigure,\\mfigurewtex,\\mfigurewtex*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mfigurewtex",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:position}]{${1:options%keyvals}}{${2:imagefile}}{${3:caption%text}}{${4:label}}",
+        "keys": [
+          "\\mfigure,\\mfigure*,\\msubfigure,\\mfigurewtex,\\mfigurewtex*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "mfigurewtex*",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:options%keyvals}}{${2:imagefile}}{${3:caption%text}}{${4:label}}",
+        "keys": [
+          "\\mfigure,\\mfigure*,\\msubfigure,\\mfigurewtex,\\mfigurewtex*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mfigurewtex*",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:position}]{${1:options%keyvals}}{${2:imagefile}}{${3:caption%text}}{${4:label}}",
+        "keys": [
+          "\\mfigure,\\mfigure*,\\msubfigure,\\mfigurewtex,\\mfigurewtex*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "tabularheaderstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tabulartitlespec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:colspec}}"
+      }
+    },
+    {
+      "name": "tabulartitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "tabulartitleinside",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "tabularrowheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "captionastitle"
+    },
+    {
+      "name": "tablenote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tabref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "tabpageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "parttoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "parttoc",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "parttoc*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "parttoc*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "chaptertoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "chaptertoc",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "chaptertoc*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "chaptertoc*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "sectiontoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "sectiontoc",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "sectiontoc*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "sectiontoc*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "subsectiontoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "subsectiontoc",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "subsectiontoc*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "subsectiontoc*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "subsubsectiontoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "subsubsectiontoc",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "subsubsectiontoc*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "subsubsectiontoc*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "chapterfull",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title}}{${2:header%text}}"
+      }
+    },
+    {
+      "name": "chapterfull",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:short title}]{${1:title}}{${2:header%text}}"
+      }
+    },
+    {
+      "name": "chapterfull*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title}}{${2:header%text}}"
+      }
+    },
+    {
+      "name": "chapterfull*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:short title}]{${1:title}}{${2:header%text}}"
+      }
+    },
+    {
+      "name": "sectionfull",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title}}{${2:header%text}}"
+      }
+    },
+    {
+      "name": "sectionfull",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:short title}]{${1:title}}{${2:header%text}}"
+      }
+    },
+    {
+      "name": "sectionfull*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title}}{${2:header%text}}"
+      }
+    },
+    {
+      "name": "sectionfull*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:short title}]{${1:title}}{${2:header%text}}"
+      }
+    },
+    {
+      "name": "bibsize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size cmd}}"
+      }
+    },
+    {
+      "name": "savecounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "restorecounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "saveenumcounter"
+    },
+    {
+      "name": "restoreenumcounter"
+    },
+    {
+      "name": "setenumcounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "getenumcounter"
+    },
+    {
+      "name": "savefootnote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:id}}"
+      }
+    },
+    {
+      "name": "savefootnote*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:id}}"
+      }
+    },
+    {
+      "name": "reffootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "makedate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:day}}{${2:month}}{${3:year}}"
+      }
+    },
+    {
+      "name": "extractyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "extractmonth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "extractday",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "makenamespacing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "upmmakename",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:first}}{${2:last}}{${3:separator}}"
+      }
+    },
+    {
+      "name": "upmmakename",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:von}]{${1:first}}{${2:last}}{${3:separator}}"
+      }
+    },
+    {
+      "name": "upmmakenamestar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:first}}{${2:last}}{${3:separator}}"
+      }
+    },
+    {
+      "name": "upmmakenamestar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:von}]{${1:first}}{${2:last}}{${3:separator}}"
+      }
+    },
+    {
+      "name": "makename",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "makename",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:von}]{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "makelastname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:last name}}"
+      }
+    },
+    {
+      "name": "makelastname",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:von}]{${1:last name}}"
+      }
+    },
+    {
+      "name": "makefirstname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:first name}}"
+      }
+    },
+    {
+      "name": "prname",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "prname",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:von}]{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "prname*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "prname*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:von}]{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "drname",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "drname",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:von}]{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "drname*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "drname*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:von}]{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "phdname",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "phdname",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:von}]{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "phdname*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "phdname*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:von}]{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "scdname",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "scdname",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:von}]{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "scdname*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "scdname*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:von}]{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "mdname",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "mdname",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:von}]{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "mdname*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "mdname*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:von}]{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "pengname",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "pengname",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:von}]{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "pengname*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "pengname*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:von}]{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "iengname",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "iengname",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:von}]{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "iengname*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "iengname*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:von}]{${1:first}}{${2:last}}"
+      }
+    },
+    {
+      "name": "inlineenumerationlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "enumdescriptionlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "enumdescriptioncounterseparator",
+      "unusual": true
+    },
+    {
+      "name": "enumdescriptionlabelseparator",
+      "unusual": true
+    },
+    {
+      "name": "url",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "href",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:URL}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "textdown",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "definitionname",
+      "unusual": true
+    },
+    {
+      "name": "listdefinitionname",
+      "unusual": true
+    },
+    {
+      "name": "declareupmtheorem",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:envname}}{${2:label%text}}{${3:list title%text}}"
+      }
+    },
+    {
+      "name": "declareupmtheorem",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:theoremstyle}]{${1:envname}}{${2:label%text}}{${3:list title%text}}"
+      }
+    },
+    {
+      "name": "upmtheoremopt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overridedescriptionenvironment",
+      "unusual": true
+    },
+    {
+      "name": "restoredescriptionenvironment",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "graphicspathcontext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path%definition}}"
+      }
+    },
+    {
+      "name": "mfigures",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:caption%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "mfigures",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:position}]{${1:caption%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "mfigures*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:caption%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "mfigures*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:position}]{${1:caption%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "mtabular",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:N}}{${2:cols}}"
+      }
+    },
+    {
+      "name": "mtabular",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:width}]{${1:N}}{${2:cols}}"
+      }
+    },
+    {
+      "name": "mtable",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:width}}{${2:N}}{${3:cols}}{${4:caption%text}}{${5:label}}"
+      }
+    },
+    {
+      "name": "mtable",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:options%keyvals}]{${1:width}}{${2:N}}{${3:cols}}{${4:caption%text}}{${5:label}}",
+        "keys": [
+          "\\begin{mtable}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "umlinpar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "umlinpar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "inlineenumeration"
+    },
+    {
+      "name": "description",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:separator}]"
+      }
+    },
+    {
+      "name": "enumdescriptionx"
+    },
+    {
+      "name": "enumdescriptionx",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:type}]"
+      }
+    },
+    {
+      "name": "enumdescription",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:counter prefix}}{${2:counter postfix}}"
+      }
+    },
+    {
+      "name": "enumdescription",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:type}]{${1:counter prefix}}{${2:counter postfix}}"
+      }
+    },
+    {
+      "name": "enumerate",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:labeltype}]"
+      }
+    },
+    {
+      "name": "upmfontsize",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size cmd}}"
+      }
+    },
+    {
+      "name": "framedminipage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "framedcolorminipage",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:width}}{${2:border color}}{${3:background color}}"
+      }
+    },
+    {
+      "name": "upmcaution"
+    },
+    {
+      "name": "upmcaution",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
+    },
+    {
+      "name": "upminfo"
+    },
+    {
+      "name": "upminfo",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
+    },
+    {
+      "name": "upmquestion"
+    },
+    {
+      "name": "upmquestion",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
+    },
+    {
+      "name": "definition"
+    },
+    {
+      "name": "definition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
+    },
+    {
+      "name": "emphbox"
+    },
+    {
+      "name": "emphbox",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
+    },
+    {
+      "name": "titleemphbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "titleemphbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "titleemphbox2",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "titleemphbox2",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "titleemphbox3",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "titleemphbox3",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:title%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/upmethodology-fmt#c": [
+      "french",
+      "francais",
+      "english",
+      "standardlists"
+    ],
+    "\\theoremstyle#c": [
+      "upmdefinition"
+    ],
+    "\\mfigure,\\mfigure*,\\msubfigure,\\mfigurewtex,\\mfigurewtex*": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -596,11 +1273,11 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ],
-    [
+    "\\includegraphicswtex,\\includefigurewtex": [
       "width=",
       "height="
     ],
-    [
+    "\\begin{mtable}": [
       "size=${1:size cmd}",
       "h",
       "t",
@@ -642,5 +1319,8 @@
       "htbp!",
       "htbpH!"
     ]
+  },
+  "args": [
+    "\\usepackage/upmethodology-fmt#c"
   ]
 }

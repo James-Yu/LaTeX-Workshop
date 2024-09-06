@@ -1,42 +1,84 @@
 {
-  "includes": {
-    "ltxutil": []
-  },
-  "macros": {
-    "addstuff{}{}": {
-      "snippet": "addstuff{${1:penalty}}{${2:glue}}"
-    },
-    "footsofar": {},
-    "linefoot{}": {
-      "snippet": "linefoot{${1:label}}"
-    },
-    "lineloop{}": {
-      "snippet": "lineloop{${1:number}}"
-    },
-    "onecolumngrid": {},
-    "pagesofar": {},
-    "removephantombox": {},
-    "removestuff": {},
-    "replacestuff{}{}": {
-      "snippet": "replacestuff{${1:penalty}}{${2:glue}}"
-    },
-    "restorecolumngrid": {},
-    "thelinecount": {},
-    "thepagegrid": {},
-    "twocolumngrid": {},
-    "endfirstfoot": {},
-    "endlastfoot": {},
-    "endfirsthead": {},
-    "endfoot": {},
-    "endhead": {}
-  },
-  "envs": {
-    "turnpage": {},
-    "longtable*{}": {
-      "name": "longtable*",
-      "snippet": "{${1:preamble}}"
+  "deps": [
+    {
+      "name": "ltxutil"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "addstuff",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:penalty}}{${2:glue}}"
+      }
+    },
+    {
+      "name": "footsofar",
+      "unusual": true
+    },
+    {
+      "name": "linefoot",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "lineloop",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "onecolumngrid",
+      "unusual": true
+    },
+    {
+      "name": "pagesofar",
+      "unusual": true
+    },
+    {
+      "name": "removephantombox",
+      "unusual": true
+    },
+    {
+      "name": "removestuff",
+      "unusual": true
+    },
+    {
+      "name": "replacestuff",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:penalty}}{${2:glue}}"
+      }
+    },
+    {
+      "name": "restorecolumngrid",
+      "unusual": true
+    },
+    {
+      "name": "thelinecount",
+      "unusual": true
+    },
+    {
+      "name": "thepagegrid",
+      "unusual": true
+    },
+    {
+      "name": "twocolumngrid",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "turnpage"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

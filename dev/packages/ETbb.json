@@ -1,130 +1,307 @@
 {
-  "includes": {
-    "fontenc": [],
-    "ifetex": [],
-    "etoolbox": [],
-    "xstring": [],
-    "ifthen": [],
-    "scalefnt": [],
-    "mweights": [],
-    "fontaxes": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "swshape": {},
-    "lfstyle": {},
-    "textlf{}": {
-      "snippet": "textlf{${1:text}}"
+  "deps": [
+    {
+      "name": "fontenc"
     },
-    "tlfstyle": {},
-    "texttlf{}": {
-      "snippet": "texttlf{${1:text}}"
+    {
+      "name": "ifetex"
     },
-    "osfstyle": {},
-    "textosf{}": {
-      "snippet": "textosf{${1:text}}"
+    {
+      "name": "etoolbox"
     },
-    "tosfstyle": {},
-    "texttosf{}": {
-      "snippet": "texttosf{${1:text}}"
+    {
+      "name": "xstring"
     },
-    "sufigures": {},
-    "supfigures": {},
-    "nustyle": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+    {
+      "name": "ifthen"
     },
-    "textsup{}": {
-      "snippet": "textsup{${1:text}}"
+    {
+      "name": "scalefnt"
     },
-    "textsuperior{}": {
-      "snippet": "textsuperior{${1:text}}"
+    {
+      "name": "mweights"
     },
-    "infigures": {},
-    "inffigures": {},
-    "textfrac{}{}": {
-      "snippet": "textfrac{${1:numerator}}{${2:denominator}}"
+    {
+      "name": "fontaxes"
     },
-    "textfrac[]{}{}": {
-      "snippet": "textfrac[${3:whole part}]{${1:numerator}}{${2:denominator}}"
-    },
-    "textin{}": {
-      "snippet": "textin{${1:text}}"
-    },
-    "textinf{}": {
-      "snippet": "textinf{${1:text}}"
-    },
-    "textinferior{}": {
-      "snippet": "textinferior{${1:text}}"
-    },
-    "defigures": {},
-    "destyle": {},
-    "denomfigures": {},
-    "textde{}": {
-      "snippet": "textde{${1:text}}"
-    },
-    "textdenom{}": {
-      "snippet": "textdenom{${1:text}}"
-    },
-    "textdenominator{}": {
-      "snippet": "textdenominator{${1:text}}"
-    },
-    "Qswash": {},
-    "useosf": {},
-    "useproportional": {},
-    "Qnoswash": {
-      "option": "swashQ"
-    },
-    "DH": {},
-    "NG": {},
-    "dj": {},
-    "ng": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textquotedbl": {},
-    "DJ": {},
-    "th": {},
-    "TH": {},
-    "dh": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "guillemetleft": {},
-    "guillemetright": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "scaled=${1:factor}",
-    "foresolidus=",
-    "aftsolidus=",
-    "raisefrac=",
-    "altP",
-    "lining",
-    "lf",
-    "oldstyle",
-    "osf",
-    "useosf",
-    "tabular",
-    "t",
-    "proportional",
-    "p",
-    "sharpS",
-    "swashQ",
-    "mainfont",
-    "bold",
-    "regular",
-    "sups",
-    "scosf"
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "swshape"
+    },
+    {
+      "name": "lfstyle"
+    },
+    {
+      "name": "textlf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tlfstyle"
+    },
+    {
+      "name": "texttlf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "osfstyle"
+    },
+    {
+      "name": "textosf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tosfstyle"
+    },
+    {
+      "name": "texttosf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "supfigures",
+      "unusual": true
+    },
+    {
+      "name": "nustyle",
+      "unusual": true
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsuperior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "infigures"
+    },
+    {
+      "name": "inffigures",
+      "unusual": true
+    },
+    {
+      "name": "textfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "textfrac",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:whole part}]{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "textin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textinf",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textinferior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "defigures"
+    },
+    {
+      "name": "destyle",
+      "unusual": true
+    },
+    {
+      "name": "denomfigures",
+      "unusual": true
+    },
+    {
+      "name": "textde",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textdenom",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textdenominator",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Qswash"
+    },
+    {
+      "name": "useosf"
+    },
+    {
+      "name": "useproportional"
+    },
+    {
+      "name": "Qnoswash",
+      "if": "swashQ"
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ETbb#c": [
+      "scale=${1:factor}",
+      "scaled=${1:factor}",
+      "foresolidus=",
+      "aftsolidus=",
+      "raisefrac=",
+      "altP",
+      "lining",
+      "lf",
+      "oldstyle",
+      "osf",
+      "useosf",
+      "tabular",
+      "t",
+      "proportional",
+      "p",
+      "sharpS",
+      "swashQ",
+      "mainfont",
+      "bold",
+      "regular",
+      "sups",
+      "scosf"
+    ]
+  },
+  "args": [
+    "\\usepackage/ETbb#c"
+  ]
 }

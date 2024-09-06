@@ -1,24 +1,39 @@
 {
-  "includes": {
-    "xcolor": [],
-    "hyperref": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "hrefdisplayonly{}{}": {
-      "snippet": "hrefdisplayonly{${1:URL}}{${2:text}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "hycon": {},
-    "hycoff": {},
-    "ifhrefhide": {},
-    "hrefhidetrue": {},
-    "hrefhidefalse": {}
-  },
-  "envs": {},
-  "options": [
-    "linktextcolour=",
-    "backgroundcolour=",
-    "pdfborder={${1:a b c}}"
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "kvoptions"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "hrefdisplayonly",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:URL}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "hycon"
+    },
+    {
+      "name": "hycoff"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hrefhide#c": [
+      "linktextcolour=",
+      "backgroundcolour=",
+      "pdfborder={${1:a b c}}"
+    ]
+  },
+  "args": [
+    "\\usepackage/hrefhide#c"
+  ]
 }

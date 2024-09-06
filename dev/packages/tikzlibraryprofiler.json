@@ -1,50 +1,110 @@
 {
-  "includes": {},
-  "macros": {
-    "pgfprofilenew{}": {
-      "snippet": "pgfprofilenew{${1:name}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "pgfprofilenew",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "pgfprofilenewforcommand{}{}": {
-      "snippet": "pgfprofilenewforcommand{${1:macro}}{${2:args}}"
+    {
+      "name": "pgfprofilenewforcommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:macro}}{${2:args}}"
+      }
     },
-    "pgfprofilenewforcommand[]{}{}": {
-      "snippet": "pgfprofilenewforcommand[${3:profiler entry name}]{${1:macro}}{${2:args}}"
+    {
+      "name": "pgfprofilenewforcommand",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:profiler entry name}]{${1:macro}}{${2:args}}"
+      }
     },
-    "pgfprofilecs": {},
-    "pgfprofilenewforcommandpattern{}{}{}": {
-      "snippet": "pgfprofilenewforcommandpattern{${1:macro}}{${2:arg pattern}}{${3:invocation pattern}}"
+    {
+      "name": "pgfprofilecs",
+      "unusual": true
     },
-    "pgfprofilenewforcommandpattern[]{}{}{}": {
-      "snippet": "pgfprofilenewforcommandpattern[${4:profiler entry name}]{${1:macro}}{${2:arg pattern}}{${3:invocation pattern}}"
+    {
+      "name": "pgfprofilenewforcommandpattern",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:macro}}{${2:arg pattern}}{${3:invocation pattern}}"
+      }
     },
-    "pgfprofileshowinvocationsfor{}": {
-      "snippet": "pgfprofileshowinvocationsfor{${1:profiler entry name}}"
+    {
+      "name": "pgfprofilenewforcommandpattern",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:profiler entry name}]{${1:macro}}{${2:arg pattern}}{${3:invocation pattern}}"
+      }
     },
-    "pgfprofileshowinvocationsexpandedfor{}": {
-      "snippet": "pgfprofileshowinvocationsexpandedfor{${1:profiler entry name}}"
+    {
+      "name": "pgfprofileshowinvocationsfor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:profiler entry name}}"
+      }
     },
-    "pgfprofilenewforenvironment{}": {
-      "snippet": "pgfprofilenewforenvironment{${1:envname}}"
+    {
+      "name": "pgfprofileshowinvocationsexpandedfor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:profiler entry name}}"
+      }
     },
-    "pgfprofilenewforenvironment[]{}": {
-      "snippet": "pgfprofilenewforenvironment[${2:profiler entry name}]{${1:envname}}"
+    {
+      "name": "pgfprofilenewforenvironment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
     },
-    "pgfprofileenv": {},
-    "pgfprofilestart{}": {
-      "snippet": "pgfprofilestart{${1:profiler entry name}}"
+    {
+      "name": "pgfprofilenewforenvironment",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:profiler entry name}]{${1:envname}}"
+      }
     },
-    "pgfprofileend{}": {
-      "snippet": "pgfprofileend{${1:profiler entry name}}"
+    {
+      "name": "pgfprofileenv",
+      "unusual": true
     },
-    "pgfprofilepostprocess": {},
-    "pgfprofilesetrel{}": {
-      "snippet": "pgfprofilesetrel{${1:profiler entry name}}"
+    {
+      "name": "pgfprofilestart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:profiler entry name}}"
+      }
     },
-    "pgfprofileifisrunning{}{}{}": {
-      "snippet": "pgfprofileifisrunning{${1:profiler entry name}}{${2:true code}}{${3:false code}}"
+    {
+      "name": "pgfprofileend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:profiler entry name}}"
+      }
+    },
+    {
+      "name": "pgfprofilepostprocess"
+    },
+    {
+      "name": "pgfprofilesetrel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:profiler entry name}}"
+      }
+    },
+    {
+      "name": "pgfprofileifisrunning",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:profiler entry name}}{${2:true code}}{${3:false code}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,47 +1,91 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "btPrintCited": {},
-    "btPrintNotCited": {},
-    "btPrintAll": {},
-    "thebtauxfile": {},
-    "btBegThbCmd": {},
-    "btCiteSect{}": {
-      "snippet": "btCiteSect{${1:key}}"
-    },
-    "btGetVal{}": {
-      "snippet": "btGetVal{${1:key}}"
-    },
-    "btRef{}{}": {
-      "snippet": "btRef{${1:key}}{${2:type}}"
-    },
-    "btretval": {}
-  },
-  "envs": {
-    "btSect{}": {
-      "name": "btSect",
-      "snippet": "{${1:bib file}}"
-    },
-    "btSect[]{}": {
-      "name": "btSect",
-      "snippet": "[${2:style}]{${1:bib file}}"
-    },
-    "btUnit": {}
-  },
-  "options": [
-    "breakcites",
-    "defaultbib",
-    "dot",
-    "normalwarnings",
-    "overridenumbers",
-    "dontoverridenumbers",
-    "printheadings",
-    "sectcntreset",
-    "slow",
-    "unitcntnoreset",
-    "verbose"
+  "deps": [
+    {
+      "name": "ifthen"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "btPrintCited"
+    },
+    {
+      "name": "btPrintNotCited"
+    },
+    {
+      "name": "btPrintAll"
+    },
+    {
+      "name": "thebtauxfile",
+      "unusual": true
+    },
+    {
+      "name": "btBegThbCmd",
+      "unusual": true
+    },
+    {
+      "name": "btCiteSect",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "btGetVal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "btRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:type}}"
+      }
+    },
+    {
+      "name": "btretval",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "btSect",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bib file}}"
+      }
+    },
+    {
+      "name": "btSect",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style}]{${1:bib file}}"
+      }
+    },
+    {
+      "name": "btUnit"
+    }
+  ],
+  "keys": {
+    "\\usepackage/bibtopic#c": [
+      "breakcites",
+      "defaultbib",
+      "dot",
+      "normalwarnings",
+      "overridenumbers",
+      "dontoverridenumbers",
+      "printheadings",
+      "sectcntreset",
+      "slow",
+      "unitcntnoreset",
+      "verbose"
+    ]
+  },
+  "args": [
+    "\\usepackage/bibtopic#c"
+  ]
 }

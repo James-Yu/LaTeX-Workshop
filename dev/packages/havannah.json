@@ -1,107 +1,197 @@
 {
-  "includes": {
-    "tikz": []
-  },
-  "macros": {
-    "HLetterCoordinates": {},
-    "HCoordinateStyle": {},
-    "HDrawHex": {},
-    "HGame{}": {
-      "snippet": "HGame{${1:moves}}"
-    },
-    "HGame[]{}": {
-      "snippet": "HGame[${2:options}]{${1:moves}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "HStoneGroup{}": {
-      "snippet": "HStoneGroup{${1:moves}}"
-    },
-    "HStoneGroup[]{}": {
-      "snippet": "HStoneGroup[${2:options}]{${1:moves}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "HMoveNumberStyle": {},
-    "HWhiteStone": {},
-    "HBlackStone": {},
-    "HTransparentStone": {},
-    "HBeforeOddMove": {},
-    "HBeforeEvenMove": {},
-    "HBeforeStone": {},
-    "HHexGroup{}": {
-      "snippet": "HHexGroup{${1:hexes}}"
-    },
-    "HHexGroup[]{}": {
-      "snippet": "HHexGroup[${2:options}]{${1:hexes}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     }
-  },
-  "envs": {
-    "HavannahBoard": {},
-    "HavannahBoard[]": {
+  ],
+  "macros": [
+    {
+      "name": "HLetterCoordinates",
+      "unusual": true
+    },
+    {
+      "name": "HCoordinateStyle",
+      "unusual": true
+    },
+    {
+      "name": "HDrawHex",
+      "unusual": true
+    },
+    {
+      "name": "HGame",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:moves}}"
+      }
+    },
+    {
+      "name": "HGame",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:moves}}",
+        "keys": [
+          "\\HGame"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "HStoneGroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:moves}}"
+      }
+    },
+    {
+      "name": "HStoneGroup",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:moves}}",
+        "keys": [
+          "\\HStoneGroup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "HMoveNumberStyle",
+      "unusual": true
+    },
+    {
+      "name": "HWhiteStone",
+      "unusual": true
+    },
+    {
+      "name": "HBlackStone",
+      "unusual": true
+    },
+    {
+      "name": "HTransparentStone",
+      "unusual": true
+    },
+    {
+      "name": "HBeforeOddMove",
+      "unusual": true
+    },
+    {
+      "name": "HBeforeEvenMove",
+      "unusual": true
+    },
+    {
+      "name": "HBeforeStone",
+      "unusual": true
+    },
+    {
+      "name": "HHexGroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hexes}}"
+      }
+    },
+    {
+      "name": "HHexGroup",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:hexes}}",
+        "keys": [
+          "\\HHexGroup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "HavannahBoard"
+    },
+    {
       "name": "HavannahBoard",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{HavannahBoard},\\begin{InnerHavannahBoard}"
+        ],
+        "keyPos": 0
+      }
     },
-    "HexBoard": {},
-    "HexBoard[]": {
+    {
+      "name": "HexBoard"
+    },
+    {
       "name": "HexBoard",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{HexBoard},\\begin{InnerHexBoard}"
+        ],
+        "keyPos": 0
+      }
     },
-    "InnerHavannahBoard": {},
-    "InnerHavannahBoard[]": {
+    {
+      "name": "InnerHavannahBoard"
+    },
+    {
       "name": "InnerHavannahBoard",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{InnerHavannahBoard},\\begin{InnerHexBoard}"
+        ],
+        "keyPos": 0
+      }
     },
-    "InnerHexBoard": {},
-    "InnerHexBoard[]": {
+    {
+      "name": "InnerHexBoard"
+    },
+    {
       "name": "InnerHexBoard",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{InnerHavannahBoard},\\begin{InnerHexBoard}"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "first move label=",
-      "first player=${1|white,black|}",
-      "numbered moves",
-      "relative stone size="
-    ],
-    [
-      "color=${1|white,black,transparent|}",
-      "label=",
-      "relative stone size="
-    ],
-    [
-      "label="
-    ],
-    [
+  ],
+  "keys": {
+    "\\begin{HavannahBoard},\\begin{InnerHavannahBoard}": [
       "board size=${1:integer}",
       "coordinate style=${1|little golem,classical|}",
       "hex height=",
       "show coordinates",
       "show hexes"
     ],
-    [
+    "\\begin{HexBoard},\\begin{InnerHexBoard}": [
       "board size=${1:integer}",
       "top left color=${1|white,black|}",
       "hex height=",
       "show coordinates",
       "show hexes"
     ],
-    [
+    "\\begin{InnerHavannahBoard},\\begin{InnerHexBoard}": [
       "prefix=",
       "x=",
       "y="
+    ],
+    "\\HGame": [
+      "first move label=",
+      "first player=${1|white,black|}",
+      "numbered moves",
+      "relative stone size="
+    ],
+    "\\HStoneGroup": [
+      "color=${1|white,black,transparent|}",
+      "label=",
+      "relative stone size="
+    ],
+    "\\HHexGroup": [
+      "label="
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,180 +1,410 @@
 {
-  "includes": {
-    "chemstr": [],
-    "hetarom": [],
-    "hetaromh": []
-  },
-  "macros": {
-    "anthracenev{}": {
-      "snippet": "anthracenev{${1:subslist}}"
+  "deps": [
+    {
+      "name": "chemstr"
     },
-    "anthracenev[]{}": {
-      "snippet": "anthracenev[${2:bondlist}]{${1:subslist}}"
+    {
+      "name": "hetarom"
     },
-    "benzeneh{}": {
-      "snippet": "benzeneh{${1:subslist}}"
-    },
-    "benzeneh[]{}": {
-      "snippet": "benzeneh[${2:bondlist}]{${1:subslist}}"
-    },
-    "benzenev{}": {
-      "snippet": "benzenev{${1:subslist}}"
-    },
-    "benzenev[]{}": {
-      "snippet": "benzenev[${2:bondlist}]{${1:subslist}}"
-    },
-    "bzdrh{}": {
-      "snippet": "bzdrh{${1:subslist}}"
-    },
-    "bzdrh[]{}": {
-      "snippet": "bzdrh[${2:bondlist}]{${1:subslist}}"
-    },
-    "bzdrv{}": {
-      "snippet": "bzdrv{${1:subslist}}"
-    },
-    "bzdrv[]{}": {
-      "snippet": "bzdrv[${2:bondlist}]{${1:subslist}}"
-    },
-    "cyclohexaneh{}": {
-      "snippet": "cyclohexaneh{${1:subslist}}"
-    },
-    "cyclohexaneh[]{}": {
-      "snippet": "cyclohexaneh[${2:bondlist}]{${1:subslist}}"
-    },
-    "cyclohexanev{}": {
-      "snippet": "cyclohexanev{${1:subslist}}"
-    },
-    "cyclohexanev[]{}": {
-      "snippet": "cyclohexanev[${2:bondlist}]{${1:subslist}}"
-    },
-    "decalineh{}": {
-      "snippet": "decalineh{${1:subslist}}"
-    },
-    "decalineh[]{}": {
-      "snippet": "decalineh[${2:bondlist}]{${1:subslist}}"
-    },
-    "decalinev{}": {
-      "snippet": "decalinev{${1:subslist}}"
-    },
-    "decalinev[]{}": {
-      "snippet": "decalinev[${2:bondlist}]{${1:subslist}}"
-    },
-    "decalinevb{}": {
-      "snippet": "decalinevb{${1:subslist}}"
-    },
-    "decalinevb[]{}": {
-      "snippet": "decalinevb[${2:bondlist}]{${1:subslist}}"
-    },
-    "decalinevt{}": {
-      "snippet": "decalinevt{${1:subslist}}"
-    },
-    "decalinevt[]{}": {
-      "snippet": "decalinevt[${2:bondlist}]{${1:subslist}}"
-    },
-    "hanthracenev{}": {
-      "snippet": "hanthracenev{${1:subslist}}"
-    },
-    "hanthracenev[]{}": {
-      "snippet": "hanthracenev[${2:bondlist}]{${1:subslist}}"
-    },
-    "hphenanthrenev{}": {
-      "snippet": "hphenanthrenev{${1:subslist}}"
-    },
-    "hphenanthrenev[]{}": {
-      "snippet": "hphenanthrenev[${2:bondlist}]{${1:subslist}}"
-    },
-    "naphdrh{}": {
-      "snippet": "naphdrh{${1:subslist}}"
-    },
-    "naphdrh[]{}": {
-      "snippet": "naphdrh[${2:bondlist}]{${1:subslist}}"
-    },
-    "naphdrv{}": {
-      "snippet": "naphdrv{${1:subslist}}"
-    },
-    "naphdrv[]{}": {
-      "snippet": "naphdrv[${2:bondlist}]{${1:subslist}}"
-    },
-    "naphdrvb{}": {
-      "snippet": "naphdrvb{${1:subslist}}"
-    },
-    "naphdrvb[]{}": {
-      "snippet": "naphdrvb[${2:bondlist}]{${1:subslist}}"
-    },
-    "naphdrvt{}": {
-      "snippet": "naphdrvt{${1:subslist}}"
-    },
-    "naphdrvt[]{}": {
-      "snippet": "naphdrvt[${2:bondlist}]{${1:subslist}}"
-    },
-    "naphthaleneh{}": {
-      "snippet": "naphthaleneh{${1:subslist}}"
-    },
-    "naphthaleneh[]{}": {
-      "snippet": "naphthaleneh[${2:bondlist}]{${1:subslist}}"
-    },
-    "naphthalenev{}": {
-      "snippet": "naphthalenev{${1:subslist}}"
-    },
-    "naphthalenev[]{}": {
-      "snippet": "naphthalenev[${2:bondlist}]{${1:subslist}}"
-    },
-    "naphthalenevb{}": {
-      "snippet": "naphthalenevb{${1:subslist}}"
-    },
-    "naphthalenevb[]{}": {
-      "snippet": "naphthalenevb[${2:bondlist}]{${1:subslist}}"
-    },
-    "naphthalenevt{}": {
-      "snippet": "naphthalenevt{${1:subslist}}"
-    },
-    "naphthalenevt[]{}": {
-      "snippet": "naphthalenevt[${2:bondlist}]{${1:subslist}}"
-    },
-    "phenanthrenev{}": {
-      "snippet": "phenanthrenev{${1:subslist}}"
-    },
-    "phenanthrenev[]{}": {
-      "snippet": "phenanthrenev[${2:bondlist}]{${1:subslist}}"
-    },
-    "steroid{}": {
-      "snippet": "steroid{${1:subslist}}"
-    },
-    "steroid[]{}": {
-      "snippet": "steroid[${2:bondlist}]{${1:subslist}}"
-    },
-    "steroidchain{}": {
-      "snippet": "steroidchain{${1:subslist}}"
-    },
-    "steroidchain[]{}": {
-      "snippet": "steroidchain[${2:bondlist}]{${1:subslist}}"
-    },
-    "tetralineh{}": {
-      "snippet": "tetralineh{${1:subslist}}"
-    },
-    "tetralineh[]{}": {
-      "snippet": "tetralineh[${2:bondlist}]{${1:subslist}}"
-    },
-    "tetralinev{}": {
-      "snippet": "tetralinev{${1:subslist}}"
-    },
-    "tetralinev[]{}": {
-      "snippet": "tetralinev[${2:bondlist}]{${1:subslist}}"
-    },
-    "tetralinevb{}": {
-      "snippet": "tetralinevb{${1:subslist}}"
-    },
-    "tetralinevb[]{}": {
-      "snippet": "tetralinevb[${2:bondlist}]{${1:subslist}}"
-    },
-    "tetralinevt{}": {
-      "snippet": "tetralinevt{${1:subslist}}"
-    },
-    "tetralinevt[]{}": {
-      "snippet": "tetralinevt[${2:bondlist}]{${1:subslist}}"
+    {
+      "name": "hetaromh"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "anthracenev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "anthracenev",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "benzeneh",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "benzeneh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "benzenev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "benzenev",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "bzdrh",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "bzdrh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "bzdrv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "bzdrv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "cyclohexaneh",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "cyclohexaneh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "cyclohexanev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "cyclohexanev",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "decalineh",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "decalineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "decalinev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "decalinev",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "decalinevb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "decalinevb",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "decalinevt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "decalinevt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "hanthracenev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "hanthracenev",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "hphenanthrenev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "hphenanthrenev",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "naphdrh",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "naphdrh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "naphdrv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "naphdrv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "naphdrvb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "naphdrvb",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "naphdrvt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "naphdrvt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "naphthaleneh",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "naphthaleneh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "naphthalenev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "naphthalenev",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "naphthalenevb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "naphthalenevb",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "naphthalenevt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "naphthalenevt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "phenanthrenev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "phenanthrenev",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "steroid",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "steroid",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "steroidchain",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "steroidchain",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "tetralineh",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "tetralineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "tetralinev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "tetralinev",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "tetralinevb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "tetralinevb",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "tetralinevt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subslist}}"
+      }
+    },
+    {
+      "name": "tetralinevt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bondlist}]{${1:subslist}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

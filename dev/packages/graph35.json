@@ -1,96 +1,208 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "pixelart0": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "pgfkeys": [],
-    "amssymb": [],
-    "amsbsy": [],
-    "sansmath": [],
-    "letterspace": [],
-    "pgfopts": [],
-    "graph35-pixelart": [],
-    "graph35-keys": []
-  },
-  "macros": {
-    "setgraphcolor{}": {
-      "snippet": "setgraphcolor{${1:color setting}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "calculator{}": {
-      "snippet": "calculator{${1:model}}"
+    {
+      "name": "pixelart0"
     },
-    "calculator[]{}": {
-      "snippet": "calculator[${2:options}]{${1:model}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     },
-    "tikzcalculator{}": {
-      "snippet": "tikzcalculator{${1:model}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "key{}": {
-      "snippet": "key{${1:key}}"
+    {
+      "name": "pgfkeys"
     },
-    "key[]{}": {
-      "snippet": "key[${2:options}]{${1:key}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "etoolbox"
     },
-    "tikzkey{}{}": {
-      "snippet": "tikzkey{${1:key}}{${2:coordinates}}"
+    {
+      "name": "amssymb"
     },
-    "tikzkey[]{}{}": {
-      "snippet": "tikzkey[${3:options}]{${1:key}}{${2:coordinates}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "amsbsy"
     },
-    "menu{}{}": {
-      "snippet": "menu{${1:icon}}{${2:shortcut}}"
+    {
+      "name": "sansmath"
     },
-    "tikzmenu{}{}{}": {
-      "snippet": "tikzmenu{${1:icon}}{${2:shortcut}}{${3:coordinates}}"
+    {
+      "name": "letterspace"
     },
-    "tikzmenu[]{}{}{}": {
-      "snippet": "tikzmenu[${4:options}]{${1:icon}}{${2:shortcut}}{${3:coordinates}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "pgfopts"
     },
-    "function{}": {
-      "snippet": "function{${1:function}}"
+    {
+      "name": "graph35-pixelart"
     },
-    "tikzfunction{}{}": {
-      "snippet": "tikzfunction{${1:function}}{${2:coordinates}}"
-    },
-    "tikzfunction[]{}{}": {
-      "snippet": "tikzfunction[${3:options}]{${1:function}}{${2:coordinates}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "battery{}": {
-      "snippet": "battery{${1:state}}"
-    },
-    "tikzbattery{}{}": {
-      "snippet": "tikzbattery{${1:state}}{${2:coordinates}}"
-    },
-    "tikzbattery[]{}{}": {
-      "snippet": "tikzbattery[${3:options}]{${1:state}}{${2:coordinates}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "boolvalue{}": {
-      "snippet": "boolvalue{${1:boolean}}"
+    {
+      "name": "graph35-keys"
     }
-  },
-  "envs": {},
-  "options": [
-    "color=${1|real,blackandwhite|}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "setgraphcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color setting%keyvals}}",
+        "keys": [
+          "\\setgraphcolor#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "calculator",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:model}}"
+      }
+    },
+    {
+      "name": "calculator",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:model}}",
+        "keys": [
+          "\\calculator"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tikzcalculator",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:model}}"
+      }
+    },
+    {
+      "name": "key",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "key",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:key%plain}}",
+        "keys": [
+          "\\key,\\tikzkey"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tikzkey",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:coordinates}}"
+      }
+    },
+    {
+      "name": "tikzkey",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:key%plain}}{${2:coordinates}}",
+        "keys": [
+          "\\key,\\tikzkey"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "menu",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:icon}}{${2:shortcut}}"
+      }
+    },
+    {
+      "name": "tikzmenu",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:icon}}{${2:shortcut}}{${3:coordinates}}"
+      }
+    },
+    {
+      "name": "tikzmenu",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:icon}}{${2:shortcut}}{${3:coordinates}}",
+        "keys": [
+          "\\tikzmenu,\\tikzfunction,\\tikzbattery"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "function",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:function}}"
+      }
+    },
+    {
+      "name": "tikzfunction",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:function}}{${2:coordinates}}"
+      }
+    },
+    {
+      "name": "tikzfunction",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:function}}{${2:coordinates}}",
+        "keys": [
+          "\\tikzmenu,\\tikzfunction,\\tikzbattery"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "battery",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:state}}"
+      }
+    },
+    {
+      "name": "tikzbattery",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:state}}{${2:coordinates}}"
+      }
+    },
+    {
+      "name": "tikzbattery",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:state}}{${2:coordinates}}",
+        "keys": [
+          "\\tikzmenu,\\tikzfunction,\\tikzbattery"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/graph35#c": [
+      "color=${1|real,blackandwhite|}"
+    ],
+    "\\setgraphcolor#c": [
+      "real",
+      "blackandwhite"
+    ],
+    "\\calculator": [
       "color=${1|real,blackandwhite,default|}",
       "scale=${1:factor}"
     ],
-    [
+    "\\key,\\tikzkey": [
       "color=${1|real,blackandwhite,default|}",
       "scale=${1:factor}",
       "shift",
@@ -98,10 +210,13 @@
       "prefix=${1:anchor prefix}",
       "suffix=${1:anchor suffix}"
     ],
-    [
+    "\\tikzmenu,\\tikzfunction,\\tikzbattery": [
       "color=",
       "scale=${1:factor}",
       "raise="
     ]
+  },
+  "args": [
+    "\\usepackage/graph35#c"
   ]
 }

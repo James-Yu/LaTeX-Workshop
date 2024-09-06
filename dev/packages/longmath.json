@@ -1,46 +1,110 @@
 {
-  "includes": {
-    "luatexbase": []
-  },
-  "macros": {
-    "lleft": {},
-    "mleft": {},
-    "mmbin": {},
-    "mmiddle": {},
-    "mmop": {},
-    "mmord": {},
-    "mmpunct": {},
-    "mmrel": {},
-    "mright": {},
-    "rright": {},
-    "delimiterprefix{}": {
-      "snippet": "delimiterprefix{${1:prefix}}"
-    },
-    "delimiterscale": {},
-    "ignorelimits": {},
-    "includelimits": {},
-    "longmathlinesep": {},
-    "pulldelimiter": {},
-    "pushdelimiter": {}
-  },
-  "envs": {
-    "longmath{}": {
-      "name": "longmath",
-      "snippet": "{${1:width}}"
-    },
-    "longmath[]{}": {
-      "name": "longmath",
-      "snippet": "[${2:align}]{${1:width}}"
-    },
-    "longmath*{}": {
-      "name": "longmath*",
-      "snippet": "{${1:width}}"
-    },
-    "longmath*[]{}": {
-      "name": "longmath*",
-      "snippet": "[${2:align}]{${1:width}}"
+  "deps": [
+    {
+      "name": "luatexbase"
     }
+  ],
+  "macros": [
+    {
+      "name": "lleft"
+    },
+    {
+      "name": "mleft"
+    },
+    {
+      "name": "mmbin"
+    },
+    {
+      "name": "mmiddle"
+    },
+    {
+      "name": "mmop"
+    },
+    {
+      "name": "mmord"
+    },
+    {
+      "name": "mmpunct"
+    },
+    {
+      "name": "mmrel"
+    },
+    {
+      "name": "mright"
+    },
+    {
+      "name": "rright"
+    },
+    {
+      "name": "delimiterprefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:prefix}}"
+      }
+    },
+    {
+      "name": "delimiterscale"
+    },
+    {
+      "name": "ignorelimits"
+    },
+    {
+      "name": "includelimits"
+    },
+    {
+      "name": "longmathlinesep"
+    },
+    {
+      "name": "pulldelimiter"
+    },
+    {
+      "name": "pushdelimiter"
+    }
+  ],
+  "envs": [
+    {
+      "name": "longmath",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "longmath",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:align%keyvals}]{${1:width}}",
+        "keys": [
+          "\\begin{longmath},\\begin{longmath*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "longmath*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "longmath*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:align%keyvals}]{${1:width}}",
+        "keys": [
+          "\\begin{longmath},\\begin{longmath*}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{longmath},\\begin{longmath*}": [
+      "c",
+      "t",
+      "b"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,180 +1,440 @@
 {
-  "includes": {
-    "cgloss4e": []
-  },
-  "macros": {
-    "exewidth{}": {
-      "snippet": "exewidth{${1:string}}"
+  "deps": [
+    {
+      "name": "cgloss4e"
+    }
+  ],
+  "macros": [
+    {
+      "name": "exewidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
     },
-    "ex[]{}": {
-      "snippet": "ex[${2:judgment}]{${1:example}}"
+    {
+      "name": "ex",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:judgment}]{${1:example%text}}"
+      }
     },
-    "judgewidth{}": {
-      "snippet": "judgewidth{${1:string}}"
+    {
+      "name": "judgewidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
     },
-    "exi{}": {
-      "snippet": "exi{${1:identifier}}"
+    {
+      "name": "exi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:identifier}}"
+      }
     },
-    "exi{}[]{}": {
-      "snippet": "exi{${1:identifier}}[${2:judgment}]{${3:example}}"
+    {
+      "name": "exi",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:identifier}}[${3:judgment}]{${2:example%text}}"
+      }
     },
-    "exr{}": {
-      "snippet": "exr{${1:label}}"
+    {
+      "name": "exr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "exr{}[]{}": {
-      "snippet": "exr{${1:label}}[${2:judgment}]{${3:example}}"
+    {
+      "name": "exr",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:label}}[${3:judgment}]{${2:example%text}}"
+      }
     },
-    "exp{}": {
-      "snippet": "exp{${1:label}}"
+    {
+      "name": "exp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "exp{}[]{}": {
-      "snippet": "exp{${1:label}}[${2:judgment}]{${3:example}}"
+    {
+      "name": "exp",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:label}}[${3:judgment}]{${2:example%text}}"
+      }
     },
-    "sn[]{}": {
-      "snippet": "sn[${2:judgment}]{${1:example}}"
+    {
+      "name": "sn",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:judgment}]{${1:example%text}}"
+      }
     },
-    "obar{}": {
-      "snippet": "obar{${1:arg}}"
+    {
+      "name": "obar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": "⌽",
+      "doc": "\\aplvert{\\circle} (wasysym), \\obar (stmaryrd), apl functional symbol circle stile, circle with vertical bar"
     },
-    "mbar{}": {
-      "snippet": "mbar{${1:arg}}"
+    {
+      "name": "mbar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "ibar{}": {
-      "snippet": "ibar{${1:arg}}"
+    {
+      "name": "ibar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "iibar{}": {
-      "snippet": "iibar{${1:arg}}"
+    {
+      "name": "iibar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "primebars": {},
-    "lb{}": {
-      "snippet": "lb{${1:arg}}"
+    {
+      "name": "primebars"
     },
-    "lb{}[]": {
-      "snippet": "lb{${1:arg}}[${2:sub}]"
+    {
+      "name": "lb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "rb{}": {
-      "snippet": "rb{${1:arg}}"
+    {
+      "name": "lb",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:arg}}[${2:sub}]"
+      }
     },
-    "rb{}[]": {
-      "snippet": "rb{${1:arg}}[${2:sub}]"
+    {
+      "name": "rb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "th": {},
-    "al": {},
-    "be": {},
-    "ga": {},
-    "de": {},
-    "noautomath": {},
-    "automath": {},
-    "attop{}": {
-      "snippet": "attop{${1:content}}"
+    {
+      "name": "rb",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:arg}}[${2:sub}]"
+      }
     },
-    "atcenter{}": {
-      "snippet": "atcenter{${1:content}}"
+    {
+      "name": "th"
     },
-    "fillright{}": {
-      "snippet": "fillright{${1:arg}}"
+    {
+      "name": "al"
     },
-    "fillleft{}": {
-      "snippet": "fillleft{${1:arg}}"
+    {
+      "name": "be"
     },
-    "arrowalign{}": {
-      "snippet": "arrowalign{${1:content}}"
+    {
+      "name": "ga"
     },
-    "pu": {},
-    "pd": {},
-    "lf": {},
-    "link{}": {
-      "snippet": "link{${1:arg}}"
+    {
+      "name": "de"
     },
-    "spacer": {},
-    "centr{}": {
-      "snippet": "centr{${1:arg}}"
+    {
+      "name": "noautomath"
     },
-    "prmbrs": {},
-    "spec{}": {
-      "snippet": "spec{${1:arg}}"
+    {
+      "name": "automath"
     },
-    "ct{}": {
-      "snippet": "ct{${1:arg}}"
+    {
+      "name": "attop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
     },
-    "tx": {},
-    "indexgroupmark{}": {
-      "snippet": "indexgroupmark{${1:text}}"
+    {
+      "name": "atcenter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
     },
-    "theexx": {},
-    "thexnumi": {},
-    "thexnumii": {},
-    "thexnumiii": {},
-    "thexnumiv": {},
-    "therxnumi": {},
-    "therxnumii": {},
-    "therxnumiii": {},
-    "therxnumiv": {},
-    "bu": {},
-    "ea": {},
-    "z": {
-      "detail": "𝑧",
-      "documentation": "MATHEMATICAL ITALIC SMALL Z"
+    {
+      "name": "fillright",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "lcommentsep": {},
-    "lcomment{}": {
-      "snippet": "lcomment{${1:text}}"
+    {
+      "name": "fillleft",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "leaderfill": {},
-    "pointerup": {},
-    "pointerdown": {},
-    "elevenex": {},
-    "pijl": {},
-    "bb{}": {
-      "snippet": "bb{${1:arg}}"
+    {
+      "name": "arrowalign",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
     },
-    "boven{}{}": {
-      "snippet": "boven{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "pu"
     },
-    "bovenop{}{}": {
-      "snippet": "bovenop{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "pd"
     },
-    "vl": {},
-    "gbVersion": {}
-  },
-  "envs": {
-    "exe": {},
-    "exe[]": {
+    {
+      "name": "lf"
+    },
+    {
+      "name": "link",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "spacer"
+    },
+    {
+      "name": "centr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "prmbrs",
+      "unusual": true
+    },
+    {
+      "name": "spec",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ct",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "tx",
+      "unusual": true
+    },
+    {
+      "name": "indexgroupmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "theexx",
+      "unusual": true
+    },
+    {
+      "name": "thexnumi",
+      "unusual": true
+    },
+    {
+      "name": "thexnumii",
+      "unusual": true
+    },
+    {
+      "name": "thexnumiii",
+      "unusual": true
+    },
+    {
+      "name": "thexnumiv",
+      "unusual": true
+    },
+    {
+      "name": "therxnumi",
+      "unusual": true
+    },
+    {
+      "name": "therxnumii",
+      "unusual": true
+    },
+    {
+      "name": "therxnumiii",
+      "unusual": true
+    },
+    {
+      "name": "therxnumiv",
+      "unusual": true
+    },
+    {
+      "name": "bu",
+      "unusual": true
+    },
+    {
+      "name": "ea",
+      "unusual": true
+    },
+    {
+      "name": "z",
+      "unusual": true
+    },
+    {
+      "name": "lcommentsep",
+      "unusual": true
+    },
+    {
+      "name": "lcomment",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "leaderfill",
+      "unusual": true
+    },
+    {
+      "name": "pointerup",
+      "unusual": true
+    },
+    {
+      "name": "pointerdown",
+      "unusual": true
+    },
+    {
+      "name": "elevenex",
+      "unusual": true
+    },
+    {
+      "name": "pijl",
+      "unusual": true
+    },
+    {
+      "name": "bb",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "boven",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "bovenop",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "vl",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "exe"
+    },
+    {
       "name": "exe",
-      "snippet": "[${1:string}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:string}]"
+      }
     },
-    "xlist": {},
-    "xlist[]": {
+    {
+      "name": "xlist"
+    },
+    {
       "name": "xlist",
-      "snippet": "[${1:string}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:string}]"
+      }
     },
-    "xlista": {},
-    "xlista[]": {
+    {
+      "name": "xlista"
+    },
+    {
       "name": "xlista",
-      "snippet": "[${1:string}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:string}]"
+      }
     },
-    "xlisti": {},
-    "xlisti[]": {
+    {
+      "name": "xlisti"
+    },
+    {
       "name": "xlisti",
-      "snippet": "[${1:string}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:string}]"
+      }
     },
-    "xlistn": {},
-    "xlistn[]": {
+    {
+      "name": "xlistn"
+    },
+    {
       "name": "xlistn",
-      "snippet": "[${1:string}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:string}]"
+      }
     },
-    "xlistA": {},
-    "xlistA[]": {
+    {
+      "name": "xlistA"
+    },
+    {
       "name": "xlistA",
-      "snippet": "[${1:string}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:string}]"
+      }
     },
-    "xlistI": {},
-    "xlistI[]": {
+    {
+      "name": "xlistI"
+    },
+    {
       "name": "xlistI",
-      "snippet": "[${1:string}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:string}]"
+      }
     },
-    "qlist": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "qlist",
+      "unusual": true
+    }
+  ],
+  "keys": {},
+  "args": []
 }

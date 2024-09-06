@@ -1,73 +1,172 @@
 {
-  "includes": {
-    "amsmath": [],
-    "amssymb": [],
-    "amsthm": [],
-    "xcolor": [],
-    "xspace": [],
-    "calc": [],
-    "ifthen": [],
-    "booktabs": [],
-    "multirow": [],
-    "indentfirst": []
-  },
-  "macros": {
-    "AnnoScolastico{}": {
-      "snippet": "AnnoScolastico{${1:year}}"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "femminilefalse": {},
-    "femminiletrue": {},
-    "IDlabel": {},
-    "ifBlank{}{}": {
-      "snippet": "ifBlank{${1:true}}{${2:false}}"
+    {
+      "name": "amssymb"
     },
-    "iffemminile": {},
-    "IndirizzoMiur{}": {
-      "snippet": "IndirizzoMiur{${1:address}}"
+    {
+      "name": "amsthm"
     },
-    "NomeCandidato{}": {
-      "snippet": "NomeCandidato{${1:name}}"
+    {
+      "name": "xcolor"
     },
-    "NomeScuola{}": {
-      "snippet": "NomeScuola{${1:school specific name}}"
+    {
+      "name": "xspace"
     },
-    "NomeTesina{}": {
-      "snippet": "NomeTesina{${1:document name}}"
+    {
+      "name": "calc"
     },
-    "NumeroCommissione{}": {
-      "snippet": "NumeroCommissione{${1:number}}"
+    {
+      "name": "ifthen"
     },
-    "OpzioneMiur{}": {
-      "snippet": "OpzioneMiur{${1:text}}"
+    {
+      "name": "booktabs"
     },
-    "Presidente{}": {
-      "snippet": "Presidente{${1:name}}"
+    {
+      "name": "multirow"
     },
-    "SedeScuola{}": {
-      "snippet": "SedeScuola{${1:school address}}"
-    },
-    "sottotitolo{}": {
-      "snippet": "sottotitolo{${1:subtitle}}"
-    },
-    "SSSLogo{}": {
-      "snippet": "SSSLogo{${1:imagefile}}"
-    },
-    "studente{}": {
-      "snippet": "studente{${1:name}}"
-    },
-    "studentessa{}": {
-      "snippet": "studentessa{${1:name}}"
-    },
-    "TipoScuola{}": {
-      "snippet": "TipoScuola{${1:school generic name}}"
-    },
-    "titolo{}": {
-      "snippet": "titolo{${1:title}}"
+    {
+      "name": "indentfirst"
     }
-  },
-  "envs": {
-    "FrontespizioTesina": {}
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "AnnoScolastico",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "femminilefalse",
+      "unusual": true
+    },
+    {
+      "name": "femminiletrue",
+      "unusual": true
+    },
+    {
+      "name": "IDlabel",
+      "unusual": true
+    },
+    {
+      "name": "ifBlank",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "iffemminile",
+      "unusual": true
+    },
+    {
+      "name": "IndirizzoMiur",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address}}"
+      }
+    },
+    {
+      "name": "NomeCandidato",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "NomeScuola",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:school specific name%text}}"
+      }
+    },
+    {
+      "name": "NomeTesina",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:document name%text}}"
+      }
+    },
+    {
+      "name": "NumeroCommissione",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "OpzioneMiur",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Presidente",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "SedeScuola",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:school address}}"
+      }
+    },
+    {
+      "name": "sottotitolo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subtitle%text}}"
+      }
+    },
+    {
+      "name": "SSSLogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "studente",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "studentessa",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "TipoScuola",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:school generic name%text}}"
+      }
+    },
+    {
+      "name": "titolo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "FrontespizioTesina"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

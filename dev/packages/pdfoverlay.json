@@ -1,30 +1,55 @@
 {
-  "includes": {
-    "graphicx": []
-  },
-  "macros": {
-    "pdfoverlaySetPDF{}": {
-      "snippet": "pdfoverlaySetPDF{${1:pdf file}}"
+  "deps": [
+    {
+      "name": "graphicx"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pdfoverlaySetPDF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pdf file%file}}"
+      }
     },
-    "pdfoverlaySetGraphicsOptions{}": {
-      "snippet": "pdfoverlaySetGraphicsOptions{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pdfoverlaySetGraphicsOptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pdfoverlaySetGraphicsOptions"
+        ],
+        "keyPos": 0
+      }
     },
-    "pdfoverlayIncludeToPage{}": {
-      "snippet": "pdfoverlayIncludeToPage{${1:page number}}"
+    {
+      "name": "pdfoverlayIncludeToPage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:page number}}"
+      }
     },
-    "pdfoverlayIncludeToLastPage": {},
-    "pdfoverlaySkipToPage{}": {
-      "snippet": "pdfoverlaySkipToPage{${1:page number}}"
+    {
+      "name": "pdfoverlayIncludeToLastPage"
     },
-    "pdfoverlayPauseOutput": {},
-    "pdfoverlayResumeOutput": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "pdfoverlaySkipToPage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:page number}}"
+      }
+    },
+    {
+      "name": "pdfoverlayPauseOutput"
+    },
+    {
+      "name": "pdfoverlayResumeOutput"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pdfoverlaySetGraphicsOptions": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -55,5 +80,6 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,42 +1,79 @@
 {
-  "includes": {
-    "xcolor": [],
-    "l3keys2e": [],
-    "longtable": [],
-    "booktabs": [],
-    "caption": [],
-    "fontspec": []
-  },
-  "macros": {
-    "displayfonttable{}{}": {
-      "snippet": "displayfonttable{${1:font name}}{${2:font features}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "displayfonttable[]{}{}": {
-      "snippet": "displayfonttable[${3:options}]{${1:font name}}{${2:font features}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "l3keys2e"
     },
-    "displayfonttable*{}{}": {
-      "snippet": "displayfonttable*{${1:font name}}{${2:font features}}"
+    {
+      "name": "longtable"
     },
-    "displayfonttable*[]{}{}": {
-      "snippet": "displayfonttable*[${3:options}]{${1:font name}}{${2:font features}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "booktabs"
     },
-    "fonttablesetup{}": {
-      "snippet": "fonttablesetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "caption"
     },
-    "fonttableglyphcount": {},
-    "unicodefonttabledate": {},
-    "unicodefonttableversion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "fontspec"
+    }
+  ],
+  "macros": [
+    {
+      "name": "displayfonttable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:font name}}{${2:font features}}"
+      }
+    },
+    {
+      "name": "displayfonttable",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:font name}}{${2:font features}}",
+        "keys": [
+          "\\displayfonttable,\\displayfonttable*,\\fonttablesetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "displayfonttable*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:font name}}{${2:font features}}"
+      }
+    },
+    {
+      "name": "displayfonttable*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:font name}}{${2:font features}}",
+        "keys": [
+          "\\displayfonttable,\\displayfonttable*,\\fonttablesetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fonttablesetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\displayfonttable,\\displayfonttable*,\\fonttablesetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fonttableglyphcount"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\displayfonttable,\\displayfonttable*,\\fonttablesetup": [
       "header",
       "noheader",
       "title-format=${1:code}",
@@ -61,5 +98,6 @@
       "range-start=${1:slot}",
       "range-end=${1:slot}"
     ]
-  ]
+  },
+  "args": []
 }

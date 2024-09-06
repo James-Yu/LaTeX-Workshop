@@ -1,276 +1,702 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "amsmath": [],
-    "aliascnt": [
-      "cleveref"
-    ],
-    "cleveref": [
-      "cleveref"
-    ]
-  },
-  "macros": {
-    "algocfconts{}{}{}": {
-      "snippet": "algocfconts{${1:label}}{${2:caption}}{${3:content}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "algorithmref{}": {
-      "snippet": "algorithmref{${1:labellist}}"
+    {
+      "name": "amsmath"
     },
-    "algorithmrefname": {},
-    "algorithmsrefname": {},
-    "altdescriptionlabel{}": {
-      "snippet": "altdescriptionlabel{${1:label}}"
+    {
+      "name": "aliascnt",
+      "if": "cleveref"
     },
-    "appendixref{}": {
-      "snippet": "appendixref{${1:labellist}}"
-    },
-    "appendixrefname": {},
-    "appendixsrefname": {},
-    "axiomref{}": {
-      "snippet": "axiomref{${1:labellist}}"
-    },
-    "axiomrefname": {},
-    "axiomsrefname": {},
-    "conjectureref{}": {
-      "snippet": "conjectureref{${1:labellist}}"
-    },
-    "conjecturerefname": {},
-    "conjecturesrefname": {},
-    "corollaryref{}": {
-      "snippet": "corollaryref{${1:labellist}}"
-    },
-    "corollaryrefname": {},
-    "corollarysrefname": {},
-    "definitionref{}": {
-      "snippet": "definitionref{${1:labellist}}"
-    },
-    "definitionrefname": {},
-    "definitionsrefname": {},
-    "equationref{}": {
-      "snippet": "equationref{${1:labellist}}"
-    },
-    "equationrefname": {},
-    "equationsrefname": {},
-    "exampleref{}": {
-      "snippet": "exampleref{${1:labellist}}"
-    },
-    "examplerefname": {},
-    "examplesrefname": {},
-    "figureconts{}{}{}": {
-      "snippet": "figureconts{${1:label}}{${2:caption}}{${3:content}}"
-    },
-    "figureref{}": {
-      "snippet": "figureref{${1:labellist}}"
-    },
-    "figurerefname": {},
-    "figuresrefname": {},
-    "floatconts{}{}{}": {
-      "snippet": "floatconts{${1:label}}{${2:caption}}{${3:content}}"
-    },
-    "ifjmlrcleveref": {},
-    "ifjmlrutilsmaths": {},
-    "ifjmlrutilssubfloats": {},
-    "ifjmlrutilstheorems": {},
-    "iftablecaptiontop": {},
-    "includeteximage[]{}": {
-      "snippet": "includeteximage[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "includeteximage{}": {
-      "snippet": "includeteximage{${1:imagefile}}"
-    },
-    "jmlralgorule": {},
-    "jmlrBlackBox": {},
-    "jmlrclevereffalse": {},
-    "jmlrclevereftrue": {},
-    "jmlrminsubcaptionwidth": {},
-    "jmlrprehyperref": {},
-    "jmlrQED": {},
-    "jmlrutilsmathsfalse": {},
-    "jmlrutilsmathstrue": {},
-    "jmlrutilssubfloatsfalse": {},
-    "jmlrutilssubfloatstrue": {},
-    "jmlrutilstheoremsfalse": {},
-    "jmlrutilstheoremstrue": {},
-    "lemmaref{}": {
-      "snippet": "lemmaref{${1:labellist}}"
-    },
-    "lemmarefname": {},
-    "lemmasrefname": {},
-    "mailto{}": {
-      "snippet": "mailto{${1:email address}}"
-    },
-    "newtheorem*{}{}": {
-      "snippet": "newtheorem*{${1:envname}}{${2:caption}}"
-    },
-    "objectref{}{}{}{}{}": {
-      "snippet": "objectref{${1:labellist}}{${2:singular name}}{${3:plural name}}{${4:before}}{${5:after}}"
-    },
-    "orgvec{}": {
-      "snippet": "orgvec{${1:arg}}"
-    },
-    "partref{}": {
-      "snippet": "partref{${1:labellist}}"
-    },
-    "partrefname": {},
-    "partsrefname": {},
-    "proofname": {},
-    "remarkref{}": {
-      "snippet": "remarkref{${1:labellist}}"
-    },
-    "remarkrefname": {},
-    "remarksrefname": {},
-    "sectionref{}": {
-      "snippet": "sectionref{${1:labellist}}"
-    },
-    "sectionrefname": {},
-    "sectionsrefname": {},
-    "set{}": {
-      "snippet": "set{${1:text}}"
-    },
-    "subfigref{}": {
-      "snippet": "subfigref{${1:labellist}}"
-    },
-    "subfigure[][]{}": {
-      "snippet": "subfigure[${2:title}][${3:valign}]{${1:contents}}"
-    },
-    "subfigure[]{}": {
-      "snippet": "subfigure[${2:title}]{${1:contents}}"
-    },
-    "subfigure{}": {
-      "snippet": "subfigure{${1:contents}}"
-    },
-    "subfigurelabel{}": {
-      "snippet": "subfigurelabel{${1:text}}"
-    },
-    "subtable[][]{}": {
-      "snippet": "subtable[${2:title}][${3:valign}]{${1:contents}}"
-    },
-    "subtable[]{}": {
-      "snippet": "subtable[${2:title}]{${1:contents}}"
-    },
-    "subtable{}": {
-      "snippet": "subtable{${1:contents}}"
-    },
-    "subtablelabel{}": {
-      "snippet": "subtablelabel{${1:text}}"
-    },
-    "subtabref{}": {
-      "snippet": "subtabref{${1:labellist}}"
-    },
-    "tablecaptiontopfalse": {},
-    "tablecaptiontoptrue": {},
-    "tableconts{}{}{}": {
-      "snippet": "tableconts{${1:label}}{${2:caption}}{${3:content}}"
-    },
-    "tableref{}": {
-      "snippet": "tableref{${1:labellist}}"
-    },
-    "tablerefname": {},
-    "tablesrefname": {},
-    "theaxiom": {},
-    "theconjecture": {},
-    "thecorollary": {},
-    "thedefinition": {},
-    "theexample": {},
-    "thelemma": {},
-    "theorembodyfont{}": {
-      "snippet": "theorembodyfont{${1:font declarations}}"
-    },
-    "theoremheaderfont{}": {
-      "snippet": "theoremheaderfont{${1:font declarations}}"
-    },
-    "theorempostheader{}": {
-      "snippet": "theorempostheader{${1:text}}"
-    },
-    "theoremref{}": {
-      "snippet": "theoremref{${1:labellist}}"
-    },
-    "theoremrefname": {},
-    "theoremsep{}": {
-      "snippet": "theoremsep{${1:separation code}}"
-    },
-    "theoremsrefname": {},
-    "theproposition": {},
-    "theremark": {},
-    "thesubfigure": {},
-    "thesubtable": {},
-    "thetheorem": {},
-    "BlackBox": {}
-  },
-  "envs": {
-    "algorithm": {},
-    "algorithm[]": {
-      "name": "algorithm",
-      "snippet": "[${1:placement}]"
-    },
-    "altdescription{}": {
-      "name": "altdescription",
-      "snippet": "{${1:widest label}}"
-    },
-    "axiom": {},
-    "axiom[]": {
-      "name": "axiom",
-      "snippet": "[${1:heading}]"
-    },
-    "conjecture": {},
-    "conjecture[]": {
-      "name": "conjecture",
-      "snippet": "[${1:heading}]"
-    },
-    "corollary": {},
-    "corollary[]": {
-      "name": "corollary",
-      "snippet": "[${1:heading}]"
-    },
-    "definition": {},
-    "definition[]": {
-      "name": "definition",
-      "snippet": "[${1:heading}]"
-    },
-    "enumerate*": {},
-    "example": {},
-    "example[]": {
-      "name": "example",
-      "snippet": "[${1:heading}]"
-    },
-    "lemma": {},
-    "lemma[]": {
-      "name": "lemma",
-      "snippet": "[${1:heading}]"
-    },
-    "proof": {},
-    "proposition": {},
-    "proposition[]": {
-      "name": "proposition",
-      "snippet": "[${1:heading}]"
-    },
-    "remark": {},
-    "remark[]": {
-      "name": "remark",
-      "snippet": "[${1:heading}]"
-    },
-    "theorem": {},
-    "theorem[]": {
-      "name": "theorem",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "cleveref",
+      "if": "cleveref"
     }
-  },
-  "options": [
-    "maths",
-    "nomaths",
-    "math",
-    "nomath",
-    "theorems",
-    "notheorems",
-    "cleveref",
-    "nocleveref",
-    "subfloats",
-    "nosubfloats"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "algocfconts",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label}}{${2:caption%text}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "algorithmref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "algorithmrefname",
+      "unusual": true
+    },
+    {
+      "name": "algorithmsrefname",
+      "unusual": true
+    },
+    {
+      "name": "altdescriptionlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "appendixref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "appendixrefname",
+      "unusual": true
+    },
+    {
+      "name": "appendixsrefname",
+      "unusual": true
+    },
+    {
+      "name": "axiomref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "axiomrefname",
+      "unusual": true
+    },
+    {
+      "name": "axiomsrefname",
+      "unusual": true
+    },
+    {
+      "name": "conjectureref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "conjecturerefname",
+      "unusual": true
+    },
+    {
+      "name": "conjecturesrefname",
+      "unusual": true
+    },
+    {
+      "name": "corollaryref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "corollaryrefname",
+      "unusual": true
+    },
+    {
+      "name": "corollarysrefname",
+      "unusual": true
+    },
+    {
+      "name": "definitionref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "definitionrefname",
+      "unusual": true
+    },
+    {
+      "name": "definitionsrefname",
+      "unusual": true
+    },
+    {
+      "name": "equationref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "equationrefname",
+      "unusual": true
+    },
+    {
+      "name": "equationsrefname",
+      "unusual": true
+    },
+    {
+      "name": "exampleref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "examplerefname",
+      "unusual": true
+    },
+    {
+      "name": "examplesrefname",
+      "unusual": true
+    },
+    {
+      "name": "figureconts",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label}}{${2:caption%text}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "figureref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "figurerefname",
+      "unusual": true
+    },
+    {
+      "name": "figuresrefname",
+      "unusual": true
+    },
+    {
+      "name": "floatconts",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label}}{${2:caption%text}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "ifjmlrcleveref",
+      "unusual": true
+    },
+    {
+      "name": "ifjmlrutilsmaths",
+      "unusual": true
+    },
+    {
+      "name": "ifjmlrutilssubfloats",
+      "unusual": true
+    },
+    {
+      "name": "ifjmlrutilstheorems",
+      "unusual": true
+    },
+    {
+      "name": "iftablecaptiontop",
+      "unusual": true
+    },
+    {
+      "name": "includeteximage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\includeteximage"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "includeteximage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "jmlralgorule",
+      "unusual": true
+    },
+    {
+      "name": "jmlrBlackBox",
+      "unusual": true
+    },
+    {
+      "name": "jmlrclevereffalse",
+      "unusual": true
+    },
+    {
+      "name": "jmlrclevereftrue",
+      "unusual": true
+    },
+    {
+      "name": "jmlrminsubcaptionwidth",
+      "unusual": true
+    },
+    {
+      "name": "jmlrprehyperref",
+      "unusual": true
+    },
+    {
+      "name": "jmlrQED",
+      "unusual": true
+    },
+    {
+      "name": "jmlrutilsmathsfalse",
+      "unusual": true
+    },
+    {
+      "name": "jmlrutilsmathstrue",
+      "unusual": true
+    },
+    {
+      "name": "jmlrutilssubfloatsfalse",
+      "unusual": true
+    },
+    {
+      "name": "jmlrutilssubfloatstrue",
+      "unusual": true
+    },
+    {
+      "name": "jmlrutilstheoremsfalse",
+      "unusual": true
+    },
+    {
+      "name": "jmlrutilstheoremstrue",
+      "unusual": true
+    },
+    {
+      "name": "lemmaref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "lemmarefname",
+      "unusual": true
+    },
+    {
+      "name": "lemmasrefname",
+      "unusual": true
+    },
+    {
+      "name": "mailto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email address%URL}}"
+      }
+    },
+    {
+      "name": "newtheorem*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:caption}}"
+      }
+    },
+    {
+      "name": "objectref",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:labellist}}{${2:singular name}}{${3:plural name}}{${4:before}}{${5:after}}"
+      }
+    },
+    {
+      "name": "orgvec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "partref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "partrefname",
+      "unusual": true
+    },
+    {
+      "name": "partsrefname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "remarkref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "remarkrefname",
+      "unusual": true
+    },
+    {
+      "name": "remarksrefname",
+      "unusual": true
+    },
+    {
+      "name": "sectionref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "sectionrefname",
+      "unusual": true
+    },
+    {
+      "name": "sectionsrefname",
+      "unusual": true
+    },
+    {
+      "name": "set",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "subfigref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "subfigure",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:title%text}][${3:valign%keyvals}]{${1:contents%text}}",
+        "keys": [
+          "\\subfigure,\\subtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "subfigure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:title%text}]{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "subfigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "subfigurelabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "subtable",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:title%text}][${3:valign%keyvals}]{${1:contents%text}}",
+        "keys": [
+          "\\subfigure,\\subtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "subtable",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:title%text}]{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "subtable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "subtablelabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "subtabref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "tablecaptiontopfalse",
+      "unusual": true
+    },
+    {
+      "name": "tablecaptiontoptrue",
+      "unusual": true
+    },
+    {
+      "name": "tableconts",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label}}{${2:caption%text}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "tableref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "tablerefname",
+      "unusual": true
+    },
+    {
+      "name": "tablesrefname",
+      "unusual": true
+    },
+    {
+      "name": "theaxiom",
+      "unusual": true
+    },
+    {
+      "name": "theconjecture",
+      "unusual": true
+    },
+    {
+      "name": "thecorollary",
+      "unusual": true
+    },
+    {
+      "name": "thedefinition",
+      "unusual": true
+    },
+    {
+      "name": "theexample",
+      "unusual": true
+    },
+    {
+      "name": "thelemma",
+      "unusual": true
+    },
+    {
+      "name": "theorembodyfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font declarations}}"
+      }
+    },
+    {
+      "name": "theoremheaderfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font declarations}}"
+      }
+    },
+    {
+      "name": "theorempostheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "theoremref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "theoremrefname",
+      "unusual": true
+    },
+    {
+      "name": "theoremsep",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:separation code}}"
+      }
+    },
+    {
+      "name": "theoremsrefname",
+      "unusual": true
+    },
+    {
+      "name": "theproposition",
+      "unusual": true
+    },
+    {
+      "name": "theremark",
+      "unusual": true
+    },
+    {
+      "name": "thesubfigure",
+      "unusual": true
+    },
+    {
+      "name": "thesubtable",
+      "unusual": true
+    },
+    {
+      "name": "thetheorem",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "algorithm"
+    },
+    {
+      "name": "algorithm",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:placement}]"
+      }
+    },
+    {
+      "name": "altdescription",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:widest label}}"
+      }
+    },
+    {
+      "name": "axiom"
+    },
+    {
+      "name": "axiom",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "conjecture"
+    },
+    {
+      "name": "conjecture",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "corollary"
+    },
+    {
+      "name": "corollary",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "definition"
+    },
+    {
+      "name": "definition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "enumerate*"
+    },
+    {
+      "name": "example"
+    },
+    {
+      "name": "example",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "lemma"
+    },
+    {
+      "name": "lemma",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "proof"
+    },
+    {
+      "name": "proposition"
+    },
+    {
+      "name": "proposition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "remark"
+    },
+    {
+      "name": "remark",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "theorem"
+    },
+    {
+      "name": "theorem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/jmlrutils#c": [
+      "maths",
+      "nomaths",
+      "math",
+      "nomath",
+      "theorems",
+      "notheorems",
+      "cleveref",
+      "nocleveref",
+      "subfloats",
+      "nosubfloats"
+    ],
+    "\\includeteximage": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -300,6 +726,14 @@
       "page=${1:page number}",
       "interpolate",
       "decodearray={${1:color array}}"
+    ],
+    "\\subfigure,\\subtable": [
+      "t",
+      "c",
+      "b"
     ]
+  },
+  "args": [
+    "\\usepackage/jmlrutils#c"
   ]
 }

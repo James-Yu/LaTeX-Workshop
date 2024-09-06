@@ -1,26 +1,44 @@
 {
-  "includes": {
-    "refcount": [],
-    "gettitlestring": []
-  },
-  "macros": {
-    "nameref{}": {
-      "snippet": "nameref{${1:label}}"
+  "deps": [
+    {
+      "name": "refcount"
     },
-    "nameref*{}": {
-      "snippet": "nameref*{${1:label}}"
-    },
-    "Nameref{}": {
-      "snippet": "Nameref{${1:label}}"
-    },
-    "Sectionformat{}{}": {
-      "snippet": "Sectionformat{${1:arg1}}{${2:arg2}}"
-    },
-    "vnameref{}": {
-      "snippet": "vnameref{${1:label}}"
+    {
+      "name": "gettitlestring"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "nameref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "nameref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Nameref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Sectionformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

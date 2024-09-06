@@ -1,14 +1,22 @@
 {
-  "includes": {},
-  "macros": {
-    "topcaption{}": {
-      "snippet": "topcaption{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "topcaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "topcaption[]{}": {
-      "snippet": "topcaption[${2:short text}]{${1:text}}"
+    {
+      "name": "topcaption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short text%text}]{${1:text}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

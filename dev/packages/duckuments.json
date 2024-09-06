@@ -1,55 +1,116 @@
 {
-  "includes": {
-    "letltxmacro": [],
-    "l3keys2e": []
-  },
-  "macros": {
-    "duckument": {},
-    "duckument[]": {
-      "snippet": "duckument[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "letltxmacro"
     },
-    "blindduck": {},
-    "blindduck[]": {
-      "snippet": "blindduck[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ducklist{}": {
-      "snippet": "ducklist{${1:environment}}"
-    },
-    "ducklist*{}": {
-      "snippet": "ducklist*{${1:environment}}"
-    },
-    "ducklistlist{}": {
-      "snippet": "ducklistlist{${1:environment}}"
-    },
-    "ducklistlist*{}": {
-      "snippet": "ducklistlist*{${1:environment}}"
-    },
-    "duckitemize": {},
-    "duckenumerate": {},
-    "duckdescription": {},
-    "duckumentsCreateExampleFiles": {},
-    "duckumentsDrawRandomDucks": {},
-    "duckumentsDrawRandomDucks[]": {
-      "snippet": "duckumentsDrawRandomDucks[${1:number}]"
-    },
-    "duckumentsDrawRandomDucks*": {},
-    "duckumentsDrawRandomDucks*[]": {
-      "snippet": "duckumentsDrawRandomDucks*[${1:number}]"
+    {
+      "name": "l3keys2e"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "duckument"
+    },
+    {
+      "name": "duckument",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\duckument#c,\\blindduck#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "blindduck"
+    },
+    {
+      "name": "blindduck",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\duckument#c,\\blindduck#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ducklist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:environment}}"
+      }
+    },
+    {
+      "name": "ducklist*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:environment}}"
+      }
+    },
+    {
+      "name": "ducklistlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:environment}}"
+      }
+    },
+    {
+      "name": "ducklistlist*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:environment}}"
+      }
+    },
+    {
+      "name": "duckitemize"
+    },
+    {
+      "name": "duckenumerate"
+    },
+    {
+      "name": "duckdescription"
+    },
+    {
+      "name": "duckumentsCreateExampleFiles",
+      "unusual": true
+    },
+    {
+      "name": "duckumentsDrawRandomDucks",
+      "unusual": true
+    },
+    {
+      "name": "duckumentsDrawRandomDucks",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "duckumentsDrawRandomDucks*",
+      "unusual": true
+    },
+    {
+      "name": "duckumentsDrawRandomDucks*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\duckument#c,\\blindduck#c": [
       "toc",
       "maths=${1|both,inline,display,none|}",
       "full",
       "all",
       "immediate"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,32 +1,73 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-node": [],
-    "pst-3d": [],
-    "multido": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "PstGridThreeD()": {
-      "snippet": "PstGridThreeD(${1:x},${2:y},${3:z})"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "PstGridThreeD[]()": {
-      "snippet": "PstGridThreeD[${1:options}](${2:x},${3:y},${4:z})"
+    {
+      "name": "pst-node"
     },
-    "PstGridThreeDYFace{}{}{}": {
-      "snippet": "PstGridThreeDYFace{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "pst-3d"
     },
-    "PstGridThreeDHookNode": {},
-    "PstGridThreeDHookXFace": {},
-    "PstGridThreeDHookYFace": {},
-    "PstGridThreeDHookZFace": {},
-    "PstGridThreeDHookEnd": {},
-    "PstGridThreeDNodeProcessor{}": {
-      "snippet": "PstGridThreeDNodeProcessor{${1:color}}"
+    {
+      "name": "multido"
     },
-    "PSTGridThreeDLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "PstGridThreeD",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y},${3:z})"
+      }
+    },
+    {
+      "name": "PstGridThreeD",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y},${4:z})"
+      }
+    },
+    {
+      "name": "PstGridThreeDYFace",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "PstGridThreeDHookNode",
+      "unusual": true
+    },
+    {
+      "name": "PstGridThreeDHookXFace",
+      "unusual": true
+    },
+    {
+      "name": "PstGridThreeDHookYFace",
+      "unusual": true
+    },
+    {
+      "name": "PstGridThreeDHookZFace",
+      "unusual": true
+    },
+    {
+      "name": "PstGridThreeDHookEnd",
+      "unusual": true
+    },
+    {
+      "name": "PstGridThreeDNodeProcessor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

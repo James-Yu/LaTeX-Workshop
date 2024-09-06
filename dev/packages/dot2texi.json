@@ -1,53 +1,80 @@
 {
-  "includes": {
-    "moreverb": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "setoutputdir{}": {
-      "snippet": "setoutputdir{${1:directory}}"
+  "deps": [
+    {
+      "name": "moreverb"
     },
-    "BeforeStream": {},
-    "dottotexCutFile": {},
-    "dottotexgraphicsinclude": {},
-    "dottotexgraphicsprocess": {},
-    "dottotexverbatimwrite{}": {
-      "snippet": "dottotexverbatimwrite{${1:file}}"
-    },
-    "enddottotexverbatimwrite": {}
-  },
-  "envs": {
-    "dot2tex": {},
-    "dot2tex[]": {
-      "name": "dot2tex",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "dottotexverbatimwrite{}": {
-      "name": "dottotexverbatimwrite",
-      "snippet": "{${1:file}}"
+    {
+      "name": "xkeyval"
     }
-  },
-  "options": [
-    "shell",
-    "noshell",
-    "forceshell",
-    "miktex",
-    "pgf",
-    "tikz",
-    "pstricks",
-    "autosize",
-    "dot",
-    "neato",
-    "circo",
-    "fdp",
-    "twopi",
-    "outputdir=${1:directory}",
-    "debug"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "setoutputdir",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:directory%definition}}"
+      }
+    },
+    {
+      "name": "BeforeStream",
+      "unusual": true
+    },
+    {
+      "name": "dottotexCutFile",
+      "unusual": true
+    },
+    {
+      "name": "dottotexgraphicsinclude",
+      "unusual": true
+    },
+    {
+      "name": "dottotexgraphicsprocess",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "dot2tex"
+    },
+    {
+      "name": "dot2tex",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{dot2tex}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "dottotexverbatimwrite",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/dot2texi": [
+      "shell",
+      "noshell",
+      "forceshell",
+      "miktex",
+      "pgf",
+      "tikz",
+      "pstricks",
+      "autosize",
+      "dot",
+      "neato",
+      "circo",
+      "fdp",
+      "twopi",
+      "outputdir=${1:directory}",
+      "debug"
+    ],
+    "\\begin{dot2tex}": [
       "shell",
       "noshell",
       "dot",
@@ -73,5 +100,8 @@
       "file=${1:file name}",
       "options={${1:dot2tex options}}"
     ]
+  },
+  "args": [
+    "\\usepackage/dot2texi"
   ]
 }

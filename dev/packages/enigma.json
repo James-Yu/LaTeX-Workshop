@@ -1,36 +1,78 @@
 {
-  "includes": {
-    "luatexbase": []
-  },
-  "macros": {
-    "defineenigma{}": {
-      "snippet": "defineenigma{${1:name}}"
+  "deps": [
+    {
+      "name": "luatexbase"
+    }
+  ],
+  "macros": [
+    {
+      "name": "defineenigma",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "setupenigma{}{}": {
-      "snippet": "setupenigma{${1:name}}{${2:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "setupenigma",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:keyvals}}",
+        "keys": [
+          "\\setupenigma"
+        ],
+        "keyPos": 1
+      }
     },
-    "ifenigmaisrunningplain": {},
-    "enigmaisrunningplaintrue": {},
-    "enigmaisrunningplainfalse": {},
-    "luastringsep": {},
-    "enigmasetupcatcodes": {},
-    "escapecatcode": {},
-    "begingroupcatcode": {},
-    "endgroupcatcode": {},
-    "spacecatcode": {},
-    "lettercatcode": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "ifenigmaisrunningplain",
+      "unusual": true
+    },
+    {
+      "name": "enigmaisrunningplaintrue",
+      "unusual": true
+    },
+    {
+      "name": "enigmaisrunningplainfalse",
+      "unusual": true
+    },
+    {
+      "name": "luastringsep",
+      "unusual": true
+    },
+    {
+      "name": "enigmasetupcatcodes",
+      "unusual": true
+    },
+    {
+      "name": "escapecatcode",
+      "unusual": true
+    },
+    {
+      "name": "begingroupcatcode",
+      "unusual": true
+    },
+    {
+      "name": "endgroupcatcode",
+      "unusual": true
+    },
+    {
+      "name": "spacecatcode",
+      "unusual": true
+    },
+    {
+      "name": "lettercatcode",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setupenigma": [
       "other_chars=${1:boolean}",
       "day_key=${1:string}",
       "rotor_setting=${1:string}",
       "spacing=${1:boolean}",
       "verbose=${1:integer}"
     ]
-  ]
+  },
+  "args": []
 }

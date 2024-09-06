@@ -1,27 +1,43 @@
 {
-  "includes": {
-    "l3keys2e": []
-  },
-  "macros": {
-    "wrapstuffset{}": {
-      "snippet": "wrapstuffset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "wrapstuffclear": {}
-  },
-  "envs": {
-    "wrapstuff": {},
-    "wrapstuff[]": {
-      "name": "wrapstuff",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "l3keys2e"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "wrapstuffset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{wrapstuff},\\wrapstuffset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "wrapstuffclear"
+    }
+  ],
+  "envs": [
+    {
+      "name": "wrapstuff"
+    },
+    {
+      "name": "wrapstuff",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{wrapstuff},\\wrapstuffset"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{wrapstuff},\\wrapstuffset": [
       "top=${1:integer}",
       "width=",
       "height=",
@@ -44,5 +60,6 @@
       "lines=${1:integer}",
       "linewidth="
     ]
-  ]
+  },
+  "args": []
 }

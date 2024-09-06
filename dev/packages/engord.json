@@ -1,29 +1,64 @@
 {
-  "includes": {
-    "ltxcmds": [],
-    "infwarerr": []
-  },
-  "macros": {
-    "engord{}": {
-      "snippet": "engord{${1:counter}}"
+  "deps": [
+    {
+      "name": "ltxcmds"
     },
-    "engordnumber{}": {
-      "snippet": "engordnumber{${1:number}}"
-    },
-    "engordletters{}": {
-      "snippet": "engordletters{${1:text}}"
-    },
-    "engorderror{}": {
-      "snippet": "engorderror{${1:number}}"
-    },
-    "ifengordraise": {},
-    "engordraisetrue": {},
-    "engordraisefalse": {}
-  },
-  "envs": {},
-  "options": [
-    "normal",
-    "raise"
+    {
+      "name": "infwarerr"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "engord",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "engordnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "engordletters",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "engorderror",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "ifengordraise",
+      "unusual": true
+    },
+    {
+      "name": "engordraisetrue",
+      "unusual": true
+    },
+    {
+      "name": "engordraisefalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/engord#c": [
+      "normal",
+      "raise"
+    ]
+  },
+  "args": [
+    "\\usepackage/engord#c"
+  ]
 }

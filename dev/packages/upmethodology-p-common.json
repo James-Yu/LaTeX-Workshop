@@ -1,42 +1,101 @@
 {
-  "includes": {
-    "ifthen": [],
-    "xspace": [],
-    "xcolor": [],
-    "ifpdf": []
-  },
-  "macros": {
-    "UPMVERSION": {},
-    "UPMVERSIONTEST": {},
-    "arakhneorg": {},
-    "upmcurrentlang": {},
-    "ifupmlang{}{}": {
-      "snippet": "ifupmlang{${1:language}}{${2:code}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "Ifnotempty{}{}": {
-      "snippet": "Ifnotempty{${1:arg}}{${2:code}}"
+    {
+      "name": "xspace"
     },
-    "Ifempty{}{}": {
-      "snippet": "Ifempty{${1:arg}}{${2:code}}"
+    {
+      "name": "xcolor"
     },
-    "Ifelseempty{}{}": {
-      "snippet": "Ifelseempty{${1:arg}}{${2:code}}"
-    },
-    "newpageintoc": {},
-    "ifupmbookformat": {},
-    "upmbookformattrue": {},
-    "upmbookformatfalse": {},
-    "ifupmreportformat": {},
-    "upmreportformattrue": {},
-    "upmreportformatfalse": {},
-    "ifupmarticleformat": {},
-    "upmarticleformattrue": {},
-    "upmarticleformatfalse": {},
-    "setpdfcolor{}": {
-      "snippet": "setpdfcolor{${1:color}}"
+    {
+      "name": "ifpdf"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "arakhneorg"
+    },
+    {
+      "name": "upmcurrentlang"
+    },
+    {
+      "name": "ifupmlang",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:code}}"
+      }
+    },
+    {
+      "name": "Ifnotempty",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:code}}"
+      }
+    },
+    {
+      "name": "Ifempty",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:code}}"
+      }
+    },
+    {
+      "name": "Ifelseempty",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:code}}"
+      }
+    },
+    {
+      "name": "newpageintoc"
+    },
+    {
+      "name": "ifupmbookformat",
+      "unusual": true
+    },
+    {
+      "name": "upmbookformattrue",
+      "unusual": true
+    },
+    {
+      "name": "upmbookformatfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifupmreportformat",
+      "unusual": true
+    },
+    {
+      "name": "upmreportformattrue",
+      "unusual": true
+    },
+    {
+      "name": "upmreportformatfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifupmarticleformat",
+      "unusual": true
+    },
+    {
+      "name": "upmarticleformattrue",
+      "unusual": true
+    },
+    {
+      "name": "upmarticleformatfalse",
+      "unusual": true
+    },
+    {
+      "name": "setpdfcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,639 +1,1525 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibraryfit": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarydecorations.markings": [],
-    "tikzlibraryshapes.misc": [],
-    "tikzlibraryshapes.geometric": [],
-    "tikzlibraryshapes.symbols": [],
-    "xstring": [],
-    "calc": []
-  },
-  "macros": {
-    "mscset{}": {
-      "snippet": "mscset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "nextlevel": {},
-    "nextlevel[]": {
-      "snippet": "nextlevel[${1:level offset}]"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "declinst{}{}{}": {
-      "snippet": "declinst{${1:nickname}}{${2:instance name above}}{${3:instance name within}}"
+    {
+      "name": "tikzlibraryfit"
     },
-    "declinst*{}{}{}": {
-      "snippet": "declinst*{${1:nickname}}{${2:instance name above}}{${3:instance name within}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "mess{}{}{}": {
-      "snippet": "mess{${1:name}}{${2:sender}}{${3:receiver}}"
+    {
+      "name": "tikzlibrarydecorations.markings"
     },
-    "mess{}{}{}[]": {
-      "snippet": "mess{${1:name}}{${2:sender}}{${3:receiver}}[${4:level offset}]"
+    {
+      "name": "tikzlibraryshapes.misc"
     },
-    "mess[]{}{}{}": {
-      "snippet": "mess[${4:options}]{${1:name}}{${2:sender}}{${3:receiver}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryshapes.geometric"
     },
-    "mess[]{}{}{}[]": {
-      "snippet": "mess[${4:options}]{${1:name}}{${2:sender}}{${3:receiver}}[${5:level offset}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryshapes.symbols"
     },
-    "mess*{}{}{}": {
-      "snippet": "mess*{${1:name}}{${2:sender}}{${3:receiver}}"
+    {
+      "name": "xstring"
     },
-    "mess*{}{}{}[]": {
-      "snippet": "mess*{${1:name}}{${2:sender}}{${3:receiver}}[${4:level offset}]"
-    },
-    "mess*[]{}{}{}": {
-      "snippet": "mess*[${4:options}]{${1:name}}{${2:sender}}{${3:receiver}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "mess*[]{}{}{}[]": {
-      "snippet": "mess*[${4:options}]{${1:name}}{${2:sender}}{${3:receiver}}[${5:level offset}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "msccomment{}{}": {
-      "snippet": "msccomment{${1:text}}{${2:instance}}"
-    },
-    "msccomment[]{}{}": {
-      "snippet": "msccomment[${3:options}]{${1:text}}{${2:instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "action{}{}": {
-      "snippet": "action{${1:name}}{${2:instance}}"
-    },
-    "action[]{}{}": {
-      "snippet": "action[${3:options}]{${1:name}}{${2:instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "action*{}{}": {
-      "snippet": "action*{${1:name}}{${2:instance}}"
-    },
-    "action*[]{}{}": {
-      "snippet": "action*[${3:options}]{${1:name}}{${2:instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "naction{}{}": {
-      "snippet": "naction{${1:name}}{${2:instance}}"
-    },
-    "naction[]{}{}": {
-      "snippet": "naction[${3:options}]{${1:name}}{${2:instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "naction*{}{}": {
-      "snippet": "naction*{${1:name}}{${2:instance}}"
-    },
-    "naction*[]{}{}": {
-      "snippet": "naction*[${3:options}]{${1:name}}{${2:instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "settimer{}{}": {
-      "snippet": "settimer{${1:name}}{${2:instance}}"
-    },
-    "settimer[]{}{}": {
-      "snippet": "settimer[${3:options}]{${1:name}}{${2:instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "timeout{}{}": {
-      "snippet": "timeout{${1:name}}{${2:instance}}"
-    },
-    "stoptimer{}{}": {
-      "snippet": "stoptimer{${1:name}}{${2:instance}}"
-    },
-    "settimeout{}{}": {
-      "snippet": "settimeout{${1:name}}{${2:instance}}"
-    },
-    "settimeout{}{}[]": {
-      "snippet": "settimeout{${1:name}}{${2:instance}}[${3:offset}]"
-    },
-    "settimeout[]{}{}": {
-      "snippet": "settimeout[${3:options}]{${1:name}}{${2:instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "settimeout[]{}{}[]": {
-      "snippet": "settimeout[${3:options}]{${1:name}}{${2:instance}}[${4:offset}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "setstoptimer{}{}": {
-      "snippet": "setstoptimer{${1:name}}{${2:instance}}"
-    },
-    "setstoptimer{}{}[]": {
-      "snippet": "setstoptimer{${1:name}}{${2:instance}}[${3:offset}]"
-    },
-    "setstoptimer[]{}{}": {
-      "snippet": "setstoptimer[${3:options}]{${1:name}}{${2:instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "setstoptimer[]{}{}[]": {
-      "snippet": "setstoptimer[${3:options}]{${1:name}}{${2:instance}}[${4:offset}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "mscmark{}{}": {
-      "snippet": "mscmark{${1:name}}{${2:instance}}"
-    },
-    "mscmark[]{}{}": {
-      "snippet": "mscmark[${3:options}]{${1:name}}{${2:instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "measure{}{}{}": {
-      "snippet": "measure{${1:name}}{${2:instance1}}{${3:instance2}}"
-    },
-    "measure{}{}{}[]": {
-      "snippet": "measure{${1:name}}{${2:instance1}}{${3:instance2}}[${4:offset}]"
-    },
-    "measure[]{}{}{}": {
-      "snippet": "measure[${4:options}]{${1:name}}{${2:instance1}}{${3:instance2}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "measure[]{}{}{}[]": {
-      "snippet": "measure[${4:options}]{${1:name}}{${2:instance1}}{${3:instance2}}[${5:offset}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "measure*{}{}{}": {
-      "snippet": "measure*{${1:name}}{${2:instance1}}{${3:instance2}}"
-    },
-    "measure*{}{}{}[]": {
-      "snippet": "measure*{${1:name}}{${2:instance1}}{${3:instance2}}[${4:offset}]"
-    },
-    "measure*[]{}{}{}": {
-      "snippet": "measure*[${4:options}]{${1:name}}{${2:instance1}}{${3:instance2}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "measure*[]{}{}{}[]": {
-      "snippet": "measure*[${4:options}]{${1:name}}{${2:instance1}}{${3:instance2}}[${5:offset}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "measurestart{}{}{}": {
-      "snippet": "measurestart{${1:name}}{${2:instance}}{${3:gate}}"
-    },
-    "measurestart[]{}{}{}": {
-      "snippet": "measurestart[${4:options}]{${1:name}}{${2:instance}}{${3:gate}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "measurestart*{}{}{}": {
-      "snippet": "measurestart*{${1:name}}{${2:instance}}{${3:gate}}"
-    },
-    "measurestart*[]{}{}{}": {
-      "snippet": "measurestart*[${4:options}]{${1:name}}{${2:instance}}{${3:gate}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "measureend{}{}{}": {
-      "snippet": "measureend{${1:name}}{${2:instance}}{${3:gate}}"
-    },
-    "measureend[]{}{}{}": {
-      "snippet": "measureend[${4:options}]{${1:name}}{${2:instance}}{${3:gate}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "measureend*{}{}{}": {
-      "snippet": "measureend*{${1:name}}{${2:instance}}{${3:gate}}"
-    },
-    "measureend*[]{}{}{}": {
-      "snippet": "measureend*[${4:options}]{${1:name}}{${2:instance}}{${3:gate}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "lost{}{}{}": {
-      "snippet": "lost{${1:name}}{${2:gate}}{${3:instance}}"
-    },
-    "lost[]{}{}{}": {
-      "snippet": "lost[${4:options}]{${1:name}}{${2:gate}}{${3:instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "found{}{}{}": {
-      "snippet": "found{${1:name}}{${2:gate}}{${3:instance}}"
-    },
-    "found[]{}{}{}": {
-      "snippet": "found[${4:options}]{${1:name}}{${2:gate}}{${3:instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "condition{}{}": {
-      "snippet": "condition{${1:text}}{${2:instance list}}"
-    },
-    "condition[]{}{}": {
-      "snippet": "condition[${3:options}]{${1:text}}{${2:instance list}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "condition*{}{}": {
-      "snippet": "condition*{${1:text}}{${2:instance list}}"
-    },
-    "condition*[]{}{}": {
-      "snippet": "condition*[${3:options}]{${1:text}}{${2:instance list}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ncondition{}{}": {
-      "snippet": "ncondition{${1:text}}{${2:instance list}}"
-    },
-    "ncondition[]{}{}": {
-      "snippet": "ncondition[${3:options}]{${1:text}}{${2:instance list}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ncondition*{}{}": {
-      "snippet": "ncondition*{${1:text}}{${2:instance list}}"
-    },
-    "ncondition*[]{}{}": {
-      "snippet": "ncondition*[${3:options}]{${1:text}}{${2:instance list}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "order{}{}": {
-      "snippet": "order{${1:sender}}{${2:receiver}}"
-    },
-    "order{}{}[]": {
-      "snippet": "order{${1:sender}}{${2:receiver}}[${3:level offset}]"
-    },
-    "order[]{}{}": {
-      "snippet": "order[${3:options}]{${1:sender}}{${2:receiver}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "order[]{}{}[]": {
-      "snippet": "order[${3:options}]{${1:sender}}{${2:receiver}}[${4:level offset}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "regionstart{}{}": {
-      "snippet": "regionstart{${1:type}}{${2:instance}}"
-    },
-    "regionstart[]{}{}": {
-      "snippet": "regionstart[${3:options}]{${1:type}}{${2:instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "regionend{}": {
-      "snippet": "regionend{${1:instance}}"
-    },
-    "dummyinst{}": {
-      "snippet": "dummyinst{${1:created instance}}"
-    },
-    "dummyinst[]{}": {
-      "snippet": "dummyinst[${2:options}]{${1:created instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "startinst{}{}{}": {
-      "snippet": "startinst{${1:instance name}}{${2:text above}}{${3:text inside}}"
-    },
-    "startinst[]{}{}{}": {
-      "snippet": "startinst[${4:options}]{${1:instance name}}{${2:text above}}{${3:text inside}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "create{}{}{}{}{}": {
-      "snippet": "create{${1:name}}{${2:creator}}{${3:instance name}}{${4:text above}}{${5:text inside}}"
-    },
-    "create[]{}{}{}{}{}": {
-      "snippet": "create[${6:options}]{${1:name}}{${2:creator}}{${3:instance name}}{${4:text above}}{${5:text inside}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "stop{}": {
-      "snippet": "stop{${1:instance}}"
-    },
-    "stop[]{}": {
-      "snippet": "stop[${2:options}]{${1:instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "stop*{}": {
-      "snippet": "stop*{${1:instance}}"
-    },
-    "stop*[]{}": {
-      "snippet": "stop*[${2:options}]{${1:instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "referencestart{}{}{}{}": {
-      "snippet": "referencestart{${1:nickname}}{${2:text}}{${3:left instance}}{${4:right instance}}"
-    },
-    "referencestart[]{}{}{}{}": {
-      "snippet": "referencestart[${5:options}]{${1:nickname}}{${2:text}}{${3:left instance}}{${4:right instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "referenceend{}": {
-      "snippet": "referenceend{${1:nickname}}"
-    },
-    "referenceend[]{}": {
-      "snippet": "referenceend[${2:options}]{${1:nickname}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "inlinestart{}{}{}{}": {
-      "snippet": "inlinestart{${1:nickname}}{${2:operator}}{${3:left instance}}{${4:right instance}}"
-    },
-    "inlinestart[]{}{}{}{}": {
-      "snippet": "inlinestart[${5:options}]{${1:nickname}}{${2:operator}}{${3:left instance}}{${4:right instance}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "inlineseparator{}": {
-      "snippet": "inlineseparator{${1:nickname}}"
-    },
-    "inlineseparator[]{}": {
-      "snippet": "inlineseparator[${2:options}]{${1:nickname}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "inlineend{}": {
-      "snippet": "inlineend{${1:nickname}}"
-    },
-    "inlineend[]{}": {
-      "snippet": "inlineend[${2:options}]{${1:nickname}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "inlineend*{}": {
-      "snippet": "inlineend*{${1:nickname}}"
-    },
-    "inlineend*[]{}": {
-      "snippet": "inlineend*[${2:options}]{${1:nickname}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "gate{}{}": {
-      "snippet": "gate{${1:gate name}}{${2:instance name}}"
-    },
-    "gate[]{}{}": {
-      "snippet": "gate[${3:options}]{${1:gate name}}{${2:instance name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "gate*{}{}": {
-      "snippet": "gate*{${1:gate name}}{${2:instance name}}"
-    },
-    "gate*[]{}{}": {
-      "snippet": "gate*[${3:options}]{${1:gate name}}{${2:instance name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hmscstartsymbol{}": {
-      "snippet": "hmscstartsymbol{${1:nickname}}"
-    },
-    "hmscstartsymbol{}()": {
-      "snippet": "hmscstartsymbol{${1:nickname}}(${2:x},${3:y})"
-    },
-    "hmscstartsymbol[]{}": {
-      "snippet": "hmscstartsymbol[${2:options}]{${1:nickname}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hmscstartsymbol[]{}()": {
-      "snippet": "hmscstartsymbol[${2:options}]{${1:nickname}}(${3:x},${4:y})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hmscendsymbol{}": {
-      "snippet": "hmscendsymbol{${1:nickname}}"
-    },
-    "hmscendsymbol{}()": {
-      "snippet": "hmscendsymbol{${1:nickname}}(${2:x},${3:y})"
-    },
-    "hmscendsymbol[]{}": {
-      "snippet": "hmscendsymbol[${2:options}]{${1:nickname}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hmscendsymbol[]{}()": {
-      "snippet": "hmscendsymbol[${2:options}]{${1:nickname}}(${3:x},${4:y})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hmscreference{}{}": {
-      "snippet": "hmscreference{${1:nickname}}{${2:text}}"
-    },
-    "hmscreference{}{}()": {
-      "snippet": "hmscreference{${1:nickname}}{${2:text}}(${3:x},${4:y})"
-    },
-    "hmscreference[]{}{}": {
-      "snippet": "hmscreference[${3:options}]{${1:nickname}}{${2:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hmscreference[]{}{}()": {
-      "snippet": "hmscreference[${3:options}]{${1:nickname}}{${2:text}}(${4:x},${5:y})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hmsccondition{}{}": {
-      "snippet": "hmsccondition{${1:nickname}}{${2:text}}"
-    },
-    "hmsccondition{}{}()": {
-      "snippet": "hmsccondition{${1:nickname}}{${2:text}}(${3:x},${4:y})"
-    },
-    "hmsccondition[]{}{}": {
-      "snippet": "hmsccondition[${3:options}]{${1:nickname}}{${2:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hmsccondition[]{}{}()": {
-      "snippet": "hmsccondition[${3:options}]{${1:nickname}}{${2:text}}(${4:x},${5:y})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hmscconnection{}": {
-      "snippet": "hmscconnection{${1:nickname}}"
-    },
-    "hmscconnection{}()": {
-      "snippet": "hmscconnection{${1:nickname}}(${2:x},${3:y})"
-    },
-    "hmscconnection[]{}": {
-      "snippet": "hmscconnection[${2:options}]{${1:nickname}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hmscconnection[]{}()": {
-      "snippet": "hmscconnection[${2:options}]{${1:nickname}}(${3:x},${4:y})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "reference{}()": {
-      "snippet": "reference{${1:text}}(${2:x},${3:y})"
-    },
-    "separator{}": {
-      "snippet": "separator{${1:y}}"
-    },
-    "mscdocreferenceheight": {},
-    "mscdocreferencewidth": {},
-    "topnamedist": {},
-    "coregionstart{}": {
-      "snippet": "coregionstart{${1:nickname}}"
-    },
-    "coregionend{}": {
-      "snippet": "coregionend{${1:nickname}}"
-    },
-    "mscget{}": {
-      "snippet": "mscget{${1:option}}"
-    },
-    "actionheight": {},
-    "actionwidth": {},
-    "addDdraw{}{}{}{}": {
-      "snippet": "addDdraw{${1:instance1}}{${2:instance2}}{${3:level}}{${4:code}}"
-    },
-    "adddraw{}{}{}": {
-      "snippet": "adddraw{${1:instance}}{${2:level}}{${3:code}}"
-    },
-    "bottomfootdist": {},
-    "conditionheight": {},
-    "conditionoverlap": {},
-    "drawframe{}": {
-      "snippet": "drawframe{${1:yes|no}}"
-    },
-    "drawinstfoot{}": {
-      "snippet": "drawinstfoot{${1:yes|no}}"
-    },
-    "drawinsthead{}": {
-      "snippet": "drawinsthead{${1:yes|no}}"
-    },
-    "envinstdist": {},
-    "firstlevelheight": {},
-    "gatesymbolradius": {},
-    "hmscconditionheight": {},
-    "hmscconditionwidth": {},
-    "hmscconnectionradius": {},
-    "hmsckeywordstyle": {},
-    "hmscreferenceheight": {},
-    "hmscreferencewidth": {},
-    "hmscstartsymbolwidth": {},
-    "inlineoverlap": {},
-    "instbarwidth": {},
-    "instdist": {},
-    "instfootheight": {},
-    "instheadheight": {},
-    "inststart": {},
-    "inststop": {},
-    "instwidth": {},
-    "labeldist": {},
-    "lastlevelheight": {},
-    "leftnamedist": {},
-    "levelheight": {},
-    "lostsymbolradius": {},
-    "markdist": {},
-    "measuredist": {},
-    "measuresymbolwidth": {},
-    "messarrowscale{}": {
-      "snippet": "messarrowscale{${1:factor}}"
-    },
-    "msccommentdist": {},
-    "mscdate": {},
-    "mscdockeywordstyle": {},
-    "mscdockeywordstyle{}": {
-      "snippet": "mscdockeywordstyle{${1:arg1}}"
-    },
-    "mscgetx{}{}": {
-      "snippet": "mscgetx{${1:arg1}}{${2:arg2}}"
-    },
-    "mscgety{}{}": {
-      "snippet": "mscgety{${1:arg1}}{${2:arg2}}"
-    },
-    "msckeywordstyle{}": {
-      "snippet": "msckeywordstyle{${1:text}}"
-    },
-    "mscunit": {},
-    "mscversion": {},
-    "nogrid": {},
-    "referenceoverlap": {},
-    "regionbarwidth": {},
-    "selfmesswidth": {},
-    "sethmsckeyword{}": {
-      "snippet": "sethmsckeyword{${1:keyword}}"
-    },
-    "setmscdockeyword{}": {
-      "snippet": "setmscdockeyword{${1:keyword}}"
-    },
-    "setmsckeyword{}": {
-      "snippet": "setmsckeyword{${1:keyword}}"
-    },
-    "setmscscale{}": {
-      "snippet": "setmscscale{${1:factor}}"
-    },
-    "setmscvalues{}": {
-      "snippet": "setmscvalues{${1:large|normal|small}}"
-    },
-    "showgrid": {},
-    "stopwidth": {},
-    "thickness": {},
-    "timerwidth": {},
-    "topheaddist": {}
-  },
-  "envs": {
-    "msc{}": {
-      "name": "msc",
-      "snippet": "{${1:name}}"
-    },
-    "msc[]{}": {
-      "name": "msc",
-      "snippet": "[${2:options}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "msc[][]{}": {
-      "name": "msc",
-      "snippet": "[${2:options}][${3:pos}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hmsc{}": {
-      "name": "hmsc",
-      "snippet": "{${1:name}}"
-    },
-    "hmsc{}(llx,lly)(urx,ury)": {
-      "name": "hmsc",
-      "snippet": "{${1:name}}(${2:llx},${3:lly})(${4:urx},${5:ury})"
-    },
-    "hmsc[]{}": {
-      "name": "hmsc",
-      "snippet": "[${2:options}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hmsc[]{}(llx,lly)(urx,ury)": {
-      "name": "hmsc",
-      "snippet": "[${2:options}]{${1:name}}(${3:llx},${4:lly})(${5:urx},${6:ury})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "mscdoc{}(llx,lly)(urx,ury)": {
-      "name": "mscdoc",
-      "snippet": "{${1:name}}(${2:llx},${3:lly})(${4:urx},${5:ury})"
-    },
-    "mscdoc[]{}(llx,lly)(urx,ury)": {
-      "name": "mscdoc",
-      "snippet": "[${2:headerpos}]{${1:name}}(${3:llx},${4:lly})(${5:urx},${6:ury})"
+    {
+      "name": "calc"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "mscset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nextlevel"
+    },
+    {
+      "name": "nextlevel",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:level offset}]"
+      }
+    },
+    {
+      "name": "declinst",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:nickname}}{${2:instance name above}}{${3:instance name within}}"
+      }
+    },
+    {
+      "name": "declinst*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:nickname}}{${2:instance name above}}{${3:instance name within}}"
+      }
+    },
+    {
+      "name": "mess",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:sender}}{${3:receiver}}"
+      }
+    },
+    {
+      "name": "mess",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:name}}{${2:sender}}{${3:receiver}}[${4:level offset}]"
+      }
+    },
+    {
+      "name": "mess",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:name}}{${2:sender}}{${3:receiver}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mess",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:options%keyvals}]{${1:name}}{${2:sender}}{${3:receiver}}[${5:level offset}]",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mess*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:sender}}{${3:receiver}}"
+      }
+    },
+    {
+      "name": "mess*",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:name}}{${2:sender}}{${3:receiver}}[${4:level offset}]"
+      }
+    },
+    {
+      "name": "mess*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:name}}{${2:sender}}{${3:receiver}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mess*",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:options%keyvals}]{${1:name}}{${2:sender}}{${3:receiver}}[${5:level offset}]",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "msccomment",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:instance}}"
+      }
+    },
+    {
+      "name": "msccomment",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:text}}{${2:instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "action",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:instance}}"
+      }
+    },
+    {
+      "name": "action",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "action*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:instance}}"
+      }
+    },
+    {
+      "name": "action*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "naction",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:instance}}"
+      }
+    },
+    {
+      "name": "naction",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "naction*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:instance}}"
+      }
+    },
+    {
+      "name": "naction*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "settimer",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:instance}}"
+      }
+    },
+    {
+      "name": "settimer",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timeout",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:instance}}"
+      }
+    },
+    {
+      "name": "settimer",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "stoptimer",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:instance}}"
+      }
+    },
+    {
+      "name": "settimer",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "settimeout",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:instance}}"
+      }
+    },
+    {
+      "name": "settimeout",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:name}}{${2:instance}}[${3:offset}]"
+      }
+    },
+    {
+      "name": "settimeout",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "settimeout",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:instance}}[${4:offset}]",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setstoptimer",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:instance}}"
+      }
+    },
+    {
+      "name": "setstoptimer",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:name}}{${2:instance}}[${3:offset}]"
+      }
+    },
+    {
+      "name": "setstoptimer",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setstoptimer",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:instance}}[${4:offset}]",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mscmark",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:instance}}"
+      }
+    },
+    {
+      "name": "mscmark",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "measure",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:instance1}}{${3:instance2}}"
+      }
+    },
+    {
+      "name": "measure",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:name}}{${2:instance1}}{${3:instance2}}[${4:offset}]"
+      }
+    },
+    {
+      "name": "measure",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:name}}{${2:instance1}}{${3:instance2}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "measure",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:options%keyvals}]{${1:name}}{${2:instance1}}{${3:instance2}}[${5:offset}]",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "measure*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:instance1}}{${3:instance2}}"
+      }
+    },
+    {
+      "name": "measure*",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:name}}{${2:instance1}}{${3:instance2}}[${4:offset}]"
+      }
+    },
+    {
+      "name": "measure*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:name}}{${2:instance1}}{${3:instance2}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "measure*",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:options%keyvals}]{${1:name}}{${2:instance1}}{${3:instance2}}[${5:offset}]",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "measurestart",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:instance}}{${3:gate}}"
+      }
+    },
+    {
+      "name": "measurestart",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:name}}{${2:instance}}{${3:gate}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "measurestart*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:instance}}{${3:gate}}"
+      }
+    },
+    {
+      "name": "measurestart*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:name}}{${2:instance}}{${3:gate}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "measureend",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:instance}}{${3:gate}}"
+      }
+    },
+    {
+      "name": "measureend",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:name}}{${2:instance}}{${3:gate}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "measureend*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:instance}}{${3:gate}}"
+      }
+    },
+    {
+      "name": "measureend*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:name}}{${2:instance}}{${3:gate}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "lost",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:gate}}{${3:instance}}"
+      }
+    },
+    {
+      "name": "lost",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:name}}{${2:gate}}{${3:instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "found",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:gate}}{${3:instance}}"
+      }
+    },
+    {
+      "name": "found",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:name}}{${2:gate}}{${3:instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "condition",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:instance list}}"
+      }
+    },
+    {
+      "name": "condition",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:text}}{${2:instance list}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "condition*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:instance list}}"
+      }
+    },
+    {
+      "name": "condition*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:text}}{${2:instance list}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ncondition",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:instance list}}"
+      }
+    },
+    {
+      "name": "ncondition",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:text}}{${2:instance list}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ncondition*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:instance list}}"
+      }
+    },
+    {
+      "name": "ncondition*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:text}}{${2:instance list}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "order",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sender}}{${2:receiver}}"
+      }
+    },
+    {
+      "name": "order",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:sender}}{${2:receiver}}[${3:level offset}]"
+      }
+    },
+    {
+      "name": "order",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:sender}}{${2:receiver}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "order",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:options%keyvals}]{${1:sender}}{${2:receiver}}[${4:level offset}]",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "regionstart",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type}}{${2:instance}}"
+      }
+    },
+    {
+      "name": "regionstart",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:type}}{${2:instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "regionend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:instance}}"
+      }
+    },
+    {
+      "name": "dummyinst",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:created instance}}"
+      }
+    },
+    {
+      "name": "dummyinst",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:created instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "startinst",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:instance name}}{${2:text above}}{${3:text inside}}"
+      }
+    },
+    {
+      "name": "startinst",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:instance name}}{${2:text above}}{${3:text inside}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "create",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:name}}{${2:creator}}{${3:instance name}}{${4:text above}}{${5:text inside}}"
+      }
+    },
+    {
+      "name": "create",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:options%keyvals}]{${1:name}}{${2:creator}}{${3:instance name}}{${4:text above}}{${5:text inside}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "stop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:instance}}"
+      }
+    },
+    {
+      "name": "stop",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "stop*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:instance}}"
+      }
+    },
+    {
+      "name": "stop*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "referencestart",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:nickname}}{${2:text}}{${3:left instance}}{${4:right instance}}"
+      }
+    },
+    {
+      "name": "referencestart",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:nickname}}{${2:text}}{${3:left instance}}{${4:right instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "referenceend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nickname}}"
+      }
+    },
+    {
+      "name": "referenceend",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:nickname}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inlinestart",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:nickname}}{${2:operator}}{${3:left instance}}{${4:right instance}}"
+      }
+    },
+    {
+      "name": "inlinestart",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:nickname}}{${2:operator}}{${3:left instance}}{${4:right instance}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inlineseparator",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nickname}}"
+      }
+    },
+    {
+      "name": "inlineseparator",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:nickname}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inlineend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nickname}}"
+      }
+    },
+    {
+      "name": "inlineend",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:nickname}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inlineend*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nickname}}"
+      }
+    },
+    {
+      "name": "inlineend*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:nickname}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:gate name}}{${2:instance name}}"
+      }
+    },
+    {
+      "name": "gate",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:gate name}}{${2:instance name}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gate*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:gate name}}{${2:instance name}}"
+      }
+    },
+    {
+      "name": "gate*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:gate name}}{${2:instance name}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hmscstartsymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nickname}}"
+      }
+    },
+    {
+      "name": "hmscstartsymbol",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:nickname}}(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "hmscstartsymbol",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:nickname}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hmscstartsymbol",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:options%keyvals}]{${1:nickname}}(${3:x},${4:y})",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hmscendsymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nickname}}"
+      }
+    },
+    {
+      "name": "hmscendsymbol",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:nickname}}(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "hmscendsymbol",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:nickname}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hmscendsymbol",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:options%keyvals}]{${1:nickname}}(${3:x},${4:y})",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hmscreference",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:nickname}}{${2:text}}"
+      }
+    },
+    {
+      "name": "hmscreference",
+      "arg": {
+        "format": "{}{}()",
+        "snippet": "{${1:nickname}}{${2:text}}(${3:x},${4:y})"
+      }
+    },
+    {
+      "name": "hmscreference",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:nickname}}{${2:text}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hmscreference",
+      "arg": {
+        "format": "[]{}{}()",
+        "snippet": "[${3:options%keyvals}]{${1:nickname}}{${2:text}}(${4:x},${5:y})",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hmsccondition",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:nickname}}{${2:text}}"
+      }
+    },
+    {
+      "name": "hmsccondition",
+      "arg": {
+        "format": "{}{}()",
+        "snippet": "{${1:nickname}}{${2:text}}(${3:x},${4:y})"
+      }
+    },
+    {
+      "name": "hmsccondition",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:nickname}}{${2:text}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hmsccondition",
+      "arg": {
+        "format": "[]{}{}()",
+        "snippet": "[${3:options%keyvals}]{${1:nickname}}{${2:text}}(${4:x},${5:y})",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hmscconnection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nickname}}"
+      }
+    },
+    {
+      "name": "hmscconnection",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:nickname}}(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "hmscconnection",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:nickname}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hmscconnection",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:options%keyvals}]{${1:nickname}}(${3:x},${4:y})",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "reference",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:text}}(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "separator",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:y}}"
+      }
+    },
+    {
+      "name": "mscdocreferenceheight",
+      "unusual": true
+    },
+    {
+      "name": "mscdocreferencewidth",
+      "unusual": true
+    },
+    {
+      "name": "topnamedist",
+      "unusual": true
+    },
+    {
+      "name": "coregionstart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nickname}}"
+      }
+    },
+    {
+      "name": "coregionend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nickname}}"
+      }
+    },
+    {
+      "name": "mscget",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "actionheight",
+      "unusual": true
+    },
+    {
+      "name": "actionwidth",
+      "unusual": true
+    },
+    {
+      "name": "addDdraw",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:instance1}}{${2:instance2}}{${3:level}}{${4:code}}"
+      }
+    },
+    {
+      "name": "adddraw",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:instance}}{${2:level}}{${3:code}}"
+      }
+    },
+    {
+      "name": "bottomfootdist",
+      "unusual": true
+    },
+    {
+      "name": "conditionheight",
+      "unusual": true
+    },
+    {
+      "name": "conditionoverlap",
+      "unusual": true
+    },
+    {
+      "name": "drawframe",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:yes|no}}"
+      }
+    },
+    {
+      "name": "drawinstfoot",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:yes|no}}"
+      }
+    },
+    {
+      "name": "drawinsthead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:yes|no}}"
+      }
+    },
+    {
+      "name": "envinstdist",
+      "unusual": true
+    },
+    {
+      "name": "firstlevelheight",
+      "unusual": true
+    },
+    {
+      "name": "gatesymbolradius",
+      "unusual": true
+    },
+    {
+      "name": "hmscconditionheight",
+      "unusual": true
+    },
+    {
+      "name": "hmscconditionwidth",
+      "unusual": true
+    },
+    {
+      "name": "hmscconnectionradius",
+      "unusual": true
+    },
+    {
+      "name": "hmsckeywordstyle",
+      "unusual": true
+    },
+    {
+      "name": "hmscreferenceheight",
+      "unusual": true
+    },
+    {
+      "name": "hmscreferencewidth",
+      "unusual": true
+    },
+    {
+      "name": "hmscstartsymbolwidth",
+      "unusual": true
+    },
+    {
+      "name": "inlineoverlap",
+      "unusual": true
+    },
+    {
+      "name": "instbarwidth",
+      "unusual": true
+    },
+    {
+      "name": "instdist",
+      "unusual": true
+    },
+    {
+      "name": "instfootheight",
+      "unusual": true
+    },
+    {
+      "name": "instheadheight",
+      "unusual": true
+    },
+    {
+      "name": "inststart",
+      "unusual": true
+    },
+    {
+      "name": "inststop",
+      "unusual": true
+    },
+    {
+      "name": "instwidth",
+      "unusual": true
+    },
+    {
+      "name": "labeldist",
+      "unusual": true
+    },
+    {
+      "name": "lastlevelheight",
+      "unusual": true
+    },
+    {
+      "name": "leftnamedist",
+      "unusual": true
+    },
+    {
+      "name": "levelheight",
+      "unusual": true
+    },
+    {
+      "name": "lostsymbolradius",
+      "unusual": true
+    },
+    {
+      "name": "markdist",
+      "unusual": true
+    },
+    {
+      "name": "measuredist",
+      "unusual": true
+    },
+    {
+      "name": "measuresymbolwidth",
+      "unusual": true
+    },
+    {
+      "name": "messarrowscale",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "msccommentdist",
+      "unusual": true
+    },
+    {
+      "name": "mscdockeywordstyle"
+    },
+    {
+      "name": "mscdockeywordstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "mscgetx",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "mscgety",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "msckeywordstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "mscunit",
+      "unusual": true
+    },
+    {
+      "name": "nogrid",
+      "unusual": true
+    },
+    {
+      "name": "referenceoverlap",
+      "unusual": true
+    },
+    {
+      "name": "regionbarwidth",
+      "unusual": true
+    },
+    {
+      "name": "selfmesswidth",
+      "unusual": true
+    },
+    {
+      "name": "sethmsckeyword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyword}}"
+      }
+    },
+    {
+      "name": "setmscdockeyword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyword}}"
+      }
+    },
+    {
+      "name": "setmsckeyword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyword}}"
+      }
+    },
+    {
+      "name": "setmscscale",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "setmscvalues",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:large|${2:normal}|small}}"
+      }
+    },
+    {
+      "name": "showgrid",
+      "unusual": true
+    },
+    {
+      "name": "stopwidth",
+      "unusual": true
+    },
+    {
+      "name": "thickness",
+      "unusual": true
+    },
+    {
+      "name": "timerwidth",
+      "unusual": true
+    },
+    {
+      "name": "topheaddist",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "msc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%text}}"
+      }
+    },
+    {
+      "name": "msc",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:name%text}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "msc",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:options%keyvals}][${3:pos}]{${1:name%text}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hmsc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%text}}"
+      }
+    },
+    {
+      "name": "hmsc",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "{${1:name%text}}(${2:llx},${3:lly})(${4:urx},${5:ury})"
+      }
+    },
+    {
+      "name": "hmsc",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:name%text}}",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hmsc",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "[${2:options%keyvals}]{${1:name%text}}(${3:llx},${4:lly})(${5:urx},${6:ury})",
+        "keys": [
+          "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mscdoc",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "{${1:name%text}}(${2:llx},${3:lly})(${4:urx},${5:ury})"
+      }
+    },
+    {
+      "name": "mscdoc",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "[${2:headerpos}]{${1:name%text}}(${3:llx},${4:lly})(${5:urx},${6:ury})"
+      }
+    }
+  ],
+  "keys": {
+    "\\mscset#c,\\begin{msc}#c,\\mess#c,\\mess*#c,\\msccomment#c,\\action#c,\\action*#c,\\naction#c,\\naction*#c,\\settimer#c,\\timeout#c,\\stoptimer#c,\\settimeout#c,\\setstoptimer#c,\\mscmark#c,\\measure#c,\\measure*#c,\\measurestart#c,\\measurestart*#c,\\measureend#c,\\measureend*#c,\\lost#c,\\found#c,\\condition#c,\\condition*#c,\\ncondition#c,\\ncondition*#c,\\order#c,\\regionstart#c,\\dummyinst#c,\\startinst#c,\\create#c,\\stop#c,\\stop*#c,\\referencestart#c,\\referenceend#c,\\inlinestart#c,\\inlineseparator#c,\\inlineend#c,\\inlineend*#c,\\gate#c,\\gate*#c,\\begin{hmsc}#c,\\hmscstartsymbol#c,\\hmscendsymbol#c,\\hmscreference#c,\\hmsccondition#c,\\hmscconnection#c": [
       "above",
       "above left",
       "above right",
@@ -704,5 +1590,6 @@
       "title top distance=",
       "west hmsc margin="
     ]
-  ]
+  },
+  "args": []
 }

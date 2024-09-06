@@ -1,385 +1,1020 @@
 {
-  "includes": {
-    "alphabeta": [],
-    "amsmath": [],
-    "etoolbox": [],
-    "iftex": []
-  },
-  "macros": {
-    "MathLatin{}": {
-      "snippet": "MathLatin{${1:letter}}"
-    },
-    "MathLatin{}{}": {
-      "snippet": "MathLatin{${1:letter}}{${2:family}}"
-    },
-    "MathLatin{}{}[]": {
-      "snippet": "MathLatin{${1:letter}}{${2:family}}[${3:series}]"
-    },
-    "MathLatin{}{}[]()": {
-      "snippet": "MathLatin{${1:letter}}{${2:family}}[${3:series}](${4:shape})"
-    },
-    "MathGreek{}": {
-      "snippet": "MathGreek{${1:letter}}"
-    },
-    "MathGreek{}{}": {
-      "snippet": "MathGreek{${1:letter}}{${2:family}}"
-    },
-    "MathGreek{}{}[]": {
-      "snippet": "MathGreek{${1:letter}}{${2:family}}[${3:series}]"
-    },
-    "MathGreek{}{}[]()": {
-      "snippet": "MathGreek{${1:letter}}{${2:family}}[${3:series}](${4:shape})"
-    },
-    "ISOalpha": {},
-    "ISOalpha{}": {
-      "snippet": "ISOalpha{${1:family}}"
-    },
-    "ISOalpha{}[]()": {
-      "snippet": "ISOalpha{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISObeta": {},
-    "ISObeta{}": {
-      "snippet": "ISObeta{${1:family}}"
-    },
-    "ISObeta{}[]()": {
-      "snippet": "ISObeta{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOgamma": {},
-    "ISOgamma{}": {
-      "snippet": "ISOgamma{${1:family}}"
-    },
-    "ISOgamma{}[]()": {
-      "snippet": "ISOgamma{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOdelta": {},
-    "ISOdelta{}": {
-      "snippet": "ISOdelta{${1:family}}"
-    },
-    "ISOdelta{}[]()": {
-      "snippet": "ISOdelta{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOepsilon": {},
-    "ISOepsilon{}": {
-      "snippet": "ISOepsilon{${1:family}}"
-    },
-    "ISOepsilon{}[]()": {
-      "snippet": "ISOepsilon{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOzeta": {},
-    "ISOzeta{}": {
-      "snippet": "ISOzeta{${1:family}}"
-    },
-    "ISOzeta{}[]()": {
-      "snippet": "ISOzeta{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOeta": {},
-    "ISOeta{}": {
-      "snippet": "ISOeta{${1:family}}"
-    },
-    "ISOeta{}[]()": {
-      "snippet": "ISOeta{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOtheta": {},
-    "ISOtheta{}": {
-      "snippet": "ISOtheta{${1:family}}"
-    },
-    "ISOtheta{}[]()": {
-      "snippet": "ISOtheta{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOiota": {},
-    "ISOiota{}": {
-      "snippet": "ISOiota{${1:family}}"
-    },
-    "ISOiota{}[]()": {
-      "snippet": "ISOiota{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOkappa": {},
-    "ISOkappa{}": {
-      "snippet": "ISOkappa{${1:family}}"
-    },
-    "ISOkappa{}[]()": {
-      "snippet": "ISOkappa{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOlambda": {},
-    "ISOlambda{}": {
-      "snippet": "ISOlambda{${1:family}}"
-    },
-    "ISOlambda{}[]()": {
-      "snippet": "ISOlambda{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOmu": {},
-    "ISOmu{}": {
-      "snippet": "ISOmu{${1:family}}"
-    },
-    "ISOmu{}[]()": {
-      "snippet": "ISOmu{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOnu": {},
-    "ISOnu{}": {
-      "snippet": "ISOnu{${1:family}}"
-    },
-    "ISOnu{}[]()": {
-      "snippet": "ISOnu{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOxi": {},
-    "ISOxi{}": {
-      "snippet": "ISOxi{${1:family}}"
-    },
-    "ISOxi{}[]()": {
-      "snippet": "ISOxi{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOomicron": {},
-    "ISOomicron{}": {
-      "snippet": "ISOomicron{${1:family}}"
-    },
-    "ISOomicron{}[]()": {
-      "snippet": "ISOomicron{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOpi": {},
-    "ISOpi{}": {
-      "snippet": "ISOpi{${1:family}}"
-    },
-    "ISOpi{}[]()": {
-      "snippet": "ISOpi{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOrho": {},
-    "ISOrho{}": {
-      "snippet": "ISOrho{${1:family}}"
-    },
-    "ISOrho{}[]()": {
-      "snippet": "ISOrho{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOsigma": {},
-    "ISOsigma{}": {
-      "snippet": "ISOsigma{${1:family}}"
-    },
-    "ISOsigma{}[]()": {
-      "snippet": "ISOsigma{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOtau": {},
-    "ISOtau{}": {
-      "snippet": "ISOtau{${1:family}}"
-    },
-    "ISOtau{}[]()": {
-      "snippet": "ISOtau{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOupsilon": {},
-    "ISOupsilon{}": {
-      "snippet": "ISOupsilon{${1:family}}"
-    },
-    "ISOupsilon{}[]()": {
-      "snippet": "ISOupsilon{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOphi": {},
-    "ISOphi{}": {
-      "snippet": "ISOphi{${1:family}}"
-    },
-    "ISOphi{}[]()": {
-      "snippet": "ISOphi{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOchi": {},
-    "ISOchi{}": {
-      "snippet": "ISOchi{${1:family}}"
-    },
-    "ISOchi{}[]()": {
-      "snippet": "ISOchi{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOpsi": {},
-    "ISOpsi{}": {
-      "snippet": "ISOpsi{${1:family}}"
-    },
-    "ISOpsi{}[]()": {
-      "snippet": "ISOpsi{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOomega": {},
-    "ISOomega{}": {
-      "snippet": "ISOomega{${1:family}}"
-    },
-    "ISOomega{}[]()": {
-      "snippet": "ISOomega{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOGamma": {},
-    "ISOGamma{}": {
-      "snippet": "ISOGamma{${1:family}}"
-    },
-    "ISOGamma{}[]()": {
-      "snippet": "ISOGamma{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISODelta": {},
-    "ISODelta{}": {
-      "snippet": "ISODelta{${1:family}}"
-    },
-    "ISODelta{}[]()": {
-      "snippet": "ISODelta{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOEta": {},
-    "ISOEta{}": {
-      "snippet": "ISOEta{${1:family}}"
-    },
-    "ISOEta{}[]()": {
-      "snippet": "ISOEta{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOTheta": {},
-    "ISOTheta{}": {
-      "snippet": "ISOTheta{${1:family}}"
-    },
-    "ISOTheta{}[]()": {
-      "snippet": "ISOTheta{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOLambda": {},
-    "ISOLambda{}": {
-      "snippet": "ISOLambda{${1:family}}"
-    },
-    "ISOLambda{}[]()": {
-      "snippet": "ISOLambda{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOXi": {},
-    "ISOXi{}": {
-      "snippet": "ISOXi{${1:family}}"
-    },
-    "ISOXi{}[]()": {
-      "snippet": "ISOXi{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOPi": {},
-    "ISOPi{}": {
-      "snippet": "ISOPi{${1:family}}"
-    },
-    "ISOPi{}[]()": {
-      "snippet": "ISOPi{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISORho": {},
-    "ISORho{}": {
-      "snippet": "ISORho{${1:family}}"
-    },
-    "ISORho{}[]()": {
-      "snippet": "ISORho{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOSigma": {},
-    "ISOSigma{}": {
-      "snippet": "ISOSigma{${1:family}}"
-    },
-    "ISOSigma{}[]()": {
-      "snippet": "ISOSigma{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOUpsilon": {},
-    "ISOUpsilon{}": {
-      "snippet": "ISOUpsilon{${1:family}}"
-    },
-    "ISOUpsilon{}[]()": {
-      "snippet": "ISOUpsilon{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOPhi": {},
-    "ISOPhi{}": {
-      "snippet": "ISOPhi{${1:family}}"
-    },
-    "ISOPhi{}[]()": {
-      "snippet": "ISOPhi{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOChi": {},
-    "ISOChi{}": {
-      "snippet": "ISOChi{${1:family}}"
-    },
-    "ISOChi{}[]()": {
-      "snippet": "ISOChi{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOPsi": {},
-    "ISOPsi{}": {
-      "snippet": "ISOPsi{${1:family}}"
-    },
-    "ISOPsi{}[]()": {
-      "snippet": "ISOPsi{${1:family}}[${2:series}](${3:shape})"
-    },
-    "ISOOmega": {},
-    "ISOOmega{}": {
-      "snippet": "ISOOmega{${1:family}}"
-    },
-    "ISOOmega{}[]()": {
-      "snippet": "ISOOmega{${1:family}}[${2:series}](${3:shape})"
-    },
-    "vectorsymbol{}": {
-      "snippet": "vectorsymbol{${1:arg}}"
-    },
-    "vectorsymbol*{}": {
-      "snippet": "vectorsymbol*{${1:arg}}"
-    },
-    "matrixsymbol{}": {
-      "snippet": "matrixsymbol{${1:arg}}"
-    },
-    "matrixsymbol*{}": {
-      "snippet": "matrixsymbol*{${1:arg}}"
-    },
-    "tensorsymbol{}": {
-      "snippet": "tensorsymbol{${1:arg}}"
-    },
-    "tensorsymbol*{}": {
-      "snippet": "tensorsymbol*{${1:arg}}"
-    },
-    "switchvarsymbols{}": {
-      "snippet": "switchvarsymbols{${1:csname}}"
-    },
-    "switchvarlowercasegreekletters": {},
-    "switchvaruppercasegreekletters": {},
-    "ISOser": {},
-    "ISOsha": {},
-    "ISOfam": {},
-    "MLatin{}{}{}{}": {
-      "snippet": "MLatin{${1:letter}}{${2:family}}{${3:shape}}{${4:series}}"
-    },
-    "MGreek{}{}{}{}": {
-      "snippet": "MGreek{${1:letter}}{${2:family}}{${3:shape}}{${4:series}}"
-    },
-    "mathrmbf{}": {
-      "snippet": "mathrmbf{${1:text}}"
-    },
-    "mathbfit{}": {
-      "snippet": "mathbfit{${1:text}}"
-    },
-    "mathsfit{}": {
-      "snippet": "mathsfit{${1:text}}"
-    },
-    "mathsfbfit{}": {
-      "snippet": "mathsfbfit{${1:text}}"
-    },
-    "mathsfbf{}": {
-      "snippet": "mathsfbf{${1:text}}"
-    },
-    "iunit": {},
-    "junit": {},
-    "iu": {},
-    "ju": {},
-    "eu": {},
-    "uppi": {
-      "detail": "π",
-      "documentation": "pi, greek"
-    },
-    "diff": {},
-    "PMpartialbox": {},
-    "uppartial": {},
-    "uppartial[]": {
-      "snippet": "uppartial[${1:shearing coeff}]"
-    },
-    "micro": {},
-    "ohm": {},
-    "ISOohm": {},
-    "textormath{}{}": {
-      "snippet": "textormath{${1:if text}}{${2:if math}}"
-    },
-    "ped{}": {
-      "snippet": "ped{${1:sub}}"
-    },
-    "ap{}": {
-      "snippet": "ap{${1:sup}}"
-    },
-    "unit{}": {
-      "snippet": "unit{${1:text}}"
-    },
-    "ifengineer": {},
-    "engineertrue": {},
-    "engineerfalse": {}
-  },
-  "envs": {},
-  "options": [
-    "engineer"
+  "deps": [
+    {
+      "name": "alphabeta"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "iftex"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "MathLatin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "MathLatin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:letter}}{${2:family}}"
+      }
+    },
+    {
+      "name": "MathLatin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:letter}}{${2:family}}[${3:series}]"
+      }
+    },
+    {
+      "name": "MathLatin",
+      "arg": {
+        "format": "{}{}[]()",
+        "snippet": "{${1:letter}}{${2:family}}[${3:series}](${4:shape})"
+      }
+    },
+    {
+      "name": "MathGreek",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "MathGreek",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:letter}}{${2:family}}"
+      }
+    },
+    {
+      "name": "MathGreek",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:letter}}{${2:family}}[${3:series}]"
+      }
+    },
+    {
+      "name": "MathGreek",
+      "arg": {
+        "format": "{}{}[]()",
+        "snippet": "{${1:letter}}{${2:family}}[${3:series}](${4:shape})"
+      }
+    },
+    {
+      "name": "ISOalpha"
+    },
+    {
+      "name": "ISOalpha",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOalpha",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISObeta"
+    },
+    {
+      "name": "ISObeta",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISObeta",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOgamma"
+    },
+    {
+      "name": "ISOgamma",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOgamma",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOdelta"
+    },
+    {
+      "name": "ISOdelta",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOdelta",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOepsilon"
+    },
+    {
+      "name": "ISOepsilon",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOepsilon",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOzeta"
+    },
+    {
+      "name": "ISOzeta",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOzeta",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOeta"
+    },
+    {
+      "name": "ISOeta",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOeta",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOtheta"
+    },
+    {
+      "name": "ISOtheta",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOtheta",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOiota"
+    },
+    {
+      "name": "ISOiota",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOiota",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOkappa"
+    },
+    {
+      "name": "ISOkappa",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOkappa",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOlambda"
+    },
+    {
+      "name": "ISOlambda",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOlambda",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOmu"
+    },
+    {
+      "name": "ISOmu",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOmu",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOnu"
+    },
+    {
+      "name": "ISOnu",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOnu",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOxi"
+    },
+    {
+      "name": "ISOxi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOxi",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOomicron"
+    },
+    {
+      "name": "ISOomicron",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOomicron",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOpi"
+    },
+    {
+      "name": "ISOpi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOpi",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOrho"
+    },
+    {
+      "name": "ISOrho",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOrho",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOsigma"
+    },
+    {
+      "name": "ISOsigma",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOsigma",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOtau"
+    },
+    {
+      "name": "ISOtau",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOtau",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOupsilon"
+    },
+    {
+      "name": "ISOupsilon",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOupsilon",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOphi"
+    },
+    {
+      "name": "ISOphi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOphi",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOchi"
+    },
+    {
+      "name": "ISOchi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOchi",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOpsi"
+    },
+    {
+      "name": "ISOpsi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOpsi",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOomega"
+    },
+    {
+      "name": "ISOomega",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOomega",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOGamma"
+    },
+    {
+      "name": "ISOGamma",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOGamma",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISODelta"
+    },
+    {
+      "name": "ISODelta",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISODelta",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOEta"
+    },
+    {
+      "name": "ISOEta",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOEta",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOTheta"
+    },
+    {
+      "name": "ISOTheta",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOTheta",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOLambda"
+    },
+    {
+      "name": "ISOLambda",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOLambda",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOXi"
+    },
+    {
+      "name": "ISOXi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOXi",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOPi"
+    },
+    {
+      "name": "ISOPi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOPi",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISORho"
+    },
+    {
+      "name": "ISORho",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISORho",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOSigma"
+    },
+    {
+      "name": "ISOSigma",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOSigma",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOUpsilon"
+    },
+    {
+      "name": "ISOUpsilon",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOUpsilon",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOPhi"
+    },
+    {
+      "name": "ISOPhi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOPhi",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOChi"
+    },
+    {
+      "name": "ISOChi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOChi",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOPsi"
+    },
+    {
+      "name": "ISOPsi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOPsi",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "ISOOmega"
+    },
+    {
+      "name": "ISOOmega",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "ISOOmega",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:family}}[${2:series}](${3:shape})"
+      }
+    },
+    {
+      "name": "vectorsymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "vectorsymbol*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "matrixsymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "matrixsymbol*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "tensorsymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "tensorsymbol*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "switchvarsymbols",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "switchvarlowercasegreekletters",
+      "unusual": true
+    },
+    {
+      "name": "switchvaruppercasegreekletters",
+      "unusual": true
+    },
+    {
+      "name": "ISOser",
+      "unusual": true
+    },
+    {
+      "name": "ISOsha",
+      "unusual": true
+    },
+    {
+      "name": "ISOfam",
+      "unusual": true
+    },
+    {
+      "name": "MLatin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:letter}}{${2:family}}{${3:shape}}{${4:series}}"
+      }
+    },
+    {
+      "name": "MGreek",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:letter}}{${2:family}}{${3:shape}}{${4:series}}"
+      }
+    },
+    {
+      "name": "mathrmbf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathsfit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathsfbfit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathsfbf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "iunit"
+    },
+    {
+      "name": "junit"
+    },
+    {
+      "name": "iu",
+      "unusual": true
+    },
+    {
+      "name": "ju",
+      "unusual": true
+    },
+    {
+      "name": "eu"
+    },
+    {
+      "name": "uppi",
+      "detail": "π",
+      "doc": "\\mathrm{\\pi} (omlmathrm), \\piup (kpfonts mathdesign), \\uppi (upgreek), pi, greek"
+    },
+    {
+      "name": "diff"
+    },
+    {
+      "name": "PMpartialbox",
+      "unusual": true
+    },
+    {
+      "name": "uppartial"
+    },
+    {
+      "name": "uppartial",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:shearing coeff}]"
+      }
+    },
+    {
+      "name": "micro"
+    },
+    {
+      "name": "ohm"
+    },
+    {
+      "name": "ISOohm",
+      "unusual": true
+    },
+    {
+      "name": "textormath",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:if text}}{${2:if math%formula}}"
+      }
+    },
+    {
+      "name": "ped",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sub}}"
+      }
+    },
+    {
+      "name": "ap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sup}}"
+      }
+    },
+    {
+      "name": "unit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "ifengineer",
+      "unusual": true
+    },
+    {
+      "name": "engineertrue",
+      "unusual": true
+    },
+    {
+      "name": "engineerfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pm-isomath#c": [
+      "engineer"
+    ]
+  },
+  "args": [
+    "\\usepackage/pm-isomath#c"
+  ]
 }

@@ -1,55 +1,75 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikz-3dplot": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "brick{}{}": {
-      "snippet": "brick{${1:length}}{${2:width}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "brick[]{}{}": {
-      "snippet": "brick[${3:options}]{${1:length}}{${2:width}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikz-3dplot"
     },
-    "wallbrick{}{}": {
-      "snippet": "wallbrick{${1:length}}{${2:width}}"
-    },
-    "wallbrick[]{}{}": {
-      "snippet": "wallbrick[${3:options}]{${1:length}}{${2:width}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "newrow": {},
-    "thebrickx": {},
-    "thebricky": {},
-    "thebrickz": {},
-    "tmpscaleA": {},
-    "tmpscaleB": {},
-    "tmpscaleC": {},
-    "tmpscaleD": {},
-    "tmp": {},
-    "scalingfactor": {}
-  },
-  "envs": {
-    "wall": {}
-  },
-  "options": [
-    "color=",
-    "frontcolor=",
-    "topcolor=",
-    "sidecolor=",
-    "studcolor=",
-    "brickheight=${1:number}",
-    "bricklength=${1:number}",
-    "brickwidth=${1:number}",
-    "studradius=${1:number}",
-    "studheight=${1:number}",
-    "studtext={${1:text}}"
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "brick",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:length%plain}}{${2:width%plain}}"
+      }
+    },
+    {
+      "name": "brick",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:length%plain}}{${2:width%plain}}",
+        "keys": [
+          "\\brick#c,\\usepackage/tikzbricks#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "wallbrick",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:length%plain}}{${2:width%plain}}"
+      }
+    },
+    {
+      "name": "wallbrick",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:length%plain}}{${2:width%plain}}",
+        "keys": [
+          "\\wallbrick#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "newrow"
+    },
+    {
+      "name": "thebrickx",
+      "unusual": true
+    },
+    {
+      "name": "thebricky",
+      "unusual": true
+    },
+    {
+      "name": "thebrickz",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "wall"
+    }
+  ],
+  "keys": {
+    "\\brick#c,\\usepackage/tikzbricks#c": [
       "color=",
       "frontcolor=",
       "topcolor=",
@@ -62,8 +82,11 @@
       "studheight=${1:number}",
       "studtext={${1:text}}"
     ],
-    [
+    "\\wallbrick#c": [
       "color="
     ]
+  },
+  "args": [
+    "\\brick#c,\\usepackage/tikzbricks#c"
   ]
 }

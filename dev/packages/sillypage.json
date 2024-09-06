@@ -1,21 +1,38 @@
 {
-  "includes": {
-    "graphicx": []
+  "deps": [
+    {
+      "name": "graphicx"
+    }
+  ],
+  "macros": [
+    {
+      "name": "silly",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "sillystep",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "sillynumeral",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pagenumbering#c": [
+      "silly",
+      "sillynumeral"
+    ]
   },
-  "macros": {
-    "silly{}": {
-      "snippet": "silly{${1:counter}}"
-    },
-    "sillystep{}": {
-      "snippet": "sillystep{${1:integer}}"
-    },
-    "sillynumeral{}": {
-      "snippet": "sillynumeral{${1:integer}}"
-    },
-    "sillypageDate": {},
-    "sillypageVersion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

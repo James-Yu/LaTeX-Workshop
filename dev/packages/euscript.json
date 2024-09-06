@@ -1,17 +1,30 @@
 {
-  "includes": {},
-  "macros": {
-    "EuScript{}": {
-      "snippet": "EuScript{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "EuScript",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
     },
-    "CMcal{}": {
-      "snippet": "CMcal{${1:text}}"
+    {
+      "name": "CMcal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "mathcal",
-    "mathscr"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/euscript#c": [
+      "mathcal",
+      "mathscr"
+    ]
+  },
+  "args": [
+    "\\usepackage/euscript#c"
+  ]
 }

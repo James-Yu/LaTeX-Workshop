@@ -1,51 +1,70 @@
 {
-  "includes": {
-    "graphicx": [],
-    "keyval": [],
-    "url": [],
-    "geometry": [],
-    "color": [
-      "dummy"
-    ]
-  },
-  "macros": {
-    "makeGallery{}": {
-      "snippet": "makeGallery{${1:file}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "gallerySetup{}": {
-      "snippet": "gallerySetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "url"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "color",
+      "if": "dummy"
     }
-  },
-  "envs": {},
-  "options": [
-    "dummy",
-    "nocaption",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "makeGallery",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "gallerySetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\gallerySetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/image-gallery#c": [
+      "dummy",
+      "nocaption",
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "fleqn",
+      "openbib"
+    ],
+    "\\gallerySetup": [
       "width=",
       "height=",
       "top=",
@@ -56,5 +75,8 @@
       "columns=${1:integer}",
       "autorotate"
     ]
+  },
+  "args": [
+    "\\documentclass/image-gallery#c"
   ]
 }

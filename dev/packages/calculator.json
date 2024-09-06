@@ -1,0 +1,698 @@
+{
+  "deps": [],
+  "macros": [
+    {
+      "name": "numberPI"
+    },
+    {
+      "name": "numberTHREEHALFPI"
+    },
+    {
+      "name": "numberQUARTERPI"
+    },
+    {
+      "name": "numberSIXTHPI"
+    },
+    {
+      "name": "numberE"
+    },
+    {
+      "name": "numberETWO"
+    },
+    {
+      "name": "numberLOGTEN"
+    },
+    {
+      "name": "numberGOLD"
+    },
+    {
+      "name": "numberSQRTTWO"
+    },
+    {
+      "name": "numberSQRTFIVE"
+    },
+    {
+      "name": "numberCOSXXX"
+    },
+    {
+      "name": "numberHALFPI"
+    },
+    {
+      "name": "numberTHIRDPI"
+    },
+    {
+      "name": "numberFIFTHPI"
+    },
+    {
+      "name": "numberTWOPI"
+    },
+    {
+      "name": "numberINVE"
+    },
+    {
+      "name": "numberINVETWO"
+    },
+    {
+      "name": "numberINVGOLD"
+    },
+    {
+      "name": "numberSQRTTHREE"
+    },
+    {
+      "name": "numberCOSXLV"
+    },
+    {
+      "name": "COPY",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "GLOBALCOPY",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "MAX",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "MIN",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "ADD",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "SUBTRACT",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "MULTIPLY",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "DIVIDE",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "SQUARE",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "CUBE",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "POWER",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:num}}{${2:exp}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "ABSVALUE",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "INTEGERPART",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "FLOOR",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "FRACTIONALPART",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "TRUNCATE",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "TRUNCATE",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:n}]{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ROUND",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ROUND",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:n}]{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "INTEGERDIVISION",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}{${3:cmd1%cmd}}{${4:cmd2%cmd}}"
+      }
+    },
+    {
+      "name": "INTEGERQUOTIENT",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "MODULO",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "GCD",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "LCM",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "FRACTIONSIMPLIFY",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}{${3:cmd1%cmd}}{${4:cmd2%cmd}}"
+      }
+    },
+    {
+      "name": "SQUAREROOT",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "SQRT",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "EXP",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "EXP",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:num1}]{${1:num2}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "LOG",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "LOG",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:num1}]{${1:num2}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "SIN",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "COS",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "TAN",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "COT",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "DEGREESSIN",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "DEGREESCOS",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "DEGREESTAN",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "DEGREESCOT",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "DEGREESSIN",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:degrees}]{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "DEGREESCOS",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:degrees}]{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "DEGREESTAN",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:degrees}]{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "DEGREESCOT",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:degrees}]{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "DEGtoRAD",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "RADtoDEG",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "REDUCERADIANSANGLE",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "REDUCEDEGREESANGLE",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "SINH",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "COSH",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "TANH",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "COTH",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ARCSIN",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ARCCOS",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ARCTAN",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ARCCOT",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ARSINH",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ARCOSH",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ARTANH",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ARCOTH",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "LENGTHDIVIDE",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:length1}}{${2:length2}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "LENGTHADD",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:length1}}{${2:length2}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "LENGTHSUBTRACT",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:length1}}{${2:length2}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "VECTORSIZE",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y},${4:z}){${1:cmd}}"
+      }
+    },
+    {
+      "name": "VECTORCOPY",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x},${2:y},${3:z})(${4:cmd1},${5:cmd2},${6:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "VECTORGLOBALCOPY",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x},${2:y},${3:z})(${4:cmd1},${5:cmd2},${6:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "VECTORADD",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x1},${2:y1},${3:z1})(${4:x2},${5:y2},${6:z2})(${7:cmd1},${8:cmd2},${9:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "VECTORSUB",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x1},${2:y1},${3:z1})(${4:x2},${5:y2},${6:z2})(${7:cmd1},${8:cmd2},${9:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "SCALARVECTORPRODUCT",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "{${1:num}}(${2:x},${3:y},${4:z})(${5:cmd1},${6:cmd2},${7:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "SCALARPRODUCT",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:x1},${3:y1},${4:z1})(${5:x2},${6:y2},${7:z2}){${1:cmd}}"
+      }
+    },
+    {
+      "name": "DOTPRODUCT",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:x1},${3:y1},${4:z1})(${5:x2},${6:y2},${7:z2}){${1:cmd}}"
+      }
+    },
+    {
+      "name": "VECTORNORM",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y},${4:z}){${1:cmd}}"
+      }
+    },
+    {
+      "name": "VECTORPRODUCT",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x1},${2:y1},${3:z1})(${4:x2},${5:y2},${6:z2})(${7:cmd1},${8:cmd2},${9:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "CROSSPRODUCT",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x1},${2:y1},${3:z1})(${4:x2},${5:y2},${6:z2})(${7:cmd1},${8:cmd2},${9:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "UNITVECTOR",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x},${2:y},${3:z})(${4:cmd1},${5:cmd2},${6:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "VECTORABSVALUE",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x},${2:y},${3:z})(${4:cmd1},${5:cmd2},${6:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "TWOVECTORSANGLE",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:x1},${3:y1},${4:z1})(${5:x2},${6:y2},${7:z2}){${1:cmd}}"
+      }
+    },
+    {
+      "name": "MATRIXSIZE",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:a11...a33}){${1:cmd}}"
+      }
+    },
+    {
+      "name": "MATRIXCOPY",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a11...a33})(${2:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "MATRIXGLOBALCOPY",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a11...a33})(${2:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "TRANSPOSEMATRIX",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a11...a33})(${2:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "MATRIXADD",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:a11...a33})(${2:b11...b33})(${3:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "MATRIXSUB",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:a11...a33})(${2:b11...b33})(${3:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "SCALARMATRIXPRODUCT",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "{${1:num}}(${2:a11...a33})(${3:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "MATRIXVECTORPRODUCT",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:a11...a33})(${2:x},${3:y},${4:z})(${5:cmd1},${6:cmd2},${7:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "VECTORMATRIXPRODUCT",
+      "unusual": true,
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x},${2:y},${3:z})(${4:a11...a33})(${5:cmd1},${6:cmd2},${7:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "MATRIXPRODUCT",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:a11...a33})(${2:b11...b33})(${3:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "INVERSEMATRIX",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a11...a33})(${2:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "MATRIXABSVALUE",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a11...a33})(${2:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "SOLVELINEARSYSTEM",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:a11...a33})(${2:b1},${3:b2},${4:b3})(${5:cmd1},${6:cmd2},${7:cmd3%cmd})"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
+}

@@ -1,231 +1,897 @@
 {
-  "includes": {
-    "iftex": [],
-    "fontspec": [],
-    "ifthen": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "texthamnosys{}": {
-      "snippet": "texthamnosys{${1:text}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "hamnosysfont": {},
-    "hamnosys{}": {
-      "snippet": "hamnosys{${1:sym1,${2:sym2},...}}"
+    {
+      "name": "fontspec"
     },
-    "hamfist": {},
-    "hamflathand": {},
-    "hamfingertwo": {},
-    "hamfingertwothree": {},
-    "hamfingertwothreespread": {},
-    "hamfingertwothreefourfive": {},
-    "hampinchonetwo": {},
-    "hampinchall": {},
-    "hampinchonetwoopen": {},
-    "hamceeonetwo": {},
-    "hamceeall": {},
-    "hamceeopen": {},
-    "hamthumboutmod": {},
-    "hamthumbacrossmod": {},
-    "hamthumbopenmod": {},
-    "hamfingerstraightmod": {},
-    "hamfingerbendmod": {},
-    "hamfingerhookmod": {},
-    "hamdoublebent": {},
-    "hamdoublehooked": {},
-    "hamextfingeru": {},
-    "hamextfingerur": {},
-    "hamextfingerr": {},
-    "hamextfingerdr": {},
-    "hamextfingerd": {},
-    "hamextfingerdl": {},
-    "hamextfingerl": {},
-    "hamextfingerul": {},
-    "hamextfingerol": {},
-    "hamextfingero": {},
-    "hamextfingeror": {},
-    "hamextfingeril": {},
-    "hamextfingeri": {},
-    "hamextfingerir": {},
-    "hamextfingerui": {},
-    "hamextfingerdi": {},
-    "hamextfingerdo": {},
-    "hamextfingeruo": {},
-    "hampalmu": {},
-    "hampalmur": {},
-    "hampalmr": {},
-    "hampalmdr": {},
-    "hampalmd": {},
-    "hampalmdl": {},
-    "hampalml": {},
-    "hampalmul": {},
-    "hamhead": {},
-    "hamheadtop": {},
-    "hamforehead": {},
-    "hameyebrows": {},
-    "hameyes": {},
-    "hamnose": {},
-    "hamnostrils": {},
-    "hamear": {},
-    "hamearlobe": {},
-    "hamcheek": {},
-    "hamlips": {},
-    "hamtongue": {},
-    "hamteeth": {},
-    "hamchin": {},
-    "hamunderchin": {},
-    "hamneck": {},
-    "hamshouldertop": {},
-    "hamshoulders": {},
-    "hamchest": {},
-    "hamstomach": {},
-    "hambelowstomach": {},
-    "hamneutralspace": {},
-    "hamupperarm": {},
-    "hamelbow": {},
-    "hamelbowinside": {},
-    "hamlowerarm": {},
-    "hamwristback": {},
-    "hamwristpulse": {},
-    "hamthumbball": {},
-    "hampalm": {},
-    "hamhandback": {},
-    "hamthumbside": {},
-    "hampinkyside": {},
-    "hamthumb": {},
-    "hamindexfinger": {},
-    "hammiddlefinger": {},
-    "hamringfinger": {},
-    "hampinky": {},
-    "hamfingertip": {},
-    "hamfingernail": {},
-    "hamfingerpad": {},
-    "hamfingermidjoint": {},
-    "hamfingerbase": {},
-    "hamfingerside": {},
-    "hamlrbeside": {},
-    "hamlrat": {},
-    "hamcoreftag": {},
-    "hamcorefref": {},
-    "hammoveu": {},
-    "hammoveur": {},
-    "hammover": {},
-    "hammovedr": {},
-    "hammoved": {},
-    "hammovedl": {},
-    "hammovel": {},
-    "hammoveul": {},
-    "hammoveol": {},
-    "hammoveo": {},
-    "hammoveor": {},
-    "hammoveil": {},
-    "hammovei": {},
-    "hammoveir": {},
-    "hammoveui": {},
-    "hammovedi": {},
-    "hammovedo": {},
-    "hammoveuo": {},
-    "hamcircleo": {},
-    "hamcirclei": {},
-    "hamcircled": {},
-    "hamcircleu": {},
-    "hamcirclel": {},
-    "hamcircler": {},
-    "hamcircleul": {},
-    "hamcircledr": {},
-    "hamcircleur": {},
-    "hamcircledl": {},
-    "hamcircleol": {},
-    "hamcircleir": {},
-    "hamcircleor": {},
-    "hamcircleil": {},
-    "hamcircleui": {},
-    "hamcircledo": {},
-    "hamcircleuo": {},
-    "hamcircledi": {},
-    "hamfingerplay": {},
-    "hamnodding": {},
-    "hamswinging": {},
-    "hamtwisting": {},
-    "hamstircw": {},
-    "hamstirccw": {},
-    "hamreplace": {},
-    "hamnomotion": {},
-    "hamclocku": {},
-    "hamclockul": {},
-    "hamclockl": {},
-    "hamclockdl": {},
-    "hamclockd": {},
-    "hamclockdr": {},
-    "hamclockr": {},
-    "hamclockur": {},
-    "hamclockfull": {},
-    "hamarcl": {},
-    "hamarcu": {},
-    "hamarcr": {},
-    "hamarcd": {},
-    "hamwavy": {},
-    "hamzigzag": {},
-    "hamellipseh": {},
-    "hamellipseur": {},
-    "hamellipsev": {},
-    "hamellipseul": {},
-    "hamincreasing": {},
-    "hamdecreasing": {},
-    "hamfast": {},
-    "hamslow": {},
-    "hamtense": {},
-    "hamrest": {},
-    "hamhalt": {},
-    "hamclose": {},
-    "hamtouch": {},
-    "haminterlock": {},
-    "hamcross": {},
-    "hamarmextended": {},
-    "hambehind": {},
-    "hambrushing": {},
-    "hamsmallmod": {},
-    "hamlargemod": {},
-    "hamrepeatfromstart": {},
-    "hamrepeatfromstartseveral": {},
-    "hamrepeatcontinue": {},
-    "hamrepeatcontinueseveral": {},
-    "hamrepeatreverse": {},
-    "hamalternatingmotion": {},
-    "hamseqbegin": {},
-    "hamseqend": {},
-    "hamparbegin": {},
-    "hamparend": {},
-    "hamfusionbegin": {},
-    "hamfusionend": {},
-    "hambetween": {},
-    "hamplus": {},
-    "hamsymmpar": {},
-    "hamsymmlr": {},
-    "hamnondominant": {},
-    "hamnonipsi": {},
-    "hametc": {},
-    "hamorirelative": {},
-    "hammime": {},
-    "hamversionfourzero": {},
-    "hamspace": {},
-    "hamexclaim": {},
-    "hamcomma": {},
-    "hamfullstop": {},
-    "hamquery": {},
-    "hamaltbegin": {},
-    "hammetaalt": {},
-    "hamaltend": {},
-    "hamwristtopulse": {},
-    "hamwristtoback": {},
-    "hamwristtothumb": {},
-    "hamwristtopinky": {},
-    "hammovecross": {},
-    "hammoveX": {}
-  },
-  "envs": {},
-  "options": [
-    "autofont"
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "kvoptions"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "texthamnosys",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "hamnosysfont"
+    },
+    {
+      "name": "hamnosys",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sym1,sym2,...%keyvals}}",
+        "keys": [
+          "\\hamnosys"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hamfist"
+    },
+    {
+      "name": "hamflathand"
+    },
+    {
+      "name": "hamfingertwo"
+    },
+    {
+      "name": "hamfingertwothree"
+    },
+    {
+      "name": "hamfingertwothreespread"
+    },
+    {
+      "name": "hamfingertwothreefourfive"
+    },
+    {
+      "name": "hampinchonetwo"
+    },
+    {
+      "name": "hampinchall"
+    },
+    {
+      "name": "hampinchonetwoopen"
+    },
+    {
+      "name": "hamceeonetwo"
+    },
+    {
+      "name": "hamceeall"
+    },
+    {
+      "name": "hamceeopen"
+    },
+    {
+      "name": "hamthumboutmod"
+    },
+    {
+      "name": "hamthumbacrossmod"
+    },
+    {
+      "name": "hamthumbopenmod"
+    },
+    {
+      "name": "hamfingerstraightmod"
+    },
+    {
+      "name": "hamfingerbendmod"
+    },
+    {
+      "name": "hamfingerhookmod"
+    },
+    {
+      "name": "hamdoublebent"
+    },
+    {
+      "name": "hamdoublehooked"
+    },
+    {
+      "name": "hamextfingeru"
+    },
+    {
+      "name": "hamextfingerur"
+    },
+    {
+      "name": "hamextfingerr"
+    },
+    {
+      "name": "hamextfingerdr"
+    },
+    {
+      "name": "hamextfingerd"
+    },
+    {
+      "name": "hamextfingerdl"
+    },
+    {
+      "name": "hamextfingerl"
+    },
+    {
+      "name": "hamextfingerul"
+    },
+    {
+      "name": "hamextfingerol"
+    },
+    {
+      "name": "hamextfingero"
+    },
+    {
+      "name": "hamextfingeror"
+    },
+    {
+      "name": "hamextfingeril"
+    },
+    {
+      "name": "hamextfingeri"
+    },
+    {
+      "name": "hamextfingerir"
+    },
+    {
+      "name": "hamextfingerui"
+    },
+    {
+      "name": "hamextfingerdi"
+    },
+    {
+      "name": "hamextfingerdo"
+    },
+    {
+      "name": "hamextfingeruo"
+    },
+    {
+      "name": "hampalmu"
+    },
+    {
+      "name": "hampalmur"
+    },
+    {
+      "name": "hampalmr"
+    },
+    {
+      "name": "hampalmdr"
+    },
+    {
+      "name": "hampalmd"
+    },
+    {
+      "name": "hampalmdl"
+    },
+    {
+      "name": "hampalml"
+    },
+    {
+      "name": "hampalmul"
+    },
+    {
+      "name": "hamhead"
+    },
+    {
+      "name": "hamheadtop"
+    },
+    {
+      "name": "hamforehead"
+    },
+    {
+      "name": "hameyebrows"
+    },
+    {
+      "name": "hameyes"
+    },
+    {
+      "name": "hamnose"
+    },
+    {
+      "name": "hamnostrils"
+    },
+    {
+      "name": "hamear"
+    },
+    {
+      "name": "hamearlobe"
+    },
+    {
+      "name": "hamcheek"
+    },
+    {
+      "name": "hamlips"
+    },
+    {
+      "name": "hamtongue"
+    },
+    {
+      "name": "hamteeth"
+    },
+    {
+      "name": "hamchin"
+    },
+    {
+      "name": "hamunderchin"
+    },
+    {
+      "name": "hamneck"
+    },
+    {
+      "name": "hamshouldertop"
+    },
+    {
+      "name": "hamshoulders"
+    },
+    {
+      "name": "hamchest"
+    },
+    {
+      "name": "hamstomach"
+    },
+    {
+      "name": "hambelowstomach"
+    },
+    {
+      "name": "hamneutralspace"
+    },
+    {
+      "name": "hamupperarm"
+    },
+    {
+      "name": "hamelbow"
+    },
+    {
+      "name": "hamelbowinside"
+    },
+    {
+      "name": "hamlowerarm"
+    },
+    {
+      "name": "hamwristback"
+    },
+    {
+      "name": "hamwristpulse"
+    },
+    {
+      "name": "hamthumbball"
+    },
+    {
+      "name": "hampalm"
+    },
+    {
+      "name": "hamhandback"
+    },
+    {
+      "name": "hamthumbside"
+    },
+    {
+      "name": "hampinkyside"
+    },
+    {
+      "name": "hamthumb"
+    },
+    {
+      "name": "hamindexfinger"
+    },
+    {
+      "name": "hammiddlefinger"
+    },
+    {
+      "name": "hamringfinger"
+    },
+    {
+      "name": "hampinky"
+    },
+    {
+      "name": "hamfingertip"
+    },
+    {
+      "name": "hamfingernail"
+    },
+    {
+      "name": "hamfingerpad"
+    },
+    {
+      "name": "hamfingermidjoint"
+    },
+    {
+      "name": "hamfingerbase"
+    },
+    {
+      "name": "hamfingerside"
+    },
+    {
+      "name": "hamlrbeside"
+    },
+    {
+      "name": "hamlrat"
+    },
+    {
+      "name": "hamcoreftag"
+    },
+    {
+      "name": "hamcorefref"
+    },
+    {
+      "name": "hammoveu"
+    },
+    {
+      "name": "hammoveur"
+    },
+    {
+      "name": "hammover"
+    },
+    {
+      "name": "hammovedr"
+    },
+    {
+      "name": "hammoved"
+    },
+    {
+      "name": "hammovedl"
+    },
+    {
+      "name": "hammovel"
+    },
+    {
+      "name": "hammoveul"
+    },
+    {
+      "name": "hammoveol"
+    },
+    {
+      "name": "hammoveo"
+    },
+    {
+      "name": "hammoveor"
+    },
+    {
+      "name": "hammoveil"
+    },
+    {
+      "name": "hammovei"
+    },
+    {
+      "name": "hammoveir"
+    },
+    {
+      "name": "hammoveui"
+    },
+    {
+      "name": "hammovedi"
+    },
+    {
+      "name": "hammovedo"
+    },
+    {
+      "name": "hammoveuo"
+    },
+    {
+      "name": "hamcircleo"
+    },
+    {
+      "name": "hamcirclei"
+    },
+    {
+      "name": "hamcircled"
+    },
+    {
+      "name": "hamcircleu"
+    },
+    {
+      "name": "hamcirclel"
+    },
+    {
+      "name": "hamcircler"
+    },
+    {
+      "name": "hamcircleul"
+    },
+    {
+      "name": "hamcircledr"
+    },
+    {
+      "name": "hamcircleur"
+    },
+    {
+      "name": "hamcircledl"
+    },
+    {
+      "name": "hamcircleol"
+    },
+    {
+      "name": "hamcircleir"
+    },
+    {
+      "name": "hamcircleor"
+    },
+    {
+      "name": "hamcircleil"
+    },
+    {
+      "name": "hamcircleui"
+    },
+    {
+      "name": "hamcircledo"
+    },
+    {
+      "name": "hamcircleuo"
+    },
+    {
+      "name": "hamcircledi"
+    },
+    {
+      "name": "hamfingerplay"
+    },
+    {
+      "name": "hamnodding"
+    },
+    {
+      "name": "hamswinging"
+    },
+    {
+      "name": "hamtwisting"
+    },
+    {
+      "name": "hamstircw"
+    },
+    {
+      "name": "hamstirccw"
+    },
+    {
+      "name": "hamreplace"
+    },
+    {
+      "name": "hamnomotion"
+    },
+    {
+      "name": "hamclocku"
+    },
+    {
+      "name": "hamclockul"
+    },
+    {
+      "name": "hamclockl"
+    },
+    {
+      "name": "hamclockdl"
+    },
+    {
+      "name": "hamclockd"
+    },
+    {
+      "name": "hamclockdr"
+    },
+    {
+      "name": "hamclockr"
+    },
+    {
+      "name": "hamclockur"
+    },
+    {
+      "name": "hamclockfull"
+    },
+    {
+      "name": "hamarcl"
+    },
+    {
+      "name": "hamarcu"
+    },
+    {
+      "name": "hamarcr"
+    },
+    {
+      "name": "hamarcd"
+    },
+    {
+      "name": "hamwavy"
+    },
+    {
+      "name": "hamzigzag"
+    },
+    {
+      "name": "hamellipseh"
+    },
+    {
+      "name": "hamellipseur"
+    },
+    {
+      "name": "hamellipsev"
+    },
+    {
+      "name": "hamellipseul"
+    },
+    {
+      "name": "hamincreasing"
+    },
+    {
+      "name": "hamdecreasing"
+    },
+    {
+      "name": "hamfast"
+    },
+    {
+      "name": "hamslow"
+    },
+    {
+      "name": "hamtense"
+    },
+    {
+      "name": "hamrest"
+    },
+    {
+      "name": "hamhalt"
+    },
+    {
+      "name": "hamclose"
+    },
+    {
+      "name": "hamtouch"
+    },
+    {
+      "name": "haminterlock"
+    },
+    {
+      "name": "hamcross"
+    },
+    {
+      "name": "hamarmextended"
+    },
+    {
+      "name": "hambehind"
+    },
+    {
+      "name": "hambrushing"
+    },
+    {
+      "name": "hamsmallmod"
+    },
+    {
+      "name": "hamlargemod"
+    },
+    {
+      "name": "hamrepeatfromstart"
+    },
+    {
+      "name": "hamrepeatfromstartseveral"
+    },
+    {
+      "name": "hamrepeatcontinue"
+    },
+    {
+      "name": "hamrepeatcontinueseveral"
+    },
+    {
+      "name": "hamrepeatreverse"
+    },
+    {
+      "name": "hamalternatingmotion"
+    },
+    {
+      "name": "hamseqbegin"
+    },
+    {
+      "name": "hamseqend"
+    },
+    {
+      "name": "hamparbegin"
+    },
+    {
+      "name": "hamparend"
+    },
+    {
+      "name": "hamfusionbegin"
+    },
+    {
+      "name": "hamfusionend"
+    },
+    {
+      "name": "hambetween"
+    },
+    {
+      "name": "hamplus"
+    },
+    {
+      "name": "hamsymmpar"
+    },
+    {
+      "name": "hamsymmlr"
+    },
+    {
+      "name": "hamnondominant"
+    },
+    {
+      "name": "hamnonipsi"
+    },
+    {
+      "name": "hametc"
+    },
+    {
+      "name": "hamorirelative"
+    },
+    {
+      "name": "hammime"
+    },
+    {
+      "name": "hamversionfourzero"
+    },
+    {
+      "name": "hamspace"
+    },
+    {
+      "name": "hamexclaim"
+    },
+    {
+      "name": "hamcomma"
+    },
+    {
+      "name": "hamfullstop"
+    },
+    {
+      "name": "hamquery"
+    },
+    {
+      "name": "hamaltbegin"
+    },
+    {
+      "name": "hammetaalt"
+    },
+    {
+      "name": "hamaltend"
+    },
+    {
+      "name": "hamwristtopulse"
+    },
+    {
+      "name": "hamwristtoback"
+    },
+    {
+      "name": "hamwristtothumb"
+    },
+    {
+      "name": "hamwristtopinky"
+    },
+    {
+      "name": "hammovecross"
+    },
+    {
+      "name": "hammoveX"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hamnosys#c": [
+      "autofont"
+    ],
+    "\\hamnosys": [
+      "hamfist",
+      "hamflathand",
+      "hamfinger2",
+      "hamfinger23",
+      "hamfinger23spread",
+      "hamfinger2345",
+      "hampinch12",
+      "hampinchall",
+      "hampinch12open",
+      "hamcee12",
+      "hamceeall",
+      "hamceeopen",
+      "",
+      "hamthumboutmod",
+      "hamthumbacrossmod",
+      "hamthumbopenmod",
+      "hamfingerstraightmod",
+      "hamfingerbendmod",
+      "hamfingerhookmod",
+      "hamdoublebent",
+      "hamdoublehooked",
+      "",
+      "hamextfingeru",
+      "hamextfingerur",
+      "hamextfingerr",
+      "hamextfingerdr",
+      "hamextfingerd",
+      "hamextfingerdl",
+      "hamextfingerl",
+      "hamextfingerul",
+      "hamextfingerol",
+      "hamextfingero",
+      "hamextfingeror",
+      "hamextfingeril",
+      "hamextfingeri",
+      "hamextfingerir",
+      "hamextfingerui",
+      "hamextfingerdi",
+      "hamextfingerdo",
+      "hamextfingeruo",
+      "",
+      "hampalmu",
+      "hampalmur",
+      "hampalmr",
+      "hampalmdr",
+      "hampalmd",
+      "hampalmdl",
+      "hampalml",
+      "hampalmul",
+      "",
+      "hamhead",
+      "hamheadtop",
+      "hamforehead",
+      "hameyebrows",
+      "hameyes",
+      "hamnose",
+      "hamnostrils",
+      "hamear",
+      "hamearlobe",
+      "hamcheek",
+      "hamlips",
+      "hamtongue",
+      "hamteeth",
+      "hamchin",
+      "hamunderchin",
+      "hamneck",
+      "hamshouldertop",
+      "hamshoulders",
+      "hamchest",
+      "hamstomach",
+      "hambelowstomach",
+      "hamneutralspace",
+      "hamupperarm",
+      "hamelbow",
+      "hamelbowinside",
+      "hamlowerarm",
+      "hamwristback",
+      "hamwristpulse",
+      "hamthumbball",
+      "hampalm",
+      "hamhandback",
+      "hamthumbside",
+      "hampinkyside",
+      "hamthumb",
+      "hamindexfinger",
+      "hammiddlefinger",
+      "hamringfinger",
+      "hampinky",
+      "hamfingertip",
+      "hamfingernail",
+      "hamfingerpad",
+      "hamfingermidjoint",
+      "hamfingerbase",
+      "hamfingerside",
+      "",
+      "hamlrbeside",
+      "hamlrat",
+      "hamcoreftag",
+      "hamcorefref",
+      "",
+      "hammoveu",
+      "hammoveur",
+      "hammover",
+      "hammovedr",
+      "hammoved",
+      "hammovedl",
+      "hammovel",
+      "hammoveul",
+      "hammoveol",
+      "hammoveo",
+      "hammoveor",
+      "hammoveil",
+      "hammovei",
+      "hammoveir",
+      "hammoveui",
+      "hammovedi",
+      "hammovedo",
+      "hammoveuo",
+      "hamcircleo",
+      "hamcirclei",
+      "hamcircled",
+      "hamcircleu",
+      "hamcirclel",
+      "hamcircler",
+      "hamcircleul",
+      "hamcircledr",
+      "hamcircleur",
+      "hamcircledl",
+      "hamcircleol",
+      "hamcircleir",
+      "hamcircleor",
+      "hamcircleil",
+      "hamcircleui",
+      "hamcircledo",
+      "hamcircleuo",
+      "hamcircledi",
+      "hamfingerplay",
+      "hamnodding",
+      "hamswinging",
+      "hamtwisting",
+      "hamstircw",
+      "hamstirccw",
+      "hamreplace",
+      "hamnomotion",
+      "hamclocku",
+      "hamclockul",
+      "hamclockl",
+      "hamclockdl",
+      "hamclockd",
+      "hamclockdr",
+      "hamclockr",
+      "hamclockur",
+      "hamclockfull",
+      "hamarcl",
+      "hamarcu",
+      "hamarcr",
+      "hamarcd",
+      "hamwavy",
+      "hamzigzag",
+      "hamellipseh",
+      "hamellipseur",
+      "hamellipsev",
+      "hamellipseul",
+      "hamincreasing",
+      "hamdecreasing",
+      "hamfast",
+      "hamslow",
+      "hamtense",
+      "hamrest",
+      "hamhalt",
+      "hamclose",
+      "hamtouch",
+      "haminterlock",
+      "hamcross",
+      "hamarmextended",
+      "hambehind",
+      "hambrushing",
+      "",
+      "hamsmallmod",
+      "hamlargemod",
+      "",
+      "hamrepeatfromstart",
+      "hamrepeatfromstartseveral",
+      "hamrepeatcontinue",
+      "hamrepeatcontinueseveral",
+      "hamrepeatreverse",
+      "hamalternatingmotion",
+      "hamseqbegin",
+      "hamseqend",
+      "hamparbegin",
+      "hamparend",
+      "hamfusionbegin",
+      "hamfusionend",
+      "hambetween",
+      "hamplus",
+      "hamsymmpar",
+      "hamsymmlr",
+      "hamnondominant",
+      "hamnonipsi",
+      "hametc",
+      "hamorirelative",
+      "hammime",
+      "",
+      "hamversion40",
+      "",
+      "hamspace",
+      "hamexclaim",
+      "hamcomma",
+      "hamfullstop",
+      "hamquery",
+      "hamaltbegin",
+      "hammetaalt",
+      "hamaltend",
+      "",
+      "hamwristtopulse",
+      "hamwristtoback",
+      "hamwristtothumb",
+      "hamwristtopinky",
+      "hammovecross",
+      "hammoveX"
+    ]
+  },
+  "args": [
+    "\\usepackage/hamnosys#c"
+  ]
 }

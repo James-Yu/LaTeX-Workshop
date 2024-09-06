@@ -1,68 +1,180 @@
 {
-  "includes": {
-    "listings": [],
-    "xspace": [],
-    "etoolbox": [],
-    "mdframed": [],
-    "framed": [],
-    "xcolor": [],
-    "kvoptions": [],
-    "pdftexcmds": []
+  "deps": [
+    {
+      "name": "listings"
+    },
+    {
+      "name": "xspace"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "mdframed"
+    },
+    {
+      "name": "framed"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "pdftexcmds"
+    }
+  ],
+  "macros": [
+    {
+      "name": "democodefile"
+    },
+    {
+      "name": "democodeprefix"
+    },
+    {
+      "name": "demoresultprefix"
+    },
+    {
+      "name": "PrintDemo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style%keyvals}}",
+        "keys": [
+          "\\PrintDemo"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "command",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "cs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "arg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "marg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "oarg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "environment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "env",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "package",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package}}"
+      }
+    },
+    {
+      "name": "DemoError",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "PrintDemoUsingKeys",
+      "unusual": true
+    },
+    {
+      "name": "preResultSkip",
+      "unusual": true
+    },
+    {
+      "name": "resultline",
+      "unusual": true
+    },
+    {
+      "name": "printlatexcode",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "printlatexresult",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "printlatexresultlines",
+      "unusual": true
+    },
+    {
+      "name": "PrintCodeAndResultsParallel",
+      "unusual": true
+    },
+    {
+      "name": "PrintCodeAndResultsStacked",
+      "unusual": true
+    },
+    {
+      "name": "PrintCodeAndResultsStackedLines",
+      "unusual": true
+    },
+    {
+      "name": "PrintCodeAndResultsNone",
+      "unusual": true
+    },
+    {
+      "name": "PrintCodeAndResultsPage",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "DefineCode"
+    },
+    {
+      "name": "latexresult",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\PrintDemo": [
+      "style=${1|parallel,stacked,lines,none,page|}"
+    ]
   },
-  "macros": {
-    "democodefile": {},
-    "democodeprefix": {},
-    "demoresultprefix": {},
-    "PrintDemo{}": {
-      "snippet": "PrintDemo{${1:style}}"
-    },
-    "command{}": {
-      "snippet": "command{${1:arg}}"
-    },
-    "cs{}": {
-      "snippet": "cs{${1:arg}}"
-    },
-    "arg{}": {
-      "snippet": "arg{${1:arg}}"
-    },
-    "marg{}": {
-      "snippet": "marg{${1:arg}}"
-    },
-    "oarg{}": {
-      "snippet": "oarg{${1:arg}}"
-    },
-    "environment{}": {
-      "snippet": "environment{${1:envname}}"
-    },
-    "env{}": {
-      "snippet": "env{${1:envname}}"
-    },
-    "package{}": {
-      "snippet": "package{${1:package}}"
-    },
-    "DemoError{}": {
-      "snippet": "DemoError{${1:text}}"
-    },
-    "PrintDemoUsingKeys": {},
-    "preResultSkip": {},
-    "resultline": {},
-    "printlatexcode{}": {
-      "snippet": "printlatexcode{${1:arg}}"
-    },
-    "printlatexresult{}": {
-      "snippet": "printlatexresult{${1:arg}}"
-    },
-    "printlatexresultlines": {},
-    "PrintCodeAndResultsParallel": {},
-    "PrintCodeAndResultsStacked": {},
-    "PrintCodeAndResultsStackedLines": {},
-    "PrintCodeAndResultsNone": {},
-    "PrintCodeAndResultsPage": {}
-  },
-  "envs": {
-    "DefineCode": {},
-    "latexresult": {}
-  },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

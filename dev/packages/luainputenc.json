@@ -1,26 +1,49 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "ifxetex": [],
-    "inputenc": [],
-    "luatexbase": [],
-    "ucs": [
-      "utf8x"
+  "deps": [
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "inputenc"
+    },
+    {
+      "name": "luatexbase"
+    },
+    {
+      "name": "ucs",
+      "if": "utf8x"
+    }
+  ],
+  "macros": [
+    {
+      "name": "InputNonUtfFile",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "InputUtfFile",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/luainputenc#c": [
+      "utf8",
+      "utf8x",
+      "unactivate"
     ]
   },
-  "macros": {
-    "InputNonUtfFile{}": {
-      "snippet": "InputNonUtfFile{${1:file}}"
-    },
-    "InputUtfFile{}": {
-      "snippet": "InputUtfFile{${1:file}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "utf8",
-    "utf8x",
-    "unactivate"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/luainputenc#c"
+  ]
 }

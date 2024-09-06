@@ -1,231 +1,734 @@
 {
-  "includes": {},
-  "macros": {
-    "ifmciteErrorOnUnknown": {},
-    "mciteErrorOnUnknowntrue": {},
-    "mciteErrorOnUnknownfalse": {},
-    "mcitedefaultmidpunct": {},
-    "mcitedefaultendpunct": {},
-    "mcitedefaultseppunct": {},
-    "mciteSetBstMidEndSepPunct{}{}{}": {
-      "snippet": "mciteSetBstMidEndSepPunct{${1:middle punct}}{${2:end punct}}{${3:sep punct}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "ifmciteErrorOnUnknown",
+      "unusual": true
     },
-    "mciteSetMidEndSepPunct{}{}{}": {
-      "snippet": "mciteSetMidEndSepPunct{${1:middle punct}}{${2:end punct}}{${3:sep punct}}"
+    {
+      "name": "mciteErrorOnUnknowntrue"
     },
-    "mcitebstendpunct": {},
-    "mciteendpunct": {},
-    "mcitebstmidpunct": {},
-    "mcitemidpunct": {},
-    "mcitebstseppunct": {},
-    "mciteseppunct": {},
-    "themcitebibitemcount": {},
-    "themcitesubitemcount": {},
-    "ifmciteResetBibitemCount": {},
-    "mciteResetBibitemCountfalse": {},
-    "mciteResetBibitemCounttrue": {},
-    "mciteSetBstSublistMode{}": {
-      "snippet": "mciteSetBstSublistMode{${1:mode}}"
+    {
+      "name": "mciteErrorOnUnknownfalse"
     },
-    "mciteSetSublistMode{}": {
-      "snippet": "mciteSetSublistMode{${1:mode}}"
+    {
+      "name": "mcitedefaultmidpunct",
+      "unusual": true
     },
-    "mcitedefaultsublistlabel": {},
-    "mcitedefaultsublistbegin": {},
-    "mcitedefaultsublistend": {},
-    "mciteSetBstSublistLabelBeginEnd{}{}{}": {
-      "snippet": "mciteSetBstSublistLabelBeginEnd{${1:label}}{${2:begdef}}{${3:enddef}}"
+    {
+      "name": "mcitedefaultendpunct",
+      "unusual": true
     },
-    "mciteSetSublistLabelBeginEnd{}{}{}": {
-      "snippet": "mciteSetSublistLabelBeginEnd{${1:label}}{${2:begdef}}{${3:enddef}}"
+    {
+      "name": "mcitedefaultseppunct",
+      "unusual": true
     },
-    "mcitebstsublistbegin": {},
-    "mcitebstsublistend": {},
-    "mcitesublistbegin": {},
-    "mcitesublistend": {},
-    "mcitebstsublistlabel": {},
-    "mcitesublistlabel": {},
-    "mciteSubRef{}": {
-      "snippet": "mciteSubRef{${1:bibid}}"
+    {
+      "name": "mciteSetBstMidEndSepPunct",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:middle punct}}{${2:end punct}}{${3:sep punct}}"
+      }
     },
-    "mciteSubRef[]{}": {
-      "snippet": "mciteSubRef[${2:track ID}]{${1:bibid}}"
+    {
+      "name": "mciteSetMidEndSepPunct",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:middle punct}}{${2:end punct}}{${3:sep punct}}"
+      }
     },
-    "mciteSubPageRef{}": {
-      "snippet": "mciteSubPageRef{${1:bibid}}"
+    {
+      "name": "mcitebstendpunct",
+      "unusual": true
     },
-    "mciteSubPageRef[]{}": {
-      "snippet": "mciteSubPageRef[${2:track ID}]{${1:bibid}}"
+    {
+      "name": "mciteendpunct",
+      "unusual": true
     },
-    "mcitesubrefform": {},
-    "mciteBibitemArgI": {},
-    "mciteBibitemOptArgI": {},
-    "ifmciteBibitemOptArgI": {},
-    "mciteBibitemOptArgItrue": {},
-    "mciteBibitemOptArgIfalse": {},
-    "mciteCurheadBibitemArgI": {},
-    "mciteCurheadBibitemOptArgI": {},
-    "ifmciteCurheadBibitemOp": {},
-    "mciteCurheadBibitemOptrue": {},
-    "mciteCurheadBibitemOpfalse": {},
-    "mciteorgbibsamplelabel": {},
-    "mcitebibsamplelabel": {},
-    "mcitedefaultmaxwidthbibitemform": {},
-    "mcitedefaultmaxwidthsubitemform": {},
-    "mcitedefaultmaxwidthbibitemforminit": {},
-    "mcitedefaultmaxwidthsubitemforminit": {},
-    "mciteSetBstMaxWidthForm{}{}": {
-      "snippet": "mciteSetBstMaxWidthForm{${1:type}}{${2:form}}"
+    {
+      "name": "mcitebstmidpunct",
+      "unusual": true
     },
-    "mciteSetBstMaxWidthForm[]{}{}": {
-      "snippet": "mciteSetBstMaxWidthForm[${3:init}]{${1:type}}{${2:form}}"
+    {
+      "name": "mcitemidpunct",
+      "unusual": true
     },
-    "mciteSetMaxWidthForm{}{}": {
-      "snippet": "mciteSetMaxWidthForm{${1:type}}{${2:form}}"
+    {
+      "name": "mcitebstseppunct",
+      "unusual": true
     },
-    "mciteSetMaxWidthForm[]{}{}": {
-      "snippet": "mciteSetMaxWidthForm[${3:init}]{${1:type}}{${2:form}}"
+    {
+      "name": "mciteseppunct",
+      "unusual": true
     },
-    "mcitebstmaxwidthbibitemform": {},
-    "mcitebstmaxwidthsubitemform": {},
-    "mcitebstmaxwidthbibitemforminit": {},
-    "mcitebstmaxwidthsubitemforminit": {},
-    "mcitemaxwidthbibitem": {},
-    "mcitemaxwidthsubitem": {},
-    "mcitemaxwidthbibitemform": {},
-    "mcitemaxwidthsubitemform": {},
-    "mcitemaxcountbibitem": {},
-    "mcitemaxcountsubitem": {},
-    "EndOfBibitem": {},
-    "mciteOrgcite{}": {
-      "snippet": "mciteOrgcite{${1:bibid}}"
+    {
+      "name": "themcitebibitemcount",
+      "unusual": true
     },
-    "mciteOrgcite[]{}": {
-      "snippet": "mciteOrgcite[${2:add. text}]{${1:bibid}}"
+    {
+      "name": "themcitesubitemcount",
+      "unusual": true
     },
-    "mciteOrgnocite{}": {
-      "snippet": "mciteOrgnocite{${1:bibid}}"
+    {
+      "name": "ifmciteResetBibitemCount",
+      "unusual": true
     },
-    "mciteOrgnocite[]{}": {
-      "snippet": "mciteOrgnocite[${2:add. text}]{${1:bibid}}"
+    {
+      "name": "mciteResetBibitemCountfalse"
     },
-    "mciteOrgbibitem{}": {
-      "snippet": "mciteOrgbibitem{${1:citekey}}"
+    {
+      "name": "mciteResetBibitemCounttrue"
     },
-    "mciteOrgbibitem[]{}": {
-      "snippet": "mciteOrgbibitem[${2:label}]{${1:citekey}}"
+    {
+      "name": "mciteSetBstSublistMode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:mode%keyvals}}",
+        "keys": [
+          "\\mciteSetBstSublistMode,\\mciteSetSublistMode"
+        ],
+        "keyPos": 0
+      }
     },
-    "mcitetrackID": {},
-    "mcitebibtrackID": {},
-    "mciteauxout": {},
-    "mcitebibauxout": {},
-    "mciteCiteA{}{}{}{}{}{}": {
-      "snippet": "mciteCiteA{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}{${6:cite list}}"
+    {
+      "name": "mciteSetSublistMode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:mode%keyvals}}",
+        "keys": [
+          "\\mciteSetBstSublistMode,\\mciteSetSublistMode"
+        ],
+        "keyPos": 0
+      }
     },
-    "mciteCiteA{}{}{}{}{}[]{}": {
-      "snippet": "mciteCiteA{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}[${6:opt1}]{${7:cite list}}"
+    {
+      "name": "mcitedefaultsublistlabel",
+      "unusual": true
     },
-    "mciteCiteA{}{}{}{}{}[][]{}": {
-      "snippet": "mciteCiteA{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}[${6:opt1}][${7:opt2}]{${8:cite list}}"
+    {
+      "name": "mcitedefaultsublistbegin",
+      "unusual": true
     },
-    "mciteCiteA*{}{}{}{}{}{}": {
-      "snippet": "mciteCiteA*{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}{${6:cite list}}"
+    {
+      "name": "mcitedefaultsublistend",
+      "unusual": true
     },
-    "mciteCiteA*{}{}{}{}{}[]{}": {
-      "snippet": "mciteCiteA*{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}[${6:opt1}]{${7:cite list}}"
+    {
+      "name": "mciteSetBstSublistLabelBeginEnd",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label}}{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "mciteCiteA*{}{}{}{}{}[][]{}": {
-      "snippet": "mciteCiteA*{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}[${6:opt1}][${7:opt2}]{${8:cite list}}"
+    {
+      "name": "mciteSetSublistLabelBeginEnd",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label}}{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "mciteCiteB{}{}{}{}{}{}{}": {
-      "snippet": "mciteCiteB{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}{${6:sec ID}}{${7:cite list}}"
+    {
+      "name": "mcitebstsublistbegin",
+      "unusual": true
     },
-    "mciteCiteB{}{}{}{}{}[]{}{}": {
-      "snippet": "mciteCiteB{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}[${6:opt1}]{${7:sec ID}}{${8:cite list}}"
+    {
+      "name": "mcitebstsublistend",
+      "unusual": true
     },
-    "mciteCiteB{}{}{}{}{}[][]{}{}": {
-      "snippet": "mciteCiteB{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}[${6:opt1}][${7:opt2}]{${8:sec ID}}{${9:cite list}}"
+    {
+      "name": "mcitesublistbegin",
+      "unusual": true
     },
-    "mciteCiteB*{}{}{}{}{}{}{}": {
-      "snippet": "mciteCiteB*{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}{${6:sec ID}}{${7:cite list}}"
+    {
+      "name": "mcitesublistend",
+      "unusual": true
     },
-    "mciteCiteB*{}{}{}{}{}[]{}{}": {
-      "snippet": "mciteCiteB*{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}[${6:opt1}]{${7:sec ID}}{${8:cite list}}"
+    {
+      "name": "mcitebstsublistlabel",
+      "unusual": true
     },
-    "mciteCiteB*{}{}{}{}{}[][]{}{}": {
-      "snippet": "mciteCiteB*{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}[${6:opt1}][${7:opt2}]{${8:sec ID}}{${9:cite list}}"
+    {
+      "name": "mcitesublistlabel",
+      "unusual": true
     },
-    "mciteCitePrehandlerArg": {},
-    "mciteCitePosthandlerArg": {},
-    "mciteCiteSecIDArg": {},
-    "mciteCiteFwdArg": {},
-    "mciteCiteOptArgI": {},
-    "mciteCiteOptArgII": {},
-    "mciteDoList{}{}{}": {
-      "snippet": "mciteDoList{${1:aux out}}{${2:track ID}}{${3:cite list}}"
+    {
+      "name": "mciteSubRef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
     },
-    "mciteExtraDoLists": {},
-    "mciteCiteAuxArg": {},
-    "mciteCiteTrackArg": {},
-    "mciteCiteListArg": {},
-    "mciteheadlist": {},
-    "mciteFwdCiteListArg": {},
-    "mciteBIBdecl": {},
-    "mciteBIBenddecl": {},
-    "mcitefwdBIBdecl": {},
-    "ifmciteBstWouldAddEndPunct": {},
-    "ifmciteCiteStarFwdArg": {},
-    "ifmciteCurheadBibitemOptArgI": {},
-    "ifmciteMacroOptArgI": {},
-    "ifmciteMacroOptArgII": {},
-    "ifmciteMacroStarForm": {},
-    "mcitebibitem[]{}": {
-      "snippet": "mcitebibitem[${2:label}]{${1:citekey}}"
+    {
+      "name": "mciteSubRef",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:track ID}]{${1:bibid}}"
+      }
     },
-    "mcitebibitem{}": {
-      "snippet": "mcitebibitem{${1:citekey}}"
+    {
+      "name": "mciteSubPageRef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
     },
-    "mciteBstWouldAddEndPunctfalse": {},
-    "mciteBstWouldAddEndPuncttrue": {},
-    "mciteCiteStarFwdArgfalse": {},
-    "mciteCiteStarFwdArgtrue": {},
-    "mciteCurheadBibitemOptArgIfalse": {},
-    "mciteCurheadBibitemOptArgItrue": {},
-    "mciteEndOfBibGroupPostsubcloseHook": {},
-    "mciteEndOfBibGroupPresubcloseHook": {},
-    "mciteGetMaxCount{}{}{}": {
-      "snippet": "mciteGetMaxCount{${1:track ID}}{${2:type}}{${3:out macro}}"
+    {
+      "name": "mciteSubPageRef",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:track ID}]{${1:bibid}}"
+      }
     },
-    "mciteGetMaxWidth{}{}{}": {
-      "snippet": "mciteGetMaxWidth{${1:track ID}}{${2:type}}{${3:out macro}}"
+    {
+      "name": "mcitesubrefform",
+      "unusual": true
     },
-    "mciteMacroOptArgIfalse": {},
-    "mciteMacroOptArgIIfalse": {},
-    "mciteMacroOptArgIItrue": {},
-    "mciteMacroOptArgItrue": {},
-    "mciteMacroStarFormfalse": {},
-    "mciteMacroStarFormtrue": {},
-    "mciteOrgbibliography{}": {
-      "snippet": "mciteOrgbibliography{${1:bib file}}"
+    {
+      "name": "mciteBibitemArgI",
+      "unusual": true
     },
-    "mciteSetMaxCount{}{}{}": {
-      "snippet": "mciteSetMaxCount{${1:track ID}}{${2:type}}{${3:count}}"
+    {
+      "name": "mciteBibitemOptArgI",
+      "unusual": true
     },
-    "mciteSetMaxWidth{}{}{}": {
-      "snippet": "mciteSetMaxWidth{${1:track ID}}{${2:type}}{${3:width}}"
+    {
+      "name": "ifmciteBibitemOptArgI",
+      "unusual": true
     },
-    "mcitethebibliographyHook": {},
-    "mciteBACKREFform": {},
-    "mciteCITEREFform": {},
-    "mciteOrgBIBUNITSbibunit": {}
-  },
-  "envs": {
-    "mcitethebibliography": {}
-  },
-  "options": [
-    "chapterbibrootbib",
-    "debug",
-    "nohooks"
+    {
+      "name": "mciteBibitemOptArgItrue",
+      "unusual": true
+    },
+    {
+      "name": "mciteBibitemOptArgIfalse",
+      "unusual": true
+    },
+    {
+      "name": "mciteCurheadBibitemArgI",
+      "unusual": true
+    },
+    {
+      "name": "mciteCurheadBibitemOptArgI",
+      "unusual": true
+    },
+    {
+      "name": "ifmciteCurheadBibitemOp",
+      "unusual": true
+    },
+    {
+      "name": "mciteCurheadBibitemOptrue",
+      "unusual": true
+    },
+    {
+      "name": "mciteCurheadBibitemOpfalse",
+      "unusual": true
+    },
+    {
+      "name": "mciteorgbibsamplelabel",
+      "unusual": true
+    },
+    {
+      "name": "mcitebibsamplelabel",
+      "unusual": true
+    },
+    {
+      "name": "mcitedefaultmaxwidthbibitemform",
+      "unusual": true
+    },
+    {
+      "name": "mcitedefaultmaxwidthsubitemform",
+      "unusual": true
+    },
+    {
+      "name": "mcitedefaultmaxwidthbibitemforminit",
+      "unusual": true
+    },
+    {
+      "name": "mcitedefaultmaxwidthsubitemforminit",
+      "unusual": true
+    },
+    {
+      "name": "mciteSetBstMaxWidthForm",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type%keyvals}}{${2:form}}",
+        "keys": [
+          "\\mciteSetBstMaxWidthForm,\\mciteSetMaxWidthForm"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mciteSetBstMaxWidthForm",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:init}]{${1:type%keyvals}}{${2:form}}",
+        "keys": [
+          "\\mciteSetBstMaxWidthForm,\\mciteSetMaxWidthForm"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "mciteSetMaxWidthForm",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type%keyvals}}{${2:form}}",
+        "keys": [
+          "\\mciteSetBstMaxWidthForm,\\mciteSetMaxWidthForm"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mciteSetMaxWidthForm",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:init}]{${1:type%keyvals}}{${2:form}}",
+        "keys": [
+          "\\mciteSetBstMaxWidthForm,\\mciteSetMaxWidthForm"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "mcitebstmaxwidthbibitemform",
+      "unusual": true
+    },
+    {
+      "name": "mcitebstmaxwidthsubitemform",
+      "unusual": true
+    },
+    {
+      "name": "mcitebstmaxwidthbibitemforminit",
+      "unusual": true
+    },
+    {
+      "name": "mcitebstmaxwidthsubitemforminit",
+      "unusual": true
+    },
+    {
+      "name": "mcitemaxwidthbibitem",
+      "unusual": true
+    },
+    {
+      "name": "mcitemaxwidthsubitem",
+      "unusual": true
+    },
+    {
+      "name": "mcitemaxwidthbibitemform",
+      "unusual": true
+    },
+    {
+      "name": "mcitemaxwidthsubitemform",
+      "unusual": true
+    },
+    {
+      "name": "mcitemaxcountbibitem",
+      "unusual": true
+    },
+    {
+      "name": "mcitemaxcountsubitem",
+      "unusual": true
+    },
+    {
+      "name": "EndOfBibitem",
+      "unusual": true
+    },
+    {
+      "name": "mciteOrgcite",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "mciteOrgcite",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:add. text}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "mciteOrgnocite",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "mciteOrgnocite",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:add. text}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "mciteOrgbibitem",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:citekey}}"
+      }
+    },
+    {
+      "name": "mciteOrgbibitem",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:citekey}}"
+      }
+    },
+    {
+      "name": "mcitetrackID",
+      "unusual": true
+    },
+    {
+      "name": "mcitebibtrackID",
+      "unusual": true
+    },
+    {
+      "name": "mciteauxout",
+      "unusual": true
+    },
+    {
+      "name": "mcitebibauxout",
+      "unusual": true
+    },
+    {
+      "name": "mciteCiteA",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}{${6:cite list}}"
+      }
+    },
+    {
+      "name": "mciteCiteA",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}[]{}",
+        "snippet": "{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}[${7:opt1}]{${6:cite list}}"
+      }
+    },
+    {
+      "name": "mciteCiteA",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}[][]{}",
+        "snippet": "{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}[${7:opt1}][${8:opt2}]{${6:cite list}}"
+      }
+    },
+    {
+      "name": "mciteCiteA*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}{${6:cite list}}"
+      }
+    },
+    {
+      "name": "mciteCiteA*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}[]{}",
+        "snippet": "{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}[${7:opt1}]{${6:cite list}}"
+      }
+    },
+    {
+      "name": "mciteCiteA*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}[][]{}",
+        "snippet": "{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}[${7:opt1}][${8:opt2}]{${6:cite list}}"
+      }
+    },
+    {
+      "name": "mciteCiteB",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}{${6:sec ID}}{${7:cite list}}"
+      }
+    },
+    {
+      "name": "mciteCiteB",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}[]{}{}",
+        "snippet": "{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}[${8:opt1}]{${6:sec ID}}{${7:cite list}}"
+      }
+    },
+    {
+      "name": "mciteCiteB",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}[][]{}{}",
+        "snippet": "{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}[${8:opt1}][${9:opt2}]{${6:sec ID}}{${7:cite list}}"
+      }
+    },
+    {
+      "name": "mciteCiteB*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}{${6:sec ID}}{${7:cite list}}"
+      }
+    },
+    {
+      "name": "mciteCiteB*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}[]{}{}",
+        "snippet": "{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}[${8:opt1}]{${6:sec ID}}{${7:cite list}}"
+      }
+    },
+    {
+      "name": "mciteCiteB*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}[][]{}{}",
+        "snippet": "{${1:aux out}}{${2:track ID}}{${3:prehandler}}{${4:posthandler}}{${5:fwd}}[${8:opt1}][${9:opt2}]{${6:sec ID}}{${7:cite list}}"
+      }
+    },
+    {
+      "name": "mciteCitePrehandlerArg",
+      "unusual": true
+    },
+    {
+      "name": "mciteCitePosthandlerArg",
+      "unusual": true
+    },
+    {
+      "name": "mciteCiteSecIDArg",
+      "unusual": true
+    },
+    {
+      "name": "mciteCiteFwdArg",
+      "unusual": true
+    },
+    {
+      "name": "mciteCiteOptArgI",
+      "unusual": true
+    },
+    {
+      "name": "mciteCiteOptArgII",
+      "unusual": true
+    },
+    {
+      "name": "mciteDoList",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:aux out}}{${2:track ID}}{${3:cite list}}"
+      }
+    },
+    {
+      "name": "mciteExtraDoLists",
+      "unusual": true
+    },
+    {
+      "name": "mciteCiteAuxArg",
+      "unusual": true
+    },
+    {
+      "name": "mciteCiteTrackArg",
+      "unusual": true
+    },
+    {
+      "name": "mciteCiteListArg",
+      "unusual": true
+    },
+    {
+      "name": "mciteheadlist",
+      "unusual": true
+    },
+    {
+      "name": "mciteFwdCiteListArg",
+      "unusual": true
+    },
+    {
+      "name": "mciteBIBdecl",
+      "unusual": true
+    },
+    {
+      "name": "mciteBIBenddecl",
+      "unusual": true
+    },
+    {
+      "name": "mcitefwdBIBdecl",
+      "unusual": true
+    },
+    {
+      "name": "ifmciteBstWouldAddEndPunct",
+      "unusual": true
+    },
+    {
+      "name": "ifmciteCiteStarFwdArg",
+      "unusual": true
+    },
+    {
+      "name": "ifmciteCurheadBibitemOptArgI",
+      "unusual": true
+    },
+    {
+      "name": "ifmciteMacroOptArgI",
+      "unusual": true
+    },
+    {
+      "name": "ifmciteMacroOptArgII",
+      "unusual": true
+    },
+    {
+      "name": "ifmciteMacroStarForm",
+      "unusual": true
+    },
+    {
+      "name": "mcitebibitem",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:citekey}}"
+      }
+    },
+    {
+      "name": "mcitebibitem",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:citekey}}"
+      }
+    },
+    {
+      "name": "mciteBstWouldAddEndPunctfalse",
+      "unusual": true
+    },
+    {
+      "name": "mciteBstWouldAddEndPuncttrue",
+      "unusual": true
+    },
+    {
+      "name": "mciteCiteStarFwdArgfalse",
+      "unusual": true
+    },
+    {
+      "name": "mciteCiteStarFwdArgtrue",
+      "unusual": true
+    },
+    {
+      "name": "mciteCurheadBibitemOptArgIfalse",
+      "unusual": true
+    },
+    {
+      "name": "mciteCurheadBibitemOptArgItrue",
+      "unusual": true
+    },
+    {
+      "name": "mciteEndOfBibGroupPostsubcloseHook",
+      "unusual": true
+    },
+    {
+      "name": "mciteEndOfBibGroupPresubcloseHook",
+      "unusual": true
+    },
+    {
+      "name": "mciteGetMaxCount",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:track ID}}{${2:type}}{${3:out macro}}"
+      }
+    },
+    {
+      "name": "mciteGetMaxWidth",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:track ID}}{${2:type}}{${3:out macro}}"
+      }
+    },
+    {
+      "name": "mciteMacroOptArgIfalse",
+      "unusual": true
+    },
+    {
+      "name": "mciteMacroOptArgIIfalse",
+      "unusual": true
+    },
+    {
+      "name": "mciteMacroOptArgIItrue",
+      "unusual": true
+    },
+    {
+      "name": "mciteMacroOptArgItrue",
+      "unusual": true
+    },
+    {
+      "name": "mciteMacroStarFormfalse",
+      "unusual": true
+    },
+    {
+      "name": "mciteMacroStarFormtrue",
+      "unusual": true
+    },
+    {
+      "name": "mciteOrgbibliography",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bib file}}"
+      }
+    },
+    {
+      "name": "mciteSetMaxCount",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:track ID}}{${2:type}}{${3:count}}"
+      }
+    },
+    {
+      "name": "mciteSetMaxWidth",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:track ID}}{${2:type}}{${3:width}}"
+      }
+    },
+    {
+      "name": "mcitethebibliographyHook",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "mcitethebibliography"
+    }
+  ],
+  "keys": {
+    "\\usepackage/mciteplus#c": [
+      "chapterbibrootbib",
+      "debug",
+      "nohooks"
+    ],
+    "\\mciteSetBstSublistMode,\\mciteSetSublistMode": [
+      "d",
+      "n",
+      "s",
+      "b",
+      "f",
+      "h"
+    ],
+    "\\mciteSetBstMaxWidthForm,\\mciteSetMaxWidthForm": [
+      "bibitem",
+      "subitem"
+    ]
+  },
+  "args": [
+    "\\usepackage/mciteplus#c"
+  ]
 }

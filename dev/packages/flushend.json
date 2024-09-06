@@ -1,38 +1,60 @@
 {
-  "includes": {},
-  "macros": {
-    "flushend": {},
-    "raggedend": {},
-    "flushcolsend": {},
-    "raggedcolsend": {},
-    "atColsBreak{}": {
-      "snippet": "atColsBreak{${1:tokens}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "flushend"
     },
-    "atColsEnd{}": {
-      "snippet": "atColsEnd{${1:tokens}}"
+    {
+      "name": "raggedend"
     },
-    "showcolsendrule": {}
-  },
-  "envs": {},
-  "options": [
-    "spread",
-    "nospread",
-    "lspread",
-    "nolspread",
-    "rspread",
-    "norspread",
-    "shrink",
-    "noshrink",
-    "lshrink",
-    "nolshrink",
-    "rshrink",
-    "norshrink",
-    "checkfootnote",
-    "nocheckfootnote",
-    "checkfloat",
-    "nocheckfloat",
-    "debug",
-    "nodebug"
+    {
+      "name": "flushcolsend"
+    },
+    {
+      "name": "raggedcolsend"
+    },
+    {
+      "name": "atColsBreak",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "atColsEnd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "showcolsendrule"
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/flushend#c": [
+      "spread",
+      "nospread",
+      "lspread",
+      "nolspread",
+      "rspread",
+      "norspread",
+      "shrink",
+      "noshrink",
+      "lshrink",
+      "nolshrink",
+      "rshrink",
+      "norshrink",
+      "checkfootnote",
+      "nocheckfootnote",
+      "checkfloat",
+      "nocheckfloat",
+      "debug",
+      "nodebug"
+    ]
+  },
+  "args": [
+    "\\usepackage/flushend#c"
+  ]
 }

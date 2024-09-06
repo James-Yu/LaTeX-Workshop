@@ -1,146 +1,307 @@
 {
-  "includes": {
-    "eforms": [],
-    "graphicx": [],
-    "graphicxbox": [],
-    "opacity-pro": []
-  },
-  "macros": {
-    "digiCap{}{}": {
-      "snippet": "digiCap{${1:imagefile}}{${2:caption}}"
+  "deps": [
+    {
+      "name": "eforms"
     },
-    "digiCap{}[]{}": {
-      "snippet": "digiCap{${1:imagefile}}[${2:design keyvals}]{${3:caption}}"
+    {
+      "name": "graphicx"
     },
-    "digiCap[]{}{}": {
-      "snippet": "digiCap[${3:pos keyvals}]{${1:imagefile}}{${2:caption}}"
+    {
+      "name": "graphicxbox"
     },
-    "digiCap[]{}[]{}": {
-      "snippet": "digiCap[${3:pos keyvals}]{${1:imagefile}}[${4:design keyvals}]{${2:caption}}"
-    },
-    "digiCap*{}{}": {
-      "snippet": "digiCap*{${1:imagefile}}{${2:caption}}"
-    },
-    "digiCap*{}[]{}": {
-      "snippet": "digiCap*{${1:imagefile}}[${2:design keyvals}]{${3:caption}}"
-    },
-    "digiCap*[]{}{}": {
-      "snippet": "digiCap*[${3:pos keyvals}]{${1:imagefile}}{${2:caption}}"
-    },
-    "digiCap*[]{}[]{}": {
-      "snippet": "digiCap*[${3:pos keyvals}]{${1:imagefile}}[${4:design keyvals}]{${2:caption}}"
-    },
-    "graphicHeight": {},
-    "graphicWidth": {},
-    "opcolorbox{}": {
-      "snippet": "opcolorbox{${1:text}}"
-    },
-    "opcolorbox[]{}": {
-      "snippet": "opcolorbox[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "PicsThisDoc{{}{}{}{}": {
-      "snippet": "PicsThisDoc{{${1:name1}}{${2:path1}}{${3:title1}}{${4:caption1}...}}",
-      "option": "display1"
-    },
-    "presentationOrder{}": {
-      "snippet": "presentationOrder{${1:name1,${2:name2},...}}",
-      "option": "display1"
-    },
-    "digiDisplaySpace{}{}": {
-      "snippet": "digiDisplaySpace{${1:height}}{${2:width}}",
-      "option": "display1"
-    },
-    "insertCaptions": {
-      "option": "display1"
-    },
-    "insertThumbs{}{}": {
-      "snippet": "insertThumbs{${1:rows}}{${2:columns}}",
-      "option": "display1"
-    },
-    "dcFirstOpt{}": {
-      "snippet": "dcFirstOpt{${1:pos keyvals}}",
-      "option": "display1"
-    },
-    "dcFirstOpt[]{}": {
-      "snippet": "dcFirstOpt[${2:name}]{${1:pos keyvals}}",
-      "option": "display1"
-    },
-    "dcSecondOpt{}": {
-      "snippet": "dcSecondOpt{${1:design keyvals}}",
-      "option": "display1"
-    },
-    "dcSecondOpt[]{}": {
-      "snippet": "dcSecondOpt[${2:name}]{${1:design keyvals}}",
-      "option": "display1"
-    },
-    "useRollovers": {
-      "option": "display1"
-    },
-    "noRollovers": {
-      "option": "display1"
-    },
-    "longCapFmt{}": {
-      "snippet": "longCapFmt{${1:format cmds}}",
-      "option": "display1"
-    },
-    "shortCapFmt{}": {
-      "snippet": "shortCapFmt{${1:format cmds}}",
-      "option": "display1"
-    },
-    "setThumbAppearances{}": {
-      "snippet": "setThumbAppearances{${1:keyvals}}",
-      "option": "display1",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "setThumbAppearances[]{}": {
-      "snippet": "setThumbAppearances[${2:name}]{${1:keyvals}}",
-      "option": "display1",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "setWidthOfThumbs{}": {
-      "snippet": "setWidthOfThumbs{${1:width}}",
-      "option": "display1"
-    },
-    "addvspacetorows{}": {
-      "snippet": "addvspacetorows{${1:length}}",
-      "option": "display1"
-    },
-    "digiDSWidth": {
-      "option": "display1"
-    },
-    "digiDSHeight": {
-      "option": "display1"
-    },
-    "insertPhotos": {
-      "option": "display1"
-    },
-    "normalAppr{}": {
-      "snippet": "normalAppr{${1:arg}}",
-      "option": "display1"
-    },
-    "downAppr{}": {
-      "snippet": "downAppr{${1:arg}}",
-      "option": "display1"
-    },
-    "rolloverAppr{}": {
-      "snippet": "rolloverAppr{${1:arg}}",
-      "option": "display1"
-    },
-    "digiCapsPresets{}": {
-      "snippet": "digiCapsPresets{${1:arg}}"
-    },
-    "hiddenPresets": {}
-  },
-  "envs": {},
-  "options": [
-    "display1"
+    {
+      "name": "opacity-pro"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "digiCap",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:imagefile}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "digiCap",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:imagefile}}[${3:design keyvals}]{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "digiCap",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:pos keyvals%keyvals}]{${1:imagefile}}{${2:caption%text}}",
+        "keys": [
+          "\\digiCap,\\digiCap*,\\dcFirstOpt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "digiCap",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:pos keyvals%keyvals}]{${1:imagefile}}[${4:design keyvals}]{${2:caption%text}}",
+        "keys": [
+          "\\digiCap,\\digiCap*,\\dcFirstOpt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "digiCap*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:imagefile}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "digiCap*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:imagefile}}[${3:design keyvals}]{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "digiCap*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:pos keyvals%keyvals}]{${1:imagefile}}{${2:caption%text}}",
+        "keys": [
+          "\\digiCap,\\digiCap*,\\dcFirstOpt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "digiCap*",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:pos keyvals%keyvals}]{${1:imagefile}}[${4:design keyvals}]{${2:caption%text}}",
+        "keys": [
+          "\\digiCap,\\digiCap*,\\dcFirstOpt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "graphicHeight"
+    },
+    {
+      "name": "graphicWidth"
+    },
+    {
+      "name": "opcolorbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "opcolorbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\opcolorbox,\\dcSecondOpt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "presentationOrder",
+      "if": "display1",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name1,name2,...}}"
+      }
+    },
+    {
+      "name": "digiDisplaySpace",
+      "if": "display1",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:height}}{${2:width}}"
+      }
+    },
+    {
+      "name": "insertCaptions",
+      "if": "display1"
+    },
+    {
+      "name": "insertThumbs",
+      "if": "display1",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:rows}}{${2:columns}}"
+      }
+    },
+    {
+      "name": "dcFirstOpt",
+      "if": "display1",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pos keyvals%keyvals}}"
+      }
+    },
+    {
+      "name": "dcFirstOpt",
+      "if": "display1",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name}]{${1:pos keyvals%keyvals}}"
+      }
+    },
+    {
+      "name": "dcSecondOpt",
+      "if": "display1",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:design keyvals%keyvals}}"
+      }
+    },
+    {
+      "name": "dcSecondOpt",
+      "if": "display1",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name}]{${1:design keyvals%keyvals}}"
+      }
+    },
+    {
+      "name": "useRollovers",
+      "if": "display1"
+    },
+    {
+      "name": "noRollovers",
+      "if": "display1"
+    },
+    {
+      "name": "longCapFmt",
+      "if": "display1",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:format cmds}}"
+      }
+    },
+    {
+      "name": "shortCapFmt",
+      "if": "display1",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:format cmds}}"
+      }
+    },
+    {
+      "name": "setThumbAppearances",
+      "if": "display1",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\setThumbAppearances"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setThumbAppearances",
+      "if": "display1",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name}]{${1:keyvals}}",
+        "keys": [
+          "\\setThumbAppearances"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setWidthOfThumbs",
+      "if": "display1",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "addvspacetorows",
+      "if": "display1",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "digiDSWidth",
+      "if": "display1",
+      "unusual": true
+    },
+    {
+      "name": "digiDSHeight",
+      "if": "display1",
+      "unusual": true
+    },
+    {
+      "name": "insertPhotos",
+      "if": "display1",
+      "unusual": true
+    },
+    {
+      "name": "normalAppr",
+      "if": "display1",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "downAppr",
+      "if": "display1",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "rolloverAppr",
+      "if": "display1",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "digiCapsPresets",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "hiddenPresets",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/digicap-pro#c": [
+      "display1"
+    ],
+    "\\digiCap,\\digiCap*,\\dcFirstOpt": [
+      "outerboxsep=",
+      "vcaption=${1|b,c,t|}",
+      "hcaption=${1|l,c,r|}",
+      "inclgraphicx={${1:\\includegraphics keys}}",
+      "rollovername=${1:name}"
+    ],
+    "\\opcolorbox,\\dcSecondOpt": [
       "borderwidth=",
       "fboxsep=",
       "width=",
@@ -152,7 +313,7 @@
       "borderblendmode=${1:mode}",
       "bgblendmode=${1:mode}"
     ],
-    [
+    "\\setThumbAppearances": [
       "normalop=${1:factor}",
       "rolloverop=${1:factor}",
       "downop=${1:factor}",
@@ -160,5 +321,8 @@
       "rgbcolor=${1:r g b}",
       "cmykcolor=${1:c m y k}"
     ]
+  },
+  "args": [
+    "\\usepackage/digicap-pro#c"
   ]
 }

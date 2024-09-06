@@ -1,204 +1,534 @@
 {
-  "includes": {
-    "ifthen": [],
-    "graphicx": []
-  },
-  "macros": {
-    "boxrightleft{}": {
-      "snippet": "boxrightleft{${1:content}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "Cadrat{}": {
-      "snippet": "Cadrat{${1:content}}"
-    },
-    "CadratLine{}": {
-      "snippet": "CadratLine{${1:content}}"
-    },
-    "CadratLineI{}": {
-      "snippet": "CadratLineI{${1:content}}"
-    },
-    "cartouche{}": {
-      "snippet": "cartouche{${1:content}}"
-    },
-    "Centrer": {},
-    "chateau{}": {
-      "snippet": "chateau{${1:content}}"
-    },
-    "debcartouche{}": {
-      "snippet": "debcartouche{${1:content}}"
-    },
-    "declareHieroGlyphicFont{}{}": {
-      "snippet": "declareHieroGlyphicFont{${1:HieroTeX fontname}}{${2:TeX fontname}}"
-    },
-    "DisplayHieroglyphs": {},
-    "ediajoutauteur{}": {
-      "snippet": "ediajoutauteur{${1:text}}"
-    },
-    "ediajoutscribe{}": {
-      "snippet": "ediajoutscribe{${1:text}}"
-    },
-    "edidisparu{}": {
-      "snippet": "edidisparu{${1:text}}"
-    },
-    "ediefface{}": {
-      "snippet": "ediefface{${1:text}}"
-    },
-    "edisuperfet{}": {
-      "snippet": "edisuperfet{${1:text}}"
-    },
-    "EnColonne[]{}": {
-      "snippet": "EnColonne[${2:width}]{${1:content}}"
-    },
-    "endOfcartouche{}": {
-      "snippet": "endOfcartouche{${1:content}}"
-    },
-    "endOfserekh{}": {
-      "snippet": "endOfserekh{${1:content}}"
-    },
-    "EnGros": {},
-    "EnPetit{}": {
-      "snippet": "EnPetit{${1:content}}"
-    },
-    "enrouge{}": {
-      "snippet": "enrouge{${1:content}}"
-    },
-    "hachure{}": {
-      "snippet": "hachure{${1:content}}"
-    },
-    "hachureg": {},
-    "hachurega{}": {
-      "snippet": "hachurega{${1:content}}"
-    },
-    "hachureh": {},
-    "hachureha{}": {
-      "snippet": "hachureha{${1:content}}"
-    },
-    "hachuret": {},
-    "hachureta{}": {
-      "snippet": "hachureta{${1:content}}"
-    },
-    "hachurev": {},
-    "hachureva{}": {
-      "snippet": "hachureva{${1:content}}"
-    },
-    "HendOfLine": {},
-    "HendOfPage": {},
-    "HfullSpace": {},
-    "hierCC": {},
-    "HinterSignsSpace": {},
-    "HquarterSpace": {},
-    "Hrevert{}": {
-      "snippet": "Hrevert{${1:content}}"
-    },
-    "Hrotate{}{}": {
-      "snippet": "Hrotate{${1:degrees}}{${2:content}}"
-    },
-    "Hsmaller": {},
-    "HsmallSpace": {},
-    "hsuperpose{}{}": {
-      "snippet": "hsuperpose{${1:content1}}{${2:content2}}"
-    },
-    "Htm": {},
-    "HwordSpace": {},
-    "InternalCadrat{}": {
-      "snippet": "InternalCadrat{${1:content}}"
-    },
-    "leftright": {},
-    "ligAROBD": {},
-    "ligAROBDd": {},
-    "ligAROBDra": {},
-    "ligAROBDt": {},
-    "LoneHorizontalLine{}": {
-      "snippet": "LoneHorizontalLine{${1:content}}"
-    },
-    "loneSign{}": {
-      "snippet": "loneSign{${1:sign}}"
-    },
-    "milcartouche{}": {
-      "snippet": "milcartouche{${1:content}}"
-    },
-    "negAROBspace": {},
-    "negAROBvspace": {},
-    "newShading{}{}": {
-      "snippet": "newShading{${1:part spec}}{${2:content}}"
-    },
-    "pointnoir": {},
-    "pointrouge": {},
-    "rightleft": {},
-    "serekh{}": {
-      "snippet": "serekh{${1:content}}"
-    },
-    "SmallerText": {},
-    "SurLigne": {},
-    "TextHieroglyphs": {},
-    "traittexte{}": {
-      "snippet": "traittexte{${1:text}}"
-    },
-    "cartoucheBox": {},
-    "cartoucheLineWidth": {},
-    "ColumnSepar{}": {
-      "snippet": "ColumnSepar{${1:arg}}"
-    },
-    "EgypS": {},
-    "fullShade{}": {
-      "snippet": "fullShade{${1:arg}}"
-    },
-    "HachureBoxII": {},
-    "HachureBoxIII": {},
-    "hachuregaux": {},
-    "Himbt{}": {
-      "snippet": "Himbt{${1:arg}}"
-    },
-    "HorizontalOverlapAux{}{}": {
-      "snippet": "HorizontalOverlapAux{${1:arg1}}{${2:arg2}}"
-    },
-    "HRemplir{}{}": {
-      "snippet": "HRemplir{${1:arg1}}{${2:arg2}}"
-    },
-    "HrotateXC{}": {
-      "snippet": "HrotateXC{${1:arg}}"
-    },
-    "HRXC{}": {
-      "snippet": "HRXC{${1:arg}}"
-    },
-    "Hta": {},
-    "HtaH": {},
-    "HtaW": {},
-    "Htmi": {},
-    "Htmii": {},
-    "Htmiii": {},
-    "Htmiiii": {},
-    "Htmiiiii": {},
-    "HToLine": {},
-    "InternalCadratAux{}": {
-      "snippet": "InternalCadratAux{${1:arg}}"
-    },
-    "LargeHieroglyphs": {},
-    "loneSymbol{}": {
-      "snippet": "loneSymbol{${1:arg}}"
-    },
-    "MInEx": {},
-    "NoRulesBetweenColumns": {},
-    "nouvLigne": {},
-    "oldHbt": {},
-    "parconstruct{}{}{}": {
-      "snippet": "parconstruct{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "RulesBetweenColumns": {},
-    "ShadingBox": {},
-    "ShadingBoxA": {},
-    "ShadingBoxB": {},
-    "ShadingBoxC": {},
-    "ShadingBoxD": {},
-    "smallSkipAroundSigns": {},
-    "xxxparconstruct{}{}{}": {
-      "snippet": "xxxparconstruct{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "graphicx"
     }
-  },
-  "envs": {
-    "hieroglyph": {}
-  },
-  "options": [
-    "psfonts"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "boxrightleft",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "Cadrat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "CadratLine",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "CadratLineI",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "cartouche",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "Centrer"
+    },
+    {
+      "name": "chateau",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "debcartouche",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "declareHieroGlyphicFont",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:HieroTeX fontname}}{${2:TeX fontname}}"
+      }
+    },
+    {
+      "name": "DisplayHieroglyphs"
+    },
+    {
+      "name": "ediajoutauteur",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "ediajoutscribe",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "edidisparu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "ediefface",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "edisuperfet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "EnColonne",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:content}}"
+      }
+    },
+    {
+      "name": "endOfcartouche",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "endOfserekh",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "EnGros"
+    },
+    {
+      "name": "EnPetit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "enrouge",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "hachure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "hachureg"
+    },
+    {
+      "name": "hachurega",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "hachureh"
+    },
+    {
+      "name": "hachureha",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "hachuret"
+    },
+    {
+      "name": "hachureta",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "hachurev"
+    },
+    {
+      "name": "hachureva",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "HendOfLine"
+    },
+    {
+      "name": "HendOfPage"
+    },
+    {
+      "name": "HfullSpace"
+    },
+    {
+      "name": "hierCC"
+    },
+    {
+      "name": "HinterSignsSpace"
+    },
+    {
+      "name": "HquarterSpace"
+    },
+    {
+      "name": "Hrevert",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "Hrotate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:degrees}}{${2:content}}"
+      }
+    },
+    {
+      "name": "Hsmaller"
+    },
+    {
+      "name": "HsmallSpace"
+    },
+    {
+      "name": "hsuperpose",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:content1}}{${2:content2}}"
+      }
+    },
+    {
+      "name": "Htm"
+    },
+    {
+      "name": "HwordSpace"
+    },
+    {
+      "name": "InternalCadrat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "leftright"
+    },
+    {
+      "name": "ligAROBD"
+    },
+    {
+      "name": "ligAROBDd"
+    },
+    {
+      "name": "ligAROBDra"
+    },
+    {
+      "name": "ligAROBDt"
+    },
+    {
+      "name": "LoneHorizontalLine",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "loneSign",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sign}}"
+      }
+    },
+    {
+      "name": "milcartouche",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "negAROBspace"
+    },
+    {
+      "name": "negAROBvspace"
+    },
+    {
+      "name": "newShading",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:part spec}}{${2:content}}"
+      }
+    },
+    {
+      "name": "pointnoir"
+    },
+    {
+      "name": "pointrouge"
+    },
+    {
+      "name": "rightleft"
+    },
+    {
+      "name": "serekh",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "SmallerText"
+    },
+    {
+      "name": "SurLigne"
+    },
+    {
+      "name": "TextHieroglyphs"
+    },
+    {
+      "name": "traittexte",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "cartoucheBox",
+      "unusual": true
+    },
+    {
+      "name": "cartoucheLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "ColumnSepar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "EgypS",
+      "unusual": true
+    },
+    {
+      "name": "fullShade",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "HachureBoxII",
+      "unusual": true
+    },
+    {
+      "name": "HachureBoxIII",
+      "unusual": true
+    },
+    {
+      "name": "hachuregaux",
+      "unusual": true
+    },
+    {
+      "name": "Himbt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "HorizontalOverlapAux",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "HRemplir",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "HrotateXC",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "HRXC",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Hta",
+      "unusual": true
+    },
+    {
+      "name": "HtaH",
+      "unusual": true
+    },
+    {
+      "name": "HtaW",
+      "unusual": true
+    },
+    {
+      "name": "Htmi",
+      "unusual": true
+    },
+    {
+      "name": "Htmii",
+      "unusual": true
+    },
+    {
+      "name": "Htmiii",
+      "unusual": true
+    },
+    {
+      "name": "Htmiiii",
+      "unusual": true
+    },
+    {
+      "name": "Htmiiiii",
+      "unusual": true
+    },
+    {
+      "name": "HToLine",
+      "unusual": true
+    },
+    {
+      "name": "InternalCadratAux",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "LargeHieroglyphs",
+      "unusual": true
+    },
+    {
+      "name": "loneSymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "MInEx",
+      "unusual": true
+    },
+    {
+      "name": "NoRulesBetweenColumns",
+      "unusual": true
+    },
+    {
+      "name": "parconstruct",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "RulesBetweenColumns",
+      "unusual": true
+    },
+    {
+      "name": "ShadingBox",
+      "unusual": true
+    },
+    {
+      "name": "ShadingBoxA",
+      "unusual": true
+    },
+    {
+      "name": "ShadingBoxB",
+      "unusual": true
+    },
+    {
+      "name": "ShadingBoxC",
+      "unusual": true
+    },
+    {
+      "name": "ShadingBoxD",
+      "unusual": true
+    },
+    {
+      "name": "smallSkipAroundSigns",
+      "unusual": true
+    },
+    {
+      "name": "xxxparconstruct",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "hieroglyph"
+    }
+  ],
+  "keys": {
+    "\\usepackage/hiero#c": [
+      "psfonts"
+    ]
+  },
+  "args": [
+    "\\usepackage/hiero#c"
+  ]
 }

@@ -1,37 +1,96 @@
 {
-  "includes": {
-    "zref-abspage": [],
-    "array": [],
-    "multirow": [],
-    "longtable": []
-  },
-  "macros": {
-    "endfirstfoot": {},
-    "endlastfoot": {},
-    "endfirsthead": {},
-    "endfoot": {},
-    "endhead": {},
-    "Topic": {},
-    "Topic[]": {
-      "snippet": "Topic[${1:content}]"
+  "deps": [
+    {
+      "name": "zref-abspage"
     },
-    "TopicLine": {},
-    "TopicSetContinuationCode{}": {
-      "snippet": "TopicSetContinuationCode{${1:code}}"
+    {
+      "name": "array"
     },
-    "TopicSetVPos{}": {
-      "snippet": "TopicSetVPos{${1:vpos}}"
+    {
+      "name": "multirow"
     },
-    "TopicSetWidth{}": {
-      "snippet": "TopicSetWidth{${1:width spec}}"
+    {
+      "name": "longtable"
     }
-  },
-  "envs": {
-    "topiclongtable{}": {
+  ],
+  "macros": [
+    {
+      "name": "endfirstfoot"
+    },
+    {
+      "name": "endlastfoot"
+    },
+    {
+      "name": "endfirsthead"
+    },
+    {
+      "name": "endfoot"
+    },
+    {
+      "name": "endhead"
+    },
+    {
+      "name": "Topic"
+    },
+    {
+      "name": "Topic",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:content}]"
+      }
+    },
+    {
+      "name": "TopicLine"
+    },
+    {
+      "name": "TopicSetContinuationCode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "TopicSetVPos",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:vpos%keyvals}}",
+        "keys": [
+          "\\TopicSetVPos"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "TopicSetWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width spec%keyvals}}",
+        "keys": [
+          "\\TopicSetWidth"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
       "name": "topiclongtable",
-      "snippet": "{${1:preamble}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preamble}}"
+      }
     }
+  ],
+  "keys": {
+    "\\TopicSetVPos": [
+      "b",
+      "c",
+      "t"
+    ],
+    "\\TopicSetWidth": [
+      "=",
+      "*"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

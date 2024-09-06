@@ -1,113 +1,235 @@
 {
-  "includes": {
-    "ifthen": [],
-    "substr": []
-  },
-  "macros": {
-    "isodate": {},
-    "numdate": {},
-    "numdate[]": {
-      "snippet": "numdate[${1:counter}]"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "shortdate": {},
-    "TeXdate": {},
-    "origdate": {},
-    "shortorigdate": {},
-    "Romandate": {},
-    "romandate": {},
-    "shortRomandate": {},
-    "shortromandate": {},
-    "printyearoff": {},
-    "printyearon": {},
-    "printdayoff": {},
-    "printdayon": {},
-    "printdate{}": {
-      "snippet": "printdate{${1:date}}"
-    },
-    "printdateTeX{}": {
-      "snippet": "printdateTeX{${1:yyyy/mm/dd}}"
-    },
-    "daterange{}{}": {
-      "snippet": "daterange{${1:start date}}{${2:end date}}"
-    },
-    "isodash{}": {
-      "snippet": "isodash{${1:symbol}}"
-    },
-    "isospacebeforeday{}": {
-      "snippet": "isospacebeforeday{${1:space cmd}}"
-    },
-    "isospacebeforemonth{}": {
-      "snippet": "isospacebeforemonth{${1:space cmd}}"
-    },
-    "isospacebeforeyear{}": {
-      "snippet": "isospacebeforeyear{${1:space cmd}}"
-    },
-    "shortyearsign{}": {
-      "snippet": "shortyearsign{${1:symbol}}"
-    },
-    "isorangesign{}": {
-      "snippet": "isorangesign{${1:symbol}}"
-    },
-    "daymonthsepgerman{}": {
-      "snippet": "daymonthsepgerman{${1:space cmd}}"
-    },
-    "monthyearsepgerman{}": {
-      "snippet": "monthyearsepgerman{${1:space cmd}}"
-    },
-    "monthyearsepnodaygerman{}": {
-      "snippet": "monthyearsepnodaygerman{${1:space cmd}}"
-    },
-    "cleanlookdateon": {},
-    "cleanlookdateoff": {},
-    "ifisotwodigitday": {},
-    "isotwodigitdaytrue": {},
-    "isotwodigitdayfalse": {},
-    "twodigitarabic{}": {
-      "snippet": "twodigitarabic{${1:counter}}"
-    },
-    "dateinputformat{}": {
-      "snippet": "dateinputformat{${1:format}}"
+    {
+      "name": "substr"
     }
-  },
-  "envs": {},
-  "options": [
-    "iso",
-    "num",
-    "short",
-    "orig",
-    "shortorig",
-    "Roman",
-    "roman",
-    "shortRoman",
-    "shortroman",
-    "american",
-    "austrian",
-    "british",
-    "danish",
-    "english",
-    "french",
-    "german",
-    "naustrian",
-    "ngerman",
-    "italian",
-    "norsk",
-    "norwegian",
-    "swedish",
-    "UKenglish",
-    "USenglish",
-    "inputenglish",
-    "inputbritish",
-    "inputUKenglish",
-    "inputamerican",
-    "inputUSenglish",
-    "inputtex",
-    "inputTeX",
-    "inputlatex",
-    "inputLaTeX",
-    "cleanlook",
-    "nocleanlook",
-    "printdayon",
-    "printdayoff"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "isodate"
+    },
+    {
+      "name": "numdate"
+    },
+    {
+      "name": "numdate",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:counter}]"
+      }
+    },
+    {
+      "name": "shortdate"
+    },
+    {
+      "name": "TeXdate"
+    },
+    {
+      "name": "origdate"
+    },
+    {
+      "name": "shortorigdate"
+    },
+    {
+      "name": "Romandate"
+    },
+    {
+      "name": "romandate"
+    },
+    {
+      "name": "shortRomandate"
+    },
+    {
+      "name": "shortromandate"
+    },
+    {
+      "name": "printyearoff"
+    },
+    {
+      "name": "printyearon"
+    },
+    {
+      "name": "printdayoff"
+    },
+    {
+      "name": "printdayon"
+    },
+    {
+      "name": "printdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "printdateTeX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:yyyy/mm/dd}}"
+      }
+    },
+    {
+      "name": "daterange",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:start date}}{${2:end date}}"
+      }
+    },
+    {
+      "name": "isodash",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "isospacebeforeday",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space cmd}}"
+      }
+    },
+    {
+      "name": "isospacebeforemonth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space cmd}}"
+      }
+    },
+    {
+      "name": "isospacebeforeyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space cmd}}"
+      }
+    },
+    {
+      "name": "shortyearsign",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "isorangesign",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "daymonthsepgerman",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space cmd}}"
+      }
+    },
+    {
+      "name": "monthyearsepgerman",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space cmd}}"
+      }
+    },
+    {
+      "name": "monthyearsepnodaygerman",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space cmd}}"
+      }
+    },
+    {
+      "name": "cleanlookdateon"
+    },
+    {
+      "name": "cleanlookdateoff"
+    },
+    {
+      "name": "ifisotwodigitday",
+      "unusual": true
+    },
+    {
+      "name": "isotwodigitdaytrue"
+    },
+    {
+      "name": "isotwodigitdayfalse"
+    },
+    {
+      "name": "twodigitarabic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "dateinputformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:format%keyvals}}",
+        "keys": [
+          "\\dateinputformat"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/isodate#c": [
+      "iso",
+      "num",
+      "short",
+      "orig",
+      "shortorig",
+      "Roman",
+      "roman",
+      "shortRoman",
+      "shortroman",
+      "american",
+      "austrian",
+      "british",
+      "danish",
+      "english",
+      "french",
+      "german",
+      "naustrian",
+      "ngerman",
+      "italian",
+      "norsk",
+      "norwegian",
+      "swedish",
+      "UKenglish",
+      "USenglish",
+      "inputenglish",
+      "inputbritish",
+      "inputUKenglish",
+      "inputamerican",
+      "inputUSenglish",
+      "inputtex",
+      "inputTeX",
+      "inputlatex",
+      "inputLaTeX",
+      "cleanlook",
+      "nocleanlook",
+      "printdayon",
+      "printdayoff"
+    ],
+    "\\dateinputformat": [
+      "english",
+      "UKenglish",
+      "british",
+      "american",
+      "USenglish",
+      "tex",
+      "latex",
+      "TeX",
+      "LaTeX"
+    ]
+  },
+  "args": [
+    "\\usepackage/isodate#c"
+  ]
 }

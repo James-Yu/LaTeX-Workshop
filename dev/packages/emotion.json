@@ -1,19 +1,33 @@
 {
-  "includes": {
-    "fontspec": []
-  },
-  "macros": {
-    "emotionsetup{}": {
-      "snippet": "emotionsetup{${1:font name}}"
-    },
-    "emotiondef{}{}": {
-      "snippet": "emotiondef{${1:name}}{${2:emoji}}"
-    },
-    "emotion{}": {
-      "snippet": "emotion{${1:emoji}}"
+  "deps": [
+    {
+      "name": "fontspec"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "emotionsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "emotiondef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:emoji}}"
+      }
+    },
+    {
+      "name": "emotion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:emoji}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

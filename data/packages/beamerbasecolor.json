@@ -1,58 +1,123 @@
 {
-  "includes": {},
-  "macros": {
-    "setbeamercolor{}{}": {
-      "snippet": "setbeamercolor{${1:beamer-color name}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+  "deps": [],
+  "macros": [
+    {
+      "name": "setbeamercolor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:beamer-color name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\setbeamercolor,\\setbeamercolor*"
+        ],
+        "keyPos": 1
+      }
     },
-    "setbeamercolor*{}{}": {
-      "snippet": "setbeamercolor*{${1:beamer-color name}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "setbeamercolor*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:beamer-color name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\setbeamercolor,\\setbeamercolor*"
+        ],
+        "keyPos": 1
+      }
     },
-    "ifbeamercolorempty{}{}{}": {
-      "snippet": "ifbeamercolorempty{${1:beamer-color name}}{${2:if undefined}}{${3:if defined}}"
+    {
+      "name": "ifbeamercolorempty",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:beamer-color name}}{${2:if undefined}}{${3:if defined}}"
+      }
     },
-    "ifbeamercolorempty[]{}{}{}": {
-      "snippet": "ifbeamercolorempty[${4:fg or bg}]{${1:beamer-color name}}{${2:if undefined}}{${3:if defined}}"
+    {
+      "name": "ifbeamercolorempty",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:fg or bg%keyvals}]{${1:beamer-color name}}{${2:if undefined}}{${3:if defined}}",
+        "keys": [
+          "\\ifbeamercolorempty,\\usebeamercolor,\\usebeamercolor*"
+        ],
+        "keyPos": 0
+      }
     },
-    "usebeamercolor{}": {
-      "snippet": "usebeamercolor{${1:beamer-color name}}"
+    {
+      "name": "usebeamercolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beamer-color name}}"
+      }
     },
-    "usebeamercolor[]{}": {
-      "snippet": "usebeamercolor[${2:fg or bg}]{${1:beamer-color name}}"
+    {
+      "name": "usebeamercolor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:fg or bg%keyvals}]{${1:beamer-color name}}",
+        "keys": [
+          "\\ifbeamercolorempty,\\usebeamercolor,\\usebeamercolor*"
+        ],
+        "keyPos": 0
+      }
     },
-    "usebeamercolor*{}": {
-      "snippet": "usebeamercolor*{${1:beamer-color name}}"
+    {
+      "name": "usebeamercolor*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beamer-color name}}"
+      }
     },
-    "usebeamercolor*[]{}": {
-      "snippet": "usebeamercolor*[${2:fg or bg}]{${1:beamer-color name}}"
+    {
+      "name": "usebeamercolor*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:fg or bg%keyvals}]{${1:beamer-color name}}",
+        "keys": [
+          "\\ifbeamercolorempty,\\usebeamercolor,\\usebeamercolor*"
+        ],
+        "keyPos": 0
+      }
     },
-    "donotcoloroutermaths": {},
-    "donotcolorouterdisplaymaths": {}
-  },
-  "envs": {
-    "beamercolorbox{}": {
-      "name": "beamercolorbox",
-      "snippet": "{${1:beamer color}}"
+    {
+      "name": "donotcoloroutermaths",
+      "unusual": true
     },
-    "beamercolorbox[]{}": {
-      "name": "beamercolorbox",
-      "snippet": "[${2:options}]{${1:beamer color}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "donotcolorouterdisplaymaths",
+      "unusual": true
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "envs": [
+    {
+      "name": "beamercolorbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beamer color}}"
+      }
+    },
+    {
+      "name": "beamercolorbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:beamer color}}",
+        "keys": [
+          "\\begin{beamercolorbox}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\setbeamercolor,\\setbeamercolor*": [
       "fg=",
       "bg=",
       "parent={${1:parent beamer colors}}",
       "use=${1:beamer color}"
     ],
-    [
+    "\\ifbeamercolorempty,\\usebeamercolor,\\usebeamercolor*": [
+      "fg",
+      "bg"
+    ],
+    "\\begin{beamercolorbox}": [
       "wd=",
       "dp=",
       "ht=",
@@ -69,5 +134,6 @@
       "ignorebg",
       "vmode"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,198 +1,452 @@
 {
-  "includes": {},
-  "macros": {
-    "newcondition{}{}": {
-      "snippet": "newcondition{${1:identifier}}{${2:ids}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "newcondition",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:identifier}}{${2:ids}}"
+      }
     },
-    "setcondition{}": {
-      "snippet": "setcondition{${1:identifier=ids list}}"
+    {
+      "name": "setcondition",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:identifier=ids list}}"
+      }
     },
-    "clearcondition": {},
-    "clearcondition[]": {
-      "snippet": "clearcondition[${1:identifiers}]"
+    {
+      "name": "clearcondition"
     },
-    "conditionif{}{}": {
-      "snippet": "conditionif{${1:true}}{${2:false}}"
+    {
+      "name": "clearcondition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:identifiers}]"
+      }
     },
-    "conditionif[]{}{}": {
-      "snippet": "conditionif[${3:identifier=ids list}]{${1:true}}{${2:false}}"
+    {
+      "name": "conditionif",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
     },
-    "conditionif*{}{}": {
-      "snippet": "conditionif*{${1:true}}{${2:false}}"
+    {
+      "name": "conditionif",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:identifier=ids list}]{${1:true}}{${2:false}}"
+      }
     },
-    "conditionif*[]{}{}": {
-      "snippet": "conditionif*[${3:identifier=ids list}]{${1:true}}{${2:false}}"
+    {
+      "name": "conditionif*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
     },
-    "conditioncmd{}": {
-      "snippet": "conditioncmd{${1:material}}"
+    {
+      "name": "conditionif*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:identifier=ids list}]{${1:true}}{${2:false}}"
+      }
     },
-    "conditioncmd[]{}": {
-      "snippet": "conditioncmd[${2:identifier=ids list}]{${1:material}}"
+    {
+      "name": "conditioncmd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:material}}"
+      }
     },
-    "conditioncmd*{}": {
-      "snippet": "conditioncmd*{${1:material}}"
+    {
+      "name": "conditioncmd",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:identifier=ids list}]{${1:material}}"
+      }
     },
-    "conditioncmd*[]{}": {
-      "snippet": "conditioncmd*[${2:identifier=ids list}]{${1:material}}"
+    {
+      "name": "conditioncmd*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:material}}"
+      }
     },
-    "econditionif{}{}": {
-      "snippet": "econditionif{${1:true}}{${2:false}}"
+    {
+      "name": "conditioncmd*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:identifier=ids list}]{${1:material}}"
+      }
     },
-    "econditionif[]{}{}": {
-      "snippet": "econditionif[${3:identifier=ids list}]{${1:true}}{${2:false}}"
+    {
+      "name": "econditionif",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
     },
-    "econditioncmd{}": {
-      "snippet": "econditioncmd{${1:material}}"
+    {
+      "name": "econditionif",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:identifier=ids list}]{${1:true}}{${2:false}}"
+      }
     },
-    "econditioncmd[]{}": {
-      "snippet": "econditioncmd[${2:identifier=ids list}]{${1:material}}"
+    {
+      "name": "econditioncmd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:material}}"
+      }
     },
-    "newconditioncommand{}{}": {
-      "snippet": "newconditioncommand{${1:cmd}}{${2:definition}}"
+    {
+      "name": "econditioncmd",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:identifier=ids list}]{${1:material}}"
+      }
     },
-    "newconditioncommand{}[]{}": {
-      "snippet": "newconditioncommand{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "newconditioncommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "newconditioncommand{}[][]{}": {
-      "snippet": "newconditioncommand{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
+    {
+      "name": "newconditioncommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "newconditioncommand*{}{}": {
-      "snippet": "newconditioncommand*{${1:cmd}}{${2:definition}}"
+    {
+      "name": "newconditioncommand",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
     },
-    "newconditioncommand*{}[]{}": {
-      "snippet": "newconditioncommand*{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "newconditioncommand*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "newconditioncommand*{}[][]{}": {
-      "snippet": "newconditioncommand*{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
+    {
+      "name": "newconditioncommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "renewconditioncommand{}{}": {
-      "snippet": "renewconditioncommand{${1:cmd}}{${2:definition}}"
+    {
+      "name": "newconditioncommand*",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
     },
-    "renewconditioncommand{}[]{}": {
-      "snippet": "renewconditioncommand{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "renewconditioncommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "renewconditioncommand{}[][]{}": {
-      "snippet": "renewconditioncommand{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
+    {
+      "name": "renewconditioncommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "renewconditioncommand*{}{}": {
-      "snippet": "renewconditioncommand*{${1:cmd}}{${2:definition}}"
+    {
+      "name": "renewconditioncommand",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
     },
-    "renewconditioncommand*{}[]{}": {
-      "snippet": "renewconditioncommand*{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "renewconditioncommand*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "renewconditioncommand*{}[][]{}": {
-      "snippet": "renewconditioncommand*{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
+    {
+      "name": "renewconditioncommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "provideconditioncommand{}{}": {
-      "snippet": "provideconditioncommand{${1:cmd}}{${2:definition}}"
+    {
+      "name": "renewconditioncommand*",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
     },
-    "provideconditioncommand{}[]{}": {
-      "snippet": "provideconditioncommand{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "provideconditioncommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "provideconditioncommand{}[][]{}": {
-      "snippet": "provideconditioncommand{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
+    {
+      "name": "provideconditioncommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "provideconditioncommand*{}{}": {
-      "snippet": "provideconditioncommand*{${1:cmd}}{${2:definition}}"
+    {
+      "name": "provideconditioncommand",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
     },
-    "provideconditioncommand*{}[]{}": {
-      "snippet": "provideconditioncommand*{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "provideconditioncommand*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "provideconditioncommand*{}[][]{}": {
-      "snippet": "provideconditioncommand*{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
+    {
+      "name": "provideconditioncommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "declareconditioncommand{}{}": {
-      "snippet": "declareconditioncommand{${1:cmd}}{${2:definition}}"
+    {
+      "name": "provideconditioncommand*",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
     },
-    "declareconditioncommand{}[]{}": {
-      "snippet": "declareconditioncommand{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "declareconditioncommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "declareconditioncommand{}[][]{}": {
-      "snippet": "declareconditioncommand{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
+    {
+      "name": "declareconditioncommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "declareconditioncommand*{}{}": {
-      "snippet": "declareconditioncommand*{${1:cmd}}{${2:definition}}"
+    {
+      "name": "declareconditioncommand",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
     },
-    "declareconditioncommand*{}[]{}": {
-      "snippet": "declareconditioncommand*{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "declareconditioncommand*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "declareconditioncommand*{}[][]{}": {
-      "snippet": "declareconditioncommand*{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
+    {
+      "name": "declareconditioncommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "neweconditioncommand{}{}": {
-      "snippet": "neweconditioncommand{${1:cmd}}{${2:definition}}"
+    {
+      "name": "declareconditioncommand*",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
     },
-    "neweconditioncommand{}[]{}": {
-      "snippet": "neweconditioncommand{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "neweconditioncommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "neweconditioncommand*{}{}": {
-      "snippet": "neweconditioncommand*{${1:cmd}}{${2:definition}}"
+    {
+      "name": "neweconditioncommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "neweconditioncommand*{}[]{}": {
-      "snippet": "neweconditioncommand*{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "neweconditioncommand*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "reneweconditioncommand{}{}": {
-      "snippet": "reneweconditioncommand{${1:cmd}}{${2:definition}}"
+    {
+      "name": "neweconditioncommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "reneweconditioncommand{}[]{}": {
-      "snippet": "reneweconditioncommand{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "reneweconditioncommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "reneweconditioncommand*{}{}": {
-      "snippet": "reneweconditioncommand*{${1:cmd}}{${2:definition}}"
+    {
+      "name": "reneweconditioncommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "reneweconditioncommand*{}[]{}": {
-      "snippet": "reneweconditioncommand*{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "reneweconditioncommand*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "provideeconditioncommand{}{}": {
-      "snippet": "provideeconditioncommand{${1:cmd}}{${2:definition}}"
+    {
+      "name": "reneweconditioncommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "provideeconditioncommand{}[]{}": {
-      "snippet": "provideeconditioncommand{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "provideeconditioncommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "provideeconditioncommand*{}{}": {
-      "snippet": "provideeconditioncommand*{${1:cmd}}{${2:definition}}"
+    {
+      "name": "provideeconditioncommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "provideeconditioncommand*{}[]{}": {
-      "snippet": "provideeconditioncommand*{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "provideeconditioncommand*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "declareeconditioncommand{}{}": {
-      "snippet": "declareeconditioncommand{${1:cmd}}{${2:definition}}"
+    {
+      "name": "provideeconditioncommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "declareeconditioncommand{}[]{}": {
-      "snippet": "declareeconditioncommand{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "declareeconditioncommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "declareeconditioncommand*{}{}": {
-      "snippet": "declareeconditioncommand*{${1:cmd}}{${2:definition}}"
+    {
+      "name": "declareeconditioncommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "declareeconditioncommand*{}[]{}": {
-      "snippet": "declareeconditioncommand*{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "declareeconditioncommand*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "NewConditionCommand{}{}{}": {
-      "snippet": "NewConditionCommand{${1:cmd}}{${2:xargs}}{${3:definition}}"
+    {
+      "name": "declareeconditioncommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "RenewConditionCommand{}{}{}": {
-      "snippet": "RenewConditionCommand{${1:cmd}}{${2:xargs}}{${3:definition}}"
+    {
+      "name": "NewConditionCommand",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:definition}}"
+      }
     },
-    "ProvideConditionCommand{}{}{}": {
-      "snippet": "ProvideConditionCommand{${1:cmd}}{${2:xargs}}{${3:definition}}"
+    {
+      "name": "RenewConditionCommand",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:definition}}"
+      }
     },
-    "DeclareConditionCommand{}{}{}": {
-      "snippet": "DeclareConditionCommand{${1:cmd}}{${2:xargs}}{${3:definition}}"
+    {
+      "name": "ProvideConditionCommand",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:definition}}"
+      }
     },
-    "NewExpandableConditionCommand{}{}{}": {
-      "snippet": "NewExpandableConditionCommand{${1:cmd}}{${2:xargs}}{${3:definition}}"
+    {
+      "name": "DeclareConditionCommand",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:definition}}"
+      }
     },
-    "RenewExpandableConditionCommand{}{}{}": {
-      "snippet": "RenewExpandableConditionCommand{${1:cmd}}{${2:xargs}}{${3:definition}}"
+    {
+      "name": "NewExpandableConditionCommand",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:definition}}"
+      }
     },
-    "ProvideExpandableConditionCommand{}{}{}": {
-      "snippet": "ProvideExpandableConditionCommand{${1:cmd}}{${2:xargs}}{${3:definition}}"
+    {
+      "name": "RenewExpandableConditionCommand",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:definition}}"
+      }
     },
-    "DeclareExpandableConditionCommand{}{}{}": {
-      "snippet": "DeclareExpandableConditionCommand{${1:cmd}}{${2:xargs}}{${3:definition}}"
+    {
+      "name": "ProvideExpandableConditionCommand",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "DeclareExpandableConditionCommand",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:definition}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

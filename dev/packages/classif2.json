@@ -1,73 +1,152 @@
 {
-  "includes": {
-    "xspace": []
-  },
-  "macros": {
-    "Comm": {},
-    "EmptyName{}": {
-      "snippet": "EmptyName{${1:name}}"
-    },
-    "INCL{}": {
-      "snippet": "INCL{${1:footnote}}"
-    },
-    "LevelName{}{}": {
-      "snippet": "LevelName{${1:level}}{${2:name}}"
-    },
-    "Numerate[]{}": {
-      "snippet": "Numerate[${2:cmd}]{${1:counter}}"
-    },
-    "Numerate{}": {
-      "snippet": "Numerate{${1:counter}}"
-    },
-    "Reset{}": {
-      "snippet": "Reset{${1:counter}}"
-    },
-    "CF": {},
-    "Digitsfalse": {},
-    "Digitstrue": {},
-    "Globalfalse": {},
-    "Globaltrue": {},
-    "Hidefalse": {},
-    "Hidetrue": {},
-    "ifDigits": {},
-    "ifGlobal": {},
-    "ifHide": {},
-    "ifNumbers": {},
-    "IHOOK": {},
-    "IN": {},
-    "Is": {},
-    "K{}": {
-      "snippet": "K{${1:text}}"
-    },
-    "KURN": {},
-    "Level": {},
-    "N{}": {
-      "snippet": "N{${1:text}}"
-    },
-    "Numbersfalse": {},
-    "Numberstrue": {},
-    "Pp": {},
-    "Se": {},
-    "Si": {},
-    "Sl": {},
-    "Sr": {},
-    "St": {},
-    "theGlobalLevel": {},
-    "theLevel": {},
-    "theLeveli": {},
-    "theLevelii": {},
-    "theLeveliii": {},
-    "theLeveliv": {}
-  },
-  "envs": {
-    "classif{}": {
-      "name": "classif",
-      "snippet": "{${1:level}}"
+  "deps": [
+    {
+      "name": "xspace"
     }
-  },
-  "options": [
-    "nonames",
-    "names"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "Comm"
+    },
+    {
+      "name": "EmptyName",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%text}}"
+      }
+    },
+    {
+      "name": "INCL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:footnote%text}}"
+      }
+    },
+    {
+      "name": "LevelName",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:level}}{${2:name%text}}"
+      }
+    },
+    {
+      "name": "Numerate",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:cmd}]{${1:counter}}"
+      }
+    },
+    {
+      "name": "Numerate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "Reset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "Digitsfalse",
+      "unusual": true
+    },
+    {
+      "name": "Digitstrue",
+      "unusual": true
+    },
+    {
+      "name": "Globalfalse",
+      "unusual": true
+    },
+    {
+      "name": "Globaltrue",
+      "unusual": true
+    },
+    {
+      "name": "Hidefalse",
+      "unusual": true
+    },
+    {
+      "name": "Hidetrue",
+      "unusual": true
+    },
+    {
+      "name": "ifDigits",
+      "unusual": true
+    },
+    {
+      "name": "ifGlobal",
+      "unusual": true
+    },
+    {
+      "name": "ifHide",
+      "unusual": true
+    },
+    {
+      "name": "ifNumbers",
+      "unusual": true
+    },
+    {
+      "name": "IHOOK",
+      "unusual": true
+    },
+    {
+      "name": "Level",
+      "unusual": true
+    },
+    {
+      "name": "Numbersfalse",
+      "unusual": true
+    },
+    {
+      "name": "Numberstrue",
+      "unusual": true
+    },
+    {
+      "name": "theGlobalLevel",
+      "unusual": true
+    },
+    {
+      "name": "theLevel",
+      "unusual": true
+    },
+    {
+      "name": "theLeveli",
+      "unusual": true
+    },
+    {
+      "name": "theLevelii",
+      "unusual": true
+    },
+    {
+      "name": "theLeveliii",
+      "unusual": true
+    },
+    {
+      "name": "theLeveliv",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "classif",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:level}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/classif2#c": [
+      "nonames",
+      "names"
+    ]
+  },
+  "args": [
+    "\\usepackage/classif2#c"
+  ]
 }

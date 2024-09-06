@@ -1,28 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "bug": {},
-    "bug[]": {
-      "snippet": "bug[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "bughookbackground": {},
-    "bughookbelly": {},
-    "bughookbody": {},
-    "bughookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "bug"
+    },
+    {
+      "name": "bug",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\bug#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bughookbackground",
+      "unusual": true
+    },
+    {
+      "name": "bughookbelly",
+      "unusual": true
+    },
+    {
+      "name": "bughookbody",
+      "unusual": true
+    },
+    {
+      "name": "bughookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\bug#c": [
       "body=",
       "antennas=",
       "eye=",
@@ -145,5 +180,6 @@
       "handbag=",
       "cocktail"
     ]
-  ]
+  },
+  "args": []
 }

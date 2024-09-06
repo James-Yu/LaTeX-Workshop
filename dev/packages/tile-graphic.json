@@ -1,93 +1,237 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "shellesc": [],
-    "web": [],
-    "graphicx": [],
-    "multido": []
-  },
-  "macros": {
-    "setTileParams{}{}{}": {
-      "snippet": "setTileParams{${1:rows}}{${2:cols}}{${3:imagefile}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "setTileParams[]{}{}{}": {
-      "snippet": "setTileParams[${4:options}]{${1:rows}}{${2:cols}}{${3:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "shellesc"
     },
-    "tileTheGraphic": {},
-    "fullPathToSource{}": {
-      "snippet": "fullPathToSource{${1:path}}"
+    {
+      "name": "web"
     },
-    "afterPkgCreationHook{}": {
-      "snippet": "afterPkgCreationHook{${1:commands}}"
+    {
+      "name": "graphicx"
     },
-    "afterTileCreationHook{}": {
-      "snippet": "afterTileCreationHook{${1:commands}}"
-    },
-    "bpHttile": {},
-    "bpWdtile": {},
-    "compileTileFiles": {},
-    "definePath{}{}": {
-      "snippet": "definePath{${1:cmd}}{${2:path}}"
-    },
-    "dvipsappArgs{}": {
-      "snippet": "dvipsappArgs{${1:arg}}"
-    },
-    "ifpassthruTG": {},
-    "iftgfolder": {},
-    "IWTD{}": {
-      "snippet": "IWTD{${1:arg}}"
-    },
-    "latexappArgs{}": {
-      "snippet": "latexappArgs{${1:arg}}"
-    },
-    "nCols": {},
-    "nFilesCreated": {},
-    "nRows": {},
-    "oX": {},
-    "oY": {},
-    "packagesuffix{}": {
-      "snippet": "packagesuffix{${1:suffix}}"
-    },
-    "passthruTGfalse": {},
-    "passthruTGtrue": {},
-    "pathToPic": {},
-    "pkgappArgs{}": {
-      "snippet": "pkgappArgs{${1:arg}}"
-    },
-    "syscopy{}": {
-      "snippet": "syscopy{${1:arg}}"
-    },
-    "sysdel{}": {
-      "snippet": "sysdel{${1:arg}}"
-    },
-    "sysmove{}": {
-      "snippet": "sysmove{${1:arg}}"
-    },
-    "tgBaseName": {},
-    "tgfolderfalse": {},
-    "tgfoldertrue": {},
-    "tgInFolder": {},
-    "tgInputContent": {},
-    "tgTileBaseIndx": {},
-    "tileappArgs{}": {
-      "snippet": "tileappArgs{${1:arg}}"
-    },
-    "WriteBookmarks": {},
-    "wrtTileCuts": {},
-    "wrttiledoc": {}
-  },
-  "envs": {},
-  "options": [
-    "wrttofiles",
-    "!wrttofiles",
-    "packagefiles",
-    "!packagefiles",
-    "pdfcreator=${1|pdflatex,lualatex,xelatex,ps2pdf,distiller|}"
+    {
+      "name": "multido"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "setTileParams",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:rows}}{${2:cols}}{${3:imagefile}}"
+      }
+    },
+    {
+      "name": "setTileParams",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:rows}}{${2:cols}}{${3:imagefile}}",
+        "keys": [
+          "\\setTileParams"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tileTheGraphic"
+    },
+    {
+      "name": "fullPathToSource",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path%definition}}"
+      }
+    },
+    {
+      "name": "afterPkgCreationHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:commands}}"
+      }
+    },
+    {
+      "name": "afterTileCreationHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:commands}}"
+      }
+    },
+    {
+      "name": "bpHttile",
+      "unusual": true
+    },
+    {
+      "name": "bpWdtile",
+      "unusual": true
+    },
+    {
+      "name": "compileTileFiles",
+      "unusual": true
+    },
+    {
+      "name": "definePath",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:path%definition}}"
+      }
+    },
+    {
+      "name": "dvipsappArgs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ifpassthruTG",
+      "unusual": true
+    },
+    {
+      "name": "iftgfolder",
+      "unusual": true
+    },
+    {
+      "name": "IWTD",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "latexappArgs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "nCols",
+      "unusual": true
+    },
+    {
+      "name": "nFilesCreated",
+      "unusual": true
+    },
+    {
+      "name": "nRows",
+      "unusual": true
+    },
+    {
+      "name": "packagesuffix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:suffix}}"
+      }
+    },
+    {
+      "name": "passthruTGfalse",
+      "unusual": true
+    },
+    {
+      "name": "passthruTGtrue",
+      "unusual": true
+    },
+    {
+      "name": "pathToPic",
+      "unusual": true
+    },
+    {
+      "name": "pkgappArgs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "syscopy",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "sysdel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "sysmove",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "tgBaseName",
+      "unusual": true
+    },
+    {
+      "name": "tgfolderfalse",
+      "unusual": true
+    },
+    {
+      "name": "tgfoldertrue",
+      "unusual": true
+    },
+    {
+      "name": "tgInFolder",
+      "unusual": true
+    },
+    {
+      "name": "tgInputContent",
+      "unusual": true
+    },
+    {
+      "name": "tgTileBaseIndx",
+      "unusual": true
+    },
+    {
+      "name": "tileappArgs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "WriteBookmarks",
+      "unusual": true
+    },
+    {
+      "name": "wrtTileCuts",
+      "unusual": true
+    },
+    {
+      "name": "wrttiledoc",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tile-graphic#c": [
+      "wrttofiles",
+      "!wrttofiles",
+      "packagefiles",
+      "!packagefiles",
+      "pdfcreator=${1|pdflatex,lualatex,xelatex,ps2pdf,distiller|}"
+    ],
+    "\\setTileParams": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -118,5 +262,8 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
+  },
+  "args": [
+    "\\usepackage/tile-graphic#c"
   ]
 }

@@ -1,40 +1,80 @@
 {
-  "includes": {
-    "keyval": [],
-    "tikz": [],
-    "tikzlibrarymath": [],
-    "tikzlibrarydecorations.pathreplacing": [],
-    "tikzlibrarycalligraphy": [],
-    "tikzlibrarybackgrounds": []
-  },
-  "macros": {
-    "pmdEmpty": {},
-    "pmdBrick[]{}{}{}": {
-      "snippet": "pmdBrick[${4:options}]{${1:U-edges}}{${2:L-edges}}{${3:T-edges}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "pmdDiagram{}": {
-      "snippet": "pmdDiagram{${1:bricks}}"
+    {
+      "name": "tikz"
     },
-    "pmdDiagram[]{}": {
-      "snippet": "pmdDiagram[${2:options}]{${1:bricks}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarymath"
     },
-    "pmdProduct{}{}{}": {
-      "snippet": "pmdProduct{${1:A-edges}}{${2:T-bricks}}{${3:B-bricks}}"
+    {
+      "name": "tikzlibrarydecorations.pathreplacing"
     },
-    "pmdProduct[]{}{}{}": {
-      "snippet": "pmdProduct[${4:options}]{${1:A-edges}}{${2:T-bricks}}{${3:B-bricks}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarycalligraphy"
+    },
+    {
+      "name": "tikzlibrarybackgrounds"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "pmdEmpty"
+    },
+    {
+      "name": "pmdBrick",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:U-edges}}{${2:L-edges}}{${3:T-edges}}",
+        "keys": [
+          "\\pmdBrick#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pmdDiagram",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bricks}}"
+      }
+    },
+    {
+      "name": "pmdDiagram",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:bricks}}",
+        "keys": [
+          "\\pmdDiagram#c,\\pmdProduct#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pmdProduct",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:A-edges}}{${2:T-bricks}}{${3:B-bricks}}"
+      }
+    },
+    {
+      "name": "pmdProduct",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:A-edges}}{${2:T-bricks}}{${3:B-bricks}}",
+        "keys": [
+          "\\pmdDiagram#c,\\pmdProduct#c",
+          "\\pmdProduct#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pmdBrick#c": [
       "degree=${1:integer}",
       "degree top=${1:integer}",
       "degree bottom=${1:integer}",
@@ -119,7 +159,7 @@
       "decorate before={${1:code}}",
       "decorate after={${1:code}}"
     ],
-    [
+    "\\pmdDiagram#c,\\pmdProduct#c": [
       "row sep=${1:integer}",
       "tikz={${1:TikZ options}}",
       "dots options={${1:code}}",
@@ -127,18 +167,13 @@
       "decorate before={${1:code}}",
       "decorate after={${1:code}}"
     ],
-    [
-      "row sep=${1:integer}",
-      "tikz={${1:TikZ options}}",
-      "dots options={${1:code}}",
-      "grid",
-      "decorate before={${1:code}}",
-      "decorate after={${1:code}}",
+    "\\pmdProduct#c": [
       "diagram sep=${1:number}",
       "vertex sep=${1:number}",
       "edges added={${1:\\draw options}}",
       "edges added phantom",
       "edges added uncover={${1:overlay spec}}"
     ]
-  ]
+  },
+  "args": []
 }

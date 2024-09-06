@@ -1,139 +1,322 @@
 {
-  "includes": {
-    "ltxtable": [],
-    "ifthen": [],
-    "calc": [],
-    "filehook": [],
-    "graphicx": []
-  },
-  "macros": {
-    "leftheader{}": {
-      "snippet": "leftheader{${1:contents}}"
+  "deps": [
+    {
+      "name": "ltxtable"
     },
-    "rightheader{}": {
-      "snippet": "rightheader{${1:contents}}"
+    {
+      "name": "ifthen"
     },
-    "photo{}": {
-      "snippet": "photo{${1:imagefile}}"
+    {
+      "name": "calc"
     },
-    "photo[]{}": {
-      "snippet": "photo[${2:hpos}]{${1:imagefile}}"
+    {
+      "name": "filehook"
     },
-    "photoscale{}": {
-      "snippet": "photoscale{${1:scale}}"
-    },
-    "photosep": {},
-    "headerscale{}": {
-      "snippet": "headerscale{${1:scale}}"
-    },
-    "headerspace": {},
-    "subtitle{}": {
-      "snippet": "subtitle{${1:text}}"
-    },
-    "titlealignment{}": {
-      "snippet": "titlealignment{${1:hpos}}"
-    },
-    "titlespace": {},
-    "titlefont{}": {
-      "snippet": "titlefont{${1:cmds}}"
-    },
-    "subtitlefont{}": {
-      "snippet": "subtitlefont{${1:cmds}}"
-    },
-    "makeheaders": {},
-    "makeheaders[]": {
-      "snippet": "makeheaders[${1:vpos}]"
-    },
-    "flavor{}": {
-      "snippet": "flavor{${1:key}}"
-    },
-    "makerubric{}": {
-      "snippet": "makerubric{${1:file}}"
-    },
-    "rubricafterspace": {},
-    "rubricalignment{}": {
-      "snippet": "rubricalignment{${1:hpos}}"
-    },
-    "rubricfont{}": {
-      "snippet": "rubricfont{${1:cmds}}"
-    },
-    "rubricspace": {},
-    "entry{}": {
-      "snippet": "entry{${1:contents}}"
-    },
-    "entry[]{}": {
-      "snippet": "entry[${2:key}]{${1:contents}}"
-    },
-    "entry*": {},
-    "entry*[]": {
-      "snippet": "entry*[${1:key}]"
-    },
-    "keyalignment{}": {
-      "snippet": "keyalignment{${1:hpos}}"
-    },
-    "keyfont": {},
-    "prefix{}": {
-      "snippet": "prefix{${1:cmds}}"
-    },
-    "noentry{}": {
-      "snippet": "noentry{${1:key}}"
-    },
-    "subrubric{}": {
-      "snippet": "subrubric{${1:title}}"
-    },
-    "subrubricalignment{}": {
-      "snippet": "subrubricalignment{${1:hpos}}"
-    },
-    "subrubricfont{}": {
-      "snippet": "subrubricfont{${1:cmds}}"
-    },
-    "subrubricspace": {},
-    "subrubricbeforespace": {},
-    "continuedname{}": {
-      "snippet": "continuedname{${1:text}}"
-    },
-    "listpubname{}": {
-      "snippet": "listpubname{${1:title}}"
-    },
-    "thebibcount": {},
-    "thebibtotal": {}
-  },
-  "envs": {
-    "rubric{}": {
-      "name": "rubric",
-      "snippet": "{${1:title}}"
+    {
+      "name": "graphicx"
     }
-  },
-  "options": [
-    "skipsamekey",
-    "ask",
-    "openbib",
-    "revbib",
-    "english",
-    "french",
-    "spanish",
-    "portuguese",
-    "brazilian",
-    "italian",
-    "german",
-    "dutch",
-    "danish",
-    "swedish",
-    "polish",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "leftheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "rightheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "photo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "photo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:hpos%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\photo,\\titlealignment,\\keyalignment"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "photoscale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:scale}}"
+      }
+    },
+    {
+      "name": "photosep",
+      "unusual": true
+    },
+    {
+      "name": "headerscale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:scale}}"
+      }
+    },
+    {
+      "name": "headerspace",
+      "unusual": true
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "titlealignment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hpos%keyvals}}"
+      }
+    },
+    {
+      "name": "titlespace",
+      "unusual": true
+    },
+    {
+      "name": "titlefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmds}}"
+      }
+    },
+    {
+      "name": "subtitlefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmds}}"
+      }
+    },
+    {
+      "name": "makeheaders"
+    },
+    {
+      "name": "makeheaders",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:vpos%keyvals}]",
+        "keys": [
+          "\\makeheaders"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "flavor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "makerubric",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "rubricafterspace",
+      "unusual": true
+    },
+    {
+      "name": "rubricalignment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hpos%keyvals}}",
+        "keys": [
+          "\\rubricalignment,\\subrubricalignment"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rubricfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmds}}"
+      }
+    },
+    {
+      "name": "rubricspace",
+      "unusual": true
+    },
+    {
+      "name": "entry",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "entry",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:key%plain}]{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "entry*"
+    },
+    {
+      "name": "entry*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "keyalignment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hpos%keyvals}}"
+      }
+    },
+    {
+      "name": "keyfont"
+    },
+    {
+      "name": "prefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmds}}"
+      }
+    },
+    {
+      "name": "noentry",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "subrubric",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "subrubricalignment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hpos%keyvals}}"
+      }
+    },
+    {
+      "name": "subrubricfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmds}}"
+      }
+    },
+    {
+      "name": "subrubricspace",
+      "unusual": true
+    },
+    {
+      "name": "subrubricbeforespace",
+      "unusual": true
+    },
+    {
+      "name": "continuedname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "listpubname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "thebibcount",
+      "unusual": true
+    },
+    {
+      "name": "thebibtotal",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "rubric",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/curve#c": [
+      "skipsamekey",
+      "ask",
+      "openbib",
+      "revbib",
+      "english",
+      "french",
+      "spanish",
+      "portuguese",
+      "brazilian",
+      "italian",
+      "german",
+      "dutch",
+      "danish",
+      "swedish",
+      "polish",
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final"
+    ],
+    "\\photo,\\titlealignment,\\keyalignment": [
+      "l",
+      "c",
+      "r"
+    ],
+    "\\makeheaders": [
+      "t",
+      "b",
+      "c"
+    ],
+    "\\rubricalignment,\\subrubricalignment": [
+      "l",
+      "c",
+      "r",
+      "cl",
+      "cc"
+    ]
+  },
+  "args": [
+    "\\documentclass/curve#c"
+  ]
 }

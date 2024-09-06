@@ -1,10 +1,38 @@
 {
-  "includes": {
-    "tikzlibrarycircuits": [],
-    "tikzlibraryshapes.gates.ee": []
+  "deps": [
+    {
+      "name": "tikzlibrarycircuits"
+    },
+    {
+      "name": "tikzlibraryshapes.gates.ee"
+    }
+  ],
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "circuit plc sfc",
+      "sfcaqw=",
+      "sfcanw=",
+      "sfcah=",
+      "time=${1:time}",
+      "qualifier=${1|N,R,S,L,D,P,SD,DS,SL,P1,P0|}",
+      "every sfcstep/.style={${1:TikZ keys}}",
+      "every sfcstepi/.style={${1:TikZ keys}}",
+      "every info/.style={${1:TikZ keys}}",
+      "every info'/.style={${1:TikZ keys}}",
+      "every sfctransition/.style={${1:TikZ keys}}",
+      "every sfcaction/.style={${1:TikZ keys}}",
+      "every sfcqualifier/.style={${1:TikZ keys}}",
+      "every sfctime/.style={${1:TikZ keys}}",
+      "every sfcactionname/.style={${1:TikZ keys}}"
+    ],
+    "\\node#c": [
+      "sfcstep={${1:options}}",
+      "sfcstepi={${1:options}}",
+      "sfctransition={${1:options}}",
+      "sfcstar={${1:options}}"
+    ]
   },
-  "macros": {},
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

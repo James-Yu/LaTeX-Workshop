@@ -1,38 +1,74 @@
 {
-  "includes": {
-    "zref-base": []
-  },
-  "macros": {
-    "zlabel{}": {
-      "snippet": "zlabel{${1:label}}"
-    },
-    "zkvlabel{}{}": {
-      "snippet": "zkvlabel{${1:keyvals}}{${2:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "zref{}": {
-      "snippet": "zref{${1:label}}"
-    },
-    "zref[]{}": {
-      "snippet": "zref[${2:propname}]{${1:label}}"
-    },
-    "zpageref{}": {
-      "snippet": "zpageref{${1:label}}"
-    },
-    "zrefused{}": {
-      "snippet": "zrefused{${1:label}}"
+  "deps": [
+    {
+      "name": "zref-base"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "zlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "zkvlabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:keyvals}}{${2:label}}",
+        "keys": [
+          "\\zkvlabel"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "zref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "zref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:propname%keyvals}]{${1:label}}",
+        "keys": [
+          "\\zref#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "zpageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "zrefused",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\zkvlabel": [
       "prop=",
       "list=",
       "delprop=",
       "immediate",
       "values="
+    ],
+    "\\zref#c": [
+      "default",
+      "page"
     ]
-  ]
+  },
+  "args": []
 }

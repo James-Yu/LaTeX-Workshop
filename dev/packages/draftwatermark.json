@@ -1,67 +1,34 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "graphicx": [],
-    "xcolor": []
-  },
-  "macros": {
-    "DraftwatermarkOptions{}": {
-      "snippet": "DraftwatermarkOptions{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "DraftwatermarkStdMark": {},
-    "SetWatermarkAngle{}": {
-      "snippet": "SetWatermarkAngle{${1:degrees}}"
+    {
+      "name": "graphicx"
     },
-    "SetWatermarkFontSize{}": {
-      "snippet": "SetWatermarkFontSize{${1:length}}"
-    },
-    "SetWatermarkScale{}": {
-      "snippet": "SetWatermarkScale{${1:factor}}"
-    },
-    "SetWatermarkHorCenter{}": {
-      "snippet": "SetWatermarkHorCenter{${1:length}}"
-    },
-    "SetWatermarkVerCenter{}": {
-      "snippet": "SetWatermarkVerCenter{${1:length}}"
-    },
-    "SetWatermarkText{}": {
-      "snippet": "SetWatermarkText{${1:text}}"
-    },
-    "SetWatermarkColor{}": {
-      "snippet": "SetWatermarkColor{${1:colorspec}}"
-    },
-    "SetWatermarkLightness{}": {
-      "snippet": "SetWatermarkLightness{${1:real}}"
+    {
+      "name": "xcolor"
     }
-  },
-  "envs": {},
-  "options": [
-    "firstpageonly",
-    "firstpage",
-    "stamp",
-    "nostamp",
-    "final",
-    "angle=${1:degrees}",
-    "scale=${1:factor}",
-    "fontsize=",
-    "text=${1:text}",
-    "hpos=",
-    "vpos=",
-    "pos={${1:hpos,vpos}}",
-    "hanchor=${1|l,c,r|}",
-    "vanchor=${1|t,m,b|}",
-    "anchor=${1:string}",
-    "alignment=${1|l,c,r|}",
-    "colormodel=${1:color model}",
-    "colorspec=${1:color spec}",
-    "color=${1:color}",
-    "color={[${1:model}]{${2:spec}}}",
-    "markcmd=${1:macro}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "DraftwatermarkOptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\DraftwatermarkOptions,\\usepackage/draftwatermark#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DraftwatermarkStdMark"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\DraftwatermarkOptions,\\usepackage/draftwatermark#c": [
       "firstpageonly",
       "firstpage",
       "stamp",
@@ -84,5 +51,8 @@
       "color={[${1:model}]{${2:spec}}}",
       "markcmd=${1:macro}"
     ]
+  },
+  "args": [
+    "\\DraftwatermarkOptions,\\usepackage/draftwatermark#c"
   ]
 }

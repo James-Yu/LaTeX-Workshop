@@ -1,22 +1,41 @@
 {
-  "includes": {
-    "myfilist": []
-  },
-  "macros": {
-    "listfiles[]": {
-      "snippet": "listfiles[${1:number}]"
-    },
-    "MaxLengthEmptyList{}": {
-      "snippet": "MaxLengthEmptyList{${1:⟨digit⟩⟨digit⟩}}"
-    },
-    "MaxLengthEmptyList{}[]": {
-      "snippet": "MaxLengthEmptyList{${1:⟨digit⟩⟨digit⟩}}[${2:read-again-files}]"
-    },
-    "SetLongNameFileListChars{}": {
-      "snippet": "SetLongNameFileListChars{${1:number}}"
+  "deps": [
+    {
+      "name": "myfilist"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "listfiles",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "MaxLengthEmptyList",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:⟨digit⟩⟨digit⟩}}"
+      }
+    },
+    {
+      "name": "MaxLengthEmptyList",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:⟨digit⟩⟨digit⟩}}[${2:read-again-files}]"
+      }
+    },
+    {
+      "name": "SetLongNameFileListChars",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

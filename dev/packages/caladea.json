@@ -1,16 +1,31 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "caladea": {},
-    "caladeafamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}"
+  "deps": [
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "caladea"
+    },
+    {
+      "name": "caladeafamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/caladea#c": [
+      "scaled=${1:factor}"
+    ]
+  },
+  "args": [
+    "\\usepackage/caladea#c"
+  ]
 }

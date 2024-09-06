@@ -1,538 +1,1325 @@
 {
-  "includes": {
-    "calc": [],
-    "intcalc": [],
-    "ifthen": [],
-    "tocloft": [],
-    "imakeidx": [
+  "deps": [
+    {
+      "name": "calc"
+    },
+    {
+      "name": "intcalc"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "tocloft"
+    },
+    {
+      "name": "imakeidx",
+      "if": "enableidx"
+    }
+  ],
+  "macros": [
+    {
+      "name": "defaultcontraenv",
+      "unusual": true
+    },
+    {
+      "name": "dancetitleenv",
+      "unusual": true
+    },
+    {
+      "name": "dancetitleformat",
+      "unusual": true
+    },
+    {
+      "name": "danceauthorformat",
+      "unusual": true
+    },
+    {
+      "name": "danceformformat",
+      "unusual": true
+    },
+    {
+      "name": "movedelimiter",
+      "unusual": true
+    },
+    {
+      "name": "partdelimiter",
+      "unusual": true
+    },
+    {
+      "name": "midpartdelimiter",
+      "unusual": true
+    },
+    {
+      "name": "phrasevspace",
+      "unusual": true
+    },
+    {
+      "name": "phraseseparator",
+      "unusual": true
+    },
+    {
+      "name": "showcountbefore"
+    },
+    {
+      "name": "showcountafter"
+    },
+    {
+      "name": "hidecountbefore"
+    },
+    {
+      "name": "hidecountafter"
+    },
+    {
+      "name": "countleftbracket",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bracket}}"
+      }
+    },
+    {
+      "name": "countrightbracket",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bracket}}"
+      }
+    },
+    {
+      "name": "setdefaultnotesenv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "prenotevspace",
+      "unusual": true
+    },
+    {
+      "name": "thedancecount",
+      "unusual": true
+    },
+    {
+      "name": "thepartcount",
+      "unusual": true
+    },
+    {
+      "name": "thephrasecount",
+      "unusual": true
+    },
+    {
+      "name": "thedancepart",
+      "unusual": true
+    },
+    {
+      "name": "thedancephrase",
+      "unusual": true
+    },
+    {
+      "name": "thedancepartlength",
+      "unusual": true
+    },
+    {
+      "name": "thedancephraselength",
+      "unusual": true
+    },
+    {
+      "name": "resetdancepartlength"
+    },
+    {
+      "name": "resetdancephraselength"
+    },
+    {
+      "name": "resetdancephrase"
+    },
+    {
+      "name": "resetdancephrase*"
+    },
+    {
+      "name": "resetdancepart"
+    },
+    {
+      "name": "resetdancepart*"
+    },
+    {
+      "name": "newdancephrase"
+    },
+    {
+      "name": "newdancepart"
+    },
+    {
+      "name": "thephrasemovenum",
+      "unusual": true
+    },
+    {
+      "name": "thepartmovenum",
+      "unusual": true
+    },
+    {
+      "name": "thehalfpartmovenum",
+      "unusual": true
+    },
+    {
+      "name": "thedancemovenum",
+      "unusual": true
+    },
+    {
+      "name": "move",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:move%text}}"
+      }
+    },
+    {
+      "name": "move",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:beats}]{${1:move%text}}"
+      }
+    },
+    {
+      "name": "move*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:move%text}}"
+      }
+    },
+    {
+      "name": "move*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:beats}]{${1:move%text}}"
+      }
+    },
+    {
+      "name": "themovecount",
+      "unusual": true
+    },
+    {
+      "name": "allemande",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:beats}}{${2:direction%text}}"
+      }
+    },
+    {
+      "name": "allemande",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:person}]{${1:beats}}{${2:direction%text}}"
+      }
+    },
+    {
+      "name": "allemande*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:beats}}{${2:direction%text}}"
+      }
+    },
+    {
+      "name": "allemande*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:person}]{${1:beats}}{${2:direction%text}}"
+      }
+    },
+    {
+      "name": "balance"
+    },
+    {
+      "name": "balance",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "balance*"
+    },
+    {
+      "name": "balance*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "balanceand"
+    },
+    {
+      "name": "balanceand",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "balanceand*"
+    },
+    {
+      "name": "balanceand*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "butterflywhirl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "butterflywhirl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:post-text%text}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "butterflywhirl*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "butterflywhirl*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pre-text%text}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "circleleft",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "circleleft",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:post-text%text}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "circleleft*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "circleleft*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pre-text%text}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "circleright",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "circleright",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:post-text%text}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "circleright*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "circleright*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pre-text%text}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "courtesyturn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "courtesyturn",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:person}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "courtesyturn*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "courtesyturn*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:person}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "dosido",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "dosido",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:person}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "dosido*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "dosido*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:person}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "seesaw",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "seesaw",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:person}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "seesaw*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "seesaw*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:person}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "walkaround",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "walkaround",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:person}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "walkaround*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "walkaround*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:person}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "walkaroundleft",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "walkaroundleft",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:person}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "walkaroundleft*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "walkaroundleft*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:person}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "walkaroundright",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "walkaroundright",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:person}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "walkaroundright*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "walkaroundright*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:person}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "heyforfour"
+    },
+    {
+      "name": "heyforfour",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "heyforfour*"
+    },
+    {
+      "name": "heyforfour*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "halfhey"
+    },
+    {
+      "name": "halfhey",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "halfhey*"
+    },
+    {
+      "name": "halfhey*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "halfheyricochet"
+    },
+    {
+      "name": "halfheyricochet",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "halfheyricochet*"
+    },
+    {
+      "name": "halfheyricochet*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "fullhey"
+    },
+    {
+      "name": "fullhey",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "fullhey*"
+    },
+    {
+      "name": "fullhey*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "fullheyricochet"
+    },
+    {
+      "name": "fullheyricochet",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "fullheyricochet*"
+    },
+    {
+      "name": "fullheyricochet*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "ladieschain"
+    },
+    {
+      "name": "ladieschain",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "ladieschain*"
+    },
+    {
+      "name": "ladieschain*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "menchain"
+    },
+    {
+      "name": "menchain",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "menchain*"
+    },
+    {
+      "name": "menchain*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "halfladieschain"
+    },
+    {
+      "name": "halfladieschain",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "halfladieschain*"
+    },
+    {
+      "name": "halfladieschain*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "halfmenchain"
+    },
+    {
+      "name": "halfmenchain",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "halfmenchain*"
+    },
+    {
+      "name": "halfmenchain*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "fullladieschain"
+    },
+    {
+      "name": "fullladieschain",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "fullladieschain*"
+    },
+    {
+      "name": "fullladieschain*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "fullmenchain"
+    },
+    {
+      "name": "fullmenchain",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "fullmenchain*"
+    },
+    {
+      "name": "fullmenchain*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "lines"
+    },
+    {
+      "name": "lines",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:type%text}]"
+      }
+    },
+    {
+      "name": "lines*"
+    },
+    {
+      "name": "lines*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:type%text}]"
+      }
+    },
+    {
+      "name": "longlines"
+    },
+    {
+      "name": "longlines",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:type%text}]"
+      }
+    },
+    {
+      "name": "longlines*"
+    },
+    {
+      "name": "longlines*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:type%text}]"
+      }
+    },
+    {
+      "name": "madrobin"
+    },
+    {
+      "name": "madrobin",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "madrobin*"
+    },
+    {
+      "name": "madrobin*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "petronella"
+    },
+    {
+      "name": "petronella",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "petronella*"
+    },
+    {
+      "name": "petronella*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "petronellanella"
+    },
+    {
+      "name": "petronellanella",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "petronellanella*"
+    },
+    {
+      "name": "petronellanella*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "promenade",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "promenade",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:person}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "promenade*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "promenade*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:person}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "halfpromenade"
+    },
+    {
+      "name": "halfpromenade",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:person}]"
+      }
+    },
+    {
+      "name": "halfpromenade*"
+    },
+    {
+      "name": "halfpromenade*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:person}]"
+      }
+    },
+    {
+      "name": "rightandleftthrough"
+    },
+    {
+      "name": "rightandleftthrough",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "rightandleftthrough*"
+    },
+    {
+      "name": "rightandleftthrough*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "rightsandlefts"
+    },
+    {
+      "name": "rightsandlefts",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "rightsandlefts*"
+    },
+    {
+      "name": "rightsandlefts*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "rollaway"
+    },
+    {
+      "name": "rollaway",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "rollaway*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:post-text%text}}"
+      }
+    },
+    {
+      "name": "rollaway*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pre-text%text}]{${1:post-text%text}}"
+      }
+    },
+    {
+      "name": "rollawaysashay"
+    },
+    {
+      "name": "rollawaysashay",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "rollawaysashay*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:post-text%text}}"
+      }
+    },
+    {
+      "name": "rollawaysashay*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pre-text%text}]{${1:post-text%text}}"
+      }
+    },
+    {
+      "name": "starleft",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "starleft*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "starright",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "starright*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "sashay",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "sashay",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:post-text%text}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "sashay*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:beats}}{${2:pre-text%text}}"
+      }
+    },
+    {
+      "name": "sashay*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:post-text%text}]{${1:beats}}{${2:pre-text%text}}"
+      }
+    },
+    {
+      "name": "swing"
+    },
+    {
+      "name": "swing",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "swing*"
+    },
+    {
+      "name": "swing*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-text%text}]"
+      }
+    },
+    {
+      "name": "turnalone"
+    },
+    {
+      "name": "turnalone",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "turnalone*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "turnalone*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:post-text%text}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "turncouple"
+    },
+    {
+      "name": "turncouple",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "turncouple*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "turncouple*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:post-text%text}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "turntogether"
+    },
+    {
+      "name": "turntogether",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:post-text%text}]"
+      }
+    },
+    {
+      "name": "turntogether*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "turntogether*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:post-text%text}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "twirltoswap"
+    },
+    {
+      "name": "californiatwirl"
+    },
+    {
+      "name": "starthrough"
+    },
+    {
+      "name": "starthru"
+    },
+    {
+      "name": "boxthegnat"
+    },
+    {
+      "name": "swattheflea"
+    },
+    {
+      "name": "jerseytwirl"
+    },
+    {
+      "name": "arizonatwirl"
+    },
+    {
+      "name": "downthehall",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "downthehall",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:post-text%text}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "downthehall*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "downthehall*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pre-text%text}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "upthehall",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "upthehall",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:post-text%text}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "upthehall*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beats}}"
+      }
+    },
+    {
+      "name": "upthehall*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pre-text%text}]{${1:beats}}"
+      }
+    },
+    {
+      "name": "dancetitle"
+    },
+    {
+      "name": "danceauthor"
+    },
+    {
+      "name": "danceform"
+    },
+    {
+      "name": "listofdances"
+    },
+    {
+      "name": "thedance",
+      "unusual": true
+    },
+    {
+      "name": "lodtitle",
+      "unusual": true
+    },
+    {
+      "name": "enableidx"
+    },
+    {
+      "name": "pauseindexing"
+    },
+    {
+      "name": "resumeindexing"
+    },
+    {
+      "name": "dbtname",
+      "unusual": true
+    },
+    {
+      "name": "dbaname",
+      "unusual": true
+    },
+    {
+      "name": "mvpname",
+      "unusual": true
+    },
+    {
+      "name": "mvdname",
+      "unusual": true
+    },
+    {
+      "name": "moveindex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:entry%text}}"
+      }
+    },
+    {
+      "name": "moveindex*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:entry%text}}"
+      }
+    },
+    {
+      "name": "timesaround",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:beats-around}}{${2:total-beats}}"
+      }
+    },
+    {
+      "name": "thetimesaround",
+      "unusual": true
+    },
+    {
+      "name": "thequartertimesaround",
+      "unusual": true
+    },
+    {
+      "name": "notes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "spelldosido",
+      "unusual": true
+    },
+    {
+      "name": "spellDosido",
+      "unusual": true
+    },
+    {
+      "name": "setdosidospelling",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:spelling}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "contra",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:author}}{${3:form}}"
+      }
+    },
+    {
+      "name": "contra",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:envname}]{${1:title}}{${2:author}}{${3:form}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/contracard#c": [
+      "showcountafter",
+      "showcountbefore",
       "enableidx"
     ]
   },
-  "macros": {
-    "defaultcontraenv": {},
-    "dancetitleenv": {},
-    "dancetitleformat": {},
-    "danceauthorformat": {},
-    "danceformformat": {},
-    "movedelimiter": {},
-    "partdelimiter": {},
-    "midpartdelimiter": {},
-    "phrasevspace": {},
-    "phraseseparator": {},
-    "showcountbefore": {},
-    "showcountafter": {},
-    "hidecountbefore": {},
-    "hidecountafter": {},
-    "countleftbracket{}": {
-      "snippet": "countleftbracket{${1:bracket}}"
-    },
-    "countrightbracket{}": {
-      "snippet": "countrightbracket{${1:bracket}}"
-    },
-    "setdefaultnotesenv{}": {
-      "snippet": "setdefaultnotesenv{${1:envname}}"
-    },
-    "prenotevspace": {},
-    "thedancecount": {},
-    "thepartcount": {},
-    "thephrasecount": {},
-    "thedancepart": {},
-    "thedancephrase": {},
-    "thedancepartlength": {},
-    "thedancephraselength": {},
-    "resetdancepartlength": {},
-    "resetdancephraselength": {},
-    "resetdancephrase": {},
-    "resetdancephrase*": {},
-    "resetdancepart": {},
-    "resetdancepart*": {},
-    "newdancephrase": {},
-    "newdancepart": {},
-    "thephrasemovenum": {},
-    "thepartmovenum": {},
-    "thehalfpartmovenum": {},
-    "thedancemovenum": {},
-    "move{}": {
-      "snippet": "move{${1:move}}"
-    },
-    "move[]{}": {
-      "snippet": "move[${2:beats}]{${1:move}}"
-    },
-    "move*{}": {
-      "snippet": "move*{${1:move}}"
-    },
-    "move*[]{}": {
-      "snippet": "move*[${2:beats}]{${1:move}}"
-    },
-    "themovecount": {},
-    "allemande{}{}": {
-      "snippet": "allemande{${1:beats}}{${2:direction}}"
-    },
-    "allemande[]{}{}": {
-      "snippet": "allemande[${3:person}]{${1:beats}}{${2:direction}}"
-    },
-    "allemande*{}{}": {
-      "snippet": "allemande*{${1:beats}}{${2:direction}}"
-    },
-    "allemande*[]{}{}": {
-      "snippet": "allemande*[${3:person}]{${1:beats}}{${2:direction}}"
-    },
-    "balance": {},
-    "balance[]": {
-      "snippet": "balance[${1:post-text}]"
-    },
-    "balance*": {},
-    "balance*[]": {
-      "snippet": "balance*[${1:pre-text}]"
-    },
-    "balanceand": {},
-    "balanceand[]": {
-      "snippet": "balanceand[${1:post-text}]"
-    },
-    "balanceand*": {},
-    "balanceand*[]": {
-      "snippet": "balanceand*[${1:pre-text}]"
-    },
-    "butterflywhirl{}": {
-      "snippet": "butterflywhirl{${1:beats}}"
-    },
-    "butterflywhirl[]{}": {
-      "snippet": "butterflywhirl[${2:post-text}]{${1:beats}}"
-    },
-    "butterflywhirl*{}": {
-      "snippet": "butterflywhirl*{${1:beats}}"
-    },
-    "butterflywhirl*[]{}": {
-      "snippet": "butterflywhirl*[${2:pre-text}]{${1:beats}}"
-    },
-    "circleleft{}": {
-      "snippet": "circleleft{${1:beats}}"
-    },
-    "circleleft[]{}": {
-      "snippet": "circleleft[${2:post-text}]{${1:beats}}"
-    },
-    "circleleft*{}": {
-      "snippet": "circleleft*{${1:beats}}"
-    },
-    "circleleft*[]{}": {
-      "snippet": "circleleft*[${2:pre-text}]{${1:beats}}"
-    },
-    "circleright{}": {
-      "snippet": "circleright{${1:beats}}"
-    },
-    "circleright[]{}": {
-      "snippet": "circleright[${2:post-text}]{${1:beats}}"
-    },
-    "circleright*{}": {
-      "snippet": "circleright*{${1:beats}}"
-    },
-    "circleright*[]{}": {
-      "snippet": "circleright*[${2:pre-text}]{${1:beats}}"
-    },
-    "courtesyturn{}": {
-      "snippet": "courtesyturn{${1:beats}}"
-    },
-    "courtesyturn[]{}": {
-      "snippet": "courtesyturn[${2:person}]{${1:beats}}"
-    },
-    "courtesyturn*{}": {
-      "snippet": "courtesyturn*{${1:beats}}"
-    },
-    "courtesyturn*[]{}": {
-      "snippet": "courtesyturn*[${2:person}]{${1:beats}}"
-    },
-    "dosido{}": {
-      "snippet": "dosido{${1:beats}}"
-    },
-    "dosido[]{}": {
-      "snippet": "dosido[${2:person}]{${1:beats}}"
-    },
-    "dosido*{}": {
-      "snippet": "dosido*{${1:beats}}"
-    },
-    "dosido*[]{}": {
-      "snippet": "dosido*[${2:person}]{${1:beats}}"
-    },
-    "seesaw{}": {
-      "snippet": "seesaw{${1:beats}}"
-    },
-    "seesaw[]{}": {
-      "snippet": "seesaw[${2:person}]{${1:beats}}"
-    },
-    "seesaw*{}": {
-      "snippet": "seesaw*{${1:beats}}"
-    },
-    "seesaw*[]{}": {
-      "snippet": "seesaw*[${2:person}]{${1:beats}}"
-    },
-    "walkaround{}": {
-      "snippet": "walkaround{${1:beats}}"
-    },
-    "walkaround[]{}": {
-      "snippet": "walkaround[${2:person}]{${1:beats}}"
-    },
-    "walkaround*{}": {
-      "snippet": "walkaround*{${1:beats}}"
-    },
-    "walkaround*[]{}": {
-      "snippet": "walkaround*[${2:person}]{${1:beats}}"
-    },
-    "walkaroundleft{}": {
-      "snippet": "walkaroundleft{${1:beats}}"
-    },
-    "walkaroundleft[]{}": {
-      "snippet": "walkaroundleft[${2:person}]{${1:beats}}"
-    },
-    "walkaroundleft*{}": {
-      "snippet": "walkaroundleft*{${1:beats}}"
-    },
-    "walkaroundleft*[]{}": {
-      "snippet": "walkaroundleft*[${2:person}]{${1:beats}}"
-    },
-    "walkaroundright{}": {
-      "snippet": "walkaroundright{${1:beats}}"
-    },
-    "walkaroundright[]{}": {
-      "snippet": "walkaroundright[${2:person}]{${1:beats}}"
-    },
-    "walkaroundright*{}": {
-      "snippet": "walkaroundright*{${1:beats}}"
-    },
-    "walkaroundright*[]{}": {
-      "snippet": "walkaroundright*[${2:person}]{${1:beats}}"
-    },
-    "heyforfour": {},
-    "heyforfour[]": {
-      "snippet": "heyforfour[${1:post-text}]"
-    },
-    "heyforfour*": {},
-    "heyforfour*[]": {
-      "snippet": "heyforfour*[${1:pre-text}]"
-    },
-    "halfhey": {},
-    "halfhey[]": {
-      "snippet": "halfhey[${1:post-text}]"
-    },
-    "halfhey*": {},
-    "halfhey*[]": {
-      "snippet": "halfhey*[${1:pre-text}]"
-    },
-    "halfheyricochet": {},
-    "halfheyricochet[]": {
-      "snippet": "halfheyricochet[${1:post-text}]"
-    },
-    "halfheyricochet*": {},
-    "halfheyricochet*[]": {
-      "snippet": "halfheyricochet*[${1:pre-text}]"
-    },
-    "fullhey": {},
-    "fullhey[]": {
-      "snippet": "fullhey[${1:post-text}]"
-    },
-    "fullhey*": {},
-    "fullhey*[]": {
-      "snippet": "fullhey*[${1:pre-text}]"
-    },
-    "fullheyricochet": {},
-    "fullheyricochet[]": {
-      "snippet": "fullheyricochet[${1:post-text}]"
-    },
-    "fullheyricochet*": {},
-    "fullheyricochet*[]": {
-      "snippet": "fullheyricochet*[${1:pre-text}]"
-    },
-    "ladieschain": {},
-    "ladieschain[]": {
-      "snippet": "ladieschain[${1:post-text}]"
-    },
-    "ladieschain*": {},
-    "ladieschain*[]": {
-      "snippet": "ladieschain*[${1:pre-text}]"
-    },
-    "menchain": {},
-    "menchain[]": {
-      "snippet": "menchain[${1:post-text}]"
-    },
-    "menchain*": {},
-    "menchain*[]": {
-      "snippet": "menchain*[${1:pre-text}]"
-    },
-    "halfladieschain": {},
-    "halfladieschain[]": {
-      "snippet": "halfladieschain[${1:post-text}]"
-    },
-    "halfladieschain*": {},
-    "halfladieschain*[]": {
-      "snippet": "halfladieschain*[${1:pre-text}]"
-    },
-    "halfmenchain": {},
-    "halfmenchain[]": {
-      "snippet": "halfmenchain[${1:post-text}]"
-    },
-    "halfmenchain*": {},
-    "halfmenchain*[]": {
-      "snippet": "halfmenchain*[${1:pre-text}]"
-    },
-    "fullladieschain": {},
-    "fullladieschain[]": {
-      "snippet": "fullladieschain[${1:post-text}]"
-    },
-    "fullladieschain*": {},
-    "fullladieschain*[]": {
-      "snippet": "fullladieschain*[${1:pre-text}]"
-    },
-    "fullmenchain": {},
-    "fullmenchain[]": {
-      "snippet": "fullmenchain[${1:post-text}]"
-    },
-    "fullmenchain*": {},
-    "fullmenchain*[]": {
-      "snippet": "fullmenchain*[${1:pre-text}]"
-    },
-    "lines": {},
-    "lines[]": {
-      "snippet": "lines[${1:type}]"
-    },
-    "lines*": {},
-    "lines*[]": {
-      "snippet": "lines*[${1:type}]"
-    },
-    "longlines": {},
-    "longlines[]": {
-      "snippet": "longlines[${1:type}]"
-    },
-    "longlines*": {},
-    "longlines*[]": {
-      "snippet": "longlines*[${1:type}]"
-    },
-    "madrobin": {},
-    "madrobin[]": {
-      "snippet": "madrobin[${1:post-text}]"
-    },
-    "madrobin*": {},
-    "madrobin*[]": {
-      "snippet": "madrobin*[${1:pre-text}]"
-    },
-    "petronella": {},
-    "petronella[]": {
-      "snippet": "petronella[${1:post-text}]"
-    },
-    "petronella*": {},
-    "petronella*[]": {
-      "snippet": "petronella*[${1:pre-text}]"
-    },
-    "petronellanella": {},
-    "petronellanella[]": {
-      "snippet": "petronellanella[${1:post-text}]"
-    },
-    "petronellanella*": {},
-    "petronellanella*[]": {
-      "snippet": "petronellanella*[${1:pre-text}]"
-    },
-    "promenade{}": {
-      "snippet": "promenade{${1:beats}}"
-    },
-    "promenade[]{}": {
-      "snippet": "promenade[${2:person}]{${1:beats}}"
-    },
-    "promenade*{}": {
-      "snippet": "promenade*{${1:beats}}"
-    },
-    "promenade*[]{}": {
-      "snippet": "promenade*[${2:person}]{${1:beats}}"
-    },
-    "halfpromenade": {},
-    "halfpromenade[]": {
-      "snippet": "halfpromenade[${1:person}]"
-    },
-    "halfpromenade*": {},
-    "halfpromenade*[]": {
-      "snippet": "halfpromenade*[${1:person}]"
-    },
-    "rightandleftthrough": {},
-    "rightandleftthrough[]": {
-      "snippet": "rightandleftthrough[${1:post-text}]"
-    },
-    "rightandleftthrough*": {},
-    "rightandleftthrough*[]": {
-      "snippet": "rightandleftthrough*[${1:pre-text}]"
-    },
-    "rightsandlefts": {},
-    "rightsandlefts[]": {
-      "snippet": "rightsandlefts[${1:post-text}]"
-    },
-    "rightsandlefts*": {},
-    "rightsandlefts*[]": {
-      "snippet": "rightsandlefts*[${1:pre-text}]"
-    },
-    "rollaway": {},
-    "rollaway[]": {
-      "snippet": "rollaway[${1:post-text}]"
-    },
-    "rollaway*{}": {
-      "snippet": "rollaway*{${1:post-text}}"
-    },
-    "rollaway*[]{}": {
-      "snippet": "rollaway*[${2:pre-text}]{${1:post-text}}"
-    },
-    "rollawaysashay": {},
-    "rollawaysashay[]": {
-      "snippet": "rollawaysashay[${1:post-text}]"
-    },
-    "rollawaysashay*{}": {
-      "snippet": "rollawaysashay*{${1:post-text}}"
-    },
-    "rollawaysashay*[]{}": {
-      "snippet": "rollawaysashay*[${2:pre-text}]{${1:post-text}}"
-    },
-    "starleft{}": {
-      "snippet": "starleft{${1:beats}}"
-    },
-    "starleft*{}": {
-      "snippet": "starleft*{${1:beats}}"
-    },
-    "starright{}": {
-      "snippet": "starright{${1:beats}}"
-    },
-    "starright*{}": {
-      "snippet": "starright*{${1:beats}}"
-    },
-    "sashay{}": {
-      "snippet": "sashay{${1:beats}}"
-    },
-    "sashay[]{}": {
-      "snippet": "sashay[${2:post-text}]{${1:beats}}"
-    },
-    "sashay*{}{}": {
-      "snippet": "sashay*{${1:beats}}{${2:pre-text}}"
-    },
-    "sashay*[]{}{}": {
-      "snippet": "sashay*[${3:post-text}]{${1:beats}}{${2:pre-text}}"
-    },
-    "swing": {},
-    "swing[]": {
-      "snippet": "swing[${1:post-text}]"
-    },
-    "swing*": {},
-    "swing*[]": {
-      "snippet": "swing*[${1:pre-text}]"
-    },
-    "turnalone": {},
-    "turnalone[]": {
-      "snippet": "turnalone[${1:post-text}]"
-    },
-    "turnalone*{}": {
-      "snippet": "turnalone*{${1:beats}}"
-    },
-    "turnalone*[]{}": {
-      "snippet": "turnalone*[${2:post-text}]{${1:beats}}"
-    },
-    "turncouple": {},
-    "turncouple[]": {
-      "snippet": "turncouple[${1:post-text}]"
-    },
-    "turncouple*{}": {
-      "snippet": "turncouple*{${1:beats}}"
-    },
-    "turncouple*[]{}": {
-      "snippet": "turncouple*[${2:post-text}]{${1:beats}}"
-    },
-    "turntogether": {},
-    "turntogether[]": {
-      "snippet": "turntogether[${1:post-text}]"
-    },
-    "turntogether*{}": {
-      "snippet": "turntogether*{${1:beats}}"
-    },
-    "turntogether*[]{}": {
-      "snippet": "turntogether*[${2:post-text}]{${1:beats}}"
-    },
-    "twirltoswap": {},
-    "californiatwirl": {},
-    "starthrough": {},
-    "starthru": {},
-    "boxthegnat": {},
-    "swattheflea": {},
-    "jerseytwirl": {},
-    "arizonatwirl": {},
-    "downthehall{}": {
-      "snippet": "downthehall{${1:beats}}"
-    },
-    "downthehall[]{}": {
-      "snippet": "downthehall[${2:post-text}]{${1:beats}}"
-    },
-    "downthehall*{}": {
-      "snippet": "downthehall*{${1:beats}}"
-    },
-    "downthehall*[]{}": {
-      "snippet": "downthehall*[${2:pre-text}]{${1:beats}}"
-    },
-    "upthehall{}": {
-      "snippet": "upthehall{${1:beats}}"
-    },
-    "upthehall[]{}": {
-      "snippet": "upthehall[${2:post-text}]{${1:beats}}"
-    },
-    "upthehall*{}": {
-      "snippet": "upthehall*{${1:beats}}"
-    },
-    "upthehall*[]{}": {
-      "snippet": "upthehall*[${2:pre-text}]{${1:beats}}"
-    },
-    "dancetitle": {},
-    "danceauthor": {},
-    "danceform": {},
-    "listofdance": {},
-    "listofdances": {},
-    "thedance": {},
-    "lodtitle": {},
-    "enableidx": {},
-    "pauseindexing": {},
-    "resumeindexing": {},
-    "dbtname": {},
-    "dbaname": {},
-    "mvpname": {},
-    "mvdname": {},
-    "moveindex{}": {
-      "snippet": "moveindex{${1:entry}}"
-    },
-    "moveindex*{}": {
-      "snippet": "moveindex*{${1:entry}}"
-    },
-    "moveindexNoStar{}": {
-      "snippet": "moveindexNoStar{${1:entry}}"
-    },
-    "moveindexStar{}": {
-      "snippet": "moveindexStar{${1:entry}}"
-    },
-    "timesaround{}{}": {
-      "snippet": "timesaround{${1:beats-around}}{${2:total-beats}}"
-    },
-    "thetimesaround": {},
-    "thequartertimesaround": {},
-    "notes{}": {
-      "snippet": "notes{${1:text}}"
-    },
-    "spelldosido": {},
-    "spellDosido": {},
-    "setdosidospelling{}": {
-      "snippet": "setdosidospelling{${1:spelling}}"
-    }
-  },
-  "envs": {
-    "contra{}{}{}": {
-      "name": "contra",
-      "snippet": "{${1:title}}{${2:author}}{${3:form}}"
-    },
-    "contra[]{}{}{}": {
-      "name": "contra",
-      "snippet": "[${4:envname}]{${1:title}}{${2:author}}{${3:form}}"
-    }
-  },
-  "options": [
-    "showcountafter",
-    "showcountbefore",
-    "enableidx"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/contracard#c"
+  ]
 }

@@ -1,24 +1,52 @@
 {
-  "includes": {
-    "framed": [],
-    "color": []
-  },
-  "macros": {
-    "colorframedbordercolorcommand": {},
-    "colorframedcolorbox{}{}": {
-      "snippet": "colorframedcolorbox{${1:color}}{${2:content}}"
+  "deps": [
+    {
+      "name": "framed"
     },
-    "colorframedTFconlabcolorcommand": {},
-    "colorframedTitleBarFrame{}{}": {
-      "snippet": "colorframedTitleBarFrame{${1:title}}{${2:content}}"
+    {
+      "name": "color"
+    }
+  ],
+  "macros": [
+    {
+      "name": "colorframedbordercolorcommand"
     },
-    "colorframedTitleBarFrame[]{}{}": {
-      "snippet": "colorframedTitleBarFrame[${3:marker}]{${1:title}}{${2:content}}"
+    {
+      "name": "colorframedcolorbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:content}}"
+      }
     },
-    "colorframedTFtitlesep": {},
-    "colorframedTFconlabsep": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "colorframedTFconlabcolorcommand"
+    },
+    {
+      "name": "colorframedTitleBarFrame",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:content}}"
+      }
+    },
+    {
+      "name": "colorframedTitleBarFrame",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:marker}]{${1:title%text}}{${2:content}}"
+      }
+    },
+    {
+      "name": "colorframedTFtitlesep",
+      "unusual": true
+    },
+    {
+      "name": "colorframedTFconlabsep",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,14 +1,22 @@
 {
-  "includes": {
-    "ifpdf": [],
-    "ifthen": []
-  },
-  "macros": {
-    "includexmp{}": {
-      "snippet": "includexmp{${1:file}}"
+  "deps": [
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "includexmp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

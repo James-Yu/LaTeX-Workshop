@@ -1,50 +1,100 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "ifpdf": [],
-    "ifxetex": [],
-    "ifluatex": [],
-    "eforms": [],
-    "graphicx": [],
-    "datatool": []
-  },
-  "macros": {
-    "embedIcon{}": {
-      "snippet": "embedIcon{${1:imagefile}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "embedIcon[]{}": {
-      "snippet": "embedIcon[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifpdf"
     },
-    "csOf{}": {
-      "snippet": "csOf{${1:name}}"
+    {
+      "name": "ifxetex"
     },
-    "heightOf{}": {
-      "snippet": "heightOf{${1:name}}"
+    {
+      "name": "ifluatex"
     },
-    "widthOf{}": {
-      "snippet": "widthOf{${1:name}}"
+    {
+      "name": "eforms"
     },
-    "ReqPkg": {},
-    "sortitem{}": {
-      "snippet": "sortitem{${1:arg}}"
+    {
+      "name": "graphicx"
     },
-    "sortitem[]{}": {
-      "snippet": "sortitem[${2:opt}]{${1:arg}}"
+    {
+      "name": "datatool"
     }
-  },
-  "envs": {
-    "embedding": {},
-    "sortedlist": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "embedIcon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "embedIcon",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\embedIcon"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "csOf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "heightOf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "widthOf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "sortitem",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "sortitem",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opt}]{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "embedding"
+    },
+    {
+      "name": "sortedlist",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\embedIcon": [
       "name=${1:name}",
       "hyopts={${1:\\includegraphics keys}}",
       "placement=${1:field}",
       "placement={[${1:0|1|2}]${2:field}}"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,29 +1,50 @@
 {
-  "includes": {
-    "pgfopts": [],
-    "xcolor": [],
-    "listings": [],
-    "tcolorbox": []
-  },
-  "macros": {
-    "ff{}": {
-      "snippet": "ff{${1:code}}"
+  "deps": [
+    {
+      "name": "pgfopts"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "listings"
+    },
+    {
+      "name": "tcolorbox"
     }
-  },
-  "envs": {
-    "ffcode": {},
-    "ffcode[]": {
-      "name": "ffcode",
-      "snippet": "[${1:listings options}]"
-    }
-  },
-  "options": [
-    "noframes",
-    "nobars",
-    "nonumbers",
-    "nocn",
-    "bold",
-    "sf"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ff",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%definition}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "ffcode"
+    },
+    {
+      "name": "ffcode",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:listings options}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/ffcode#c": [
+      "noframes",
+      "nobars",
+      "nonumbers",
+      "nocn",
+      "bold",
+      "sf"
+    ]
+  },
+  "args": [
+    "\\usepackage/ffcode#c"
+  ]
 }

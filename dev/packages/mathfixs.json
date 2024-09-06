@@ -1,48 +1,101 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "ProvideMathFix{}": {
-      "snippet": "ProvideMathFix{${1:options}}"
-    },
-    "rfrac{}{}": {
-      "snippet": "rfrac{${1:numerator}}{${2:denominator}}"
-    },
-    "vfrac{}{}": {
-      "snippet": "vfrac{${1:numerator}}{${2:denominator}}"
-    },
-    "mathbold{}": {
-      "snippet": "mathbold{${1:text}}"
+  "deps": [
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "frac",
-    "fracclass=${1:class}",
-    "fracdelimclass=${1:class}",
-    "rfrac",
-    "rfrac=${1:command}",
-    "vfrac",
-    "vfrac=${1:command}",
-    "vfracclass=${1:class}",
-    "vfracskippre=${1:muskip}",
-    "vfracskippost=${1:muskip}",
-    "root",
-    "rootclass=${1:class}",
-    "rootskipend=${1:muskip}",
-    "rootskippre=${1:muskip}",
-    "rootskippost=${1:muskip}",
-    "rootclose=",
-    "multskip",
-    "multskip=${1:muskip}",
-    "greekcaps",
-    "greekcaps=${1:prefix}",
-    "greeklower",
-    "greeklower=${1:prefix}",
-    "autobold",
-    "mathbold",
-    "mathbold=${1:command}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ProvideMathFix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/mathfixs#c,\\ProvideMathFix"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rfrac",
+      "if": "rfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "vfrac",
+      "if": "vfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "mathbold",
+      "if": "mathbold",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "rfrac",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "vfrac",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "mathbold",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/mathfixs#c,\\ProvideMathFix": [
+      "frac",
+      "fracclass=${1:class}",
+      "fracdelimclass=${1:class}",
+      "rfrac",
+      "rfrac=${1:command}",
+      "vfrac",
+      "vfrac=${1:command}",
+      "vfracclass=${1:class}",
+      "vfracskippre=${1:muskip}",
+      "vfracskippost=${1:muskip}",
+      "root",
+      "rootclass=${1:class}",
+      "rootskipend=${1:muskip}",
+      "rootskippre=${1:muskip}",
+      "rootskippost=${1:muskip}",
+      "rootclose=",
+      "multskip",
+      "multskip=${1:muskip}",
+      "greekcaps",
+      "greekcaps=${1:prefix}",
+      "greeklower",
+      "greeklower=${1:prefix}",
+      "autobold",
+      "mathbold",
+      "mathbold=${1:command}"
+    ]
+  },
+  "args": [
+    "\\usepackage/mathfixs#c,\\ProvideMathFix"
+  ]
 }

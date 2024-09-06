@@ -1,50 +1,82 @@
 {
-  "includes": {
-    "iexec": [],
-    "fancyvrb": [],
-    "xcolor": [],
-    "graphicx": [],
-    "tikz": [],
-    "pgfopts": [],
-    "ifluatex": [],
-    "ifxetex": []
-  },
-  "macros": {
-    "docshotOptions{}": {
-      "snippet": "docshotOptions{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "iexec"
     },
-    "docshotPrerequisite{}": {
-      "snippet": "docshotPrerequisite{${1:file}}"
+    {
+      "name": "fancyvrb"
     },
-    "docshotAfter{}": {
-      "snippet": "docshotAfter{${1:command line}}"
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "pgfopts"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "ifxetex"
     }
-  },
-  "envs": {
-    "docshot": {}
-  },
-  "options": [
-    "pdflatex=${1:path}",
-    "gs=${1:path}",
-    "pdfcrop=${1:path}",
-    "margin=${1:number}",
-    "nocrop",
-    "hspace=",
-    "left=",
-    "right=",
-    "dtx",
-    "tmpdir=${1:path}",
-    "runs=${1:integer}",
-    "small",
-    "tiny",
-    "log",
-    "inputminted=${1:language}",
-    "lstinputlisting"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "docshotOptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\docshotOptions#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "docshotPrerequisite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "docshotAfter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command line}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "docshot"
+    }
+  ],
+  "keys": {
+    "\\usepackage/docshots#c": [
+      "pdflatex=${1:path}",
+      "gs=${1:path}",
+      "pdfcrop=${1:path}",
+      "margin=${1:number}",
+      "nocrop",
+      "hspace=",
+      "left=",
+      "right=",
+      "dtx",
+      "tmpdir=${1:path}",
+      "runs=${1:integer}",
+      "small",
+      "tiny",
+      "log",
+      "inputminted=${1:language}",
+      "lstinputlisting"
+    ],
+    "\\docshotOptions#c": [
       "commentchar=${1:single char}",
       "gobble=${1:integer}",
       "formatcom=${1:commands}",
@@ -274,5 +306,8 @@
       "keywordcommentsemicolon={${1:keywords}}{${2:keywords}}{${3:keywords}}",
       "podcomment"
     ]
+  },
+  "args": [
+    "\\usepackage/docshots#c"
   ]
 }

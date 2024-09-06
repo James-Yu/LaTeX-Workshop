@@ -1,234 +1,505 @@
 {
-  "includes": {
-    "class-scrartcl": [],
-    "sdapsbase": [],
-    "sdapslayout": [],
-    "verbatim": [],
-    "scrkbase": [],
-    "geometry": [],
-    "ifthen": [],
-    "fontenc": [],
-    "color": [],
-    "amssymb": [],
-    "refcount": [],
-    "lastpage": [],
-    "environ": [],
-    "scrlayer-scrpage": [],
-    "url": [],
-    "hyperref": [],
-    "graphicx": [],
-    "sectsty": [],
-    "tabularx": [],
-    "babel": [],
-    "translator": []
-  },
-  "macros": {
-    "addinfo{}{}": {
-      "snippet": "addinfo{${1:key}}{${2:value}}"
+  "deps": [
+    {
+      "name": "class-scrartcl"
     },
-    "sdapsinfo": {},
-    "sdapspagemark": {},
-    "checkbox": {},
-    "checkbox*": {},
-    "checkedbox": {},
-    "checkedbox*": {},
-    "filledbox": {},
-    "filledbox*": {},
-    "correctedbox": {},
-    "correctedbox*": {},
-    "singlemark{}{}{}": {
-      "snippet": "singlemark{${1:question}}{${2:lower}}{${3:upper}}"
+    {
+      "name": "sdapsbase"
     },
-    "singlemark[]{}{}{}": {
-      "snippet": "singlemark[${4:options}]{${1:question}}{${2:lower}}{${3:upper}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "sdapslayout"
     },
-    "singlemarkother{}{}{}": {
-      "snippet": "singlemarkother{${1:question}}{${2:lower}}{${3:upper}}"
+    {
+      "name": "verbatim"
     },
-    "singlemarkother[]{}{}{}": {
-      "snippet": "singlemarkother[${4:options}]{${1:question}}{${2:lower}}{${3:upper}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "scrkbase"
     },
-    "textbox{}{}": {
-      "snippet": "textbox{${1:height}}{${2:question}}"
+    {
+      "name": "geometry"
     },
-    "textbox[]{}{}": {
-      "snippet": "textbox[${3:options}]{${1:height}}{${2:question}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "ifthen"
     },
-    "textbox*{}{}": {
-      "snippet": "textbox*{${1:height}}{${2:question}}"
+    {
+      "name": "fontenc"
     },
-    "textbox*[]{}{}": {
-      "snippet": "textbox*[${3:options}]{${1:height}}{${2:question}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "color"
     },
-    "choiceitem{}": {
-      "snippet": "choiceitem{${1:text}}"
+    {
+      "name": "amssymb"
     },
-    "choiceitem[]{}": {
-      "snippet": "choiceitem[${2:options}]{${1:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "refcount"
     },
-    "choicemulticolitem{}{}": {
-      "snippet": "choicemulticolitem{${1:cols}}{${2:text}}"
+    {
+      "name": "lastpage"
     },
-    "choicemulticolitem[]{}{}": {
-      "snippet": "choicemulticolitem[${3:options}]{${1:cols}}{${2:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "environ"
     },
-    "choiceitemtext{}{}{}": {
-      "snippet": "choiceitemtext{${1:height}}{${2:cols}}{${3:text}}"
+    {
+      "name": "scrlayer-scrpage"
     },
-    "choiceitemtext[]{}{}{}": {
-      "snippet": "choiceitemtext[${4:options}]{${1:height}}{${2:cols}}{${3:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "url"
     },
-    "markline{}{}{}": {
-      "snippet": "markline{${1:question}}{${2:lower}}{${3:upper}}"
+    {
+      "name": "hyperref"
     },
-    "markline[]{}{}{}": {
-      "snippet": "markline[${4:options}]{${1:question}}{${2:lower}}{${3:upper}}"
+    {
+      "name": "graphicx"
     },
-    "groupaddchoice{}": {
-      "snippet": "groupaddchoice{${1:text}}"
+    {
+      "name": "sectsty"
     },
-    "groupaddchoice[]{}": {
-      "snippet": "groupaddchoice[${2:options}]{${1:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "tabularx"
     },
-    "choiceline{}": {
-      "snippet": "choiceline{${1:text}}"
+    {
+      "name": "babel"
     },
-    "choiceline[]{}": {
-      "snippet": "choiceline[${2:options}]{${1:text}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "qid": {},
-    "sectbox{}": {
-      "snippet": "sectbox{${1:arg}}"
-    },
-    "themarkcheckboxcount": {},
-    "DH": {},
-    "NG": {},
-    "dj": {},
-    "ng": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textquotedbl": {},
-    "DJ": {},
-    "th": {},
-    "TH": {},
-    "dh": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "guillemetleft": {},
-    "guillemetright": {}
-  },
-  "envs": {
-    "questionnaire": {},
-    "questionnaire[]": {
-      "name": "questionnaire",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "choicequestion{}": {
-      "name": "choicequestion",
-      "snippet": "{${1:text}}"
-    },
-    "choicequestion[]{}": {
-      "name": "choicequestion",
-      "snippet": "[${2:options}]{${1:text}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "optionquestion{}": {
-      "name": "optionquestion",
-      "snippet": "{${1:text}}"
-    },
-    "optionquestion[]{}": {
-      "name": "optionquestion",
-      "snippet": "[${2:options}]{${1:text}}",
-      "keyvalindex": 6,
-      "keyvalpos": 0
-    },
-    "info": {},
-    "markgroup{}": {
-      "name": "markgroup",
-      "snippet": "{${1:text}}"
-    },
-    "markgroup[]{}": {
-      "name": "markgroup",
-      "snippet": "[${2:options}]{${1:text}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "choicegroup{}": {
-      "name": "choicegroup",
-      "snippet": "{${1:text}}"
-    },
-    "choicegroup[]{}": {
-      "name": "choicegroup",
-      "snippet": "[${2:options}]{${1:text}}",
-      "keyvalindex": 8,
-      "keyvalpos": 0
-    },
-    "optiongroup{}": {
-      "name": "optiongroup",
-      "snippet": "{${1:text}}"
-    },
-    "optiongroup[]{}": {
-      "name": "optiongroup",
-      "snippet": "[${2:options}]{${1:text}}",
-      "keyvalindex": 8,
-      "keyvalpos": 0
+    {
+      "name": "translator"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "addinfo",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:value}}"
+      }
+    },
+    {
+      "name": "sdapsinfo",
+      "unusual": true
+    },
+    {
+      "name": "sdapspagemark",
+      "unusual": true
+    },
+    {
+      "name": "checkbox"
+    },
+    {
+      "name": "checkbox*"
+    },
+    {
+      "name": "checkedbox"
+    },
+    {
+      "name": "checkedbox*"
+    },
+    {
+      "name": "filledbox"
+    },
+    {
+      "name": "filledbox*"
+    },
+    {
+      "name": "correctedbox"
+    },
+    {
+      "name": "correctedbox*"
+    },
+    {
+      "name": "singlemark",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:question%text}}{${2:lower%text}}{${3:upper%text}}"
+      }
+    },
+    {
+      "name": "singlemark",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:question%text}}{${2:lower%text}}{${3:upper%text}}",
+        "keys": [
+          "\\singlemark,\\singlemarkother"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "singlemarkother",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:question%text}}{${2:lower%text}}{${3:upper%text}}"
+      }
+    },
+    {
+      "name": "singlemarkother",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:question%text}}{${2:lower%text}}{${3:upper%text}}",
+        "keys": [
+          "\\singlemark,\\singlemarkother"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "textbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:height}}{${2:question}}"
+      }
+    },
+    {
+      "name": "textbox",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:height}}{${2:question}}",
+        "keys": [
+          "\\textbox,\\textbox*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "textbox*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:height}}{${2:question}}"
+      }
+    },
+    {
+      "name": "textbox*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:height}}{${2:question}}",
+        "keys": [
+          "\\textbox,\\textbox*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "choiceitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "choiceitem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\choiceitem,\\choicemulticolitem"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "choicemulticolitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cols}}{${2:text}}"
+      }
+    },
+    {
+      "name": "choicemulticolitem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:cols}}{${2:text}}",
+        "keys": [
+          "\\choiceitem,\\choicemulticolitem"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "choiceitemtext",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:height}}{${2:cols}}{${3:text}}"
+      }
+    },
+    {
+      "name": "choiceitemtext",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:height}}{${2:cols}}{${3:text}}",
+        "keys": [
+          "\\choiceitemtext"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "markline",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:question}}{${2:lower}}{${3:upper}}"
+      }
+    },
+    {
+      "name": "markline",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:question}}{${2:lower}}{${3:upper}}"
+      }
+    },
+    {
+      "name": "groupaddchoice",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "groupaddchoice",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\groupaddchoice"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "choiceline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "choiceline",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\choiceline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "qid",
+      "unusual": true
+    },
+    {
+      "name": "sectbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "themarkcheckboxcount",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    }
+  ],
+  "envs": [
+    {
+      "name": "questionnaire"
+    },
+    {
+      "name": "questionnaire",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{questionnaire}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "choicequestion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "choicequestion",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\begin{choicequestion}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "optionquestion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "optionquestion",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\begin{optionquestion}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "info"
+    },
+    {
+      "name": "markgroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "markgroup",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\begin{markgroup}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "choicegroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "choicegroup",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\begin{choicegroup},\\begin{optiongroup}",
+          "\\begin{choicegroup}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "optiongroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "optiongroup",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\begin{choicegroup},\\begin{optiongroup}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{questionnaire}": [
+      "noinfo"
+    ],
+    "\\singlemark,\\singlemarkother": [
       "var=${1:variable}",
       "count=${1:integer}"
     ],
-    [
+    "\\textbox,\\textbox*": [
       "text=${1:text}",
       "var=${1:variable}"
     ],
-    [
-      "var=${1:variable}",
-      "val=${1:value}",
-      "text=${1:text}"
-    ],
-    [
-      "text=${1:text}",
-      "var=${1:variable}",
-      "range=${1:list}"
-    ],
-    [
-      "noinfo"
-    ],
-    [
+    "\\begin{choicequestion}": [
       "cols=${1:integer}",
       "colsep=",
       "rowsep=",
@@ -238,19 +509,28 @@
       "multichoice",
       "singlechoice"
     ],
-    [
+    "\\choiceitem,\\choicemulticolitem": [
+      "var=${1:variable}",
+      "val=${1:value}",
+      "text=${1:text}"
+    ],
+    "\\choiceitemtext": [
+      "var=${1:variable}",
+      "text=${1:text}"
+    ],
+    "\\begin{optionquestion}": [
       "cols=${1:integer}",
       "colsep=",
       "rowsep=",
       "var=${1:variable}",
       "text=${1:text}"
     ],
-    [
+    "\\begin{markgroup}": [
       "count=${1:integer}",
       "align=${1:string}",
       "other"
     ],
-    [
+    "\\begin{choicegroup},\\begin{optiongroup}": [
       "align=",
       "noalign",
       "horizontal",
@@ -259,10 +539,23 @@
       "vertical",
       "type=${1|multichoice,singlechoice|}",
       "multichoice",
-      "singlechoice",
+      "singlechoice"
+    ],
+    "\\begin{choicegroup}": [
       "type=${1|multichoice,singlechoice|}",
       "multichoice",
       "singlechoice"
+    ],
+    "\\groupaddchoice": [
+      "text=${1:text}",
+      "var=${1:variable}",
+      "val=${1:value}"
+    ],
+    "\\choiceline": [
+      "text=${1:text}",
+      "var=${1:variable}",
+      "range=${1:list}"
     ]
-  ]
+  },
+  "args": []
 }

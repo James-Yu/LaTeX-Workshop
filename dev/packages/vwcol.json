@@ -1,32 +1,55 @@
 {
-  "includes": {
-    "calc": [],
-    "color": [],
-    "environ": [],
-    "keyval": [],
-    "ragged2e": []
-  },
-  "macros": {
-    "vwcolsetup{}": {
-      "snippet": "vwcolsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "calc"
+    },
+    {
+      "name": "color"
+    },
+    {
+      "name": "environ"
+    },
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "ragged2e"
     }
-  },
-  "envs": {
-    "vwcol": {},
-    "vwcol[]": {
-      "name": "vwcol",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    }
-  },
-  "options": [
-    "quiet"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "vwcolsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{vwcol},\\vwcolsetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "vwcol"
+    },
+    {
+      "name": "vwcol",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{vwcol},\\vwcolsetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/vwcol#c": [
+      "quiet"
+    ],
+    "\\begin{vwcol},\\vwcolsetup": [
       "widths={${1:ratio1,ratio2,...}}",
       "sep=${1:factor}",
       "sidesep",
@@ -43,5 +66,8 @@
       "lines=${1:integer}",
       "maxrecursion=${1:integer}"
     ]
+  },
+  "args": [
+    "\\usepackage/vwcol#c"
   ]
 }

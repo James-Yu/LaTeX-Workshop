@@ -1,76 +1,196 @@
 {
-  "includes": {},
-  "macros": {
-    "ParallelLText{}": {
-      "snippet": "ParallelLText{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "ParallelLText",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "ParallelRText{}": {
-      "snippet": "ParallelRText{${1:text}}"
+    {
+      "name": "ParallelRText",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "ParallelPar": {},
-    "ParallelLWidth": {},
-    "ParallelRWidth": {},
-    "ParallelTextWidth": {},
-    "ParallelLeftMargin": {},
-    "ParallelUserMidSkip": {},
-    "ParallelMainMidSkip": {},
-    "ParallelLBox": {},
-    "ParallelRBox": {},
-    "ParallelBoxVar": {},
-    "ParallelLTok": {},
-    "ParallelRTok": {},
-    "ParallelBoolVar": {},
-    "ParallelBoolMid": {},
-    "ParallelWhichBox": {},
-    "ParallelMainMode": {},
-    "ParallelFNMode": {},
-    "ParallelLFNCounter": {},
-    "ParallelRFNCounter": {},
-    "ParallelMaxFN": {},
-    "ParallelFNNumMode": {},
-    "ParallelMessage{}": {
-      "snippet": "ParallelMessage{${1:text}}"
+    {
+      "name": "ParallelPar"
     },
-    "ParallelLFootnote{}": {
-      "snippet": "ParallelLFootnote{${1:text}}"
+    {
+      "name": "ParallelLWidth",
+      "unusual": true
     },
-    "ParallelRFootnote{}": {
-      "snippet": "ParallelRFootnote{${1:text}}"
+    {
+      "name": "ParallelRWidth",
+      "unusual": true
     },
-    "ParallelShowFNList": {},
-    "ParallelParOnePage": {},
-    "ParallelParTwoPages": {},
-    "ParallelAfterText": {},
-    "ParallelCheckOpenBrace": {},
-    "ParallelAtEnd": {},
-    "ParallelDot": {}
-  },
-  "envs": {
-    "Parallel{}{}": {
-      "name": "Parallel",
-      "snippet": "{${1:left-width}}{${2:right-width}}"
+    {
+      "name": "ParallelTextWidth",
+      "unusual": true
     },
-    "Parallel[]{}{}": {
-      "name": "Parallel",
-      "snippet": "[${3:options}]{${1:left-width}}{${2:right-width}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ParallelLeftMargin",
+      "unusual": true
     },
-    "ParallelFNEnviron": {}
-  },
-  "options": [
-    "Verbose",
-    "OldStyleNums",
-    "RaiseNums",
-    "ItalicNums",
-    "RomanNums",
-    "SeparatedFootnotes"
+    {
+      "name": "ParallelUserMidSkip",
+      "unusual": true
+    },
+    {
+      "name": "ParallelMainMidSkip",
+      "unusual": true
+    },
+    {
+      "name": "ParallelLBox",
+      "unusual": true
+    },
+    {
+      "name": "ParallelRBox",
+      "unusual": true
+    },
+    {
+      "name": "ParallelBoxVar",
+      "unusual": true
+    },
+    {
+      "name": "ParallelLTok",
+      "unusual": true
+    },
+    {
+      "name": "ParallelRTok",
+      "unusual": true
+    },
+    {
+      "name": "ParallelBoolVar",
+      "unusual": true
+    },
+    {
+      "name": "ParallelBoolMid",
+      "unusual": true
+    },
+    {
+      "name": "ParallelWhichBox",
+      "unusual": true
+    },
+    {
+      "name": "ParallelMainMode",
+      "unusual": true
+    },
+    {
+      "name": "ParallelFNMode",
+      "unusual": true
+    },
+    {
+      "name": "ParallelLFNCounter",
+      "unusual": true
+    },
+    {
+      "name": "ParallelRFNCounter",
+      "unusual": true
+    },
+    {
+      "name": "ParallelMaxFN",
+      "unusual": true
+    },
+    {
+      "name": "ParallelFNNumMode",
+      "unusual": true
+    },
+    {
+      "name": "ParallelMessage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ParallelLFootnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ParallelRFootnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ParallelShowFNList",
+      "unusual": true
+    },
+    {
+      "name": "ParallelParOnePage",
+      "unusual": true
+    },
+    {
+      "name": "ParallelParTwoPages",
+      "unusual": true
+    },
+    {
+      "name": "ParallelAfterText",
+      "unusual": true
+    },
+    {
+      "name": "ParallelCheckOpenBrace",
+      "unusual": true
+    },
+    {
+      "name": "ParallelAtEnd",
+      "unusual": true
+    },
+    {
+      "name": "ParallelDot",
+      "unusual": true
+    }
   ],
-  "keyvals": [
-    [
+  "envs": [
+    {
+      "name": "Parallel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left-width%l}}{${2:right-width%l}}"
+      }
+    },
+    {
+      "name": "Parallel",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:left-width%l}}{${2:right-width%l}}",
+        "keys": [
+          "\\begin{Parallel}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ParallelFNEnviron",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/parallel#c": [
+      "Verbose",
+      "OldStyleNums",
+      "RaiseNums",
+      "ItalicNums",
+      "RomanNums",
+      "SeparatedFootnotes"
+    ],
+    "\\begin{Parallel}": [
       "c",
       "v",
       "p"
     ]
+  },
+  "args": [
+    "\\usepackage/parallel#c"
   ]
 }

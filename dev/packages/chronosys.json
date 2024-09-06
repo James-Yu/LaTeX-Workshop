@@ -1,132 +1,283 @@
 {
-  "includes": {
-    "tikz": []
-  },
-  "macros": {
-    "chronology": {},
-    "chronology[]": {
-      "snippet": "chronology[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "endchronology": {},
-    "startchronology": {},
-    "startchronology[]": {
-      "snippet": "startchronology[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "stopchronology": {},
-    "chronoevent{}{}": {
-      "snippet": "chronoevent{${1:day/${3:month}/year}}{${2:label text}}"
-    },
-    "chronoevent[]{}{}": {
-      "snippet": "chronoevent[${3:options}]{${1:day/${4:month}/year}}{${2:label text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "chronoperiode{}{}{}": {
-      "snippet": "chronoperiode{${1:start-year}}{${2:end-year}}{${3:label text}}"
-    },
-    "chronoperiode[]{}{}{}": {
-      "snippet": "chronoperiode[${4:options}]{${1:start-year}}{${2:end-year}}{${3:label text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "chronoperiodecoloralternation{}": {
-      "snippet": "chronoperiodecoloralternation{${1:color}}"
-    },
-    "restartchronoperiodecolor": {},
-    "restartchronoperiodecolor[]": {
-      "snippet": "restartchronoperiodecolor[${1:color}]"
-    },
-    "chronograduation{}": {
-      "snippet": "chronograduation{${1:integer}}"
-    },
-    "chronograduation[]{}": {
-      "snippet": "chronograduation[${2:periode|event}]{${1:integer}}"
-    },
-    "chronograduation[][]{}": {
-      "snippet": "chronograduation[${2:periode|event}][${3:options}]{${1:integer}}",
-      "keyvalindex": 3,
-      "keyvalpos": 1
-    },
-    "definechronoevent{}": {
-      "snippet": "definechronoevent{${1:name}}"
-    },
-    "definechronoevent{}[]": {
-      "snippet": "definechronoevent{${1:name}}[${2:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "definechronoperiode{}": {
-      "snippet": "definechronoperiode{${1:name}}"
-    },
-    "definechronoperiode{}[]": {
-      "snippet": "definechronoperiode{${1:name}}[${2:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 1
-    },
-    "setupchronology{}": {
-      "snippet": "setupchronology{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "setupchronoevent{}": {
-      "snippet": "setupchronoevent{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "setupchronoevent[]{}": {
-      "snippet": "setupchronoevent[${2:name}]{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "setupchronoperiode{}": {
-      "snippet": "setupchronoperiode{${1:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "setupchronoperiode[]{}": {
-      "snippet": "setupchronoperiode[${2:name}]{${1:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 1
-    },
-    "setupchronograduation{}": {
-      "snippet": "setupchronograduation{${1:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "setupchronograduation[]{}": {
-      "snippet": "setupchronograduation[${2:periode|event}]{${1:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 1
-    },
-    "chronoperiodcolor": {},
-    "dochronoevent": {},
-    "dochronograduation": {},
-    "dochronoperiode": {},
-    "dorestartchronoperiodecolor": {},
-    "dosetupchronoeventandperiode": {},
-    "dosetupchronograduation": {},
-    "dostartchronology": {},
-    "dostartchronologyfinal": {},
-    "ifnexttoken": {},
-    "savefirsttwoarg": {},
-    "todoafterarg": {}
-  },
-  "envs": {
-    "chronology": {},
-    "chronology[]": {
-      "name": "chronology",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "startchronology",
+      "unusual": true
+    },
+    {
+      "name": "startchronology",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{chronology},\\chronology,\\startchronology,\\setupchronology,\\setupchronology"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "stopchronology",
+      "unusual": true
+    },
+    {
+      "name": "chronoevent",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:year}}{${2:label text}}"
+      }
+    },
+    {
+      "name": "chronoevent",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:month/year}}{${2:label text}}"
+      }
+    },
+    {
+      "name": "chronoevent",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:day/month/year}}{${2:label text}}"
+      }
+    },
+    {
+      "name": "chronoevent",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:year}}{${2:label text}}",
+        "keys": [
+          "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "chronoevent",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:month/year}}{${2:label text}}",
+        "keys": [
+          "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "chronoevent",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:day/month/year}}{${2:label text}}",
+        "keys": [
+          "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "chronoperiode",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:start-year}}{${2:end-year}}{${3:label text%text}}"
+      }
+    },
+    {
+      "name": "chronoperiode",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:start-year}}{${2:end-year}}{${3:label text%text}}",
+        "keys": [
+          "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "chronoperiodecoloralternation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color1,color2,...}}"
+      }
+    },
+    {
+      "name": "restartchronoperiodecolor"
+    },
+    {
+      "name": "restartchronoperiodecolor",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:color}]"
+      }
+    },
+    {
+      "name": "chronograduation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "chronograduation",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:periode|event}]{${1:integer}}"
+      }
+    },
+    {
+      "name": "chronograduation",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:periode|event}][${3:options%keyvals}]{${1:integer}}",
+        "keys": [
+          "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation",
+          "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "definechronoevent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "definechronoevent",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name}}[${2:options%keyvals}]",
+        "keys": [
+          "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "definechronoperiode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "definechronoperiode",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name}}[${2:options%keyvals}]",
+        "keys": [
+          "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setupchronology",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{chronology},\\chronology,\\startchronology,\\setupchronology,\\setupchronology"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setupchronoevent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setupchronoevent",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name}]{${1:options%keyvals}}",
+        "keys": [
+          "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setupchronoperiode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setupchronoperiode",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name}]{${1:options%keyvals}}",
+        "keys": [
+          "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setupchronograduation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation",
+          "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setupchronograduation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:periode|event}]{${1:options%keyvals}}",
+        "keys": [
+          "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation",
+          "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "chronoperiodcolor"
+    }
+  ],
+  "envs": [
+    {
+      "name": "chronology"
+    },
+    {
+      "name": "chronology",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{chronology},\\chronology,\\startchronology,\\setupchronology,\\setupchronology"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{chronology},\\chronology,\\startchronology,\\setupchronology,\\setupchronology": [
       "startyear=${1:number}",
       "stopyear=${1:number}",
       "color=",
@@ -144,7 +295,7 @@
       "box",
       "align=${1|right,center,left|}"
     ],
-    [
+    "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation": [
       "barre",
       "date",
       "conversionmonth",
@@ -161,36 +312,7 @@
       "ifcolorbox",
       "textwidth="
     ],
-    [
-      "startdate",
-      "stopdate",
-      "dates",
-      "datesstyle=${1:command}",
-      "textstyle=${1:command}",
-      "color=",
-      "dateselevation=",
-      "textdepth=",
-      "colorbox=",
-      "ifcolorbox",
-      "topheight=",
-      "bottomdepth="
-    ],
-    [
-      "barre",
-      "date",
-      "conversionmonth",
-      "mark",
-      "year",
-      "icon=${1:symbol}",
-      "markdepth=",
-      "iconheight=",
-      "textstyle=${1:command}",
-      "datesseparation=${1:symbol}",
-      "datestyle=${1:command}",
-      "datesstyle=${1:command}",
-      "colorbox=",
-      "ifcolorbox",
-      "textwidth=",
+    "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation": [
       "startdate",
       "stopdate",
       "dates",
@@ -204,5 +326,6 @@
       "topheight=",
       "bottomdepth="
     ]
-  ]
+  },
+  "args": []
 }

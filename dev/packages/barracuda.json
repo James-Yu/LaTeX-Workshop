@@ -1,22 +1,36 @@
 {
-  "includes": {
-    "luatex": []
-  },
-  "macros": {
-    "barracuda{}{}": {
-      "snippet": "barracuda{${1:encoder}}{${2:data}}"
+  "deps": [
+    {
+      "name": "luatex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "barracuda",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:encoder}}{${2:data}}"
+      }
     },
-    "barracuda[]{}{}": {
-      "snippet": "barracuda[${3:options}]{${1:encoder}}{${2:data}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "barracuda",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:encoder}}{${2:data}}",
+        "keys": [
+          "\\barracuda#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "barracudabox": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "barracudabox",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\barracuda#c": [
       "ax=${1:number}",
       "ay=${1:number}",
       "debug_bbox=${1|\"none\",\"enum\",\"symb\",\"qz\",\"qzsymb\"|}",
@@ -47,5 +61,6 @@
       "bearer_bars_thickness=${1:number}",
       "bearer_bars_layout=${1|'frame','hbar'|}"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,24 +1,43 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psKnot(){}": {
-      "snippet": "psKnot(${2:x},${3:y}){${1:knot type}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psKnot[](){}": {
-      "snippet": "psKnot[${2:options}](${3:x},${4:y}){${1:knot type}}"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psKnot",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:knot type}}"
+      }
     },
-    "psBorromean(){}{}": {
-      "snippet": "psBorromean(${3:x},${4:y}){${1:circle radius}}{${2:inner radius}}"
+    {
+      "name": "psKnot",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:knot type}}"
+      }
     },
-    "psBorromean[](){}{}": {
-      "snippet": "psBorromean[${3:options}](${4:x},${5:y}){${1:circle radius}}{${2:inner radius}}"
+    {
+      "name": "psBorromean",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "(${3:x},${4:y}){${1:circle radius}}{${2:inner radius}}"
+      }
     },
-    "PSTknotLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "psBorromean",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y}){${1:circle radius}}{${2:inner radius}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

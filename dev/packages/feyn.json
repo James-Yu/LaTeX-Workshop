@@ -1,70 +1,188 @@
 {
-  "includes": {},
-  "macros": {
-    "feyn{}": {
-      "snippet": "feyn{${1:chars}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "feyn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:chars}}"
+      }
     },
-    "Feyn{}": {
-      "snippet": "Feyn{${1:chars}}"
+    {
+      "name": "Feyn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:chars}}"
+      }
     },
-    "FEYN{}": {
-      "snippet": "FEYN{${1:chars}}"
+    {
+      "name": "FEYN",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:chars}}"
+      }
     },
-    "momentum{}{}": {
-      "snippet": "momentum{${1:chars}}{${2:text}}"
+    {
+      "name": "momentum",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:chars}}{${2:text}}"
+      }
     },
-    "momentum[]{}{}": {
-      "snippet": "momentum[${3:pos}]{${1:chars}}{${2:text}}"
+    {
+      "name": "momentum",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:pos%keyvals}]{${1:chars}}{${2:text}}",
+        "keys": [
+          "\\momentum"
+        ],
+        "keyPos": 0
+      }
     },
-    "belowl{}": {
-      "snippet": "belowl{${1:chars}}"
+    {
+      "name": "belowl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:chars}}"
+      }
     },
-    "belowr{}": {
-      "snippet": "belowr{${1:chars}}"
+    {
+      "name": "belowr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:chars}}"
+      }
     },
-    "Diagram{}": {
-      "snippet": "Diagram{${1:array}}"
+    {
+      "name": "Diagram",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:array}}"
+      }
     },
-    "Diagram[]{}": {
-      "snippet": "Diagram[${2:alignment}]{${1:array}}"
+    {
+      "name": "Diagram",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:alignment%keyvals}]{${1:array}}",
+        "keys": [
+          "\\Diagram,\\DIAGRAM"
+        ],
+        "keyPos": 0
+      }
     },
-    "DIAGRAM{}": {
-      "snippet": "DIAGRAM{${1:array}}"
+    {
+      "name": "DIAGRAM",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:array}}"
+      }
     },
-    "DIAGRAM[]{}": {
-      "snippet": "DIAGRAM[${2:alignment}]{${1:array}}"
+    {
+      "name": "DIAGRAM",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:alignment%keyvals}]{${1:array}}",
+        "keys": [
+          "\\Diagram,\\DIAGRAM"
+        ],
+        "keyPos": 0
+      }
     },
-    "maxis{}": {
-      "snippet": "maxis{${1:arg}}"
+    {
+      "name": "maxis",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "vertexlabel": {},
-    "feynstrut{}{}": {
-      "snippet": "feynstrut{${1:height}}{${2:depth}}"
+    {
+      "name": "vertexlabel"
     },
-    "annotate{}{}{}": {
-      "snippet": "annotate{${1:x}}{${2:y}}{${3:text}}"
+    {
+      "name": "feynstrut",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:height}}{${2:depth}}"
+      }
     },
-    "tannotate{}{}{}": {
-      "snippet": "tannotate{${1:x}}{${2:y}}{${3:text}}"
+    {
+      "name": "annotate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:text}}"
+      }
     },
-    "FeynSpaceChar": {},
-    "FeynxSpaceChar": {},
-    "wfermion": {},
-    "hfermion": {},
-    "shfermion": {},
-    "whfermion": {},
-    "gvcropped": {},
-    "bigbosonloop": {},
-    "smallbosonloop": {},
-    "bigbosonloopA": {},
-    "smallbosonloopA": {},
-    "bigbosonloopV": {},
-    "smallbosonloopV": {}
-  },
-  "envs": {},
-  "options": [
-    "globalbang",
-    "noglobalbang"
+    {
+      "name": "tannotate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:text}}"
+      }
+    },
+    {
+      "name": "FeynSpaceChar",
+      "unusual": true
+    },
+    {
+      "name": "FeynxSpaceChar",
+      "unusual": true
+    },
+    {
+      "name": "wfermion"
+    },
+    {
+      "name": "hfermion"
+    },
+    {
+      "name": "shfermion"
+    },
+    {
+      "name": "whfermion"
+    },
+    {
+      "name": "gvcropped"
+    },
+    {
+      "name": "bigbosonloop"
+    },
+    {
+      "name": "smallbosonloop"
+    },
+    {
+      "name": "bigbosonloopA"
+    },
+    {
+      "name": "smallbosonloopA"
+    },
+    {
+      "name": "bigbosonloopV"
+    },
+    {
+      "name": "smallbosonloopV"
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/feyn#c": [
+      "globalbang",
+      "noglobalbang"
+    ],
+    "\\momentum": [
+      "top",
+      "urt",
+      "lrt",
+      "bot",
+      "llft",
+      "ulft"
+    ],
+    "\\Diagram,\\DIAGRAM": [
+      "bottom",
+      "centre"
+    ]
+  },
+  "args": [
+    "\\usepackage/feyn#c"
+  ]
 }

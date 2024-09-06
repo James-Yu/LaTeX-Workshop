@@ -1,55 +1,102 @@
 {
-  "includes": {
-    "verbatim": [],
-    "graphicx": []
-  },
-  "macros": {
-    "chemobabel{}{}": {
-      "snippet": "chemobabel{${1:imagefile}}{${2:obabel options}}"
+  "deps": [
+    {
+      "name": "verbatim"
     },
-    "chemobabel[]{}{}": {
-      "snippet": "chemobabel[${3:options}]{${1:imagefile}}{${2:obabel options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "chemobabel*{}": {
-      "snippet": "chemobabel*{${1:imagefile}}"
-    },
-    "chemobabel*[]{}": {
-      "snippet": "chemobabel*[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "smilesobabel{}{}": {
-      "snippet": "smilesobabel{${1:SMILES notation}}{${2:obabel options}}"
-    },
-    "smilesobabel[]{}{}": {
-      "snippet": "smilesobabel[${3:options}]{${1:SMILES notation}}{${2:obabel options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "smilesobabel*{}": {
-      "snippet": "smilesobabel*{${1:SMILES notation}}"
-    },
-    "smilesobabel*[]{}": {
-      "snippet": "smilesobabel*[${2:options}]{${1:SMILES notation}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "chemobabelimgdir": {}
-  },
-  "envs": {},
-  "options": [
-    "extract",
-    "pdf",
-    "eps",
-    "inkscape-old",
-    "inkscape",
-    "librsvg",
-    "nocrop"
+    {
+      "name": "graphicx"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "chemobabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:imagefile}}{${2:obabel options}}"
+      }
+    },
+    {
+      "name": "chemobabel",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:imagefile}}{${2:obabel options}}",
+        "keys": [
+          "\\chemobabel,\\chemobabel*,\\smilesobabel,\\smilesobabel*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "chemobabel*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "chemobabel*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\chemobabel,\\chemobabel*,\\smilesobabel,\\smilesobabel*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "smilesobabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:SMILES notation%definition}}{${2:obabel options}}"
+      }
+    },
+    {
+      "name": "smilesobabel",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:SMILES notation%definition}}{${2:obabel options}}",
+        "keys": [
+          "\\chemobabel,\\chemobabel*,\\smilesobabel,\\smilesobabel*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "smilesobabel*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:SMILES notation%definition}}"
+      }
+    },
+    {
+      "name": "smilesobabel*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:SMILES notation%definition}}",
+        "keys": [
+          "\\chemobabel,\\chemobabel*,\\smilesobabel,\\smilesobabel*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "chemobabelimgdir",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/chemobabel#c": [
+      "extract",
+      "pdf",
+      "eps",
+      "inkscape-old",
+      "inkscape",
+      "librsvg",
+      "nocrop"
+    ],
+    "\\chemobabel,\\chemobabel*,\\smilesobabel,\\smilesobabel*": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -80,5 +127,8 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
+  },
+  "args": [
+    "\\usepackage/chemobabel#c"
   ]
 }

@@ -1,28 +1,61 @@
 {
-  "includes": {
-    "mafr": []
-  },
-  "macros": {
-    "entete{}{}{}": {
-      "snippet": "entete{${1:left}}{${2:center}}{${3:right}}"
-    },
-    "squnumber": {},
-    "sque": {},
-    "squ": {},
-    "quenumber": {},
-    "que": {},
-    "qsq": {},
-    "exenumber": {},
-    "exe": {},
-    "droite": {}
-  },
-  "envs": {
-    "juxtapose": {},
-    "juxtapose[]": {
-      "name": "juxtapose",
-      "snippet": "[${1:width}]"
+  "deps": [
+    {
+      "name": "mafr"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "entete",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "squnumber",
+      "unusual": true
+    },
+    {
+      "name": "sque",
+      "unusual": true
+    },
+    {
+      "name": "squ"
+    },
+    {
+      "name": "quenumber",
+      "unusual": true
+    },
+    {
+      "name": "que"
+    },
+    {
+      "name": "qsq"
+    },
+    {
+      "name": "exenumber",
+      "unusual": true
+    },
+    {
+      "name": "exe"
+    },
+    {
+      "name": "droite"
+    }
+  ],
+  "envs": [
+    {
+      "name": "juxtapose"
+    },
+    {
+      "name": "juxtapose",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

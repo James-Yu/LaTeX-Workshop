@@ -1,68 +1,147 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "lineno": [],
-    "xcolor": [],
-    "nowidow": [],
-    "verbatim": [],
-    "tcolorbox": [
-      "nonbreakable",
-      "nonbreakable=true"
-    ],
-    "tcolorboxlibrarymany": [
-      "nonbreakable",
-      "nonbreakable=true"
-    ]
-  },
-  "macros": {
-    "mindflowset{}": {
-      "snippet": "mindflowset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "mindflowTextFont": {},
-    "mindflowNumFont": {},
-    "mindflowMarkerFont": {},
-    "mindflowLeft": {},
-    "mindflowRight": {},
-    "mindflowLineHeight": {},
-    "AutoIncolumn": {},
-    "LocallyStopLineNumbers": {},
-    "ResumeIncolumn": {},
-    "ResumeLineNumbers": {},
-    "endmindflow": {},
-    "endmindflowOFF": {},
-    "endmindflowON": {},
-    "mfSepLine": {},
-    "mindflow": {},
-    "mindflowOFF": {},
-    "mindflowON": {},
-    "themfLN": {},
-    "therecordLN": {},
-    "ifLNturnsON": {},
-    "LNturnsONtrue": {},
-    "LNturnsONfalse": {},
-    "ifICturnsON": {},
-    "ICturnsONtrue": {},
-    "ICturnsONfalse": {}
-  },
-  "envs": {
-    "mindflow": {}
-  },
-  "options": [
-    "linenumber",
-    "mathlines",
-    "leftlinenumber",
-    "rightlinenumber",
-    "leftmarker",
-    "rightmarker",
-    "incolumn",
-    "off",
-    "on",
-    "nonbreakable"
+    {
+      "name": "lineno"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "nowidow"
+    },
+    {
+      "name": "verbatim"
+    },
+    {
+      "name": "tcolorbox",
+      "if": "nonbreakable"
+    },
+    {
+      "name": "tcolorboxlibrarymany",
+      "if": "nonbreakable"
+    },
+    {
+      "name": "tcolorbox",
+      "if": "nonbreakable=true"
+    },
+    {
+      "name": "tcolorboxlibrarymany",
+      "if": "nonbreakable=true"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "mindflowset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\mindflowset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mindflowTextFont",
+      "unusual": true
+    },
+    {
+      "name": "mindflowNumFont",
+      "unusual": true
+    },
+    {
+      "name": "mindflowMarkerFont",
+      "unusual": true
+    },
+    {
+      "name": "mindflowLeft",
+      "unusual": true
+    },
+    {
+      "name": "mindflowRight",
+      "unusual": true
+    },
+    {
+      "name": "mindflowLineHeight",
+      "unusual": true
+    },
+    {
+      "name": "AutoIncolumn",
+      "unusual": true
+    },
+    {
+      "name": "LocallyStopLineNumbers",
+      "unusual": true
+    },
+    {
+      "name": "ResumeIncolumn",
+      "unusual": true
+    },
+    {
+      "name": "ResumeLineNumbers",
+      "unusual": true
+    },
+    {
+      "name": "mfSepLine",
+      "unusual": true
+    },
+    {
+      "name": "themfLN",
+      "unusual": true
+    },
+    {
+      "name": "therecordLN",
+      "unusual": true
+    },
+    {
+      "name": "ifLNturnsON",
+      "unusual": true
+    },
+    {
+      "name": "LNturnsONtrue",
+      "unusual": true
+    },
+    {
+      "name": "LNturnsONfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifICturnsON",
+      "unusual": true
+    },
+    {
+      "name": "ICturnsONtrue",
+      "unusual": true
+    },
+    {
+      "name": "ICturnsONfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "mindflow"
+    }
+  ],
+  "keys": {
+    "\\usepackage/mindflow#c": [
+      "linenumber",
+      "mathlines",
+      "leftlinenumber",
+      "rightlinenumber",
+      "leftmarker",
+      "rightmarker",
+      "incolumn",
+      "off",
+      "on",
+      "nonbreakable"
+    ],
+    "\\mindflowset": [
+      "backgroundcolor=",
+      "backgroundcolor=",
       "left=${1:text}",
       "textcolor=",
       "numcolor=",
@@ -82,5 +161,8 @@
       "off",
       "on"
     ]
+  },
+  "args": [
+    "\\usepackage/mindflow#c"
   ]
 }

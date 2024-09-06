@@ -1,35 +1,57 @@
 {
-  "includes": {},
-  "macros": {
-    "preCutedStrip{}": {
-      "snippet": "preCutedStrip{${1:tokens}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "preCutedStrip",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
     },
-    "postCutedStrip{}": {
-      "snippet": "postCutedStrip{${1:tokens}}"
+    {
+      "name": "postCutedStrip",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
     },
-    "stripsep": {},
-    "oldcolsbreak{}": {
-      "snippet": "oldcolsbreak{${1:adds}}"
+    {
+      "name": "stripsep",
+      "unusual": true
+    },
+    {
+      "name": "oldcolsbreak",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:adds}}"
+      }
     }
-  },
-  "envs": {
-    "strip": {}
-  },
-  "options": [
-    "spread",
-    "nospread",
-    "lspread",
-    "nolspread",
-    "rspread",
-    "norspread",
-    "shrink",
-    "noshrink",
-    "lshrink",
-    "nolshrink",
-    "rshrink",
-    "norshrink",
-    "debug",
-    "nodebug"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "strip"
+    }
+  ],
+  "keys": {
+    "\\usepackage/cuted#c": [
+      "spread",
+      "nospread",
+      "lspread",
+      "nolspread",
+      "rspread",
+      "norspread",
+      "shrink",
+      "noshrink",
+      "lshrink",
+      "nolshrink",
+      "rshrink",
+      "norshrink",
+      "debug",
+      "nodebug"
+    ]
+  },
+  "args": [
+    "\\usepackage/cuted#c"
+  ]
 }

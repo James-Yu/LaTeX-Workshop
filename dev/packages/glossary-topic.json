@@ -1,63 +1,172 @@
 {
-  "includes": {
-    "multicol": []
-  },
-  "macros": {
-    "glstopicColsEnv": {},
-    "glstopicCols": {},
-    "glstopicParIndent": {},
-    "glstopicSubIndent": {},
-    "glstopicSubItemParIndent": {},
-    "glstopicInit": {},
-    "glstopicGroupHeading{}": {
-      "snippet": "glstopicGroupHeading{${1:group-label}}"
+  "deps": [
+    {
+      "name": "multicol"
+    }
+  ],
+  "macros": [
+    {
+      "name": "glstopicColsEnv",
+      "unusual": true
     },
-    "glstopicSubGroupHeading{}{}{}{}": {
-      "snippet": "glstopicSubGroupHeading{${1:prev-group-level}}{${2:group-level}}{${3:parent-entry}}{${4:group-label}}"
+    {
+      "name": "glstopicCols",
+      "unusual": true
     },
-    "glstopicItem{}{}": {
-      "snippet": "glstopicItem{${1:label}}{${2:location-list}}"
+    {
+      "name": "glstopicParIndent",
+      "unusual": true
     },
-    "glstopicPreSkip": {},
-    "glstopicMarker{}": {
-      "snippet": "glstopicMarker{${1:label}}"
+    {
+      "name": "glstopicSubIndent",
+      "unusual": true
     },
-    "glstopicTitle{}": {
-      "snippet": "glstopicTitle{${1:label}}"
+    {
+      "name": "glstopicSubItemParIndent",
+      "unusual": true
     },
-    "glstopicTitleFont{}": {
-      "snippet": "glstopicTitleFont{${1:text}}"
+    {
+      "name": "glstopicInit",
+      "unusual": true
     },
-    "glstopicMidSkip": {},
-    "glstopicDesc{}": {
-      "snippet": "glstopicDesc{${1:label}}"
+    {
+      "name": "glstopicGroupHeading",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:group-label}}"
+      }
     },
-    "glstopicPostSkip": {},
-    "glstopicLoc{}{}": {
-      "snippet": "glstopicLoc{${1:label}}{${2:location-list}}"
+    {
+      "name": "glstopicSubGroupHeading",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:prev-group-level}}{${2:group-level}}{${3:parent-entry}}{${4:group-label}}"
+      }
     },
-    "glstopicAssignSubIndent{}": {
-      "snippet": "glstopicAssignSubIndent{${1:level}}"
+    {
+      "name": "glstopicItem",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:location-list}}"
+      }
     },
-    "glstopicAssignWidest": {},
-    "glstopicSubItem{}{}{}": {
-      "snippet": "glstopicSubItem{${1:level}}{${2:label}}{${3:location}}"
+    {
+      "name": "glstopicPreSkip",
+      "unusual": true
     },
-    "glstopicSubNameFont{}": {
-      "snippet": "glstopicSubNameFont{${1:text}}"
+    {
+      "name": "glstopicMarker",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "glstopicSubItemSep": {},
-    "glstopicSubItemBox{}{}": {
-      "snippet": "glstopicSubItemBox{${1:level}}{${2:text}}"
+    {
+      "name": "glstopicTitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "glstopicSubPreLocSep": {},
-    "glstopicSubLoc{}{}": {
-      "snippet": "glstopicSubLoc{${1:label}}{${2:location}}"
+    {
+      "name": "glstopicTitleFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "glstopicsubitemhangindent": {},
-    "glstopicwidest": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "glstopicMidSkip",
+      "unusual": true
+    },
+    {
+      "name": "glstopicDesc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glstopicPostSkip",
+      "unusual": true
+    },
+    {
+      "name": "glstopicLoc",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:location-list}}"
+      }
+    },
+    {
+      "name": "glstopicAssignSubIndent",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:level}}"
+      }
+    },
+    {
+      "name": "glstopicAssignWidest",
+      "unusual": true
+    },
+    {
+      "name": "glstopicSubItem",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:level}}{${2:label}}{${3:location}}"
+      }
+    },
+    {
+      "name": "glstopicSubNameFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "glstopicSubItemSep",
+      "unusual": true
+    },
+    {
+      "name": "glstopicSubItemBox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:level}}{${2:text}}"
+      }
+    },
+    {
+      "name": "glstopicSubPreLocSep",
+      "unusual": true
+    },
+    {
+      "name": "glstopicSubLoc",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:location}}"
+      }
+    },
+    {
+      "name": "glstopicsubitemhangindent",
+      "unusual": true
+    },
+    {
+      "name": "glstopicwidest",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

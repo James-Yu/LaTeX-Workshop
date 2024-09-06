@@ -1,444 +1,1073 @@
 {
-  "includes": {
-    "makeidx": [],
-    "etoolbox": [],
-    "calc": [],
-    "xcolor": [],
-    "caption": [],
-    "newfloat": [],
-    "fancyvrb": [],
-    "xstring": [],
-    "pict2e": []
-  },
-  "macros": {
-    "DescribeMacro{}": {
-      "snippet": "DescribeMacro{${1:macro}}"
+  "deps": [
+    {
+      "name": "makeidx"
     },
-    "DescribeMacro[]{}": {
-      "snippet": "DescribeMacro[${2:category}]{${1:macro}}"
+    {
+      "name": "etoolbox"
     },
-    "DescribeEnv{}": {
-      "snippet": "DescribeEnv{${1:envname}}"
+    {
+      "name": "calc"
     },
-    "DescribeEnv[]{}": {
-      "snippet": "DescribeEnv[${2:category}]{${1:envname}}"
+    {
+      "name": "xcolor"
     },
-    "marg{}": {
-      "snippet": "marg{${1:text}}"
+    {
+      "name": "caption"
     },
-    "oarg{}": {
-      "snippet": "oarg{${1:text}}"
+    {
+      "name": "newfloat"
     },
-    "parg{}": {
-      "snippet": "parg{${1:text}}"
+    {
+      "name": "fancyvrb"
     },
-    "meta{}": {
-      "snippet": "meta{${1:text}}"
+    {
+      "name": "xstring"
     },
-    "url{}": {
-      "snippet": "url{${1:URL}}"
-    },
-    "DescribeArgument{}": {
-      "snippet": "DescribeArgument{${1:argument}}"
-    },
-    "DescribeArgument[]{}": {
-      "snippet": "DescribeArgument[${2:category}]{${1:argument}}"
-    },
-    "DescribeBoolean{}": {
-      "snippet": "DescribeBoolean{${1:name}}"
-    },
-    "DescribeBoolean[]{}": {
-      "snippet": "DescribeBoolean[${2:category}]{${1:name}}"
-    },
-    "DescribeLength{}": {
-      "snippet": "DescribeLength{${1:length}}"
-    },
-    "DescribeLength[]{}": {
-      "snippet": "DescribeLength[${2:category}]{${1:length}}"
-    },
-    "DescribeCounter{}": {
-      "snippet": "DescribeCounter{${1:counter}}"
-    },
-    "DescribeCounter[]{}": {
-      "snippet": "DescribeCounter[${2:category}]{${1:counter}}"
-    },
-    "DescribeHook{}": {
-      "snippet": "DescribeHook{${1:hook}}"
-    },
-    "DescribeHook[]{}": {
-      "snippet": "DescribeHook[${2:category}]{${1:hook}}"
-    },
-    "DescribeSocket{}": {
-      "snippet": "DescribeSocket{${1:socket}}"
-    },
-    "DescribeSocket[]{}": {
-      "snippet": "DescribeSocket[${2:category}]{${1:socket}}"
-    },
-    "DescribePlug{}": {
-      "snippet": "DescribePlug{${1:plug}}"
-    },
-    "DescribePlug[]{}": {
-      "snippet": "DescribePlug[${2:category}]{${1:plug}}"
-    },
-    "DescribeKey{}": {
-      "snippet": "DescribeKey{${1:key}}"
-    },
-    "DescribeKey[]{}": {
-      "snippet": "DescribeKey[${2:category}]{${1:key}}"
-    },
-    "DescribePackage{}": {
-      "snippet": "DescribePackage{${1:package}}"
-    },
-    "DescribePackage[]{}": {
-      "snippet": "DescribePackage[${2:category}]{${1:package}}"
-    },
-    "DescribeClass{}": {
-      "snippet": "DescribeClass{${1:class}}"
-    },
-    "DescribeClass[]{}": {
-      "snippet": "DescribeClass[${2:category}]{${1:class}}"
-    },
-    "DescribeOption{}": {
-      "snippet": "DescribeOption{${1:option}}"
-    },
-    "DescribeOption[]{}": {
-      "snippet": "DescribeOption[${2:category}]{${1:option}}"
-    },
-    "DescribeFile{}": {
-      "snippet": "DescribeFile{${1:file}}"
-    },
-    "DescribeFile[]{}": {
-      "snippet": "DescribeFile[${2:category}]{${1:file}}"
-    },
-    "DescribeProgram{}": {
-      "snippet": "DescribeProgram{${1:program}}"
-    },
-    "DescribeProgram[]{}": {
-      "snippet": "DescribeProgram[${2:category}]{${1:program}}"
-    },
-    "DescribeCommand{}": {
-      "snippet": "DescribeCommand{${1:OS-cmd}}"
-    },
-    "DescribeCommand[]{}": {
-      "snippet": "DescribeCommand[${2:category}]{${1:OS-cmd}}"
-    },
-    "DescribeObject{}": {
-      "snippet": "DescribeObject{${1:object}}"
-    },
-    "DescribeObject[]{}": {
-      "snippet": "DescribeObject[${2:category}]{${1:object}}"
-    },
-    "DescribeOther{}": {
-      "snippet": "DescribeOther{${1:name}}"
-    },
-    "DescribeOther[]{}": {
-      "snippet": "DescribeOther[${2:category}]{${1:name}}"
-    },
-    "ItemDescribeMacro{}": {
-      "snippet": "ItemDescribeMacro{${1:macro}}"
-    },
-    "ItemDescribeMacro[]{}": {
-      "snippet": "ItemDescribeMacro[${2:category}]{${1:macro}}"
-    },
-    "ItemDescribeEnv{}": {
-      "snippet": "ItemDescribeEnv{${1:envname}}"
-    },
-    "ItemDescribeEnv[]{}": {
-      "snippet": "ItemDescribeEnv[${2:category}]{${1:envname}}"
-    },
-    "ItemDescribeArgument{}": {
-      "snippet": "ItemDescribeArgument{${1:argument}}"
-    },
-    "ItemDescribeArgument[]{}": {
-      "snippet": "ItemDescribeArgument[${2:category}]{${1:argument}}"
-    },
-    "ItemDescribeBoolean{}": {
-      "snippet": "ItemDescribeBoolean{${1:name}}"
-    },
-    "ItemDescribeBoolean[]{}": {
-      "snippet": "ItemDescribeBoolean[${2:category}]{${1:name}}"
-    },
-    "ItemDescribeLength{}": {
-      "snippet": "ItemDescribeLength{${1:length}}"
-    },
-    "ItemDescribeLength[]{}": {
-      "snippet": "ItemDescribeLength[${2:category}]{${1:length}}"
-    },
-    "ItemDescribeCounter{}": {
-      "snippet": "ItemDescribeCounter{${1:counter}}"
-    },
-    "ItemDescribeCounter[]{}": {
-      "snippet": "ItemDescribeCounter[${2:category}]{${1:counter}}"
-    },
-    "ItemDescribeHook{}": {
-      "snippet": "ItemDescribeHook{${1:hook}}"
-    },
-    "ItemDescribeHook[]{}": {
-      "snippet": "ItemDescribeHook[${2:category}]{${1:hook}}"
-    },
-    "ItemDescribeSocket{}": {
-      "snippet": "ItemDescribeSocket{${1:socket}}"
-    },
-    "ItemDescribeSocket[]{}": {
-      "snippet": "ItemDescribeSocket[${2:category}]{${1:socket}}"
-    },
-    "ItemDescribePlug{}": {
-      "snippet": "ItemDescribePlug{${1:plug}}"
-    },
-    "ItemDescribePlug[]{}": {
-      "snippet": "ItemDescribePlug[${2:category}]{${1:plug}}"
-    },
-    "ItemDescribeKey{}": {
-      "snippet": "ItemDescribeKey{${1:key}}"
-    },
-    "ItemDescribeKey[]{}": {
-      "snippet": "ItemDescribeKey[${2:category}]{${1:key}}"
-    },
-    "ItemDescribePackage{}": {
-      "snippet": "ItemDescribePackage{${1:package}}"
-    },
-    "ItemDescribePackage[]{}": {
-      "snippet": "ItemDescribePackage[${2:category}]{${1:package}}"
-    },
-    "ItemDescribeClass{}": {
-      "snippet": "ItemDescribeClass{${1:class}}"
-    },
-    "ItemDescribeClass[]{}": {
-      "snippet": "ItemDescribeClass[${2:category}]{${1:class}}"
-    },
-    "ItemDescribeOption{}": {
-      "snippet": "ItemDescribeOption{${1:option}}"
-    },
-    "ItemDescribeOption[]{}": {
-      "snippet": "ItemDescribeOption[${2:category}]{${1:option}}"
-    },
-    "ItemDescribeFile{}": {
-      "snippet": "ItemDescribeFile{${1:file}}"
-    },
-    "ItemDescribeFile[]{}": {
-      "snippet": "ItemDescribeFile[${2:category}]{${1:file}}"
-    },
-    "ItemDescribeProgram{}": {
-      "snippet": "ItemDescribeProgram{${1:program}}"
-    },
-    "ItemDescribeProgram[]{}": {
-      "snippet": "ItemDescribeProgram[${2:category}]{${1:program}}"
-    },
-    "ItemDescribeCommand{}": {
-      "snippet": "ItemDescribeCommand{${1:OS-cmd}}"
-    },
-    "ItemDescribeCommand[]{}": {
-      "snippet": "ItemDescribeCommand[${2:category}]{${1:OS-cmd}}"
-    },
-    "ItemDescribeObject{}": {
-      "snippet": "ItemDescribeObject{${1:object}}"
-    },
-    "ItemDescribeObject[]{}": {
-      "snippet": "ItemDescribeObject[${2:category}]{${1:object}}"
-    },
-    "ItemDescribeOther{}": {
-      "snippet": "ItemDescribeOther{${1:name}}"
-    },
-    "ItemDescribeOther[]{}": {
-      "snippet": "ItemDescribeOther[${2:category}]{${1:name}}"
-    },
-    "DescribeDefault{}": {
-      "snippet": "DescribeDefault{${1:value}}"
-    },
-    "DescribeDefaultcolor": {},
-    "shownesting{}{}": {
-      "snippet": "shownesting{${1:container name}}{${2:contents}}"
-    },
-    "shownesting[]{}{}": {
-      "snippet": "shownesting[${3:fraction}]{${1:container name}}{${2:contents}}"
-    },
-    "shownesting*{}{}": {
-      "snippet": "shownesting*{${1:container name}}{${2:contents}}"
-    },
-    "shownesting*[]{}{}": {
-      "snippet": "shownesting*[${3:fraction}]{${1:container name}}{${2:contents}}"
-    },
-    "margintag{}": {
-      "snippet": "margintag{${1:text}}"
-    },
-    "margintagcolor": {},
-    "watchout": {},
-    "watchout[]": {
-      "snippet": "watchout[${1:text}]"
-    },
-    "watchoutcolor": {},
-    "dtxexamplecodename": {},
-    "dtxexampleresultname": {},
-    "fquad": {},
-    "fqquad": {},
-    "fqqquad": {},
-    "userentry{}": {
-      "snippet": "userentry{${1:text}}"
-    },
-    "userentryname": {},
-    "pkg{}": {
-      "snippet": "pkg{${1:package}}"
-    },
-    "env{}": {
-      "snippet": "env{${1:envname}}"
-    },
-    "ctr{}": {
-      "snippet": "ctr{${1:counter}}"
-    },
-    "bool{}": {
-      "snippet": "bool{${1:bool}}"
-    },
-    "optn{}": {
-      "snippet": "optn{${1:option}}"
-    },
-    "cmd{}": {
-      "snippet": "cmd{${1:cmd}}"
-    },
-    "cs{}": {
-      "snippet": "cs{${1:csname}}"
-    },
-    "TOC": {},
-    "LOF": {},
-    "LOT": {},
-    "progcode{}": {
-      "snippet": "progcode{${1:code}}"
-    },
-    "prog{}": {
-      "snippet": "prog{${1:program}}"
-    },
-    "filenm{}": {
-      "snippet": "filenm{${1:file}}"
-    },
-    "UI{}": {
-      "snippet": "UI{${1:text}}"
-    },
-    "cmds{}": {
-      "snippet": "cmds{${1:text}}"
-    },
-    "ODT": {},
-    "SVG": {},
-    "PNG": {},
-    "GIF": {},
-    "JPG": {},
-    "EPS": {},
-    "PDF": {},
-    "DVI": {},
-    "UTF": {},
-    "URL": {},
-    "element{}": {
-      "snippet": "element{${1:element}}"
-    },
-    "attribute{}": {
-      "snippet": "attribute{${1:attribute}}"
-    },
-    "attrib{}": {
-      "snippet": "attrib{${1:attribute}}"
-    },
-    "HTML": {},
-    "HTMLfive": {},
-    "CSS": {},
-    "CSSthree": {},
-    "EPUB": {},
-    "TikZ": {},
-    "MathML": {},
-    "MathJax": {},
-    "CTAN": {},
-    "TDS": {},
-    "brand{}": {
-      "snippet": "brand{${1:brand}}"
-    },
-    "acro{}": {
-      "snippet": "acro{${1:acronym}}"
-    },
-    "supregistered": {},
-    "dviTeX": {},
-    "dviLaTeX": {},
-    "pdfTeX": {},
-    "pdfLaTeX": {},
-    "LuaTeX": {},
-    "LuaLaTeX": {},
-    "XeTeX": {},
-    "XeLaTeX": {},
-    "AmS": {},
-    "LyX": {},
-    "BibTeX": {},
-    "MakeIndex": {},
-    "ConTeXt": {},
-    "MiKTeX": {},
-    "thinskip": {},
-    "endash": {},
-    "emdash": {},
-    "thinbrspace": {},
-    "thinthinbrspace": {},
-    "Dash": {},
-    "dash": {},
-    "Slash": {},
-    "hyperpage{}": {
-      "snippet": "hyperpage{${1:arg}}"
-    },
-    "warningsign": {},
-    "actualchar": {},
-    "quotechar": {},
-    "levelchar": {},
-    "encapchar": {},
-    "verbatimchar": {},
-    "PrintEnvName{}": {
-      "snippet": "PrintEnvName{${1:envname}}"
-    },
-    "usage{}": {
-      "snippet": "usage{${1:text}}"
-    },
-    "removebs{}": {
-      "snippet": "removebs{${1:arg}}"
-    },
-    "MacroFont": {},
-    "IndexMin": {},
-    "DTXDbreak": {}
-  },
-  "envs": {
-    "dtxexample{}": {
-      "name": "dtxexample",
-      "snippet": "{${1:caption/label}}"
-    },
-    "dtxexample[]{}": {
-      "name": "dtxexample",
-      "snippet": "[${2:notes/crossrefs}]{${1:caption/label}}"
-    },
-    "sourceverb": {},
-    "sourceverb[]": {
-      "name": "sourceverb",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "fsourceverb": {},
-    "fsourceverb[]": {
-      "name": "fsourceverb",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "sourcedisplay": {},
-    "UIdisplay": {},
-    "docsidebar": {},
-    "docsidebar[]": {
-      "name": "docsidebar",
-      "snippet": "[${1:title}]"
-    },
-    "dtxdexample": {},
-    "dtxexamplefloat": {},
-    "noindmacro{}": {
-      "name": "noindmacro",
-      "snippet": "{${1:macro}}"
-    },
-    "noindenvironment{}": {
-      "name": "noindenvironment",
-      "snippet": "{${1:envname}}"
+    {
+      "name": "pict2e"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "DescribeMacro",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "DescribeMacro",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "DescribeEnv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "DescribeEnv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:envname}}"
+      }
+    },
+    {
+      "name": "marg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "oarg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "parg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "meta",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "url",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "DescribeArgument",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:argument}}"
+      }
+    },
+    {
+      "name": "DescribeArgument",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:argument}}"
+      }
+    },
+    {
+      "name": "DescribeBoolean",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "DescribeBoolean",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:name}}"
+      }
+    },
+    {
+      "name": "DescribeLength",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "DescribeLength",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:length}}"
+      }
+    },
+    {
+      "name": "DescribeCounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "DescribeCounter",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:counter}}"
+      }
+    },
+    {
+      "name": "DescribeHook",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hook}}"
+      }
+    },
+    {
+      "name": "DescribeHook",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:hook}}"
+      }
+    },
+    {
+      "name": "DescribeSocket",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:socket}}"
+      }
+    },
+    {
+      "name": "DescribeSocket",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:socket}}"
+      }
+    },
+    {
+      "name": "DescribePlug",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:plug}}"
+      }
+    },
+    {
+      "name": "DescribePlug",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:plug}}"
+      }
+    },
+    {
+      "name": "DescribeKey",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "DescribeKey",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "DescribePackage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package}}"
+      }
+    },
+    {
+      "name": "DescribePackage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:package}}"
+      }
+    },
+    {
+      "name": "DescribeClass",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:class}}"
+      }
+    },
+    {
+      "name": "DescribeClass",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:class}}"
+      }
+    },
+    {
+      "name": "DescribeOption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "DescribeOption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:option}}"
+      }
+    },
+    {
+      "name": "DescribeFile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "DescribeFile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:file}}"
+      }
+    },
+    {
+      "name": "DescribeProgram",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:program}}"
+      }
+    },
+    {
+      "name": "DescribeProgram",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:program}}"
+      }
+    },
+    {
+      "name": "DescribeCommand",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:OS-cmd}}"
+      }
+    },
+    {
+      "name": "DescribeCommand",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:OS-cmd}}"
+      }
+    },
+    {
+      "name": "DescribeObject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:object}}"
+      }
+    },
+    {
+      "name": "DescribeObject",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:object}}"
+      }
+    },
+    {
+      "name": "DescribeOther",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "DescribeOther",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:name}}"
+      }
+    },
+    {
+      "name": "ItemDescribeMacro",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "ItemDescribeMacro",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "ItemDescribeEnv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "ItemDescribeEnv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:envname}}"
+      }
+    },
+    {
+      "name": "ItemDescribeArgument",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:argument}}"
+      }
+    },
+    {
+      "name": "ItemDescribeArgument",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:argument}}"
+      }
+    },
+    {
+      "name": "ItemDescribeBoolean",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "ItemDescribeBoolean",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:name}}"
+      }
+    },
+    {
+      "name": "ItemDescribeLength",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "ItemDescribeLength",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:length}}"
+      }
+    },
+    {
+      "name": "ItemDescribeCounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "ItemDescribeCounter",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:counter}}"
+      }
+    },
+    {
+      "name": "ItemDescribeHook",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hook}}"
+      }
+    },
+    {
+      "name": "ItemDescribeHook",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:hook}}"
+      }
+    },
+    {
+      "name": "ItemDescribeSocket",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:socket}}"
+      }
+    },
+    {
+      "name": "ItemDescribeSocket",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:socket}}"
+      }
+    },
+    {
+      "name": "ItemDescribePlug",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:plug}}"
+      }
+    },
+    {
+      "name": "ItemDescribePlug",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:plug}}"
+      }
+    },
+    {
+      "name": "ItemDescribeKey",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "ItemDescribeKey",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "ItemDescribePackage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package}}"
+      }
+    },
+    {
+      "name": "ItemDescribePackage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:package}}"
+      }
+    },
+    {
+      "name": "ItemDescribeClass",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:class}}"
+      }
+    },
+    {
+      "name": "ItemDescribeClass",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:class}}"
+      }
+    },
+    {
+      "name": "ItemDescribeOption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "ItemDescribeOption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:option}}"
+      }
+    },
+    {
+      "name": "ItemDescribeFile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "ItemDescribeFile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:file}}"
+      }
+    },
+    {
+      "name": "ItemDescribeProgram",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:program}}"
+      }
+    },
+    {
+      "name": "ItemDescribeProgram",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:program}}"
+      }
+    },
+    {
+      "name": "ItemDescribeCommand",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:OS-cmd}}"
+      }
+    },
+    {
+      "name": "ItemDescribeCommand",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:OS-cmd}}"
+      }
+    },
+    {
+      "name": "ItemDescribeObject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:object}}"
+      }
+    },
+    {
+      "name": "ItemDescribeObject",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:object}}"
+      }
+    },
+    {
+      "name": "ItemDescribeOther",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "ItemDescribeOther",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:category}]{${1:name}}"
+      }
+    },
+    {
+      "name": "DescribeDefault",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "DescribeDefaultcolor",
+      "unusual": true
+    },
+    {
+      "name": "shownesting",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:container name}}{${2:contents%text}}"
+      }
+    },
+    {
+      "name": "shownesting",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:fraction}]{${1:container name}}{${2:contents%text}}"
+      }
+    },
+    {
+      "name": "shownesting*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:container name}}{${2:contents%text}}"
+      }
+    },
+    {
+      "name": "shownesting*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:fraction}]{${1:container name}}{${2:contents%text}}"
+      }
+    },
+    {
+      "name": "margintag",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "margintagcolor",
+      "unusual": true
+    },
+    {
+      "name": "watchout"
+    },
+    {
+      "name": "watchout",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:text}]"
+      }
+    },
+    {
+      "name": "watchoutcolor",
+      "unusual": true
+    },
+    {
+      "name": "dtxexamplecodename",
+      "unusual": true
+    },
+    {
+      "name": "dtxexampleresultname",
+      "unusual": true
+    },
+    {
+      "name": "fquad"
+    },
+    {
+      "name": "fqquad"
+    },
+    {
+      "name": "fqqquad"
+    },
+    {
+      "name": "userentry",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "userentryname",
+      "unusual": true
+    },
+    {
+      "name": "pkg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package}}"
+      }
+    },
+    {
+      "name": "env",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "ctr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "bool",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bool}}"
+      }
+    },
+    {
+      "name": "optn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "cmd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "cs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "TOC"
+    },
+    {
+      "name": "LOF"
+    },
+    {
+      "name": "LOT"
+    },
+    {
+      "name": "progcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "prog",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:program}}"
+      }
+    },
+    {
+      "name": "filenm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "UI",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "cmds",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "ODT"
+    },
+    {
+      "name": "SVG"
+    },
+    {
+      "name": "PNG"
+    },
+    {
+      "name": "GIF"
+    },
+    {
+      "name": "JPG"
+    },
+    {
+      "name": "EPS"
+    },
+    {
+      "name": "PDF"
+    },
+    {
+      "name": "DVI"
+    },
+    {
+      "name": "UTF"
+    },
+    {
+      "name": "URL"
+    },
+    {
+      "name": "element",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:element}}"
+      }
+    },
+    {
+      "name": "attribute",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:attribute}}"
+      }
+    },
+    {
+      "name": "attrib",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:attribute}}"
+      }
+    },
+    {
+      "name": "HTML"
+    },
+    {
+      "name": "HTMLfive"
+    },
+    {
+      "name": "CSS"
+    },
+    {
+      "name": "CSSthree"
+    },
+    {
+      "name": "EPUB"
+    },
+    {
+      "name": "TikZ"
+    },
+    {
+      "name": "MathML"
+    },
+    {
+      "name": "MathJax"
+    },
+    {
+      "name": "CTAN"
+    },
+    {
+      "name": "TDS"
+    },
+    {
+      "name": "brand",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:brand}}"
+      }
+    },
+    {
+      "name": "acro",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:acronym}}"
+      }
+    },
+    {
+      "name": "supregistered"
+    },
+    {
+      "name": "dviTeX"
+    },
+    {
+      "name": "dviLaTeX"
+    },
+    {
+      "name": "pdfTeX"
+    },
+    {
+      "name": "pdfLaTeX"
+    },
+    {
+      "name": "LuaTeX"
+    },
+    {
+      "name": "LuaLaTeX"
+    },
+    {
+      "name": "XeTeX"
+    },
+    {
+      "name": "XeLaTeX"
+    },
+    {
+      "name": "AmS"
+    },
+    {
+      "name": "LyX"
+    },
+    {
+      "name": "BibTeX"
+    },
+    {
+      "name": "MakeIndex"
+    },
+    {
+      "name": "ConTeXt"
+    },
+    {
+      "name": "MiKTeX"
+    },
+    {
+      "name": "thinskip"
+    },
+    {
+      "name": "endash"
+    },
+    {
+      "name": "emdash"
+    },
+    {
+      "name": "thinbrspace"
+    },
+    {
+      "name": "thinthinbrspace"
+    },
+    {
+      "name": "Dash"
+    },
+    {
+      "name": "dash"
+    },
+    {
+      "name": "Slash"
+    },
+    {
+      "name": "hyperpage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "warningsign",
+      "unusual": true
+    },
+    {
+      "name": "actualchar",
+      "unusual": true
+    },
+    {
+      "name": "quotechar",
+      "unusual": true
+    },
+    {
+      "name": "levelchar",
+      "unusual": true
+    },
+    {
+      "name": "encapchar",
+      "unusual": true
+    },
+    {
+      "name": "verbatimchar",
+      "unusual": true
+    },
+    {
+      "name": "PrintEnvName",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "usage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "removebs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "MacroFont",
+      "unusual": true
+    },
+    {
+      "name": "IndexMin",
+      "unusual": true
+    },
+    {
+      "name": "DTXDbreak",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "dtxexample",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:caption/label%text}}"
+      }
+    },
+    {
+      "name": "dtxexample",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:notes/crossrefs%text}]{${1:caption/label%text}}"
+      }
+    },
+    {
+      "name": "sourceverb"
+    },
+    {
+      "name": "sourceverb",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{sourceverb},\\begin{fsourceverb}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fsourceverb"
+    },
+    {
+      "name": "fsourceverb",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{sourceverb},\\begin{fsourceverb}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sourcedisplay"
+    },
+    {
+      "name": "UIdisplay"
+    },
+    {
+      "name": "docsidebar"
+    },
+    {
+      "name": "docsidebar",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "dtxdexample",
+      "unusual": true
+    },
+    {
+      "name": "noindmacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "noindenvironment",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{sourceverb},\\begin{fsourceverb}": [
       "commentchar=${1:single char}",
       "gobble=${1:integer}",
       "formatcom=${1:commands}",
@@ -481,5 +1110,6 @@
       "vspace=",
       "listparameters={${1:code}}"
     ]
-  ]
+  },
+  "args": []
 }

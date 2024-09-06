@@ -1,109 +1,294 @@
 {
-  "includes": {
-    "iftex": [],
-    "fontspec": []
-  },
-  "macros": {
-    "casio": {},
-    "textcasio{}": {
-      "snippet": "textcasio{${1:text}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "Shift": {},
-    "Alpha": {},
-    "UpArrow": {},
-    "LeftArrow": {},
-    "DownArrow": {},
-    "RightArrow": {},
-    "Setup": {},
-    "Menu": {},
-    "CJKMenu": {},
-    "CJKOn": {},
-    "Optn": {},
-    "LineFrac": {},
-    "Calc": {},
-    "casioY": {},
-    "dydx": {},
-    "Abs": {},
-    "casioSum": {},
-    "casioProd": {},
-    "casioIntegral": {},
-    "Simp": {},
-    "casioX": {},
-    "casioOdot": {},
-    "casioObar": {},
-    "casioDblParen": {},
-    "FracMult": {},
-    "Frac": {},
-    "CubeRoot": {},
-    "SquareRoot": {},
-    "CubeParen": {},
-    "Cube": {},
-    "nRoot": {},
-    "nExp": {},
-    "nTen": {},
-    "eExp": {},
-    "nLog": {},
-    "casioLog": {},
-    "casioLn": {},
-    "logParen": {},
-    "divR": {},
-    "Factorial": {},
-    "InverseSin": {},
-    "minusParen": {},
-    "DegRadGrad": {},
-    "Inverse": {},
-    "InverseParen": {},
-    "Sen": {},
-    "casioSin": {},
-    "InverseCos": {},
-    "InverseTan": {},
-    "casioCos": {},
-    "casioTan": {},
-    "Sto": {},
-    "BackArrow": {},
-    "iParen": {},
-    "angleParen": {},
-    "casioAbs": {},
-    "Eng": {},
-    "casioLParen": {},
-    "casioRParen": {},
-    "CommaParen": {},
-    "MixedFrac": {},
-    "switchMixedFrac": {},
-    "Mminus": {},
-    "Mplus": {},
-    "Del": {},
-    "Times": {},
-    "Plus": {},
-    "casioAC": {},
-    "Divide": {},
-    "Minus": {},
-    "casioComma": {},
-    "casioDot": {},
-    "casioPi": {},
-    "xTenx": {},
-    "Percent": {},
-    "Ans": {},
-    "Exe": {},
-    "Sim": {},
-    "Equal": {
-      "detail": "⩵",
-      "documentation": "TWO CONSECUTIVE EQUALS SIGNS"
+    {
+      "name": "fontspec"
+    }
+  ],
+  "macros": [
+    {
+      "name": "casio",
+      "unusual": true
     },
-    "Zero": {},
-    "One": {},
-    "Two": {},
-    "Three": {},
-    "Four": {},
-    "Five": {},
-    "Six": {},
-    "Seven": {},
-    "Eight": {},
-    "Nine": {},
-    "UnknownA": {},
-    "UnknownB": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "textcasio",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "Shift"
+    },
+    {
+      "name": "Alpha"
+    },
+    {
+      "name": "UpArrow"
+    },
+    {
+      "name": "LeftArrow"
+    },
+    {
+      "name": "DownArrow"
+    },
+    {
+      "name": "RightArrow"
+    },
+    {
+      "name": "Setup"
+    },
+    {
+      "name": "Menu"
+    },
+    {
+      "name": "CJKMenu"
+    },
+    {
+      "name": "CJKOn"
+    },
+    {
+      "name": "Optn"
+    },
+    {
+      "name": "LineFrac"
+    },
+    {
+      "name": "Calc"
+    },
+    {
+      "name": "casioY"
+    },
+    {
+      "name": "dydx"
+    },
+    {
+      "name": "Abs"
+    },
+    {
+      "name": "casioSum"
+    },
+    {
+      "name": "casioProd"
+    },
+    {
+      "name": "casioIntegral"
+    },
+    {
+      "name": "Simp"
+    },
+    {
+      "name": "casioX"
+    },
+    {
+      "name": "casioOdot"
+    },
+    {
+      "name": "casioObar"
+    },
+    {
+      "name": "casioDblParen"
+    },
+    {
+      "name": "FracMult"
+    },
+    {
+      "name": "Frac"
+    },
+    {
+      "name": "CubeRoot"
+    },
+    {
+      "name": "SquareRoot"
+    },
+    {
+      "name": "CubeParen"
+    },
+    {
+      "name": "Cube"
+    },
+    {
+      "name": "nRoot"
+    },
+    {
+      "name": "nExp"
+    },
+    {
+      "name": "nTen"
+    },
+    {
+      "name": "eExp"
+    },
+    {
+      "name": "nLog"
+    },
+    {
+      "name": "casioLog"
+    },
+    {
+      "name": "casioLn"
+    },
+    {
+      "name": "logParen"
+    },
+    {
+      "name": "divR"
+    },
+    {
+      "name": "Factorial"
+    },
+    {
+      "name": "InverseSin"
+    },
+    {
+      "name": "minusParen"
+    },
+    {
+      "name": "DegRadGrad"
+    },
+    {
+      "name": "Inverse"
+    },
+    {
+      "name": "InverseParen"
+    },
+    {
+      "name": "Sen"
+    },
+    {
+      "name": "casioSin"
+    },
+    {
+      "name": "InverseCos"
+    },
+    {
+      "name": "InverseTan"
+    },
+    {
+      "name": "casioCos"
+    },
+    {
+      "name": "casioTan"
+    },
+    {
+      "name": "Sto"
+    },
+    {
+      "name": "BackArrow"
+    },
+    {
+      "name": "iParen"
+    },
+    {
+      "name": "angleParen"
+    },
+    {
+      "name": "casioAbs"
+    },
+    {
+      "name": "Eng"
+    },
+    {
+      "name": "casioLParen"
+    },
+    {
+      "name": "casioRParen"
+    },
+    {
+      "name": "CommaParen"
+    },
+    {
+      "name": "MixedFrac"
+    },
+    {
+      "name": "switchMixedFrac"
+    },
+    {
+      "name": "Mminus"
+    },
+    {
+      "name": "Mplus"
+    },
+    {
+      "name": "Del"
+    },
+    {
+      "name": "Times"
+    },
+    {
+      "name": "Plus"
+    },
+    {
+      "name": "casioAC"
+    },
+    {
+      "name": "Divide"
+    },
+    {
+      "name": "Minus"
+    },
+    {
+      "name": "casioComma"
+    },
+    {
+      "name": "casioDot"
+    },
+    {
+      "name": "casioPi"
+    },
+    {
+      "name": "xTenx"
+    },
+    {
+      "name": "Percent"
+    },
+    {
+      "name": "Ans"
+    },
+    {
+      "name": "Exe"
+    },
+    {
+      "name": "Sim"
+    },
+    {
+      "name": "Equal"
+    },
+    {
+      "name": "Zero"
+    },
+    {
+      "name": "One"
+    },
+    {
+      "name": "Two"
+    },
+    {
+      "name": "Three"
+    },
+    {
+      "name": "Four"
+    },
+    {
+      "name": "Five"
+    },
+    {
+      "name": "Six"
+    },
+    {
+      "name": "Seven"
+    },
+    {
+      "name": "Eight"
+    },
+    {
+      "name": "Nine"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

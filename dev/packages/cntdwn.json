@@ -1,157 +1,353 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "cntdwnlTimers": {},
-    "cntdwnaTimers": {},
-    "cntdwnYear": {},
-    "cntdwnYears": {},
-    "cntdwnDay": {},
-    "cntdwnDays": {},
-    "cntdwnHour": {},
-    "cntdwnHours": {},
-    "cntdwnMinute": {},
-    "cntdwnMinutes": {},
-    "cntdwnSecond": {},
-    "cntdwnSeconds": {},
-    "CDO": {},
-    "setShortCntDwn{}{}": {
-      "snippet": "setShortCntDwn{${1:name}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "seconds": {},
-    "minutes": {},
-    "hours": {},
-    "cntdwnDisplay{}{}{}": {
-      "snippet": "cntdwnDisplay{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cntdwnDisplay[]{}{}{}": {
-      "snippet": "cntdwnDisplay[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cntdwnStartT{}{}{}": {
-      "snippet": "cntdwnStartT{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cntdwnStartT[]{}{}{}": {
-      "snippet": "cntdwnStartT[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cntdwnPauseT{}{}{}": {
-      "snippet": "cntdwnPauseT{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cntdwnPauseT[]{}{}{}": {
-      "snippet": "cntdwnPauseT[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cntdwnStopT{}{}{}": {
-      "snippet": "cntdwnStopT{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cntdwnStopT[]{}{}{}": {
-      "snippet": "cntdwnStopT[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cntdwnEndTarget{}{}{}": {
-      "snippet": "cntdwnEndTarget{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cntdwnEndTarget[]{}{}{}": {
-      "snippet": "cntdwnEndTarget[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cntdwnStart{}{}{}": {
-      "snippet": "cntdwnStart{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cntdwnStart[]{}{}{}": {
-      "snippet": "cntdwnStart[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cntdwnPause{}{}{}": {
-      "snippet": "cntdwnPause{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cntdwnPause[]{}{}{}": {
-      "snippet": "cntdwnPause[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cntdwnStop{}{}{}": {
-      "snippet": "cntdwnStop{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cntdwnStop[]{}{}{}": {
-      "snippet": "cntdwnStop[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cntdwnopts{}": {
-      "snippet": "cntdwnopts{${1:arg}}"
-    },
-    "thetimername{}": {
-      "snippet": "thetimername{${1:arg}}"
-    },
-    "isStopwatch": {},
-    "cnddwnDefaultEndMsg": {},
-    "setLongCntDwn{}{}": {
-      "snippet": "setLongCntDwn{${1:name}}{${2:options}}",
-      "option": "longcount",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "days": {
-      "option": "longcount"
-    },
-    "weeks": {
-      "option": "longcount"
-    },
-    "years": {
-      "option": "longcount"
-    },
-    "lcntdwnDisplay{}{}{}": {
-      "snippet": "lcntdwnDisplay{${1:name}}{${2:width}}{${3:height}}",
-      "option": "longcount"
-    },
-    "lcntdwnDisplay[]{}{}{}": {
-      "snippet": "lcntdwnDisplay[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}",
-      "option": "longcount"
-    },
-    "lcntdwnToggle{}{}{}": {
-      "snippet": "lcntdwnToggle{${1:name}}{${2:width}}{${3:height}}",
-      "option": "longcount"
-    },
-    "lcntdwnToggle[]{}{}{}": {
-      "snippet": "lcntdwnToggle[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}",
-      "option": "longcount"
-    },
-    "setClockTimer{}{}": {
-      "snippet": "setClockTimer{${1:name}}{${2:options}}",
-      "option": "longcount",
-      "keyvalindex": 2,
-      "keyvalpos": 1
-    },
-    "cntdwnclocktime{}{}{}": {
-      "snippet": "cntdwnclocktime{${1:name}}{${2:width}}{${3:height}}",
-      "option": "longcount"
-    },
-    "cntdwnclocktime[]{}{}{}": {
-      "snippet": "cntdwnclocktime[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}",
-      "option": "longcount"
-    },
-    "cntdwnclockdate{}{}{}": {
-      "snippet": "cntdwnclockdate{${1:name}}{${2:width}}{${3:height}}",
-      "option": "longcount"
-    },
-    "cntdwnclockdate[]{}{}{}": {
-      "snippet": "cntdwnclockdate[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}",
-      "option": "longcount"
-    },
-    "clockToggle{}{}{}": {
-      "snippet": "clockToggle{${1:name}}{${2:width}}{${3:height}}",
-      "option": "longcount"
-    },
-    "clockToggle[]{}{}{}": {
-      "snippet": "clockToggle[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}",
-      "option": "longcount"
-    },
-    "lcnddwnDefaultEndMsg": {
-      "option": "longcount"
+  "deps": [
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "shortcount",
-    "longcount"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "cntdwnlTimers",
+      "unusual": true
+    },
+    {
+      "name": "cntdwnaTimers",
+      "unusual": true
+    },
+    {
+      "name": "cntdwnYear",
+      "unusual": true
+    },
+    {
+      "name": "cntdwnYears",
+      "unusual": true
+    },
+    {
+      "name": "cntdwnDay",
+      "unusual": true
+    },
+    {
+      "name": "cntdwnDays",
+      "unusual": true
+    },
+    {
+      "name": "cntdwnHour",
+      "unusual": true
+    },
+    {
+      "name": "cntdwnHours",
+      "unusual": true
+    },
+    {
+      "name": "cntdwnMinute",
+      "unusual": true
+    },
+    {
+      "name": "cntdwnMinutes",
+      "unusual": true
+    },
+    {
+      "name": "cntdwnSecond",
+      "unusual": true
+    },
+    {
+      "name": "cntdwnSeconds",
+      "unusual": true
+    },
+    {
+      "name": "CDO",
+      "unusual": true
+    },
+    {
+      "name": "setShortCntDwn",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\setShortCntDwn"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "seconds",
+      "unusual": true
+    },
+    {
+      "name": "minutes",
+      "unusual": true
+    },
+    {
+      "name": "hours",
+      "unusual": true
+    },
+    {
+      "name": "cntdwnDisplay",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnDisplay",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnStartT",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnStartT",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnPauseT",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnPauseT",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnStopT",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnStopT",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnEndTarget",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnEndTarget",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnStart",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnStart",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnPause",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnPause",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnStop",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnStop",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnopts",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "thetimername",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "isStopwatch",
+      "unusual": true
+    },
+    {
+      "name": "cnddwnDefaultEndMsg",
+      "unusual": true
+    },
+    {
+      "name": "setLongCntDwn",
+      "if": "longcount",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\setLongCntDwn"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "days",
+      "if": "longcount",
+      "unusual": true
+    },
+    {
+      "name": "weeks",
+      "if": "longcount",
+      "unusual": true
+    },
+    {
+      "name": "years",
+      "if": "longcount",
+      "unusual": true
+    },
+    {
+      "name": "lcntdwnDisplay",
+      "if": "longcount",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "lcntdwnDisplay",
+      "if": "longcount",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "lcntdwnToggle",
+      "if": "longcount",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "lcntdwnToggle",
+      "if": "longcount",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "setClockTimer",
+      "if": "longcount",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\setClockTimer"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "cntdwnclocktime",
+      "if": "longcount",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnclocktime",
+      "if": "longcount",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnclockdate",
+      "if": "longcount",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cntdwnclockdate",
+      "if": "longcount",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "clockToggle",
+      "if": "longcount",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "clockToggle",
+      "if": "longcount",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:eforms options}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "lcnddwnDefaultEndMsg",
+      "if": "longcount",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/cntdwn#c": [
+      "shortcount",
+      "longcount"
+    ],
+    "\\setShortCntDwn": [
       "length=${1:time}",
       "stopwatch",
       "onfinish=${1|stop,continue|}",
@@ -169,7 +365,7 @@
       "autorun",
       "refreshrate=${1:number}"
     ],
-    [
+    "\\setLongCntDwn": [
       "date=${1:YYYY/MM/DD}",
       "time=${1:HH:mm:SS}",
       "tzoffset=",
@@ -189,12 +385,15 @@
       "onfinish=${1|stop,continue|}",
       "endmsg=${1:text}"
     ],
-    [
+    "\\setClockTimer": [
       "tzoffset=",
       "refreshrate=${1:number}",
       "autorun",
       "autopause",
       "currtimefunc="
     ]
+  },
+  "args": [
+    "\\usepackage/cntdwn#c"
   ]
 }

@@ -1,630 +1,1545 @@
 {
-  "includes": {
-    "babel": []
-  },
-  "macros": {
-    "btxlanguagenameafrikaans": {
-      "option": "languagenames"
-    },
-    "btxlanguagenameamerican": {
-      "option": "languagenames"
-    },
-    "btxlanguagenameaustrian": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamebrazil": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamebrazilian": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamebritish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamebulgarian": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamecanadian": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamecanadien": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamecatalan": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamecroatian": {
-      "option": "languagenames"
-    },
-    "btxlanguagenameczech": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamedanish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamedutch": {
-      "option": "languagenames"
-    },
-    "btxlanguagenameenglish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenameesperanto": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamefinnish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamefrancais": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamefranceis": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamefrench": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamefrenchb": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamegerman": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamegermanb": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamegreek": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamehebrew": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamehungarian": {
-      "option": "languagenames"
-    },
-    "btxlanguagenameicelandic": {
-      "option": "languagenames"
-    },
-    "btxlanguagenameirish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenameitalian": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamelatin": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenaustrian": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamengerman": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenhungarian": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenicelandic": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenirish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenitalian": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenlatin": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamennorsk": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamennynorsk": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenorsk": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenpolish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenportuges": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenportuguese": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenrussian": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenscottish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenserbian": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenspanish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenswedish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenturkish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamenynorsk": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamepolish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenameportuges": {
-      "option": "languagenames"
-    },
-    "btxlanguagenameportuguese": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamerussian": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamescottish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenameserbian": {
-      "option": "languagenames"
-    },
-    "btxlanguagenamespanish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenameswedish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenameturkish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenameUKenglish": {
-      "option": "languagenames"
-    },
-    "btxlanguagenameukrainian": {
-      "option": "languagenames"
-    },
-    "btxlanguagenameUSenglish": {
-      "option": "languagenames"
-    },
-    "selectbiblanguage{}": {
-      "snippet": "selectbiblanguage{${1:language}}"
-    },
-    "declarebtxcommands{}{}": {
-      "snippet": "declarebtxcommands{${1:language}}{${2:command definitions}}"
-    },
-    "setbtxfallbacklanguage{}": {
-      "snippet": "setbtxfallbacklanguage{${1:language}}"
-    },
-    "btxannotation{}": {
-      "snippet": "btxannotation{${1:annotations}}"
-    },
-    "biblanguage{}": {
-      "snippet": "biblanguage{${1:text}}"
-    },
-    "setbibliographyfont{}{}": {
-      "snippet": "setbibliographyfont{${1:element}}{${2:font command}}"
-    },
-    "setbibliographyfont*{}{}": {
-      "snippet": "setbibliographyfont*{${1:element}}{${2:font command}}"
-    },
-    "btxauthorcolon": {},
-    "btxurldatecomment{}": {
-      "snippet": "btxurldatecomment{${1:text}}"
-    },
-    "btxISBN": {},
-    "btxISSN": {},
-    "btxprintISBN{}": {
-      "snippet": "btxprintISBN{${1:true|false}}"
-    },
-    "btxprintISSN{}": {
-      "snippet": "btxprintISSN{${1:true|false}}"
-    },
-    "btxfnamespaceshort": {},
-    "btxfnamespacelong": {},
-    "btxprintmonthyearnum{}{}": {
-      "snippet": "btxprintmonthyearnum{${1:month}}{${2:year}}"
-    },
-    "bbbbaddto{}{}": {
-      "snippet": "bbbbaddto{${1:language}}{${2:csname}}"
-    },
-    "bbbbannotationsfalse": {},
-    "bbbbannotationstrue": {},
-    "bbbbfixlanguagefalse": {},
-    "bbbbfixlanguagetrue": {},
-    "bbbbifpackageloaded{}{}{}": {
-      "snippet": "bbbbifpackageloaded{${1:package}}{${2:true}}{${3:false}}"
-    },
-    "bbbbifundefined{}{}{}": {
-      "snippet": "bbbbifundefined{${1:csname}}{${2:true}}{${3:false}}"
-    },
-    "bbbblanguagenamesfalse": {},
-    "bbbblanguagenamestrue": {},
-    "biblanguagename": {},
-    "bibsafrikaans": {},
-    "bibsamerican": {},
-    "bibsaustrian": {},
-    "bibsbahasa": {},
-    "bibsbrazil": {},
-    "bibsbrazilian": {},
-    "bibsbritish": {},
-    "bibscanadian": {},
-    "bibscanadien": {},
-    "bibscatalan": {},
-    "bibscroatian": {},
-    "bibsczech": {},
-    "bibsdanish": {},
-    "bibsdutch": {},
-    "bibsenglish": {},
-    "bibsenglish[]": {
-      "snippet": "bibsenglish[${1:language}]"
-    },
-    "bibsesperanto": {},
-    "bibsfinnish": {},
-    "bibsfrancais": {},
-    "bibsfrench": {},
-    "bibsfrenchb": {},
-    "bibsgalician": {},
-    "bibsgerman": {},
-    "bibsgermanb": {},
-    "bibsgreek": {},
-    "bibsitalian": {},
-    "bibsmexican": {},
-    "bibsnaustrian": {},
-    "bibsngerman": {},
-    "bibsnorsk": {},
-    "bibsnorwegian": {},
-    "bibsportuges": {},
-    "bibsportuguese": {},
-    "bibsromanian": {},
-    "bibsrussian": {},
-    "bibsrussianb": {},
-    "bibsserbian": {},
-    "bibsspanish": {},
-    "bibsswedish": {},
-    "bibsturkish": {},
-    "bibsUKenglish": {},
-    "bibsUSenglish": {},
-    "btxandcomma{}": {
-      "snippet": "btxandcomma{${1:arg}}"
-    },
-    "btxandlong{}": {
-      "snippet": "btxandlong{${1:language}}"
-    },
-    "btxandshort{}": {
-      "snippet": "btxandshort{${1:language}}"
-    },
-    "Btxchapterlong{}": {
-      "snippet": "Btxchapterlong{${1:language}}"
-    },
-    "btxchapterlong{}": {
-      "snippet": "btxchapterlong{${1:language}}"
-    },
-    "Btxchaptershort{}": {
-      "snippet": "Btxchaptershort{${1:language}}"
-    },
-    "btxchaptershort{}": {
-      "snippet": "btxchaptershort{${1:language}}"
-    },
-    "Btxeditionlong{}": {
-      "snippet": "Btxeditionlong{${1:language}}"
-    },
-    "btxeditionlong{}": {
-      "snippet": "btxeditionlong{${1:language}}"
-    },
-    "Btxeditionnumlong{}": {
-      "snippet": "Btxeditionnumlong{${1:language}}"
-    },
-    "btxeditionnumlong{}": {
-      "snippet": "btxeditionnumlong{${1:language}}"
-    },
-    "Btxeditionnumshort{}": {
-      "snippet": "Btxeditionnumshort{${1:language}}"
-    },
-    "btxeditionnumshort{}": {
-      "snippet": "btxeditionnumshort{${1:language}}"
-    },
-    "Btxeditionshort{}": {
-      "snippet": "Btxeditionshort{${1:language}}"
-    },
-    "btxeditionshort{}": {
-      "snippet": "btxeditionshort{${1:language}}"
-    },
-    "Btxeditorlong{}": {
-      "snippet": "Btxeditorlong{${1:language}}"
-    },
-    "btxeditorlong{}": {
-      "snippet": "btxeditorlong{${1:language}}"
-    },
-    "Btxeditorshort{}": {
-      "snippet": "Btxeditorshort{${1:language}}"
-    },
-    "btxeditorshort{}": {
-      "snippet": "btxeditorshort{${1:language}}"
-    },
-    "Btxeditorslong{}": {
-      "snippet": "Btxeditorslong{${1:language}}"
-    },
-    "btxeditorslong{}": {
-      "snippet": "btxeditorslong{${1:language}}"
-    },
-    "Btxeditorsshort{}": {
-      "snippet": "Btxeditorsshort{${1:language}}"
-    },
-    "btxeditorsshort{}": {
-      "snippet": "btxeditorsshort{${1:language}}"
-    },
-    "btxetalfont": {},
-    "btxetallong{}": {
-      "snippet": "btxetallong{${1:language}}"
-    },
-    "btxetalshort{}": {
-      "snippet": "btxetalshort{${1:language}}"
-    },
-    "btxfallbacklanguage": {},
-    "btxifchangecase{}{}": {
-      "snippet": "btxifchangecase{${1:true}}{${2:false}}"
-    },
-    "btxifchangecaseoff": {},
-    "btxifchangecaseon": {},
-    "Btxinlong{}": {
-      "snippet": "Btxinlong{${1:language}}"
-    },
-    "btxinlong{}": {
-      "snippet": "btxinlong{${1:language}}"
-    },
-    "btxinserieslong{}": {
-      "snippet": "btxinserieslong{${1:language}}"
-    },
-    "btxinseriesshort{}": {
-      "snippet": "btxinseriesshort{${1:language}}"
-    },
-    "Btxinshort{}": {
-      "snippet": "Btxinshort{${1:language}}"
-    },
-    "btxinshort{}": {
-      "snippet": "btxinshort{${1:language}}"
-    },
-    "btxISBNfont": {},
-    "btxISSNfont": {},
-    "btxjournalfont": {},
-    "btxjtitlefont": {},
-    "Btxjvolumelong{}": {
-      "snippet": "Btxjvolumelong{${1:language}}"
-    },
-    "btxjvolumelong{}": {
-      "snippet": "btxjvolumelong{${1:language}}"
-    },
-    "Btxjvolumeshort{}": {
-      "snippet": "Btxjvolumeshort{${1:language}}"
-    },
-    "btxjvolumeshort{}": {
-      "snippet": "btxjvolumeshort{${1:language}}"
-    },
-    "btxkeywordlanguage{}": {
-      "snippet": "btxkeywordlanguage{${1:language}}"
-    },
-    "btxlanguagename{}": {
-      "snippet": "btxlanguagename{${1:language}}"
-    },
-    "btxlastnamefont": {},
-    "btxmastthesis{}": {
-      "snippet": "btxmastthesis{${1:language}}"
-    },
-    "btxmonaprlong{}": {
-      "snippet": "btxmonaprlong{${1:language}}"
-    },
-    "btxmonaprshort{}": {
-      "snippet": "btxmonaprshort{${1:language}}"
-    },
-    "btxmonauglong{}": {
-      "snippet": "btxmonauglong{${1:language}}"
-    },
-    "btxmonaugshort{}": {
-      "snippet": "btxmonaugshort{${1:language}}"
-    },
-    "btxmondeclong{}": {
-      "snippet": "btxmondeclong{${1:language}}"
-    },
-    "btxmondecshort{}": {
-      "snippet": "btxmondecshort{${1:language}}"
-    },
-    "btxmonfeblong{}": {
-      "snippet": "btxmonfeblong{${1:language}}"
-    },
-    "btxmonfebshort{}": {
-      "snippet": "btxmonfebshort{${1:language}}"
-    },
-    "btxmonjanlong{}": {
-      "snippet": "btxmonjanlong{${1:language}}"
-    },
-    "btxmonjanshort{}": {
-      "snippet": "btxmonjanshort{${1:language}}"
-    },
-    "btxmonjullong{}": {
-      "snippet": "btxmonjullong{${1:language}}"
-    },
-    "btxmonjulshort{}": {
-      "snippet": "btxmonjulshort{${1:language}}"
-    },
-    "btxmonjunlong{}": {
-      "snippet": "btxmonjunlong{${1:language}}"
-    },
-    "btxmonjunshort{}": {
-      "snippet": "btxmonjunshort{${1:language}}"
-    },
-    "btxmonmarlong{}": {
-      "snippet": "btxmonmarlong{${1:language}}"
-    },
-    "btxmonmarshort{}": {
-      "snippet": "btxmonmarshort{${1:language}}"
-    },
-    "btxmonmaylong{}": {
-      "snippet": "btxmonmaylong{${1:language}}"
-    },
-    "btxmonmayshort{}": {
-      "snippet": "btxmonmayshort{${1:language}}"
-    },
-    "btxmonnovlong{}": {
-      "snippet": "btxmonnovlong{${1:language}}"
-    },
-    "btxmonnovshort{}": {
-      "snippet": "btxmonnovshort{${1:language}}"
-    },
-    "btxmonoctlong{}": {
-      "snippet": "btxmonoctlong{${1:language}}"
-    },
-    "btxmonoctshort{}": {
-      "snippet": "btxmonoctshort{${1:language}}"
-    },
-    "btxmonseplong{}": {
-      "snippet": "btxmonseplong{${1:language}}"
-    },
-    "btxmonsepshort{}": {
-      "snippet": "btxmonsepshort{${1:language}}"
-    },
-    "btxnamefont": {},
-    "Btxnumberlong{}": {
-      "snippet": "Btxnumberlong{${1:language}}"
-    },
-    "btxnumberlong{}": {
-      "snippet": "btxnumberlong{${1:language}}"
-    },
-    "Btxnumbershort{}": {
-      "snippet": "Btxnumbershort{${1:language}}"
-    },
-    "btxnumbershort{}": {
-      "snippet": "btxnumbershort{${1:language}}"
-    },
-    "btxnumeraldot{}{}": {
-      "snippet": "btxnumeraldot{${1:language}}{${2:symbol}}"
-    },
-    "btxnumeralenglish{}{}": {
-      "snippet": "btxnumeralenglish{${1:language}}{${2:symbol}}"
-    },
-    "btxnumeralfallback{}{}": {
-      "snippet": "btxnumeralfallback{${1:language}}{${2:symbol}}"
-    },
-    "btxnumeralfont": {},
-    "btxnumeralfrench{}{}": {
-      "snippet": "btxnumeralfrench{${1:language}}{${2:symbol}}"
-    },
-    "btxnumerallong{}": {
-      "snippet": "btxnumerallong{${1:language}}"
-    },
-    "btxnumeralromanian{}{}": {
-      "snippet": "btxnumeralromanian{${1:language}}{${2:symbol}}"
-    },
-    "btxnumeralshort{}": {
-      "snippet": "btxnumeralshort{${1:language}}"
-    },
-    "btxnumeralswedish{}{}": {
-      "snippet": "btxnumeralswedish{${1:language}}{${2:symbol}}"
-    },
-    "btxofserieslong{}": {
-      "snippet": "btxofserieslong{${1:language}}"
-    },
-    "btxofseriesshort{}": {
-      "snippet": "btxofseriesshort{${1:language}}"
-    },
-    "Btxpagelong{}": {
-      "snippet": "Btxpagelong{${1:language}}"
-    },
-    "btxpagelong{}": {
-      "snippet": "btxpagelong{${1:language}}"
-    },
-    "Btxpageshort{}": {
-      "snippet": "Btxpageshort{${1:language}}"
-    },
-    "btxpageshort{}": {
-      "snippet": "btxpageshort{${1:language}}"
-    },
-    "Btxpageslong{}": {
-      "snippet": "Btxpageslong{${1:language}}"
-    },
-    "btxpageslong{}": {
-      "snippet": "btxpageslong{${1:language}}"
-    },
-    "Btxpagesshort{}": {
-      "snippet": "Btxpagesshort{${1:language}}"
-    },
-    "btxpagesshort{}": {
-      "snippet": "btxpagesshort{${1:language}}"
-    },
-    "btxphdthesis{}": {
-      "snippet": "btxphdthesis{${1:language}}"
-    },
-    "btxprintmonthyear": {},
-    "btxprintmonthyear{}{}{}{}": {
-      "snippet": "btxprintmonthyear{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "btxpublisherfont": {},
-    "btxselectlanguage{}": {
-      "snippet": "btxselectlanguage{${1:language}}"
-    },
-    "Btxtechreplong{}": {
-      "snippet": "Btxtechreplong{${1:language}}"
-    },
-    "btxtechreplong{}": {
-      "snippet": "btxtechreplong{${1:language}}"
-    },
-    "Btxtechrepshort{}": {
-      "snippet": "Btxtechrepshort{${1:language}}"
-    },
-    "btxtechrepshort{}": {
-      "snippet": "btxtechrepshort{${1:language}}"
-    },
-    "btxtitlefont": {},
-    "btxurldatefont": {},
-    "btxurlfont": {},
-    "btxvolumefont": {},
-    "Btxvolumelong{}": {
-      "snippet": "Btxvolumelong{${1:language}}"
-    },
-    "btxvolumelong{}": {
-      "snippet": "btxvolumelong{${1:language}}"
-    },
-    "Btxvolumeshort{}": {
-      "snippet": "Btxvolumeshort{${1:language}}"
-    },
-    "btxvolumeshort{}": {
-      "snippet": "btxvolumeshort{${1:language}}"
-    },
-    "ifbbbbannotations": {},
-    "ifbbbbfixlanguage": {},
-    "ifbbbblanguagenames": {},
-    "ifbtxprintISBN{}": {
-      "snippet": "ifbtxprintISBN{${1:code}}"
-    },
-    "ifbtxprintISSN{}": {
-      "snippet": "ifbtxprintISSN{${1:code}}"
-    },
-    "ifnumber{}{}{}": {
-      "snippet": "ifnumber{${1:arg}}{${2:true}}{${3:false}}"
-    },
-    "inputbdf{}{}": {
-      "snippet": "inputbdf{${1:language}}{${2:.bdf file}}"
-    },
-    "providebibliographyfont*{}{}": {
-      "snippet": "providebibliographyfont*{${1:element}}{${2:font command}}"
-    },
-    "providebibliographyfont{}{}": {
-      "snippet": "providebibliographyfont{${1:element}}{${2:font command}}"
-    },
-    "thebtxromaniannumeral": {}
-  },
-  "envs": {},
-  "options": [
-    "fixlanguage",
-    "languagenames",
-    "annote",
-    "noisbn",
-    "noissn",
-    "dateasis",
-    "datenumeric",
-    "${1:custom language}"
+  "deps": [
+    {
+      "name": "babel"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "btxlanguagenameafrikaans",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenameamerican",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenameaustrian",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamebrazil",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamebrazilian",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamebritish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamebulgarian",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamecanadian",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamecanadien",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamecatalan",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamecroatian",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenameczech",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamedanish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamedutch",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenameenglish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenameesperanto",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamefinnish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamefrancais",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamefranceis",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamefrench",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamefrenchb",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamegerman",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamegermanb",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamegreek",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamehebrew",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamehungarian",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenameicelandic",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenameirish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenameitalian",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamelatin",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenaustrian",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamengerman",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenhungarian",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenicelandic",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenirish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenitalian",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenlatin",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamennorsk",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamennynorsk",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenorsk",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenpolish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenportuges",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenportuguese",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenrussian",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenscottish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenserbian",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenspanish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenswedish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenturkish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamenynorsk",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamepolish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenameportuges",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenameportuguese",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamerussian",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamescottish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenameserbian",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenamespanish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenameswedish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenameturkish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenameUKenglish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenameukrainian",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "btxlanguagenameUSenglish",
+      "if": "languagenames",
+      "unusual": true
+    },
+    {
+      "name": "selectbiblanguage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "declarebtxcommands",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:command definitions}}"
+      }
+    },
+    {
+      "name": "setbtxfallbacklanguage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxannotation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:annotations}}"
+      }
+    },
+    {
+      "name": "biblanguage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setbibliographyfont",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:element}}{${2:font command}}"
+      }
+    },
+    {
+      "name": "setbibliographyfont*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:element}}{${2:font command}}"
+      }
+    },
+    {
+      "name": "btxauthorcolon",
+      "unusual": true
+    },
+    {
+      "name": "btxurldatecomment",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "btxISBN",
+      "unusual": true
+    },
+    {
+      "name": "btxISSN",
+      "unusual": true
+    },
+    {
+      "name": "btxprintISBN",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:true|false}}"
+      }
+    },
+    {
+      "name": "btxprintISSN",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:true|false}}"
+      }
+    },
+    {
+      "name": "btxfnamespaceshort",
+      "unusual": true
+    },
+    {
+      "name": "btxfnamespacelong",
+      "unusual": true
+    },
+    {
+      "name": "btxprintmonthyearnum",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:month}}{${2:year}}"
+      }
+    },
+    {
+      "name": "bbbbaddto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:csname}}"
+      }
+    },
+    {
+      "name": "bbbbifpackageloaded",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:package}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "bbbbifundefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:csname}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "biblanguagename",
+      "unusual": true
+    },
+    {
+      "name": "bibsafrikaans",
+      "unusual": true
+    },
+    {
+      "name": "bibsamerican",
+      "unusual": true
+    },
+    {
+      "name": "bibsaustrian",
+      "unusual": true
+    },
+    {
+      "name": "bibsbahasa",
+      "unusual": true
+    },
+    {
+      "name": "bibsbrazil",
+      "unusual": true
+    },
+    {
+      "name": "bibsbrazilian",
+      "unusual": true
+    },
+    {
+      "name": "bibsbritish",
+      "unusual": true
+    },
+    {
+      "name": "bibscanadian",
+      "unusual": true
+    },
+    {
+      "name": "bibscanadien",
+      "unusual": true
+    },
+    {
+      "name": "bibscatalan",
+      "unusual": true
+    },
+    {
+      "name": "bibscroatian",
+      "unusual": true
+    },
+    {
+      "name": "bibsczech",
+      "unusual": true
+    },
+    {
+      "name": "bibsdanish",
+      "unusual": true
+    },
+    {
+      "name": "bibsdutch",
+      "unusual": true
+    },
+    {
+      "name": "bibsenglish",
+      "unusual": true
+    },
+    {
+      "name": "bibsenglish",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:language}]"
+      }
+    },
+    {
+      "name": "bibsesperanto",
+      "unusual": true
+    },
+    {
+      "name": "bibsfinnish",
+      "unusual": true
+    },
+    {
+      "name": "bibsfrancais",
+      "unusual": true
+    },
+    {
+      "name": "bibsfrench",
+      "unusual": true
+    },
+    {
+      "name": "bibsfrenchb",
+      "unusual": true
+    },
+    {
+      "name": "bibsgalician",
+      "unusual": true
+    },
+    {
+      "name": "bibsgerman",
+      "unusual": true
+    },
+    {
+      "name": "bibsgermanb",
+      "unusual": true
+    },
+    {
+      "name": "bibsgreek",
+      "unusual": true
+    },
+    {
+      "name": "bibsitalian",
+      "unusual": true
+    },
+    {
+      "name": "bibsmexican",
+      "unusual": true
+    },
+    {
+      "name": "bibsnaustrian",
+      "unusual": true
+    },
+    {
+      "name": "bibsngerman",
+      "unusual": true
+    },
+    {
+      "name": "bibsnorsk",
+      "unusual": true
+    },
+    {
+      "name": "bibsnorwegian",
+      "unusual": true
+    },
+    {
+      "name": "bibsportuges",
+      "unusual": true
+    },
+    {
+      "name": "bibsportuguese",
+      "unusual": true
+    },
+    {
+      "name": "bibsromanian",
+      "unusual": true
+    },
+    {
+      "name": "bibsrussian",
+      "unusual": true
+    },
+    {
+      "name": "bibsrussianb",
+      "unusual": true
+    },
+    {
+      "name": "bibsserbian",
+      "unusual": true
+    },
+    {
+      "name": "bibsspanish",
+      "unusual": true
+    },
+    {
+      "name": "bibsswedish",
+      "unusual": true
+    },
+    {
+      "name": "bibsturkish",
+      "unusual": true
+    },
+    {
+      "name": "bibsUKenglish",
+      "unusual": true
+    },
+    {
+      "name": "bibsUSenglish",
+      "unusual": true
+    },
+    {
+      "name": "btxandcomma",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "btxandlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxandshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxchapterlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxchapterlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxchaptershort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxchaptershort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxeditionlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxeditionlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxeditionnumlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxeditionnumlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxeditionnumshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxeditionnumshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxeditionshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxeditionshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxeditorlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxeditorlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxeditorshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxeditorshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxeditorslong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxeditorslong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxeditorsshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxeditorsshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxetalfont",
+      "unusual": true
+    },
+    {
+      "name": "btxetallong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxetalshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxfallbacklanguage",
+      "unusual": true
+    },
+    {
+      "name": "btxifchangecase",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "btxifchangecaseoff",
+      "unusual": true
+    },
+    {
+      "name": "btxifchangecaseon",
+      "unusual": true
+    },
+    {
+      "name": "Btxinlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxinlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxinserieslong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxinseriesshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxinshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxinshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxISBNfont",
+      "unusual": true
+    },
+    {
+      "name": "btxISSNfont",
+      "unusual": true
+    },
+    {
+      "name": "btxjournalfont",
+      "unusual": true
+    },
+    {
+      "name": "btxjtitlefont",
+      "unusual": true
+    },
+    {
+      "name": "Btxjvolumelong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxjvolumelong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxjvolumeshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxjvolumeshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxkeywordlanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxlanguagename",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxlastnamefont",
+      "unusual": true
+    },
+    {
+      "name": "btxmastthesis",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonaprlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonaprshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonauglong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonaugshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmondeclong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmondecshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonfeblong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonfebshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonjanlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonjanshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonjullong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonjulshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonjunlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonjunshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonmarlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonmarshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonmaylong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonmayshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonnovlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonnovshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonoctlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonoctshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonseplong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxmonsepshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxnamefont",
+      "unusual": true
+    },
+    {
+      "name": "Btxnumberlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxnumberlong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxnumbershort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxnumbershort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxnumeraldot",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:symbol}}"
+      }
+    },
+    {
+      "name": "btxnumeralenglish",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:symbol}}"
+      }
+    },
+    {
+      "name": "btxnumeralfallback",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:symbol}}"
+      }
+    },
+    {
+      "name": "btxnumeralfont",
+      "unusual": true
+    },
+    {
+      "name": "btxnumeralfrench",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:symbol}}"
+      }
+    },
+    {
+      "name": "btxnumerallong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxnumeralromanian",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:symbol}}"
+      }
+    },
+    {
+      "name": "btxnumeralshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxnumeralswedish",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:symbol}}"
+      }
+    },
+    {
+      "name": "btxofserieslong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxofseriesshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxpagelong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxpagelong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxpageshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxpageshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxpageslong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxpageslong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxpagesshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxpagesshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxphdthesis",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxprintmonthyear",
+      "unusual": true
+    },
+    {
+      "name": "btxprintmonthyear",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "btxpublisherfont",
+      "unusual": true
+    },
+    {
+      "name": "btxselectlanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxtechreplong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxtechreplong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxtechrepshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxtechrepshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxtitlefont",
+      "unusual": true
+    },
+    {
+      "name": "btxurldatefont",
+      "unusual": true
+    },
+    {
+      "name": "btxurlfont",
+      "unusual": true
+    },
+    {
+      "name": "btxvolumefont",
+      "unusual": true
+    },
+    {
+      "name": "Btxvolumelong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxvolumelong",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Btxvolumeshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "btxvolumeshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "ifbbbbannotations",
+      "unusual": true
+    },
+    {
+      "name": "ifbbbbfixlanguage",
+      "unusual": true
+    },
+    {
+      "name": "ifbbbblanguagenames",
+      "unusual": true
+    },
+    {
+      "name": "ifbtxprintISBN",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "ifbtxprintISSN",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "ifnumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "inputbdf",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:.bdf file%file}}"
+      }
+    },
+    {
+      "name": "providebibliographyfont*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:element}}{${2:font command}}"
+      }
+    },
+    {
+      "name": "providebibliographyfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:element}}{${2:font command}}"
+      }
+    },
+    {
+      "name": "thebtxromaniannumeral",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/babelbib#c": [
+      "fixlanguage",
+      "languagenames",
+      "annote",
+      "noisbn",
+      "noissn",
+      "dateasis",
+      "datenumeric",
+      "${1:custom language}"
+    ],
+    "\\bibliographystyle#c": [
+      "bababbrv",
+      "bababbrv-lf",
+      "bababbrv-fl",
+      "babplain",
+      "babplain-lf",
+      "babplain-fl",
+      "babalpha",
+      "babunsrt",
+      "babamspl"
+    ]
+  },
+  "args": [
+    "\\usepackage/babelbib#c"
+  ]
 }

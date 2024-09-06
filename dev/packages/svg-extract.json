@@ -1,55 +1,87 @@
 {
-  "includes": {
-    "svg": []
-  },
-  "macros": {
-    "svghidepreamblestart": {},
-    "svghidepreambleend": {},
-    "svgxoutputbox": {},
-    "svgxsetbox{}": {
-      "snippet": "svgxsetbox{${1:arg}}"
-    },
-    "svgxsetbox[]{}": {
-      "snippet": "svgxsetbox[${2:opt}]{${1:arg}}"
-    },
-    "svgxsetpapersize": {}
-  },
-  "envs": {},
-  "options": [
-    "on",
-    "off",
-    "extract",
-    "extractpath=${1|svgdir,svgpath,svgsubdir,svgsubpath,basedir,basepath,jobdir,jobpath,basesubdir,basesubpath,jobsubdir,jobsubpath,${1:path}|}",
-    "extractname=${1|filename,name,filenamenumbered,namenumbered,numberedfilename,numberedname,numbered,section,numberedsection,sectionnumbered|}",
-    "extractformat={${1:fmt1,fmt2,...}}",
-    "extractwidth=",
-    "extractheight=",
-    "extractdistort",
-    "extractscale=${1:factor}",
-    "extractpretex=${1:code}",
-    "extractapptex=${1:code}",
-    "extractpreamble=${1:file name}",
-    "extractpreambleend=${1:line}",
-    "extractruns=${1:number}",
-    "latexexe=${1:exe}",
-    "latexopt=${1:opt}",
-    "latexext=${1:extension}",
-    "dvipsopt=${1:opt}",
-    "pstoepsopt=${1:opt}",
-    "pstopdfopt=${1:opt}",
-    "pdftoepsopt=${1:opt}",
-    "pdftopsopt=${1:opt}",
-    "clean=${1|true,false,{${1:ext1,ext2,...}}|}",
-    "exclude",
-    "convert=${1|false,off,no,true,on,yes,magick,imagemagick,convert,gs,ghostscript,gs64,ghostscript64,gs32,ghostscript32|}",
-    "convertformat={${1:fmt1,fmt2,...}}",
-    "convertdpi={${1:fmt=integer}}",
-    "magickexe=${1:exe}",
-    "magicksetting=${1:settings}",
-    "magickoperator=${1:operators}",
-    "gsexe=${1:exe}",
-    "gsdevice=",
-    "gsopt=${1:opt}"
+  "deps": [
+    {
+      "name": "svg"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "svghidepreamblestart"
+    },
+    {
+      "name": "svghidepreambleend"
+    },
+    {
+      "name": "svgxoutputbox",
+      "unusual": true
+    },
+    {
+      "name": "svgxsetbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "svgxsetbox",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "svgxsetpapersize",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/svg-extract#c": [
+      "on",
+      "off"
+    ],
+    "\\usepackage/svg-extract#c,\\svgsetup#c,\\includesvg,\\includeinkscape": [
+      "extract",
+      "extractpath=${2|svgdir,svgpath,svgsubdir,svgsubpath,basedir,basepath,jobdir,jobpath,basesubdir,basesubpath,jobsubdir,jobsubpath,${1:path}|}",
+      "extractname=${1|filename,name,filenamenumbered,namenumbered,numberedfilename,numberedname,numbered,section,numberedsection,sectionnumbered|}",
+      "extractformat={${1:fmt1,fmt2,...}}",
+      "extractwidth=",
+      "extractheight=",
+      "extractdistort",
+      "extractscale=${1:factor}",
+      "extractpretex=${1:code}",
+      "extractapptex=${1:code}",
+      "extractpreamble=${1:file name}",
+      "extractpreambleend=${1:line}",
+      "extractruns=${1:number}",
+      "latexexe=${1:exe}",
+      "latexopt=${1:opt}",
+      "latexext=${1:extension}",
+      "dvipsopt=${1:opt}",
+      "pstoepsopt=${1:opt}",
+      "pstopdfopt=${1:opt}",
+      "pdftoepsopt=${1:opt}",
+      "pdftopsopt=${1:opt}",
+      "clean=${2|true,false,{${1:ext1,ext2,...}}|}",
+      "exclude",
+      "convert=${1|false,off,no,true,on,yes,magick,imagemagick,convert,gs,ghostscript,gs64,ghostscript64,gs32,ghostscript32|}",
+      "convertformat={${1:fmt1,fmt2,...}}",
+      "convertdpi={${1:fmt=integer}}",
+      "magickexe=${1:exe}",
+      "magicksetting=${1:settings}",
+      "magickoperator=${1:operators}",
+      "gsexe=${1:exe}",
+      "gsdevice=",
+      "gsopt=${1:opt}"
+    ],
+    "\\includesvg,\\includeinkscape": [
+      "extractangle="
+    ]
+  },
+  "args": [
+    "\\usepackage/svg-extract#c",
+    "\\usepackage/svg-extract#c,\\svgsetup#c,\\includesvg,\\includeinkscape"
+  ]
 }

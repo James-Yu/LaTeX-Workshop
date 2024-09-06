@@ -1,29 +1,66 @@
 {
-  "includes": {
-    "calculator": [],
-    "xcolor": [],
-    "tikz": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryshapes.misc": [],
-    "tikzlibrarymath": []
-  },
-  "macros": {
-    "lalicemail": {},
-    "email{}": {
-      "snippet": "email{${1:email}}"
+  "deps": [
+    {
+      "name": "calculator"
     },
-    "dataapresentacao{}{}{}": {
-      "snippet": "dataapresentacao{${1:day}}{${2:month}}{${3:year}}"
+    {
+      "name": "xcolor"
     },
-    "agendaautomatica": {},
-    "agendaautomatica[]": {
-      "snippet": "agendaautomatica[${1:number}]"
+    {
+      "name": "tikz"
     },
-    "segundacoluna": {},
-    "progressbar": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "tikzlibrarypositioning"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tikzlibraryshapes.misc"
+    },
+    {
+      "name": "tikzlibrarymath"
+    }
+  ],
+  "macros": [
+    {
+      "name": "lalicemail",
+      "unusual": true
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "dataapresentacao",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:day}}{${2:month}}{${3:year}}"
+      }
+    },
+    {
+      "name": "agendaautomatica"
+    },
+    {
+      "name": "agendaautomatica",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "segundacoluna",
+      "unusual": true
+    },
+    {
+      "name": "progressbar",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

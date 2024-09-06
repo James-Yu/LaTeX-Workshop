@@ -1,24 +1,50 @@
 {
-  "includes": {
-    "etoolbox": []
-  },
-  "macros": {
-    "texthl{}": {
-      "snippet": "texthl{${1:text}}"
-    },
-    "obhlraisedim": {},
-    "obhlheight": {},
-    "obhlcolor": {},
-    "setpagenode": {},
-    "stanzaskip": {}
-  },
-  "envs": {
-    "hverse": {},
-    "hverse[]": {
-      "name": "hverse",
-      "snippet": "[${1:code}]"
+  "deps": [
+    {
+      "name": "etoolbox"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "texthl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "obhlraisedim",
+      "unusual": true
+    },
+    {
+      "name": "obhlheight",
+      "unusual": true
+    },
+    {
+      "name": "obhlcolor",
+      "unusual": true
+    },
+    {
+      "name": "setpagenode",
+      "unusual": true
+    },
+    {
+      "name": "stanzaskip",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "hverse"
+    },
+    {
+      "name": "hverse",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:code}]"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

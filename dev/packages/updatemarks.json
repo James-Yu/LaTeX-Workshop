@@ -1,57 +1,126 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "updatemarks-nums": []
-  },
-  "macros": {
-    "AddToUpdateMarksList{}": {
-      "snippet": "AddToUpdateMarksList{${1:number list}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "SetUpdateMarksList{}": {
-      "snippet": "SetUpdateMarksList{${1:number list}}"
-    },
-    "RemoveFromUpdateMarksList{}": {
-      "snippet": "RemoveFromUpdateMarksList{${1:number list}}"
-    },
-    "AddAllocatedToUpdateMarksList": {},
-    "ExtractMarks{}": {
-      "snippet": "ExtractMarks{${1:box number}}"
-    },
-    "ExtractMarks[]{}": {
-      "snippet": "ExtractMarks[${2:number list}]{${1:box number}}"
-    },
-    "ExtractMarks*{}": {
-      "snippet": "ExtractMarks*{${1:text}}"
-    },
-    "ExtractMarks*[]{}": {
-      "snippet": "ExtractMarks*[${2:number list}]{${1:text}}"
-    },
-    "ExtractSplitMarks": {},
-    "ExtractSplitMarks[]": {
-      "snippet": "ExtractSplitMarks[${1:number list}]"
-    },
-    "UpdateMarks": {},
-    "UpdateMarks[]": {
-      "snippet": "UpdateMarks[${1:number list}]"
-    },
-    "ExtractMarksTo{}{}": {
-      "snippet": "ExtractMarksTo{${1:box number}}{${2:cmd}}"
-    },
-    "ExtractMarksTo[]{}{}": {
-      "snippet": "ExtractMarksTo[${3:number list}]{${1:box number}}{${2:cmd}}"
-    },
-    "ExtractMarksTo*{}{}": {
-      "snippet": "ExtractMarksTo*{${1:text}}{${2:cmd}}"
-    },
-    "ExtractMarksTo*[]{}{}": {
-      "snippet": "ExtractMarksTo*[${3:number list}]{${1:text}}{${2:cmd}}"
+    {
+      "name": "updatemarks-nums"
     }
-  },
-  "envs": {},
-  "options": [
-    "minipage",
-    "multicol",
-    "tcolorbox"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "AddToUpdateMarksList",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number list}}"
+      }
+    },
+    {
+      "name": "SetUpdateMarksList",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number list}}"
+      }
+    },
+    {
+      "name": "RemoveFromUpdateMarksList",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number list}}"
+      }
+    },
+    {
+      "name": "AddAllocatedToUpdateMarksList"
+    },
+    {
+      "name": "ExtractMarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:box number}}"
+      }
+    },
+    {
+      "name": "ExtractMarks",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number list}]{${1:box number}}"
+      }
+    },
+    {
+      "name": "ExtractMarks*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ExtractMarks*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number list}]{${1:text}}"
+      }
+    },
+    {
+      "name": "ExtractSplitMarks"
+    },
+    {
+      "name": "ExtractSplitMarks",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number list}]"
+      }
+    },
+    {
+      "name": "UpdateMarks"
+    },
+    {
+      "name": "UpdateMarks",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number list}]"
+      }
+    },
+    {
+      "name": "ExtractMarksTo",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:box number}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ExtractMarksTo",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:number list}]{${1:box number}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ExtractMarksTo*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ExtractMarksTo*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:number list}]{${1:text}}{${2:cmd}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/updatemarks#c": [
+      "minipage",
+      "multicol",
+      "tcolorbox"
+    ],
+    "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote": [
+      "updatemarks"
+    ]
+  },
+  "args": [
+    "\\usepackage/updatemarks#c"
+  ]
 }

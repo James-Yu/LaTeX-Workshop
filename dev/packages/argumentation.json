@@ -1,103 +1,215 @@
 {
-  "includes": {
-    "amsbsy": [],
-    "amsmath": [],
-    "pgfopts": [],
-    "tikz": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibrarydecorations.markings": []
-  },
-  "macros": {
-    "setargumentstyle{}": {
-      "snippet": "setargumentstyle{${1:style}}"
+  "deps": [
+    {
+      "name": "amsbsy"
     },
-    "setattackstyle{}": {
-      "snippet": "setattackstyle{${1:style}}"
+    {
+      "name": "amsmath"
     },
-    "setsupportstyle{}": {
-      "snippet": "setsupportstyle{${1:style}}"
+    {
+      "name": "pgfopts"
     },
-    "setannotationstyle{}": {
-      "snippet": "setannotationstyle{${1:style}}"
+    {
+      "name": "tikz"
     },
-    "argument{}": {
-      "snippet": "argument{${1:name}}"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "argument(){}": {
-      "snippet": "argument(${2:id}){${1:name}}"
-    },
-    "argument[](){}": {
-      "snippet": "argument[${2:options}](${3:id}){${1:name}}"
-    },
-    "argument[]{}": {
-      "snippet": "argument[${2:options}]{${1:name}}"
-    },
-    "attack{}{}": {
-      "snippet": "attack{${1:id1}}{${2:id2}}"
-    },
-    "attack[]{}{}": {
-      "snippet": "attack[${3:options}]{${1:id1}}{${2:id2}}"
-    },
-    "dualattack{}{}": {
-      "snippet": "dualattack{${1:id1}}{${2:id2}}"
-    },
-    "dualattack[]{}{}": {
-      "snippet": "dualattack[${3:options}]{${1:id1}}{${2:id2}}"
-    },
-    "selfattack{}": {
-      "snippet": "selfattack{${1:id}}"
-    },
-    "selfattack[]{}": {
-      "snippet": "selfattack[${2:options}]{${1:id}}"
-    },
-    "support{}{}": {
-      "snippet": "support{${1:id1}}{${2:id2}}"
-    },
-    "support[]{}{}": {
-      "snippet": "support[${3:options}]{${1:id1}}{${2:id2}}"
-    },
-    "annotatedattack{}{}{}": {
-      "snippet": "annotatedattack{${1:id1}}{${2:id2}}{${3:value}}"
-    },
-    "annotatedattack[]{}{}{}": {
-      "snippet": "annotatedattack[${4:options}]{${1:id1}}{${2:id2}}{${3:value}}"
-    },
-    "afname{}": {
-      "snippet": "afname{${1:name}}"
-    },
-    "afname(){}": {
-      "snippet": "afname(${2:id}){${1:name}}"
-    },
-    "afname[](){}": {
-      "snippet": "afname[${2:options}](${3:id}){${1:name}}"
-    },
-    "afname[]{}": {
-      "snippet": "afname[${2:options}]{${1:name}}"
-    },
-    "annotation{}{}": {
-      "snippet": "annotation{${1:id}}{${2:text}}"
-    },
-    "annotation[]{}{}": {
-      "snippet": "annotation[${3:options}]{${1:id}}{${2:text}}"
-    },
-    "argstyle{}": {
-      "snippet": "argstyle{${1:text}}"
-    },
-    "theaf": {},
-    "theargument": {}
-  },
-  "envs": {
-    "af": {},
-    "af[]": {
-      "name": "af",
-      "snippet": "[${1:options}]"
+    {
+      "name": "tikzlibrarydecorations.markings"
     }
-  },
-  "options": [
-    "namestyle=${1|none,math,italics,bold,monospace|}",
-    "argumentstyle=${1|standard,large,thick|}",
-    "attackstyle=${1|standard,large,modern|}",
-    "supportstyle=${1|standard,dashed,double|}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "setargumentstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style}}"
+      }
+    },
+    {
+      "name": "setattackstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style}}"
+      }
+    },
+    {
+      "name": "setsupportstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style}}"
+      }
+    },
+    {
+      "name": "setannotationstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style}}"
+      }
+    },
+    {
+      "name": "argument",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "argument",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:id}){${1:name}}"
+      }
+    },
+    {
+      "name": "argument",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options}](${3:id}){${1:name}}"
+      }
+    },
+    {
+      "name": "argument",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:name}}"
+      }
+    },
+    {
+      "name": "attack",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id1}}{${2:id2}}"
+      }
+    },
+    {
+      "name": "attack",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:id1}}{${2:id2}}"
+      }
+    },
+    {
+      "name": "dualattack",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id1}}{${2:id2}}"
+      }
+    },
+    {
+      "name": "dualattack",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:id1}}{${2:id2}}"
+      }
+    },
+    {
+      "name": "selfattack",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "selfattack",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:id}}"
+      }
+    },
+    {
+      "name": "support",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id1}}{${2:id2}}"
+      }
+    },
+    {
+      "name": "support",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:id1}}{${2:id2}}"
+      }
+    },
+    {
+      "name": "annotatedattack",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:id1}}{${2:id2}}{${3:value}}"
+      }
+    },
+    {
+      "name": "annotatedattack",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options}]{${1:id1}}{${2:id2}}{${3:value}}"
+      }
+    },
+    {
+      "name": "afname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "afname",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:id}){${1:name}}"
+      }
+    },
+    {
+      "name": "afname",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options}](${3:id}){${1:name}}"
+      }
+    },
+    {
+      "name": "afname",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:name}}"
+      }
+    },
+    {
+      "name": "annotation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id}}{${2:text}}"
+      }
+    },
+    {
+      "name": "annotation",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:id}}{${2:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "af"
+    },
+    {
+      "name": "af",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/argumentation#c": [
+      "namestyle=${1|none,math,italics,bold,monospace|}",
+      "argumentstyle=${1|standard,large,thick|}",
+      "attackstyle=${1|standard,large,modern|}",
+      "supportstyle=${1|standard,dashed,double|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/argumentation#c"
+  ]
 }

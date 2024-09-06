@@ -1,25 +1,57 @@
 {
-  "includes": {
-    "atveryend": [],
-    "doc": [],
-    "calc": [],
-    "hyperref": [],
-    "rerunfilecheck": [],
-    "color": []
-  },
-  "macros": {
-    "changehistoryname": {},
-    "glossaryname": {},
-    "hdclindex{}{}{}": {
-      "snippet": "hdclindex{${1:csname}}{${2:name}}{${3:text}}"
+  "deps": [
+    {
+      "name": "atveryend"
     },
-    "hdpindex{}{}": {
-      "snippet": "hdpindex{${1:csname}}{${2:page num}}"
+    {
+      "name": "doc"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "rerunfilecheck"
+    },
+    {
+      "name": "color"
     }
-  },
-  "envs": {},
-  "options": [
-    "numbered"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "changehistoryname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "hdclindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:csname}}{${2:name}}{${3:text}}"
+      }
+    },
+    {
+      "name": "hdpindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:page num}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hypdoc#c": [
+      "numbered"
+    ]
+  },
+  "args": [
+    "\\usepackage/hypdoc#c"
+  ]
 }

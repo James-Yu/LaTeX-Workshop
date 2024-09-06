@@ -1,97 +1,208 @@
 {
-  "includes": {
-    "class-mwbk": [],
-    "ulem": [],
-    "ifxetex": [],
-    "fontspec": [],
-    "polyglossia": [],
-    "inputenc": [],
-    "babel": [],
-    "textcase": []
-  },
-  "macros": {
-    "titulo{}": {
-      "snippet": "titulo{${1:Título}}"
+  "deps": [
+    {
+      "name": "class-mwbk"
     },
-    "descricao{}": {
-      "snippet": "descricao{${1:Descrição}}"
+    {
+      "name": "ulem"
     },
-    "cortado{}": {
-      "snippet": "cortado{${1:texto}}"
+    {
+      "name": "ifxetex"
     },
-    "artigo": {},
-    "paragrafo": {},
-    "paragrafounico": {},
-    "inciso": {},
-    "alinea": {},
-    "itens": {},
-    "theartigo": {},
-    "theparagrafo": {},
-    "theinciso": {},
-    "thealinea": {},
-    "theitens": {},
-    "captionsbrazil": {},
-    "datebrazil": {},
-    "extrasbrazil": {},
-    "noextrasbrazil": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "ord": {},
-    "orda": {},
-    "ro": {},
-    "ra": {}
-  },
-  "envs": {},
-  "options": [
-    "capitulo",
-    "paragrafoespaco",
-    "paragrafonormal",
-    "a4paper",
-    "a5paper",
-    "a6paper",
-    "b4paper",
-    "b5paper",
-    "b6paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "wide",
-    "withmarginpar",
-    "withoutmarginpar",
-    "10pt",
-    "10dd",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "openright",
-    "openany",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib",
-    "rmheadings",
-    "sfheadings",
-    "floatssmall",
-    "floatsnormalsize",
-    "authortitle",
-    "titleauthor",
-    "indentfirst",
-    "noindentfirst"
+    {
+      "name": "fontspec"
+    },
+    {
+      "name": "polyglossia"
+    },
+    {
+      "name": "inputenc"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "textcase"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "titulo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Título%text}}"
+      }
+    },
+    {
+      "name": "descricao",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Descrição%text}}"
+      }
+    },
+    {
+      "name": "cortado",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto%text}}"
+      }
+    },
+    {
+      "name": "artigo"
+    },
+    {
+      "name": "paragrafo"
+    },
+    {
+      "name": "paragrafounico"
+    },
+    {
+      "name": "inciso"
+    },
+    {
+      "name": "alinea"
+    },
+    {
+      "name": "itens"
+    },
+    {
+      "name": "theartigo",
+      "unusual": true
+    },
+    {
+      "name": "theparagrafo",
+      "unusual": true
+    },
+    {
+      "name": "theinciso",
+      "unusual": true
+    },
+    {
+      "name": "thealinea",
+      "unusual": true
+    },
+    {
+      "name": "theitens",
+      "unusual": true
+    },
+    {
+      "name": "captionsbrazil",
+      "unusual": true
+    },
+    {
+      "name": "datebrazil",
+      "unusual": true
+    },
+    {
+      "name": "extrasbrazil",
+      "unusual": true
+    },
+    {
+      "name": "noextrasbrazil",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "ord"
+    },
+    {
+      "name": "orda"
+    },
+    {
+      "name": "ro",
+      "unusual": true
+    },
+    {
+      "name": "ra",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/br-lex#c": [
+      "capitulo",
+      "paragrafoespaco",
+      "paragrafonormal",
+      "a4paper",
+      "a5paper",
+      "a6paper",
+      "b4paper",
+      "b5paper",
+      "b6paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "wide",
+      "withmarginpar",
+      "withoutmarginpar",
+      "10pt",
+      "10dd",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage",
+      "openright",
+      "openany",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "fleqn",
+      "openbib",
+      "rmheadings",
+      "sfheadings",
+      "floatssmall",
+      "floatsnormalsize",
+      "authortitle",
+      "titleauthor",
+      "indentfirst",
+      "noindentfirst"
+    ]
+  },
+  "args": [
+    "\\documentclass/br-lex#c"
+  ]
 }

@@ -1,68 +1,154 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarytikzmark": [],
-    "tikzlibraryfit": [],
-    "tikzlibrarybending": [],
-    "tikzlibraryshapes": [],
-    "tikzlibrarychains": [],
-    "tikzlibrarybackgrounds": [],
-    "tikzlibrarydecorations": [],
-    "tikzlibrarydecorations.pathmorphing": []
-  },
-  "macros": {
-    "codeBlock{}": {
-      "snippet": "codeBlock{${1:code}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "cPart{}{}": {
-      "snippet": "cPart{${1:node name}}{${2:code}}"
+    {
+      "name": "tikzlibrarytikzmark"
     },
-    "cPart[]{}{}": {
-      "snippet": "cPart[${3:TikZ keys}]{${1:node name}}{${2:code}}"
+    {
+      "name": "tikzlibraryfit"
     },
-    "iPart{}{}": {
-      "snippet": "iPart{${1:node name}}{${2:code}}"
+    {
+      "name": "tikzlibrarybending"
     },
-    "iPart[]{}{}": {
-      "snippet": "iPart[${3:TikZ keys}]{${1:node name}}{${2:code}}"
+    {
+      "name": "tikzlibraryshapes"
     },
-    "mtPoint{}": {
-      "snippet": "mtPoint{${1:node name}}"
+    {
+      "name": "tikzlibrarychains"
     },
-    "hmtPoint{}": {
-      "snippet": "hmtPoint{${1:node name}}"
+    {
+      "name": "tikzlibrarybackgrounds"
     },
-    "mbPoint{}": {
-      "snippet": "mbPoint{${1:node name}}"
+    {
+      "name": "tikzlibrarydecorations"
     },
-    "dmbPoint{}": {
-      "snippet": "dmbPoint{${1:node name}}"
-    },
-    "extremPoint{}": {
-      "snippet": "extremPoint{${1:node name}}"
-    },
-    "extremPoint{}[]": {
-      "snippet": "extremPoint{${1:node name}}[${2:yshift}]"
-    },
-    "extremPoint{}[][]": {
-      "snippet": "extremPoint{${1:node name}}[${2:yshift}][${3:xshift}]"
-    },
-    "extremPoint{}[][][]": {
-      "snippet": "extremPoint{${1:node name}}[${2:yshift}][${3:xshift}][${4:TikZ keys}]"
-    },
-    "fitExtrem{}{}": {
-      "snippet": "fitExtrem{${1:node name}}{${2:extrem points}}"
-    },
-    "bgcode{}": {
-      "snippet": "bgcode{${1:code}}"
-    },
-    "ptab": {},
-    "phspace": {},
-    "codeAnnotation{}(){}": {
-      "snippet": "codeAnnotation{${1:node name}}(${3:coordinate}){${2:label text}}"
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "codeBlock",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "cPart",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "cPart",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:TikZ keys}]{${1:node name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "iPart",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "iPart",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:TikZ keys}]{${1:node name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "mtPoint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node name}}"
+      }
+    },
+    {
+      "name": "hmtPoint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node name}}"
+      }
+    },
+    {
+      "name": "mbPoint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node name}}"
+      }
+    },
+    {
+      "name": "dmbPoint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node name}}"
+      }
+    },
+    {
+      "name": "extremPoint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node name}}"
+      }
+    },
+    {
+      "name": "extremPoint",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:node name}}[${2:yshift}]"
+      }
+    },
+    {
+      "name": "extremPoint",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:node name}}[${2:yshift}][${3:xshift}]"
+      }
+    },
+    {
+      "name": "extremPoint",
+      "arg": {
+        "format": "{}[][][]",
+        "snippet": "{${1:node name}}[${2:yshift}][${3:xshift}][${4:TikZ keys}]"
+      }
+    },
+    {
+      "name": "fitExtrem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node name}}{${2:extrem points}}"
+      }
+    },
+    {
+      "name": "bgcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "ptab"
+    },
+    {
+      "name": "phspace"
+    },
+    {
+      "name": "codeAnnotation",
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "{${1:node name}}(${3:coordinate}){${2:label text%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

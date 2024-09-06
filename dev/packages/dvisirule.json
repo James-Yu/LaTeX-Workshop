@@ -1,18 +1,27 @@
 {
-  "includes": {
-    "zref-abspage": []
-  },
-  "macros": {},
-  "envs": {
-    "sitabular{}": {
-      "name": "sitabular",
-      "snippet": "{${1:cols}}"
-    },
-    "silongtable{}": {
-      "name": "silongtable",
-      "snippet": "{${1:cols}}"
+  "deps": [
+    {
+      "name": "zref-abspage"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [],
+  "envs": [
+    {
+      "name": "sitabular",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    },
+    {
+      "name": "silongtable",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

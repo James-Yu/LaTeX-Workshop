@@ -1,55 +1,118 @@
 {
-  "includes": {},
-  "macros": {
-    "fontscalesetup{}": {
-      "snippet": "fontscalesetup{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [],
+  "macros": [
+    {
+      "name": "fontscalesetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\fontscalesetup"
+        ],
+        "keyPos": 0
+      }
     },
-    "CurrentFontStep": {},
-    "CurrentFontScale": {},
-    "CurrentFontSize": {},
-    "CurrentFontBaselineskip": {},
-    "SetFontStep{}": {
-      "snippet": "SetFontStep{${1:number}}"
+    {
+      "name": "CurrentFontStep"
     },
-    "SetFontStep*{}": {
-      "snippet": "SetFontStep*{${1:number}}"
+    {
+      "name": "CurrentFontScale"
     },
-    "SetFontScale{}": {
-      "snippet": "SetFontScale{${1:number}}"
+    {
+      "name": "CurrentFontSize"
     },
-    "SetFontScale*{}": {
-      "snippet": "SetFontScale*{${1:number}}"
+    {
+      "name": "CurrentFontBaselineskip"
     },
-    "SetFontSize{}": {
-      "snippet": "SetFontSize{${1:size}}"
+    {
+      "name": "SetFontStep",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "SetFontSize*{}": {
-      "snippet": "SetFontSize*{${1:size}}"
+    {
+      "name": "SetFontStep*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "ScaleFont{}": {
-      "snippet": "ScaleFont{${1:number}}"
+    {
+      "name": "SetFontScale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "SetFontSizeBaselineskip{}{}": {
-      "snippet": "SetFontSizeBaselineskip{${1:size}}{${2:skip}}"
+    {
+      "name": "SetFontScale*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "PrintFontParameters": {},
-    "PrintAllFontParameters": {},
-    "PrintSampleText": {},
-    "PrintSampleText[]": {
-      "snippet": "PrintSampleText[${1:text}]"
+    {
+      "name": "SetFontSize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size}}"
+      }
     },
-    "PrintSampleText*": {},
-    "PrintSampleText*[]": {
-      "snippet": "PrintSampleText*[${1:text}]"
+    {
+      "name": "SetFontSize*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size}}"
+      }
     },
-    "PrintFontSizeCommand": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "ScaleFont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "SetFontSizeBaselineskip",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:size}}{${2:skip%l}}"
+      }
+    },
+    {
+      "name": "PrintFontParameters"
+    },
+    {
+      "name": "PrintAllFontParameters"
+    },
+    {
+      "name": "PrintSampleText"
+    },
+    {
+      "name": "PrintSampleText",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:text}]"
+      }
+    },
+    {
+      "name": "PrintSampleText*"
+    },
+    {
+      "name": "PrintSampleText*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:text}]"
+      }
+    },
+    {
+      "name": "PrintFontSizeCommand"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\fontscalesetup": [
       "reset",
       "reset=${1|initial,preamble|}",
       "ignore-order",
@@ -114,5 +177,6 @@
       "Huge=${1:size}",
       "Huge=${1:size}/${2:baselineskip}"
     ]
-  ]
+  },
+  "args": []
 }

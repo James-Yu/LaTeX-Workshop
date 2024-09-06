@@ -1,31 +1,71 @@
 {
-  "includes": {
-    "intersections": [],
-    "calc": []
+  "deps": [
+    {
+      "name": "intersections"
+    },
+    {
+      "name": "calc"
+    }
+  ],
+  "macros": [
+    {
+      "name": "thepointlabels",
+      "unusual": true
+    },
+    {
+      "name": "point",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:path1}}{${2:path2}}{${3:intersection}}"
+      }
+    },
+    {
+      "name": "point",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:styles}]{${1:path1}}{${2:path2}}{${3:intersection}}"
+      }
+    },
+    {
+      "name": "ruler",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:point1}}{${2:point2}}"
+      }
+    },
+    {
+      "name": "ruler",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:styles}]{${1:point1}}{${2:point2}}"
+      }
+    },
+    {
+      "name": "compass",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:point1}}{${2:point2}}"
+      }
+    },
+    {
+      "name": "compass",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:styles}]{${1:point1}}{${2:point2}}"
+      }
+    },
+    {
+      "name": "constrain"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "stop jumping",
+      "max size={${1:width}}{${2:height}}",
+      "enclosing box/offset=",
+      "constrain"
+    ]
   },
-  "macros": {
-    "thepointlabels": {},
-    "point{}{}{}": {
-      "snippet": "point{${1:path1}}{${2:path2}}{${3:intersection}}"
-    },
-    "point[]{}{}{}": {
-      "snippet": "point[${4:styles}]{${1:path1}}{${2:path2}}{${3:intersection}}"
-    },
-    "ruler{}{}": {
-      "snippet": "ruler{${1:point1}}{${2:point2}}"
-    },
-    "ruler[]{}{}": {
-      "snippet": "ruler[${3:styles}]{${1:point1}}{${2:point2}}"
-    },
-    "compass{}{}": {
-      "snippet": "compass{${1:point1}}{${2:point2}}"
-    },
-    "compass[]{}{}": {
-      "snippet": "compass[${3:styles}]{${1:point1}}{${2:point2}}"
-    },
-    "constrain": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

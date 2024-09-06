@@ -1,30 +1,51 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "fight": {},
-    "roundoff": {},
-    "floatunit": {},
-    "allfloats": {},
-    "halfbaselineskip": {},
-    "figboxht": {},
-    "mylines": {},
-    "oldendfigure": {},
-    "oldendtable": {},
-    "oldfigure": {},
-    "oldtable": {},
-    "xbaselineskip": {},
-    "ProcessOptionsKV": {}
-  },
-  "envs": {
-    "gridenv": {},
-    "gridfltenv": {}
-  },
-  "options": [
-    "fontsize=",
-    "baseline=",
-    "lines=${1:number}"
+  "deps": [
+    {
+      "name": "keyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "fight",
+      "unusual": true
+    },
+    {
+      "name": "roundoff",
+      "unusual": true
+    },
+    {
+      "name": "floatunit",
+      "unusual": true
+    },
+    {
+      "name": "allfloats",
+      "unusual": true
+    },
+    {
+      "name": "halfbaselineskip",
+      "unusual": true
+    },
+    {
+      "name": "figboxht",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "gridenv"
+    },
+    {
+      "name": "gridfltenv"
+    }
+  ],
+  "keys": {
+    "\\usepackage/grid#c": [
+      "fontsize=",
+      "baseline=",
+      "lines=${1:number}"
+    ]
+  },
+  "args": [
+    "\\usepackage/grid#c"
+  ]
 }

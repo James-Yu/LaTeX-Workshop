@@ -1,123 +1,221 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "tcolorbox": [],
-    "tcolorboxlibrarybreakable": [],
-    "tcolorboxlibraryskins": [],
-    "mdframed": [
-      "mdframed"
+  "deps": [
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "tcolorbox"
+    },
+    {
+      "name": "tcolorboxlibrarybreakable"
+    },
+    {
+      "name": "tcolorboxlibraryskins"
+    },
+    {
+      "name": "mdframed",
+      "if": "mdframed"
+    }
+  ],
+  "macros": [
+    {
+      "name": "langscisymbol",
+      "if": "mdframed",
+      "unusual": true
+    },
+    {
+      "name": "trennlinie",
+      "if": "mdframed",
+      "unusual": true
+    },
+    {
+      "name": "tblsboxcolor",
+      "if": "mdframed",
+      "unusual": true
+    },
+    {
+      "name": "tblslinecolour",
+      "if": "mdframed",
+      "unusual": true
+    },
+    {
+      "name": "tblsfillcolour",
+      "if": "mdframed",
+      "unusual": true
+    },
+    {
+      "name": "tblssy",
+      "if": "mdframed",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:symbol}}{${2:title%text}}{${3:text}}"
+      }
+    },
+    {
+      "name": "tblssy",
+      "if": "mdframed",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:color}]{${1:symbol}}{${2:title%text}}{${3:text}}"
+      }
+    },
+    {
+      "name": "tblsli",
+      "if": "mdframed",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:linewidth%l}}{${2:title%text}}{${3:text}}"
+      }
+    },
+    {
+      "name": "tblsli",
+      "if": "mdframed",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:color}]{${1:linewidth%l}}{${2:title%text}}{${3:text}}"
+      }
+    },
+    {
+      "name": "tblsfi",
+      "if": "mdframed",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:text}}"
+      }
+    },
+    {
+      "name": "tblsfi",
+      "if": "mdframed",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:color}]{${1:title%text}}{${2:text}}"
+      }
+    },
+    {
+      "name": "tblsfr",
+      "if": "mdframed",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:symbol}}{${2:title%text}}{${3:text}}"
+      }
+    },
+    {
+      "name": "tblsfr",
+      "if": "mdframed",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:color}]{${1:symbol}}{${2:title%text}}{${3:text}}"
+      }
+    },
+    {
+      "name": "tblsfd",
+      "if": "mdframed",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:color}}{${2:linewidth%l}}{${3:title%text}}{${4:content%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "tblslineshorizontal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "tblslineshorizontal",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:title%text}}[${2:width}]"
+      }
+    },
+    {
+      "name": "tblslineshorizontal",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:title%text}}[${2:width}][${3:color}]"
+      }
+    },
+    {
+      "name": "tblsfilled",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "tblsfilled",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:title%text}}[${2:color}]"
+      }
+    },
+    {
+      "name": "tblsframed",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "tblsframed",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:title%text}}[${2:width}]"
+      }
+    },
+    {
+      "name": "tblsframed",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:title%text}}[${2:width}][${3:color}]"
+      }
+    },
+    {
+      "name": "tblsfilledsymbol",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:PDF file%file}}"
+      }
+    },
+    {
+      "name": "tblsfilledsymbol",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:title%text}}[${3:color}]{${2:PDF file%file}}"
+      }
+    },
+    {
+      "name": "tblsframedsymbol",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:PDF file%file}}"
+      }
+    },
+    {
+      "name": "tblsframedsymbol",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:title%text}}[${3:color}]{${2:PDF file%file}}"
+      }
+    },
+    {
+      "name": "tblsframedsymbol",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:title%text}}[${3:color}][${4:width}]{${2:PDF file%file}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/langsci-tbls#c": [
+      "mdframed",
+      "tcolorbox"
     ]
   },
-  "macros": {
-    "langscisymbol": {
-      "option": "mdframed"
-    },
-    "trennlinie": {
-      "option": "mdframed"
-    },
-    "tblsboxcolor": {
-      "option": "mdframed"
-    },
-    "tblslinecolour": {
-      "option": "mdframed"
-    },
-    "tblsfillcolour": {
-      "option": "mdframed"
-    },
-    "tblssy{}{}{}": {
-      "snippet": "tblssy{${1:symbol}}{${2:title}}{${3:text}}",
-      "option": "mdframed"
-    },
-    "tblssy[]{}{}{}": {
-      "snippet": "tblssy[${4:color}]{${1:symbol}}{${2:title}}{${3:text}}",
-      "option": "mdframed"
-    },
-    "tblsli{}{}{}": {
-      "snippet": "tblsli{${1:linewidth}}{${2:title}}{${3:text}}",
-      "option": "mdframed"
-    },
-    "tblsli[]{}{}{}": {
-      "snippet": "tblsli[${4:color}]{${1:linewidth}}{${2:title}}{${3:text}}",
-      "option": "mdframed"
-    },
-    "tblsfi{}{}": {
-      "snippet": "tblsfi{${1:title}}{${2:text}}",
-      "option": "mdframed"
-    },
-    "tblsfi[]{}{}": {
-      "snippet": "tblsfi[${3:color}]{${1:title}}{${2:text}}",
-      "option": "mdframed"
-    },
-    "tblsfr{}{}{}": {
-      "snippet": "tblsfr{${1:symbol}}{${2:title}}{${3:text}}",
-      "option": "mdframed"
-    },
-    "tblsfr[]{}{}{}": {
-      "snippet": "tblsfr[${4:color}]{${1:symbol}}{${2:title}}{${3:text}}",
-      "option": "mdframed"
-    },
-    "tblsfd{}{}{}{}": {
-      "snippet": "tblsfd{${1:color}}{${2:linewidth}}{${3:title}}{${4:content}}",
-      "option": "mdframed"
-    }
-  },
-  "envs": {
-    "tblslineshorizontal{}": {
-      "name": "tblslineshorizontal",
-      "snippet": "{${1:title}}"
-    },
-    "tblslineshorizontal{}[]": {
-      "name": "tblslineshorizontal",
-      "snippet": "{${1:title}}[${2:width}]"
-    },
-    "tblslineshorizontal{}[][]": {
-      "name": "tblslineshorizontal",
-      "snippet": "{${1:title}}[${2:width}][${3:color}]"
-    },
-    "tblsfilled{}": {
-      "name": "tblsfilled",
-      "snippet": "{${1:title}}"
-    },
-    "tblsfilled{}[]": {
-      "name": "tblsfilled",
-      "snippet": "{${1:title}}[${2:color}]"
-    },
-    "tblsframed{}": {
-      "name": "tblsframed",
-      "snippet": "{${1:title}}"
-    },
-    "tblsframed{}[]": {
-      "name": "tblsframed",
-      "snippet": "{${1:title}}[${2:width}]"
-    },
-    "tblsframed{}[][]": {
-      "name": "tblsframed",
-      "snippet": "{${1:title}}[${2:width}][${3:color}]"
-    },
-    "tblsfilledsymbol{}{}": {
-      "name": "tblsfilledsymbol",
-      "snippet": "{${1:title}}{${2:PDF file}}"
-    },
-    "tblsfilledsymbol{}[]{}": {
-      "name": "tblsfilledsymbol",
-      "snippet": "{${1:title}}[${2:color}]{${3:PDF file}}"
-    },
-    "tblsframedsymbol{}{}": {
-      "name": "tblsframedsymbol",
-      "snippet": "{${1:title}}{${2:PDF file}}"
-    },
-    "tblsframedsymbol{}[]{}": {
-      "name": "tblsframedsymbol",
-      "snippet": "{${1:title}}[${2:color}]{${3:PDF file}}"
-    },
-    "tblsframedsymbol{}[][]{}": {
-      "name": "tblsframedsymbol",
-      "snippet": "{${1:title}}[${2:color}][${3:width}]{${4:PDF file}}"
-    }
-  },
-  "options": [
-    "mdframed",
-    "tcolorbox"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/langsci-tbls#c"
+  ]
 }

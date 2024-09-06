@@ -1,107 +1,215 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "MnSymbol": [],
-    "eufrak": [],
-    "microtype": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "figureversion{}": {
-      "snippet": "figureversion{${1:type}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "digamma": {
-      "detail": "ϝ",
-      "documentation": "GREEK SMALL LETTER DIGAMMA"
+    {
+      "name": "MnSymbol"
     },
-    "varkappa": {
-      "detail": "𝜘",
-      "documentation": "MATHEMATICAL ITALIC KAPPA SYMBOL"
+    {
+      "name": "eufrak"
     },
-    "varbeta": {
-      "detail": "ϐ",
-      "documentation": "rounded be greek"
+    {
+      "name": "microtype"
     },
-    "backepsilon": {
-      "detail": "϶",
-      "documentation": "GREEK REVERSED LUNATE EPSILON SYMBOL"
-    },
-    "varbackepsilon": {},
-    "lambdabar": {},
-    "lambdaslash": {},
-    "slashedzero": {},
-    "openg": {},
-    "eth": {
-      "detail": "ð",
-      "documentation": "eth"
-    },
-    "Bbbk": {
-      "detail": "𝕜",
-      "documentation": "MATHEMATICAL DOUBLE-STRUCK SMALL K"
-    },
-    "uphbar": {},
-    "uppartial": {},
-    "upell": {},
-    "upimath": {},
-    "upjmath": {},
-    "varsmallint": {},
-    "varint": {},
-    "variint": {},
-    "variiint": {},
-    "variiiint": {},
-    "varidotsint": {},
-    "varlandupint": {},
-    "varlanddownint": {},
-    "varstrokedint": {},
-    "varoint": {},
-    "varoiint": {},
-    "varrcirclerightint": {},
-    "varlcirclerightint": {},
-    "varrcircleleftint": {},
-    "varlcircleleftint": {},
-    "varsumint": {},
-    "smallfrac{}{}": {
-      "snippet": "smallfrac{${1:numerator}}{${2:denominator}}"
-    },
-    "slantfrac{}{}": {
-      "snippet": "slantfrac{${1:numerator}}{${2:denominator}}"
-    },
-    "ibycusdefault": {}
-  },
-  "envs": {},
-  "options": [
-    "smallfamily",
-    "medfamily",
-    "fullfamily",
-    "noopticals",
-    "opticals",
-    "slides",
-    "normalsize",
-    "nonormalsize",
-    "onlytext",
-    "onlymath",
-    "textosf",
-    "mathosf",
-    "osf",
-    "textlf",
-    "mathlf",
-    "lf",
-    "mathtabular",
-    "mnsy",
-    "cmsy",
-    "swash",
-    "abx",
-    "amsbb",
-    "fourierbb",
-    "lucidabb",
-    "mixedgreek",
-    "italicgreek",
-    "frenchmath",
-    "scale=${1:factor}",
-    "minionint",
-    "openg",
-    "loosequotes",
-    "footnotefigures"
+    {
+      "name": "fontaxes"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "figureversion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type%keyvals}}",
+        "keys": [
+          "\\figureversion"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "digamma"
+    },
+    {
+      "name": "varkappa"
+    },
+    {
+      "name": "varbeta"
+    },
+    {
+      "name": "backepsilon"
+    },
+    {
+      "name": "varbackepsilon"
+    },
+    {
+      "name": "lambdabar"
+    },
+    {
+      "name": "lambdaslash"
+    },
+    {
+      "name": "slashedzero"
+    },
+    {
+      "name": "openg"
+    },
+    {
+      "name": "eth"
+    },
+    {
+      "name": "Bbbk",
+      "detail": "𝕜 (\"bbold fourier\" command)",
+      "doc": "\\bbbk (amssymb), mathematical double-struck small k"
+    },
+    {
+      "name": "uphbar",
+      "unusual": true
+    },
+    {
+      "name": "uppartial",
+      "unusual": true
+    },
+    {
+      "name": "upell",
+      "unusual": true
+    },
+    {
+      "name": "upimath",
+      "unusual": true
+    },
+    {
+      "name": "upjmath",
+      "unusual": true
+    },
+    {
+      "name": "varsmallint",
+      "unusual": true
+    },
+    {
+      "name": "varint",
+      "unusual": true
+    },
+    {
+      "name": "variint",
+      "unusual": true
+    },
+    {
+      "name": "variiint",
+      "unusual": true
+    },
+    {
+      "name": "variiiint",
+      "unusual": true
+    },
+    {
+      "name": "varidotsint",
+      "unusual": true
+    },
+    {
+      "name": "varlandupint",
+      "unusual": true
+    },
+    {
+      "name": "varlanddownint",
+      "unusual": true
+    },
+    {
+      "name": "varstrokedint",
+      "unusual": true
+    },
+    {
+      "name": "varoint",
+      "unusual": true
+    },
+    {
+      "name": "varoiint",
+      "unusual": true
+    },
+    {
+      "name": "varrcirclerightint",
+      "unusual": true
+    },
+    {
+      "name": "varlcirclerightint",
+      "unusual": true
+    },
+    {
+      "name": "varrcircleleftint",
+      "unusual": true
+    },
+    {
+      "name": "varlcircleleftint",
+      "unusual": true
+    },
+    {
+      "name": "varsumint",
+      "unusual": true
+    },
+    {
+      "name": "smallfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "slantfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/MinionPro#c": [
+      "smallfamily",
+      "medfamily",
+      "fullfamily",
+      "noopticals",
+      "opticals",
+      "slides",
+      "normalsize",
+      "nonormalsize",
+      "onlytext",
+      "onlymath",
+      "textosf",
+      "mathosf",
+      "osf",
+      "textlf",
+      "mathlf",
+      "lf",
+      "mathtabular",
+      "mnsy",
+      "cmsy",
+      "swash",
+      "abx",
+      "amsbb",
+      "fourierbb",
+      "lucidabb",
+      "mixedgreek",
+      "italicgreek",
+      "frenchmath",
+      "scale=${1:factor}",
+      "minionint",
+      "openg",
+      "loosequotes",
+      "footnotefigures"
+    ],
+    "\\figureversion": [
+      "text",
+      "osf",
+      "lining",
+      "lf",
+      "tabular",
+      "tab",
+      "proportional",
+      "prop"
+    ]
+  },
+  "args": [
+    "\\usepackage/MinionPro#c"
+  ]
 }

@@ -1,29 +1,43 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "Gotoh{}{}": {
-      "snippet": "Gotoh{${1:sequenceA}}{${2:sequenceB}}"
+  "deps": [
+    {
+      "name": "xkeyval"
+    }
+  ],
+  "macros": [
+    {
+      "name": "Gotoh",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sequenceA}}{${2:sequenceB}}"
+      }
     },
-    "Gotoh[]{}{}": {
-      "snippet": "Gotoh[${3:options}]{${1:sequenceA}}{${2:sequenceB}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "Gotoh",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:sequenceA}}{${2:sequenceB}}",
+        "keys": [
+          "\\Gotoh,\\GotohConfig"
+        ],
+        "keyPos": 0
+      }
     },
-    "GotohConfig{}": {
-      "snippet": "GotohConfig{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "GotohScore": {},
-    "GotohResultA": {},
-    "GotohResultB": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "GotohConfig",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\Gotoh,\\GotohConfig"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\Gotoh,\\GotohConfig": [
       "score=${1:control sequence}",
       "result A=${1:control sequence}",
       "result B=${1:control sequence}",
@@ -35,5 +49,6 @@
       "gap char=${1:character}",
       "uppercase"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,67 +1,125 @@
 {
-  "includes": {
-    "ifthen": [],
-    "ragged2e": [
+  "deps": [
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "ragged2e",
+      "if": "raggedright"
+    },
+    {
+      "name": "ragged2e",
+      "if": "raggedleft"
+    },
+    {
+      "name": "ragged2e",
+      "if": "ragged"
+    }
+  ],
+  "macros": [
+    {
+      "name": "sidecaptionsep",
+      "unusual": true
+    },
+    {
+      "name": "sidecaptionrelwidth",
+      "unusual": true
+    },
+    {
+      "name": "sidecaptionvpos",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "SCtable"
+    },
+    {
+      "name": "SCtable",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:rel-width}]"
+      }
+    },
+    {
+      "name": "SCtable",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:rel-width}][${2:float}]"
+      }
+    },
+    {
+      "name": "SCfigure"
+    },
+    {
+      "name": "SCfigure",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:rel-width}]"
+      }
+    },
+    {
+      "name": "SCfigure",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:rel-width}][${2:float}]"
+      }
+    },
+    {
+      "name": "SCtable*"
+    },
+    {
+      "name": "SCtable*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:rel-width}]"
+      }
+    },
+    {
+      "name": "SCtable*",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:rel-width}][${2:float}]"
+      }
+    },
+    {
+      "name": "SCfigure*"
+    },
+    {
+      "name": "SCfigure*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:rel-width}]"
+      }
+    },
+    {
+      "name": "SCfigure*",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:rel-width}][${2:float}]"
+      }
+    },
+    {
+      "name": "wide"
+    }
+  ],
+  "keys": {
+    "\\usepackage/sidecap#c": [
+      "outercaption",
+      "innercaption",
+      "leftcaption",
+      "rightcaption",
+      "wide",
       "raggedright",
       "raggedleft",
       "ragged"
     ]
   },
-  "macros": {
-    "sidecaptionsep": {},
-    "sidecaptionrelwidth": {},
-    "sidecaptionvpos{}{}": {
-      "snippet": "sidecaptionvpos{${1:arg1}}{${2:arg2}}"
-    }
-  },
-  "envs": {
-    "SCtable": {},
-    "SCtable[]": {
-      "name": "SCtable",
-      "snippet": "[${1:rel-width}]"
-    },
-    "SCtable[][]": {
-      "name": "SCtable",
-      "snippet": "[${1:rel-width}][${2:float}]"
-    },
-    "SCfigure": {},
-    "SCfigure[]": {
-      "name": "SCfigure",
-      "snippet": "[${1:rel-width}]"
-    },
-    "SCfigure[][]": {
-      "name": "SCfigure",
-      "snippet": "[${1:rel-width}][${2:float}]"
-    },
-    "SCtable*": {},
-    "SCtable*[]": {
-      "name": "SCtable*",
-      "snippet": "[${1:rel-width}]"
-    },
-    "SCtable*[][]": {
-      "name": "SCtable*",
-      "snippet": "[${1:rel-width}][${2:float}]"
-    },
-    "SCfigure*": {},
-    "SCfigure*[]": {
-      "name": "SCfigure*",
-      "snippet": "[${1:rel-width}]"
-    },
-    "SCfigure*[][]": {
-      "name": "SCfigure*",
-      "snippet": "[${1:rel-width}][${2:float}]"
-    },
-    "wide": {}
-  },
-  "options": [
-    "outercaption",
-    "innercaption",
-    "leftcaption",
-    "rightcaption",
-    "wide",
-    "raggedright",
-    "raggedleft",
-    "ragged"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/sidecap#c"
+  ]
 }

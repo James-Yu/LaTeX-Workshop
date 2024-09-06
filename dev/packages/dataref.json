@@ -1,130 +1,285 @@
 {
-  "includes": {
-    "pgf": [],
-    "iftex": [],
-    "kvoptions": [],
-    "etoolbox": [],
-    "xtab": [
-      "usagereport"
-    ],
-    "booktabs": [
-      "usagereport"
-    ]
-  },
-  "macros": {
-    "drefusagereport": {
-      "option": "usagereport"
+  "deps": [
+    {
+      "name": "pgf"
     },
-    "drefset{}{}": {
-      "snippet": "drefset{${1:name}}{${2:value}}"
+    {
+      "name": "iftex"
     },
-    "drefset[]{}{}": {
-      "snippet": "drefset[${3:options}]{${1:name}}{${2:value}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "kvoptions"
     },
-    "drefsave{}{}": {
-      "snippet": "drefsave{${1:name}}{${2:value}}"
+    {
+      "name": "etoolbox"
     },
-    "drefsave[]{}{}": {
-      "snippet": "drefsave[${3:options}]{${1:name}}{${2:value}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xtab",
+      "if": "usagereport"
     },
-    "drefinput{}": {
-      "snippet": "drefinput{${1:file}}"
-    },
-    "drefinput[]{}": {
-      "snippet": "drefinput[${2:prefix}]{${1:file}}"
-    },
-    "dref{}": {
-      "snippet": "dref{${1:name}}"
-    },
-    "dref[]{}": {
-      "snippet": "dref[${2:options}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "dref*{}": {
-      "snippet": "dref*{${1:name}}"
-    },
-    "dref*[]{}": {
-      "snippet": "dref*[${2:options}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drefvalueof{}": {
-      "snippet": "drefvalueof{${1:name}}"
-    },
-    "drefref{}": {
-      "snippet": "drefref{${1:name}}"
-    },
-    "drefsethelp{}{}": {
-      "snippet": "drefsethelp{${1:pattern}}{${2:text}}"
-    },
-    "drefhelp{}": {
-      "snippet": "drefhelp{${1:name}}"
-    },
-    "drefresult": {},
-    "drefcalc{}": {
-      "snippet": "drefcalc{${1:expression}}"
-    },
-    "drefcalc[]{}": {
-      "snippet": "drefcalc[${2:options}]{${1:expression}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drefcalc*{}": {
-      "snippet": "drefcalc*{${1:expression}}"
-    },
-    "drefcalc*[]{}": {
-      "snippet": "drefcalc*[${2:options}]{${1:number}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drefformat{}": {
-      "snippet": "drefformat{${1:number}}"
-    },
-    "drefrel{}": {
-      "snippet": "drefrel{${1:key or value}}"
-    },
-    "drefrel[]{}": {
-      "snippet": "drefrel[${2:options}]{${1:key or value}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drefrel*{}": {
-      "snippet": "drefrel*{${1:key or value}}"
-    },
-    "drefrel*[]{}": {
-      "snippet": "drefrel*[${2:options}]{${1:key or value}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drefrow{}{}": {
-      "snippet": "drefrow{${1:csv list}}{${2:key template}}"
-    },
-    "drefrow[]{}{}": {
-      "snippet": "drefrow[${3:options}]{${1:csv list}}{${2:key template}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drefrow*{}{}": {
-      "snippet": "drefrow*{${1:csv list}}{${2:key template}}"
-    },
-    "drefassert{}": {
-      "snippet": "drefassert{${1:expression}}"
-    },
-    "drefkeys{}": {
-      "snippet": "drefkeys{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "booktabs",
+      "if": "usagereport"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "drefusagereport",
+      "if": "usagereport"
+    },
+    {
+      "name": "drefset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:value}}"
+      }
+    },
+    {
+      "name": "drefset",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:value}}",
+        "keys": [
+          "\\drefset#c,\\drefsave#c,\\dref#c,\\dref*#c,\\drefcalc#c,\\drefcalc*#c,\\drefrel#c,\\drefrel*#c,\\drefrow#c,\\drefkeys#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "drefsave",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:value}}"
+      }
+    },
+    {
+      "name": "drefsave",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:value}}",
+        "keys": [
+          "\\drefset#c,\\drefsave#c,\\dref#c,\\dref*#c,\\drefcalc#c,\\drefcalc*#c,\\drefrel#c,\\drefrel*#c,\\drefrow#c,\\drefkeys#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "drefinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "drefinput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix}]{${1:file}}"
+      }
+    },
+    {
+      "name": "dref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "dref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\drefset#c,\\drefsave#c,\\dref#c,\\dref*#c,\\drefcalc#c,\\drefcalc*#c,\\drefrel#c,\\drefrel*#c,\\drefrow#c,\\drefkeys#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "dref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "dref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\drefset#c,\\drefsave#c,\\dref#c,\\dref*#c,\\drefcalc#c,\\drefcalc*#c,\\drefrel#c,\\drefrel*#c,\\drefrow#c,\\drefkeys#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "drefvalueof",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "drefref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "drefsethelp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pattern}}{${2:text}}"
+      }
+    },
+    {
+      "name": "drefhelp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "drefresult"
+    },
+    {
+      "name": "drefcalc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "drefcalc",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:expression}}",
+        "keys": [
+          "\\drefset#c,\\drefsave#c,\\dref#c,\\dref*#c,\\drefcalc#c,\\drefcalc*#c,\\drefrel#c,\\drefrel*#c,\\drefrow#c,\\drefkeys#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "drefcalc*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "drefcalc*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:expression}}",
+        "keys": [
+          "\\drefset#c,\\drefsave#c,\\dref#c,\\dref*#c,\\drefcalc#c,\\drefcalc*#c,\\drefrel#c,\\drefrel*#c,\\drefrow#c,\\drefkeys#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "drefformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "drefcalc*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:number}}",
+        "keys": [
+          "\\drefset#c,\\drefsave#c,\\dref#c,\\dref*#c,\\drefcalc#c,\\drefcalc*#c,\\drefrel#c,\\drefrel*#c,\\drefrow#c,\\drefkeys#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "drefrel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key or value}}"
+      }
+    },
+    {
+      "name": "drefrel",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:key or value}}",
+        "keys": [
+          "\\drefset#c,\\drefsave#c,\\dref#c,\\dref*#c,\\drefcalc#c,\\drefcalc*#c,\\drefrel#c,\\drefrel*#c,\\drefrow#c,\\drefkeys#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "drefrel*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key or value}}"
+      }
+    },
+    {
+      "name": "drefrel*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:key or value}}",
+        "keys": [
+          "\\drefset#c,\\drefsave#c,\\dref#c,\\dref*#c,\\drefcalc#c,\\drefcalc*#c,\\drefrel#c,\\drefrel*#c,\\drefrow#c,\\drefkeys#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "drefrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csv list}}{${2:key template}}"
+      }
+    },
+    {
+      "name": "drefrow",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:csv list}}{${2:key template}}",
+        "keys": [
+          "\\drefset#c,\\drefsave#c,\\dref#c,\\dref*#c,\\drefcalc#c,\\drefcalc*#c,\\drefrel#c,\\drefrel*#c,\\drefrow#c,\\drefkeys#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "drefrow*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csv list}}{${2:key template}}"
+      }
+    },
+    {
+      "name": "drefassert",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "drefkeys",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\drefset#c,\\drefsave#c,\\dref#c,\\dref*#c,\\drefcalc#c,\\drefcalc*#c,\\drefrel#c,\\drefrel*#c,\\drefrow#c,\\drefkeys#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\drefset#c,\\drefsave#c,\\dref#c,\\dref*#c,\\drefcalc#c,\\drefcalc*#c,\\drefrel#c,\\drefrel*#c,\\drefrow#c,\\drefkeys#c": [
       "set=${1:key}",
       "save=${1:key}",
       "to macro=${1:macro}",
@@ -154,5 +309,6 @@
       "noassert",
       "annotate=${1|none,footnote,pdfcomment,typeout|}"
     ]
-  ]
+  },
+  "args": []
 }

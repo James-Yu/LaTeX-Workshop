@@ -1,111 +1,251 @@
 {
-  "includes": {
-    "tikz": [],
-    "etoolbox": [],
-    "tikzlibraryshadows": [
+  "deps": [
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "tikzlibraryshadows",
+      "if": "shadow"
+    }
+  ],
+  "macros": [
+    {
+      "name": "opaqueblock<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "opaqueblock<overlay specification>",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:text}}"
+      }
+    },
+    {
+      "name": "invblock<overlay specification>"
+    },
+    {
+      "name": "setalignment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:alignment%keyvals}}",
+        "keys": [
+          "\\setalignment#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setvisopacity",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:opacity}}"
+      }
+    },
+    {
+      "name": "setinvopacity",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:opacity}}"
+      }
+    },
+    {
+      "name": "dynalert<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setwordscolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "setshadowopacity",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:opacity}}"
+      }
+    },
+    {
+      "name": "setblockcolor",
+      "if": "customcolors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "setbordercolor",
+      "if": "customcolors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "setinnercolor",
+      "if": "customcolors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "setoutercolor",
+      "if": "customcolors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "settopcolor",
+      "if": "customcolors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "setbottomcolor",
+      "if": "customcolors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "setleftcolor",
+      "if": "customcolors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "setrightcolor",
+      "if": "customcolors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "fancyblock<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "fancyblock<overlay specification>",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:text}}"
+      }
+    },
+    {
+      "name": "vshadeblock<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "vshadeblock<overlay specification>",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:text}}"
+      }
+    },
+    {
+      "name": "oshadeblock<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "oshadeblock<overlay specification>",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:text}}"
+      }
+    },
+    {
+      "name": "thecol",
+      "unusual": true
+    },
+    {
+      "name": "thebordercol",
+      "unusual": true
+    },
+    {
+      "name": "myalert",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "printthistext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "savetext",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id}}{${2:text}}"
+      }
+    },
+    {
+      "name": "thethistext",
+      "unusual": true
+    },
+    {
+      "name": "intdimension",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "dynblock"
+    }
+  ],
+  "keys": {
+    "\\usepackage/dynblocks#c": [
+      "customcolors",
+      "getthemecolors",
+      "roundedcorners",
       "shadow"
+    ],
+    "\\setalignment#c": [
+      "left",
+      "flush left",
+      "right",
+      "flush right",
+      "center",
+      "flush center",
+      "justify",
+      "none"
     ]
   },
-  "macros": {
-    "opaqueblock<>{}": {
-      "snippet": "opaqueblock<${2:overlay specification}>{${1:text}}"
-    },
-    "opaqueblock<>[]{}": {
-      "snippet": "opaqueblock<${3:overlay specification}>[${2:width}]{${1:text}}"
-    },
-    "invblock<>": {
-      "snippet": "invblock<${1:overlay specification}>"
-    },
-    "setalignment{}": {
-      "snippet": "setalignment{${1:alignment}}"
-    },
-    "setvisopacity{}": {
-      "snippet": "setvisopacity{${1:opacity}}"
-    },
-    "setinvopacity{}": {
-      "snippet": "setinvopacity{${1:opacity}}"
-    },
-    "dynalert<>{}": {
-      "snippet": "dynalert<${2:overlay specification}>{${1:text}}"
-    },
-    "setwordscolor{}": {
-      "snippet": "setwordscolor{${1:color}}"
-    },
-    "setshadowopacity{}": {
-      "snippet": "setshadowopacity{${1:opacity}}"
-    },
-    "setblockcolor{}": {
-      "snippet": "setblockcolor{${1:color}}",
-      "option": "customcolors"
-    },
-    "setbordercolor{}": {
-      "snippet": "setbordercolor{${1:color}}",
-      "option": "customcolors"
-    },
-    "setinnercolor{}": {
-      "snippet": "setinnercolor{${1:color}}",
-      "option": "customcolors"
-    },
-    "setoutercolor{}": {
-      "snippet": "setoutercolor{${1:color}}",
-      "option": "customcolors"
-    },
-    "settopcolor{}": {
-      "snippet": "settopcolor{${1:color}}",
-      "option": "customcolors"
-    },
-    "setbottomcolor{}": {
-      "snippet": "setbottomcolor{${1:color}}",
-      "option": "customcolors"
-    },
-    "setleftcolor{}": {
-      "snippet": "setleftcolor{${1:color}}",
-      "option": "customcolors"
-    },
-    "setrightcolor{}": {
-      "snippet": "setrightcolor{${1:color}}",
-      "option": "customcolors"
-    },
-    "fancyblock<>{}": {
-      "snippet": "fancyblock<${2:overlay specification}>{${1:text}}"
-    },
-    "fancyblock<>[]{}": {
-      "snippet": "fancyblock<${3:overlay specification}>[${2:width}]{${1:text}}"
-    },
-    "vshadeblock<>{}": {
-      "snippet": "vshadeblock<${2:overlay specification}>{${1:text}}"
-    },
-    "vshadeblock<>[]{}": {
-      "snippet": "vshadeblock<${3:overlay specification}>[${2:width}]{${1:text}}"
-    },
-    "oshadeblock<>{}": {
-      "snippet": "oshadeblock<${2:overlay specification}>{${1:text}}"
-    },
-    "oshadeblock<>[]{}": {
-      "snippet": "oshadeblock<${3:overlay specification}>[${2:width}]{${1:text}}"
-    },
-    "thecol": {},
-    "thebordercol": {},
-    "myalert{}": {
-      "snippet": "myalert{${1:text}}"
-    },
-    "printthistext{}": {
-      "snippet": "printthistext{${1:id}}"
-    },
-    "savetext{}{}": {
-      "snippet": "savetext{${1:id}}{${2:text}}"
-    },
-    "thethistext": {},
-    "intdimension": {}
-  },
-  "envs": {
-    "dynblock": {}
-  },
-  "options": [
-    "customcolors",
-    "getthemecolors",
-    "roundedcorners",
-    "shadow"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/dynblocks#c"
+  ]
 }

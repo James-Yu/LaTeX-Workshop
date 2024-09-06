@@ -1,103 +1,202 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "luatexja": [],
-    "luatexja-fontspec": []
-  },
-  "macros": {
-    "ebdefault": {
-      "option": "deluxe"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "ebseries": {
-      "option": "deluxe"
+    {
+      "name": "luatexja"
     },
-    "gtebfamily": {
-      "option": "deluxe"
-    },
-    "ltdefault": {
-      "option": "deluxe"
-    },
-    "ltseries": {
-      "option": "deluxe"
-    },
-    "mgfamily": {
-      "option": "deluxe"
-    },
-    "texteb{}": {
-      "snippet": "texteb{${1:text}}",
-      "option": "deluxe"
-    },
-    "textlt{}": {
-      "snippet": "textlt{${1:text}}",
-      "option": "deluxe"
-    },
-    "textmg{}": {
-      "snippet": "textmg{${1:text}}",
-      "option": "deluxe"
-    },
-    "rubyfamily": {
-      "option": "expert"
-    },
-    "ltjnewpreset{}{}": {
-      "snippet": "ltjnewpreset{${1:name}}{${2:specification}}"
-    },
-    "ltjnewpreset*{}{}": {
-      "snippet": "ltjnewpreset*{${1:name}}{${2:specification}}"
-    },
-    "ltjapplypreset{}": {
-      "snippet": "ltjapplypreset{${1:name}}"
+    {
+      "name": "luatexja-fontspec"
     }
-  },
-  "envs": {},
-  "options": [
-    "fontspec",
-    "nfssonly",
-    "nodeluxe",
-    "deluxe",
-    "expert",
-    "bold",
-    "jis90",
-    "jis2004",
-    "jfm_yoko=${1:jfm}",
-    "jfm_tate=${1:jfm}",
-    "jis",
-    "kozuka-pro",
-    "kozuka-pr6",
-    "kozuka-pr6n",
-    "hiragino-pro",
-    "hiragino-pron",
-    "bizud",
-    "morisawa-pro",
-    "morisawa-pr6n",
-    "yu-win",
-    "yu-win10",
-    "yu-osx",
-    "moga-mobo",
-    "moga-mobo-ex",
-    "ume",
-    "sourcehan",
-    "sourcehan-jp",
-    "noto-otc",
-    "noto-otf",
-    "noto-jp",
-    "haranoaji",
-    "noembed",
-    "ipa",
-    "ipaex",
-    "ms",
-    "ipa-hg",
-    "ipaex-hg",
-    "ms-hg",
-    "match",
-    "scale=${1:factor}",
-    "tuenc",
-    "euenc",
-    "math",
-    "no-math",
-    "config",
-    "no-config",
-    "quiet",
-    "silent"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ebdefault",
+      "if": "deluxe",
+      "unusual": true
+    },
+    {
+      "name": "ebseries",
+      "if": "deluxe"
+    },
+    {
+      "name": "gtebfamily",
+      "if": "deluxe"
+    },
+    {
+      "name": "ltdefault",
+      "if": "deluxe",
+      "unusual": true
+    },
+    {
+      "name": "ltseries",
+      "if": "deluxe"
+    },
+    {
+      "name": "mgfamily",
+      "if": "deluxe"
+    },
+    {
+      "name": "texteb",
+      "if": "deluxe",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textlt",
+      "if": "deluxe",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textmg",
+      "if": "deluxe",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rubyfamily",
+      "if": "expert"
+    },
+    {
+      "name": "ltjnewpreset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:specification%keyvals}}",
+        "keys": [
+          "\\ltjnewpreset#c,\\ltjnewpreset*#c",
+          "\\ltjnewpreset#c,\\ltjnewpreset*#c,\\ltjapplypreset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "ltjnewpreset*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:specification%keyvals}}",
+        "keys": [
+          "\\ltjnewpreset#c,\\ltjnewpreset*#c",
+          "\\ltjnewpreset#c,\\ltjnewpreset*#c,\\ltjapplypreset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "ltjapplypreset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}",
+        "keys": [
+          "\\ltjnewpreset#c,\\ltjnewpreset*#c,\\ltjapplypreset#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/luatexja-preset#c": [
+      "fontspec",
+      "nfssonly",
+      "nodeluxe",
+      "deluxe",
+      "expert",
+      "bold",
+      "jis90",
+      "jis2004",
+      "jfm_yoko=${1:jfm}",
+      "jfm_tate=${1:jfm}",
+      "jis",
+      "kozuka-pro",
+      "kozuka-pr6",
+      "kozuka-pr6n",
+      "hiragino-pro",
+      "hiragino-pron",
+      "bizud",
+      "morisawa-pro",
+      "morisawa-pr6n",
+      "yu-win",
+      "yu-win10",
+      "yu-osx",
+      "moga-mobo",
+      "moga-mobo-ex",
+      "ume",
+      "sourcehan",
+      "sourcehan-jp",
+      "noto-otc",
+      "noto-otf",
+      "noto-jp",
+      "haranoaji",
+      "noembed",
+      "ipa",
+      "ipaex",
+      "ms",
+      "ipa-hg",
+      "ipaex-hg",
+      "ms-hg",
+      "match",
+      "scale=${1:factor}",
+      "tuenc",
+      "euenc",
+      "math",
+      "no-math",
+      "config",
+      "no-config",
+      "quiet",
+      "silent"
+    ],
+    "\\ltjnewpreset#c,\\ltjnewpreset*#c": [
+      "mc-l=${1:font}",
+      "mc-m=${1:font}",
+      "mc-b=${1:font}",
+      "mc-bx=${1:font}",
+      "gt-m=${1:font}",
+      "gt-b=${1:font}",
+      "gt-bx=${1:font}",
+      "gt-eb=${1:font}",
+      "mg-m=${1:font}",
+      "mc=${1:font}",
+      "gt=${1:font}"
+    ],
+    "\\ltjnewpreset#c,\\ltjnewpreset*#c,\\ltjapplypreset#c": [
+      "%luatexjapreset",
+      "kozuka-pro",
+      "kozuka-pr6",
+      "kozuka-pr6n",
+      "hiragino-pro",
+      "hiragino-pron",
+      "bizud",
+      "morisawa-pro",
+      "morisawa-pr6n",
+      "yu-win",
+      "yu-win10",
+      "yu-osx",
+      "moga-mobo",
+      "moga-mobo-ex",
+      "ume",
+      "sourcehan",
+      "sourcehan-jp",
+      "noto-otc",
+      "noto-otf",
+      "haranoaji",
+      "noembed",
+      "ipa",
+      "ipaex",
+      "ms",
+      "ipa-hg",
+      "ipaex-hg",
+      "ms-hg"
+    ]
+  },
+  "args": [
+    "\\usepackage/luatexja-preset#c"
+  ]
 }

@@ -1,32 +1,81 @@
 {
-  "includes": {},
-  "macros": {
-    "filelisting{}": {
-      "snippet": "filelisting{${1:file}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "filelisting",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     },
-    "NewListingEnvironment{}{}{}{}{}{}": {
-      "snippet": "NewListingEnvironment{${1:envname}}{${2:args}}{${3:before code}}{${4:init code}}{${5:line cmd}}{${6:after code}}"
+    {
+      "name": "NewListingEnvironment",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:envname}}{${2:args}}{${3:before code}}{${4:init code}}{${5:line cmd}}{${6:after code}}"
+      }
     },
-    "NewFileListingCommand{}{}{}{}{}{}": {
-      "snippet": "NewFileListingCommand{${1:cmd}}{${2:args}}{${3:before code}}{${4:init code}}{${5:line cmd}}{${6:after code}}"
+    {
+      "name": "NewFileListingCommand",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:cmd}}{${2:args}}{${3:before code}}{${4:init code}}{${5:line cmd}}{${6:after code}}"
+      }
     },
-    "listingskipamount": {},
-    "listingindent": {},
-    "listingfont": {},
-    "listingpenalty": {},
-    "prelistingpenalty": {},
-    "postlistingpenalty": {},
-    "ListingTypesetLine{}": {
-      "snippet": "ListingTypesetLine{${1:a}}"
+    {
+      "name": "listingskipamount",
+      "unusual": true
     },
-    "prelistingskip": {},
-    "postlistingskip": {},
-    "normallistingfont": {},
-    "DisableLigatureFix": {}
-  },
-  "envs": {
-    "listing": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "listingindent",
+      "unusual": true
+    },
+    {
+      "name": "listingfont",
+      "unusual": true
+    },
+    {
+      "name": "listingpenalty",
+      "unusual": true
+    },
+    {
+      "name": "prelistingpenalty",
+      "unusual": true
+    },
+    {
+      "name": "postlistingpenalty",
+      "unusual": true
+    },
+    {
+      "name": "ListingTypesetLine",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:a}}"
+      }
+    },
+    {
+      "name": "prelistingskip",
+      "unusual": true
+    },
+    {
+      "name": "postlistingskip",
+      "unusual": true
+    },
+    {
+      "name": "normallistingfont",
+      "unusual": true
+    },
+    {
+      "name": "DisableLigatureFix",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "listing"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

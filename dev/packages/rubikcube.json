@@ -1,1035 +1,3661 @@
 {
-  "includes": {
-    "forarray": [],
-    "ifthen": [],
-    "tikz": []
-  },
-  "macros": {
-    "Blb": {},
-    "Blm": {},
-    "Blt": {},
-    "Cubiedx{}": {
-      "snippet": "Cubiedx{${1:number}}"
-    },
-    "Cubiedy{}": {
-      "snippet": "Cubiedy{${1:number}}"
-    },
-    "Dlb": {},
-    "Dlm": {},
-    "Dlt": {},
-    "DrawCubieLD{}{}{}": {
-      "snippet": "DrawCubieLD{${1:Xcolor}}{${2:Ycolor}}{${3:Zcolor}}"
-    },
-    "DrawCubieLU{}{}{}": {
-      "snippet": "DrawCubieLU{${1:Xcolor}}{${2:Ycolor}}{${3:Zcolor}}"
-    },
-    "DrawCubieRD{}{}{}": {
-      "snippet": "DrawCubieRD{${1:Xcolor}}{${2:Ycolor}}{${3:Zcolor}}"
-    },
-    "DrawCubieRU{}{}{}": {
-      "snippet": "DrawCubieRU{${1:Xcolor}}{${2:Ycolor}}{${3:Zcolor}}"
-    },
-    "DrawNCubeAll{}{}{}{}": {
-      "snippet": "DrawNCubeAll{${1:integer}}{${2:Xcolor}}{${3:Ycolor}}{${4:Zcolor}}"
-    },
-    "DrawNotationBox": {},
-    "DrawRubikCube": {},
-    "DrawRubikCubeF": {},
-    "DrawRubikCubeFrontFace": {},
-    "DrawRubikCubeLD": {},
-    "DrawRubikCubeLU": {},
-    "DrawRubikCubeRD": {},
-    "DrawRubikCubeRU": {},
-    "DrawRubikCubeSF": {},
-    "DrawRubikCubeSidebarBD{}": {
-      "snippet": "DrawRubikCubeSidebarBD{${1:view direction}}"
-    },
-    "DrawRubikCubeSidebarBDLD": {},
-    "DrawRubikCubeSidebarBDRD": {},
-    "DrawRubikCubeSidebarBL{}": {
-      "snippet": "DrawRubikCubeSidebarBL{${1:view direction}}"
-    },
-    "DrawRubikCubeSidebarBLLD": {},
-    "DrawRubikCubeSidebarBLLU": {},
-    "DrawRubikCubeSidebarBR{}": {
-      "snippet": "DrawRubikCubeSidebarBR{${1:view direction}}"
-    },
-    "DrawRubikCubeSidebarBRRD": {},
-    "DrawRubikCubeSidebarBRRU": {},
-    "DrawRubikCubeSidebarBU{}": {
-      "snippet": "DrawRubikCubeSidebarBU{${1:view direction}}"
-    },
-    "DrawRubikCubeSidebarBULU": {},
-    "DrawRubikCubeSidebarBURU": {},
-    "DrawRubikCubeSidebarDB{}": {
-      "snippet": "DrawRubikCubeSidebarDB{${1:view direction}}"
-    },
-    "DrawRubikCubeSidebarDBLD": {},
-    "DrawRubikCubeSidebarDBRD": {},
-    "DrawRubikCubeSidebarDF{}": {
-      "snippet": "DrawRubikCubeSidebarDF{${1:view direction}}"
-    },
-    "DrawRubikCubeSidebarDFLU": {},
-    "DrawRubikCubeSidebarDFRU": {},
-    "DrawRubikCubeSidebarFD{}": {
-      "snippet": "DrawRubikCubeSidebarFD{${1:view direction}}"
-    },
-    "DrawRubikCubeSidebarFDLU": {},
-    "DrawRubikCubeSidebarFDRU": {},
-    "DrawRubikCubeSidebarFL{}": {
-      "snippet": "DrawRubikCubeSidebarFL{${1:view direction}}"
-    },
-    "DrawRubikCubeSidebarFLRD": {},
-    "DrawRubikCubeSidebarFLRU": {},
-    "DrawRubikCubeSidebarFR{}": {
-      "snippet": "DrawRubikCubeSidebarFR{${1:view direction}}"
-    },
-    "DrawRubikCubeSidebarFRLD": {},
-    "DrawRubikCubeSidebarFRLU": {},
-    "DrawRubikCubeSidebarFU{}": {
-      "snippet": "DrawRubikCubeSidebarFU{${1:view direction}}"
-    },
-    "DrawRubikCubeSidebarFULD": {},
-    "DrawRubikCubeSidebarFURD": {},
-    "DrawRubikCubeSidebarLB{}": {
-      "snippet": "DrawRubikCubeSidebarLB{${1:view direction}}"
-    },
-    "DrawRubikCubeSidebarLBLD": {},
-    "DrawRubikCubeSidebarLBLU": {},
-    "DrawRubikCubeSidebarLF{}": {
-      "snippet": "DrawRubikCubeSidebarLF{${1:view direction}}"
-    },
-    "DrawRubikCubeSidebarLFRD": {},
-    "DrawRubikCubeSidebarLFRU": {},
-    "DrawRubikCubeSidebarRB{}": {
-      "snippet": "DrawRubikCubeSidebarRB{${1:view direction}}"
-    },
-    "DrawRubikCubeSidebarRBRD": {},
-    "DrawRubikCubeSidebarRBRU": {},
-    "DrawRubikCubeSidebarRF{}": {
-      "snippet": "DrawRubikCubeSidebarRF{${1:view direction}}"
-    },
-    "DrawRubikCubeSidebarRFLD": {},
-    "DrawRubikCubeSidebarRFLU": {},
-    "DrawRubikCubeSidebarUB{}": {
-      "snippet": "DrawRubikCubeSidebarUB{${1:view direction}}"
-    },
-    "DrawRubikCubeSidebarUBLU": {},
-    "DrawRubikCubeSidebarUBRU": {},
-    "DrawRubikCubeSidebarUF{}": {
-      "snippet": "DrawRubikCubeSidebarUF{${1:view direction}}"
-    },
-    "DrawRubikCubeSidebarUFLD": {},
-    "DrawRubikCubeSidebarUFRD": {},
-    "DrawRubikFaceB": {},
-    "DrawRubikFaceBack": {},
-    "DrawRubikFaceBackSide": {},
-    "DrawRubikFaceBS": {},
-    "DrawRubikFaceD": {},
-    "DrawRubikFaceDown": {},
-    "DrawRubikFaceDownSide": {},
-    "DrawRubikFaceDS": {},
-    "DrawRubikFaceF": {},
-    "DrawRubikFaceFront": {},
-    "DrawRubikFaceFrontSide": {},
-    "DrawRubikFaceFS": {},
-    "DrawRubikFaceL": {},
-    "DrawRubikFaceLeft": {},
-    "DrawRubikFaceLeftSide": {},
-    "DrawRubikFaceLS": {},
-    "DrawRubikFaceR": {},
-    "DrawRubikFaceRight": {},
-    "DrawRubikFaceRightSide": {},
-    "DrawRubikFaceRS": {},
-    "DrawRubikFaceU": {},
-    "DrawRubikFaceUp": {},
-    "DrawRubikFaceUpSide": {},
-    "DrawRubikFaceUS": {},
-    "DrawRubikFlatBack{}{}": {
-      "snippet": "DrawRubikFlatBack{${1:x}}{${2:y}}"
-    },
-    "DrawRubikFlatDown{}{}": {
-      "snippet": "DrawRubikFlatDown{${1:x}}{${2:y}}"
-    },
-    "DrawRubikFlatFront": {},
-    "DrawRubikFlatLeft{}{}": {
-      "snippet": "DrawRubikFlatLeft{${1:x}}{${2:y}}"
-    },
-    "DrawRubikFlatRight{}{}": {
-      "snippet": "DrawRubikFlatRight{${1:x}}{${2:y}}"
-    },
-    "DrawRubikFlatUp{}{}": {
-      "snippet": "DrawRubikFlatUp{${1:x}}{${2:y}}"
-    },
-    "Flb": {},
-    "Flm": {},
-    "Flt": {},
-    "Llb": {},
-    "Llm": {},
-    "Llt": {},
-    "NoSidebar{}": {
-      "snippet": "NoSidebar{${1:color-code}}"
-    },
-    "RCfiledate": {},
-    "RCfileversion": {},
-    "Rlb": {},
-    "Rlm": {},
-    "Rlt": {},
-    "rr{}": {
-      "snippet": "rr{${1:rotation code}}"
-    },
-    "rrB": {},
-    "rrb": {},
-    "rrBa": {},
-    "rrBap": {},
-    "rrBc": {},
-    "rrBcp": {},
-    "rrBm": {},
-    "rrBmp": {},
-    "rrBp": {},
-    "rrbp": {},
-    "rrBs": {},
-    "rrBsp": {},
-    "rrBw": {},
-    "rrBwp": {},
-    "rrCB": {},
-    "rrCBp": {},
-    "rrCD": {},
-    "rrCDp": {},
-    "rrCF": {},
-    "rrCFp": {},
-    "rrCL": {},
-    "rrCLp": {},
-    "rrCR": {},
-    "rrCRp": {},
-    "rrCU": {},
-    "rrCUp": {},
-    "rrD": {},
-    "rrd": {},
-    "rrDa": {},
-    "rrDap": {},
-    "rrDc": {},
-    "rrDcp": {},
-    "rrDm": {},
-    "rrDmp": {},
-    "rrDp": {},
-    "rrdp": {},
-    "rrDs": {},
-    "rrDsp": {},
-    "rrDw": {},
-    "rrDwp": {},
-    "rrE": {},
-    "rrEp": {},
-    "rrF": {},
-    "rrf": {},
-    "rrFa": {},
-    "rrFap": {},
-    "rrFc": {},
-    "rrFcp": {},
-    "rrFm": {},
-    "rrFmp": {},
-    "rrFp": {},
-    "rrfp": {},
-    "rrFs": {},
-    "rrFsp": {},
-    "rrFw": {},
-    "rrFwp": {},
-    "rrh{}": {
-      "snippet": "rrh{${1:rotation code}}"
-    },
-    "rrhB": {},
-    "rrhb": {},
-    "rrhBa": {},
-    "rrhBap": {},
-    "rrhBc": {},
-    "rrhBcp": {},
-    "rrhBm": {},
-    "rrhBmp": {},
-    "rrhBp": {},
-    "rrhbp": {},
-    "rrhBs": {},
-    "rrhBsp": {},
-    "rrhBw": {},
-    "rrhBwp": {},
-    "rrhCB": {},
-    "rrhCBp": {},
-    "rrhCD": {},
-    "rrhCDp": {},
-    "rrhCF": {},
-    "rrhCFp": {},
-    "rrhCL": {},
-    "rrhCLp": {},
-    "rrhCR": {},
-    "rrhCRp": {},
-    "rrhCU": {},
-    "rrhCUp": {},
-    "rrhD": {},
-    "rrhd": {},
-    "rrhDa": {},
-    "rrhDap": {},
-    "rrhDc": {},
-    "rrhDcp": {},
-    "rrhDm": {},
-    "rrhDmp": {},
-    "rrhDp": {},
-    "rrhdp": {},
-    "rrhDs": {},
-    "rrhDsp": {},
-    "rrhDw": {},
-    "rrhDwp": {},
-    "rrhE": {},
-    "rrhEp": {},
-    "rrhF": {},
-    "rrhf": {},
-    "rrhFa": {},
-    "rrhFap": {},
-    "rrhFc": {},
-    "rrhFcp": {},
-    "rrhFm": {},
-    "rrhFmp": {},
-    "rrhFp": {},
-    "rrhfp": {},
-    "rrhFs": {},
-    "rrhFsp": {},
-    "rrhFw": {},
-    "rrhFwp": {},
-    "rrhL": {},
-    "rrhl": {},
-    "rrhLa": {},
-    "rrhLap": {},
-    "rrhLc": {},
-    "rrhLcp": {},
-    "rrhLm": {},
-    "rrhLmp": {},
-    "rrhLp": {},
-    "rrhlp": {},
-    "rrhLs": {},
-    "rrhLsp": {},
-    "rrhLw": {},
-    "rrhLwp": {},
-    "rrhM": {},
-    "rrhMB": {},
-    "rrhMBp": {},
-    "rrhMD": {},
-    "rrhMDp": {},
-    "rrhMF": {},
-    "rrhMFp": {},
-    "rrhML": {},
-    "rrhMLp": {},
-    "rrhMp": {},
-    "rrhMR": {},
-    "rrhMRp": {},
-    "rrhMU": {},
-    "rrhMUp": {},
-    "rrhR": {},
-    "rrhr": {},
-    "rrhRa": {},
-    "rrhRap": {},
-    "rrhRc": {},
-    "rrhRcp": {},
-    "rrhRm": {},
-    "rrhRmp": {},
-    "rrhRp": {},
-    "rrhrp": {},
-    "rrhRs": {},
-    "rrhRsp": {},
-    "rrhRw": {},
-    "rrhRwp": {},
-    "rrhS": {},
-    "rrhSB": {},
-    "rrhSb": {},
-    "rrhSBp": {},
-    "rrhSbp": {},
-    "rrhSD": {},
-    "rrhSd": {},
-    "rrhSDp": {},
-    "rrhSdp": {},
-    "rrhSF": {},
-    "rrhSf": {},
-    "rrhSFp": {},
-    "rrhSfp": {},
-    "rrhSL": {},
-    "rrhSl": {},
-    "rrhSLp": {},
-    "rrhSlp": {},
-    "rrhSp": {},
-    "rrhSR": {},
-    "rrhSr": {},
-    "rrhSRp": {},
-    "rrhSrp": {},
-    "rrhSU": {},
-    "rrhSu": {},
-    "rrhSUp": {},
-    "rrhSup": {},
-    "rrhTB": {},
-    "rrhTBp": {},
-    "rrhTD": {},
-    "rrhTDp": {},
-    "rrhTF": {},
-    "rrhTFp": {},
-    "rrhTL": {},
-    "rrhTLp": {},
-    "rrhTR": {},
-    "rrhTRp": {},
-    "rrhTU": {},
-    "rrhTUp": {},
-    "rrhU": {},
-    "rrhu": {},
-    "rrhUa": {},
-    "rrhUap": {},
-    "rrhUc": {},
-    "rrhUcp": {},
-    "rrhUm": {},
-    "rrhUmp": {},
-    "rrhUp": {},
-    "rrhup": {},
-    "rrhUs": {},
-    "rrhUsp": {},
-    "rrhUw": {},
-    "rrhUwp": {},
-    "rrhx": {},
-    "rrhxp": {},
-    "rrhy": {},
-    "rrhyp": {},
-    "rrhz": {},
-    "rrhzp": {},
-    "rrL": {},
-    "rrl": {},
-    "rrLa": {},
-    "rrLap": {},
-    "rrLc": {},
-    "rrLcp": {},
-    "rrLm": {},
-    "rrLmp": {},
-    "rrLp": {},
-    "rrlp": {},
-    "rrLs": {},
-    "rrLsp": {},
-    "rrLw": {},
-    "rrLwp": {},
-    "rrM": {},
-    "rrMB": {},
-    "rrMBp": {},
-    "rrMD": {},
-    "rrMDp": {},
-    "rrMF": {},
-    "rrMFp": {},
-    "rrML": {},
-    "rrMLp": {},
-    "rrMp": {},
-    "rrMR": {},
-    "rrMRp": {},
-    "rrMU": {},
-    "rrMUp": {},
-    "rrR": {},
-    "rrr": {},
-    "rrRa": {},
-    "rrRap": {},
-    "rrRc": {},
-    "rrRcp": {},
-    "rrRm": {},
-    "rrRmp": {},
-    "rrRp": {},
-    "rrrp": {},
-    "rrRs": {},
-    "rrRsp": {},
-    "rrRw": {},
-    "rrRwp": {},
-    "rrS": {},
-    "rrSB": {},
-    "rrSb": {},
-    "rrSBp": {},
-    "rrSbp": {},
-    "rrSD": {},
-    "rrSd": {},
-    "rrSDp": {},
-    "rrSdp": {},
-    "rrSF": {},
-    "rrSf": {},
-    "rrSFp": {},
-    "rrSfp": {},
-    "rrSL": {},
-    "rrSl": {},
-    "rrSLp": {},
-    "rrSlp": {},
-    "rrSp": {},
-    "rrSR": {},
-    "rrSr": {},
-    "rrSRp": {},
-    "rrSrp": {},
-    "rrSU": {},
-    "rrSu": {},
-    "rrSUp": {},
-    "rrSup": {},
-    "rrTB": {},
-    "rrTBp": {},
-    "rrTD": {},
-    "rrTDp": {},
-    "rrTF": {},
-    "rrTFp": {},
-    "rrTL": {},
-    "rrTLp": {},
-    "rrTR": {},
-    "rrTRp": {},
-    "rrTU": {},
-    "rrTUp": {},
-    "rrU": {},
-    "rru": {},
-    "rrUa": {},
-    "rrUap": {},
-    "rrUc": {},
-    "rrUcp": {},
-    "rrUm": {},
-    "rrUmp": {},
-    "rrUp": {},
-    "rrup": {},
-    "rrUs": {},
-    "rrUsp": {},
-    "rrUw": {},
-    "rrUwp": {},
-    "rrx": {},
-    "rrxp": {},
-    "rry": {},
-    "rryp": {},
-    "rrz": {},
-    "rrzp": {},
-    "Rubik{}": {
-      "snippet": "Rubik{${1:rotation code}}"
-    },
-    "RubikB": {},
-    "Rubikb": {},
-    "RubikBa": {},
-    "RubikBap": {},
-    "RubikBc": {},
-    "RubikBcp": {},
-    "RubikBm": {},
-    "RubikBmp": {},
-    "RubikBp": {},
-    "Rubikbp": {},
-    "RubikBs": {},
-    "RubikBsp": {},
-    "RubikBw": {},
-    "RubikBwp": {},
-    "RubikCB": {},
-    "RubikCBp": {},
-    "RubikCD": {},
-    "RubikCDp": {},
-    "RubikCF": {},
-    "RubikCFp": {},
-    "RubikCL": {},
-    "RubikCLp": {},
-    "RubikCR": {},
-    "RubikCRp": {},
-    "RubikCU": {},
-    "Rubikcube": {},
-    "rubikcube": {},
-    "RubikCubeGray": {},
-    "RubikCubeGrayAll": {},
-    "RubikCubeGrayWB": {},
-    "RubikCubeGrayWY": {},
-    "RubikCubeGrey": {},
-    "RubikCubeGreyAll": {},
-    "RubikCubeGreyWB": {},
-    "RubikCubeGreyWY": {},
-    "RubikCubeSolved": {},
-    "RubikCubeSolvedWB": {},
-    "RubikCubeSolvedWY": {},
-    "RubikCUp": {},
-    "RubikD": {},
-    "Rubikd": {},
-    "RubikDa": {},
-    "RubikDap": {},
-    "RubikDc": {},
-    "RubikDcp": {},
-    "RubikDm": {},
-    "RubikDmp": {},
-    "RubikDp": {},
-    "Rubikdp": {},
-    "RubikDs": {},
-    "RubikDsp": {},
-    "RubikDw": {},
-    "RubikDwp": {},
-    "RubikE": {},
-    "RubikEp": {},
-    "RubikF": {},
-    "Rubikf": {},
-    "RubikFa": {},
-    "RubikFaceBack{}{}{}{}{}{}{}{}{}": {
-      "snippet": "RubikFaceBack{${1:color}}{${2:color}}{${3:color}}{${4:color}}{${5:color}}{${6:color}}{${7:color}}{${8:color}}{${9:color}}"
-    },
-    "RubikFaceBackAll{}": {
-      "snippet": "RubikFaceBackAll{${1:color}}"
-    },
-    "RubikFaceDown{}{}{}{}{}{}{}{}{}": {
-      "snippet": "RubikFaceDown{${1:color}}{${2:color}}{${3:color}}{${4:color}}{${5:color}}{${6:color}}{${7:color}}{${8:color}}{${9:color}}"
-    },
-    "RubikFaceDownAll{}": {
-      "snippet": "RubikFaceDownAll{${1:color}}"
-    },
-    "RubikFaceFront{}{}{}{}{}{}{}{}{}": {
-      "snippet": "RubikFaceFront{${1:color}}{${2:color}}{${3:color}}{${4:color}}{${5:color}}{${6:color}}{${7:color}}{${8:color}}{${9:color}}"
-    },
-    "RubikFaceFrontAll{}": {
-      "snippet": "RubikFaceFrontAll{${1:color}}"
-    },
-    "RubikFaceLeft{}{}{}{}{}{}{}{}{}": {
-      "snippet": "RubikFaceLeft{${1:color}}{${2:color}}{${3:color}}{${4:color}}{${5:color}}{${6:color}}{${7:color}}{${8:color}}{${9:color}}"
-    },
-    "RubikFaceLeftAll{}": {
-      "snippet": "RubikFaceLeftAll{${1:color}}"
-    },
-    "RubikFaceRight{}{}{}{}{}{}{}{}{}": {
-      "snippet": "RubikFaceRight{${1:color}}{${2:color}}{${3:color}}{${4:color}}{${5:color}}{${6:color}}{${7:color}}{${8:color}}{${9:color}}"
-    },
-    "RubikFaceRightAll{}": {
-      "snippet": "RubikFaceRightAll{${1:color}}"
-    },
-    "RubikFaceUp{}{}{}{}{}{}{}{}{}": {
-      "snippet": "RubikFaceUp{${1:color}}{${2:color}}{${3:color}}{${4:color}}{${5:color}}{${6:color}}{${7:color}}{${8:color}}{${9:color}}"
-    },
-    "RubikFaceUpAll{}": {
-      "snippet": "RubikFaceUpAll{${1:color}}"
-    },
-    "RubikFap": {},
-    "RubikFc": {},
-    "RubikFcp": {},
-    "RubikFm": {},
-    "RubikFmp": {},
-    "RubikFp": {},
-    "Rubikfp": {},
-    "RubikFs": {},
-    "RubikFsp": {},
-    "RubikFw": {},
-    "RubikFwp": {},
-    "RubikL": {},
-    "Rubikl": {},
-    "RubikLa": {},
-    "RubikLap": {},
-    "RubikLc": {},
-    "RubikLcp": {},
-    "RubikLm": {},
-    "RubikLmp": {},
-    "RubikLp": {},
-    "Rubiklp": {},
-    "RubikLs": {},
-    "RubikLsp": {},
-    "RubikLw": {},
-    "RubikLwp": {},
-    "RubikM": {},
-    "RubikMB": {},
-    "RubikMBp": {},
-    "RubikMD": {},
-    "RubikMDp": {},
-    "RubikMF": {},
-    "RubikMFp": {},
-    "RubikML": {},
-    "RubikMLp": {},
-    "RubikMp": {},
-    "RubikMR": {},
-    "RubikMRp": {},
-    "RubikMU": {},
-    "RubikMUp": {},
-    "RubikR": {},
-    "Rubikr": {},
-    "RubikRa": {},
-    "RubikRap": {},
-    "RubikRc": {},
-    "RubikRcp": {},
-    "RubikRm": {},
-    "RubikRmp": {},
-    "RubikRp": {},
-    "Rubikrp": {},
-    "RubikRs": {},
-    "RubikRsp": {},
-    "RubikRw": {},
-    "RubikRwp": {},
-    "RubikS": {},
-    "RubikSB": {},
-    "RubikSb": {},
-    "RubikSBp": {},
-    "RubikSbp": {},
-    "RubikSD": {},
-    "RubikSd": {},
-    "RubikSDp": {},
-    "RubikSdp": {},
-    "RubikSF": {},
-    "RubikSf": {},
-    "RubikSFp": {},
-    "RubikSfp": {},
-    "RubikSidebarLength{}": {
-      "snippet": "RubikSidebarLength{${1:number}}"
-    },
-    "RubikSideBarLength{}": {
-      "snippet": "RubikSideBarLength{${1:number}}"
-    },
-    "RubikSidebarSep{}": {
-      "snippet": "RubikSidebarSep{${1:number}}"
-    },
-    "RubikSideBarSep{}": {
-      "snippet": "RubikSideBarSep{${1:number}}"
-    },
-    "RubikSidebarWidth{}": {
-      "snippet": "RubikSidebarWidth{${1:number}}"
-    },
-    "RubikSideBarWidth{}": {
-      "snippet": "RubikSideBarWidth{${1:number}}"
-    },
-    "RubikSL": {},
-    "RubikSl": {},
-    "RubikSliceBottomL{}{}{}{}{}{}": {
-      "snippet": "RubikSliceBottomL{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}{${6:color6}}"
-    },
-    "RubikSliceBottomR{}{}{}{}{}{}": {
-      "snippet": "RubikSliceBottomR{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}{${6:color6}}"
-    },
-    "RubikSliceEquatorL{}{}{}{}{}{}": {
-      "snippet": "RubikSliceEquatorL{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}{${6:color6}}"
-    },
-    "RubikSliceEquatorR{}{}{}{}{}{}": {
-      "snippet": "RubikSliceEquatorR{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}{${6:color6}}"
-    },
-    "RubikSliceMiddleL{}{}{}{}{}{}": {
-      "snippet": "RubikSliceMiddleL{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}{${6:color6}}"
-    },
-    "RubikSliceMiddleR{}{}{}{}{}{}": {
-      "snippet": "RubikSliceMiddleR{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}{${6:color6}}"
-    },
-    "RubikSliceTopL{}{}{}{}{}{}": {
-      "snippet": "RubikSliceTopL{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}{${6:color6}}"
-    },
-    "RubikSliceTopR{}{}{}{}{}{}": {
-      "snippet": "RubikSliceTopR{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}{${6:color6}}"
-    },
-    "RubikSLp": {},
-    "RubikSlp": {},
-    "RubikSolvedConfig{}{}{}{}{}{}": {
-      "snippet": "RubikSolvedConfig{${1:X+color}}{${2:X-color}}{${3:Y+color}}{${4:Y-color}}{${5:Z+color}}{${6:Z-color}}"
-    },
-    "RubikSp": {},
-    "RubikSR": {},
-    "RubikSr": {},
-    "RubikSRp": {},
-    "RubikSrp": {},
-    "RubikSU": {},
-    "RubikSu": {},
-    "RubikSUp": {},
-    "RubikSup": {},
-    "RubikTB": {},
-    "RubikTBp": {},
-    "RubikTD": {},
-    "RubikTDp": {},
-    "RubikTF": {},
-    "RubikTFp": {},
-    "RubikTL": {},
-    "RubikTLp": {},
-    "RubikTR": {},
-    "RubikTRp": {},
-    "RubikTU": {},
-    "RubikTUp": {},
-    "RubikU": {},
-    "Rubiku": {},
-    "RubikUa": {},
-    "RubikUap": {},
-    "RubikUc": {},
-    "RubikUcp": {},
-    "RubikUm": {},
-    "RubikUmp": {},
-    "RubikUp": {},
-    "Rubikup": {},
-    "RubikUs": {},
-    "RubikUsp": {},
-    "RubikUw": {},
-    "RubikUwp": {},
-    "Rubikx": {},
-    "Rubikxp": {},
-    "Rubiky": {},
-    "Rubikyp": {},
-    "Rubikz": {},
-    "Rubikzp": {},
-    "SequenceBraceA{}{}": {
-      "snippet": "SequenceBraceA{${1:name}}{${2:sequence}}"
-    },
-    "SequenceBraceAF{}{}": {
-      "snippet": "SequenceBraceAF{${1:name}}{${2:sequence}}"
-    },
-    "SequenceBraceB{}{}": {
-      "snippet": "SequenceBraceB{${1:name}}{${2:sequence}}"
-    },
-    "SequenceBraceBF{}{}": {
-      "snippet": "SequenceBraceBF{${1:name}}{${2:sequence}}"
-    },
-    "SequenceInfo": {},
-    "SequenceLong": {},
-    "SequenceName": {},
-    "SequenceShort": {},
-    "ShowCube{}{}{}": {
-      "snippet": "ShowCube{${1:width}}{${2:scale}}{${3:commands}}"
-    },
-    "ShowCubeF{}{}{}": {
-      "snippet": "ShowCubeF{${1:width}}{${2:scale}}{${3:commands}}"
-    },
-    "ShowSequence{}{}{}": {
-      "snippet": "ShowSequence{${1:separator}}{${2:font code}}{${3:sequence}}"
-    },
-    "ShowSequenceF{}{}{}": {
-      "snippet": "ShowSequenceF{${1:separator}}{${2:font code}}{${3:sequence}}"
-    },
-    "ShowSequencef{}{}{}": {
-      "snippet": "ShowSequencef{${1:separator}}{${2:font code}}{${3:sequence}}"
-    },
-    "SquareB": {},
-    "SquareBa": {},
-    "SquareBap": {},
-    "SquareBm": {},
-    "SquareBmp": {},
-    "SquareBp": {},
-    "SquareBs": {},
-    "SquareBsp": {},
-    "SquareBw": {},
-    "SquareBwp": {},
-    "SquareD": {},
-    "SquareDa": {},
-    "SquareDap": {},
-    "SquareDp": {},
-    "SquareDs": {},
-    "SquareDsp": {},
-    "SquareDw": {},
-    "SquareDwp": {},
-    "SquareE": {},
-    "SquareEp": {},
-    "SquareF": {},
-    "SquareFa": {},
-    "SquareFap": {},
-    "SquareFm": {},
-    "SquareFmp": {},
-    "SquareFp": {},
-    "SquareFs": {},
-    "SquareFsp": {},
-    "SquareFw": {},
-    "SquareFwp": {},
-    "SquareL": {},
-    "SquareLa": {},
-    "SquareLap": {},
-    "SquareLp": {},
-    "SquareLs": {},
-    "SquareLsp": {},
-    "SquareLw": {},
-    "SquareLwp": {},
-    "SquareM": {},
-    "SquareMB": {},
-    "SquareMBp": {},
-    "SquareMF": {},
-    "SquareMFp": {},
-    "SquareMp": {},
-    "SquareR": {},
-    "SquareRa": {},
-    "SquareRap": {},
-    "SquareRp": {},
-    "SquareRs": {},
-    "SquareRsp": {},
-    "SquareRw": {},
-    "SquareRwp": {},
-    "SquareS": {},
-    "SquareSB": {},
-    "SquareSb": {},
-    "SquareSBp": {},
-    "SquareSbp": {},
-    "SquareSF": {},
-    "SquareSf": {},
-    "SquareSFp": {},
-    "SquareSfp": {},
-    "SquareSp": {},
-    "SquareTB": {},
-    "SquareTBp": {},
-    "SquareU": {},
-    "SquareUa": {},
-    "SquareUap": {},
-    "SquareUp": {},
-    "SquareUs": {},
-    "SquareUsp": {},
-    "SquareUw": {},
-    "SquareUwp": {},
-    "textCubieLD{}{}{}": {
-      "snippet": "textCubieLD{${1:color1}}{${2:color2}}{${3:color3}}"
-    },
-    "textCubieLU{}{}{}": {
-      "snippet": "textCubieLU{${1:color1}}{${2:color2}}{${3:color3}}"
-    },
-    "textCubieRD{}{}{}": {
-      "snippet": "textCubieRD{${1:color1}}{${2:color2}}{${3:color3}}"
-    },
-    "textCubieRU{}{}{}": {
-      "snippet": "textCubieRU{${1:color1}}{${2:color2}}{${3:color3}}"
-    },
-    "textRubik{}": {
-      "snippet": "textRubik{${1:rotation code}}"
-    },
-    "textRubikB": {},
-    "textRubikb": {},
-    "textRubikBa": {},
-    "textRubikBap": {},
-    "textRubikBc": {},
-    "textRubikBcp": {},
-    "textRubikBm": {},
-    "textRubikBmp": {},
-    "textRubikBp": {},
-    "textRubikbp": {},
-    "textRubikBs": {},
-    "textRubikBsp": {},
-    "textRubikBw": {},
-    "textRubikBwp": {},
-    "textRubikCB": {},
-    "textRubikCBp": {},
-    "textRubikCD": {},
-    "textRubikCDp": {},
-    "textRubikCF": {},
-    "textRubikCFp": {},
-    "textRubikCL": {},
-    "textRubikCLp": {},
-    "textRubikCR": {},
-    "textRubikCRp": {},
-    "textRubikCU": {},
-    "textRubikCUp": {},
-    "textRubikD": {},
-    "textRubikd": {},
-    "textRubikDa": {},
-    "textRubikDap": {},
-    "textRubikDc": {},
-    "textRubikDcp": {},
-    "textRubikDm": {},
-    "textRubikDmp": {},
-    "textRubikDp": {},
-    "textRubikdp": {},
-    "textRubikDs": {},
-    "textRubikDsp": {},
-    "textRubikDw": {},
-    "textRubikDwp": {},
-    "textRubikE": {},
-    "textRubikEp": {},
-    "textRubikF": {},
-    "textRubikf": {},
-    "textRubikFa": {},
-    "textRubikFap": {},
-    "textRubikFc": {},
-    "textRubikFcp": {},
-    "textRubikFm": {},
-    "textRubikFmp": {},
-    "textRubikFp": {},
-    "textRubikfp": {},
-    "textRubikFs": {},
-    "textRubikFsp": {},
-    "textRubikFw": {},
-    "textRubikFwp": {},
-    "textRubikL": {},
-    "textRubikl": {},
-    "textRubikLa": {},
-    "textRubikLap": {},
-    "textRubikLc": {},
-    "textRubikLcp": {},
-    "textRubikLm": {},
-    "textRubikLmp": {},
-    "textRubikLp": {},
-    "textRubiklp": {},
-    "textRubikLs": {},
-    "textRubikLsp": {},
-    "textRubikLw": {},
-    "textRubikLwp": {},
-    "textRubikM": {},
-    "textRubikMB": {},
-    "textRubikMBp": {},
-    "textRubikMD": {},
-    "textRubikMDp": {},
-    "textRubikMF": {},
-    "textRubikMFp": {},
-    "textRubikML": {},
-    "textRubikMLp": {},
-    "textRubikMp": {},
-    "textRubikMR": {},
-    "textRubikMRp": {},
-    "textRubikMU": {},
-    "textRubikMUp": {},
-    "textRubikR": {},
-    "textRubikr": {},
-    "textRubikRa": {},
-    "textRubikRap": {},
-    "textRubikRc": {},
-    "textRubikRcp": {},
-    "textRubikRm": {},
-    "textRubikRmp": {},
-    "textRubikRp": {},
-    "textRubikrp": {},
-    "textRubikRs": {},
-    "textRubikRsp": {},
-    "textRubikRw": {},
-    "textRubikRwp": {},
-    "textRubikS": {},
-    "textRubikSB": {},
-    "textRubikSb": {},
-    "textRubikSBp": {},
-    "textRubikSbp": {},
-    "textRubikSD": {},
-    "textRubikSd": {},
-    "textRubikSDp": {},
-    "textRubikSdp": {},
-    "textRubikSF": {},
-    "textRubikSf": {},
-    "textRubikSFp": {},
-    "textRubikSfp": {},
-    "textRubikSL": {},
-    "textRubikSl": {},
-    "textRubikSLp": {},
-    "textRubikSlp": {},
-    "textRubikSp": {},
-    "textRubikSR": {},
-    "textRubikSr": {},
-    "textRubikSRp": {},
-    "textRubikSrp": {},
-    "textRubikSU": {},
-    "textRubikSu": {},
-    "textRubikSUp": {},
-    "textRubikSup": {},
-    "textRubikTB": {},
-    "textRubikTBp": {},
-    "textRubikTD": {},
-    "textRubikTDp": {},
-    "textRubikTF": {},
-    "textRubikTFp": {},
-    "textRubikTL": {},
-    "textRubikTLp": {},
-    "textRubikTR": {},
-    "textRubikTRp": {},
-    "textRubikTU": {},
-    "textRubikTUp": {},
-    "textRubikU": {},
-    "textRubiku": {},
-    "textRubikUa": {},
-    "textRubikUap": {},
-    "textRubikUc": {},
-    "textRubikUcp": {},
-    "textRubikUm": {},
-    "textRubikUmp": {},
-    "textRubikUp": {},
-    "textRubikup": {},
-    "textRubikUs": {},
-    "textRubikUsp": {},
-    "textRubikUw": {},
-    "textRubikUwp": {},
-    "textRubikx": {},
-    "textRubikxp": {},
-    "textRubiky": {},
-    "textRubikyp": {},
-    "textRubikz": {},
-    "textRubikzp": {},
-    "Ulb": {},
-    "Ulm": {},
-    "Ult": {},
-    "x": {
-      "detail": "𝑥",
-      "documentation": "MATHEMATICAL ITALIC SMALL X"
-    },
-    "xcount": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "deps": [
+    {
+      "name": "forarray"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "tikz"
+    }
+  ],
+  "macros": [
+    {
+      "name": "Blb",
+      "unusual": true
+    },
+    {
+      "name": "Blm",
+      "unusual": true
+    },
+    {
+      "name": "Blt",
+      "unusual": true
+    },
+    {
+      "name": "Cubiedx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Cubiedy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Dlb",
+      "unusual": true
+    },
+    {
+      "name": "Dlm",
+      "unusual": true
+    },
+    {
+      "name": "Dlt",
+      "unusual": true
+    },
+    {
+      "name": "DrawCubieLD",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:Xcolor}}{${2:Ycolor}}{${3:Zcolor}}"
+      }
+    },
+    {
+      "name": "DrawCubieLU",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:Xcolor}}{${2:Ycolor}}{${3:Zcolor}}"
+      }
+    },
+    {
+      "name": "DrawCubieRD",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:Xcolor}}{${2:Ycolor}}{${3:Zcolor}}"
+      }
+    },
+    {
+      "name": "DrawCubieRU",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:Xcolor}}{${2:Ycolor}}{${3:Zcolor}}"
+      }
+    },
+    {
+      "name": "DrawNCubeAll",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:integer}}{${2:Xcolor}}{${3:Ycolor}}{${4:Zcolor}}"
+      }
+    },
+    {
+      "name": "DrawNotationBox",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCube"
+    },
+    {
+      "name": "DrawRubikCubeF"
+    },
+    {
+      "name": "DrawRubikCubeFrontFace",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeLD"
+    },
+    {
+      "name": "DrawRubikCubeLU"
+    },
+    {
+      "name": "DrawRubikCubeRD"
+    },
+    {
+      "name": "DrawRubikCubeRU"
+    },
+    {
+      "name": "DrawRubikCubeSF"
+    },
+    {
+      "name": "DrawRubikCubeSidebarBD",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawRubikCubeSidebarBDLD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarBDRD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarBL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawRubikCubeSidebarBLLD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarBLLU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarBR",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawRubikCubeSidebarBRRD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarBRRU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarBU",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawRubikCubeSidebarBULU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarBURU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarDB",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawRubikCubeSidebarDBLD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarDBRD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarDF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawRubikCubeSidebarDFLU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarDFRU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarFD",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawRubikCubeSidebarFDLU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarFDRU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarFL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawRubikCubeSidebarFLRD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarFLRU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarFR",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawRubikCubeSidebarFRLD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarFRLU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarFU",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawRubikCubeSidebarFULD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarFURD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarLB",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawRubikCubeSidebarLBLD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarLBLU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarLF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawRubikCubeSidebarLFRD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarLFRU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarRB",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawRubikCubeSidebarRBRD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarRBRU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarRF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawRubikCubeSidebarRFLD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarRFLU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarUB",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawRubikCubeSidebarUBLU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarUBRU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarUF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawRubikCubeSidebarUFLD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikCubeSidebarUFRD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikFaceB",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikFaceBack"
+    },
+    {
+      "name": "DrawRubikFaceBackSide"
+    },
+    {
+      "name": "DrawRubikFaceBS",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikFaceD",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikFaceDown"
+    },
+    {
+      "name": "DrawRubikFaceDownSide"
+    },
+    {
+      "name": "DrawRubikFaceDS",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikFaceF",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikFaceFront"
+    },
+    {
+      "name": "DrawRubikFaceFrontSide"
+    },
+    {
+      "name": "DrawRubikFaceFS",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikFaceL",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikFaceLeft"
+    },
+    {
+      "name": "DrawRubikFaceLeftSide"
+    },
+    {
+      "name": "DrawRubikFaceLS",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikFaceR",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikFaceRight"
+    },
+    {
+      "name": "DrawRubikFaceRightSide"
+    },
+    {
+      "name": "DrawRubikFaceRS",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikFaceU",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikFaceUp"
+    },
+    {
+      "name": "DrawRubikFaceUpSide"
+    },
+    {
+      "name": "DrawRubikFaceUS",
+      "unusual": true
+    },
+    {
+      "name": "DrawRubikFlatBack",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "DrawRubikFlatDown",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "DrawRubikFlatFront"
+    },
+    {
+      "name": "DrawRubikFlatLeft",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "DrawRubikFlatRight",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "DrawRubikFlatUp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "Flb",
+      "unusual": true
+    },
+    {
+      "name": "Flm",
+      "unusual": true
+    },
+    {
+      "name": "Flt",
+      "unusual": true
+    },
+    {
+      "name": "Llb",
+      "unusual": true
+    },
+    {
+      "name": "Llm",
+      "unusual": true
+    },
+    {
+      "name": "Llt",
+      "unusual": true
+    },
+    {
+      "name": "NoSidebar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color-code}}"
+      }
+    },
+    {
+      "name": "Rlb",
+      "unusual": true
+    },
+    {
+      "name": "Rlm",
+      "unusual": true
+    },
+    {
+      "name": "Rlt",
+      "unusual": true
+    },
+    {
+      "name": "rr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:rotation code}}"
+      }
+    },
+    {
+      "name": "rrB",
+      "unusual": true
+    },
+    {
+      "name": "rrb",
+      "unusual": true
+    },
+    {
+      "name": "rrBa",
+      "unusual": true
+    },
+    {
+      "name": "rrBap",
+      "unusual": true
+    },
+    {
+      "name": "rrBc",
+      "unusual": true
+    },
+    {
+      "name": "rrBcp",
+      "unusual": true
+    },
+    {
+      "name": "rrBm",
+      "unusual": true
+    },
+    {
+      "name": "rrBmp",
+      "unusual": true
+    },
+    {
+      "name": "rrBp",
+      "unusual": true
+    },
+    {
+      "name": "rrbp",
+      "unusual": true
+    },
+    {
+      "name": "rrBs",
+      "unusual": true
+    },
+    {
+      "name": "rrBsp",
+      "unusual": true
+    },
+    {
+      "name": "rrBw",
+      "unusual": true
+    },
+    {
+      "name": "rrBwp",
+      "unusual": true
+    },
+    {
+      "name": "rrCB",
+      "unusual": true
+    },
+    {
+      "name": "rrCBp",
+      "unusual": true
+    },
+    {
+      "name": "rrCD",
+      "unusual": true
+    },
+    {
+      "name": "rrCDp",
+      "unusual": true
+    },
+    {
+      "name": "rrCF",
+      "unusual": true
+    },
+    {
+      "name": "rrCFp",
+      "unusual": true
+    },
+    {
+      "name": "rrCL",
+      "unusual": true
+    },
+    {
+      "name": "rrCLp",
+      "unusual": true
+    },
+    {
+      "name": "rrCR",
+      "unusual": true
+    },
+    {
+      "name": "rrCRp",
+      "unusual": true
+    },
+    {
+      "name": "rrCU",
+      "unusual": true
+    },
+    {
+      "name": "rrCUp",
+      "unusual": true
+    },
+    {
+      "name": "rrD",
+      "unusual": true
+    },
+    {
+      "name": "rrd",
+      "unusual": true
+    },
+    {
+      "name": "rrDa",
+      "unusual": true
+    },
+    {
+      "name": "rrDap",
+      "unusual": true
+    },
+    {
+      "name": "rrDc",
+      "unusual": true
+    },
+    {
+      "name": "rrDcp",
+      "unusual": true
+    },
+    {
+      "name": "rrDm",
+      "unusual": true
+    },
+    {
+      "name": "rrDmp",
+      "unusual": true
+    },
+    {
+      "name": "rrDp",
+      "unusual": true
+    },
+    {
+      "name": "rrdp",
+      "unusual": true
+    },
+    {
+      "name": "rrDs",
+      "unusual": true
+    },
+    {
+      "name": "rrDsp",
+      "unusual": true
+    },
+    {
+      "name": "rrDw",
+      "unusual": true
+    },
+    {
+      "name": "rrDwp",
+      "unusual": true
+    },
+    {
+      "name": "rrE",
+      "unusual": true
+    },
+    {
+      "name": "rrEp",
+      "unusual": true
+    },
+    {
+      "name": "rrF",
+      "unusual": true
+    },
+    {
+      "name": "rrf",
+      "unusual": true
+    },
+    {
+      "name": "rrFa",
+      "unusual": true
+    },
+    {
+      "name": "rrFap",
+      "unusual": true
+    },
+    {
+      "name": "rrFc",
+      "unusual": true
+    },
+    {
+      "name": "rrFcp",
+      "unusual": true
+    },
+    {
+      "name": "rrFm",
+      "unusual": true
+    },
+    {
+      "name": "rrFmp",
+      "unusual": true
+    },
+    {
+      "name": "rrFp",
+      "unusual": true
+    },
+    {
+      "name": "rrfp",
+      "unusual": true
+    },
+    {
+      "name": "rrFs",
+      "unusual": true
+    },
+    {
+      "name": "rrFsp",
+      "unusual": true
+    },
+    {
+      "name": "rrFw",
+      "unusual": true
+    },
+    {
+      "name": "rrFwp",
+      "unusual": true
+    },
+    {
+      "name": "rrh",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:rotation code}}"
+      }
+    },
+    {
+      "name": "rrhB",
+      "unusual": true
+    },
+    {
+      "name": "rrhb",
+      "unusual": true
+    },
+    {
+      "name": "rrhBa",
+      "unusual": true
+    },
+    {
+      "name": "rrhBap",
+      "unusual": true
+    },
+    {
+      "name": "rrhBc",
+      "unusual": true
+    },
+    {
+      "name": "rrhBcp",
+      "unusual": true
+    },
+    {
+      "name": "rrhBm",
+      "unusual": true
+    },
+    {
+      "name": "rrhBmp",
+      "unusual": true
+    },
+    {
+      "name": "rrhBp",
+      "unusual": true
+    },
+    {
+      "name": "rrhbp",
+      "unusual": true
+    },
+    {
+      "name": "rrhBs",
+      "unusual": true
+    },
+    {
+      "name": "rrhBsp",
+      "unusual": true
+    },
+    {
+      "name": "rrhBw",
+      "unusual": true
+    },
+    {
+      "name": "rrhBwp",
+      "unusual": true
+    },
+    {
+      "name": "rrhCB",
+      "unusual": true
+    },
+    {
+      "name": "rrhCBp",
+      "unusual": true
+    },
+    {
+      "name": "rrhCD",
+      "unusual": true
+    },
+    {
+      "name": "rrhCDp",
+      "unusual": true
+    },
+    {
+      "name": "rrhCF",
+      "unusual": true
+    },
+    {
+      "name": "rrhCFp",
+      "unusual": true
+    },
+    {
+      "name": "rrhCL",
+      "unusual": true
+    },
+    {
+      "name": "rrhCLp",
+      "unusual": true
+    },
+    {
+      "name": "rrhCR",
+      "unusual": true
+    },
+    {
+      "name": "rrhCRp",
+      "unusual": true
+    },
+    {
+      "name": "rrhCU",
+      "unusual": true
+    },
+    {
+      "name": "rrhCUp",
+      "unusual": true
+    },
+    {
+      "name": "rrhD",
+      "unusual": true
+    },
+    {
+      "name": "rrhd",
+      "unusual": true
+    },
+    {
+      "name": "rrhDa",
+      "unusual": true
+    },
+    {
+      "name": "rrhDap",
+      "unusual": true
+    },
+    {
+      "name": "rrhDc",
+      "unusual": true
+    },
+    {
+      "name": "rrhDcp",
+      "unusual": true
+    },
+    {
+      "name": "rrhDm",
+      "unusual": true
+    },
+    {
+      "name": "rrhDmp",
+      "unusual": true
+    },
+    {
+      "name": "rrhDp",
+      "unusual": true
+    },
+    {
+      "name": "rrhdp",
+      "unusual": true
+    },
+    {
+      "name": "rrhDs",
+      "unusual": true
+    },
+    {
+      "name": "rrhDsp",
+      "unusual": true
+    },
+    {
+      "name": "rrhDw",
+      "unusual": true
+    },
+    {
+      "name": "rrhDwp",
+      "unusual": true
+    },
+    {
+      "name": "rrhE",
+      "unusual": true
+    },
+    {
+      "name": "rrhEp",
+      "unusual": true
+    },
+    {
+      "name": "rrhF",
+      "unusual": true
+    },
+    {
+      "name": "rrhf",
+      "unusual": true
+    },
+    {
+      "name": "rrhFa",
+      "unusual": true
+    },
+    {
+      "name": "rrhFap",
+      "unusual": true
+    },
+    {
+      "name": "rrhFc",
+      "unusual": true
+    },
+    {
+      "name": "rrhFcp",
+      "unusual": true
+    },
+    {
+      "name": "rrhFm",
+      "unusual": true
+    },
+    {
+      "name": "rrhFmp",
+      "unusual": true
+    },
+    {
+      "name": "rrhFp",
+      "unusual": true
+    },
+    {
+      "name": "rrhfp",
+      "unusual": true
+    },
+    {
+      "name": "rrhFs",
+      "unusual": true
+    },
+    {
+      "name": "rrhFsp",
+      "unusual": true
+    },
+    {
+      "name": "rrhFw",
+      "unusual": true
+    },
+    {
+      "name": "rrhFwp",
+      "unusual": true
+    },
+    {
+      "name": "rrhL",
+      "unusual": true
+    },
+    {
+      "name": "rrhl",
+      "unusual": true
+    },
+    {
+      "name": "rrhLa",
+      "unusual": true
+    },
+    {
+      "name": "rrhLap",
+      "unusual": true
+    },
+    {
+      "name": "rrhLc",
+      "unusual": true
+    },
+    {
+      "name": "rrhLcp",
+      "unusual": true
+    },
+    {
+      "name": "rrhLm",
+      "unusual": true
+    },
+    {
+      "name": "rrhLmp",
+      "unusual": true
+    },
+    {
+      "name": "rrhLp",
+      "unusual": true
+    },
+    {
+      "name": "rrhlp",
+      "unusual": true
+    },
+    {
+      "name": "rrhLs",
+      "unusual": true
+    },
+    {
+      "name": "rrhLsp",
+      "unusual": true
+    },
+    {
+      "name": "rrhLw",
+      "unusual": true
+    },
+    {
+      "name": "rrhLwp",
+      "unusual": true
+    },
+    {
+      "name": "rrhM",
+      "unusual": true
+    },
+    {
+      "name": "rrhMB",
+      "unusual": true
+    },
+    {
+      "name": "rrhMBp",
+      "unusual": true
+    },
+    {
+      "name": "rrhMD",
+      "unusual": true
+    },
+    {
+      "name": "rrhMDp",
+      "unusual": true
+    },
+    {
+      "name": "rrhMF",
+      "unusual": true
+    },
+    {
+      "name": "rrhMFp",
+      "unusual": true
+    },
+    {
+      "name": "rrhML",
+      "unusual": true
+    },
+    {
+      "name": "rrhMLp",
+      "unusual": true
+    },
+    {
+      "name": "rrhMp",
+      "unusual": true
+    },
+    {
+      "name": "rrhMR",
+      "unusual": true
+    },
+    {
+      "name": "rrhMRp",
+      "unusual": true
+    },
+    {
+      "name": "rrhMU",
+      "unusual": true
+    },
+    {
+      "name": "rrhMUp",
+      "unusual": true
+    },
+    {
+      "name": "rrhR",
+      "unusual": true
+    },
+    {
+      "name": "rrhr",
+      "unusual": true
+    },
+    {
+      "name": "rrhRa",
+      "unusual": true
+    },
+    {
+      "name": "rrhRap",
+      "unusual": true
+    },
+    {
+      "name": "rrhRc",
+      "unusual": true
+    },
+    {
+      "name": "rrhRcp",
+      "unusual": true
+    },
+    {
+      "name": "rrhRm",
+      "unusual": true
+    },
+    {
+      "name": "rrhRmp",
+      "unusual": true
+    },
+    {
+      "name": "rrhRp",
+      "unusual": true
+    },
+    {
+      "name": "rrhrp",
+      "unusual": true
+    },
+    {
+      "name": "rrhRs",
+      "unusual": true
+    },
+    {
+      "name": "rrhRsp",
+      "unusual": true
+    },
+    {
+      "name": "rrhRw",
+      "unusual": true
+    },
+    {
+      "name": "rrhRwp",
+      "unusual": true
+    },
+    {
+      "name": "rrhS",
+      "unusual": true
+    },
+    {
+      "name": "rrhSB",
+      "unusual": true
+    },
+    {
+      "name": "rrhSb",
+      "unusual": true
+    },
+    {
+      "name": "rrhSBp",
+      "unusual": true
+    },
+    {
+      "name": "rrhSbp",
+      "unusual": true
+    },
+    {
+      "name": "rrhSD",
+      "unusual": true
+    },
+    {
+      "name": "rrhSd",
+      "unusual": true
+    },
+    {
+      "name": "rrhSDp",
+      "unusual": true
+    },
+    {
+      "name": "rrhSdp",
+      "unusual": true
+    },
+    {
+      "name": "rrhSF",
+      "unusual": true
+    },
+    {
+      "name": "rrhSf",
+      "unusual": true
+    },
+    {
+      "name": "rrhSFp",
+      "unusual": true
+    },
+    {
+      "name": "rrhSfp",
+      "unusual": true
+    },
+    {
+      "name": "rrhSL",
+      "unusual": true
+    },
+    {
+      "name": "rrhSl",
+      "unusual": true
+    },
+    {
+      "name": "rrhSLp",
+      "unusual": true
+    },
+    {
+      "name": "rrhSlp",
+      "unusual": true
+    },
+    {
+      "name": "rrhSp",
+      "unusual": true
+    },
+    {
+      "name": "rrhSR",
+      "unusual": true
+    },
+    {
+      "name": "rrhSr",
+      "unusual": true
+    },
+    {
+      "name": "rrhSRp",
+      "unusual": true
+    },
+    {
+      "name": "rrhSrp",
+      "unusual": true
+    },
+    {
+      "name": "rrhSU",
+      "unusual": true
+    },
+    {
+      "name": "rrhSu",
+      "unusual": true
+    },
+    {
+      "name": "rrhSUp",
+      "unusual": true
+    },
+    {
+      "name": "rrhSup",
+      "unusual": true
+    },
+    {
+      "name": "rrhTB",
+      "unusual": true
+    },
+    {
+      "name": "rrhTBp",
+      "unusual": true
+    },
+    {
+      "name": "rrhTD",
+      "unusual": true
+    },
+    {
+      "name": "rrhTDp",
+      "unusual": true
+    },
+    {
+      "name": "rrhTF",
+      "unusual": true
+    },
+    {
+      "name": "rrhTFp",
+      "unusual": true
+    },
+    {
+      "name": "rrhTL",
+      "unusual": true
+    },
+    {
+      "name": "rrhTLp",
+      "unusual": true
+    },
+    {
+      "name": "rrhTR",
+      "unusual": true
+    },
+    {
+      "name": "rrhTRp",
+      "unusual": true
+    },
+    {
+      "name": "rrhTU",
+      "unusual": true
+    },
+    {
+      "name": "rrhTUp",
+      "unusual": true
+    },
+    {
+      "name": "rrhU",
+      "unusual": true
+    },
+    {
+      "name": "rrhu",
+      "unusual": true
+    },
+    {
+      "name": "rrhUa",
+      "unusual": true
+    },
+    {
+      "name": "rrhUap",
+      "unusual": true
+    },
+    {
+      "name": "rrhUc",
+      "unusual": true
+    },
+    {
+      "name": "rrhUcp",
+      "unusual": true
+    },
+    {
+      "name": "rrhUm",
+      "unusual": true
+    },
+    {
+      "name": "rrhUmp",
+      "unusual": true
+    },
+    {
+      "name": "rrhUp",
+      "unusual": true
+    },
+    {
+      "name": "rrhup",
+      "unusual": true
+    },
+    {
+      "name": "rrhUs",
+      "unusual": true
+    },
+    {
+      "name": "rrhUsp",
+      "unusual": true
+    },
+    {
+      "name": "rrhUw",
+      "unusual": true
+    },
+    {
+      "name": "rrhUwp",
+      "unusual": true
+    },
+    {
+      "name": "rrhx",
+      "unusual": true
+    },
+    {
+      "name": "rrhxp",
+      "unusual": true
+    },
+    {
+      "name": "rrhy",
+      "unusual": true
+    },
+    {
+      "name": "rrhyp",
+      "unusual": true
+    },
+    {
+      "name": "rrhz",
+      "unusual": true
+    },
+    {
+      "name": "rrhzp",
+      "unusual": true
+    },
+    {
+      "name": "rrL",
+      "unusual": true
+    },
+    {
+      "name": "rrl",
+      "unusual": true
+    },
+    {
+      "name": "rrLa",
+      "unusual": true
+    },
+    {
+      "name": "rrLap",
+      "unusual": true
+    },
+    {
+      "name": "rrLc",
+      "unusual": true
+    },
+    {
+      "name": "rrLcp",
+      "unusual": true
+    },
+    {
+      "name": "rrLm",
+      "unusual": true
+    },
+    {
+      "name": "rrLmp",
+      "unusual": true
+    },
+    {
+      "name": "rrLp",
+      "unusual": true
+    },
+    {
+      "name": "rrlp",
+      "unusual": true
+    },
+    {
+      "name": "rrLs",
+      "unusual": true
+    },
+    {
+      "name": "rrLsp",
+      "unusual": true
+    },
+    {
+      "name": "rrLw",
+      "unusual": true
+    },
+    {
+      "name": "rrLwp",
+      "unusual": true
+    },
+    {
+      "name": "rrM",
+      "unusual": true
+    },
+    {
+      "name": "rrMB",
+      "unusual": true
+    },
+    {
+      "name": "rrMBp",
+      "unusual": true
+    },
+    {
+      "name": "rrMD",
+      "unusual": true
+    },
+    {
+      "name": "rrMDp",
+      "unusual": true
+    },
+    {
+      "name": "rrMF",
+      "unusual": true
+    },
+    {
+      "name": "rrMFp",
+      "unusual": true
+    },
+    {
+      "name": "rrML",
+      "unusual": true
+    },
+    {
+      "name": "rrMLp",
+      "unusual": true
+    },
+    {
+      "name": "rrMp",
+      "unusual": true
+    },
+    {
+      "name": "rrMR",
+      "unusual": true
+    },
+    {
+      "name": "rrMRp",
+      "unusual": true
+    },
+    {
+      "name": "rrMU",
+      "unusual": true
+    },
+    {
+      "name": "rrMUp",
+      "unusual": true
+    },
+    {
+      "name": "rrR",
+      "unusual": true
+    },
+    {
+      "name": "rrr",
+      "unusual": true
+    },
+    {
+      "name": "rrRa",
+      "unusual": true
+    },
+    {
+      "name": "rrRap",
+      "unusual": true
+    },
+    {
+      "name": "rrRc",
+      "unusual": true
+    },
+    {
+      "name": "rrRcp",
+      "unusual": true
+    },
+    {
+      "name": "rrRm",
+      "unusual": true
+    },
+    {
+      "name": "rrRmp",
+      "unusual": true
+    },
+    {
+      "name": "rrRp",
+      "unusual": true
+    },
+    {
+      "name": "rrrp",
+      "unusual": true
+    },
+    {
+      "name": "rrRs",
+      "unusual": true
+    },
+    {
+      "name": "rrRsp",
+      "unusual": true
+    },
+    {
+      "name": "rrRw",
+      "unusual": true
+    },
+    {
+      "name": "rrRwp",
+      "unusual": true
+    },
+    {
+      "name": "rrS",
+      "unusual": true
+    },
+    {
+      "name": "rrSB",
+      "unusual": true
+    },
+    {
+      "name": "rrSb",
+      "unusual": true
+    },
+    {
+      "name": "rrSBp",
+      "unusual": true
+    },
+    {
+      "name": "rrSbp",
+      "unusual": true
+    },
+    {
+      "name": "rrSD",
+      "unusual": true
+    },
+    {
+      "name": "rrSd",
+      "unusual": true
+    },
+    {
+      "name": "rrSDp",
+      "unusual": true
+    },
+    {
+      "name": "rrSdp",
+      "unusual": true
+    },
+    {
+      "name": "rrSF",
+      "unusual": true
+    },
+    {
+      "name": "rrSf",
+      "unusual": true
+    },
+    {
+      "name": "rrSFp",
+      "unusual": true
+    },
+    {
+      "name": "rrSfp",
+      "unusual": true
+    },
+    {
+      "name": "rrSL",
+      "unusual": true
+    },
+    {
+      "name": "rrSl",
+      "unusual": true
+    },
+    {
+      "name": "rrSLp",
+      "unusual": true
+    },
+    {
+      "name": "rrSlp",
+      "unusual": true
+    },
+    {
+      "name": "rrSp",
+      "unusual": true
+    },
+    {
+      "name": "rrSR",
+      "unusual": true
+    },
+    {
+      "name": "rrSr",
+      "unusual": true
+    },
+    {
+      "name": "rrSRp",
+      "unusual": true
+    },
+    {
+      "name": "rrSrp",
+      "unusual": true
+    },
+    {
+      "name": "rrSU",
+      "unusual": true
+    },
+    {
+      "name": "rrSu",
+      "unusual": true
+    },
+    {
+      "name": "rrSUp",
+      "unusual": true
+    },
+    {
+      "name": "rrSup",
+      "unusual": true
+    },
+    {
+      "name": "rrTB",
+      "unusual": true
+    },
+    {
+      "name": "rrTBp",
+      "unusual": true
+    },
+    {
+      "name": "rrTD",
+      "unusual": true
+    },
+    {
+      "name": "rrTDp",
+      "unusual": true
+    },
+    {
+      "name": "rrTF",
+      "unusual": true
+    },
+    {
+      "name": "rrTFp",
+      "unusual": true
+    },
+    {
+      "name": "rrTL",
+      "unusual": true
+    },
+    {
+      "name": "rrTLp",
+      "unusual": true
+    },
+    {
+      "name": "rrTR",
+      "unusual": true
+    },
+    {
+      "name": "rrTRp",
+      "unusual": true
+    },
+    {
+      "name": "rrTU",
+      "unusual": true
+    },
+    {
+      "name": "rrTUp",
+      "unusual": true
+    },
+    {
+      "name": "rrU",
+      "unusual": true
+    },
+    {
+      "name": "rru",
+      "unusual": true
+    },
+    {
+      "name": "rrUa",
+      "unusual": true
+    },
+    {
+      "name": "rrUap",
+      "unusual": true
+    },
+    {
+      "name": "rrUc",
+      "unusual": true
+    },
+    {
+      "name": "rrUcp",
+      "unusual": true
+    },
+    {
+      "name": "rrUm",
+      "unusual": true
+    },
+    {
+      "name": "rrUmp",
+      "unusual": true
+    },
+    {
+      "name": "rrUp",
+      "unusual": true
+    },
+    {
+      "name": "rrup",
+      "unusual": true
+    },
+    {
+      "name": "rrUs",
+      "unusual": true
+    },
+    {
+      "name": "rrUsp",
+      "unusual": true
+    },
+    {
+      "name": "rrUw",
+      "unusual": true
+    },
+    {
+      "name": "rrUwp",
+      "unusual": true
+    },
+    {
+      "name": "rrx",
+      "unusual": true
+    },
+    {
+      "name": "rrxp",
+      "unusual": true
+    },
+    {
+      "name": "rry",
+      "unusual": true
+    },
+    {
+      "name": "rryp",
+      "unusual": true
+    },
+    {
+      "name": "rrz",
+      "unusual": true
+    },
+    {
+      "name": "rrzp",
+      "unusual": true
+    },
+    {
+      "name": "Rubik",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:rotation code}}"
+      }
+    },
+    {
+      "name": "RubikB",
+      "unusual": true
+    },
+    {
+      "name": "Rubikb",
+      "unusual": true
+    },
+    {
+      "name": "RubikBa",
+      "unusual": true
+    },
+    {
+      "name": "RubikBap",
+      "unusual": true
+    },
+    {
+      "name": "RubikBc",
+      "unusual": true
+    },
+    {
+      "name": "RubikBcp",
+      "unusual": true
+    },
+    {
+      "name": "RubikBm",
+      "unusual": true
+    },
+    {
+      "name": "RubikBmp",
+      "unusual": true
+    },
+    {
+      "name": "RubikBp",
+      "unusual": true
+    },
+    {
+      "name": "Rubikbp",
+      "unusual": true
+    },
+    {
+      "name": "RubikBs",
+      "unusual": true
+    },
+    {
+      "name": "RubikBsp",
+      "unusual": true
+    },
+    {
+      "name": "RubikBw",
+      "unusual": true
+    },
+    {
+      "name": "RubikBwp",
+      "unusual": true
+    },
+    {
+      "name": "RubikCB",
+      "unusual": true
+    },
+    {
+      "name": "RubikCBp",
+      "unusual": true
+    },
+    {
+      "name": "RubikCD",
+      "unusual": true
+    },
+    {
+      "name": "RubikCDp",
+      "unusual": true
+    },
+    {
+      "name": "RubikCF",
+      "unusual": true
+    },
+    {
+      "name": "RubikCFp",
+      "unusual": true
+    },
+    {
+      "name": "RubikCL",
+      "unusual": true
+    },
+    {
+      "name": "RubikCLp",
+      "unusual": true
+    },
+    {
+      "name": "RubikCR",
+      "unusual": true
+    },
+    {
+      "name": "RubikCRp",
+      "unusual": true
+    },
+    {
+      "name": "RubikCU",
+      "unusual": true
+    },
+    {
+      "name": "Rubikcube",
+      "unusual": true
+    },
+    {
+      "name": "rubikcube",
+      "unusual": true
+    },
+    {
+      "name": "RubikCubeGrey",
+      "unusual": true
+    },
+    {
+      "name": "RubikCubeGreyAll"
+    },
+    {
+      "name": "RubikCubeGreyWB"
+    },
+    {
+      "name": "RubikCubeGreyWY"
+    },
+    {
+      "name": "RubikCubeSolved"
+    },
+    {
+      "name": "RubikCubeSolvedWB"
+    },
+    {
+      "name": "RubikCubeSolvedWY"
+    },
+    {
+      "name": "RubikCUp",
+      "unusual": true
+    },
+    {
+      "name": "RubikD",
+      "unusual": true
+    },
+    {
+      "name": "Rubikd",
+      "unusual": true
+    },
+    {
+      "name": "RubikDa",
+      "unusual": true
+    },
+    {
+      "name": "RubikDap",
+      "unusual": true
+    },
+    {
+      "name": "RubikDc",
+      "unusual": true
+    },
+    {
+      "name": "RubikDcp",
+      "unusual": true
+    },
+    {
+      "name": "RubikDm",
+      "unusual": true
+    },
+    {
+      "name": "RubikDmp",
+      "unusual": true
+    },
+    {
+      "name": "RubikDp",
+      "unusual": true
+    },
+    {
+      "name": "Rubikdp",
+      "unusual": true
+    },
+    {
+      "name": "RubikDs",
+      "unusual": true
+    },
+    {
+      "name": "RubikDsp",
+      "unusual": true
+    },
+    {
+      "name": "RubikDw",
+      "unusual": true
+    },
+    {
+      "name": "RubikDwp",
+      "unusual": true
+    },
+    {
+      "name": "RubikE",
+      "unusual": true
+    },
+    {
+      "name": "RubikEp",
+      "unusual": true
+    },
+    {
+      "name": "RubikF",
+      "unusual": true
+    },
+    {
+      "name": "Rubikf",
+      "unusual": true
+    },
+    {
+      "name": "RubikFa",
+      "unusual": true
+    },
+    {
+      "name": "RubikFaceBack",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "{${1:clr1}}{${2:clr2}}{${3:clr3}}{${4:clr4}}{${5:clr5}}{${6:clr6}}{${7:clr7}}{${8:clr8}}{${9:clr9}}"
+      }
+    },
+    {
+      "name": "RubikFaceBackAll",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "RubikFaceDown",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "{${1:clr1}}{${2:clr2}}{${3:clr3}}{${4:clr4}}{${5:clr5}}{${6:clr6}}{${7:clr7}}{${8:clr8}}{${9:clr9}}"
+      }
+    },
+    {
+      "name": "RubikFaceDownAll",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "RubikFaceFront",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "{${1:clr1}}{${2:clr2}}{${3:clr3}}{${4:clr4}}{${5:clr5}}{${6:clr6}}{${7:clr7}}{${8:clr8}}{${9:clr9}}"
+      }
+    },
+    {
+      "name": "RubikFaceFrontAll",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "RubikFaceLeft",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "{${1:clr1}}{${2:clr2}}{${3:clr3}}{${4:clr4}}{${5:clr5}}{${6:clr6}}{${7:clr7}}{${8:clr8}}{${9:clr9}}"
+      }
+    },
+    {
+      "name": "RubikFaceLeftAll",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "RubikFaceRight",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "{${1:clr1}}{${2:clr2}}{${3:clr3}}{${4:clr4}}{${5:clr5}}{${6:clr6}}{${7:clr7}}{${8:clr8}}{${9:clr9}}"
+      }
+    },
+    {
+      "name": "RubikFaceRightAll",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "RubikFaceUp",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "{${1:clr1}}{${2:clr2}}{${3:clr3}}{${4:clr4}}{${5:clr5}}{${6:clr6}}{${7:clr7}}{${8:clr8}}{${9:clr9}}"
+      }
+    },
+    {
+      "name": "RubikFaceUpAll",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "RubikFap",
+      "unusual": true
+    },
+    {
+      "name": "RubikFc",
+      "unusual": true
+    },
+    {
+      "name": "RubikFcp",
+      "unusual": true
+    },
+    {
+      "name": "RubikFm",
+      "unusual": true
+    },
+    {
+      "name": "RubikFmp",
+      "unusual": true
+    },
+    {
+      "name": "RubikFp",
+      "unusual": true
+    },
+    {
+      "name": "Rubikfp",
+      "unusual": true
+    },
+    {
+      "name": "RubikFs",
+      "unusual": true
+    },
+    {
+      "name": "RubikFsp",
+      "unusual": true
+    },
+    {
+      "name": "RubikFw",
+      "unusual": true
+    },
+    {
+      "name": "RubikFwp",
+      "unusual": true
+    },
+    {
+      "name": "RubikL",
+      "unusual": true
+    },
+    {
+      "name": "Rubikl",
+      "unusual": true
+    },
+    {
+      "name": "RubikLa",
+      "unusual": true
+    },
+    {
+      "name": "RubikLap",
+      "unusual": true
+    },
+    {
+      "name": "RubikLc",
+      "unusual": true
+    },
+    {
+      "name": "RubikLcp",
+      "unusual": true
+    },
+    {
+      "name": "RubikLm",
+      "unusual": true
+    },
+    {
+      "name": "RubikLmp",
+      "unusual": true
+    },
+    {
+      "name": "RubikLp",
+      "unusual": true
+    },
+    {
+      "name": "Rubiklp",
+      "unusual": true
+    },
+    {
+      "name": "RubikLs",
+      "unusual": true
+    },
+    {
+      "name": "RubikLsp",
+      "unusual": true
+    },
+    {
+      "name": "RubikLw",
+      "unusual": true
+    },
+    {
+      "name": "RubikLwp",
+      "unusual": true
+    },
+    {
+      "name": "RubikM",
+      "unusual": true
+    },
+    {
+      "name": "RubikMB",
+      "unusual": true
+    },
+    {
+      "name": "RubikMBp",
+      "unusual": true
+    },
+    {
+      "name": "RubikMD",
+      "unusual": true
+    },
+    {
+      "name": "RubikMDp",
+      "unusual": true
+    },
+    {
+      "name": "RubikMF",
+      "unusual": true
+    },
+    {
+      "name": "RubikMFp",
+      "unusual": true
+    },
+    {
+      "name": "RubikML",
+      "unusual": true
+    },
+    {
+      "name": "RubikMLp",
+      "unusual": true
+    },
+    {
+      "name": "RubikMp",
+      "unusual": true
+    },
+    {
+      "name": "RubikMR",
+      "unusual": true
+    },
+    {
+      "name": "RubikMRp",
+      "unusual": true
+    },
+    {
+      "name": "RubikMU",
+      "unusual": true
+    },
+    {
+      "name": "RubikMUp",
+      "unusual": true
+    },
+    {
+      "name": "RubikR",
+      "unusual": true
+    },
+    {
+      "name": "Rubikr",
+      "unusual": true
+    },
+    {
+      "name": "RubikRa",
+      "unusual": true
+    },
+    {
+      "name": "RubikRap",
+      "unusual": true
+    },
+    {
+      "name": "RubikRc",
+      "unusual": true
+    },
+    {
+      "name": "RubikRcp",
+      "unusual": true
+    },
+    {
+      "name": "RubikRm",
+      "unusual": true
+    },
+    {
+      "name": "RubikRmp",
+      "unusual": true
+    },
+    {
+      "name": "RubikRp",
+      "unusual": true
+    },
+    {
+      "name": "Rubikrp",
+      "unusual": true
+    },
+    {
+      "name": "RubikRs",
+      "unusual": true
+    },
+    {
+      "name": "RubikRsp",
+      "unusual": true
+    },
+    {
+      "name": "RubikRw",
+      "unusual": true
+    },
+    {
+      "name": "RubikRwp",
+      "unusual": true
+    },
+    {
+      "name": "RubikS",
+      "unusual": true
+    },
+    {
+      "name": "RubikSB",
+      "unusual": true
+    },
+    {
+      "name": "RubikSb",
+      "unusual": true
+    },
+    {
+      "name": "RubikSBp",
+      "unusual": true
+    },
+    {
+      "name": "RubikSbp",
+      "unusual": true
+    },
+    {
+      "name": "RubikSD",
+      "unusual": true
+    },
+    {
+      "name": "RubikSd",
+      "unusual": true
+    },
+    {
+      "name": "RubikSDp",
+      "unusual": true
+    },
+    {
+      "name": "RubikSdp",
+      "unusual": true
+    },
+    {
+      "name": "RubikSF",
+      "unusual": true
+    },
+    {
+      "name": "RubikSf",
+      "unusual": true
+    },
+    {
+      "name": "RubikSFp",
+      "unusual": true
+    },
+    {
+      "name": "RubikSfp",
+      "unusual": true
+    },
+    {
+      "name": "RubikSidebarLength",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "RubikSidebarSep",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "RubikSidebarWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "RubikSL",
+      "unusual": true
+    },
+    {
+      "name": "RubikSl",
+      "unusual": true
+    },
+    {
+      "name": "RubikSliceBottomL",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}{${6:color6}}"
+      }
+    },
+    {
+      "name": "RubikSliceBottomR",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}{${6:color6}}"
+      }
+    },
+    {
+      "name": "RubikSliceEquatorL",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}{${6:color6}}"
+      }
+    },
+    {
+      "name": "RubikSliceEquatorR",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}{${6:color6}}"
+      }
+    },
+    {
+      "name": "RubikSliceMiddleL",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}{${6:color6}}"
+      }
+    },
+    {
+      "name": "RubikSliceMiddleR",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}{${6:color6}}"
+      }
+    },
+    {
+      "name": "RubikSliceTopL",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}{${6:color6}}"
+      }
+    },
+    {
+      "name": "RubikSliceTopR",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}{${6:color6}}"
+      }
+    },
+    {
+      "name": "RubikSLp",
+      "unusual": true
+    },
+    {
+      "name": "RubikSlp",
+      "unusual": true
+    },
+    {
+      "name": "RubikSolvedConfig",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:X+color}}{${2:X-color}}{${3:Y+color}}{${4:Y-color}}{${5:Z+color}}{${6:Z-color}}"
+      }
+    },
+    {
+      "name": "RubikSp",
+      "unusual": true
+    },
+    {
+      "name": "RubikSR",
+      "unusual": true
+    },
+    {
+      "name": "RubikSr",
+      "unusual": true
+    },
+    {
+      "name": "RubikSRp",
+      "unusual": true
+    },
+    {
+      "name": "RubikSrp",
+      "unusual": true
+    },
+    {
+      "name": "RubikSU",
+      "unusual": true
+    },
+    {
+      "name": "RubikSu",
+      "unusual": true
+    },
+    {
+      "name": "RubikSUp",
+      "unusual": true
+    },
+    {
+      "name": "RubikSup",
+      "unusual": true
+    },
+    {
+      "name": "RubikTB",
+      "unusual": true
+    },
+    {
+      "name": "RubikTBp",
+      "unusual": true
+    },
+    {
+      "name": "RubikTD",
+      "unusual": true
+    },
+    {
+      "name": "RubikTDp",
+      "unusual": true
+    },
+    {
+      "name": "RubikTF",
+      "unusual": true
+    },
+    {
+      "name": "RubikTFp",
+      "unusual": true
+    },
+    {
+      "name": "RubikTL",
+      "unusual": true
+    },
+    {
+      "name": "RubikTLp",
+      "unusual": true
+    },
+    {
+      "name": "RubikTR",
+      "unusual": true
+    },
+    {
+      "name": "RubikTRp",
+      "unusual": true
+    },
+    {
+      "name": "RubikTU",
+      "unusual": true
+    },
+    {
+      "name": "RubikTUp",
+      "unusual": true
+    },
+    {
+      "name": "RubikU",
+      "unusual": true
+    },
+    {
+      "name": "Rubiku",
+      "unusual": true
+    },
+    {
+      "name": "RubikUa",
+      "unusual": true
+    },
+    {
+      "name": "RubikUap",
+      "unusual": true
+    },
+    {
+      "name": "RubikUc",
+      "unusual": true
+    },
+    {
+      "name": "RubikUcp",
+      "unusual": true
+    },
+    {
+      "name": "RubikUm",
+      "unusual": true
+    },
+    {
+      "name": "RubikUmp",
+      "unusual": true
+    },
+    {
+      "name": "RubikUp",
+      "unusual": true
+    },
+    {
+      "name": "Rubikup",
+      "unusual": true
+    },
+    {
+      "name": "RubikUs",
+      "unusual": true
+    },
+    {
+      "name": "RubikUsp",
+      "unusual": true
+    },
+    {
+      "name": "RubikUw",
+      "unusual": true
+    },
+    {
+      "name": "RubikUwp",
+      "unusual": true
+    },
+    {
+      "name": "Rubikx",
+      "unusual": true
+    },
+    {
+      "name": "Rubikxp",
+      "unusual": true
+    },
+    {
+      "name": "Rubiky",
+      "unusual": true
+    },
+    {
+      "name": "Rubikyp",
+      "unusual": true
+    },
+    {
+      "name": "Rubikz",
+      "unusual": true
+    },
+    {
+      "name": "Rubikzp",
+      "unusual": true
+    },
+    {
+      "name": "SequenceBraceA",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:sequence}}"
+      }
+    },
+    {
+      "name": "SequenceBraceAF",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:sequence}}"
+      }
+    },
+    {
+      "name": "SequenceBraceB",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:sequence}}"
+      }
+    },
+    {
+      "name": "SequenceBraceBF",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:sequence}}"
+      }
+    },
+    {
+      "name": "SequenceInfo"
+    },
+    {
+      "name": "SequenceLong"
+    },
+    {
+      "name": "SequenceName"
+    },
+    {
+      "name": "SequenceShort"
+    },
+    {
+      "name": "ShowCube",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:width}}{${2:scale}}{${3:commands}}"
+      }
+    },
+    {
+      "name": "ShowCubeF",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:width}}{${2:scale}}{${3:commands}}"
+      }
+    },
+    {
+      "name": "ShowSequence",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:separator}}{${2:font code}}{${3:sequence}}"
+      }
+    },
+    {
+      "name": "ShowSequenceF",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:separator}}{${2:font code}}{${3:sequence}}"
+      }
+    },
+    {
+      "name": "ShowSequencef",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:separator}}{${2:font code}}{${3:sequence}}"
+      }
+    },
+    {
+      "name": "SquareB",
+      "unusual": true
+    },
+    {
+      "name": "SquareBa",
+      "unusual": true
+    },
+    {
+      "name": "SquareBap",
+      "unusual": true
+    },
+    {
+      "name": "SquareBm",
+      "unusual": true
+    },
+    {
+      "name": "SquareBmp",
+      "unusual": true
+    },
+    {
+      "name": "SquareBp",
+      "unusual": true
+    },
+    {
+      "name": "SquareBs",
+      "unusual": true
+    },
+    {
+      "name": "SquareBsp",
+      "unusual": true
+    },
+    {
+      "name": "SquareBw",
+      "unusual": true
+    },
+    {
+      "name": "SquareBwp",
+      "unusual": true
+    },
+    {
+      "name": "SquareD",
+      "unusual": true
+    },
+    {
+      "name": "SquareDa",
+      "unusual": true
+    },
+    {
+      "name": "SquareDap",
+      "unusual": true
+    },
+    {
+      "name": "SquareDp",
+      "unusual": true
+    },
+    {
+      "name": "SquareDs",
+      "unusual": true
+    },
+    {
+      "name": "SquareDsp",
+      "unusual": true
+    },
+    {
+      "name": "SquareDw",
+      "unusual": true
+    },
+    {
+      "name": "SquareDwp",
+      "unusual": true
+    },
+    {
+      "name": "SquareE",
+      "unusual": true
+    },
+    {
+      "name": "SquareEp",
+      "unusual": true
+    },
+    {
+      "name": "SquareF",
+      "unusual": true
+    },
+    {
+      "name": "SquareFa",
+      "unusual": true
+    },
+    {
+      "name": "SquareFap",
+      "unusual": true
+    },
+    {
+      "name": "SquareFm",
+      "unusual": true
+    },
+    {
+      "name": "SquareFmp",
+      "unusual": true
+    },
+    {
+      "name": "SquareFp",
+      "unusual": true
+    },
+    {
+      "name": "SquareFs",
+      "unusual": true
+    },
+    {
+      "name": "SquareFsp",
+      "unusual": true
+    },
+    {
+      "name": "SquareFw",
+      "unusual": true
+    },
+    {
+      "name": "SquareFwp",
+      "unusual": true
+    },
+    {
+      "name": "SquareL",
+      "unusual": true
+    },
+    {
+      "name": "SquareLa",
+      "unusual": true
+    },
+    {
+      "name": "SquareLap",
+      "unusual": true
+    },
+    {
+      "name": "SquareLp",
+      "unusual": true
+    },
+    {
+      "name": "SquareLs",
+      "unusual": true
+    },
+    {
+      "name": "SquareLsp",
+      "unusual": true
+    },
+    {
+      "name": "SquareLw",
+      "unusual": true
+    },
+    {
+      "name": "SquareLwp",
+      "unusual": true
+    },
+    {
+      "name": "SquareM",
+      "unusual": true
+    },
+    {
+      "name": "SquareMB",
+      "unusual": true
+    },
+    {
+      "name": "SquareMBp",
+      "unusual": true
+    },
+    {
+      "name": "SquareMF",
+      "unusual": true
+    },
+    {
+      "name": "SquareMFp",
+      "unusual": true
+    },
+    {
+      "name": "SquareMp",
+      "unusual": true
+    },
+    {
+      "name": "SquareR",
+      "unusual": true
+    },
+    {
+      "name": "SquareRa",
+      "unusual": true
+    },
+    {
+      "name": "SquareRap",
+      "unusual": true
+    },
+    {
+      "name": "SquareRp",
+      "unusual": true
+    },
+    {
+      "name": "SquareRs",
+      "unusual": true
+    },
+    {
+      "name": "SquareRsp",
+      "unusual": true
+    },
+    {
+      "name": "SquareRw",
+      "unusual": true
+    },
+    {
+      "name": "SquareRwp",
+      "unusual": true
+    },
+    {
+      "name": "SquareS",
+      "unusual": true
+    },
+    {
+      "name": "SquareSB",
+      "unusual": true
+    },
+    {
+      "name": "SquareSb",
+      "unusual": true
+    },
+    {
+      "name": "SquareSBp",
+      "unusual": true
+    },
+    {
+      "name": "SquareSbp",
+      "unusual": true
+    },
+    {
+      "name": "SquareSF",
+      "unusual": true
+    },
+    {
+      "name": "SquareSf",
+      "unusual": true
+    },
+    {
+      "name": "SquareSFp",
+      "unusual": true
+    },
+    {
+      "name": "SquareSfp",
+      "unusual": true
+    },
+    {
+      "name": "SquareSp",
+      "unusual": true
+    },
+    {
+      "name": "SquareTB",
+      "unusual": true
+    },
+    {
+      "name": "SquareTBp",
+      "unusual": true
+    },
+    {
+      "name": "SquareU",
+      "unusual": true
+    },
+    {
+      "name": "SquareUa",
+      "unusual": true
+    },
+    {
+      "name": "SquareUap",
+      "unusual": true
+    },
+    {
+      "name": "SquareUp",
+      "unusual": true
+    },
+    {
+      "name": "SquareUs",
+      "unusual": true
+    },
+    {
+      "name": "SquareUsp",
+      "unusual": true
+    },
+    {
+      "name": "SquareUw",
+      "unusual": true
+    },
+    {
+      "name": "SquareUwp",
+      "unusual": true
+    },
+    {
+      "name": "textCubieLD",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}"
+      }
+    },
+    {
+      "name": "textCubieLU",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}"
+      }
+    },
+    {
+      "name": "textCubieRD",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}"
+      }
+    },
+    {
+      "name": "textCubieRU",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}"
+      }
+    },
+    {
+      "name": "textRubik",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:rotation code}}"
+      }
+    },
+    {
+      "name": "textRubikB",
+      "unusual": true
+    },
+    {
+      "name": "textRubikb",
+      "unusual": true
+    },
+    {
+      "name": "textRubikBa",
+      "unusual": true
+    },
+    {
+      "name": "textRubikBap",
+      "unusual": true
+    },
+    {
+      "name": "textRubikBc",
+      "unusual": true
+    },
+    {
+      "name": "textRubikBcp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikBm",
+      "unusual": true
+    },
+    {
+      "name": "textRubikBmp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikBp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikbp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikBs",
+      "unusual": true
+    },
+    {
+      "name": "textRubikBsp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikBw",
+      "unusual": true
+    },
+    {
+      "name": "textRubikBwp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikCB",
+      "unusual": true
+    },
+    {
+      "name": "textRubikCBp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikCD",
+      "unusual": true
+    },
+    {
+      "name": "textRubikCDp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikCF",
+      "unusual": true
+    },
+    {
+      "name": "textRubikCFp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikCL",
+      "unusual": true
+    },
+    {
+      "name": "textRubikCLp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikCR",
+      "unusual": true
+    },
+    {
+      "name": "textRubikCRp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikCU",
+      "unusual": true
+    },
+    {
+      "name": "textRubikCUp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikD",
+      "unusual": true
+    },
+    {
+      "name": "textRubikd",
+      "unusual": true
+    },
+    {
+      "name": "textRubikDa",
+      "unusual": true
+    },
+    {
+      "name": "textRubikDap",
+      "unusual": true
+    },
+    {
+      "name": "textRubikDc",
+      "unusual": true
+    },
+    {
+      "name": "textRubikDcp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikDm",
+      "unusual": true
+    },
+    {
+      "name": "textRubikDmp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikDp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikdp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikDs",
+      "unusual": true
+    },
+    {
+      "name": "textRubikDsp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikDw",
+      "unusual": true
+    },
+    {
+      "name": "textRubikDwp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikE",
+      "unusual": true
+    },
+    {
+      "name": "textRubikEp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikF",
+      "unusual": true
+    },
+    {
+      "name": "textRubikf",
+      "unusual": true
+    },
+    {
+      "name": "textRubikFa",
+      "unusual": true
+    },
+    {
+      "name": "textRubikFap",
+      "unusual": true
+    },
+    {
+      "name": "textRubikFc",
+      "unusual": true
+    },
+    {
+      "name": "textRubikFcp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikFm",
+      "unusual": true
+    },
+    {
+      "name": "textRubikFmp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikFp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikfp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikFs",
+      "unusual": true
+    },
+    {
+      "name": "textRubikFsp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikFw",
+      "unusual": true
+    },
+    {
+      "name": "textRubikFwp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikL",
+      "unusual": true
+    },
+    {
+      "name": "textRubikl",
+      "unusual": true
+    },
+    {
+      "name": "textRubikLa",
+      "unusual": true
+    },
+    {
+      "name": "textRubikLap",
+      "unusual": true
+    },
+    {
+      "name": "textRubikLc",
+      "unusual": true
+    },
+    {
+      "name": "textRubikLcp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikLm",
+      "unusual": true
+    },
+    {
+      "name": "textRubikLmp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikLp",
+      "unusual": true
+    },
+    {
+      "name": "textRubiklp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikLs",
+      "unusual": true
+    },
+    {
+      "name": "textRubikLsp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikLw",
+      "unusual": true
+    },
+    {
+      "name": "textRubikLwp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikM",
+      "unusual": true
+    },
+    {
+      "name": "textRubikMB",
+      "unusual": true
+    },
+    {
+      "name": "textRubikMBp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikMD",
+      "unusual": true
+    },
+    {
+      "name": "textRubikMDp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikMF",
+      "unusual": true
+    },
+    {
+      "name": "textRubikMFp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikML",
+      "unusual": true
+    },
+    {
+      "name": "textRubikMLp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikMp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikMR",
+      "unusual": true
+    },
+    {
+      "name": "textRubikMRp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikMU",
+      "unusual": true
+    },
+    {
+      "name": "textRubikMUp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikR",
+      "unusual": true
+    },
+    {
+      "name": "textRubikr",
+      "unusual": true
+    },
+    {
+      "name": "textRubikRa",
+      "unusual": true
+    },
+    {
+      "name": "textRubikRap",
+      "unusual": true
+    },
+    {
+      "name": "textRubikRc",
+      "unusual": true
+    },
+    {
+      "name": "textRubikRcp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikRm",
+      "unusual": true
+    },
+    {
+      "name": "textRubikRmp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikRp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikrp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikRs",
+      "unusual": true
+    },
+    {
+      "name": "textRubikRsp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikRw",
+      "unusual": true
+    },
+    {
+      "name": "textRubikRwp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikS",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSB",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSb",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSBp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSbp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSD",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSd",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSDp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSdp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSF",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSf",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSFp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSfp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSL",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSl",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSLp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSlp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSR",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSr",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSRp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSrp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSU",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSu",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSUp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikSup",
+      "unusual": true
+    },
+    {
+      "name": "textRubikTB",
+      "unusual": true
+    },
+    {
+      "name": "textRubikTBp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikTD",
+      "unusual": true
+    },
+    {
+      "name": "textRubikTDp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikTF",
+      "unusual": true
+    },
+    {
+      "name": "textRubikTFp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikTL",
+      "unusual": true
+    },
+    {
+      "name": "textRubikTLp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikTR",
+      "unusual": true
+    },
+    {
+      "name": "textRubikTRp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikTU",
+      "unusual": true
+    },
+    {
+      "name": "textRubikTUp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikU",
+      "unusual": true
+    },
+    {
+      "name": "textRubiku",
+      "unusual": true
+    },
+    {
+      "name": "textRubikUa",
+      "unusual": true
+    },
+    {
+      "name": "textRubikUap",
+      "unusual": true
+    },
+    {
+      "name": "textRubikUc",
+      "unusual": true
+    },
+    {
+      "name": "textRubikUcp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikUm",
+      "unusual": true
+    },
+    {
+      "name": "textRubikUmp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikUp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikup",
+      "unusual": true
+    },
+    {
+      "name": "textRubikUs",
+      "unusual": true
+    },
+    {
+      "name": "textRubikUsp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikUw",
+      "unusual": true
+    },
+    {
+      "name": "textRubikUwp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikx",
+      "unusual": true
+    },
+    {
+      "name": "textRubikxp",
+      "unusual": true
+    },
+    {
+      "name": "textRubiky",
+      "unusual": true
+    },
+    {
+      "name": "textRubikyp",
+      "unusual": true
+    },
+    {
+      "name": "textRubikz",
+      "unusual": true
+    },
+    {
+      "name": "textRubikzp",
+      "unusual": true
+    },
+    {
+      "name": "Ulb",
+      "unusual": true
+    },
+    {
+      "name": "Ulm",
+      "unusual": true
+    },
+    {
+      "name": "Ult",
+      "unusual": true
+    },
+    {
+      "name": "x",
+      "unusual": true
+    },
+    {
+      "name": "xcount",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

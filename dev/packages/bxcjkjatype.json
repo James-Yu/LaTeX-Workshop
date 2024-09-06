@@ -1,165 +1,305 @@
 {
-  "includes": {
-    "keyval": [],
-    "CJK": [],
-    "CJKutf8": [],
-    "CJKspace": [],
-    "CJKpunct": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "setminchofont{}": {
-      "snippet": "setminchofont{${1:font-file}}"
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "setminchofont[]{}": {
-      "snippet": "setminchofont[${2:id}]{${1:font-file}}"
+    {
+      "name": "CJK"
     },
-    "setgothicfont{}": {
-      "snippet": "setgothicfont{${1:font-file}}"
+    {
+      "name": "CJKutf8"
     },
-    "setgothicfont[]{}": {
-      "snippet": "setgothicfont[${2:id}]{${1:font-file}}"
+    {
+      "name": "CJKspace"
     },
-    "setmarugothicfont{}": {
-      "snippet": "setmarugothicfont{${1:font-file}}"
+    {
+      "name": "CJKpunct"
     },
-    "setmarugothicfont[]{}": {
-      "snippet": "setmarugothicfont[${2:id}]{${1:font-file}}"
-    },
-    "setmediumminchofont{}": {
-      "snippet": "setmediumminchofont{${1:font-file}}"
-    },
-    "setmediumminchofont[]{}": {
-      "snippet": "setmediumminchofont[${2:id}]{${1:font-file}}"
-    },
-    "setboldminchofont{}": {
-      "snippet": "setboldminchofont{${1:font-file}}"
-    },
-    "setboldminchofont[]{}": {
-      "snippet": "setboldminchofont[${2:id}]{${1:font-file}}"
-    },
-    "setmediumgothicfont{}": {
-      "snippet": "setmediumgothicfont{${1:font-file}}"
-    },
-    "setmediumgothicfont[]{}": {
-      "snippet": "setmediumgothicfont[${2:id}]{${1:font-file}}"
-    },
-    "setboldgothicfont{}": {
-      "snippet": "setboldgothicfont{${1:font-file}}"
-    },
-    "setboldgothicfont[]{}": {
-      "snippet": "setboldgothicfont[${2:id}]{${1:font-file}}"
-    },
-    "setxboldgothicfont{}": {
-      "snippet": "setxboldgothicfont{${1:font-file}}"
-    },
-    "setxboldgothicfont[]{}": {
-      "snippet": "setxboldgothicfont[${2:id}]{${1:font-file}}"
-    },
-    "setoneweightgothicfont{}": {
-      "snippet": "setoneweightgothicfont{${1:font-file}}"
-    },
-    "setoneweightgothicfont[]{}": {
-      "snippet": "setoneweightgothicfont[${2:id}]{${1:font-file}}"
-    },
-    "setCJKfamilydefault{}": {
-      "snippet": "setCJKfamilydefault{${1:family}}"
-    },
-    "CJKecglue": {},
-    ">": {
-      "detail": ">",
-      "documentation": "GREATER-THAN SIGN r:"
-    },
-    "UTF{}": {
-      "snippet": "UTF{${1:hex-number}}"
-    },
-    "CJKforce{}": {
-      "snippet": "CJKforce{${1:characters}}"
-    },
-    "CJKunforce{}": {
-      "snippet": "CJKunforce{${1:characters}}"
-    },
-    "mcdefault": {},
-    "gtdefault": {},
-    "mgdefault": {},
-    "mcfamily": {},
-    "gtfamily": {},
-    "mgfamily": {},
-    "CJKboldbyembolden": {},
-    "CJKnoboldbyembolden": {},
-    "setlightminchofont{}": {
-      "snippet": "setlightminchofont{${1:font-file}}"
-    },
-    "setlightminchofont[]{}": {
-      "snippet": "setlightminchofont[${2:id}]{${1:font-file}}"
-    },
-    "bxcjkjatypeHyperrefPatchDone": {},
-    "CJKforced{}": {
-      "snippet": "CJKforced{${1:kanji}}"
-    },
-    "ebdefault": {},
-    "ebseries": {},
-    "Entry{}{}": {
-      "snippet": "Entry{${1:arg1}}{${2:arg2}}"
-    },
-    "EveryCJKUse{}": {
-      "snippet": "EveryCJKUse{${1:code}}"
-    },
-    "FirstCJKUse{}": {
-      "snippet": "FirstCJKUse{${1:code}}"
-    },
-    "FONT": {},
-    "usecmapforalphabet": {}
-  },
-  "envs": {
-    "uCJK": {},
-    "uCJK*": {}
-  },
-  "options": [
-    "whole",
-    "wholeCJK*",
-    "wholeCJK",
-    "nowhole",
-    "everypage",
-    "noeverypage",
-    "ipaex-type1",
-    "defaultmingoth",
-    "oneweight",
-    "nooneweight",
-    "autotilde",
-    "noautotilde",
-    "CJKpunct",
-    "noCJKpunct",
-    "CJKspace",
-    "noCJKspace",
-    "boldbyembolden",
-    "noboldbyembolden",
-    "substmingoth",
-    "nosubstmingoth",
-    "CJKtildeasspace",
-    "noCJKtildeasspace",
-    "ms",
-    "ipa",
-    "ipaex",
-    "ms-hg",
-    "ipa-hg",
-    "ipaex-hg",
-    "moga-mobo",
-    "moga-maruberi",
-    "kozuka-pro",
-    "kozuka-pr6",
-    "kozuka-pr6n",
-    "hiragino-pro",
-    "hiragino-pron",
-    "hiragino-elcapitan-pro",
-    "hiragino-elcapitan-pron",
-    "morisawa-pro",
-    "morisawa-pr6n",
-    "yu-win",
-    "yu-win10",
-    "yu-osx",
-    "scale=${1:factor}",
-    "ttfname=${1:pattern}"
+    {
+      "name": "etoolbox"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "setminchofont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setminchofont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setgothicfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setgothicfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setmarugothicfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setmarugothicfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setmediumminchofont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setmediumminchofont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setboldminchofont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setboldminchofont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setmediumgothicfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setmediumgothicfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setboldgothicfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setboldgothicfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setxboldgothicfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setxboldgothicfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setoneweightgothicfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setoneweightgothicfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:font-file}}"
+      }
+    },
+    {
+      "name": "setCJKfamilydefault",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "CJKecglue"
+    },
+    {
+      "name": ">",
+      "unusual": true
+    },
+    {
+      "name": "UTF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hex-number}}"
+      }
+    },
+    {
+      "name": "CJKforce",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:characters}}"
+      }
+    },
+    {
+      "name": "CJKunforce",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:characters}}"
+      }
+    },
+    {
+      "name": "mcdefault",
+      "unusual": true
+    },
+    {
+      "name": "gtdefault",
+      "unusual": true
+    },
+    {
+      "name": "mgdefault",
+      "unusual": true
+    },
+    {
+      "name": "mcfamily"
+    },
+    {
+      "name": "gtfamily"
+    },
+    {
+      "name": "mgfamily"
+    },
+    {
+      "name": "CJKboldbyembolden",
+      "unusual": true
+    },
+    {
+      "name": "CJKnoboldbyembolden",
+      "unusual": true
+    },
+    {
+      "name": "CJKforced",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:kanji}}"
+      }
+    },
+    {
+      "name": "ebdefault",
+      "unusual": true
+    },
+    {
+      "name": "ebseries",
+      "unusual": true
+    },
+    {
+      "name": "EveryCJKUse",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "FirstCJKUse",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "uCJK"
+    },
+    {
+      "name": "uCJK*"
+    }
+  ],
+  "keys": {
+    "\\usepackage/bxcjkjatype#c": [
+      "whole",
+      "wholeCJK*",
+      "wholeCJK",
+      "nowhole",
+      "everypage",
+      "noeverypage",
+      "ipaex-type1",
+      "defaultmingoth",
+      "oneweight",
+      "nooneweight",
+      "autotilde",
+      "noautotilde",
+      "CJKpunct",
+      "noCJKpunct",
+      "CJKspace",
+      "noCJKspace",
+      "boldbyembolden",
+      "noboldbyembolden",
+      "substmingoth",
+      "nosubstmingoth",
+      "CJKtildeasspace",
+      "noCJKtildeasspace",
+      "ms",
+      "ipa",
+      "ipaex",
+      "ms-hg",
+      "ipa-hg",
+      "ipaex-hg",
+      "moga-mobo",
+      "moga-maruberi",
+      "kozuka-pro",
+      "kozuka-pr6",
+      "kozuka-pr6n",
+      "hiragino-pro",
+      "hiragino-pron",
+      "hiragino-elcapitan-pro",
+      "hiragino-elcapitan-pron",
+      "morisawa-pro",
+      "morisawa-pr6n",
+      "yu-win",
+      "yu-win10",
+      "yu-osx",
+      "scale=${1:factor}",
+      "ttfname=${1:pattern}"
+    ]
+  },
+  "args": [
+    "\\usepackage/bxcjkjatype#c"
+  ]
 }

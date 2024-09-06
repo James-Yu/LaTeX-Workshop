@@ -1,52 +1,116 @@
 {
-  "includes": {
-    "pdfpages": [],
-    "tocloft": [],
-    "hyperref": [],
-    "babel": []
-  },
-  "macros": {
-    "course{}": {
-      "snippet": "course{${1:title}}"
+  "deps": [
+    {
+      "name": "pdfpages"
     },
-    "course[]{}": {
-      "snippet": "course[${2:footnote}]{${1:title}}"
+    {
+      "name": "tocloft"
     },
-    "lecture{}{}": {
-      "snippet": "lecture{${1:title}}{${2:PDF file}}"
+    {
+      "name": "hyperref"
     },
-    "lecture{}[]{}": {
-      "snippet": "lecture{${1:title}}[${2:start}]{${3:PDF file}}"
-    },
-    "lecture{}[][]{}": {
-      "snippet": "lecture{${1:title}}[${2:start}][${3:end}]{${4:PDF file}}"
-    },
-    "lecturetitle{}": {
-      "snippet": "lecturetitle{${1:title}}"
-    },
-    "lectureslides{}": {
-      "snippet": "lectureslides{${1:PDF file}}"
-    },
-    "lectureslides[]{}": {
-      "snippet": "lectureslides[${2:start}]{${1:PDF file}}"
-    },
-    "lectureslides[][]{}": {
-      "snippet": "lectureslides[${2:start}][${3:end}]{${1:PDF file}}"
-    },
-    "tocline{}": {
-      "snippet": "tocline{${1:arg}}"
-    },
-    "createdAt{}": {
-      "snippet": "createdAt{${1:text}}"
-    },
-    "orientation": {},
-    "thispackage": {},
-    "toclevel": {}
-  },
-  "envs": {},
-  "options": [
-    "portrait",
-    "landscape"
+    {
+      "name": "babel"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "course",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "course",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:footnote%text}]{${1:title}}"
+      }
+    },
+    {
+      "name": "lecture",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title}}{${2:PDF file%file}}"
+      }
+    },
+    {
+      "name": "lecture",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:title}}[${3:start}]{${2:PDF file%file}}"
+      }
+    },
+    {
+      "name": "lecture",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:title}}[${3:start}][${4:end}]{${2:PDF file%file}}"
+      }
+    },
+    {
+      "name": "lecturetitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "lectureslides",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:PDF file%file}}"
+      }
+    },
+    {
+      "name": "lectureslides",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:start}]{${1:PDF file%file}}"
+      }
+    },
+    {
+      "name": "lectureslides",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:start}][${3:end}]{${1:PDF file%file}}"
+      }
+    },
+    {
+      "name": "tocline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "createdAt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "orientation",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/lectureslides#c": [
+      "portrait",
+      "landscape"
+    ]
+  },
+  "args": [
+    "\\usepackage/lectureslides#c"
+  ]
 }

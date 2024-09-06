@@ -1,32 +1,63 @@
 {
-  "includes": {
-    "soulutf8": [],
-    "keyval": []
-  },
-  "macros": {
-    "ulposdef{}{}": {
-      "snippet": "ulposdef{${1:cmd}}{${2:definition}}"
+  "deps": [
+    {
+      "name": "soulutf8"
     },
-    "ulposdef{}[]{}": {
-      "snippet": "ulposdef{${1:cmd}}[${2:options}]{${3:definition}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "keyval"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ulposdef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "ifulstarttype{}{}{}": {
-      "snippet": "ifulstarttype{${1:type}}{${2:true}}{${3:false}}"
+    {
+      "name": "ulposdef",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:options%keyvals}]{${2:definition}}",
+        "keys": [
+          "\\ulposdef"
+        ],
+        "keyPos": 1
+      }
     },
-    "ifulendtype{}{}{}": {
-      "snippet": "ifulendtype{${1:type}}{${2:true}}{${3:false}}"
+    {
+      "name": "ifulstarttype",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:type}}{${2:true}}{${3:false}}"
+      }
     },
-    "ulstarttype": {},
-    "ulendtype": {},
-    "ulpostolerance": {},
-    "ulwidth": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "ifulendtype",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:type}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ulstarttype"
+    },
+    {
+      "name": "ulendtype"
+    },
+    {
+      "name": "ulpostolerance",
+      "unusual": true
+    },
+    {
+      "name": "ulwidth",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\ulposdef": [
       "xoffset=",
       "xoffset-start=",
       "xoffset-end=",
@@ -36,5 +67,6 @@
       "hyphens=${1|include,exclude|}",
       "overdraw"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,22 +1,39 @@
 {
-  "includes": {
-    "tikz": [],
-    "atbegshi": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "pagegridsetup{}": {
-      "snippet": "pagegridsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "pagegridShipoutDoubleBegin": {},
-    "pagegridShipoutDoubleEnd": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "atbegshi"
+    },
+    {
+      "name": "kvoptions"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pagegridsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pagegridsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pagegridShipoutDoubleBegin",
+      "unusual": true
+    },
+    {
+      "name": "pagegridShipoutDoubleEnd",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pagegridsetup": [
       "enable",
       "disable",
       "left-top",
@@ -43,5 +60,6 @@
       "double=${1|false,first,last,true|}",
       "foreground"
     ]
-  ]
+  },
+  "args": []
 }

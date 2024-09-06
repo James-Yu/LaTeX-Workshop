@@ -1,33 +1,60 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-grad": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "PstLens{}": {
-      "snippet": "PstLens{${1:stuff}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "PstLens(){}": {
-      "snippet": "PstLens(${2:x},${3:y}){${1:stuff}}"
+    {
+      "name": "pst-grad"
     },
-    "PstLens[]{}": {
-      "snippet": "PstLens[${2:options}]{${1:stuff}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "PstLens",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:stuff}}"
+      }
     },
-    "PstLens[](){}": {
-      "snippet": "PstLens[${2:options}](${3:x},${4:y}){${1:stuff}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "PstLens",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:stuff}}"
+      }
     },
-    "PstLensShape": {},
-    "PSTLensLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "PstLens",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:stuff}}",
+        "keys": [
+          "\\PstLens"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PstLens",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:stuff}}",
+        "keys": [
+          "\\PstLens"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PstLensShape",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\PstLens": [
       "LensHandle",
       "LensStyleHandle=${1:style}",
       "LensHandleWidth=",
@@ -38,5 +65,6 @@
       "LensMagnification=${1:factor}",
       "LensRotation=${1:degrees}"
     ]
-  ]
+  },
+  "args": []
 }

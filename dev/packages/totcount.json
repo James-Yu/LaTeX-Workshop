@@ -1,40 +1,73 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "regtotcounter{}": {
-      "snippet": "regtotcounter{${1:counter}}"
+  "deps": [
+    {
+      "name": "keyval"
+    }
+  ],
+  "macros": [
+    {
+      "name": "regtotcounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
     },
-    "regtotcounter[]{}": {
-      "snippet": "regtotcounter[${2:options}]{${1:counter}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "regtotcounter",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:counter}}",
+        "keys": [
+          "\\regtotcounter,\\newtotcounter"
+        ],
+        "keyPos": 0
+      }
     },
-    "newtotcounter{}": {
-      "snippet": "newtotcounter{${1:counter}}"
+    {
+      "name": "newtotcounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
     },
-    "newtotcounter[]{}": {
-      "snippet": "newtotcounter[${2:option}]{${1:counter}}"
+    {
+      "name": "newtotcounter",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:counter}}",
+        "keys": [
+          "\\regtotcounter,\\newtotcounter"
+        ],
+        "keyPos": 0
+      }
     },
-    "total{}": {
-      "snippet": "total{${1:counter}}"
+    {
+      "name": "total",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
     },
-    "totvalue{}": {
-      "snippet": "totvalue{${1:counter}}"
+    {
+      "name": "totvalue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
     },
-    "usetotcountfile{}": {
-      "snippet": "usetotcountfile{${1:file}}"
-    },
-    "totcdocdate": {},
-    "totcfiledate": {},
-    "totcfileversion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "usetotcountfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\regtotcounter,\\newtotcounter": [
       "auxfile=${1:file}"
     ]
-  ]
+  },
+  "args": []
 }

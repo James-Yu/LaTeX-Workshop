@@ -1,65 +1,141 @@
 {
-  "includes": {},
-  "macros": {
-    "displayskipstretch": {},
-    "setdisplayskipstretch{}": {
-      "snippet": "setdisplayskipstretch{${1:factor}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "displayskipstretch",
+      "unusual": true
     },
-    "memucsfninterwordhook": {},
-    "noadjustquotespacing": {},
-    "adjustquotespacing": {},
-    "adjustfloatfnspacing": {},
-    "noadjustfloatfnspacing": {},
-    "setstretch{}": {
-      "snippet": "setstretch{${1:factor}}"
+    {
+      "name": "setdisplayskipstretch",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
     },
-    "SetSinglespace{}": {
-      "snippet": "SetSinglespace{${1:factor}}"
+    {
+      "name": "memucsfninterwordhook",
+      "unusual": true
     },
-    "SetHangulspace{}{}": {
-      "snippet": "SetHangulspace{${1:factor1}}{${2:factor2}}"
+    {
+      "name": "noadjustquotespacing",
+      "unusual": true
     },
-    "SetHangulVerbatimSpace{}": {
-      "snippet": "SetHangulVerbatimSpace{${1:factor}}"
+    {
+      "name": "adjustquotespacing",
+      "unusual": true
     },
-    "ResetHangulspace{}{}": {
-      "snippet": "ResetHangulspace{${1:factor1}}{${2:factor2}}"
+    {
+      "name": "adjustfloatfnspacing",
+      "unusual": true
     },
-    "RestoreHangulspace": {},
-    "singlespacing": {},
-    "hangulspacing": {},
-    "hangulfspacing": {},
-    "hangulverbspacing": {},
-    "onehalfspacing": {},
-    "doublespacing": {},
-    "epigraphspacinghook": {},
-    "epigraphspacing{}": {
-      "snippet": "epigraphspacing{${1:factor}}"
+    {
+      "name": "noadjustfloatfnspacing",
+      "unusual": true
     },
-    "filename": {},
-    "filedate": {},
-    "fileversion": {}
-  },
-  "envs": {
-    "singlespace": {},
-    "singlespace*": {},
-    "spacing{}": {
-      "name": "spacing",
-      "snippet": "{${1:factor}}"
+    {
+      "name": "setstretch",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
     },
-    "onehalfspace": {},
-    "doublespace": {}
-  },
-  "options": [
-    "nodisplayskipstretch",
-    "nofloatspacing",
-    "quotespacing",
-    "hangul",
-    "adjustfootnotesep",
-    "adjustverbatim",
-    "singlespacing",
-    "onehalfspacing",
-    "doublespacing"
+    {
+      "name": "SetSinglespace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "SetHangulspace",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:factor1}}{${2:factor2}}"
+      }
+    },
+    {
+      "name": "SetHangulVerbatimSpace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "ResetHangulspace",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:factor1}}{${2:factor2}}"
+      }
+    },
+    {
+      "name": "RestoreHangulspace"
+    },
+    {
+      "name": "singlespacing"
+    },
+    {
+      "name": "hangulspacing"
+    },
+    {
+      "name": "hangulfspacing"
+    },
+    {
+      "name": "hangulverbspacing"
+    },
+    {
+      "name": "onehalfspacing"
+    },
+    {
+      "name": "doublespacing"
+    },
+    {
+      "name": "epigraphspacinghook",
+      "unusual": true
+    },
+    {
+      "name": "epigraphspacing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    }
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "singlespace"
+    },
+    {
+      "name": "singlespace*",
+      "unusual": true
+    },
+    {
+      "name": "spacing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "onehalfspace"
+    },
+    {
+      "name": "doublespace"
+    }
+  ],
+  "keys": {
+    "\\usepackage/memucs-setspace#c": [
+      "nodisplayskipstretch",
+      "nofloatspacing",
+      "quotespacing",
+      "hangul",
+      "adjustfootnotesep",
+      "adjustverbatim",
+      "singlespacing",
+      "onehalfspacing",
+      "doublespacing"
+    ]
+  },
+  "args": [
+    "\\usepackage/memucs-setspace#c"
+  ]
 }

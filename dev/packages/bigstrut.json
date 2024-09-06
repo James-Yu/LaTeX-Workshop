@@ -1,13 +1,30 @@
 {
-  "includes": {},
-  "macros": {
-    "bigstrut": {},
-    "bigstrut[]": {
-      "snippet": "bigstrut[${1:option}]"
+  "deps": [],
+  "macros": [
+    {
+      "name": "bigstrut"
     },
-    "bigstrutjot": {}
+    {
+      "name": "bigstrut",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:option%keyvals}]",
+        "keys": [
+          "\\bigstrut"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bigstrutjot"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\bigstrut": [
+      "t",
+      "b"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

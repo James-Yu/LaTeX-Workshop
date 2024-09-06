@@ -1,14 +1,39 @@
 {
-  "includes": {
-    "tikz": [],
-    "pgftree": []
-  },
-  "macros": {
-    "Tree[]": {
-      "snippet": "Tree[${1:qtree code}]"
+  "deps": [
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "pgftree"
     }
+  ],
+  "macros": [
+    {
+      "name": "Tree",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:qtree code}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\tikzset#c,\\begin{tikzpicture}#c,\\begin{scope}#c": [
+      "level distance=",
+      "sibling distance=",
+      "grow=${1|up,down,left,right|}",
+      "grow'=${1|up,down,left,right|}",
+      "level ${1:n}+/.style={${2:options}}",
+      "interior/.style={${1:options}}",
+      "frontier/.style={${1:options}}"
+    ],
+    "\\tikzset#c": [
+      "every tree node/.style={${1:options}}",
+      "every internal node/.style={${1:options}}",
+      "every leaf node/.style={${1:options}}",
+      "every level ${1:n} node/.style={${2:options}}",
+      "edge from parent/.append style={${1:options}}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

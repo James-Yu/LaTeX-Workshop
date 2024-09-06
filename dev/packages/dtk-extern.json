@@ -1,36 +1,111 @@
 {
-  "includes": {
-    "fancyvrb": [],
-    "graphicx": [],
-    "marginnote": [],
-    "shellesc": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "ResetKeys": {},
-    "LineWidth": {},
-    "DoubleperCent": {},
-    "dtkExternDateiname": {},
-    "perCent": {}
-  },
-  "envs": {
-    "externalDocument{}": {
-      "name": "externalDocument",
-      "snippet": "{${1:Dateiname}}"
+  "deps": [
+    {
+      "name": "fancyvrb"
     },
-    "externalDocument[]{}": {
-      "name": "externalDocument",
-      "snippet": "[${2:Optionen}]{${1:Dateiname}}"
+    {
+      "name": "graphicx"
     },
-    "ErstelleGrafik{}": {
-      "name": "ErstelleGrafik",
-      "snippet": "{${1:Dateiname}}"
+    {
+      "name": "marginnote"
     },
-    "ErstelleGrafik[]{}": {
-      "name": "ErstelleGrafik",
-      "snippet": "[${2:Optionen}]{${1:Dateiname}}"
+    {
+      "name": "shellesc"
+    },
+    {
+      "name": "xkeyval"
     }
+  ],
+  "macros": [
+    {
+      "name": "ResetKeys"
+    },
+    {
+      "name": "LineWidth",
+      "unusual": true
+    },
+    {
+      "name": "DoubleperCent",
+      "unusual": true
+    },
+    {
+      "name": "dtkExternDateiname",
+      "unusual": true
+    },
+    {
+      "name": "perCent",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "externalDocument",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Dateiname}}"
+      }
+    },
+    {
+      "name": "externalDocument",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Optionen%keyvals}]{${1:Dateiname}}",
+        "keys": [
+          "\\begin{externalDocument},\\begin{ErstelleGrafik}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ErstelleGrafik",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Dateiname}}"
+      }
+    },
+    {
+      "name": "ErstelleGrafik",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Optionen%keyvals}]{${1:Dateiname}}",
+        "keys": [
+          "\\begin{externalDocument},\\begin{ErstelleGrafik}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{externalDocument},\\begin{ErstelleGrafik}": [
+      "compiler=${1:compiler}",
+      "runsequence=${1:runsequence}",
+      "runs=${1:number}",
+      "grfOptions={${1:\\includegraphics options}}",
+      "lstOptions={${1:listings options}}",
+      "docType=${1:type}",
+      "caption=${1:text}",
+      "label=",
+      "pages={${1:pages}}",
+      "mpwidth=",
+      "usefancyvrb",
+      "showFilename",
+      "code",
+      "force",
+      "crop",
+      "biber",
+      "xindex",
+      "xindexOptions={${1:xindex options}}",
+      "includegraphic",
+      "inline",
+      "frame",
+      "float",
+      "cleanup",
+      "copyToExampleDir",
+      "align=${1:alignment commands}",
+      "ExamplesDir=${1:name}"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

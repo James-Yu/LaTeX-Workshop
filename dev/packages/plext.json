@@ -1,106 +1,209 @@
 {
-  "includes": {
-    "platex": []
-  },
-  "macros": {
-    "floatwidth": {},
-    "floatheight": {},
-    "floatruletick": {},
-    "captionfloatsep": {},
-    "captiondir": {},
-    "captionwidth": {},
-    "captionfontsetup": {},
-    "layoutfloat{}": {
-      "snippet": "layoutfloat{${1:content}}"
-    },
-    "layoutfloat[]{}": {
-      "snippet": "layoutfloat[${2:pos}]{${1:content}}"
-    },
-    "layoutfloat(){}": {
-      "snippet": "layoutfloat(${2:width},${3:height}){${1:content}}"
-    },
-    "layoutfloat()[]{}": {
-      "snippet": "layoutfloat(${3:width},${4:height})[${2:pos}]{${1:content}}"
-    },
-    "DeclareLayoutCaption{}<>()[]": {
-      "snippet": "DeclareLayoutCaption{${1:type}}<${3:dir}>(${4:width})[${2:⟨pos1⟩⟨pos2⟩}]"
-    },
-    "layoutcaption<>()[]": {
-      "snippet": "layoutcaption<${2:dir}>(${3:width})[${1:pos}]"
-    },
-    "pcaption{}": {
-      "snippet": "pcaption{${1:text}}"
-    },
-    "pcaption[]{}": {
-      "snippet": "pcaption[${2:short text}]{${1:text}}"
-    },
-    "pbox{}": {
-      "snippet": "pbox{${1:obj}}"
-    },
-    "pbox[]{}": {
-      "snippet": "pbox[${2:width}]{${1:obj}}"
-    },
-    "pbox[][]{}": {
-      "snippet": "pbox[${2:width}][${3:pos}]{${1:obj}}"
-    },
-    "pbox<>{}": {
-      "snippet": "pbox<${2:dir}>{${1:obj}}"
-    },
-    "pbox<>[]{}": {
-      "snippet": "pbox<${3:dir}>[${2:width}]{${1:obj}}"
-    },
-    "pbox<>[][]{}": {
-      "snippet": "pbox<${4:dir}>[${2:width}][${3:pos}]{${1:obj}}"
-    },
-    "rensuji{}": {
-      "snippet": "rensuji{${1:text}}"
-    },
-    "rensuji[]{}": {
-      "snippet": "rensuji[${2:pos}]{${1:text}}"
-    },
-    "rensuji*{}": {
-      "snippet": "rensuji*{${1:text}}"
-    },
-    "rensuji*[]{}": {
-      "snippet": "rensuji*[${2:pos}]{${1:text}}"
-    },
-    "rensujiskip": {},
-    "Rensuji{}": {
-      "snippet": "Rensuji{${1:text}}"
-    },
-    "Rensuji[]{}": {
-      "snippet": "Rensuji[${2:pos}]{${1:text}}"
-    },
-    "Rensuji*{}": {
-      "snippet": "Rensuji*{${1:text}}"
-    },
-    "Rensuji*[]{}": {
-      "snippet": "Rensuji*[${2:pos}]{${1:text}}"
-    },
-    "prensuji{}": {
-      "snippet": "prensuji{${1:text}}"
-    },
-    "prensuji[]{}": {
-      "snippet": "prensuji[${2:pos}]{${1:text}}"
-    },
-    "prensuji*{}": {
-      "snippet": "prensuji*{${1:text}}"
-    },
-    "prensuji*[]{}": {
-      "snippet": "prensuji*[${2:pos}]{${1:text}}"
-    },
-    "Kanji{}": {
-      "snippet": "Kanji{${1:counter}}"
-    },
-    "boutenchar": {},
-    "bou{}": {
-      "snippet": "bou{${1:text}}"
-    },
-    "kasen{}": {
-      "snippet": "kasen{${1:text}}"
+  "deps": [
+    {
+      "name": "platex"
     }
+  ],
+  "macros": [
+    {
+      "name": "floatwidth",
+      "unusual": true
+    },
+    {
+      "name": "floatheight",
+      "unusual": true
+    },
+    {
+      "name": "floatruletick",
+      "unusual": true
+    },
+    {
+      "name": "captionfloatsep",
+      "unusual": true
+    },
+    {
+      "name": "captiondir",
+      "unusual": true
+    },
+    {
+      "name": "captionwidth",
+      "unusual": true
+    },
+    {
+      "name": "captionfontsetup",
+      "unusual": true
+    },
+    {
+      "name": "layoutfloat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "layoutfloat",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pos}]{${1:content}}"
+      }
+    },
+    {
+      "name": "layoutfloat",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:width},${3:height}){${1:content}}"
+      }
+    },
+    {
+      "name": "layoutfloat",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "(${3:width},${4:height})[${2:pos}]{${1:content}}"
+      }
+    },
+    {
+      "name": "DeclareLayoutCaption",
+      "arg": {
+        "format": "{}<>()[]",
+        "snippet": "{${1:type}}<${3:dir}>(${4:width})[${2:⟨pos1⟩⟨pos2⟩}]"
+      }
+    },
+    {
+      "name": "layoutcaption<dir>",
+      "arg": {
+        "format": "()[]",
+        "snippet": "(${2:width})[${1:pos}]"
+      }
+    },
+    {
+      "name": "pcaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pcaption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "pbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:obj}}"
+      }
+    },
+    {
+      "name": "pbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:obj}}"
+      }
+    },
+    {
+      "name": "pbox",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:width}][${3:pos}]{${1:obj}}"
+      }
+    },
+    {
+      "name": "pbox<dir>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:obj}}"
+      }
+    },
+    {
+      "name": "pbox<dir>",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:obj}}"
+      }
+    },
+    {
+      "name": "pbox<dir>",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:width}][${3:pos}]{${1:obj}}"
+      }
+    },
+    {
+      "name": "rensuji",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rensuji",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pos%keyvals}]{${1:text}}",
+        "keys": [
+          "\\rensuji#c,\\rensuji*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rensuji*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rensuji*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pos%keyvals}]{${1:text}}",
+        "keys": [
+          "\\rensuji#c,\\rensuji*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rensujiskip",
+      "unusual": true
+    },
+    {
+      "name": "Kanji",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "boutenchar",
+      "unusual": true
+    },
+    {
+      "name": "bou",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "kasen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\rensuji#c,\\rensuji*#c": [
+      "l",
+      "c",
+      "r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

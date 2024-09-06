@@ -1,15 +1,25 @@
 {
-  "includes": {
-    "luacode": []
-  },
-  "macros": {
-    "addtoluatexpath{}": {
-      "snippet": "addtoluatexpath{${1:path1,${2:path2},...}}"
+  "deps": [
+    {
+      "name": "luacode"
     }
-  },
-  "envs": {},
-  "options": [
-    "${1:path1,path2,...}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "addtoluatexpath",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path1,path2,...%file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/addtoluatexpath#c": [
+      "${1:path1,path2,...}"
+    ]
+  },
+  "args": [
+    "\\usepackage/addtoluatexpath#c"
+  ]
 }

@@ -1,58 +1,124 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "biblatex-ext-oasymb-pict2e": [
-      "symbolpackage=pict2e"
+  "deps": [
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "biblatex-ext-oasymb-pict2e",
+      "if": "symbolpackage=pict2e"
+    },
+    {
+      "name": "biblatex-ext-oasymb-l3draw",
+      "if": "symbolpackage=l3draw"
+    },
+    {
+      "name": "biblatex-ext-oasymb-tikz",
+      "if": "symbolpackage=tikz"
+    },
+    {
+      "name": "biblatex-ext-oa-doiapi",
+      "if": "doapi"
+    }
+  ],
+  "macros": [
+    {
+      "name": "LoadOASymbolPackage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package%keyvals}}",
+        "keys": [
+          "\\LoadOASymbolPackage#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "LoadOASymbolPackage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:symbol}]{${1:package%keyvals}}",
+        "keys": [
+          "\\LoadOASymbolPackage#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "DeclareOpenAccessFieldUrl",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:field}}{${2:URL spec%URL}}"
+      }
+    },
+    {
+      "name": "DeclareOpenAccessFieldUrl",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:openness}]{${1:field}}{${2:URL spec%URL}}"
+      }
+    },
+    {
+      "name": "UndeclareOpenAccessFieldUrl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:field}}"
+      }
+    },
+    {
+      "name": "DeclareOpenAccessEprintUrl",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:eprint type}}{${2:URL spec%URL}}"
+      }
+    },
+    {
+      "name": "DeclareOpenAccessEprintUrl",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:openness}]{${1:eprint type}}{${2:URL spec%URL}}"
+      }
+    },
+    {
+      "name": "DeclareOpenAccessEprintAlias",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:alias}}{${2:eprint type}}"
+      }
+    },
+    {
+      "name": "UndeclareOpenAccessEprintUrl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:eprint type}}"
+      }
+    },
+    {
+      "name": "DeclareOpenAccessUrlFieldPriority",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:field1,field2,...}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/biblatex-ext-oa#c": [
+      "enable",
+      "symbolpackage=${1|false,pict2e,l3draw,tikz|}",
+      "symbol=${1|plos,oanet|}",
+      "doiapi"
     ],
-    "biblatex-ext-oasymb-l3draw": [
-      "symbolpackage=l3draw"
+    "\\LoadOASymbolPackage#c": [
+      "pict2e",
+      "l3draw",
+      "tikz"
     ],
-    "biblatex-ext-oasymb-tikz": [
-      "symbolpackage=tikz"
-    ],
-    "biblatex-ext-oa-doiapi": [
-      "doapi"
+    "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c": [
+      "openaccess=${2|auto,doiapi,forcedoiapi,true,false,none,${1:open access field}|}"
     ]
   },
-  "macros": {
-    "LoadOASymbolPackage{}": {
-      "snippet": "LoadOASymbolPackage{${1:package}}"
-    },
-    "LoadOASymbolPackage[]{}": {
-      "snippet": "LoadOASymbolPackage[${2:symbol}]{${1:package}}"
-    },
-    "DeclareOpenAccessFieldUrl{}{}": {
-      "snippet": "DeclareOpenAccessFieldUrl{${1:field}}{${2:URL spec}}"
-    },
-    "DeclareOpenAccessFieldUrl[]{}{}": {
-      "snippet": "DeclareOpenAccessFieldUrl[${3:openness}]{${1:field}}{${2:URL spec}}"
-    },
-    "UndeclareOpenAccessFieldUrl{}": {
-      "snippet": "UndeclareOpenAccessFieldUrl{${1:field}}"
-    },
-    "DeclareOpenAccessEprintUrl{}{}": {
-      "snippet": "DeclareOpenAccessEprintUrl{${1:eprint type}}{${2:URL spec}}"
-    },
-    "DeclareOpenAccessEprintUrl[]{}{}": {
-      "snippet": "DeclareOpenAccessEprintUrl[${3:openness}]{${1:eprint type}}{${2:URL spec}}"
-    },
-    "DeclareOpenAccessEprintAlias{}{}": {
-      "snippet": "DeclareOpenAccessEprintAlias{${1:alias}}{${2:eprint type}}"
-    },
-    "UndeclareOpenAccessEprintUrl{}": {
-      "snippet": "UndeclareOpenAccessEprintUrl{${1:eprint type}}"
-    },
-    "DeclareOpenAccessUrlFieldPriority{}": {
-      "snippet": "DeclareOpenAccessUrlFieldPriority{${1:field1,${2:field2},...}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "enable",
-    "symbolpackage=${1|false,pict2e,l3draw,tikz|}",
-    "symbol=${1|plos,oanet|}",
-    "doiapi",
-    "openaccess=${1|auto,doiapi,forcedoiapi,true,false,none,${1:open access field}|}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/biblatex-ext-oa#c",
+    "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c"
+  ]
 }

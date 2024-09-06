@@ -1,78 +1,161 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibraryfadings": []
-  },
-  "macros": {
-    "UPFadingImage{}": {
-      "snippet": "UPFadingImage{${1:imagefile}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "UPFadingImage[]{}": {
-      "snippet": "UPFadingImage[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "UPFadingImage*{}": {
-      "snippet": "UPFadingImage*{${1:imagefile}}"
-    },
-    "UPFadingImage*[]{}": {
-      "snippet": "UPFadingImage*[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "LOWFadingImage{}": {
-      "snippet": "LOWFadingImage{${1:imagefile}}"
-    },
-    "LOWFadingImage[]{}": {
-      "snippet": "LOWFadingImage[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "LOWFadingImage*{}": {
-      "snippet": "LOWFadingImage*{${1:imagefile}}"
-    },
-    "LOWFadingImage*[]{}": {
-      "snippet": "LOWFadingImage*[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "LTFadingImage{}": {
-      "snippet": "LTFadingImage{${1:imagefile}}"
-    },
-    "LTFadingImage[]{}": {
-      "snippet": "LTFadingImage[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "LTFadingImage*{}": {
-      "snippet": "LTFadingImage*{${1:imagefile}}"
-    },
-    "LTFadingImage*[]{}": {
-      "snippet": "LTFadingImage*[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "RITFadingImage{}": {
-      "snippet": "RITFadingImage{${1:imagefile}}"
-    },
-    "RITFadingImage[]{}": {
-      "snippet": "RITFadingImage[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "RITFadingImage*{}": {
-      "snippet": "RITFadingImage*{${1:imagefile}}"
-    },
-    "RITFadingImage*[]{}": {
-      "snippet": "RITFadingImage*[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryfadings"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "UPFadingImage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "UPFadingImage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\UPFadingImage,\\UPFadingImage*,\\LOWFadingImage,\\LOWFadingImage*,\\LTFadingImage,\\LTFadingImage*,\\RITFadingImage,\\RITFadingImage*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "UPFadingImage*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "UPFadingImage*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\UPFadingImage,\\UPFadingImage*,\\LOWFadingImage,\\LOWFadingImage*,\\LTFadingImage,\\LTFadingImage*,\\RITFadingImage,\\RITFadingImage*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "LOWFadingImage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "LOWFadingImage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\UPFadingImage,\\UPFadingImage*,\\LOWFadingImage,\\LOWFadingImage*,\\LTFadingImage,\\LTFadingImage*,\\RITFadingImage,\\RITFadingImage*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "LOWFadingImage*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "LOWFadingImage*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\UPFadingImage,\\UPFadingImage*,\\LOWFadingImage,\\LOWFadingImage*,\\LTFadingImage,\\LTFadingImage*,\\RITFadingImage,\\RITFadingImage*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "LTFadingImage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "LTFadingImage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\UPFadingImage,\\UPFadingImage*,\\LOWFadingImage,\\LOWFadingImage*,\\LTFadingImage,\\LTFadingImage*,\\RITFadingImage,\\RITFadingImage*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "LTFadingImage*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "LTFadingImage*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\UPFadingImage,\\UPFadingImage*,\\LOWFadingImage,\\LOWFadingImage*,\\LTFadingImage,\\LTFadingImage*,\\RITFadingImage,\\RITFadingImage*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "RITFadingImage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "RITFadingImage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\UPFadingImage,\\UPFadingImage*,\\LOWFadingImage,\\LOWFadingImage*,\\LTFadingImage,\\LTFadingImage*,\\RITFadingImage,\\RITFadingImage*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "RITFadingImage*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "RITFadingImage*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\UPFadingImage,\\UPFadingImage*,\\LOWFadingImage,\\LOWFadingImage*,\\LTFadingImage,\\LTFadingImage*,\\RITFadingImage,\\RITFadingImage*"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\UPFadingImage,\\UPFadingImage*,\\LOWFadingImage,\\LOWFadingImage*,\\LTFadingImage,\\LTFadingImage*,\\RITFadingImage,\\RITFadingImage*": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -103,5 +186,6 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
-  ]
+  },
+  "args": []
 }

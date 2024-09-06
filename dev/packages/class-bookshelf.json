@@ -1,66 +1,149 @@
 {
-  "includes": {
-    "fix-cm": [],
-    "class-report": [],
-    "fontspec": [],
-    "calc": [],
-    "fp": [],
-    "graphicx": [],
-    "xcolor": [],
-    "eso-pic": [],
-    "geometry": [],
-    "biblatex": []
-  },
-  "macros": {
-    "makebook{}": {
-      "snippet": "makebook{${1:entry}}"
+  "deps": [
+    {
+      "name": "fix-cm"
     },
-    "citeA[][]{}": {
-      "snippet": "citeA[${2:prenote}][${3:postnote}]{${1:bibid}}"
+    {
+      "name": "class-report"
     },
-    "citeA[]{}": {
-      "snippet": "citeA[${2:postnote}]{${1:bibid}}"
+    {
+      "name": "fontspec"
     },
-    "citeA{}": {
-      "snippet": "citeA{${1:bibid}}"
+    {
+      "name": "calc"
     },
-    "titleref{}": {
-      "snippet": "titleref{${1:text}}"
+    {
+      "name": "fp"
     },
-    "emdash": {},
-    "heightval": {},
-    "titleval": {},
-    "citefullauthor{}": {
-      "snippet": "citefullauthor{${1:bibid}}"
+    {
+      "name": "graphicx"
     },
-    "randomi": {},
-    "nextrandom": {},
-    "setrannum{}{}{}": {
-      "snippet": "setrannum{${1:count register}}{${2:min}}{${3:max}}"
+    {
+      "name": "xcolor"
     },
-    "setrandim{}{}{}": {
-      "snippet": "setrandim{${1:dimen register}}{${2:min}}{${3:max}}"
+    {
+      "name": "eso-pic"
     },
-    "pointless": {},
-    "PoinTless": {},
-    "ranval": {}
-  },
-  "envs": {},
-  "options": [
-    "a0paper",
-    "a1paper",
-    "a2paper",
-    "a3paper",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "ledgerpaper",
-    "tabloidpaper",
-    "landscape",
-    "portrait"
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "biblatex"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "makebook",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:entry}}"
+      }
+    },
+    {
+      "name": "citeA",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citeA",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citeA",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "titleref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "emdash",
+      "unusual": true
+    },
+    {
+      "name": "heightval",
+      "unusual": true
+    },
+    {
+      "name": "titleval",
+      "unusual": true
+    },
+    {
+      "name": "citefullauthor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "randomi",
+      "unusual": true
+    },
+    {
+      "name": "nextrandom",
+      "unusual": true
+    },
+    {
+      "name": "setrannum",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:count register}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "setrandim",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:dimen register}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "pointless",
+      "unusual": true
+    },
+    {
+      "name": "ranval",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/bookshelf#c": [
+      "a0paper",
+      "a1paper",
+      "a2paper",
+      "a3paper",
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "ledgerpaper",
+      "tabloidpaper",
+      "landscape",
+      "portrait"
+    ]
+  },
+  "args": [
+    "\\documentclass/bookshelf#c"
+  ]
 }

@@ -1,191 +1,388 @@
 {
-  "includes": {
-    "luatex": [],
-    "fontspec": [],
-    "luatexbase": [],
-    "kvoptions": [],
-    "setspace": [],
-    "xcolor": [],
-    "stackengine": [],
-    "ulem": [],
-    "transparent": []
-  },
-  "macros": {
-    "cloze{}": {
-      "snippet": "cloze{${1:text}}"
+  "deps": [
+    {
+      "name": "luatex"
     },
-    "cloze[]{}": {
-      "snippet": "cloze[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "fontspec"
     },
-    "clozesetfont{}": {
-      "snippet": "clozesetfont{${1:font}}"
+    {
+      "name": "luatexbase"
     },
-    "clozefix{}": {
-      "snippet": "clozefix{${1:text}}"
+    {
+      "name": "kvoptions"
     },
-    "clozefix[]{}": {
-      "snippet": "clozefix[${2:options}]{${1:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "setspace"
     },
-    "clozenol{}": {
-      "snippet": "clozenol{${1:text}}"
+    {
+      "name": "xcolor"
     },
-    "clozenol[]{}": {
-      "snippet": "clozenol[${2:options}]{${1:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "stackengine"
     },
-    "clozefil{}": {
-      "snippet": "clozefil{${1:text}}"
+    {
+      "name": "ulem"
     },
-    "clozefil[]{}": {
-      "snippet": "clozefil[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "clozeextend[]": {
-      "snippet": "clozeextend[${1:spaces}]"
-    },
-    "clozeparcmd{}": {
-      "snippet": "clozeparcmd{${1:text}}"
-    },
-    "clozeparcmd[]{}": {
-      "snippet": "clozeparcmd[${2:options}]{${1:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "clozeline": {},
-    "clozeline[]": {
-      "snippet": "clozeline[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "clozelinefil": {},
-    "clozelinefil[]": {
-      "snippet": "clozelinefil[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "clozestrike{}{}": {
-      "snippet": "clozestrike{${1:wrong text}}{${2:correct text}}"
-    },
-    "clozestrike[]{}{}": {
-      "snippet": "clozestrike[${3:options}]{${1:wrong text}}{${2:correct text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "clozesetoption{}{}": {
-      "snippet": "clozesetoption{${1:option}}{${2:value}}"
-    },
-    "clozeset{}": {
-      "snippet": "clozeset{${1:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "clozereset": {},
-    "clozeshow": {},
-    "clozehide": {},
-    "ifclozeshow": {},
-    "clozeshowtrue": {},
-    "clozeshowfalse": {},
-    "ClozeSetToGlobal": {},
-    "ClozeSetToLocal": {},
-    "ClozeGetOption{}": {
-      "snippet": "ClozeGetOption{${1:arg}}"
-    },
-    "ClozeColor{}": {
-      "snippet": "ClozeColor{${1:color}}"
-    },
-    "ClozeStartMarker{}": {
-      "snippet": "ClozeStartMarker{${1:arg}}"
-    },
-    "ClozeStopMarker{}": {
-      "snippet": "ClozeStopMarker{${1:arg}}"
-    },
-    "ClozeMargin{}": {
-      "snippet": "ClozeMargin{${1:arg}}"
-    },
-    "clozefont": {},
-    "ClozeSetLocalOptions{}": {
-      "snippet": "ClozeSetLocalOptions{${1:options}}"
-    },
-    "ClozeTextColor{}": {
-      "snippet": "ClozeTextColor{${1:color}}"
-    },
-    "ClozeStrikeLine": {},
-    "ClozeBox": {}
-  },
-  "envs": {
-    "clozepar": {},
-    "clozepar[]": {
-      "name": "clozepar",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "clozebox": {},
-    "clozebox[]": {
-      "name": "clozebox",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "clozebox*": {
-      "name": "clozebox",
-      "snippet": "*"
-    },
-    "clozebox*[]": {
-      "name": "clozebox",
-      "snippet": "*[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "clozespace": {},
-    "clozespace[]": {
-      "name": "clozespace",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
+    {
+      "name": "transparent"
     }
-  },
-  "options": [
-    "align=${1|left,center,right|}",
-    "boxheight=",
-    "boxwidth=",
-    "distance=",
-    "hide",
-    "linecolor=",
-    "margin=",
-    "spacing=${1:number}",
-    "textcolor=",
-    "thickness=",
-    "width="
   ],
-  "keyvals": [
-    [
-      "show",
-      "hide",
-      "distance=",
-      "linecolor=",
-      "textcolor=",
-      "thickness=",
-      "margin="
-    ],
-    [
-      "show",
-      "hide",
-      "distance=",
-      "linecolor=",
-      "textcolor=",
-      "thickness=",
+  "macros": [
+    {
+      "name": "cloze",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "cloze",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\cloze,\\clozefix,\\clozenol,\\clozefil,\\begin{clozepar},\\clozeparcmd,\\begin{clozebox},\\begin{clozebox}*,\\begin{clozespace},\\clozeline,\\clozelinefil,\\clozestrike,\\clozeset,\\ClozeSetLocalOptions",
+          "\\cloze,\\clozefix,\\clozefil,\\clozeset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "clozesetfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "clozefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "clozefix",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\cloze,\\clozefix,\\clozenol,\\clozefil,\\begin{clozepar},\\clozeparcmd,\\begin{clozebox},\\begin{clozebox}*,\\begin{clozespace},\\clozeline,\\clozelinefil,\\clozestrike,\\clozeset,\\ClozeSetLocalOptions",
+          "\\clozefix,\\clozeset",
+          "\\cloze,\\clozefix,\\clozefil,\\clozeset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "clozenol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "clozenol",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\cloze,\\clozefix,\\clozenol,\\clozefil,\\begin{clozepar},\\clozeparcmd,\\begin{clozebox},\\begin{clozebox}*,\\begin{clozespace},\\clozeline,\\clozelinefil,\\clozestrike,\\clozeset,\\ClozeSetLocalOptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "clozefil",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "clozefil",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\cloze,\\clozefix,\\clozenol,\\clozefil,\\begin{clozepar},\\clozeparcmd,\\begin{clozebox},\\begin{clozebox}*,\\begin{clozespace},\\clozeline,\\clozelinefil,\\clozestrike,\\clozeset,\\ClozeSetLocalOptions",
+          "\\cloze,\\clozefix,\\clozefil,\\clozeset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "clozeextend",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:spaces}]"
+      }
+    },
+    {
+      "name": "clozeparcmd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "clozeparcmd",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\cloze,\\clozefix,\\clozenol,\\clozefil,\\begin{clozepar},\\clozeparcmd,\\begin{clozebox},\\begin{clozebox}*,\\begin{clozespace},\\clozeline,\\clozelinefil,\\clozestrike,\\clozeset,\\ClozeSetLocalOptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "clozeline"
+    },
+    {
+      "name": "clozeline",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\cloze,\\clozefix,\\clozenol,\\clozefil,\\begin{clozepar},\\clozeparcmd,\\begin{clozebox},\\begin{clozebox}*,\\begin{clozespace},\\clozeline,\\clozelinefil,\\clozestrike,\\clozeset,\\ClozeSetLocalOptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "clozelinefil"
+    },
+    {
+      "name": "clozelinefil",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\cloze,\\clozefix,\\clozenol,\\clozefil,\\begin{clozepar},\\clozeparcmd,\\begin{clozebox},\\begin{clozebox}*,\\begin{clozespace},\\clozeline,\\clozelinefil,\\clozestrike,\\clozeset,\\ClozeSetLocalOptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "clozestrike",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:wrong text%text}}{${2:correct text%text}}"
+      }
+    },
+    {
+      "name": "clozestrike",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:wrong text%text}}{${2:correct text%text}}",
+        "keys": [
+          "\\cloze,\\clozefix,\\clozenol,\\clozefil,\\begin{clozepar},\\clozeparcmd,\\begin{clozebox},\\begin{clozebox}*,\\begin{clozespace},\\clozeline,\\clozelinefil,\\clozestrike,\\clozeset,\\ClozeSetLocalOptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "clozesetoption",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:value}}"
+      }
+    },
+    {
+      "name": "clozeset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\cloze,\\clozefix,\\clozenol,\\clozefil,\\begin{clozepar},\\clozeparcmd,\\begin{clozebox},\\begin{clozebox}*,\\begin{clozespace},\\clozeline,\\clozelinefil,\\clozestrike,\\clozeset,\\ClozeSetLocalOptions",
+          "\\clozefix,\\clozeset",
+          "\\begin{clozebox},\\begin{clozebox}*,\\clozeset",
+          "\\cloze,\\clozefix,\\clozefil,\\clozeset",
+          "\\begin{clozespace},\\clozeset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "clozereset"
+    },
+    {
+      "name": "clozeshow"
+    },
+    {
+      "name": "clozehide"
+    },
+    {
+      "name": "ifclozeshow",
+      "unusual": true
+    },
+    {
+      "name": "clozeshowtrue",
+      "unusual": true
+    },
+    {
+      "name": "clozeshowfalse",
+      "unusual": true
+    },
+    {
+      "name": "ClozeSetToGlobal",
+      "unusual": true
+    },
+    {
+      "name": "ClozeSetToLocal",
+      "unusual": true
+    },
+    {
+      "name": "ClozeGetOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ClozeColor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "ClozeStartMarker",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ClozeStopMarker",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ClozeMargin",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "clozefont",
+      "unusual": true
+    },
+    {
+      "name": "ClozeSetLocalOptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "ClozeTextColor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "ClozeStrikeLine",
+      "unusual": true
+    },
+    {
+      "name": "ClozeBox",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "clozepar"
+    },
+    {
+      "name": "clozepar",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\cloze,\\clozefix,\\clozenol,\\clozefil,\\begin{clozepar},\\clozeparcmd,\\begin{clozebox},\\begin{clozebox}*,\\begin{clozespace},\\clozeline,\\clozelinefil,\\clozestrike,\\clozeset,\\ClozeSetLocalOptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "clozebox"
+    },
+    {
+      "name": "clozebox",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\cloze,\\clozefix,\\clozenol,\\clozefil,\\begin{clozepar},\\clozeparcmd,\\begin{clozebox},\\begin{clozebox}*,\\begin{clozespace},\\clozeline,\\clozelinefil,\\clozestrike,\\clozeset,\\ClozeSetLocalOptions",
+          "\\begin{clozebox},\\begin{clozebox}*,\\clozeset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "clozebox",
+      "arg": {
+        "format": "*",
+        "snippet": "*"
+      }
+    },
+    {
+      "name": "clozebox",
+      "arg": {
+        "format": "*[]",
+        "snippet": "*[${1:options%keyvals}]",
+        "keys": [
+          "\\cloze,\\clozefix,\\clozenol,\\clozefil,\\begin{clozepar},\\clozeparcmd,\\begin{clozebox},\\begin{clozebox}*,\\begin{clozespace},\\clozeline,\\clozelinefil,\\clozestrike,\\clozeset,\\ClozeSetLocalOptions",
+          "\\begin{clozebox},\\begin{clozebox}*,\\clozeset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "clozespace"
+    },
+    {
+      "name": "clozespace",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\cloze,\\clozefix,\\clozenol,\\clozefil,\\begin{clozepar},\\clozeparcmd,\\begin{clozebox},\\begin{clozebox}*,\\begin{clozespace},\\clozeline,\\clozelinefil,\\clozestrike,\\clozeset,\\ClozeSetLocalOptions",
+          "\\begin{clozespace},\\clozeset"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/cloze#c": [
       "align=${1|left,center,right|}",
-      "width=",
-      "margin="
+      "boxheight=",
+      "boxwidth=",
+      "distance=",
+      "hide",
+      "linecolor=",
+      "margin=",
+      "spacing=${1:number}",
+      "textcolor=",
+      "thickness=",
+      "width="
     ],
-    [
+    "\\cloze,\\clozefix,\\clozenol,\\clozefil,\\begin{clozepar},\\clozeparcmd,\\begin{clozebox},\\begin{clozebox}*,\\begin{clozespace},\\clozeline,\\clozelinefil,\\clozestrike,\\clozeset,\\ClozeSetLocalOptions": [
       "show",
       "hide",
       "distance=",
@@ -193,46 +390,22 @@
       "textcolor=",
       "thickness="
     ],
-    [
-      "show",
-      "hide",
-      "distance=",
-      "linecolor=",
-      "textcolor=",
-      "thickness=",
+    "\\clozefix,\\clozeset": [
       "align=${1|left,center,right|}",
-      "width=",
-      "boxheight=",
-      "boxwidth=",
-      "margin=",
-      "spacing=${1:number}"
+      "width="
     ],
-    [
-      "show",
-      "show",
-      "hide",
-      "hide",
-      "distance=",
-      "distance=",
-      "linecolor=",
-      "linecolor=",
-      "textcolor=",
-      "textcolor=",
-      "thickness=",
-      "thickness=",
+    "\\begin{clozebox},\\begin{clozebox}*,\\clozeset": [
       "boxheight=",
-      "boxheight=",
-      "boxwidth=",
       "boxwidth="
     ],
-    [
-      "show",
-      "hide",
-      "distance=",
-      "linecolor=",
-      "textcolor=",
-      "thickness=",
+    "\\cloze,\\clozefix,\\clozefil,\\clozeset": [
+      "margin="
+    ],
+    "\\begin{clozespace},\\clozeset": [
       "spacing=${1:number}"
     ]
+  },
+  "args": [
+    "\\usepackage/cloze#c"
   ]
 }

@@ -1,162 +1,453 @@
 {
-  "includes": {
-    "xspace": []
-  },
-  "macros": {
-    "speakswidth": {},
-    "speaksindent": {},
-    "speechskip": {},
-    "Dparsep": {},
-    "Dlabelsep": {},
-    "act": {},
-    "act[]": {
-      "snippet": "act[${1:add. text}]"
-    },
-    "act*": {},
-    "Act{}": {
-      "snippet": "Act{${1:title}}"
-    },
-    "Act[]{}": {
-      "snippet": "Act[${2:short title}]{${1:title}}"
-    },
-    "Act*{}": {
-      "snippet": "Act*{${1:title}}"
-    },
-    "scene": {},
-    "scene[]": {
-      "snippet": "scene[${1:add. text}]"
-    },
-    "scene*": {},
-    "Scene{}": {
-      "snippet": "Scene{${1:title}}"
-    },
-    "Scene[]{}": {
-      "snippet": "Scene[${2:short title}]{${1:title}}"
-    },
-    "Scene*{}": {
-      "snippet": "Scene*{${1:title}}"
-    },
-    "printactname": {},
-    "printactnum": {},
-    "printacttitle": {},
-    "actname": {},
-    "actnamefont": {},
-    "actnumfont": {},
-    "acttitlefont": {},
-    "theact": {},
-    "actcontentsline": {},
-    "printscenename": {},
-    "printscenenum": {},
-    "printscenetitle": {},
-    "scenenamefont": {},
-    "scenenumfont": {},
-    "scenetitlefont": {},
-    "scenename": {},
-    "thescene": {},
-    "scenecontentsline": {},
-    "printsep": {},
-    "intersep": {},
-    "actmark{}": {
-      "snippet": "actmark{${1:code}}"
-    },
-    "scenemark{}": {
-      "snippet": "scenemark{${1:code}}"
-    },
-    "Character{}{}": {
-      "snippet": "Character{${1:name}}{${2:base}}"
-    },
-    "Character[]{}{}": {
-      "snippet": "Character[${3:entry text}]{${1:name}}{${2:base}}"
-    },
-    "printcasttitle": {},
-    "casttitlefont": {},
-    "casttitlename": {},
-    "castfont": {},
-    "namefont": {},
-    "speaksfont": {},
-    "speaksdel": {},
-    "DramPer": {},
-    "DramPer[]": {
-      "snippet": "DramPer[${1:add. text}]"
-    },
-    "speaker{}": {
-      "snippet": "speaker{${1:name}}"
-    },
-    "GCharacter{}{}{}": {
-      "snippet": "GCharacter{${1:entry text}}{${2:name}}{${3:base}}"
-    },
-    "CharWidth": {},
-    "ParenWidth": {},
-    "GroupWidth": {},
-    "StageDir{}": {
-      "snippet": "StageDir{${1:direction}}"
-    },
-    "direct{}": {
-      "snippet": "direct{${1:direction}}"
-    },
-    "direct*{}": {
-      "snippet": "direct*{${1:direction}}"
-    },
-    "StageDirConf{}{}": {
-      "snippet": "StageDirConf{${1:opening code}}{${2:closing code}}"
-    },
-    "CastWidth": {},
-    "StageDirCloseSettings": {},
-    "StageDirOpenSettings": {},
-    "actheadstart": {},
-    "afteract": {},
-    "afteractskip": {},
-    "aftercasttitle": {},
-    "aftercasttitleskip": {},
-    "afterscene": {},
-    "aftersceneskip": {},
-    "beforeactskip": {},
-    "beforecastskip": {},
-    "beforesceneskip": {},
-    "castheadstart": {},
-    "dirdelimiter{}": {
-      "snippet": "dirdelimiter{${1:text}}"
-    },
-    "dirwidth": {},
-    "dodramperlist": {},
-    "dogrouplist": {},
-    "drampermark{}": {
-      "snippet": "drampermark{${1:text}}"
-    },
-    "foundfile": {},
-    "grouplist{}": {
-      "snippet": "grouplist{${1:arg}}"
-    },
-    "inputfilewarning": {},
-    "lnpwarning{}": {
-      "snippet": "lnpwarning{${1:arg}}"
-    },
-    "phantomsection": {},
-    "sceneheadstart": {},
-    "speakslabel{}": {
-      "snippet": "speakslabel{${1:text}}"
-    },
-    "speaksskip": {},
-    "speakstab": {},
-    "starrederror": {},
-    "thecharacter": {},
-    "thegtemp": {},
-    "thestorelineno": {},
-    "thestoreprintlineindex": {},
-    "thetemp": {}
-  },
-  "envs": {
-    "drama": {},
-    "drama*": {},
-    "CharacterGroup{}": {
-      "name": "CharacterGroup",
-      "snippet": "{${1:common denomination}}"
-    },
-    "stagedir": {}
-  },
-  "options": [
-    "lnpa",
-    "lnps"
+  "deps": [
+    {
+      "name": "xspace"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "speakswidth",
+      "unusual": true
+    },
+    {
+      "name": "speaksindent",
+      "unusual": true
+    },
+    {
+      "name": "speechskip",
+      "unusual": true
+    },
+    {
+      "name": "Dparsep",
+      "unusual": true
+    },
+    {
+      "name": "Dlabelsep",
+      "unusual": true
+    },
+    {
+      "name": "act"
+    },
+    {
+      "name": "act",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:add. text%text}]"
+      }
+    },
+    {
+      "name": "act*"
+    },
+    {
+      "name": "Act",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "Act",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "Act*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "scene"
+    },
+    {
+      "name": "scene",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:add. text%text}]"
+      }
+    },
+    {
+      "name": "scene*"
+    },
+    {
+      "name": "Scene",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "Scene",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "Scene*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "printactname",
+      "unusual": true
+    },
+    {
+      "name": "printactnum",
+      "unusual": true
+    },
+    {
+      "name": "printacttitle",
+      "unusual": true
+    },
+    {
+      "name": "actname",
+      "unusual": true
+    },
+    {
+      "name": "actnamefont",
+      "unusual": true
+    },
+    {
+      "name": "actnumfont",
+      "unusual": true
+    },
+    {
+      "name": "acttitlefont",
+      "unusual": true
+    },
+    {
+      "name": "theact",
+      "unusual": true
+    },
+    {
+      "name": "actcontentsline",
+      "unusual": true
+    },
+    {
+      "name": "printscenename",
+      "unusual": true
+    },
+    {
+      "name": "printscenenum",
+      "unusual": true
+    },
+    {
+      "name": "printscenetitle",
+      "unusual": true
+    },
+    {
+      "name": "scenenamefont",
+      "unusual": true
+    },
+    {
+      "name": "scenenumfont",
+      "unusual": true
+    },
+    {
+      "name": "scenetitlefont",
+      "unusual": true
+    },
+    {
+      "name": "scenename",
+      "unusual": true
+    },
+    {
+      "name": "thescene",
+      "unusual": true
+    },
+    {
+      "name": "scenecontentsline",
+      "unusual": true
+    },
+    {
+      "name": "printsep",
+      "unusual": true
+    },
+    {
+      "name": "intersep",
+      "unusual": true
+    },
+    {
+      "name": "actmark",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "scenemark",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "Character",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:base}}"
+      }
+    },
+    {
+      "name": "Character",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:entry text%text}]{${1:name}}{${2:base}}"
+      }
+    },
+    {
+      "name": "printcasttitle",
+      "unusual": true
+    },
+    {
+      "name": "casttitlefont",
+      "unusual": true
+    },
+    {
+      "name": "casttitlename",
+      "unusual": true
+    },
+    {
+      "name": "castfont",
+      "unusual": true
+    },
+    {
+      "name": "namefont",
+      "unusual": true
+    },
+    {
+      "name": "speaksfont",
+      "unusual": true
+    },
+    {
+      "name": "speaksdel",
+      "unusual": true
+    },
+    {
+      "name": "DramPer"
+    },
+    {
+      "name": "DramPer",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:add. text%text}]"
+      }
+    },
+    {
+      "name": "speaker",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "GCharacter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:entry text%text}}{${2:name}}{${3:base}}"
+      }
+    },
+    {
+      "name": "CharWidth",
+      "unusual": true
+    },
+    {
+      "name": "ParenWidth",
+      "unusual": true
+    },
+    {
+      "name": "GroupWidth",
+      "unusual": true
+    },
+    {
+      "name": "StageDir",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:direction%text}}"
+      }
+    },
+    {
+      "name": "direct",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:direction%text}}"
+      }
+    },
+    {
+      "name": "direct*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:direction%text}}"
+      }
+    },
+    {
+      "name": "StageDirConf",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:opening code}}{${2:closing code}}"
+      }
+    },
+    {
+      "name": "CastWidth",
+      "unusual": true
+    },
+    {
+      "name": "StageDirCloseSettings",
+      "unusual": true
+    },
+    {
+      "name": "StageDirOpenSettings",
+      "unusual": true
+    },
+    {
+      "name": "actheadstart",
+      "unusual": true
+    },
+    {
+      "name": "afteract",
+      "unusual": true
+    },
+    {
+      "name": "afteractskip",
+      "unusual": true
+    },
+    {
+      "name": "aftercasttitle",
+      "unusual": true
+    },
+    {
+      "name": "aftercasttitleskip",
+      "unusual": true
+    },
+    {
+      "name": "afterscene",
+      "unusual": true
+    },
+    {
+      "name": "aftersceneskip",
+      "unusual": true
+    },
+    {
+      "name": "beforeactskip",
+      "unusual": true
+    },
+    {
+      "name": "beforecastskip",
+      "unusual": true
+    },
+    {
+      "name": "beforesceneskip",
+      "unusual": true
+    },
+    {
+      "name": "castheadstart",
+      "unusual": true
+    },
+    {
+      "name": "dirdelimiter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "dirwidth",
+      "unusual": true
+    },
+    {
+      "name": "dodramperlist",
+      "unusual": true
+    },
+    {
+      "name": "dogrouplist",
+      "unusual": true
+    },
+    {
+      "name": "drampermark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "grouplist",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "phantomsection",
+      "unusual": true
+    },
+    {
+      "name": "sceneheadstart",
+      "unusual": true
+    },
+    {
+      "name": "speakslabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "speaksskip",
+      "unusual": true
+    },
+    {
+      "name": "speakstab",
+      "unusual": true
+    },
+    {
+      "name": "thecharacter",
+      "unusual": true
+    },
+    {
+      "name": "thestorelineno",
+      "unusual": true
+    },
+    {
+      "name": "thestoreprintlineindex",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "drama"
+    },
+    {
+      "name": "drama*"
+    },
+    {
+      "name": "CharacterGroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:common denomination}}"
+      }
+    },
+    {
+      "name": "stagedir"
+    }
+  ],
+  "keys": {
+    "\\usepackage/dramatist#c": [
+      "lnpa",
+      "lnps"
+    ]
+  },
+  "args": [
+    "\\usepackage/dramatist#c"
+  ]
 }

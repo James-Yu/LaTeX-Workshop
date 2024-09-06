@@ -1,61 +1,141 @@
 {
-  "includes": {
-    "forest": []
-  },
-  "macros": {
-    "index[]{}": {
-      "snippet": "index[${2:index options}]{${1:content}}"
-    },
-    "index(){}": {
-      "snippet": "index(${2:early options}){${1:content}}"
-    },
-    "index()[]{}": {
-      "snippet": "index(${3:early options})[${2:index options}]{${1:content}}"
-    },
-    "indexdef{}": {
-      "snippet": "indexdef{${1:option>content}}"
-    },
-    "indexex{}": {
-      "snippet": "indexex{${1:content}}"
-    },
-    "indexex[]{}": {
-      "snippet": "indexex[${2:index option}]{${1:content}}"
-    },
-    "indexitem{}": {
-      "snippet": "indexitem{${1:option>content}}"
-    },
-    "indexitem(){}": {
-      "snippet": "indexitem(${2:default}){${1:option>content}}"
-    },
-    "indexset[]>{}": {
-      "snippet": "indexset[${2:index options}]>{${1:entry}}"
-    },
-    "indexdefineshortkey{}{}": {
-      "snippet": "indexdefineshortkey{${1:arg1}}{${2:arg2}}"
-    },
-    "indexpagenumbernormal{}{}": {
-      "snippet": "indexpagenumbernormal{${1:arg1}}{${2:arg2}}"
-    },
-    "indexpagenumberdefinition{}{}": {
-      "snippet": "indexpagenumberdefinition{${1:arg1}}{${2:arg2}}"
-    },
-    "indexpagenumberexample{}{}": {
-      "snippet": "indexpagenumberexample{${1:arg1}}{${2:arg2}}"
-    },
-    "hyperlinknocolor{}{}": {
-      "snippet": "hyperlinknocolor{${1:target name}}{${2:link text}}"
-    },
-    "pgfkeysglobaldef{}{}": {
-      "snippet": "pgfkeysglobaldef{${1:arg1}}{${2:arg2}}"
-    },
-    "pgfkeysgloballet{}{}": {
-      "snippet": "pgfkeysgloballet{${1:arg1}}{${2:arg2}}"
-    },
-    "pgfkeysglobalsetvalue{}{}": {
-      "snippet": "pgfkeysglobalsetvalue{${1:arg1}}{${2:arg2}}"
+  "deps": [
+    {
+      "name": "forest"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "index",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:index options}]{${1:content}}"
+      }
+    },
+    {
+      "name": "index",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:early options}){${1:content}}"
+      }
+    },
+    {
+      "name": "index",
+      "unusual": true,
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "(${3:early options})[${2:index options}]{${1:content}}"
+      }
+    },
+    {
+      "name": "indexdef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option>content}}"
+      }
+    },
+    {
+      "name": "indexex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "indexex",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:index option}]{${1:content}}"
+      }
+    },
+    {
+      "name": "indexitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option>content}}"
+      }
+    },
+    {
+      "name": "indexitem",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:%<default%>}){${1:option>content}}"
+      }
+    },
+    {
+      "name": "indexset",
+      "arg": {
+        "format": "[]>{}",
+        "snippet": "[${2:index options}]>{${1:entry}}"
+      }
+    },
+    {
+      "name": "indexdefineshortkey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "indexpagenumbernormal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "indexpagenumberdefinition",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "indexpagenumberexample",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "hyperlinknocolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:target name}}{${2:link text%text}}"
+      }
+    },
+    {
+      "name": "pgfkeysglobaldef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "pgfkeysgloballet",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "pgfkeysglobalsetvalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,31 +1,46 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "etoolbox": [],
-    "zref-abspage": []
-  },
-  "macros": {
-    "fullwidthsetup{}": {
-      "snippet": "fullwidthsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "fwdversion": {},
-    "fwdpackagename": {},
-    "fwddate": {}
-  },
-  "envs": {
-    "fullwidth": {},
-    "fullwidth[]": {
-      "name": "fullwidth",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "zref-abspage"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "fullwidthsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{fullwidth},\\fullwidthsetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "fullwidth"
+    },
+    {
+      "name": "fullwidth",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{fullwidth},\\fullwidthsetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{fullwidth},\\fullwidthsetup": [
       "width=",
       "skipabove=",
       "skipbelow=",
@@ -41,5 +56,6 @@
       "needspace=",
       "footnotedistance="
     ]
-  ]
+  },
+  "args": []
 }

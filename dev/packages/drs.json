@@ -1,43 +1,105 @@
 {
-  "includes": {},
-  "macros": {
-    "drs{}{}": {
-      "snippet": "drs{${1:variables}}{${2:conditions}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "drs",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variables}}{${2:conditions}}"
+      }
     },
-    "drs*{}{}": {
-      "snippet": "drs*{${1:variables}}{${2:conditions}}"
+    {
+      "name": "drs*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variables}}{${2:conditions}}"
+      }
     },
-    "ifdrs{}{}{}{}": {
-      "snippet": "ifdrs{${1:lvar}}{${2:lcond}}{${3:rvar}}{${4:rcond}}"
+    {
+      "name": "ifdrs",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:lvar}}{${2:lcond}}{${3:rvar}}{${4:rcond}}"
+      }
     },
-    "condrs{}{}{}{}{}": {
-      "snippet": "condrs{${1:lvar}}{${2:lcond}}{${3:connective}}{${4:rvar}}{${5:rcond}}"
+    {
+      "name": "condrs",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:lvar}}{${2:lcond}}{${3:connective}}{${4:rvar}}{${5:rcond}}"
+      }
     },
-    "qdrs{}{}{}{}{}{}": {
-      "snippet": "qdrs{${1:lvar}}{${2:lcond}}{${3:quantifier}}{${4:qvar}}{${5:rvar}}{${6:rcond}}"
+    {
+      "name": "qdrs",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:lvar}}{${2:lcond}}{${3:quantifier}}{${4:qvar}}{${5:rvar}}{${6:rcond}}"
+      }
     },
-    "negdrs{}{}": {
-      "snippet": "negdrs{${1:variables}}{${2:conditions}}"
+    {
+      "name": "negdrs",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variables}}{${2:conditions}}"
+      }
     },
-    "drsdiamond{}{}": {
-      "snippet": "drsdiamond{${1:quantifier}}{${2:variable}}"
+    {
+      "name": "drsdiamond",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:quantifier}}{${2:variable}}"
+      }
     },
-    "sdrs{}{}{}": {
-      "snippet": "sdrs{${1:sentence}}{${2:variables}}{${3:conditions}}"
+    {
+      "name": "sdrs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:sentence%text}}{${2:variables}}{${3:conditions}}"
+      }
     },
-    "alifdrs{}{}{}{}": {
-      "snippet": "alifdrs{${1:lvar}}{${2:lcond}}{${3:rvar}}{${4:rcond}}"
+    {
+      "name": "alifdrs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:lvar}}{${2:lcond}}{${3:rvar}}{${4:rcond}}"
+      }
     },
-    "drsalignment": {},
-    "drsboxalignh": {},
-    "drsboxalignv": {},
-    "drscondfont": {},
-    "drshacksetspace": {},
-    "drslinewidth": {},
-    "drsseparator": {},
-    "drsvarfont": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "drsalignment",
+      "unusual": true
+    },
+    {
+      "name": "drsboxalignh",
+      "unusual": true
+    },
+    {
+      "name": "drsboxalignv",
+      "unusual": true
+    },
+    {
+      "name": "drscondfont",
+      "unusual": true
+    },
+    {
+      "name": "drshacksetspace",
+      "unusual": true
+    },
+    {
+      "name": "drslinewidth",
+      "unusual": true
+    },
+    {
+      "name": "drsseparator",
+      "unusual": true
+    },
+    {
+      "name": "drsvarfont",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

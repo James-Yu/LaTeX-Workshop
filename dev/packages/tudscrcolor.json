@@ -1,54 +1,84 @@
 {
-  "includes": {
-    "xcolor": [],
-    "colortbl": [
-      "table"
-    ],
-    "pdfcolmk": [
-      "fixpdftex"
+  "deps": [
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "colortbl",
+      "if": "table"
+    },
+    {
+      "name": "pdfcolmk",
+      "if": "fixpdftex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "setcdcolors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Farbmodell}}"
+      }
+    },
+    {
+      "name": "TUDScriptVersion",
+      "unusual": true
+    },
+    {
+      "name": "TUDScriptVersionNumber",
+      "unusual": true
+    },
+    {
+      "name": "TUDScript",
+      "unusual": true
+    },
+    {
+      "name": "TUDScriptContact",
+      "unusual": true
+    },
+    {
+      "name": "TUDScriptRepository",
+      "unusual": true
+    },
+    {
+      "name": "TUDScriptForum",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tudscrcolor#c": [
+      "oldcolors",
+      "natural",
+      "rgb",
+      "cmy",
+      "cmyk",
+      "hsb",
+      "gray",
+      "RGB",
+      "HTML",
+      "HSB",
+      "Gray",
+      "monochrome",
+      "dvipsnames",
+      "dvipsnames*",
+      "svgnames",
+      "svgnames*",
+      "x11names",
+      "x11names*",
+      "table",
+      "fixpdftex",
+      "hyperref",
+      "prologue",
+      "kernelfbox",
+      "xcdraw",
+      "noxcdraw",
+      "fixinclude",
+      "showerrors",
+      "hideerrors"
     ]
   },
-  "macros": {
-    "setcdcolors{}": {
-      "snippet": "setcdcolors{${1:Farbmodell}}"
-    },
-    "TUDScriptVersion": {},
-    "TUDScriptVersionNumber": {},
-    "TUDScript": {},
-    "TUDScriptContact": {},
-    "TUDScriptRepository": {},
-    "TUDScriptForum": {}
-  },
-  "envs": {},
-  "options": [
-    "oldcolors",
-    "natural",
-    "rgb",
-    "cmy",
-    "cmyk",
-    "hsb",
-    "gray",
-    "RGB",
-    "HTML",
-    "HSB",
-    "Gray",
-    "monochrome",
-    "dvipsnames",
-    "dvipsnames*",
-    "svgnames",
-    "svgnames*",
-    "x11names",
-    "x11names*",
-    "table",
-    "fixpdftex",
-    "hyperref",
-    "prologue",
-    "kernelfbox",
-    "xcdraw",
-    "noxcdraw",
-    "fixinclude",
-    "showerrors",
-    "hideerrors"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/tudscrcolor#c"
+  ]
 }

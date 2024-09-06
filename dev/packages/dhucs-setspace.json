@@ -1,33 +1,53 @@
 {
-  "includes": {
-    "setspace": []
-  },
-  "macros": {
-    "SetHangulspace{}{}": {
-      "snippet": "SetHangulspace{${1:factor1}}{${2:factor2}}"
-    },
-    "SetHangulVerbatimSpace{}": {
-      "snippet": "SetHangulVerbatimSpace{${1:factor}}"
-    },
-    "hangulspacing": {},
-    "hangulfspacing": {},
-    "hangulverbspacing": {},
-    "ucsfninterwordhook": {},
-    "filedate": {},
-    "filename": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [
-    "nofloatspacing",
-    "noquotespacing",
-    "hangul",
-    "adjustfootnotesep",
-    "adjustverbatim",
-    "nodisplayskipstretch",
-    "singlespacing",
-    "onehalfspacing",
-    "doublespacing"
+  "deps": [
+    {
+      "name": "setspace"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "SetHangulspace",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:factor1}}{${2:factor2}}"
+      }
+    },
+    {
+      "name": "SetHangulVerbatimSpace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "hangulspacing"
+    },
+    {
+      "name": "hangulfspacing"
+    },
+    {
+      "name": "hangulverbspacing"
+    },
+    {
+      "name": "ucsfninterwordhook",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/dhucs-setspace#c": [
+      "nofloatspacing",
+      "noquotespacing",
+      "hangul",
+      "adjustfootnotesep",
+      "adjustverbatim",
+      "nodisplayskipstretch",
+      "singlespacing",
+      "onehalfspacing",
+      "doublespacing"
+    ]
+  },
+  "args": [
+    "\\usepackage/dhucs-setspace#c"
+  ]
 }

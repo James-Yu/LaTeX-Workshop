@@ -1,94 +1,191 @@
 {
-  "includes": {
-    "everyshi": [],
-    "keyval": []
-  },
-  "macros": {
-    "TPoptions{}": {
-      "snippet": "TPoptions{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "everyshi"
     },
-    "TPGrid{}{}": {
-      "snippet": "TPGrid{${1:nhoriz}}{${2:nvert}}"
-    },
-    "TPGrid[]{}{}": {
-      "snippet": "TPGrid[${3:x,y}]{${1:nhoriz}}{${2:nvert}}"
-    },
-    "TPShowGrid{}{}": {
-      "snippet": "TPShowGrid{${1:nhoriz}}{${2:nvert}}"
-    },
-    "TPMargin{}": {
-      "snippet": "TPMargin{${1:size}}"
-    },
-    "TPMargin*{}": {
-      "snippet": "TPMargin*{${1:size}}"
-    },
-    "TPReferencePosition{}": {
-      "snippet": "TPReferencePosition{${1:val1,val2}}"
-    },
-    "TPHorizModule": {},
-    "TPVertModule": {},
-    "ifTPshowboxes": {},
-    "TPshowboxestrue": {},
-    "TPshowboxesfalse": {},
-    "TPboxrulesize": {},
-    "textblocklabel{}": {
-      "snippet": "textblocklabel{${1:label}}"
-    },
-    "showtextsize": {},
-    "textblockorigin{}{}": {
-      "snippet": "textblockorigin{${1:hpos}}{${2:vpos}}"
-    },
-    "textblockcolour{}": {
-      "snippet": "textblockcolour{${1:color}}"
-    },
-    "textblockcolor{}": {
-      "snippet": "textblockcolor{${1:color}}"
-    },
-    "textblockrulecolour{}": {
-      "snippet": "textblockrulecolour{${1:color}}"
-    },
-    "textblockrulecolor{}": {
-      "snippet": "textblockrulecolor{${1:color}}"
-    },
-    "tekstblokkulur{}": {
-      "snippet": "tekstblokkulur{${1:color}}"
-    },
-    "tekstblokroolkulur{}": {
-      "snippet": "tekstblokroolkulur{${1:color}}"
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {
-    "textblock{}(hpos,vpos)": {
-      "name": "textblock",
-      "snippet": "{${1:hsize}}(${2:hpos},${3:vpos})"
-    },
-    "textblock{}[](hpos,vpos)": {
-      "name": "textblock",
-      "snippet": "{${1:hsize}}[${2:ho,vo}](${3:hpos},${4:vpos})"
-    },
-    "textblock*{}(hpos,vpos)": {
-      "name": "textblock*",
-      "snippet": "{${1:hsize}}(${2:hpos},${3:vpos})"
-    },
-    "textblock*{}[](hpos,vpos)": {
-      "name": "textblock*",
-      "snippet": "{${1:hsize}}[${2:ho,vo}](${3:hpos},${4:vpos})"
-    }
-  },
-  "options": [
-    "showboxes",
-    "noshowtext",
-    "absolute",
-    "relative",
-    "overlay",
-    "quiet",
-    "verbose",
-    "discardcontent"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "TPoptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\TPoptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "TPGrid",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:nhoriz}}{${2:nvert}}"
+      }
+    },
+    {
+      "name": "TPGrid",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:x,y}]{${1:nhoriz}}{${2:nvert}}"
+      }
+    },
+    {
+      "name": "TPShowGrid",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:nhoriz}}{${2:nvert}}"
+      }
+    },
+    {
+      "name": "TPMargin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size%l}}"
+      }
+    },
+    {
+      "name": "TPMargin*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size%l}}"
+      }
+    },
+    {
+      "name": "TPReferencePosition",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:val1,val2}}"
+      }
+    },
+    {
+      "name": "TPHorizModule"
+    },
+    {
+      "name": "TPVertModule"
+    },
+    {
+      "name": "ifTPshowboxes",
+      "unusual": true
+    },
+    {
+      "name": "TPshowboxestrue"
+    },
+    {
+      "name": "TPshowboxesfalse"
+    },
+    {
+      "name": "TPboxrulesize"
+    },
+    {
+      "name": "textblocklabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "showtextsize"
+    },
+    {
+      "name": "textblockorigin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:hpos}}{${2:vpos}}"
+      }
+    },
+    {
+      "name": "textblockcolour",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "textblockcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "textblockrulecolour",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "textblockrulecolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "tekstblokkulur",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "tekstblokroolkulur",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "textblock",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:hsize}}(${2:hpos},${3:vpos})"
+      }
+    },
+    {
+      "name": "textblock",
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:hsize}}[${2:ho,vo}](${3:hpos},${4:vpos})"
+      }
+    },
+    {
+      "name": "textblock*",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:hsize}}(${2:hpos},${3:vpos})"
+      }
+    },
+    {
+      "name": "textblock*",
+      "arg": {
+        "format": "{}[]()",
+        "snippet": "{${1:hsize}}[${2:ho,vo}](${3:hpos},${4:vpos})"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/textpos#c": [
+      "showboxes",
+      "noshowtext",
+      "absolute",
+      "relative",
+      "overlay",
+      "quiet",
+      "verbose",
+      "discardcontent"
+    ],
+    "\\TPoptions": [
       "absolute",
       "overlay",
       "verbose",
@@ -96,5 +193,8 @@
       "showtext",
       "discardcontent"
     ]
+  },
+  "args": [
+    "\\usepackage/textpos#c"
   ]
 }

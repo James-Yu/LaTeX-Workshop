@@ -1,258 +1,654 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "fetchverse{}": {
-      "snippet": "fetchverse{${1:book ch:vrs}}"
-    },
-    "fetchverse[]{}": {
-      "snippet": "fetchverse[${2:options}]{${1:book ch:vrs}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "fetchverses{}": {
-      "snippet": "fetchverses{${1:book ch:vrs}}"
-    },
-    "fetchverses[]{}": {
-      "snippet": "fetchverses[${2:options}]{${1:book ch:vrs}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "fetchverses*{}": {
-      "snippet": "fetchverses*{${1:book ch:vrs}}"
-    },
-    "fetchverses*[]{}": {
-      "snippet": "fetchverses*[${2:options}]{${1:book ch:vrs}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "useOldAlt": {},
-    "useNewAlt": {},
-    "showTranslAlways": {},
-    "showTranslDecld": {},
-    "verseFmt{}": {
-      "snippet": "verseFmt{${1:text}}"
-    },
-    "quote": {},
-    "LaTeXQuotesOff": {},
-    "LaTeXQuotesOn": {},
-    "gobbleto{}{}": {
-      "snippet": "gobbleto{${1:word}}{${2:cmd}}"
-    },
-    "addtoBibles{}": {
-      "snippet": "addtoBibles{${1:list}}"
-    },
-    "defaultBible{}": {
-      "snippet": "defaultBible{${1:transl}}"
-    },
-    "fbdefaultBible": {},
-    "useBookStyle{}": {
-      "snippet": "useBookStyle{${1:options}}"
-    },
-    "usePassage{}": {
-      "snippet": "usePassage{${1:verse ref}}"
-    },
-    "fetchversestxt{}": {
-      "snippet": "fetchversestxt{${1:book ch:vrs}}"
-    },
-    "fetchversestxt[]{}": {
-      "snippet": "fetchversestxt[${2:options}]{${1:book ch:vrs}}"
-    },
-    "versetxt": {},
-    "passagetxt": {},
-    "cobblevrs{}{}": {
-      "snippet": "cobblevrs{${1:cmd}}{${2:text}}"
-    },
-    "cobblevrs*{}{}": {
-      "snippet": "cobblevrs*{${1:cmd}}{${2:text}}"
-    },
-    "translFmt{}": {
-      "snippet": "translFmt{${1:definition}}"
-    },
-    "translFmtDef": {},
-    "translTxtFmt{}": {
-      "snippet": "translTxtFmt{${1:definition}}"
-    },
-    "translTxtFmtDef": {},
-    "priorRefSpc{}": {
-      "snippet": "priorRefSpc{${1:space cmd}}"
-    },
-    "fbFitItIn": {},
-    "fbFillRght": {},
-    "afterBookSpc{}": {
-      "snippet": "afterBookSpc{${1:space cmd}}"
-    },
-    "resetAfterBookSpc": {},
-    "afterRef{}": {
-      "snippet": "afterRef{${1:code}}"
-    },
-    "afterNumSpc{}": {
-      "snippet": "afterNumSpc{${1:space cmd}}"
-    },
-    "verseFmtReset": {},
-    "verseFmtDef{}": {
-      "snippet": "verseFmtDef{${1:text}}"
-    },
-    "afterVerseFmt{}": {
-      "snippet": "afterVerseFmt{${1:cmd}}"
-    },
-    "registerBibles{}": {
-      "snippet": "registerBibles{${1:list}}"
-    },
-    "verseCmts{{}{}": {
-      "snippet": "verseCmts{{${1:comment1}}{${2:comment2}...}}"
-    },
-    "fbMarParFmt{}": {
-      "snippet": "fbMarParFmt{${1:text}}"
-    },
-    "fbResetMarParFmt": {},
-    "fbMarNotesOn": {},
-    "fbMarNotesOff": {},
-    "sr{}{}": {
-      "snippet": "sr{${1:text}}{${2:passages}}",
-      "option": "usesr"
-    },
-    "BV()": {
-      "snippet": "BV(${1:verse ref})"
-    },
-    "null": {},
-    "markverse{}": {
-      "snippet": "markverse{${1:book ch:vrs}}",
-      "option": "fetchsubstr"
-    },
-    "markverse[]{}": {
-      "snippet": "markverse[${2:options}]{${1:book ch:vrs}}",
-      "option": "fetchsubstr",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "bMrkFP": {
-      "option": "fetchsubstr"
-    },
-    "eMrkFP": {
-      "option": "fetchsubstr"
-    },
-    "bDQ": {},
-    "eDQ": {},
-    "bSQ": {},
-    "eSQ": {},
-    "letEach{}": {
-      "snippet": "letEach{${1:cmd}}"
-    },
-    "to": {
-      "detail": "→",
-      "documentation": "rightward arrow, z notation total function"
-    },
-    "AlwaysShowDefBible": {},
-    "bookexistsfalse": {},
-    "bookexiststrue": {},
-    "bookFmt{}{}{}{}": {
-      "snippet": "bookFmt{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "csarg{}{}": {
-      "snippet": "csarg{${1:arg1}}{${2:arg2}}"
-    },
-    "cvrtdqs": {},
-    "expBkAbbrChoices": {},
-    "fbSetFromChoiceKey{}": {
-      "snippet": "fbSetFromChoiceKey{${1:arg1}}"
-    },
-    "fetchInputMsg": {},
-    "fetchsubstrfalse": {},
-    "fetchsubstrtrue": {},
-    "fetchtoks{}": {
-      "snippet": "fetchtoks{${1:arg}}"
-    },
-    "fetchversetxt": {},
-    "fetchWarningMsg": {},
-    "fsbstrInputMsg": {},
-    "fsbstrWarningMsg": {},
-    "G{}": {
-      "snippet": "G{${1:nnnn}}"
-    },
-    "H{}": {
-      "snippet": "H{${1:nnnn}}"
-    },
-    "handleUnRegBibles{}": {
-      "snippet": "handleUnRegBibles{${1:arg1}}"
-    },
-    "ifbookexists": {},
-    "iffetchsubstr": {},
-    "ifparsefetcharg": {},
-    "ifshowDefBible": {},
-    "ifuseoldalt": {},
-    "ifversestochend": {},
-    "iiioiv{}{}{}{}": {
-      "snippet": "iiioiv{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "inputVerseList{}": {
-      "snippet": "inputVerseList{${1:arg1}}"
-    },
-    "ioiv{}{}{}{}": {
-      "snippet": "ioiv{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "isitstar": {},
-    "isstopreplace{}": {
-      "snippet": "isstopreplace{${1:arg1}}"
-    },
-    "istopreplacei{}": {
-      "snippet": "istopreplacei{${1:arg1}}"
-    },
-    "NeverShowDefBible": {},
-    "parsefetchargfalse": {},
-    "parsefetchargtrue": {},
-    "selBkAbbr": {},
-    "setNumStyle": {},
-    "showDefBiblefalse": {},
-    "showDefBibletrue": {},
-    "srInputMsg": {},
-    "srWarningMsg": {},
-    "useoldaltfalse": {},
-    "useoldalttrue": {},
-    "useverseslist": {},
-    "verseCmtsi{}": {
-      "snippet": "verseCmtsi{${1:arg1}}"
-    },
-    "versestochendfalse": {},
-    "versestochendtrue": {}
-  },
-  "envs": {
-    "declareBVs": {},
-    "declareBVs*": {},
-    "fpquote": {},
-    "fpquote[]": {
-      "name": "fpquote",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "fpverse": {},
-    "fpverse[]": {
-      "name": "fpverse",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "fpquotation": {},
-    "fpquotation[]": {
-      "name": "fpquotation",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     }
-  },
-  "options": [
-    "deffolder=${1:file path}",
-    "useverses={${1:file1,file2,...}}",
-    "useselverses",
-    "usesr",
-    "fetchsubtr",
-    "ignorecfg",
-    "cfg=${1:name}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "fetchverse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:book ch:vrs}}"
+      }
+    },
+    {
+      "name": "fetchverse",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}",
+        "keys": [
+          "\\fetchverse,\\fetchverses,\\fetchverses*,\\useBookStyle,\\fetchversestxt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fetchverses",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:book ch:vrs}}"
+      }
+    },
+    {
+      "name": "fetchverses",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}",
+        "keys": [
+          "\\fetchverse,\\fetchverses,\\fetchverses*,\\useBookStyle,\\fetchversestxt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fetchverses*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:book ch:vrs}}"
+      }
+    },
+    {
+      "name": "fetchverses*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}",
+        "keys": [
+          "\\fetchverse,\\fetchverses,\\fetchverses*,\\useBookStyle,\\fetchversestxt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "useOldAlt"
+    },
+    {
+      "name": "useNewAlt"
+    },
+    {
+      "name": "showTranslAlways"
+    },
+    {
+      "name": "showTranslDecld"
+    },
+    {
+      "name": "verseFmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "quote",
+      "unusual": true
+    },
+    {
+      "name": "LaTeXQuotesOff"
+    },
+    {
+      "name": "LaTeXQuotesOn"
+    },
+    {
+      "name": "gobbleto",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:word}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "addtoBibles",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "defaultBible",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:transl}}"
+      }
+    },
+    {
+      "name": "fbdefaultBible",
+      "unusual": true
+    },
+    {
+      "name": "useBookStyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "usePassage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:verse ref}}"
+      }
+    },
+    {
+      "name": "fetchversestxt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:book ch:vrs}}"
+      }
+    },
+    {
+      "name": "fetchversestxt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}"
+      }
+    },
+    {
+      "name": "versetxt"
+    },
+    {
+      "name": "passagetxt"
+    },
+    {
+      "name": "cobblevrs",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:text}}"
+      }
+    },
+    {
+      "name": "cobblevrs*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:text}}"
+      }
+    },
+    {
+      "name": "translFmt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:definition}}"
+      }
+    },
+    {
+      "name": "translFmtDef",
+      "unusual": true
+    },
+    {
+      "name": "translTxtFmt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:definition}}"
+      }
+    },
+    {
+      "name": "translTxtFmtDef",
+      "unusual": true
+    },
+    {
+      "name": "priorRefSpc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space cmd}}"
+      }
+    },
+    {
+      "name": "fbFitItIn"
+    },
+    {
+      "name": "fbFillRght"
+    },
+    {
+      "name": "afterBookSpc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space cmd}}"
+      }
+    },
+    {
+      "name": "resetAfterBookSpc"
+    },
+    {
+      "name": "afterRef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "afterNumSpc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space cmd}}"
+      }
+    },
+    {
+      "name": "verseFmtReset"
+    },
+    {
+      "name": "verseFmtDef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "afterVerseFmt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "registerBibles",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "fbMarParFmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "fbResetMarParFmt"
+    },
+    {
+      "name": "fbMarNotesOn"
+    },
+    {
+      "name": "fbMarNotesOff"
+    },
+    {
+      "name": "sr",
+      "if": "usesr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:passages}}"
+      }
+    },
+    {
+      "name": "BV",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:verse ref})"
+      }
+    },
+    {
+      "name": "null"
+    },
+    {
+      "name": "markverse",
+      "if": "fetchsubtr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:book ch:vrs}}"
+      }
+    },
+    {
+      "name": "markverse",
+      "if": "fetchsubtr",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}",
+        "keys": [
+          "\\markverse"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bMrkFP",
+      "if": "fetchsubtr"
+    },
+    {
+      "name": "eMrkFP",
+      "if": "fetchsubtr"
+    },
+    {
+      "name": "markverse",
+      "if": "fetchsubstr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:book ch:vrs}}"
+      }
+    },
+    {
+      "name": "markverse",
+      "if": "fetchsubstr",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}",
+        "keys": [
+          "\\markverse"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bMrkFP",
+      "if": "fetchsubstr"
+    },
+    {
+      "name": "eMrkFP",
+      "if": "fetchsubstr"
+    },
+    {
+      "name": "bDQ"
+    },
+    {
+      "name": "eDQ"
+    },
+    {
+      "name": "bSQ"
+    },
+    {
+      "name": "eSQ"
+    },
+    {
+      "name": "AlwaysShowDefBible",
+      "unusual": true
+    },
+    {
+      "name": "bookexistsfalse",
+      "unusual": true
+    },
+    {
+      "name": "bookexiststrue",
+      "unusual": true
+    },
+    {
+      "name": "bookFmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "csarg",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "cvrtdqs",
+      "unusual": true
+    },
+    {
+      "name": "expBkAbbrChoices",
+      "unusual": true
+    },
+    {
+      "name": "fbSetFromChoiceKey",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "fetchInputMsg",
+      "unusual": true
+    },
+    {
+      "name": "fetchsubstrfalse",
+      "unusual": true
+    },
+    {
+      "name": "fetchsubstrtrue",
+      "unusual": true
+    },
+    {
+      "name": "fetchtoks",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "fetchversetxt",
+      "unusual": true
+    },
+    {
+      "name": "fetchWarningMsg",
+      "unusual": true
+    },
+    {
+      "name": "fsbstrInputMsg",
+      "unusual": true
+    },
+    {
+      "name": "fsbstrWarningMsg",
+      "unusual": true
+    },
+    {
+      "name": "G",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nnnn}}"
+      }
+    },
+    {
+      "name": "H",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nnnn}}"
+      }
+    },
+    {
+      "name": "handleUnRegBibles",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "ifbookexists",
+      "unusual": true
+    },
+    {
+      "name": "iffetchsubstr",
+      "unusual": true
+    },
+    {
+      "name": "ifparsefetcharg",
+      "unusual": true
+    },
+    {
+      "name": "ifshowDefBible",
+      "unusual": true
+    },
+    {
+      "name": "ifuseoldalt",
+      "unusual": true
+    },
+    {
+      "name": "ifversestochend",
+      "unusual": true
+    },
+    {
+      "name": "iiioiv",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "inputVerseList",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "ioiv",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "isitstar",
+      "unusual": true
+    },
+    {
+      "name": "isstopreplace",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "istopreplacei",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "NeverShowDefBible",
+      "unusual": true
+    },
+    {
+      "name": "parsefetchargfalse",
+      "unusual": true
+    },
+    {
+      "name": "parsefetchargtrue",
+      "unusual": true
+    },
+    {
+      "name": "selBkAbbr",
+      "unusual": true
+    },
+    {
+      "name": "setNumStyle",
+      "unusual": true
+    },
+    {
+      "name": "showDefBiblefalse",
+      "unusual": true
+    },
+    {
+      "name": "showDefBibletrue",
+      "unusual": true
+    },
+    {
+      "name": "srInputMsg",
+      "unusual": true
+    },
+    {
+      "name": "srWarningMsg",
+      "unusual": true
+    },
+    {
+      "name": "useoldaltfalse",
+      "unusual": true
+    },
+    {
+      "name": "useoldalttrue",
+      "unusual": true
+    },
+    {
+      "name": "useverseslist",
+      "unusual": true
+    },
+    {
+      "name": "verseCmtsi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "versestochendfalse",
+      "unusual": true
+    },
+    {
+      "name": "versestochendtrue",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "declareBVs"
+    },
+    {
+      "name": "declareBVs*"
+    },
+    {
+      "name": "fpquote"
+    },
+    {
+      "name": "fpquote",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{fpquote},\\begin{fpverse},\\begin{fpquotation}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fpverse"
+    },
+    {
+      "name": "fpverse",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{fpquote},\\begin{fpverse},\\begin{fpquotation}",
+          "\\begin{fpverse},\\begin{fpquotation}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fpquotation"
+    },
+    {
+      "name": "fpquotation",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{fpquote},\\begin{fpverse},\\begin{fpquotation}",
+          "\\begin{fpverse},\\begin{fpquotation}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/fetchbibpes#c": [
+      "deffolder=${1:file path}",
+      "useverses={${1:file1,file2,...}}",
+      "useselverses",
+      "usesr",
+      "fetchsubtr",
+      "ignorecfg",
+      "cfg=${1:name}"
+    ],
+    "\\fetchverse,\\fetchverses,\\fetchverses*,\\useBookStyle,\\fetchversestxt": [
       "abbr=${1|esword,none,long,short|}",
       "roman",
       "from=${1|KVJ,KVJ+,ISV|}",
@@ -278,19 +674,23 @@
       "typeset=",
       "typeset*="
     ],
-    [
+    "\\markverse": [
+      "name=${1:name}",
+      "from=${1:transl}",
+      "marks={${1:bfind1}}{${2:efind1}}${3:{bfind2}{efind2}...}",
       "name=${1:name}",
       "from=${1:transl}",
       "marks={${1:bfind1}}{${2:efind1}}${3:{bfind2}{efind2}...}"
     ],
-    [
+    "\\begin{fpquote},\\begin{fpverse},\\begin{fpquotation}": [
       "leftmargin=",
       "rightmargin="
     ],
-    [
-      "leftmargin=",
-      "rightmargin=",
+    "\\begin{fpverse},\\begin{fpquotation}": [
       "itemindent="
     ]
+  },
+  "args": [
+    "\\usepackage/fetchbibpes#c"
   ]
 }

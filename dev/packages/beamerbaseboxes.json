@@ -1,32 +1,43 @@
 {
-  "includes": {},
-  "macros": {
-    "beamerboxesdeclarecolorscheme{}{}{}": {
-      "snippet": "beamerboxesdeclarecolorscheme{${1:name}}{${2:upper color}}{${3:lower color}}"
-    },
-    "beamerboxesrounded": {},
-    "endbeamerboxesrounded": {}
-  },
-  "envs": {
-    "beamerboxesrounded{}": {
-      "name": "beamerboxesrounded",
-      "snippet": "{${1:head}}"
-    },
-    "beamerboxesrounded[]{}": {
-      "name": "beamerboxesrounded",
-      "snippet": "[${2:options}]{${1:head}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [],
+  "macros": [
+    {
+      "name": "beamerboxesdeclarecolorscheme",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:upper color}}{${3:lower color}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "envs": [
+    {
+      "name": "beamerboxesrounded",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:head%text}}"
+      }
+    },
+    {
+      "name": "beamerboxesrounded",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:head%text}}",
+        "keys": [
+          "\\begin{beamerboxesrounded}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{beamerboxesrounded}": [
       "scheme=${1:scheme name}",
       "upper=${1:beamer color}",
       "lower=${1:beamer color}",
       "width=",
       "shadow"
     ]
-  ]
+  },
+  "args": []
 }

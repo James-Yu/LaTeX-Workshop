@@ -1,20 +1,31 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "xeCJK": [],
-    "unicode-math": []
-  },
-  "macros": {
-    "xdusetup{}": {
-      "snippet": "xdusetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "xeCJK"
+    },
+    {
+      "name": "unicode-math"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "xdusetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\xdusetup#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\xdusetup#c": [
       "style={${1:keyvals}}",
       "style/cjk-font=${1|adobe,fandol,founder,hanyi,sinotype,win,none|}",
       "style/cjk-fake-bold=${1:伪粗体粗细程度}",
@@ -27,5 +38,6 @@
       "style/font-type=${1|font,file|}",
       "style/font-path={${1:路径}}"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,32 +1,68 @@
 {
-  "includes": {
-    "texnames": []
-  },
-  "macros": {
-    "ifundefined{}": {
-      "snippet": "ifundefined{${1:csname}}"
+  "deps": [
+    {
+      "name": "texnames"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ifundefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
     },
-    "CMR": {},
-    "CWEB": {},
-    "emdash": {},
-    "FWEB": {},
-    "ndash": {},
-    "noopsort{}": {
-      "snippet": "noopsort{${1:arg}}"
+    {
+      "name": "CMR",
+      "unusual": true
     },
-    "PLOT": {},
-    "POSTSCRIPT": {},
-    "PS": {},
-    "singleletter{}": {
-      "snippet": "singleletter{${1:arg}}"
+    {
+      "name": "CWEB",
+      "unusual": true
     },
-    "tubissue{}{}": {
-      "snippet": "tubissue{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "emdash",
+      "unusual": true
     },
-    "TUB": {},
-    "WEB": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "FWEB",
+      "unusual": true
+    },
+    {
+      "name": "ndash",
+      "unusual": true
+    },
+    {
+      "name": "PLOT",
+      "unusual": true
+    },
+    {
+      "name": "POSTSCRIPT",
+      "unusual": true
+    },
+    {
+      "name": "PS",
+      "unusual": true
+    },
+    {
+      "name": "tubissue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "TUB",
+      "unusual": true
+    },
+    {
+      "name": "WEB",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,27 +1,47 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "TeXtoEPS": {},
-    "endTeXtoEPS": {},
-    "PSTtoEPS{}{}": {
-      "snippet": "PSTtoEPS{${1:file}}{${2:graphics objects}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "PSTtoEPS[]{}{}": {
-      "snippet": "PSTtoEPS[${3:options}]{${1:file}}{${2:graphics objects}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "TeXtoEPS",
+      "unusual": true
     },
-    "PSTfilesLoaded": {}
-  },
-  "envs": {
-    "TeXtoEPS": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "endTeXtoEPS",
+      "unusual": true
+    },
+    {
+      "name": "PSTtoEPS",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file%file}}{${2:graphics objects}}"
+      }
+    },
+    {
+      "name": "PSTtoEPS",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:file%file}}{${2:graphics objects}}",
+        "keys": [
+          "\\PSTtoEPS"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "TeXtoEPS"
+    }
+  ],
+  "keys": {
+    "\\PSTtoEPS": [
       "bbllx=",
       "bblly=",
       "bburx=",
@@ -35,5 +55,6 @@
       "Rotation=${1:angle}",
       "Scale="
     ]
-  ]
+  },
+  "args": []
 }

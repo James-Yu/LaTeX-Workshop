@@ -1,56 +1,121 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "pgfopts": [],
-    "marginnote": [],
-    "perpage": []
-  },
-  "macros": {
-    "sidenote{}": {
-      "snippet": "sidenote{${1:text}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "sidenote[]{}": {
-      "snippet": "sidenote[${2:mark}]{${1:text}}"
+    {
+      "name": "pgfopts"
     },
-    "sidenote(){}": {
-      "snippet": "sidenote(${2:offset}){${1:text}}"
+    {
+      "name": "marginnote"
     },
-    "sidenote()[]{}": {
-      "snippet": "sidenote(${3:offset})[${2:mark}]{${1:text}}"
-    },
-    "sidenote[][]{}": {
-      "snippet": "sidenote[${2:offset}][${3:mark}]{${1:text}}",
-      "option": "dblarg=true"
-    },
-    "sidenotemark": {},
-    "sidenotemark[]": {
-      "snippet": "sidenotemark[${1:mark}]"
-    },
-    "sidenotetext{}": {
-      "snippet": "sidenotetext{${1:text}}"
-    },
-    "sidenotetext[]{}": {
-      "snippet": "sidenotetext[${2:mark}]{${1:text}}"
-    },
-    "newsnotezfloat{}": {
-      "snippet": "newsnotezfloat{${1:name}}"
-    },
-    "newsnotezfloat[]{}": {
-      "snippet": "newsnotezfloat[${2:code}]{${1:name}}"
-    },
-    "setsidenotes{}": {
-      "snippet": "setsidenotes{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "perpage"
     }
-  },
-  "envs": {
-    "sidefigure": {},
-    "sidetable": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "sidenote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:mark}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenote",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:offset}){${1:text}}"
+      }
+    },
+    {
+      "name": "sidenote",
+      "unusual": true,
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "(${3:offset})[${2:mark}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenote",
+      "if": "dblarg=true",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:offset}][${3:mark}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenotemark",
+      "unusual": true
+    },
+    {
+      "name": "sidenotemark",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:mark}]"
+      }
+    },
+    {
+      "name": "sidenotetext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenotetext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:mark}]{${1:text}}"
+      }
+    },
+    {
+      "name": "newsnotezfloat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "newsnotezfloat",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:code}]{${1:name}}"
+      }
+    },
+    {
+      "name": "setsidenotes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\setsidenotes"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "sidefigure"
+    },
+    {
+      "name": "sidetable"
+    }
+  ],
+  "keys": {
+    "\\setsidenotes": [
       "dblarg",
       "marginnote",
       "text-format=${1:code}",
@@ -64,5 +129,6 @@
       "sidefloat-format=${1:code}",
       "sidefloat-format+=${1:code}"
     ]
-  ]
+  },
+  "args": []
 }

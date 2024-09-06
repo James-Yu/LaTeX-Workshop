@@ -1,69 +1,135 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "eforms": []
-  },
-  "macros": {
-    "item{}": {
-      "snippet": "item{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "puUseMenus{}": {
-      "snippet": "puUseMenus{${1:menu array names}}"
-    },
-    "popUpMenu()": {
-      "snippet": "popUpMenu(${1:name})"
-    },
-    "puProcessMenu()": {
-      "snippet": "puProcessMenu(${1:name})"
-    },
-    "urlPath{}{}": {
-      "snippet": "urlPath{${1:cmd}}{${2:path}}"
-    },
-    "Esc": {},
-    "cs{}": {
-      "snippet": "cs{${1:csname}}"
-    },
-    "itemindex": {},
-    "submenuLevel": {},
-    "csiv": {},
-    "msarg": {},
-    "msargEx": {},
-    "puUseTheseMenus": {},
-    "puMenuCmds": {},
-    "puNone": {},
-    "puTracking": {},
-    "iftrackingPU": {},
-    "trackingPUfalse": {},
-    "trackingPUtrue": {}
-  },
-  "envs": {
-    "popupmenu{}": {
-      "name": "popupmenu",
-      "snippet": "{${1:name}}"
-    },
-    "submenu{}": {
-      "name": "submenu",
-      "snippet": "{${1:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "eforms"
     }
-  },
-  "options": [
-    "tracking",
-    "!tracking"
   ],
-  "keyvals": [
-    [
-      "title=${1:string}",
-      "marked",
-      "enabled",
-      "return=${1:string}"
+  "macros": [
+    {
+      "name": "item",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\item,\\begin{submenu}",
+          "\\item"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "puUseMenus",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:menu array names}}"
+      }
+    },
+    {
+      "name": "popUpMenu",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:name})"
+      }
+    },
+    {
+      "name": "puProcessMenu",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:name})"
+      }
+    },
+    {
+      "name": "urlPath",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:path%URL}}"
+      }
+    },
+    {
+      "name": "Esc"
+    },
+    {
+      "name": "cs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "itemindex",
+      "unusual": true
+    },
+    {
+      "name": "submenuLevel",
+      "unusual": true
+    },
+    {
+      "name": "puUseTheseMenus",
+      "unusual": true
+    },
+    {
+      "name": "puMenuCmds",
+      "unusual": true
+    },
+    {
+      "name": "puNone",
+      "unusual": true
+    },
+    {
+      "name": "puTracking",
+      "unusual": true
+    },
+    {
+      "name": "iftrackingPU",
+      "unusual": true
+    },
+    {
+      "name": "trackingPUfalse",
+      "unusual": true
+    },
+    {
+      "name": "trackingPUtrue",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "popupmenu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%text}}"
+      }
+    },
+    {
+      "name": "submenu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\item,\\begin{submenu}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/popupmenu#c": [
+      "tracking",
+      "!tracking"
     ],
-    [
+    "\\item,\\begin{submenu}": [
       "title=${1:string}",
       "marked"
+    ],
+    "\\item": [
+      "enabled",
+      "return=${1:string}"
     ]
+  },
+  "args": [
+    "\\usepackage/popupmenu#c"
   ]
 }

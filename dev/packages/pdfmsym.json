@@ -1,346 +1,834 @@
 {
-  "includes": {
-    "luatex": [],
-    "xetex": []
-  },
-  "macros": {
-    "pdfmsymsetscalefactor{}": {
-      "snippet": "pdfmsymsetscalefactor{${1:fontsize}}"
-    },
-    "aint": {},
-    "bigcircwedge": {},
-    "bigdcup": {},
-    "bigdwedge": {},
-    "bigexists": {},
-    "bigforall": {},
-    "circwedge": {},
-    "dcup": {},
-    "divs": {},
-    "dwedge": {},
-    "lightning": {
-      "detail": "↯",
-      "documentation": "DOWNWARDS ZIGZAG ARROW"
-    },
-    "ndivs": {},
-    "oiNint{}": {
-      "snippet": "oiNint{${1:number}}"
-    },
-    "biNint{}": {
-      "snippet": "biNint{${1:number}}"
-    },
-    "lvecc{}": {
-      "snippet": "lvecc{${1:arg}}"
-    },
-    "overleftharp{}": {
-      "snippet": "overleftharp{${1:arg}}"
-    },
-    "overleftrightharp{}": {
-      "snippet": "overleftrightharp{${1:arg}}"
-    },
-    "overleftrightvecc{}": {
-      "snippet": "overleftrightvecc{${1:arg}}"
-    },
-    "overrightharp{}": {
-      "snippet": "overrightharp{${1:arg}}"
-    },
-    "overrightleftharp{}": {
-      "snippet": "overrightleftharp{${1:arg}}"
-    },
-    "straightlvecc{}": {
-      "snippet": "straightlvecc{${1:arg}}"
-    },
-    "straightvecc{}": {
-      "snippet": "straightvecc{${1:arg}}"
-    },
-    "underleftharp{}": {
-      "snippet": "underleftharp{${1:arg}}"
-    },
-    "underleftrightharp{}": {
-      "snippet": "underleftrightharp{${1:arg}}"
-    },
-    "underleftrightvecc{}": {
-      "snippet": "underleftrightvecc{${1:arg}}"
-    },
-    "underlvecc{}": {
-      "snippet": "underlvecc{${1:arg}}"
-    },
-    "underrightharp{}": {
-      "snippet": "underrightharp{${1:arg}}"
-    },
-    "underrightleftharp{}": {
-      "snippet": "underrightleftharp{${1:arg}}"
-    },
-    "understraightlvecc{}": {
-      "snippet": "understraightlvecc{${1:arg}}"
-    },
-    "understraightvecc{}": {
-      "snippet": "understraightvecc{${1:arg}}"
-    },
-    "undervecc{}": {
-      "snippet": "undervecc{${1:arg}}"
-    },
-    "vecc{}": {
-      "snippet": "vecc{${1:arg}}"
-    },
-    "shortlvecc{}": {
-      "snippet": "shortlvecc{${1:arg}}"
-    },
-    "shortoverleftharp{}": {
-      "snippet": "shortoverleftharp{${1:arg}}"
-    },
-    "shortoverleftrightharp{}": {
-      "snippet": "shortoverleftrightharp{${1:arg}}"
-    },
-    "shortoverleftrightvecc{}": {
-      "snippet": "shortoverleftrightvecc{${1:arg}}"
-    },
-    "shortoverrightharp{}": {
-      "snippet": "shortoverrightharp{${1:arg}}"
-    },
-    "shortoverrightleftharp{}": {
-      "snippet": "shortoverrightleftharp{${1:arg}}"
-    },
-    "shortstraightlvecc{}": {
-      "snippet": "shortstraightlvecc{${1:arg}}"
-    },
-    "shortstraightvecc{}": {
-      "snippet": "shortstraightvecc{${1:arg}}"
-    },
-    "shortunderleftharp{}": {
-      "snippet": "shortunderleftharp{${1:arg}}"
-    },
-    "shortunderleftrightharp{}": {
-      "snippet": "shortunderleftrightharp{${1:arg}}"
-    },
-    "shortunderleftrightvecc{}": {
-      "snippet": "shortunderleftrightvecc{${1:arg}}"
-    },
-    "shortunderlvecc{}": {
-      "snippet": "shortunderlvecc{${1:arg}}"
-    },
-    "shortunderrightharp{}": {
-      "snippet": "shortunderrightharp{${1:arg}}"
-    },
-    "shortunderrightleftharp{}": {
-      "snippet": "shortunderrightleftharp{${1:arg}}"
-    },
-    "shortunderstraightlvecc{}": {
-      "snippet": "shortunderstraightlvecc{${1:arg}}"
-    },
-    "shortunderstraightvecc{}": {
-      "snippet": "shortunderstraightvecc{${1:arg}}"
-    },
-    "shortundervecc{}": {
-      "snippet": "shortundervecc{${1:arg}}"
-    },
-    "shortvecc{}": {
-      "snippet": "shortvecc{${1:arg}}"
-    },
-    "varrightarrow": {},
-    "varleftarrow": {},
-    "varrightharp": {},
-    "varleftharp": {},
-    "varleftrightarrow": {},
-    "varleftrightharp": {},
-    "varrightleftharp": {},
-    "varmapsto": {},
-    "varmapsfrom": {},
-    "varuphookrightarrow": {},
-    "varuphookleftarrow": {},
-    "vardownhookrightarrow": {},
-    "vardownhookleftarrow": {},
-    "varhookrightarrow": {},
-    "varhookleftarrow": {},
-    "vardoublerightarrow": {},
-    "vardoubleleftarrow": {},
-    "varcirclerightarrow": {},
-    "varcircleleftarrow": {},
-    "varRightarrow": {},
-    "varLeftarrow": {},
-    "varCirclerightarrow": {},
-    "varCircleleftarrow": {},
-    "varSquarerightarrow": {},
-    "varSquareleftarrow": {},
-    "varRibbonrightarrow": {},
-    "varRibbonleftarrow": {},
-    "squaredarrow": {},
-    "roundedarrow": {},
-    "varrightarrows": {},
-    "varleftarrows": {},
-    "varrightleftarrows": {},
-    "varleftrightarrows": {},
-    "varRrightarrow": {},
-    "varLleftarrow": {},
-    "varLleftRrightarrow": {},
-    "longvarrightarrow": {},
-    "longvarleftarrow": {},
-    "longvarrightharp": {},
-    "longvarleftharp": {},
-    "longvarleftrightarrow": {},
-    "longvarleftrightharp": {},
-    "longvarrightleftharp": {},
-    "longvarmapsto": {},
-    "longvarmapsfrom": {},
-    "longvaruphookrightarrow": {},
-    "longvaruphookleftarrow": {},
-    "longvardownhookrightarrow": {},
-    "longvardownhookleftarrow": {},
-    "longvarhookrightarrow": {},
-    "longvarhookleftarrow": {},
-    "longvardoublerightarrow": {},
-    "longvardoubleleftarrow": {},
-    "longvarcirclerightarrow": {},
-    "longvarcircleleftarrow": {},
-    "longvarRightarrow": {},
-    "longvarLeftarrow": {},
-    "longvarCirclerightarrow": {},
-    "longvarCircleleftarrow": {},
-    "longvarSquarerightarrow": {},
-    "longvarSquareleftarrow": {},
-    "longvarRibbonrightarrow": {},
-    "longvarRibbonleftarrow": {},
-    "longsquaredarrow": {},
-    "longroundedarrow": {},
-    "longvarrightarrows": {},
-    "longvarleftarrows": {},
-    "longvarrightleftarrows": {},
-    "longvarleftrightarrows": {},
-    "longvarRrightarrow": {},
-    "longvarLleftarrow": {},
-    "longvarLleftRrightarrow": {},
-    "xvarrightarrow{}{}": {
-      "snippet": "xvarrightarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarleftarrow{}{}": {
-      "snippet": "xvarleftarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarrightharp{}{}": {
-      "snippet": "xvarrightharp{${1:arg}}{${2:arg}}"
-    },
-    "xvarleftharp{}{}": {
-      "snippet": "xvarleftharp{${1:arg}}{${2:arg}}"
-    },
-    "xvarleftrightarrow{}{}": {
-      "snippet": "xvarleftrightarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarleftrightharp{}{}": {
-      "snippet": "xvarleftrightharp{${1:arg}}{${2:arg}}"
-    },
-    "xvarrightleftharp{}{}": {
-      "snippet": "xvarrightleftharp{${1:arg}}{${2:arg}}"
-    },
-    "xvarmapsto{}{}": {
-      "snippet": "xvarmapsto{${1:arg}}{${2:arg}}"
-    },
-    "xvarmapsfrom{}{}": {
-      "snippet": "xvarmapsfrom{${1:arg}}{${2:arg}}"
-    },
-    "xvaruphookrightarrow{}{}": {
-      "snippet": "xvaruphookrightarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvaruphookleftarrow{}{}": {
-      "snippet": "xvaruphookleftarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvardownhookrightarrow{}{}": {
-      "snippet": "xvardownhookrightarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvardownhookleftarrow{}{}": {
-      "snippet": "xvardownhookleftarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarhookrightarrow{}{}": {
-      "snippet": "xvarhookrightarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarhookleftarrow{}{}": {
-      "snippet": "xvarhookleftarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvardoublerightarrow{}{}": {
-      "snippet": "xvardoublerightarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvardoubleleftarrow{}{}": {
-      "snippet": "xvardoubleleftarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarcirclerightarrow{}{}": {
-      "snippet": "xvarcirclerightarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarcircleleftarrow{}{}": {
-      "snippet": "xvarcircleleftarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarRightarrow{}{}": {
-      "snippet": "xvarRightarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarLeftarrow{}{}": {
-      "snippet": "xvarLeftarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarCirclerightarrow{}{}": {
-      "snippet": "xvarCirclerightarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarCircleleftarrow{}{}": {
-      "snippet": "xvarCircleleftarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarSquarerightarrow{}{}": {
-      "snippet": "xvarSquarerightarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarSquareleftarrow{}{}": {
-      "snippet": "xvarSquareleftarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarRibbonrightarrow{}{}": {
-      "snippet": "xvarRibbonrightarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarRibbonleftarrow{}{}": {
-      "snippet": "xvarRibbonleftarrow{${1:arg}}{${2:arg}}"
-    },
-    "xsquaredarrow{}{}": {
-      "snippet": "xsquaredarrow{${1:arg}}{${2:arg}}"
-    },
-    "xroundedarrow{}{}": {
-      "snippet": "xroundedarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarrightarrows{}{}": {
-      "snippet": "xvarrightarrows{${1:arg}}{${2:arg}}"
-    },
-    "xvarleftarrows{}{}": {
-      "snippet": "xvarleftarrows{${1:arg}}{${2:arg}}"
-    },
-    "xvarrightleftarrows{}{}": {
-      "snippet": "xvarrightleftarrows{${1:arg}}{${2:arg}}"
-    },
-    "xvarleftrightarrows{}{}": {
-      "snippet": "xvarleftrightarrows{${1:arg}}{${2:arg}}"
-    },
-    "xvarRrightarrow{}{}": {
-      "snippet": "xvarRrightarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarLleftarrow{}{}": {
-      "snippet": "xvarLleftarrow{${1:arg}}{${2:arg}}"
-    },
-    "xvarLleftRrightarrow{}{}": {
-      "snippet": "xvarLleftRrightarrow{${1:arg}}{${2:arg}}"
-    },
-    "varwidehat{}": {
-      "snippet": "varwidehat{${1:arg}}"
-    },
-    "varwidecheck{}": {
-      "snippet": "varwidecheck{${1:arg}}"
-    },
-    "varwidetilde{}": {
-      "snippet": "varwidetilde{${1:arg}}"
-    },
-    "suum": {},
-    "prood": {},
-    "putsym{}{}": {
-      "snippet": "putsym{${1:main symbol}}{${2:secondary symbol}}"
-    },
-    "iNint{}": {
-      "snippet": "iNint{${1:N}}"
-    },
-    "pdfMsym": {},
-    "pdfmsymsettransforms": {},
-    "pdfMsymupdate": {},
-    "pdfMsymversion": {},
-    "smallcircle": {},
-    "strudelccode": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "deps": [
+    {
+      "name": "luatex"
+    },
+    {
+      "name": "xetex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pdfmsymsetscalefactor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:fontsize}}"
+      }
+    },
+    {
+      "name": "aint"
+    },
+    {
+      "name": "bigcircwedge"
+    },
+    {
+      "name": "bigdcup"
+    },
+    {
+      "name": "bigdwedge"
+    },
+    {
+      "name": "bigexists"
+    },
+    {
+      "name": "bigforall"
+    },
+    {
+      "name": "circwedge"
+    },
+    {
+      "name": "dcup"
+    },
+    {
+      "name": "divs"
+    },
+    {
+      "name": "dwedge"
+    },
+    {
+      "name": "lightning"
+    },
+    {
+      "name": "ndivs"
+    },
+    {
+      "name": "oiNint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "biNint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "lvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overleftharp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overleftrightharp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overleftrightvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overrightharp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overrightleftharp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "straightlvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "straightvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "underleftharp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "underleftrightharp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "underleftrightvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "underlvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "underrightharp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "underrightleftharp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "understraightlvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "understraightvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "undervecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "vecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortlvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortoverleftharp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortoverleftrightharp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortoverleftrightvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortoverrightharp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortoverrightleftharp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortstraightlvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortstraightvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortunderleftharp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortunderleftrightharp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortunderleftrightvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortunderlvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortunderrightharp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortunderrightleftharp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortunderstraightlvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortunderstraightvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortundervecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "shortvecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "varrightarrow"
+    },
+    {
+      "name": "varleftarrow"
+    },
+    {
+      "name": "varrightharp"
+    },
+    {
+      "name": "varleftharp"
+    },
+    {
+      "name": "varleftrightarrow"
+    },
+    {
+      "name": "varleftrightharp"
+    },
+    {
+      "name": "varrightleftharp"
+    },
+    {
+      "name": "varmapsto"
+    },
+    {
+      "name": "varmapsfrom"
+    },
+    {
+      "name": "varuphookrightarrow"
+    },
+    {
+      "name": "varuphookleftarrow"
+    },
+    {
+      "name": "vardownhookrightarrow"
+    },
+    {
+      "name": "vardownhookleftarrow"
+    },
+    {
+      "name": "varhookrightarrow"
+    },
+    {
+      "name": "varhookleftarrow"
+    },
+    {
+      "name": "vardoublerightarrow"
+    },
+    {
+      "name": "vardoubleleftarrow"
+    },
+    {
+      "name": "varcirclerightarrow"
+    },
+    {
+      "name": "varcircleleftarrow"
+    },
+    {
+      "name": "varRightarrow"
+    },
+    {
+      "name": "varLeftarrow"
+    },
+    {
+      "name": "varCirclerightarrow"
+    },
+    {
+      "name": "varCircleleftarrow"
+    },
+    {
+      "name": "varSquarerightarrow"
+    },
+    {
+      "name": "varSquareleftarrow"
+    },
+    {
+      "name": "varRibbonrightarrow"
+    },
+    {
+      "name": "varRibbonleftarrow"
+    },
+    {
+      "name": "squaredarrow"
+    },
+    {
+      "name": "roundedarrow"
+    },
+    {
+      "name": "varrightarrows"
+    },
+    {
+      "name": "varleftarrows"
+    },
+    {
+      "name": "varrightleftarrows"
+    },
+    {
+      "name": "varleftrightarrows"
+    },
+    {
+      "name": "varRrightarrow"
+    },
+    {
+      "name": "varLleftarrow"
+    },
+    {
+      "name": "varLleftRrightarrow"
+    },
+    {
+      "name": "longvarrightarrow"
+    },
+    {
+      "name": "longvarleftarrow"
+    },
+    {
+      "name": "longvarrightharp"
+    },
+    {
+      "name": "longvarleftharp"
+    },
+    {
+      "name": "longvarleftrightarrow"
+    },
+    {
+      "name": "longvarleftrightharp"
+    },
+    {
+      "name": "longvarrightleftharp"
+    },
+    {
+      "name": "longvarmapsto"
+    },
+    {
+      "name": "longvarmapsfrom"
+    },
+    {
+      "name": "longvaruphookrightarrow"
+    },
+    {
+      "name": "longvaruphookleftarrow"
+    },
+    {
+      "name": "longvardownhookrightarrow"
+    },
+    {
+      "name": "longvardownhookleftarrow"
+    },
+    {
+      "name": "longvarhookrightarrow"
+    },
+    {
+      "name": "longvarhookleftarrow"
+    },
+    {
+      "name": "longvardoublerightarrow"
+    },
+    {
+      "name": "longvardoubleleftarrow"
+    },
+    {
+      "name": "longvarcirclerightarrow"
+    },
+    {
+      "name": "longvarcircleleftarrow"
+    },
+    {
+      "name": "longvarRightarrow"
+    },
+    {
+      "name": "longvarLeftarrow"
+    },
+    {
+      "name": "longvarCirclerightarrow"
+    },
+    {
+      "name": "longvarCircleleftarrow"
+    },
+    {
+      "name": "longvarSquarerightarrow"
+    },
+    {
+      "name": "longvarSquareleftarrow"
+    },
+    {
+      "name": "longvarRibbonrightarrow"
+    },
+    {
+      "name": "longvarRibbonleftarrow"
+    },
+    {
+      "name": "longsquaredarrow"
+    },
+    {
+      "name": "longroundedarrow"
+    },
+    {
+      "name": "longvarrightarrows"
+    },
+    {
+      "name": "longvarleftarrows"
+    },
+    {
+      "name": "longvarrightleftarrows"
+    },
+    {
+      "name": "longvarleftrightarrows"
+    },
+    {
+      "name": "longvarRrightarrow"
+    },
+    {
+      "name": "longvarLleftarrow"
+    },
+    {
+      "name": "longvarLleftRrightarrow"
+    },
+    {
+      "name": "xvarrightarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarleftarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarrightharp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarleftharp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarleftrightarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarleftrightharp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarrightleftharp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarmapsto",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarmapsfrom",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvaruphookrightarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvaruphookleftarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvardownhookrightarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvardownhookleftarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarhookrightarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarhookleftarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvardoublerightarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvardoubleleftarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarcirclerightarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarcircleleftarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarRightarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarLeftarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarCirclerightarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarCircleleftarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarSquarerightarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarSquareleftarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarRibbonrightarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarRibbonleftarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xsquaredarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xroundedarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarrightarrows",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarleftarrows",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarrightleftarrows",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarleftrightarrows",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarRrightarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarLleftarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "xvarLleftRrightarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "varwidehat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "varwidecheck",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "varwidetilde",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "suum"
+    },
+    {
+      "name": "prood"
+    },
+    {
+      "name": "putsym",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:main symbol}}{${2:secondary symbol}}"
+      }
+    },
+    {
+      "name": "iNint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:N}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

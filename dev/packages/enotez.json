@@ -1,74 +1,195 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "xtemplate": [],
-    "translations": []
-  },
-  "macros": {
-    "endnote{}": {
-      "snippet": "endnote{${1:text}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "endnote[]{}": {
-      "snippet": "endnote[${2:mark}]{${1:text}}"
+    {
+      "name": "xtemplate"
     },
-    "endnotemark": {},
-    "endnotemark[]": {
-      "snippet": "endnotemark[${1:mark}]"
+    {
+      "name": "translations"
+    }
+  ],
+  "macros": [
+    {
+      "name": "endnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "endnotetext{}": {
-      "snippet": "endnotetext{${1:text}}"
+    {
+      "name": "endnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:mark}]{${1:text}}"
+      }
     },
-    "enotezwritemark": {},
-    "enmarkstyle": {},
-    "printendnotes": {},
-    "printendnotes[]": {
-      "snippet": "printendnotes[${1:style}]"
+    {
+      "name": "endnotemark",
+      "unusual": true
     },
-    "printendnotes*": {},
-    "printendnotes*[]": {
-      "snippet": "printendnotes*[${1:style}]"
+    {
+      "name": "endnotemark",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:mark}]"
+      }
     },
-    "AtEveryEndnotesList{}": {
-      "snippet": "AtEveryEndnotesList{${1:text}}"
+    {
+      "name": "endnotetext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "AtNextEndnotesList{}": {
-      "snippet": "AtNextEndnotesList{${1:text}}"
+    {
+      "name": "enotezwritemark",
+      "unusual": true
     },
-    "AfterEveryEndnotesList{}": {
-      "snippet": "AfterEveryEndnotesList{${1:text}}"
+    {
+      "name": "enmarkstyle",
+      "unusual": true
     },
-    "AfterNextEndnotesList{}": {
-      "snippet": "AfterNextEndnotesList{${1:text}}"
+    {
+      "name": "printendnotes"
     },
-    "setenotez{}": {
-      "snippet": "setenotez{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "printendnotes",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:style%keyvals}]",
+        "keys": [
+          "\\printendnotes#c,\\printendnotes*#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "enmark{}": {
-      "snippet": "enmark{${1:arg}}"
+    {
+      "name": "printendnotes*",
+      "unusual": true
     },
-    "AtEveryListSplit{}": {
-      "snippet": "AtEveryListSplit{${1:code}}"
+    {
+      "name": "printendnotes*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:style%keyvals}]",
+        "keys": [
+          "\\printendnotes#c,\\printendnotes*#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "AfterEveryListSplit{}": {
-      "snippet": "AfterEveryListSplit{${1:code}}"
+    {
+      "name": "AtEveryEndnotesList",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "EnotezCurrentSplitTitle": {},
-    "NewSplitTitleTag{}{}": {
-      "snippet": "NewSplitTitleTag{${1:tag}}{${2:replacement}}"
+    {
+      "name": "AtNextEndnotesList",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "enotezlistheading{}": {
-      "snippet": "enotezlistheading{${1:text}}"
+    {
+      "name": "AfterEveryEndnotesList",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "enotezsplitlistheading": {},
-    "enotezdisable": {},
-    "theendnote": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "AfterNextEndnotesList",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setenotez",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\setenotez"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "enmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "AtEveryListSplit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "AfterEveryListSplit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "EnotezCurrentSplitTitle",
+      "unusual": true
+    },
+    {
+      "name": "NewSplitTitleTag",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:tag}}{${2:replacement}}"
+      }
+    },
+    {
+      "name": "enotezlistheading",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "enotezsplitlistheading",
+      "unusual": true
+    },
+    {
+      "name": "enotezdisable",
+      "unusual": true
+    },
+    {
+      "name": "theendnote",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\printendnotes#c,\\printendnotes*#c": [
+      "description",
+      "itemize"
+    ],
+    "\\setenotez": [
       "list-name=",
       "reset",
       "counter-format=${1|arabic,alph,Alph,roman,Roman,symbols|}",
@@ -85,5 +206,6 @@
       "split-heading=",
       "split-title={${1:token list}}"
     ]
-  ]
+  },
+  "args": []
 }

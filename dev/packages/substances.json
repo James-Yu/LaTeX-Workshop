@@ -1,155 +1,454 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "xtemplate": [],
-    "chemmacros": [],
-    "chemfig": [],
-    "ghsystem": [],
-    "siunitx": []
-  },
-  "macros": {
-    "DeclareSubstance{}{}": {
-      "snippet": "DeclareSubstance{${1:id}}{${2:properties}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "LoadSubstances{}": {
-      "snippet": "LoadSubstances{${1:database name}}"
+    {
+      "name": "xtemplate"
     },
-    "SubstancesDatabase{}": {
-      "snippet": "SubstancesDatabase{${1:name}}"
+    {
+      "name": "chemmacros"
     },
-    "CAS{}": {
-      "snippet": "CAS{${1:number}}"
+    {
+      "name": "chemfig"
     },
-    "SubstancesStyle{}": {
-      "snippet": "SubstancesStyle{${1:style name}}"
+    {
+      "name": "ghsystem"
     },
-    "SubstancesStyle*{}": {
-      "snippet": "SubstancesStyle*{${1:style name}}"
+    {
+      "name": "chemfig"
     },
-    "LoadSubstancesStyle{}": {
-      "snippet": "LoadSubstancesStyle{${1:style name}}"
-    },
-    "DeclareSubstanceProperty{}": {
-      "snippet": "DeclareSubstanceProperty{${1:name}}"
-    },
-    "DeclareSubstanceProperty{}[]": {
-      "snippet": "DeclareSubstanceProperty{${1:name}}[${2:pre code}]"
-    },
-    "DeclareSubstanceProperty{}[][]": {
-      "snippet": "DeclareSubstanceProperty{${1:name}}[${2:pre code}][${3:post code}]"
-    },
-    "DeclareSubstanceProperty*{}": {
-      "snippet": "DeclareSubstanceProperty*{${1:name}}"
-    },
-    "DeclareSubstanceProperty*{}[]": {
-      "snippet": "DeclareSubstanceProperty*{${1:name}}[${2:pre code}]"
-    },
-    "DeclareSubstanceProperty*{}[][]": {
-      "snippet": "DeclareSubstanceProperty*{${1:name}}[${2:pre code}][${3:post code}]"
-    },
-    "chem{}": {
-      "snippet": "chem{${1:id}}"
-    },
-    "chem{}[]": {
-      "snippet": "chem{${1:id}}[${2:property}]"
-    },
-    "chem[]{}": {
-      "snippet": "chem[${2:pre}]{${1:id}}"
-    },
-    "chem[]{}[]": {
-      "snippet": "chem[${2:pre}]{${1:id}}[${3:property}]"
-    },
-    "chem[][]{}": {
-      "snippet": "chem[${2:pre}][${3:post}]{${1:id}}"
-    },
-    "chem[][]{}[]": {
-      "snippet": "chem[${2:pre}][${3:post}]{${1:id}}[${4:property}]"
-    },
-    "chem*{}": {
-      "snippet": "chem*{${1:id}}"
-    },
-    "chem*{}[]": {
-      "snippet": "chem*{${1:id}}[${2:property}]"
-    },
-    "chem*[]{}": {
-      "snippet": "chem*[${2:pre}]{${1:id}}"
-    },
-    "chem*[]{}[]": {
-      "snippet": "chem*[${2:pre}]{${1:id}}[${3:property}]"
-    },
-    "chem*[][]{}": {
-      "snippet": "chem*[${2:pre}][${3:post}]{${1:id}}"
-    },
-    "chem*[][]{}[]": {
-      "snippet": "chem*[${2:pre}][${3:post}]{${1:id}}[${4:property}]"
-    },
-    "GetSubstanceProperty{}{}": {
-      "snippet": "GetSubstanceProperty{${1:id}}{${2:property}}"
-    },
-    "RetrieveSubstanceProperty{}{}": {
-      "snippet": "RetrieveSubstanceProperty{${1:id}}{${2:property}}"
-    },
-    "ForAllSubstancesDo{}": {
-      "snippet": "ForAllSubstancesDo{${1:code}}"
-    },
-    "AllSubstancesSequence": {},
-    "AllSubstancesClist": {},
-    "IfSubstancePropertyTF{}{}{}{}": {
-      "snippet": "IfSubstancePropertyTF{${1:id}}{${2:field}}{${3:true code}}{${4:false code}}"
-    },
-    "IfSubstancePropertyT{}{}{}": {
-      "snippet": "IfSubstancePropertyT{${1:id}}{${2:field}}{${3:true code}}"
-    },
-    "IfSubstancePropertyF{}{}{}": {
-      "snippet": "IfSubstancePropertyF{${1:id}}{${2:field}}{${3:false code}}"
-    },
-    "IfSubstanceFieldTF{}{}{}": {
-      "snippet": "IfSubstanceFieldTF{${1:field}}{${2:true code}}{${3:false code}}"
-    },
-    "IfSubstanceFieldT{}{}": {
-      "snippet": "IfSubstanceFieldT{${1:field}}{${2:true code}}"
-    },
-    "IfSubstanceFieldF{}{}": {
-      "snippet": "IfSubstanceFieldF{${1:field}}{${2:false code}}"
-    },
-    "IfSubstanceExistTF{}{}{}": {
-      "snippet": "IfSubstanceExistTF{${1:id}}{${2:true code}}{${3:false code}}"
-    },
-    "IfSubstanceExistT{}{}{}": {
-      "snippet": "IfSubstanceExistT{${1:id}}{${2:true code}}{${3:false code}}"
-    },
-    "IfSubstanceExistF{}{}{}": {
-      "snippet": "IfSubstanceExistF{${1:id}}{${2:true code}}{${3:false code}}"
-    },
-    "SubstanceIndex{}": {
-      "snippet": "SubstanceIndex{${1:id}}"
-    },
-    "SubstanceIndex[]{}": {
-      "snippet": "SubstanceIndex[${2:opt}]{${1:id}}"
-    },
-    "SubstanceIndexNameEntry{}{}": {
-      "snippet": "SubstanceIndexNameEntry{${1:sort}}{${2:name}}"
-    },
-    "SubstanceIndexNameAltEntry{}{}{}": {
-      "snippet": "SubstanceIndexNameAltEntry{${1:sort}}{${2:name}}{${3:alt}}"
-    },
-    "SubstanceIndexAltEntry{}{}{}": {
-      "snippet": "SubstanceIndexAltEntry{${1:alt sort}}{${2:name}}{${3:alt}}"
-    },
-    "ghspictograms{}": {
-      "snippet": "ghspictograms{${1:arg}}"
-    },
-    "ghsstatements{}{}": {
-      "snippet": "ghsstatements{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "siunitx"
     }
-  },
-  "envs": {},
-  "options": [
-    "draft",
-    "final",
-    "index",
-    "style=${1:style name}",
-    "strict"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "DeclareSubstance",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id%specialDef}}{${2:properties%keyvals}}",
+        "keys": [
+          "\\DeclareSubstance"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "LoadSubstances",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:database name}}"
+      }
+    },
+    {
+      "name": "SubstancesDatabase",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "CAS",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "SubstancesStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style name}}"
+      }
+    },
+    {
+      "name": "SubstancesStyle*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style name}}"
+      }
+    },
+    {
+      "name": "LoadSubstancesStyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style name}}"
+      }
+    },
+    {
+      "name": "DeclareSubstanceProperty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%specialDef}}"
+      }
+    },
+    {
+      "name": "DeclareSubstanceProperty",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name%specialDef}}[${2:pre code}]"
+      }
+    },
+    {
+      "name": "DeclareSubstanceProperty",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:name%specialDef}}[${2:pre code}][${3:post code}]"
+      }
+    },
+    {
+      "name": "DeclareSubstanceProperty*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%specialDef}}"
+      }
+    },
+    {
+      "name": "DeclareSubstanceProperty*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name%specialDef}}[${2:pre code}]"
+      }
+    },
+    {
+      "name": "DeclareSubstanceProperty*",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:name%specialDef}}[${2:pre code}][${3:post code}]"
+      }
+    },
+    {
+      "name": "chem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id%keyvals}}",
+        "keys": [
+          "\\chem#c,\\chem*#c,\\GetSubstanceProperty#c,\\RetrieveSubstanceProperty#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "chem",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:id%keyvals}}[${2:property}]",
+        "keys": [
+          "\\chem#c,\\chem*#c,\\GetSubstanceProperty#c,\\RetrieveSubstanceProperty#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "chem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pre}]{${1:id%keyvals}}",
+        "keys": [
+          "\\chem#c,\\chem*#c,\\GetSubstanceProperty#c,\\RetrieveSubstanceProperty#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "chem",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:pre}]{${1:id%keyvals}}[${3:property}]",
+        "keys": [
+          "\\chem#c,\\chem*#c,\\GetSubstanceProperty#c,\\RetrieveSubstanceProperty#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "chem",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:pre}][${3:post}]{${1:id%keyvals}}",
+        "keys": [
+          "\\chem#c,\\chem*#c,\\GetSubstanceProperty#c,\\RetrieveSubstanceProperty#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "chem",
+      "arg": {
+        "format": "[][]{}[]",
+        "snippet": "[${2:pre}][${3:post}]{${1:id%keyvals}}[${4:property}]",
+        "keys": [
+          "\\chem#c,\\chem*#c,\\GetSubstanceProperty#c,\\RetrieveSubstanceProperty#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "chem*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id%keyvals}}",
+        "keys": [
+          "\\chem#c,\\chem*#c,\\GetSubstanceProperty#c,\\RetrieveSubstanceProperty#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "chem*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:id%keyvals}}[${2:property}]",
+        "keys": [
+          "\\chem#c,\\chem*#c,\\GetSubstanceProperty#c,\\RetrieveSubstanceProperty#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "chem*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pre}]{${1:id%keyvals}}",
+        "keys": [
+          "\\chem#c,\\chem*#c,\\GetSubstanceProperty#c,\\RetrieveSubstanceProperty#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "chem*",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:pre}]{${1:id%keyvals}}[${3:property}]",
+        "keys": [
+          "\\chem#c,\\chem*#c,\\GetSubstanceProperty#c,\\RetrieveSubstanceProperty#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "chem*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:pre}][${3:post}]{${1:id%keyvals}}",
+        "keys": [
+          "\\chem#c,\\chem*#c,\\GetSubstanceProperty#c,\\RetrieveSubstanceProperty#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "chem*",
+      "arg": {
+        "format": "[][]{}[]",
+        "snippet": "[${2:pre}][${3:post}]{${1:id%keyvals}}[${4:property}]",
+        "keys": [
+          "\\chem#c,\\chem*#c,\\GetSubstanceProperty#c,\\RetrieveSubstanceProperty#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "GetSubstanceProperty",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id%keyvals}}{${2:property}}",
+        "keys": [
+          "\\chem#c,\\chem*#c,\\GetSubstanceProperty#c,\\RetrieveSubstanceProperty#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "RetrieveSubstanceProperty",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id%keyvals}}{${2:property}}",
+        "keys": [
+          "\\chem#c,\\chem*#c,\\GetSubstanceProperty#c,\\RetrieveSubstanceProperty#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ForAllSubstancesDo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "AllSubstancesSequence"
+    },
+    {
+      "name": "AllSubstancesClist"
+    },
+    {
+      "name": "IfSubstancePropertyTF",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:id}}{${2:field}}{${3:true code}}{${4:false code}}"
+      }
+    },
+    {
+      "name": "IfSubstancePropertyT",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:id}}{${2:field}}{${3:true code}}"
+      }
+    },
+    {
+      "name": "IfSubstancePropertyF",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:id}}{${2:field}}{${3:false code}}"
+      }
+    },
+    {
+      "name": "IfSubstanceFieldTF",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:field}}{${2:true code}}{${3:false code}}"
+      }
+    },
+    {
+      "name": "IfSubstanceFieldT",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:field}}{${2:true code}}"
+      }
+    },
+    {
+      "name": "IfSubstanceFieldF",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:field}}{${2:false code}}"
+      }
+    },
+    {
+      "name": "IfSubstanceExistTF",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:id}}{${2:true code}}{${3:false code}}"
+      }
+    },
+    {
+      "name": "IfSubstanceExistT",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:id}}{${2:true code}}{${3:false code}}"
+      }
+    },
+    {
+      "name": "IfSubstanceExistF",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:id}}{${2:true code}}{${3:false code}}"
+      }
+    },
+    {
+      "name": "SubstanceIndex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "SubstanceIndex",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opt}]{${1:id}}"
+      }
+    },
+    {
+      "name": "SubstanceIndexNameEntry",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sort}}{${2:name}}"
+      }
+    },
+    {
+      "name": "SubstanceIndexNameAltEntry",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:sort}}{${2:name}}{${3:alt}}"
+      }
+    },
+    {
+      "name": "SubstanceIndexAltEntry",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:alt sort}}{${2:name}}{${3:alt}}"
+      }
+    },
+    {
+      "name": "ghspictograms",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ghsstatements",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/substances#c": [
+      "draft",
+      "final",
+      "index",
+      "style=${1:style name}",
+      "strict"
+    ],
+    "\\DeclareSubstance": [
+      "name=${1:name}",
+      "sort=${1:sort name}",
+      "alt=${1:alt name}",
+      "altsort=${1:sort alt name}",
+      "CAS=${1:CAS number}",
+      "PubChem=${1:PubChem number}",
+      "formula=${1:formula}",
+      "structure=${1:structure}",
+      "mp=${1:melting point}",
+      "bp=${1:boiling point}",
+      "density=${1:density}",
+      "phase=${1:phase}",
+      "pKa=${1:pKa}",
+      "pKa1=${1:pKa1}",
+      "pKa2=${1:pKa2}",
+      "pKb=${1:pKb}",
+      "pKb1=${1:pKb1}",
+      "pKb2=${1:pKb2}",
+      "pictograms={${1:list of pictograms}}",
+      "H={${1:list of hazard statements}}",
+      "P={${1:list of precautionary statements}}",
+      "EUH={${1:list of EUH statements}}",
+      "LD50=${1:median lethal dose}",
+      "%substancesfield"
+    ],
+    "\\chem#c,\\chem*#c,\\GetSubstanceProperty#c,\\RetrieveSubstanceProperty#c": [
+      "%substancesid"
+    ]
+  },
+  "args": [
+    "\\usepackage/substances#c"
+  ]
 }

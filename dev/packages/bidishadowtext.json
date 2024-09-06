@@ -1,28 +1,57 @@
 {
-  "includes": {
-    "color": []
-  },
-  "macros": {
-    "bidishadowoffset{}": {
-      "snippet": "bidishadowoffset{${1:dimen}}"
-    },
-    "bidishadowoffsetx{}": {
-      "snippet": "bidishadowoffsetx{${1:dimen}}"
-    },
-    "bidishadowoffsety{}": {
-      "snippet": "bidishadowoffsety{${1:dimen}}"
-    },
-    "bidishadowcolor{}": {
-      "snippet": "bidishadowcolor{${1:color}}"
-    },
-    "bidishadowrgb{}": {
-      "snippet": "bidishadowrgb{${1:r,${2:g},b}}"
-    },
-    "bidishadowtext{}": {
-      "snippet": "bidishadowtext{${1:text}}"
+  "deps": [
+    {
+      "name": "color"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "bidishadowoffset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen%l}}"
+      }
+    },
+    {
+      "name": "bidishadowoffsetx",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen%l}}"
+      }
+    },
+    {
+      "name": "bidishadowoffsety",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen%l}}"
+      }
+    },
+    {
+      "name": "bidishadowcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "bidishadowrgb",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:r,g,b}}"
+      }
+    },
+    {
+      "name": "bidishadowtext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

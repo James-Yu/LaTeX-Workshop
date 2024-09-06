@@ -1,27 +1,46 @@
 {
-  "includes": {
-    "tikz": [],
-    "calc": []
-  },
-  "macros": {
-    "progressbar{}": {
-      "snippet": "progressbar{${1:number}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "progressbar[]{}": {
-      "snippet": "progressbar[${2:options}]{${1:number}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "progressbarchange{}": {
-      "snippet": "progressbarchange{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "calc"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "progressbar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "progressbar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:number}}",
+        "keys": [
+          "\\progressbar,\\progressbarchange"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "progressbarchange",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\progressbar,\\progressbarchange"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\progressbar,\\progressbarchange": [
       "heightr=",
       "heighta=",
       "roundnessr=",
@@ -36,5 +55,6 @@
       "emptycolor=",
       "filledcolor="
     ]
-  ]
+  },
+  "args": []
 }

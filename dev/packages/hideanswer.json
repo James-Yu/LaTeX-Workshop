@@ -1,70 +1,147 @@
 {
-  "includes": {
-    "color": []
-  },
-  "macros": {
-    "sethideanswer": {},
-    "unsethideanswer": {},
-    "hideanswer{}": {
-      "snippet": "hideanswer{${1:text}}"
-    },
-    "hideanswer*{}": {
-      "snippet": "hideanswer*{${1:text}}"
-    },
-    "smashanswer{}": {
-      "snippet": "smashanswer{${1:text}}"
-    },
-    "smashanswer*{}": {
-      "snippet": "smashanswer*{${1:text}}"
-    },
-    "hidegraphics{}": {
-      "snippet": "hidegraphics{${1:imagefile}}"
-    },
-    "hidegraphics[]{}": {
-      "snippet": "hidegraphics[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hidegraphics*{}": {
-      "snippet": "hidegraphics*{${1:imagefile}}"
-    },
-    "hidegraphics*[]{}": {
-      "snippet": "hidegraphics*[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "smashgraphics{}": {
-      "snippet": "smashgraphics{${1:imagefile}}"
-    },
-    "smashgraphics[]{}": {
-      "snippet": "smashgraphics[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "smashgraphics*{}": {
-      "snippet": "smashgraphics*{${1:imagefile}}"
-    },
-    "smashgraphics*[]{}": {
-      "snippet": "smashgraphics*[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "switchanswer{}{}": {
-      "snippet": "switchanswer{${1:sethide-text}}{${2:unsethide-text}}"
-    },
-    "switchanswer*{}{}": {
-      "snippet": "switchanswer*{${1:unsethide-text}}{${2:sethide-text}}"
+  "deps": [
+    {
+      "name": "color"
     }
-  },
-  "envs": {
-    "hideanswerdiv": {},
-    "hideanswerdiv*": {},
-    "smashanswerdiv": {},
-    "smashanswerdiv*": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "sethideanswer"
+    },
+    {
+      "name": "unsethideanswer"
+    },
+    {
+      "name": "hideanswer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "hideanswer*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "smashanswer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "smashanswer*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "hidegraphics",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "hidegraphics",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\hidegraphics,\\hidegraphics*,\\smashgraphics,\\smashgraphics*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hidegraphics*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "hidegraphics*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\hidegraphics,\\hidegraphics*,\\smashgraphics,\\smashgraphics*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "smashgraphics",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "smashgraphics",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\hidegraphics,\\hidegraphics*,\\smashgraphics,\\smashgraphics*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "smashgraphics*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "smashgraphics*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\hidegraphics,\\hidegraphics*,\\smashgraphics,\\smashgraphics*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "switchanswer",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sethide-text%text}}{${2:unsethide-text%text}}"
+      }
+    },
+    {
+      "name": "switchanswer*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:unsethide-text%text}}{${2:sethide-text%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "hideanswerdiv"
+    },
+    {
+      "name": "hideanswerdiv*"
+    },
+    {
+      "name": "smashanswerdiv"
+    },
+    {
+      "name": "smashanswerdiv*"
+    }
+  ],
+  "keys": {
+    "\\hidegraphics,\\hidegraphics*,\\smashgraphics,\\smashgraphics*": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -95,5 +172,6 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
-  ]
+  },
+  "args": []
 }

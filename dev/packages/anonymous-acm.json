@@ -1,32 +1,69 @@
 {
-  "includes": {},
-  "macros": {
-    "authoranon{}": {
-      "snippet": "authoranon{${1:author information}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "authoranon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:author information%text}}"
+      }
     },
-    "textanon{}{}": {
-      "snippet": "textanon{${1:text}}{${2:placeholder}}"
+    {
+      "name": "textanon",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:placeholder}}"
+      }
     },
-    "linkanon{}{}": {
-      "snippet": "linkanon{${1:URL}}{${2:display link}}"
+    {
+      "name": "linkanon",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:URL}}{${2:display link%plain}}"
+      }
     },
-    "textlinkanon{}{}": {
-      "snippet": "textlinkanon{${1:URL}}{${2:text}}"
+    {
+      "name": "textlinkanon",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:URL}}{${2:text%plain}}"
+      }
     },
-    "citeanon{}": {
-      "snippet": "citeanon{${1:bibid}}"
+    {
+      "name": "citeanon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
     },
-    "citeanon[]{}": {
-      "snippet": "citeanon[${2:add. text}]{${1:bibid}}"
+    {
+      "name": "citeanon",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:add. text}]{${1:bibid}}"
+      }
     },
-    "ifAnonCondition": {},
-    "AnonConditiontrue": {},
-    "AnonConditionfalse": {}
-  },
-  "envs": {},
-  "options": [
-    "true",
-    "false"
+    {
+      "name": "ifAnonCondition",
+      "unusual": true
+    },
+    {
+      "name": "AnonConditiontrue",
+      "unusual": true
+    },
+    {
+      "name": "AnonConditionfalse",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/anonymous-acm#c": [
+      "true",
+      "false"
+    ]
+  },
+  "args": [
+    "\\usepackage/anonymous-acm#c"
+  ]
 }

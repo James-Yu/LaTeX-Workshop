@@ -139,7 +139,8 @@ function format(document: vscode.TextDocument, range?: vscode.Range): Thenable<v
             try {
                 fs.unlinkSync(temporaryFile)
                 fs.unlinkSync(documentDirectory + path.sep + 'indent.log')
-            } catch (ignored) {
+            } catch (err) {
+                logger.logError('Error when removing temporary file', err)
             }
         }
 

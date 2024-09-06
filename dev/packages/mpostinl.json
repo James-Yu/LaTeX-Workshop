@@ -1,101 +1,190 @@
 {
-  "includes": {
-    "graphicx": [],
-    "keyval": [],
-    "verbatim": []
-  },
-  "macros": {
-    "mpostsetup{}": {
-      "snippet": "mpostsetup{${1:options}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "mpostuse{}": {
-      "snippet": "mpostuse{${1:label}}"
+    {
+      "name": "keyval"
     },
-    "mpostuse[]{}": {
-      "snippet": "mpostuse[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "mpostgetname{}": {
-      "snippet": "mpostgetname{${1:label}}"
-    },
-    "mpostfigurename": {},
-    "mpostplaceholder{}": {
-      "snippet": "mpostplaceholder{${1:name}}"
-    },
-    "mpostplaceholder[]{}": {
-      "snippet": "mpostplaceholder[${2:type}]{${1:name}}"
-    },
-    "mpostdisplaylabel{}": {
-      "snippet": "mpostdisplaylabel{${1:label}}"
-    },
-    "mpostfilename": {},
-    "mpostfile{}": {
-      "snippet": "mpostfile{${1:file}}"
-    },
-    "mpostfile[]{}": {
-      "snippet": "mpostfile[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "mpostdone": {}
-  },
-  "envs": {
-    "mpostfig": {},
-    "mpostfig[]": {
-      "name": "mpostfig",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "mpostdef": {},
-    "mpostdef[]": {
-      "name": "mpostdef",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "mposttex": {},
-    "mposttex[]": {
-      "name": "mposttex",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "verbatim"
     }
-  },
-  "options": [
-    "draft",
-    "final",
-    "write",
-    "compile",
-    "twice",
-    "clean",
-    "checksum",
-    "fonts",
-    "prologues=${1:value}",
-    "lineno",
-    "labelnames",
-    "latex",
-    "compiler",
-    "compiler=${1:compiler}",
-    "format",
-    "format=${1:tag}",
-    "class=${1:class}",
-    "classopt={${1:class options}}",
-    "mem=${1:mem}",
-    "command=${1:command}",
-    "now",
-    "nowall",
-    "nowkeep",
-    "globaldef",
-    "template=${1:template}",
-    "extension=${1:ext}",
-    "numberwithin=${1:counter}",
-    "beamer",
-    "warnunused"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "mpostsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/mpostinl#c,\\mpostsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mpostuse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "mpostuse",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\mpostuse"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mpostgetname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "mpostfigurename"
+    },
+    {
+      "name": "mpostplaceholder",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "mpostplaceholder",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:type%keyvals}]{${1:name}}",
+        "keys": [
+          "\\mpostplaceholder"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mpostdisplaylabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "mpostfilename"
+    },
+    {
+      "name": "mpostfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "mpostfile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\mpostfile"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mpostdone"
+    }
+  ],
+  "envs": [
+    {
+      "name": "mpostfig"
+    },
+    {
+      "name": "mpostfig",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{mpostfig}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mpostdef"
+    },
+    {
+      "name": "mpostdef",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{mpostdef}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mposttex"
+    },
+    {
+      "name": "mposttex",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{mposttex}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/mpostinl#c,\\mpostsetup": [
+      "draft",
+      "final",
+      "write",
+      "compile",
+      "twice",
+      "clean",
+      "checksum",
+      "fonts",
+      "prologues=${1:value}",
+      "lineno",
+      "labelnames",
+      "latex",
+      "compiler",
+      "compiler=${1:compiler}",
+      "format",
+      "format=${1:tag}",
+      "class=${1:class}",
+      "classopt={${1:class options}}",
+      "mem=${1:mem}",
+      "command=${1:command}",
+      "now",
+      "nowall",
+      "nowkeep",
+      "globaldef",
+      "template=${1:template}",
+      "extension=${1:ext}",
+      "numberwithin=${1:counter}",
+      "beamer",
+      "warnunused"
+    ],
+    "\\begin{mpostfig}": [
+      "show",
+      "file=${1:file name}",
+      "label=${1:label}",
+      "opt={${1:includegraphics options}}",
+      "now",
+      "twice"
+    ],
+    "\\mpostuse": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -126,24 +215,23 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ],
-    [
-      "include"
-    ],
-    [
-      "show",
-      "file=${1:file name}",
-      "label=${1:label}",
-      "opt={${1:includegraphics options}}",
-      "now",
-      "twice"
-    ],
-    [
+    "\\begin{mpostdef}": [
       "global",
       "tex"
     ],
-    [
+    "\\begin{mposttex}": [
       "global",
       "dual"
+    ],
+    "\\mpostplaceholder": [
+      "file",
+      "label"
+    ],
+    "\\mpostfile": [
+      "include"
     ]
+  },
+  "args": [
+    "\\usepackage/mpostinl#c,\\mpostsetup"
   ]
 }

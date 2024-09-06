@@ -1,24 +1,34 @@
 {
-  "includes": {
-    "etoolbox": []
-  },
-  "macros": {
-    "newfontx{}": {
-      "snippet": "newfontx{${1:cmd}}"
-    },
-    "newfontx*{}": {
-      "snippet": "newfontx*{${1:cmd}}"
-    },
-    "bxDebug{}": {
-      "snippet": "bxDebug{${1:arg}}"
-    },
-    "newfontjascale{}": {
-      "snippet": "newfontjascale{${1:arg}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [
-    "newfont"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "bxDebug",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "newfontjascale",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bxnewfont#c": [
+      "newfont"
+    ]
+  },
+  "args": [
+    "\\usepackage/bxnewfont#c"
+  ]
 }

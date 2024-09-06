@@ -1,53 +1,114 @@
 {
-  "includes": {
-    "stackengine": []
-  },
-  "macros": {
-    "ksruby{}{}": {
-      "snippet": "ksruby{${1:below}}{${2:above}}"
-    },
-    "ksruby*{}{}": {
-      "snippet": "ksruby*{${1:below}}{${2:above}}"
-    },
-    "ruby{}{}": {
-      "snippet": "ruby{${1:below}}{${2:above}}"
-    },
-    "ruby*{}{}": {
-      "snippet": "ruby*{${1:below}}{${2:above}}"
-    },
-    "ksrubycenterdefault{}": {
-      "snippet": "ksrubycenterdefault{${1:options}}"
-    },
-    "ksrubyheightdefault": {},
-    "ksrubyheightdefault[]": {
-      "snippet": "ksrubyheightdefault[${1:false}]"
-    },
-    "ksrubywidthdefault": {},
-    "ksrubywidthdefault[]": {
-      "snippet": "ksrubywidthdefault[${1:false}]"
-    },
-    "ksrubyeachchardefault": {},
-    "ksrubyeachchardefault[]": {
-      "snippet": "ksrubyeachchardefault[${1:false}]"
-    },
-    "ksrubysep{}": {
-      "snippet": "ksrubysep{${1:dim}}"
-    },
-    "ksrubysize{}": {
-      "snippet": "ksrubysize{${1:size}}"
-    },
-    "ksrubyextra{}": {
-      "snippet": "ksrubyextra{${1:cmds}}"
+  "deps": [
+    {
+      "name": "stackengine"
     }
-  },
-  "envs": {},
-  "options": [
-    "rubysep=",
-    "rubysize=${1:size}",
-    "rubyeachchar",
-    "rubywidth",
-    "rubyheight",
-    "rubycenter=${1|c,l,r|}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ksruby",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:below}}{${2:above}}"
+      }
+    },
+    {
+      "name": "ksruby*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:below}}{${2:above}}"
+      }
+    },
+    {
+      "name": "ruby",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:below}}{${2:above}}"
+      }
+    },
+    {
+      "name": "ruby*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:below}}{${2:above}}"
+      }
+    },
+    {
+      "name": "ksrubycenterdefault",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options}}"
+      }
+    },
+    {
+      "name": "ksrubyheightdefault"
+    },
+    {
+      "name": "ksrubyheightdefault",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:false}]"
+      }
+    },
+    {
+      "name": "ksrubywidthdefault"
+    },
+    {
+      "name": "ksrubywidthdefault",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:false}]"
+      }
+    },
+    {
+      "name": "ksrubyeachchardefault"
+    },
+    {
+      "name": "ksrubyeachchardefault",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:false}]"
+      }
+    },
+    {
+      "name": "ksrubysep",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dim%l}}"
+      }
+    },
+    {
+      "name": "ksrubysize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size}}"
+      }
+    },
+    {
+      "name": "ksrubyextra",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmds}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ksruby#c": [
+      "rubysep=",
+      "rubysize=${1:size}",
+      "rubyeachchar",
+      "rubywidth",
+      "rubyheight",
+      "rubycenter=${1|c,l,r|}"
+    ],
+    "\\ksrubycenter#c": [
+      "c",
+      "l",
+      "r"
+    ]
+  },
+  "args": [
+    "\\usepackage/ksruby#c"
+  ]
 }

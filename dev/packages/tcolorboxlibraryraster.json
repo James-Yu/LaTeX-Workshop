@@ -1,49 +1,94 @@
 {
-  "includes": {},
-  "macros": {
-    "thetcbrasternum": {},
-    "thetcbrastercolumn": {},
-    "thetcbrasterrow": {},
-    "tcbitem": {},
-    "tcbitem[]": {
-      "snippet": "tcbitem[${1:options}]"
+  "deps": [],
+  "macros": [
+    {
+      "name": "thetcbrasternum"
+    },
+    {
+      "name": "thetcbrastercolumn"
+    },
+    {
+      "name": "thetcbrasterrow"
+    },
+    {
+      "name": "tcbitem"
+    },
+    {
+      "name": "tcbitem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     }
-  },
-  "envs": {
-    "tcbraster": {},
-    "tcbraster[]": {
+  ],
+  "envs": [
+    {
+      "name": "tcbraster"
+    },
+    {
       "name": "tcbraster",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\tcbset,\\begin{tcbraster},\\begin{tcbitemize},\\begin{tcboxedraster},\\begin{tcboxeditemize}"
+        ],
+        "keyPos": 0
+      }
     },
-    "tcbitemize": {},
-    "tcbitemize[]": {
+    {
+      "name": "tcbitemize"
+    },
+    {
       "name": "tcbitemize",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\tcbset,\\begin{tcbraster},\\begin{tcbitemize},\\begin{tcboxedraster},\\begin{tcboxeditemize}"
+        ],
+        "keyPos": 0
+      }
     },
-    "tcboxedraster{}": {
+    {
       "name": "tcboxedraster",
-      "snippet": "{${1:box options}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:box options}}"
+      }
     },
-    "tcboxedraster[]{}": {
+    {
       "name": "tcboxedraster",
-      "snippet": "[${2:raster options}]{${1:box options}}"
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:raster options%keyvals}]{${1:box options}}",
+        "keys": [
+          "\\tcbset,\\begin{tcbraster},\\begin{tcbitemize},\\begin{tcboxedraster},\\begin{tcboxeditemize}"
+        ],
+        "keyPos": 0
+      }
     },
-    "tcboxeditemize{}": {
+    {
       "name": "tcboxeditemize",
-      "snippet": "{${1:box options}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:box options}}"
+      }
     },
-    "tcboxeditemize[]{}": {
+    {
       "name": "tcboxeditemize",
-      "snippet": "[${2:raster options}]{${1:box options}}"
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:raster options%keyvals}]{${1:box options}}",
+        "keys": [
+          "\\tcbset,\\begin{tcbraster},\\begin{tcbitemize},\\begin{tcboxedraster},\\begin{tcboxeditemize}"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\tcbset,\\begin{tcbraster},\\begin{tcbitemize},\\begin{tcboxedraster},\\begin{tcboxeditemize}": [
       "raster columns=${1:number}",
       "raster rows=${1:number}",
       "raster width=",
@@ -87,5 +132,6 @@
       "raster multicolumn=${1:number}",
       "raster multirow=${1:number}"
     ]
-  ]
+  },
+  "args": []
 }

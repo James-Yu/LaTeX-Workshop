@@ -1,416 +1,975 @@
 {
-  "includes": {
-    "curve2e": [],
-    "xcolor": [],
-    "calculus": [],
-    "colortbl": [
-      "table"
-    ],
-    "pdfcolmk": [
-      "fixpdftex"
+  "deps": [
+    {
+      "name": "curve2e"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "calculus"
+    },
+    {
+      "name": "colortbl",
+      "if": "table"
+    },
+    {
+      "name": "pdfcolmk",
+      "if": "fixpdftex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pictcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "referencesystem",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})"
+      }
+    },
+    {
+      "name": "changereferencesystem",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})"
+      }
+    },
+    {
+      "name": "translateorigin",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x0},${2:y0})"
+      }
+    },
+    {
+      "name": "rotateaxes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:angle}}"
+      }
+    },
+    {
+      "name": "symmetrize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:angle}}"
+      }
+    },
+    {
+      "name": "standardreferencesystem"
+    },
+    {
+      "name": "radiansangles"
+    },
+    {
+      "name": "degreesangles"
+    },
+    {
+      "name": "cartesianreference"
+    },
+    {
+      "name": "polarreference"
+    },
+    {
+      "name": "draftPictures"
+    },
+    {
+      "name": "cartesianaxes",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
+    },
+    {
+      "name": "axescolor",
+      "unusual": true
+    },
+    {
+      "name": "axesthickness",
+      "unusual": true
+    },
+    {
+      "name": "xunitdivisions",
+      "unusual": true
+    },
+    {
+      "name": "yunitdivisions",
+      "unusual": true
+    },
+    {
+      "name": "internalaxes"
+    },
+    {
+      "name": "externalaxes"
+    },
+    {
+      "name": "axeslabelcolor",
+      "unusual": true
+    },
+    {
+      "name": "axeslabelsize",
+      "unusual": true
+    },
+    {
+      "name": "axeslabelmathversion",
+      "unusual": true
+    },
+    {
+      "name": "axeslabelmathalphabet",
+      "unusual": true
+    },
+    {
+      "name": "axislabelsep",
+      "unusual": true
+    },
+    {
+      "name": "xlabelpos",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:position}}"
+      }
+    },
+    {
+      "name": "ylabelpos",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:position}}"
+      }
+    },
+    {
+      "name": "ticssize",
+      "unusual": true
+    },
+    {
+      "name": "secundaryticssize",
+      "unusual": true
+    },
+    {
+      "name": "ticsthickness",
+      "unusual": true
+    },
+    {
+      "name": "ticscolor",
+      "unusual": true
+    },
+    {
+      "name": "maketics"
+    },
+    {
+      "name": "makenotics"
+    },
+    {
+      "name": "makelabels"
+    },
+    {
+      "name": "makenolabels"
+    },
+    {
+      "name": "plotxtic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:x-coor}}"
+      }
+    },
+    {
+      "name": "plotytic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:y-coor}}"
+      }
+    },
+    {
+      "name": "printxlabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x-coor}}{${2:label%formula}}"
+      }
+    },
+    {
+      "name": "printylabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:y-coor}}{${2:label%formula}}"
+      }
+    },
+    {
+      "name": "printxticlabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x-coor}}{${2:label%formula}}"
+      }
+    },
+    {
+      "name": "printyticlabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:y-coor}}{${2:label%formula}}"
+      }
+    },
+    {
+      "name": "plotxtics",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:firstcoor}}{${2:incr}}{${3:bound}}"
+      }
+    },
+    {
+      "name": "plotytics",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:firstcoor}}{${2:incr}}{${3:bound}}"
+      }
+    },
+    {
+      "name": "printxlabels",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:firstcoor}}{${2:incr}}{${3:bound}}"
+      }
+    },
+    {
+      "name": "printxlabels",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:digits}]{${1:firstcoor}}{${2:incr}}{${3:bound}}"
+      }
+    },
+    {
+      "name": "printylabels",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:firstcoor}}{${2:incr}}{${3:bound}}"
+      }
+    },
+    {
+      "name": "printylabels",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:digits}]{${1:firstcoor}}{${2:incr}}{${3:bound}}"
+      }
+    },
+    {
+      "name": "printxticslabels",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:firstcoor}}{${2:incr}}{${3:bound}}"
+      }
+    },
+    {
+      "name": "printxticslabels",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:digits}]{${1:firstcoor}}{${2:incr}}{${3:bound}}"
+      }
+    },
+    {
+      "name": "printyticslabels",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:firstcoor}}{${2:incr}}{${3:bound}}"
+      }
+    },
+    {
+      "name": "printyticslabels",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:digits}]{${1:firstcoor}}{${2:incr}}{${3:bound}}"
+      }
+    },
+    {
+      "name": "cartesiangrid",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
+    },
+    {
+      "name": "gridcolor",
+      "unusual": true
+    },
+    {
+      "name": "secundarygridcolor",
+      "unusual": true
+    },
+    {
+      "name": "gridthickness",
+      "unusual": true
+    },
+    {
+      "name": "secundarygridthickness",
+      "unusual": true
+    },
+    {
+      "name": "polargrid",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:radius}}{${2:circle divs}}"
+      }
+    },
+    {
+      "name": "runitdivisions",
+      "unusual": true
+    },
+    {
+      "name": "degreespolarlabels",
+      "unusual": true
+    },
+    {
+      "name": "radianspolarlabels",
+      "unusual": true
+    },
+    {
+      "name": "rlabelpos",
+      "unusual": true
+    },
+    {
+      "name": "Put",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:object}}"
+      }
+    },
+    {
+      "name": "Put",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:position}](${3:x},${4:y}){${1:object}}"
+      }
+    },
+    {
+      "name": "Put*",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:object}}"
+      }
+    },
+    {
+      "name": "Put*",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:position}](${3:x},${4:y}){${1:object}}"
+      }
+    },
+    {
+      "name": "cPut",
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "{${1:position}}(${3:x},${4:y}){${2:object}}"
+      }
+    },
+    {
+      "name": "rPut",
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "{${1:position}}(${3:x},${4:y}){${2:object}}"
+      }
+    },
+    {
+      "name": "rPut*",
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "{${1:position}}(${3:x},${4:y}){${2:object}}"
+      }
+    },
+    {
+      "name": "Pictlabelsep",
+      "unusual": true
+    },
+    {
+      "name": "defaultPut",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:c|r}}"
+      }
+    },
+    {
+      "name": "highestlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "multiPut",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "(${3:x0},${4:y0})(${5:∆x},${6:∆y}){${1:n}}{${2:object}}"
+      }
+    },
+    {
+      "name": "multiPut",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:position}](${4:x0},${5:y0})(${6:∆x},${7:∆y}){${1:n}}{${2:object}}"
+      }
+    },
+    {
+      "name": "multiPut*",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "(${3:x0},${4:y0})(${5:∆x},${6:∆y}){${1:n}}{${2:object}}"
+      }
+    },
+    {
+      "name": "multiPut*",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:position}](${4:x0},${5:y0})(${6:∆x},${7:∆y}){${1:n}}{${2:object}}"
+      }
+    },
+    {
+      "name": "multicPut",
+      "arg": {
+        "format": "{}()(){}{}",
+        "snippet": "{${1:position}}(${4:x0},${5:y0})(${6:∆x},${7:∆y}){${2:n}}{${3:object}}"
+      }
+    },
+    {
+      "name": "multirPut",
+      "arg": {
+        "format": "{}()(){}{}",
+        "snippet": "{${1:position}}(${4:x0},${5:y0})(${6:∆x},${7:∆y}){${2:n}}{${3:object}}"
+      }
+    },
+    {
+      "name": "multirPut*",
+      "arg": {
+        "format": "{}()(){}{}",
+        "snippet": "{${1:position}}(${4:x0},${5:y0})(${6:∆x},${7:∆y}){${2:n}}{${3:object}}"
+      }
+    },
+    {
+      "name": "xLINE",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
+    },
+    {
+      "name": "xVECTOR",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
+    },
+    {
+      "name": "xtrivVECTOR",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
+    },
+    {
+      "name": "arrowsize",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:xlen}}{${2:ylen}}"
+      }
+    },
+    {
+      "name": "xline",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:size}}"
+      }
+    },
+    {
+      "name": "xvector",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:size}}"
+      }
+    },
+    {
+      "name": "xtrivvector",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:size}}"
+      }
+    },
+    {
+      "name": "zerovector",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "zerotrivvector",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "regularPolygon",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:radius}}{${2:sides}}"
+      }
+    },
+    {
+      "name": "regularPolygon",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:initial angle}]{${1:radius}}{${2:sides}}"
+      }
+    },
+    {
+      "name": "Circle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:r}}"
+      }
+    },
+    {
+      "name": "Ellipse",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:a}}{${2:b}}"
+      }
+    },
+    {
+      "name": "Hyperbola",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:a}}{${2:b}}{${3:xmax}}{${4:ymax}}"
+      }
+    },
+    {
+      "name": "lHyperbola",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:a}}{${2:b}}{${3:xmax}}{${4:ymax}}"
+      }
+    },
+    {
+      "name": "rHyperbola",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:a}}{${2:b}}{${3:xmax}}{${4:ymax}}"
+      }
+    },
+    {
+      "name": "Parabola",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:a}}{${2:xmax}}{${3:ymax}}"
+      }
+    },
+    {
+      "name": "defaultplotdivs",
+      "unusual": true
+    },
+    {
+      "name": "xArc",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:r}}{${2:angle1}}{${3:angle2}}"
+      }
+    },
+    {
+      "name": "circularArc",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:r}}{${2:angle1}}{${3:angle2}}"
+      }
+    },
+    {
+      "name": "ellipticArc",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:a}}{${2:b}}{${3:angle1}}{${4:angle2}}"
+      }
+    },
+    {
+      "name": "rhyperbolicArc",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:a}}{${2:b}}{${3:y1}}{${4:y2}}"
+      }
+    },
+    {
+      "name": "lhyperbolicArc",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:a}}{${2:b}}{${3:y1}}{${4:y2}}"
+      }
+    },
+    {
+      "name": "parabolicArc",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:a}}{${2:y1}}{${3:y2}}"
+      }
+    },
+    {
+      "name": "PlotFunction",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:\\functionname}}{${2:t0}}{${3:t1}}"
+      }
+    },
+    {
+      "name": "PlotFunction",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:n}]{${1:\\functionname}}{${2:t0}}{${3:t1}}"
+      }
+    },
+    {
+      "name": "PlotPointsOfFunction",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:n}}{${2:\\functionname}}{${3:t0}}{${4:t1}}"
+      }
+    },
+    {
+      "name": "PlotParametricFunction",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:\\functionname}}{${2:t0}}{${3:t1}}"
+      }
+    },
+    {
+      "name": "PlotParametricFunction",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:n}]{${1:\\functionname}}{${2:t0}}{${3:t1}}"
+      }
+    },
+    {
+      "name": "pointmarkdiam",
+      "unusual": true
+    },
+    {
+      "name": "pointmark",
+      "unusual": true
+    },
+    {
+      "name": "qCurve",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "(${1:x0},${2:y0})(${3:u0},${4:v0})(${5:x1},${6:y1})(${7:u1},${8:v1})"
+      }
+    },
+    {
+      "name": "bgfalse",
+      "unusual": true
+    },
+    {
+      "name": "bgtrue",
+      "unusual": true
+    },
+    {
+      "name": "degreesfalse",
+      "unusual": true
+    },
+    {
+      "name": "degreestrue",
+      "unusual": true
+    },
+    {
+      "name": "draftfalse",
+      "unusual": true
+    },
+    {
+      "name": "drafttrue",
+      "unusual": true
+    },
+    {
+      "name": "gridfalse",
+      "unusual": true
+    },
+    {
+      "name": "gridtrue",
+      "unusual": true
+    },
+    {
+      "name": "ifbg",
+      "unusual": true
+    },
+    {
+      "name": "ifdegrees",
+      "unusual": true
+    },
+    {
+      "name": "ifdraft",
+      "unusual": true
+    },
+    {
+      "name": "ifgrid",
+      "unusual": true
+    },
+    {
+      "name": "ifinzeroaxes",
+      "unusual": true
+    },
+    {
+      "name": "iflabels",
+      "unusual": true
+    },
+    {
+      "name": "ifpolar",
+      "unusual": true
+    },
+    {
+      "name": "ifrputstar",
+      "unusual": true
+    },
+    {
+      "name": "iftics",
+      "unusual": true
+    },
+    {
+      "name": "ifticslabelsgrid",
+      "unusual": true
+    },
+    {
+      "name": "inzeroaxesfalse",
+      "unusual": true
+    },
+    {
+      "name": "inzeroaxestrue",
+      "unusual": true
+    },
+    {
+      "name": "labelsfalse",
+      "unusual": true
+    },
+    {
+      "name": "labelstrue",
+      "unusual": true
+    },
+    {
+      "name": "makegrid",
+      "unusual": true
+    },
+    {
+      "name": "makenogrid",
+      "unusual": true
+    },
+    {
+      "name": "polarcoor",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a},${2:b})(${3:c},${4:d})"
+      }
+    },
+    {
+      "name": "polarfalse",
+      "unusual": true
+    },
+    {
+      "name": "polartrue",
+      "unusual": true
+    },
+    {
+      "name": "qCOS",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:angle}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "qSIN",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:angle}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "qUNITVECTOR",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a},${2:b})(${3:c},${4:d})"
+      }
+    },
+    {
+      "name": "refsysPoint",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a},${2:b})(${3:c},${4:d})"
+      }
+    },
+    {
+      "name": "refsyspPoint",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a},${2:b})(${3:c},${4:d})"
+      }
+    },
+    {
+      "name": "refsyspVector",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a},${2:b})(${3:c},${4:d})"
+      }
+    },
+    {
+      "name": "refsysVector",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a},${2:b})(${3:c},${4:d})"
+      }
+    },
+    {
+      "name": "refsysxyPoint",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a},${2:b})(${3:c},${4:d})"
+      }
+    },
+    {
+      "name": "refsysxyVector",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a},${2:b})(${3:c},${4:d})"
+      }
+    },
+    {
+      "name": "rputstarfalse",
+      "unusual": true
+    },
+    {
+      "name": "rputstartrue",
+      "unusual": true
+    },
+    {
+      "name": "strline",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
+    },
+    {
+      "name": "themultiput",
+      "unusual": true
+    },
+    {
+      "name": "ticsfalse",
+      "unusual": true
+    },
+    {
+      "name": "ticslabelsgridfalse",
+      "unusual": true
+    },
+    {
+      "name": "ticslabelsgridtrue",
+      "unusual": true
+    },
+    {
+      "name": "ticstrue",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "Picture",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
+    },
+    {
+      "name": "Picture",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:color}](${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
+    },
+    {
+      "name": "xpicture",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
+    },
+    {
+      "name": "xpicture",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:color}](${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/xpicture#c": [
+      "draft",
+      "dvips",
+      "xdvi",
+      "dvipdf",
+      "dvipdfm",
+      "dvipdfmx",
+      "pdftex",
+      "luatex",
+      "xetex",
+      "dvipsone",
+      "dviwindo",
+      "oztex",
+      "textures",
+      "pctexps",
+      "pctex32",
+      "vtex",
+      "ltxarrows",
+      "pstarrows",
+      "debug",
+      "emtex",
+      "dviwin",
+      "pctexwin",
+      "pctexhp",
+      "truetex",
+      "tcidvi",
+      "dvisvgm",
+      "natural",
+      "rgb",
+      "cmy",
+      "cmyk",
+      "hsb",
+      "gray",
+      "RGB",
+      "HTML",
+      "HSB",
+      "Gray",
+      "monochrome",
+      "dvipsnames",
+      "dvipsnames*",
+      "svgnames",
+      "svgnames*",
+      "x11names",
+      "x11names*",
+      "table",
+      "fixpdftex",
+      "hyperref",
+      "prologue",
+      "kernelfbox",
+      "xcdraw",
+      "noxcdraw",
+      "fixinclude",
+      "showerrors",
+      "hideerrors"
     ]
   },
-  "macros": {
-    "pictcolor{}": {
-      "snippet": "pictcolor{${1:color}}"
-    },
-    "referencesystem()()()": {
-      "snippet": "referencesystem(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})"
-    },
-    "changereferencesystem()()()": {
-      "snippet": "changereferencesystem(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})"
-    },
-    "translateorigin()": {
-      "snippet": "translateorigin(${1:x0},${2:y0})"
-    },
-    "rotateaxes{}": {
-      "snippet": "rotateaxes{${1:angle}}"
-    },
-    "symmetrize{}": {
-      "snippet": "symmetrize{${1:angle}}"
-    },
-    "standardreferencesystem": {},
-    "radiansangles": {},
-    "degreesangles": {},
-    "cartesianreference": {},
-    "polarreference": {},
-    "draftPictures": {},
-    "cartesianaxes()()": {
-      "snippet": "cartesianaxes(${1:x0},${2:y0})(${3:x1},${4:y1})"
-    },
-    "axescolor": {},
-    "axesthickness": {},
-    "xunitdivisions": {},
-    "yunitdivisions": {},
-    "internalaxes": {},
-    "externalaxes": {},
-    "axeslabelcolor": {},
-    "axeslabelsize": {},
-    "axeslabelmathversion": {},
-    "axeslabelmathalphabet": {},
-    "axislabelsep": {},
-    "xlabelpos{}": {
-      "snippet": "xlabelpos{${1:position}}"
-    },
-    "ylabelpos{}": {
-      "snippet": "ylabelpos{${1:position}}"
-    },
-    "ticssize": {},
-    "secundaryticssize": {},
-    "ticsthickness": {},
-    "ticscolor": {},
-    "maketics": {},
-    "makenotics": {},
-    "makelabels": {},
-    "makenolabels": {},
-    "plotxtic{}": {
-      "snippet": "plotxtic{${1:x-coor}}"
-    },
-    "plotytic{}": {
-      "snippet": "plotytic{${1:y-coor}}"
-    },
-    "printxlabel{}{}": {
-      "snippet": "printxlabel{${1:x-coor}}{${2:label}}"
-    },
-    "printylabel{}{}": {
-      "snippet": "printylabel{${1:y-coor}}{${2:label}}"
-    },
-    "printxticlabel{}{}": {
-      "snippet": "printxticlabel{${1:x-coor}}{${2:label}}"
-    },
-    "printyticlabel{}{}": {
-      "snippet": "printyticlabel{${1:y-coor}}{${2:label}}"
-    },
-    "plotxtics{}{}{}": {
-      "snippet": "plotxtics{${1:firstcoor}}{${2:incr}}{${3:bound}}"
-    },
-    "plotytics{}{}{}": {
-      "snippet": "plotytics{${1:firstcoor}}{${2:incr}}{${3:bound}}"
-    },
-    "printxlabels{}{}{}": {
-      "snippet": "printxlabels{${1:firstcoor}}{${2:incr}}{${3:bound}}"
-    },
-    "printxlabels[]{}{}{}": {
-      "snippet": "printxlabels[${4:digits}]{${1:firstcoor}}{${2:incr}}{${3:bound}}"
-    },
-    "printylabels{}{}{}": {
-      "snippet": "printylabels{${1:firstcoor}}{${2:incr}}{${3:bound}}"
-    },
-    "printylabels[]{}{}{}": {
-      "snippet": "printylabels[${4:digits}]{${1:firstcoor}}{${2:incr}}{${3:bound}}"
-    },
-    "printxticslabels{}{}{}": {
-      "snippet": "printxticslabels{${1:firstcoor}}{${2:incr}}{${3:bound}}"
-    },
-    "printxticslabels[]{}{}{}": {
-      "snippet": "printxticslabels[${4:digits}]{${1:firstcoor}}{${2:incr}}{${3:bound}}"
-    },
-    "printyticslabels{}{}{}": {
-      "snippet": "printyticslabels{${1:firstcoor}}{${2:incr}}{${3:bound}}"
-    },
-    "printyticslabels[]{}{}{}": {
-      "snippet": "printyticslabels[${4:digits}]{${1:firstcoor}}{${2:incr}}{${3:bound}}"
-    },
-    "cartesiangrid()()": {
-      "snippet": "cartesiangrid(${1:x0},${2:y0})(${3:x1},${4:y1})"
-    },
-    "gridcolor": {},
-    "secundarygridcolor": {},
-    "gridthickness": {},
-    "secundarygridthickness": {},
-    "polargrid{}{}": {
-      "snippet": "polargrid{${1:radius}}{${2:circle divs}}"
-    },
-    "runitdivisions": {},
-    "degreespolarlabels": {},
-    "radianspolarlabels": {},
-    "rlabelpos": {},
-    "Put(){}": {
-      "snippet": "Put(${2:x},${3:y}){${1:object}}"
-    },
-    "Put[](){}": {
-      "snippet": "Put[${2:position}](${3:x},${4:y}){${1:object}}"
-    },
-    "Put*(){}": {
-      "snippet": "Put*(${2:x},${3:y}){${1:object}}"
-    },
-    "Put*[](){}": {
-      "snippet": "Put*[${2:position}](${3:x},${4:y}){${1:object}}"
-    },
-    "cPut{}(){}": {
-      "snippet": "cPut{${1:position}}(${3:x},${4:y}){${2:object}}"
-    },
-    "rPut{}(){}": {
-      "snippet": "rPut{${1:position}}(${3:x},${4:y}){${2:object}}"
-    },
-    "rPut*{}(){}": {
-      "snippet": "rPut*{${1:position}}(${3:x},${4:y}){${2:object}}"
-    },
-    "Pictlabelsep": {},
-    "defaultPut{}": {
-      "snippet": "defaultPut{${1:c|r}}"
-    },
-    "highestlabel{}": {
-      "snippet": "highestlabel{${1:text}}"
-    },
-    "multiPut()(){}{}": {
-      "snippet": "multiPut(${3:x0},${4:y0})(${5:∆x},${6:∆y}){${1:n}}{${2:object}}"
-    },
-    "multiPut[]()(){}{}": {
-      "snippet": "multiPut[${3:position}](${4:x0},${5:y0})(${6:∆x},${7:∆y}){${1:n}}{${2:object}}"
-    },
-    "multiPut*()(){}{}": {
-      "snippet": "multiPut*(${3:x0},${4:y0})(${5:∆x},${6:∆y}){${1:n}}{${2:object}}"
-    },
-    "multiPut*[]()(){}{}": {
-      "snippet": "multiPut*[${3:position}](${4:x0},${5:y0})(${6:∆x},${7:∆y}){${1:n}}{${2:object}}"
-    },
-    "multicPut{}()(){}{}": {
-      "snippet": "multicPut{${1:position}}(${4:x0},${5:y0})(${6:∆x},${7:∆y}){${2:n}}{${3:object}}"
-    },
-    "multirPut{}()(){}{}": {
-      "snippet": "multirPut{${1:position}}(${4:x0},${5:y0})(${6:∆x},${7:∆y}){${2:n}}{${3:object}}"
-    },
-    "multirPut*{}()(){}{}": {
-      "snippet": "multirPut*{${1:position}}(${4:x0},${5:y0})(${6:∆x},${7:∆y}){${2:n}}{${3:object}}"
-    },
-    "xLINE()()": {
-      "snippet": "xLINE(${1:x0},${2:y0})(${3:x1},${4:y1})"
-    },
-    "xVECTOR()()": {
-      "snippet": "xVECTOR(${1:x0},${2:y0})(${3:x1},${4:y1})"
-    },
-    "xtrivVECTOR()()": {
-      "snippet": "xtrivVECTOR(${1:x0},${2:y0})(${3:x1},${4:y1})"
-    },
-    "arrowsize{}{}": {
-      "snippet": "arrowsize{${1:xlen}}{${2:ylen}}"
-    },
-    "xline(){}": {
-      "snippet": "xline(${2:x},${3:y}){${1:size}}"
-    },
-    "xvector(){}": {
-      "snippet": "xvector(${2:x},${3:y}){${1:size}}"
-    },
-    "xtrivvector(){}": {
-      "snippet": "xtrivvector(${2:x},${3:y}){${1:size}}"
-    },
-    "zerovector()": {
-      "snippet": "zerovector(${1:x},${2:y})"
-    },
-    "zerotrivvector()": {
-      "snippet": "zerotrivvector(${1:x},${2:y})"
-    },
-    "regularPolygon{}{}": {
-      "snippet": "regularPolygon{${1:radius}}{${2:sides}}"
-    },
-    "regularPolygon[]{}{}": {
-      "snippet": "regularPolygon[${3:initial angle}]{${1:radius}}{${2:sides}}"
-    },
-    "Circle{}": {
-      "snippet": "Circle{${1:r}}"
-    },
-    "Ellipse{}{}": {
-      "snippet": "Ellipse{${1:a}}{${2:b}}"
-    },
-    "Hyperbola{}{}{}{}": {
-      "snippet": "Hyperbola{${1:a}}{${2:b}}{${3:xmax}}{${4:ymax}}"
-    },
-    "lHyperbola{}{}{}{}": {
-      "snippet": "lHyperbola{${1:a}}{${2:b}}{${3:xmax}}{${4:ymax}}"
-    },
-    "rHyperbola{}{}{}{}": {
-      "snippet": "rHyperbola{${1:a}}{${2:b}}{${3:xmax}}{${4:ymax}}"
-    },
-    "Parabola{}{}{}": {
-      "snippet": "Parabola{${1:a}}{${2:xmax}}{${3:ymax}}"
-    },
-    "defaultplotdivs": {},
-    "xArc{}{}{}": {
-      "snippet": "xArc{${1:r}}{${2:angle1}}{${3:angle2}}"
-    },
-    "circularArc{}{}{}": {
-      "snippet": "circularArc{${1:r}}{${2:angle1}}{${3:angle2}}"
-    },
-    "ellipticArc{}{}{}{}": {
-      "snippet": "ellipticArc{${1:a}}{${2:b}}{${3:angle1}}{${4:angle2}}"
-    },
-    "rhyperbolicArc{}{}{}{}": {
-      "snippet": "rhyperbolicArc{${1:a}}{${2:b}}{${3:y1}}{${4:y2}}"
-    },
-    "lhyperbolicArc{}{}{}{}": {
-      "snippet": "lhyperbolicArc{${1:a}}{${2:b}}{${3:y1}}{${4:y2}}"
-    },
-    "parabolicArc{}{}{}": {
-      "snippet": "parabolicArc{${1:a}}{${2:y1}}{${3:y2}}"
-    },
-    "PlotFunction{}{}{}": {
-      "snippet": "PlotFunction{${1:\\functionname}}{${2:t0}}{${3:t1}}"
-    },
-    "PlotFunction[]{}{}{}": {
-      "snippet": "PlotFunction[${4:n}]{${1:\\functionname}}{${2:t0}}{${3:t1}}"
-    },
-    "PlotPointsOfFunction{}{}{}{}": {
-      "snippet": "PlotPointsOfFunction{${1:n}}{${2:\\functionname}}{${3:t0}}{${4:t1}}"
-    },
-    "PlotParametricFunction{}{}{}": {
-      "snippet": "PlotParametricFunction{${1:\\functionname}}{${2:t0}}{${3:t1}}"
-    },
-    "PlotParametricFunction[]{}{}{}": {
-      "snippet": "PlotParametricFunction[${4:n}]{${1:\\functionname}}{${2:t0}}{${3:t1}}"
-    },
-    "pointmarkdiam": {},
-    "pointmark": {},
-    "qCurve()()()()": {
-      "snippet": "qCurve(${1:x0},${2:y0})(${3:u0},${4:v0})(${5:x1},${6:y1})(${7:u1},${8:v1})"
-    },
-    "bgfalse": {},
-    "bgtrue": {},
-    "degreesfalse": {},
-    "degreestrue": {},
-    "draftfalse": {},
-    "drafttrue": {},
-    "Dxone": {},
-    "Dxzero": {},
-    "Dyone": {},
-    "Dyzero": {},
-    "gridfalse": {},
-    "gridtrue": {},
-    "ifbg": {},
-    "ifdegrees": {},
-    "ifdraft": {},
-    "ifgrid": {},
-    "ifinzeroaxes": {},
-    "iflabels": {},
-    "ifpolar": {},
-    "ifrputstar": {},
-    "iftics": {},
-    "ifticslabelsgrid": {},
-    "inzeroaxesfalse": {},
-    "inzeroaxestrue": {},
-    "labelsfalse": {},
-    "labelstrue": {},
-    "makegrid": {},
-    "makenogrid": {},
-    "polarcoor()()": {
-      "snippet": "polarcoor(${1:a},${2:b})(${3:c},${4:d})"
-    },
-    "polarfalse": {},
-    "polartrue": {},
-    "qCOS{}{}": {
-      "snippet": "qCOS{${1:angle}}{${2:cmd}}"
-    },
-    "qSIN{}{}": {
-      "snippet": "qSIN{${1:angle}}{${2:cmd}}"
-    },
-    "qUNITVECTOR()()": {
-      "snippet": "qUNITVECTOR(${1:a},${2:b})(${3:c},${4:d})"
-    },
-    "refsysPoint()()": {
-      "snippet": "refsysPoint(${1:a},${2:b})(${3:c},${4:d})"
-    },
-    "refsyspPoint()()": {
-      "snippet": "refsyspPoint(${1:a},${2:b})(${3:c},${4:d})"
-    },
-    "refsyspVector()()": {
-      "snippet": "refsyspVector(${1:a},${2:b})(${3:c},${4:d})"
-    },
-    "refsysVector()()": {
-      "snippet": "refsysVector(${1:a},${2:b})(${3:c},${4:d})"
-    },
-    "refsysxyPoint()()": {
-      "snippet": "refsysxyPoint(${1:a},${2:b})(${3:c},${4:d})"
-    },
-    "refsysxyVector()()": {
-      "snippet": "refsysxyVector(${1:a},${2:b})(${3:c},${4:d})"
-    },
-    "rputstarfalse": {},
-    "rputstartrue": {},
-    "strline()()": {
-      "snippet": "strline(${1:x0},${2:y0})(${3:x1},${4:y1})"
-    },
-    "themultiput": {},
-    "ticsfalse": {},
-    "ticslabelsgridfalse": {},
-    "ticslabelsgridtrue": {},
-    "ticstrue": {},
-    "xone": {},
-    "xzero": {},
-    "yone": {},
-    "yzero": {}
-  },
-  "envs": {
-    "Picture(x0,y0)(x1,y1)": {
-      "name": "Picture",
-      "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
-    },
-    "Picture[](x0,y0)(x1,y1)": {
-      "name": "Picture",
-      "snippet": "[${1:color}](${2:x0},${3:y0})(${4:x1},${5:y1})"
-    },
-    "xpicture(x0,y0)(x1,y1)": {
-      "name": "xpicture",
-      "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
-    },
-    "xpicture[](x0,y0)(x1,y1)": {
-      "name": "xpicture",
-      "snippet": "[${1:color}](${2:x0},${3:y0})(${4:x1},${5:y1})"
-    }
-  },
-  "options": [
-    "draft",
-    "dvips",
-    "xdvi",
-    "dvipdf",
-    "dvipdfm",
-    "dvipdfmx",
-    "pdftex",
-    "luatex",
-    "xetex",
-    "dvipsone",
-    "dviwindo",
-    "oztex",
-    "textures",
-    "pctexps",
-    "pctex32",
-    "vtex",
-    "ltxarrows",
-    "pstarrows",
-    "debug",
-    "emtex",
-    "dviwin",
-    "pctexwin",
-    "pctexhp",
-    "truetex",
-    "tcidvi",
-    "dvisvgm",
-    "natural",
-    "rgb",
-    "cmy",
-    "cmyk",
-    "hsb",
-    "gray",
-    "RGB",
-    "HTML",
-    "HSB",
-    "Gray",
-    "monochrome",
-    "dvipsnames",
-    "dvipsnames*",
-    "svgnames",
-    "svgnames*",
-    "x11names",
-    "x11names*",
-    "table",
-    "fixpdftex",
-    "hyperref",
-    "prologue",
-    "kernelfbox",
-    "xcdraw",
-    "noxcdraw",
-    "fixinclude",
-    "showerrors",
-    "hideerrors"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/xpicture#c"
+  ]
 }

@@ -1,33 +1,65 @@
 {
-  "includes": {
-    "l3keys2e": []
-  },
-  "macros": {
-    "anneescolaire": {},
-    "anneescolaire[]": {
-      "snippet": "anneescolaire[${1:shift}]"
-    },
-    "debutanneescolaire": {},
-    "debutanneescolaire[]": {
-      "snippet": "debutanneescolaire[${1:shift}]"
-    },
-    "finanneescolaire": {},
-    "finanneescolaire[]": {
-      "snippet": "finanneescolaire[${1:shift}]"
-    },
-    "AnneeScolairePresentation{}": {
-      "snippet": "AnneeScolairePresentation{${1:year}}"
-    },
-    "AnneeScolairePresentation[]{}": {
-      "snippet": "AnneeScolairePresentation[${2:number}]{${1:year}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     }
-  },
-  "envs": {},
-  "options": [
-    "premiermois=${1:integer}",
-    "premierjour=${1:integer}",
-    "decalage=${1:integer}",
-    "separateur=${1:tokens}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "anneescolaire"
+    },
+    {
+      "name": "anneescolaire",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:shift}]"
+      }
+    },
+    {
+      "name": "debutanneescolaire"
+    },
+    {
+      "name": "debutanneescolaire",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:shift}]"
+      }
+    },
+    {
+      "name": "finanneescolaire"
+    },
+    {
+      "name": "finanneescolaire",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:shift}]"
+      }
+    },
+    {
+      "name": "AnneeScolairePresentation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "AnneeScolairePresentation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number}]{${1:year}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/annee-scolaire#c": [
+      "premiermois=${1:integer}",
+      "premierjour=${1:integer}",
+      "decalage=${1:integer}",
+      "separateur=${1:tokens}"
+    ]
+  },
+  "args": [
+    "\\usepackage/annee-scolaire#c"
+  ]
 }

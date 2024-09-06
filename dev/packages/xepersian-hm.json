@@ -1,34 +1,73 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "graphicx": [],
-    "zref-savepos": [],
-    "xcolor": [],
-    "xepersian": []
-  },
-  "macros": {
-    "KashidaOff": {},
-    "KashidaOn": {},
-    "KashidaHMFixOff": {},
-    "KashidaHMFixOn": {},
-    "discouragebadlinebreaks{}": {
-      "snippet": "discouragebadlinebreaks{${1:text}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "discouragebadlinebreaks[]{}": {
-      "snippet": "discouragebadlinebreaks[${2:linebreakpenalty}]{${1:text}}"
+    {
+      "name": "graphicx"
     },
-    "discouragebadlinebreaks[][]{}": {
-      "snippet": "discouragebadlinebreaks[${2:linebreakpenalty}][${3:kashidastretch}]{${1:text}}"
+    {
+      "name": "zref-savepos"
     },
-    "XePersianHM": {}
-  },
-  "envs": {},
-  "options": [
-    "Kashida=${1|glyph,leaders+glyph,leaders+hrule,Off,On|}",
-    "linebreakpenalty=${1:integer}",
-    "ligatures=${1|aalt,ccmp,dlig,fina,init,locl,medi,rlig,default|}",
-    "color=",
-    "kashidastretch=${1|kayhan,khorramshahr,kayhannavaar,kayhanpook,kayhansayeh,khoramshahr,khorramshahr,niloofar,paatch,riyaz,roya,shafigh,shafighKurd,shafighUzbek,shiraz,sols,tabriz,titr,titre,traffic,vahid,vosta,yaghut,yagut,yas,yekan,yermook,zar,ziba,default,noskip|}"
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "xepersian"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "KashidaOff"
+    },
+    {
+      "name": "KashidaOn"
+    },
+    {
+      "name": "KashidaHMFixOff",
+      "unusual": true
+    },
+    {
+      "name": "KashidaHMFixOn",
+      "unusual": true
+    },
+    {
+      "name": "discouragebadlinebreaks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "discouragebadlinebreaks",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:linebreakpenalty}]{${1:text}}"
+      }
+    },
+    {
+      "name": "discouragebadlinebreaks",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:linebreakpenalty}][${3:kashidastretch}]{${1:text}}"
+      }
+    },
+    {
+      "name": "XePersianHM",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/xepersian-hm#c": [
+      "Kashida=${1|glyph,leaders+glyph,leaders+hrule,Off,On|}",
+      "linebreakpenalty=${1:integer}",
+      "ligatures=${1|aalt,ccmp,dlig,fina,init,locl,medi,rlig,default|}",
+      "color=",
+      "kashidastretch=${1|kayhan,khorramshahr,kayhannavaar,kayhanpook,kayhansayeh,khoramshahr,khorramshahr,niloofar,paatch,riyaz,roya,shafigh,shafighKurd,shafighUzbek,shiraz,sols,tabriz,titr,titre,traffic,vahid,vosta,yaghut,yagut,yas,yekan,yermook,zar,ziba,default,noskip|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/xepersian-hm#c"
+  ]
 }

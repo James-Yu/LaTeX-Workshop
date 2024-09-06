@@ -1,35 +1,91 @@
 {
-  "includes": {},
-  "macros": {
-    "multirow{}{}{}": {
-      "snippet": "multirow{${1:number of rows}}{${2:width or *}}{${3:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "multirow",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:number of rows}}{${2:width or *}}{${3:text}}"
+      }
     },
-    "multirow[]{}{}{}": {
-      "snippet": "multirow[${4:vpos}]{${1:number of rows}}{${2:width or *}}{${3:text}}"
+    {
+      "name": "multirow",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:vpos%keyvals}]{${1:number of rows}}{${2:width or *}}{${3:text}}",
+        "keys": [
+          "\\multirow"
+        ],
+        "keyPos": 0
+      }
     },
-    "multirow{}[]{}{}": {
-      "snippet": "multirow{${1:number of rows}}[${2:bigstruts}]{${3:width or *}}{${4:text}}"
+    {
+      "name": "multirow",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "{${1:number of rows}}[${4:bigstruts}]{${2:width or *}}{${3:text}}"
+      }
     },
-    "multirow{}{}[]{}": {
-      "snippet": "multirow{${1:number of rows}}{${2:width or *}}[${3:vmove}]{${4:text}}"
+    {
+      "name": "multirow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:number of rows}}{${2:width or *}}[${4:vmove%l}]{${3:text}}"
+      }
     },
-    "multirow[]{}[]{}[]{}": {
-      "snippet": "multirow[${4:vpos}]{${1:number of rows}}[${5:bigstruts}]{${2:width or *}}[${6:vmove}]{${3:text}}"
+    {
+      "name": "multirow",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}[]{}",
+        "snippet": "[${4:vpos%keyvals}]{${1:number of rows}}[${5:bigstruts}]{${2:width or *}}[${6:vmove%l}]{${3:text}}",
+        "keys": [
+          "\\multirow"
+        ],
+        "keyPos": 0
+      }
     },
-    "multirowsetup": {},
-    "multirowdebugtrue": {},
-    "multirowdebugfalse": {},
-    "bigstrutjot": {},
-    "STneed{}": {
-      "snippet": "STneed{${1:length}}",
-      "option": "supertabular"
+    {
+      "name": "multirowsetup",
+      "unusual": true
+    },
+    {
+      "name": "multirowdebugtrue",
+      "unusual": true
+    },
+    {
+      "name": "multirowdebugfalse",
+      "unusual": true
+    },
+    {
+      "name": "bigstrutjot",
+      "unusual": true
+    },
+    {
+      "name": "STneed",
+      "if": "supertabular",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "debug",
-    "longtable",
-    "supertabular"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/multirow#c": [
+      "debug",
+      "longtable",
+      "supertabular"
+    ],
+    "\\multirow": [
+      "c",
+      "t",
+      "b"
+    ]
+  },
+  "args": [
+    "\\usepackage/multirow#c"
+  ]
 }

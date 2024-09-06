@@ -1,49 +1,72 @@
 {
-  "includes": {
-    "pstricks": [],
-    "multido": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psElectricfield": {},
-    "psElectricfield[]": {
-      "snippet": "psElectricfield[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psEquipotential()()": {
-      "snippet": "psEquipotential(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    {
+      "name": "multido"
     },
-    "psEquipotential[]()()": {
-      "snippet": "psEquipotential[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psElectricfield"
     },
-    "PSTElectricFieldLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "psElectricfield",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\psElectricfield#c,\\psEquipotential#c",
+          "\\psElectricfield#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psEquipotential",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "psEquipotential",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})",
+        "keys": [
+          "\\psElectricfield#c,\\psEquipotential#c",
+          "\\psEquipotential#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psElectricfield#c,\\psEquipotential#c": [
       "Q={[${1:x1,y1,z1}][${2:x2,y2,z2}]${3:...}}",
       "N=${1:integer}",
       "linewidth=",
-      "linecolor=",
+      "linecolor="
+    ],
+    "\\psElectricfield#c": [
       "points=${1:integer}",
       "Pas=${1:number}",
       "posArrow=${1:factor}",
       "radius=",
       "runit=${1:number}"
     ],
-    [
-      "Q={[${1:x1,y1,z1}][${2:x2,y2,z2}]${3:...}}",
-      "N=${1:integer}",
-      "linewidth=",
-      "linecolor=",
+    "\\psEquipotential#c": [
       "Vmax=${1:number}",
       "Vmin=${1:number}",
       "stepV=${1:number}",
       "stepFactor=${1:factor}"
     ]
-  ]
+  },
+  "args": []
 }

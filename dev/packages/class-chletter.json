@@ -1,113 +1,259 @@
 {
-  "includes": {},
-  "macros": {
-    "titlehead": {},
-    "titletopheight": {},
-    "titlemidheight": {},
-    "titlebotheight": {},
-    "titlemargin": {},
-    "titlewidth": {},
-    "addressmargin": {},
-    "addresswidth": {},
-    "toname": {},
-    "toaddress": {},
-    "makelabels": {},
-    "stopbreaks": {},
-    "startbreaks": {},
-    "theletter": {},
-    "name{}": {
-      "snippet": "name{${1:name}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "titlehead"
     },
-    "address{}": {
-      "snippet": "address{${1:address}}"
+    {
+      "name": "titletopheight"
     },
-    "location{}": {
-      "snippet": "location{${1:location}}"
+    {
+      "name": "titlemidheight"
     },
-    "telephone{}": {
-      "snippet": "telephone{${1:number}}"
+    {
+      "name": "titlebotheight"
     },
-    "return{}": {
-      "snippet": "return{${1:address}}"
+    {
+      "name": "titlemargin"
     },
-    "signature{}": {
-      "snippet": "signature{${1:signature}}"
+    {
+      "name": "titlewidth"
     },
-    "fromname": {},
-    "fromaddress": {},
-    "fromlocation": {},
-    "telephonenum": {},
-    "returnaddress": {},
-    "fromsig": {},
-    "object{}": {
-      "snippet": "object{${1:text}}"
+    {
+      "name": "addressmargin"
     },
-    "opening{}": {
-      "snippet": "opening{${1:text}}"
+    {
+      "name": "addresswidth"
     },
-    "closing{}": {
-      "snippet": "closing{${1:text}}"
+    {
+      "name": "toname",
+      "unusual": true
     },
-    "salutation": {},
-    "valediction": {},
-    "ps{}{}": {
-      "snippet": "ps{${1:header}}{${2:text}}"
+    {
+      "name": "toaddress",
+      "unusual": true
     },
-    "encl{}": {
-      "snippet": "encl{${1:text}}"
+    {
+      "name": "makelabels"
     },
-    "cc{}": {
-      "snippet": "cc{${1:names}}"
+    {
+      "name": "stopbreaks"
     },
-    "enclname": {},
-    "ccname": {},
-    "closingmatter": {},
-    "foldmark": {},
-    "footfill": {},
-    "headtoname": {},
-    "indentedwidth": {},
-    "longindentation": {},
-    "splitfield{}{}": {
-      "snippet": "splitfield{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "startbreaks"
     },
-    "startlabels": {},
-    "titlebotmatter": {},
-    "titlemidmatter": {},
-    "titletopmatter": {}
-  },
-  "envs": {
-    "letter{}": {
-      "name": "letter",
-      "snippet": "{${1:address}}"
+    {
+      "name": "theletter",
+      "unusual": true
     },
-    "letter[]{}": {
-      "name": "letter",
-      "snippet": "[${2:i|n}]{${1:address}}"
+    {
+      "name": "name",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "address",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address}}"
+      }
+    },
+    {
+      "name": "location",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:location}}"
+      }
+    },
+    {
+      "name": "telephone",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "return",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address}}"
+      }
+    },
+    {
+      "name": "signature",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:signature}}"
+      }
+    },
+    {
+      "name": "fromname",
+      "unusual": true
+    },
+    {
+      "name": "fromaddress",
+      "unusual": true
+    },
+    {
+      "name": "fromlocation",
+      "unusual": true
+    },
+    {
+      "name": "telephonenum",
+      "unusual": true
+    },
+    {
+      "name": "returnaddress",
+      "unusual": true
+    },
+    {
+      "name": "fromsig",
+      "unusual": true
+    },
+    {
+      "name": "object",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "opening",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "closing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "salutation",
+      "unusual": true
+    },
+    {
+      "name": "valediction",
+      "unusual": true
+    },
+    {
+      "name": "ps",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:header%text}}{${2:text}}"
+      }
+    },
+    {
+      "name": "encl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "cc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:names}}"
+      }
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "closingmatter",
+      "unusual": true
+    },
+    {
+      "name": "foldmark",
+      "unusual": true
+    },
+    {
+      "name": "footfill",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "indentedwidth",
+      "unusual": true
+    },
+    {
+      "name": "longindentation",
+      "unusual": true
+    },
+    {
+      "name": "startlabels",
+      "unusual": true
+    },
+    {
+      "name": "titlebotmatter",
+      "unusual": true
+    },
+    {
+      "name": "titlemidmatter",
+      "unusual": true
+    },
+    {
+      "name": "titletopmatter",
+      "unusual": true
     }
-  },
-  "options": [
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "leqno",
-    "fleqn",
-    "onecolumn",
-    "twocolumn",
-    "leftwin",
-    "leftsig",
-    "foldmark",
-    "footfill"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "letter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address}}"
+      }
+    },
+    {
+      "name": "letter",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:i|n}]{${1:address}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/chletter#c": [
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "leqno",
+      "fleqn",
+      "onecolumn",
+      "twocolumn",
+      "leftwin",
+      "leftsig",
+      "foldmark",
+      "footfill"
+    ]
+  },
+  "args": [
+    "\\documentclass/chletter#c"
+  ]
 }

@@ -1,21 +1,35 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "ifxetex": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "droidsans": {},
-    "droidsansfamily": {},
-    "fdsfamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "scaled=${1:factor}",
-    "default",
-    "defaultsans",
-    "type1"
+  "deps": [
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "droidsans"
+    },
+    {
+      "name": "droidsansfamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/droidsans#c": [
+      "scale=${1:factor}",
+      "scaled=${1:factor}",
+      "default",
+      "defaultsans",
+      "type1"
+    ]
+  },
+  "args": [
+    "\\usepackage/droidsans#c"
+  ]
 }

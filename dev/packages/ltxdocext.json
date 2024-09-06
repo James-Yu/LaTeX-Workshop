@@ -1,87 +1,191 @@
 {
-  "includes": {
-    "verbatim": [],
-    "shortvrb": []
-  },
-  "macros": {
-    "arg{}": {
-      "snippet": "arg{${1:text}}"
+  "deps": [
+    {
+      "name": "verbatim"
     },
-    "backmatter": {},
-    "botrule": {},
-    "classname{}": {
-      "snippet": "classname{${1:name}}"
-    },
-    "classoption{}": {
-      "snippet": "classoption{${1:name}}"
-    },
-    "cleartorecto": {},
-    "cmd{}": {
-      "snippet": "cmd{${1:command}}"
-    },
-    "colrule": {},
-    "cs{}": {
-      "snippet": "cs{${1:csname}}"
-    },
-    "env{}": {
-      "snippet": "env{${1:envname}}"
-    },
-    "envb{}": {
-      "snippet": "envb{${1:envname}}"
-    },
-    "enve{}": {
-      "snippet": "enve{${1:envname}}"
-    },
-    "file{}": {
-      "snippet": "file{${1:name}}"
-    },
-    "filedate": {},
-    "fileinfo": {},
-    "filename": {},
-    "fileversion": {},
-    "frontmatter": {},
-    "GetFileInfo{}": {
-      "snippet": "GetFileInfo{${1:file}}"
-    },
-    "LANGLE": {},
-    "mainmatter": {},
-    "marg{}": {
-      "snippet": "marg{${1:text}}"
-    },
-    "meta{}": {
-      "snippet": "meta{${1:arg}}"
-    },
-    "oarg{}": {
-      "snippet": "oarg{${1:text}}"
-    },
-    "RANGLE": {},
-    "scmd{}": {
-      "snippet": "scmd{${1:arg}}"
-    },
-    "see{}{}": {
-      "snippet": "see{${1:arg1}}{${2:arg2}}"
-    },
-    "seealso{}{}": {
-      "snippet": "seealso{${1:arg1}}{${2:arg2}}"
-    },
-    "substyle{}": {
-      "snippet": "substyle{${1:name}}"
-    },
-    "subsubsubsection[]{}": {
-      "snippet": "subsubsubsection[${2:short title}]{${1:title}}"
-    },
-    "subsubsubsection{}": {
-      "snippet": "subsubsubsection{${1:title}}"
-    },
-    "toprule": {},
-    "ttt": {},
-    "url{}": {
-      "snippet": "url{${1:URL}}"
+    {
+      "name": "shortvrb"
     }
-  },
-  "envs": {
-    "unnumtable": {}
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "arg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "backmatter"
+    },
+    {
+      "name": "botrule"
+    },
+    {
+      "name": "classname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "classoption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "cleartorecto"
+    },
+    {
+      "name": "cmd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "colrule"
+    },
+    {
+      "name": "cs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "env",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "envb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "enve",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "file",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "filedate",
+      "unusual": true
+    },
+    {
+      "name": "fileinfo",
+      "unusual": true
+    },
+    {
+      "name": "filename",
+      "unusual": true
+    },
+    {
+      "name": "fileversion",
+      "unusual": true
+    },
+    {
+      "name": "frontmatter"
+    },
+    {
+      "name": "GetFileInfo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "LANGLE",
+      "unusual": true
+    },
+    {
+      "name": "mainmatter"
+    },
+    {
+      "name": "marg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "meta",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "oarg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "RANGLE",
+      "unusual": true
+    },
+    {
+      "name": "scmd",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "substyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "subsubsubsection",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "subsubsubsection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "toprule"
+    },
+    {
+      "name": "url",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "unnumtable"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

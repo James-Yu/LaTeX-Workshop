@@ -1,9 +1,27 @@
 {
-  "includes": {
-    "tikzlibrarycircuits": []
+  "deps": [
+    {
+      "name": "tikzlibrarycircuits"
+    }
+  ],
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "circuit logic",
+      "every circuit logic/.style={${1:options}}"
+    ],
+    "\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c": [
+      "inputs={${1:inputs}}",
+      "and gate",
+      "nand gate",
+      "or gate",
+      "nor gate",
+      "xor gate",
+      "xnor gate",
+      "not gate",
+      "buffer gate"
+    ]
   },
-  "macros": {},
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

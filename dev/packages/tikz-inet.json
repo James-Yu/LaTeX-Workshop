@@ -1,64 +1,151 @@
 {
-  "includes": {
-    "tikz": [],
-    "ifthen": []
-  },
-  "macros": {
-    "inetcell{}": {
-      "snippet": "inetcell{${1:symbol}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "inetcell[](){}[]": {
-      "snippet": "inetcell[${2:options}](${4:node name}){${1:symbol}}[${3:angle}]"
+    {
+      "name": "ifthen"
+    }
+  ],
+  "macros": [
+    {
+      "name": "inetcell",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
     },
-    "inetwire()()": {
-      "snippet": "inetwire(${1:cell1.port1})(${2:cell2.port2})"
+    {
+      "name": "inetcell",
+      "arg": {
+        "format": "[](){}[]",
+        "snippet": "[${2:options}](${4:node name}){${1:symbol}}[${3:angle}]"
+      }
     },
-    "inetwire[]()()": {
-      "snippet": "inetwire[${1:options}](${2:cell1.port1})(${3:cell2.port2})"
+    {
+      "name": "inetwire",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:cell1.port1})(${2:cell2.port2})"
+      }
     },
-    "inetloop": {},
-    "inetloop[]": {
-      "snippet": "inetloop[${1:options}]"
+    {
+      "name": "inetwire",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options}](${2:cell1.port1})(${3:cell2.port2})"
+      }
     },
-    "inetwirecoords()()": {
-      "snippet": "inetwirecoords(${1:node1})(${2:node2})"
+    {
+      "name": "inetloop"
     },
-    "inetwirecoords[]()()": {
-      "snippet": "inetwirecoords[${1:options}](${2:node1})(${3:node2})"
+    {
+      "name": "inetloop",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
     },
-    "inetwirefree()": {
-      "snippet": "inetwirefree(${1:cell.port})"
+    {
+      "name": "inetwirecoords",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:node1})(${2:node2})"
+      }
     },
-    "inetwirefree[]()": {
-      "snippet": "inetwirefree[${1:options}](${2:cell.port})"
+    {
+      "name": "inetwirecoords",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options}](${2:node1})(${3:node2})"
+      }
     },
-    "inetbox{}{}": {
-      "snippet": "inetbox{${1:(${3:cell1}) (${4:cell2}) ...}}{${2:node name}}"
+    {
+      "name": "inetwirefree",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:cell.port})"
+      }
     },
-    "inetbox[]{}{}": {
-      "snippet": "inetbox[${3:options}]{${1:(${4:cell1}) (${5:cell2}) ...}}{${2:node name}}"
+    {
+      "name": "inetwirefree",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options}](${2:cell.port})"
+      }
     },
-    "inetprombox{}{}": {
-      "snippet": "inetprombox{${1:(${3:cell1}) (${4:cell2}) ...}}{${2:node name}}"
+    {
+      "name": "inetbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:(${3:cell1}) (${4:cell2}) ...}}{${2:node name}}"
+      }
     },
-    "inetprombox[]{}{}": {
-      "snippet": "inetprombox[${3:options}]{${1:(${4:cell1}) (${5:cell2}) ...}}{${2:node name}}"
+    {
+      "name": "inetbox",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:(${4:cell1}) (${5:cell2}) ...}}{${2:node name}}"
+      }
     },
-    "inetnofancy": {},
-    "inetfancy": {},
-    "inetcellstyle": {},
-    "inetwirestyle": {},
-    "inetboxstyle": {},
-    "inetcolor": {},
-    "inetsetfancycellstyle{}": {
-      "snippet": "inetsetfancycellstyle{${1:specs}}"
+    {
+      "name": "inetprombox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:(${3:cell1}) (${4:cell2}) ...}}{${2:node name}}"
+      }
     },
-    "inetsetfancywirestyle{}": {
-      "snippet": "inetsetfancywirestyle{${1:specs}}"
+    {
+      "name": "inetprombox",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:(${4:cell1}) (${5:cell2}) ...}}{${2:node name}}"
+      }
     },
-    "inetoptions": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "inetnofancy"
+    },
+    {
+      "name": "inetfancy"
+    },
+    {
+      "name": "inetcellstyle",
+      "unusual": true
+    },
+    {
+      "name": "inetwirestyle",
+      "unusual": true
+    },
+    {
+      "name": "inetboxstyle",
+      "unusual": true
+    },
+    {
+      "name": "inetcolor",
+      "unusual": true
+    },
+    {
+      "name": "inetsetfancycellstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:specs}}"
+      }
+    },
+    {
+      "name": "inetsetfancywirestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:specs}}"
+      }
+    },
+    {
+      "name": "inetoptions",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

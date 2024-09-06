@@ -1,51 +1,111 @@
 {
-  "includes": {
-    "stix2": []
-  },
-  "macros": {
-    "LAT": {},
-    "CYR": {},
-    "lat{}": {
-      "snippet": "lat{${1:text}}"
-    },
-    "cyr{}": {
-      "snippet": "cyr{${1:text}}"
-    },
-    "U{}": {
-      "snippet": "U{${1:letter}}"
-    },
-    "C{}": {
-      "snippet": "C{${1:letter}}"
-    },
-    "f{}": {
-      "snippet": "f{${1:letter}}"
-    },
-    "AKS{}": {
-      "snippet": "AKS{${1:letter}}"
-    },
-    "ADS{}": {
-      "snippet": "ADS{${1:letter}}"
-    },
-    "AKU{}": {
-      "snippet": "AKU{${1:letter}}"
-    },
-    "ADU{}": {
-      "snippet": "ADU{${1:letter}}"
-    },
-    "AGZ{}": {
-      "snippet": "AGZ{${1:letter}}"
-    },
-    "ADZ{}": {
-      "snippet": "ADZ{${1:letter}}"
-    },
-    "AKZ{}": {
-      "snippet": "AKZ{${1:letter}}"
+  "deps": [
+    {
+      "name": "stix2"
     }
-  },
-  "envs": {},
-  "options": [
-    "nostix",
-    "noslant"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "LAT"
+    },
+    {
+      "name": "CYR"
+    },
+    {
+      "name": "lat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      },
+      "detail": "⪫",
+      "doc": "Larger than"
+    },
+    {
+      "name": "cyr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "U",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "C",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "f",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "AKS",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "ADS",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "AKU",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "ADU",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "AGZ",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "ADZ",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "AKZ",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/srbtiks#c": [
+      "nostix",
+      "noslant"
+    ]
+  },
+  "args": [
+    "\\usepackage/srbtiks#c"
+  ]
 }

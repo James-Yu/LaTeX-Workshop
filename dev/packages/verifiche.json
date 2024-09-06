@@ -1,317 +1,610 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "pgffor": [],
-    "amssymb": [],
-    "enumitem": [],
-    "tikz": [],
-    "ulem": []
-  },
-  "macros": {
-    "institute{}": {
-      "snippet": "institute{${1:nome dell’istituto}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "asyear{}": {
-      "snippet": "asyear{${1:anno scolastico}}"
+    {
+      "name": "pgffor"
     },
-    "asyear[]{}": {
-      "snippet": "asyear[${2:preambolo}]{${1:anno scolastico}}"
+    {
+      "name": "amssymb"
     },
-    "testtype{}": {
-      "snippet": "testtype{${1:tipo di compito}}"
+    {
+      "name": "enumitem"
     },
-    "instruction{}": {
-      "snippet": "instruction{${1:istruzioni}}"
+    {
+      "name": "tikz"
     },
-    "duration{}": {
-      "snippet": "duration{${1:durata}}"
-    },
-    "duration[]{}": {
-      "snippet": "duration[${2:preambolo}]{${1:durata}}"
-    },
-    "durationfont{}": {
-      "snippet": "durationfont{${1:text}}"
-    },
-    "subtitle{}": {
-      "snippet": "subtitle{${1:testo del sottotitolo}}"
-    },
-    "subtitlefont{}": {
-      "snippet": "subtitlefont{${1:text}}"
-    },
-    "printheading": {},
-    "headingstyle{}": {
-      "snippet": "headingstyle{${1:style}}"
-    },
-    "defineheadingstyle{}{}": {
-      "snippet": "defineheadingstyle{${1:nome dello stile}}{${2:definition}}"
-    },
-    "partialpt{}": {
-      "snippet": "partialpt{${1:number}}"
-    },
-    "inlinesol{}": {
-      "snippet": "inlinesol{${1:testo}}"
-    },
-    "completetext{}": {
-      "snippet": "completetext{${1:testo}}"
-    },
-    "completetext[]{}": {
-      "snippet": "completetext[${2:dim}]{${1:testo}}"
-    },
-    "truefalse{}": {
-      "snippet": "truefalse{${1:V|F}}"
-    },
-    "checkmarker": {},
-    "checked": {},
-    "openquestion{}": {
-      "snippet": "openquestion{${1:soluzione}}"
-    },
-    "openquestion[]{}": {
-      "snippet": "openquestion[${2:options}]{${1:soluzione}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "finderror{}{}": {
-      "snippet": "finderror{${1:testo sbagliato}}{${2:testo giusto}}"
-    },
-    "textandimage{}{}": {
-      "snippet": "textandimage{${1:rx material}}{${2:dx material}}"
-    },
-    "textandimage[]{}{}": {
-      "snippet": "textandimage[${3:leftwidth}]{${1:rx material}}{${2:dx material}}"
-    },
-    "textandimage[][]{}{}": {
-      "snippet": "textandimage[${3:leftwidth}][${4:rightwidth}]{${1:rx material}}{${2:dx material}}"
-    },
-    "makecolumn{}{}": {
-      "snippet": "makecolumn{${1:width}}{${2:text}}"
-    },
-    "columnseparation": {},
-    "headerfont{}": {
-      "snippet": "headerfont{${1:text}}"
-    },
-    "institutefont{}": {
-      "snippet": "institutefont{${1:text}}"
-    },
-    "ptfont": {},
-    "asyearfont{}": {
-      "snippet": "asyearfont{${1:text}}"
-    },
-    "testtypefont{}": {
-      "snippet": "testtypefont{${1:text}}"
-    },
-    "instructionfont{}": {
-      "snippet": "instructionfont{${1:text}}"
-    },
-    "solutionfont": {},
-    "instructiondelimiter": {},
-    "headercandidatenamelabel": {},
-    "headerclasslabel": {},
-    "headerdatelabel": {},
-    "candidatenamerulerlength": {},
-    "classrulerlength": {},
-    "daterulerlength": {},
-    "exerciselabel": {},
-    "ptprefix{}": {
-      "snippet": "ptprefix{${1:prefix}}"
-    },
-    "ptrulerlength": {},
-    "partialptprefix{}": {
-      "snippet": "partialptprefix{${1:prefix}}"
-    },
-    "ptlabel{}": {
-      "snippet": "ptlabel{${1:plural}}"
-    },
-    "ptlabel[]{}": {
-      "snippet": "ptlabel[${2:singular}]{${1:plural}}"
-    },
-    "partialptlabel{}": {
-      "snippet": "partialptlabel{${1:plural}}"
-    },
-    "partialptlabel[]{}": {
-      "snippet": "partialptlabel[${2:singular}]{${1:plural}}"
-    },
-    "diffsymb": {},
-    "ptdelimiters{}": {
-      "snippet": "ptdelimiters{${1:coppia di caratteri}}"
-    },
-    "partialptdelimiters{}": {
-      "snippet": "partialptdelimiters{${1:coppia di caratteri}}"
-    },
-    "closedquestionitem": {},
-    "solutionlabel": {},
-    "themultitestcounter": {},
-    "convertreftonum{}": {
-      "snippet": "convertreftonum{${1:arg}}"
-    },
-    "diffstar": {},
-    "espoint": {},
-    "evenfoot": {},
-    "exercisemargin": {},
-    "exercisetitle": {},
-    "italiandictiornary": {},
-    "openquestionheight": {},
-    "openquestionlinecolor": {},
-    "openquestionwidth": {},
-    "pointes": {},
-    "savepointsaux": {},
-    "solutionscolor": {},
-    "spacedim": {},
-    "sumpartialpt": {},
-    "tempeserciziolabel": {},
-    "theexercisenumber": {},
-    "thepartialpoints": {},
-    "ifsol": {},
-    "soltrue": {},
-    "solfalse": {},
-    "ifinstitute": {},
-    "institutetrue": {},
-    "institutefalse": {},
-    "ifinstruction": {},
-    "instructiontrue": {},
-    "instructionfalse": {},
-    "ifduration": {},
-    "durationtrue": {},
-    "durationfalse": {},
-    "ifasyear": {},
-    "asyeartrue": {},
-    "asyearfalse": {},
-    "ifsolutionscolor": {},
-    "solutionscolortrue": {},
-    "solutionscolorfalse": {},
-    "ifcandidatename": {},
-    "candidatenametrue": {},
-    "candidatenamefalse": {},
-    "iftesttype": {},
-    "testtypetrue": {},
-    "testtypefalse": {},
-    "ifsubtitle": {},
-    "subtitletrue": {},
-    "subtitlefalse": {},
-    "ifshowinstructiondelimiter": {},
-    "showinstructiondelimitertrue": {},
-    "showinstructiondelimiterfalse": {},
-    "ifprintedheading": {},
-    "printedheadingtrue": {},
-    "printedheadingfalse": {},
-    "ifexercisesnumbered": {},
-    "exercisesnumberedtrue": {},
-    "exercisesnumberedfalse": {},
-    "ifshowmarginexercise": {},
-    "showmarginexercisetrue": {},
-    "showmarginexercisefalse": {},
-    "ifshowexercisept": {},
-    "showexercisepttrue": {},
-    "showexerciseptfalse": {},
-    "ifopenquestionlines": {},
-    "openquestionlinestrue": {},
-    "openquestionlinesfalse": {},
-    "ifopenquestionsquared": {},
-    "openquestionsquaredtrue": {},
-    "openquestionsquaredfalse": {}
-  },
-  "envs": {
-    "esercizio": {},
-    "esercizio[]": {
-      "name": "esercizio",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "esercizio*": {},
-    "esercizio*[]": {
-      "name": "esercizio*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "soluzione": {},
-    "soluzione[]": {
-      "name": "soluzione",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "closedquestion": {},
-    "closedquestion[]": {
-      "name": "closedquestion",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "closedquestion*": {},
-    "closedquestion*[]": {
-      "name": "closedquestion*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "crocette": {},
-    "crocette[]": {
-      "name": "crocette",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "crocette*": {},
-    "crocette*[]": {
-      "name": "crocette*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "multitest[]": {
-      "name": "multitest",
-      "snippet": "[${1:n}]"
-    },
-    "enumerate*": {},
-    "enumerate*[]": {
-      "name": "enumerate*",
-      "snippet": "[${1:options}]"
-    },
-    "itemize*": {},
-    "itemize*[]": {
-      "name": "itemize*",
-      "snippet": "[${1:options}]"
-    },
-    "description*": {},
-    "description*[]": {
-      "name": "description*",
-      "snippet": "[${1:options}]"
+    {
+      "name": "ulem"
     }
-  },
-  "options": [
-    "solutions",
-    "noinstitute",
-    "noinstruction",
-    "noduration",
-    "noasyear",
-    "nocandidatename",
-    "notesttype",
-    "nosubtitle",
-    "nonumbered",
-    "noexercisept",
-    "color=",
-    "red",
-    "blue"
   ],
-  "keyvals": [
-    [
-      "type=${1|lines,squares|}",
-      "width=",
-      "height=",
-      "spacedim=",
-      "linecolor="
+  "macros": [
+    {
+      "name": "institute",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nome dell’istituto%text}}"
+      }
+    },
+    {
+      "name": "asyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:anno scolastico}}"
+      }
+    },
+    {
+      "name": "asyear",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:preambolo%text}]{${1:anno scolastico}}"
+      }
+    },
+    {
+      "name": "testtype",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo di compito%text}}"
+      }
+    },
+    {
+      "name": "instruction",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:istruzioni%text}}"
+      }
+    },
+    {
+      "name": "duration",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:durata%text}}"
+      }
+    },
+    {
+      "name": "duration",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:preambolo%text}]{${1:durata%text}}"
+      }
+    },
+    {
+      "name": "durationfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:testo del sottotitolo%text}}"
+      }
+    },
+    {
+      "name": "subtitlefont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "printheading"
+    },
+    {
+      "name": "headingstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style%keyvals}}",
+        "keys": [
+          "\\headingstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "defineheadingstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:nome dello stile%specialDef}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "partialpt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "inlinesol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:testo%text}}"
+      }
+    },
+    {
+      "name": "completetext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:testo%text}}"
+      }
+    },
+    {
+      "name": "completetext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:dim%l}]{${1:testo%text}}"
+      }
+    },
+    {
+      "name": "truefalse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:V|F}}"
+      }
+    },
+    {
+      "name": "checkmarker",
+      "unusual": true
+    },
+    {
+      "name": "checked"
+    },
+    {
+      "name": "openquestion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:soluzione%text}}"
+      }
+    },
+    {
+      "name": "openquestion",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:soluzione%text}}",
+        "keys": [
+          "\\openquestion"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "finderror",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:testo sbagliato%text}}{${2:testo giusto%text}}"
+      }
+    },
+    {
+      "name": "textandimage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:rx material%text}}{${2:dx material%text}}"
+      }
+    },
+    {
+      "name": "textandimage",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:leftwidth%l}]{${1:rx material%text}}{${2:dx material%text}}"
+      }
+    },
+    {
+      "name": "textandimage",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:leftwidth%l}][${4:rightwidth%l}]{${1:rx material%text}}{${2:dx material%text}}"
+      }
+    },
+    {
+      "name": "makecolumn",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:text}}"
+      }
+    },
+    {
+      "name": "columnseparation",
+      "unusual": true
+    },
+    {
+      "name": "headerfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "institutefont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ptfont",
+      "unusual": true
+    },
+    {
+      "name": "asyearfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "testtypefont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "instructionfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "solutionfont"
+    },
+    {
+      "name": "instructiondelimiter",
+      "unusual": true
+    },
+    {
+      "name": "headercandidatenamelabel",
+      "unusual": true
+    },
+    {
+      "name": "headerclasslabel",
+      "unusual": true
+    },
+    {
+      "name": "headerdatelabel",
+      "unusual": true
+    },
+    {
+      "name": "candidatenamerulerlength",
+      "unusual": true
+    },
+    {
+      "name": "classrulerlength",
+      "unusual": true
+    },
+    {
+      "name": "daterulerlength",
+      "unusual": true
+    },
+    {
+      "name": "exerciselabel",
+      "unusual": true
+    },
+    {
+      "name": "ptprefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:prefix}}"
+      }
+    },
+    {
+      "name": "ptrulerlength",
+      "unusual": true
+    },
+    {
+      "name": "partialptprefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:prefix}}"
+      }
+    },
+    {
+      "name": "ptlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:plural}}"
+      }
+    },
+    {
+      "name": "ptlabel",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:singular}]{${1:plural}}"
+      }
+    },
+    {
+      "name": "partialptlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:plural}}"
+      }
+    },
+    {
+      "name": "partialptlabel",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:singular}]{${1:plural}}"
+      }
+    },
+    {
+      "name": "diffsymb",
+      "unusual": true
+    },
+    {
+      "name": "ptdelimiters",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:coppia di caratteri}}"
+      }
+    },
+    {
+      "name": "partialptdelimiters",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:coppia di caratteri}}"
+      }
+    },
+    {
+      "name": "closedquestionitem",
+      "unusual": true
+    },
+    {
+      "name": "solutionlabel",
+      "unusual": true
+    },
+    {
+      "name": "themultitestcounter",
+      "unusual": true
+    },
+    {
+      "name": "convertreftonum",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "exercisemargin",
+      "unusual": true
+    },
+    {
+      "name": "exercisetitle",
+      "unusual": true
+    },
+    {
+      "name": "italiandictiornary",
+      "unusual": true
+    },
+    {
+      "name": "openquestionheight",
+      "unusual": true
+    },
+    {
+      "name": "openquestionlinecolor",
+      "unusual": true
+    },
+    {
+      "name": "openquestionwidth",
+      "unusual": true
+    },
+    {
+      "name": "savepointsaux",
+      "unusual": true
+    },
+    {
+      "name": "solutionscolor",
+      "unusual": true
+    },
+    {
+      "name": "spacedim",
+      "unusual": true
+    },
+    {
+      "name": "sumpartialpt",
+      "unusual": true
+    },
+    {
+      "name": "theexercisenumber",
+      "unusual": true
+    },
+    {
+      "name": "thepartialpoints",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "esercizio"
+    },
+    {
+      "name": "esercizio",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{esercizio},\\begin{esercizio*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "esercizio*"
+    },
+    {
+      "name": "esercizio*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{esercizio},\\begin{esercizio*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "soluzione"
+    },
+    {
+      "name": "soluzione",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{soluzione}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "closedquestion"
+    },
+    {
+      "name": "closedquestion",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}",
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c,\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "closedquestion*"
+    },
+    {
+      "name": "closedquestion*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}",
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c,\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "crocette",
+      "unusual": true
+    },
+    {
+      "name": "crocette",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}",
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c,\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "crocette*",
+      "unusual": true
+    },
+    {
+      "name": "crocette*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}",
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c,\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "multitest",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:n}]"
+      }
+    },
+    {
+      "name": "enumerate*"
+    },
+    {
+      "name": "enumerate*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "itemize*"
+    },
+    {
+      "name": "itemize*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "description*"
+    },
+    {
+      "name": "description*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/verifiche#c": [
+      "solutions",
+      "noinstitute",
+      "noinstruction",
+      "noduration",
+      "noasyear",
+      "nocandidatename",
+      "notesttype",
+      "nosubtitle",
+      "nonumbered",
+      "noexercisept",
+      "color=",
+      "red",
+      "blue"
     ],
-    [
+    "\\headingstyle#c": [
+      "galilei",
+      "einstein",
+      "cattaneo",
+      "%verificheheadingstyle"
+    ],
+    "\\pagestyle#c": [
+      "mainverifiche",
+      "verifiche"
+    ],
+    "\\begin{esercizio},\\begin{esercizio*}": [
       "label=${1:text}",
       "diff=${1:number}",
       "pt=${1:number}",
       "partialpt"
     ],
-    [
+    "\\begin{soluzione}": [
       "label=${1:text}"
     ],
-    [
+    "\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}": [
       "topsep=",
       "partopsep=",
       "parsep=",
@@ -359,12 +652,24 @@
       "itemjoin=${1:string}",
       "itemjoin*=${1:string}",
       "afterlabel=${1:string}",
-      "mode=${1|unboxed,boxed|}",
+      "mode=${1|unboxed,boxed|}"
+    ],
+    "\\openquestion": [
+      "type=${1|lines,squares|}",
+      "width=",
+      "height=",
+      "spacedim=",
+      "linecolor="
+    ],
+    "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c,\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}": [
       "A",
       "a",
       "I",
       "i",
       "1"
     ]
+  },
+  "args": [
+    "\\usepackage/verifiche#c"
   ]
 }

@@ -1,93 +1,196 @@
 {
-  "includes": {
-    "calc": [],
-    "color": []
-  },
-  "macros": {
-    "LPSet{}": {
-      "snippet": "LPSet{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "calc"
     },
-    "loglinpap()(){}{}": {
-      "snippet": "loglinpap(${3:width},${4:height})(${5:x-decs},${6:y-decs}){${1:log-start}}{${2:y-shift,y-step}}"
+    {
+      "name": "color"
+    }
+  ],
+  "macros": [
+    {
+      "name": "LPSet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\LPSet"
+        ],
+        "keyPos": 0
+      }
     },
-    "loglinpap()(){}{}[]": {
-      "snippet": "loglinpap(${4:width},${5:height})(${6:x-decs},${7:y-decs}){${1:log-start}}{${2:y-shift,y-step}}[${3:x-name}]"
+    {
+      "name": "loglinpap",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "(${3:width},${4:height})(${5:x-decs},${6:y-decs}){${1:log-start}}{${2:y-shift,y-step}}"
+      }
     },
-    "loglinpap()(){}{}[][]": {
-      "snippet": "loglinpap(${5:width},${6:height})(${7:x-decs},${8:y-decs}){${1:log-start}}{${2:y-shift,y-step}}[${3:x-name}][${4:y-name}]"
+    {
+      "name": "loglinpap",
+      "arg": {
+        "format": "()(){}{}[]",
+        "snippet": "(${4:width},${5:height})(${6:x-decs},${7:y-decs}){${1:log-start}}{${2:y-shift,y-step}}[${3:x-name}]"
+      }
     },
-    "linlogpap()(){}{}": {
-      "snippet": "linlogpap(${3:width},${4:height})(${5:x-decs},${6:y-decs}){${1:log-start}}{${2:y-shift,y-step}}"
+    {
+      "name": "loglinpap",
+      "arg": {
+        "format": "()(){}{}[][]",
+        "snippet": "(${5:width},${6:height})(${7:x-decs},${8:y-decs}){${1:log-start}}{${2:y-shift,y-step}}[${3:x-name}][${4:y-name}]"
+      }
     },
-    "linlogpap()(){}{}[]": {
-      "snippet": "linlogpap(${4:width},${5:height})(${6:x-decs},${7:y-decs}){${1:log-start}}{${2:y-shift,y-step}}[${3:x-name}]"
+    {
+      "name": "linlogpap",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "(${3:width},${4:height})(${5:x-decs},${6:y-decs}){${1:log-start}}{${2:y-shift,y-step}}"
+      }
     },
-    "linlogpap()(){}{}[][]": {
-      "snippet": "linlogpap(${5:width},${6:height})(${7:x-decs},${8:y-decs}){${1:log-start}}{${2:y-shift,y-step}}[${3:x-name}][${4:y-name}]"
+    {
+      "name": "linlogpap",
+      "arg": {
+        "format": "()(){}{}[]",
+        "snippet": "(${4:width},${5:height})(${6:x-decs},${7:y-decs}){${1:log-start}}{${2:y-shift,y-step}}[${3:x-name}]"
+      }
     },
-    "loglogpap()(){}{}": {
-      "snippet": "loglogpap(${3:width},${4:height})(${5:x-decs},${6:y-decs}){${1:log-start}}{${2:y-shift,y-step}}"
+    {
+      "name": "linlogpap",
+      "arg": {
+        "format": "()(){}{}[][]",
+        "snippet": "(${5:width},${6:height})(${7:x-decs},${8:y-decs}){${1:log-start}}{${2:y-shift,y-step}}[${3:x-name}][${4:y-name}]"
+      }
     },
-    "loglogpap()(){}{}[]": {
-      "snippet": "loglogpap(${4:width},${5:height})(${6:x-decs},${7:y-decs}){${1:log-start}}{${2:y-shift,y-step}}[${3:x-name}]"
+    {
+      "name": "loglogpap",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "(${3:width},${4:height})(${5:x-decs},${6:y-decs}){${1:log-start}}{${2:y-shift,y-step}}"
+      }
     },
-    "loglogpap()(){}{}[][]": {
-      "snippet": "loglogpap(${5:width},${6:height})(${7:x-decs},${8:y-decs}){${1:log-start}}{${2:y-shift,y-step}}[${3:x-name}][${4:y-name}]"
+    {
+      "name": "loglogpap",
+      "arg": {
+        "format": "()(){}{}[]",
+        "snippet": "(${4:width},${5:height})(${6:x-decs},${7:y-decs}){${1:log-start}}{${2:y-shift,y-step}}[${3:x-name}]"
+      }
     },
-    "linlinpap()(){}{}": {
-      "snippet": "linlinpap(${3:width},${4:height})(${5:x-decs},${6:y-decs}){${1:log-start}}{${2:y-shift,y-step}}"
+    {
+      "name": "loglogpap",
+      "arg": {
+        "format": "()(){}{}[][]",
+        "snippet": "(${5:width},${6:height})(${7:x-decs},${8:y-decs}){${1:log-start}}{${2:y-shift,y-step}}[${3:x-name}][${4:y-name}]"
+      }
     },
-    "linlinpap()(){}{}[]": {
-      "snippet": "linlinpap(${4:width},${5:height})(${6:x-decs},${7:y-decs}){${1:log-start}}{${2:y-shift,y-step}}[${3:x-name}]"
+    {
+      "name": "linlinpap",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "(${3:width},${4:height})(${5:x-decs},${6:y-decs}){${1:log-start}}{${2:y-shift,y-step}}"
+      }
     },
-    "linlinpap()(){}{}[][]": {
-      "snippet": "linlinpap(${5:width},${6:height})(${7:x-decs},${8:y-decs}){${1:log-start}}{${2:y-shift,y-step}}[${3:x-name}][${4:y-name}]"
+    {
+      "name": "linlinpap",
+      "arg": {
+        "format": "()(){}{}[]",
+        "snippet": "(${4:width},${5:height})(${6:x-decs},${7:y-decs}){${1:log-start}}{${2:y-shift,y-step}}[${3:x-name}]"
+      }
     },
-    "DefineLPLabelColor{}": {
-      "snippet": "DefineLPLabelColor{${1:color command}}"
+    {
+      "name": "linlinpap",
+      "arg": {
+        "format": "()(){}{}[][]",
+        "snippet": "(${5:width},${6:height})(${7:x-decs},${8:y-decs}){${1:log-start}}{${2:y-shift,y-step}}[${3:x-name}][${4:y-name}]"
+      }
     },
-    "DefineLPLabelDist{}": {
-      "snippet": "DefineLPLabelDist{${1:length}}"
+    {
+      "name": "DefineLPLabelColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color command}}"
+      }
     },
-    "DefineLPLabelFont{}": {
-      "snippet": "DefineLPLabelFont{${1:font commands}}"
+    {
+      "name": "DefineLPLabelDist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "DefineLPLineColor{}": {
-      "snippet": "DefineLPLineColor{${1:color command}}"
+    {
+      "name": "DefineLPLabelFont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
     },
-    "DefineLPMedLineThickness{}": {
-      "snippet": "DefineLPMedLineThickness{${1:length}}"
+    {
+      "name": "DefineLPLineColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color command}}"
+      }
     },
-    "DefineLPMedTickLen{}": {
-      "snippet": "DefineLPMedTickLen{${1:length}}"
+    {
+      "name": "DefineLPMedLineThickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "DefineLPMinLineDist{}": {
-      "snippet": "DefineLPMinLineDist{${1:length}}"
+    {
+      "name": "DefineLPMedTickLen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "DefineLPmu{}": {
-      "snippet": "DefineLPmu{${1:symbol}}"
+    {
+      "name": "DefineLPMinLineDist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "DefineLPText{}": {
-      "snippet": "DefineLPText{${1:text}}"
+    {
+      "name": "DefineLPmu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
     },
-    "DefineLPThickLineThickness{}": {
-      "snippet": "DefineLPThickLineThickness{${1:length}}"
+    {
+      "name": "DefineLPText",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "DefineLPThickTickLen{}": {
-      "snippet": "DefineLPThickTickLen{${1:length}}"
+    {
+      "name": "DefineLPThickLineThickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "DefineLPThinLineThickness{}": {
-      "snippet": "DefineLPThinLineThickness{${1:length}}"
+    {
+      "name": "DefineLPThickTickLen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "filedate": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "DefineLPThinLineThickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\LPSet": [
       "ticksupright",
       "noticksupright",
       "twoninex",
@@ -105,5 +208,6 @@
       "dimensions",
       "nodimensions"
     ]
-  ]
+  },
+  "args": []
 }

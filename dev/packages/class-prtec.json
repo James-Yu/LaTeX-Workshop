@@ -1,128 +1,254 @@
 {
-  "includes": {
-    "ifthen": [],
-    "geometry": [],
-    "parskip": [],
-    "natbib": [],
-    "graphicx": [],
-    "xcolor": [],
-    "booktabs": [],
-    "array": [],
-    "dcolumn": [],
-    "mathtools": [],
-    "newtxtext": [],
-    "newtxmath": [],
-    "bm": [],
-    "fancyhdr": [],
-    "fnpos": [],
-    "caption": [],
-    "subcaption": [],
-    "titlesec": [],
-    "hyperref": [],
-    "doi": [],
-    "etoolbox": [],
-    "multicol": [],
-    "xcoffins": [],
-    "metalogo": [],
-    "hologo": []
-  },
-  "macros": {
-    "confname{}": {
-      "snippet": "confname{${1:conference}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "confdate{}": {
-      "snippet": "confdate{${1:date}}"
+    {
+      "name": "geometry"
     },
-    "confcity{}": {
-      "snippet": "confcity{${1:city}}"
+    {
+      "name": "parskip"
     },
-    "paperno{}": {
-      "snippet": "paperno{${1:number}}"
+    {
+      "name": "natbib"
     },
-    "papertitle{}": {
-      "snippet": "papertitle{${1:text}}"
+    {
+      "name": "graphicx"
     },
-    "SetAuthors{}": {
-      "snippet": "SetAuthors{${1:name1,${2:name2},...}}"
+    {
+      "name": "xcolor"
     },
-    "affil{}": {
-      "snippet": "affil{${1:number}}"
+    {
+      "name": "booktabs"
     },
-    "JointFirstAuthor": {},
-    "CorrespondingAuthor{}": {
-      "snippet": "CorrespondingAuthor{${1:email}}"
+    {
+      "name": "array"
     },
-    "SetAffiliation{}{}": {
-      "snippet": "SetAffiliation{${1:number}}{${2:affiliation}}"
+    {
+      "name": "dcolumn"
     },
-    "MakeTitlePage": {},
-    "SetAuthorBlock": {},
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}"
+    {
+      "name": "mathtools"
     },
-    "nomenwidth": {},
-    "entry{}": {
-      "snippet": "entry{${1:text}}"
+    {
+      "name": "newtxtext"
     },
-    "entry{}{}": {
-      "snippet": "entry{${1:symbol}}{${2:text}}"
+    {
+      "name": "newtxmath"
     },
-    "section*[]{}": {
-      "snippet": "section*[${2:short title}]{${1:title}}"
+    {
+      "name": "bm"
     },
-    "ifCD": {},
-    "CDtrue": {},
-    "CDfalse": {},
-    "HeaderConfName": {},
-    "PaperNo": {},
-    "PaperTitle": {},
-    "theauthorno": {},
-    "AffiliationBlock": {},
-    "AuthorBlock": {},
-    "AffiliationsBlock": {},
-    "ifCA": {},
-    "CAtrue": {},
-    "CAfalse": {},
-    "CAemail{}": {
-      "snippet": "CAemail{${1:email}}"
+    {
+      "name": "fancyhdr"
     },
-    "ifJA": {},
-    "JAtrue": {},
-    "JAfalse": {},
-    "oldaffil{}": {
-      "snippet": "oldaffil{${1:arg}}"
+    {
+      "name": "fnpos"
     },
-    "isOthernote": {},
-    "nextToken": {},
-    "oldCorrespondingAuthor{}": {
-      "snippet": "oldCorrespondingAuthor{${1:arg}}"
+    {
+      "name": "caption"
     },
-    "oldJointFirstAuthor": {},
-    "savethefootnote": {}
-  },
-  "envs": {
-    "nomenclature": {},
-    "nomenclature[]": {
-      "name": "nomenclature",
-      "snippet": "[${1:width}]"
+    {
+      "name": "subcaption"
     },
-    "nomenclature[][]": {
-      "name": "nomenclature",
-      "snippet": "[${1:width}][${2:title}]"
+    {
+      "name": "titlesec"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "doi"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "multicol"
+    },
+    {
+      "name": "xcoffins"
+    },
+    {
+      "name": "metalogo"
+    },
+    {
+      "name": "hologo"
     }
-  },
-  "options": [
-    "nofoot",
-    "upint",
-    "smallerops",
-    "varvw",
-    "varg",
-    "slantedGreek",
-    "frenchmath",
-    "varbb",
-    "cmbraces",
-    "subscriptcorrection",
-    "largesc"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "confname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:conference%text}}"
+      }
+    },
+    {
+      "name": "confdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "confcity",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:city}}"
+      }
+    },
+    {
+      "name": "paperno",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "papertitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "SetAuthors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name1,name2,...}}"
+      }
+    },
+    {
+      "name": "affil",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "JointFirstAuthor"
+    },
+    {
+      "name": "CorrespondingAuthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "SetAffiliation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:number}}{${2:affiliation%text}}"
+      }
+    },
+    {
+      "name": "MakeTitlePage"
+    },
+    {
+      "name": "SetAuthorBlock"
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "nomenwidth",
+      "unusual": true
+    },
+    {
+      "name": "entry",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "entry",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:symbol}}{${2:text}}"
+      }
+    },
+    {
+      "name": "section*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "HeaderConfName",
+      "unusual": true
+    },
+    {
+      "name": "PaperNo",
+      "unusual": true
+    },
+    {
+      "name": "PaperTitle",
+      "unusual": true
+    },
+    {
+      "name": "AffiliationBlock",
+      "unusual": true
+    },
+    {
+      "name": "AuthorBlock",
+      "unusual": true
+    },
+    {
+      "name": "AffiliationsBlock",
+      "unusual": true
+    },
+    {
+      "name": "CAemail",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "nomenclature"
+    },
+    {
+      "name": "nomenclature",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
+    },
+    {
+      "name": "nomenclature",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:width}][${2:title%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/prtec#c": [
+      "nofoot",
+      "upint",
+      "smallerops",
+      "varvw",
+      "varg",
+      "slantedGreek",
+      "frenchmath",
+      "varbb",
+      "cmbraces",
+      "subscriptcorrection",
+      "largesc"
+    ]
+  },
+  "args": [
+    "\\documentclass/prtec#c"
+  ]
 }

@@ -1,87 +1,286 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "luacode": []
-  },
-  "macros": {
-    "sparkBarMedium": {},
-    "sparkBarNarrow": {},
-    "sparkBarExtranarrow": {},
-    "sparkBarWide": {},
-    "sparkBarExtrawide": {},
-    "sparkDotLineMedium": {},
-    "sparkDotLineThick": {},
-    "sparkDotLineExtrathick": {},
-    "sparkDotLineThin": {},
-    "sparkDotLineExtrathin": {},
-    "sparkDotMedium": {},
-    "sparkDotSmall": {},
-    "sparkDotExtralarge": {},
-    "sparkDotExtrasmall": {},
-    "sparkBar{}": {
-      "snippet": "sparkBar{${1:values}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "sparkBar[]{}": {
-      "snippet": "sparkBar[${2:type}]{${1:values}}"
+    {
+      "name": "ifluatex"
     },
-    "sparkBar[][]{}[]": {
-      "snippet": "sparkBar[${2:type}][${3:num1}]{${1:values}}[${4:num2}]"
+    {
+      "name": "xkeyval"
     },
-    "sparkBar*{}": {
-      "snippet": "sparkBar*{${1:values}}"
-    },
-    "sparkBar*[]{}": {
-      "snippet": "sparkBar*[${2:type}]{${1:values}}"
-    },
-    "sparkBar*[][]{}[]": {
-      "snippet": "sparkBar*[${2:type}][${3:num1}]{${1:values}}[${4:num2}]"
-    },
-    "sparkDot{}": {
-      "snippet": "sparkDot{${1:values}}"
-    },
-    "sparkDot[]{}": {
-      "snippet": "sparkDot[${2:type}]{${1:values}}"
-    },
-    "sparkDot[][]{}[]": {
-      "snippet": "sparkDot[${2:type}][${3:num1}]{${1:values}}[${4:num2}]"
-    },
-    "sparkDot*{}": {
-      "snippet": "sparkDot*{${1:values}}"
-    },
-    "sparkDot*[]{}": {
-      "snippet": "sparkDot*[${2:type}]{${1:values}}"
-    },
-    "sparkDot*[][]{}[]": {
-      "snippet": "sparkDot*[${2:type}][${3:num1}]{${1:values}}[${4:num2}]"
-    },
-    "sparkDotline{}": {
-      "snippet": "sparkDotline{${1:values}}"
-    },
-    "sparkDotline[]{}": {
-      "snippet": "sparkDotline[${2:type}]{${1:values}}"
-    },
-    "sparkDotline[][]{}[]": {
-      "snippet": "sparkDotline[${2:type}][${3:num1}]{${1:values}}[${4:num2}]"
-    },
-    "sparkDotline*{}": {
-      "snippet": "sparkDotline*{${1:values}}"
-    },
-    "sparkDotline*[]{}": {
-      "snippet": "sparkDotline*[${2:type}]{${1:values}}"
-    },
-    "sparkDotline*[][]{}[]": {
-      "snippet": "sparkDotline*[${2:type}][${3:num1}]{${1:values}}[${4:num2}]"
-    },
-    "setSparkColor{}{}": {
-      "snippet": "setSparkColor{${1:rrggbb}}{${2:values}}"
+    {
+      "name": "luacode"
     }
-  },
-  "envs": {},
-  "options": [
-    "usefilenames",
-    "DefaultFeatures={${1:features}}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "sparkBarMedium",
+      "unusual": true
+    },
+    {
+      "name": "sparkBarNarrow",
+      "unusual": true
+    },
+    {
+      "name": "sparkBarExtranarrow",
+      "unusual": true
+    },
+    {
+      "name": "sparkBarWide",
+      "unusual": true
+    },
+    {
+      "name": "sparkBarExtrawide",
+      "unusual": true
+    },
+    {
+      "name": "sparkDotLineMedium",
+      "unusual": true
+    },
+    {
+      "name": "sparkDotLineThick",
+      "unusual": true
+    },
+    {
+      "name": "sparkDotLineExtrathick",
+      "unusual": true
+    },
+    {
+      "name": "sparkDotLineThin",
+      "unusual": true
+    },
+    {
+      "name": "sparkDotLineExtrathin",
+      "unusual": true
+    },
+    {
+      "name": "sparkDotMedium",
+      "unusual": true
+    },
+    {
+      "name": "sparkDotSmall",
+      "unusual": true
+    },
+    {
+      "name": "sparkDotExtralarge",
+      "unusual": true
+    },
+    {
+      "name": "sparkDotExtrasmall",
+      "unusual": true
+    },
+    {
+      "name": "sparkBar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:values}}"
+      }
+    },
+    {
+      "name": "sparkBar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:type%keyvals}]{${1:values}}",
+        "keys": [
+          "\\sparkBar,\\sparkBar*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sparkBar",
+      "arg": {
+        "format": "[][]{}[]",
+        "snippet": "[${2:type%keyvals}][${3:num1}]{${1:values}}[${4:num2}]",
+        "keys": [
+          "\\sparkBar,\\sparkBar*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sparkBar*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:values}}"
+      }
+    },
+    {
+      "name": "sparkBar*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:type%keyvals}]{${1:values}}",
+        "keys": [
+          "\\sparkBar,\\sparkBar*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sparkBar*",
+      "arg": {
+        "format": "[][]{}[]",
+        "snippet": "[${2:type%keyvals}][${3:num1}]{${1:values}}[${4:num2}]",
+        "keys": [
+          "\\sparkBar,\\sparkBar*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sparkDot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:values}}"
+      }
+    },
+    {
+      "name": "sparkDot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:type%keyvals}]{${1:values}}",
+        "keys": [
+          "\\sparkDot,\\sparkDot*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sparkDot",
+      "arg": {
+        "format": "[][]{}[]",
+        "snippet": "[${2:type%keyvals}][${3:num1}]{${1:values}}[${4:num2}]",
+        "keys": [
+          "\\sparkDot,\\sparkDot*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sparkDot*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:values}}"
+      }
+    },
+    {
+      "name": "sparkDot*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:type%keyvals}]{${1:values}}",
+        "keys": [
+          "\\sparkDot,\\sparkDot*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sparkDot*",
+      "arg": {
+        "format": "[][]{}[]",
+        "snippet": "[${2:type%keyvals}][${3:num1}]{${1:values}}[${4:num2}]",
+        "keys": [
+          "\\sparkDot,\\sparkDot*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sparkDotline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:values}}"
+      }
+    },
+    {
+      "name": "sparkDotline",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:type%keyvals}]{${1:values}}",
+        "keys": [
+          "\\sparkDotline,\\sparkDotline*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sparkDotline",
+      "arg": {
+        "format": "[][]{}[]",
+        "snippet": "[${2:type%keyvals}][${3:num1}]{${1:values}}[${4:num2}]",
+        "keys": [
+          "\\sparkDotline,\\sparkDotline*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sparkDotline*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:values}}"
+      }
+    },
+    {
+      "name": "sparkDotline*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:type%keyvals}]{${1:values}}",
+        "keys": [
+          "\\sparkDotline,\\sparkDotline*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sparkDotline*",
+      "arg": {
+        "format": "[][]{}[]",
+        "snippet": "[${2:type%keyvals}][${3:num1}]{${1:values}}[${4:num2}]",
+        "keys": [
+          "\\sparkDotline,\\sparkDotline*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setSparkColor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:rrggbb}}{${2:values}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/spark-otf#c": [
+      "usefilenames",
+      "DefaultFeatures={${1:features}}"
+    ],
+    "\\sparkBar,\\sparkBar*": [
+      "Extranarrow",
+      "Extrawide",
+      "Medium",
+      "Narrow",
+      "Wide"
+    ],
+    "\\sparkDot,\\sparkDot*": [
+      "Extralarge",
+      "Extrasmall",
+      "Large",
+      "Medium",
+      "Small"
+    ],
+    "\\sparkDotline,\\sparkDotline*": [
+      "Extrathick",
+      "Extrathin",
+      "Medium",
+      "Thick",
+      "Thin"
+    ]
+  },
+  "args": [
+    "\\usepackage/spark-otf#c"
+  ]
 }

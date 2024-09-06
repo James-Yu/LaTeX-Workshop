@@ -1,29 +1,66 @@
 {
-  "includes": {
-    "diagram": []
-  },
-  "macros": {
-    "rb{}": {
-      "snippet": "rb{${1:content}}"
-    },
-    "normaldia": {},
-    "smalldia": {},
-    "urdruck": {},
-    "windowpar": {},
-    "bel": {},
-    "ferner": {},
-    "reprint": {},
-    "helplength": {},
-    "boardskip": {},
-    "doublediagram{}": {
-      "snippet": "doublediagram{${1:content}}"
+  "deps": [
+    {
+      "name": "diagram"
     }
-  },
-  "envs": {},
-  "options": [
-    "10pt",
-    "11pt",
-    "12pt"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "rb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "normaldia"
+    },
+    {
+      "name": "smalldia"
+    },
+    {
+      "name": "urdruck"
+    },
+    {
+      "name": "windowpar"
+    },
+    {
+      "name": "bel",
+      "unusual": true
+    },
+    {
+      "name": "ferner",
+      "unusual": true
+    },
+    {
+      "name": "reprint",
+      "unusual": true
+    },
+    {
+      "name": "helplength",
+      "unusual": true
+    },
+    {
+      "name": "boardskip",
+      "unusual": true
+    },
+    {
+      "name": "doublediagram",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/schwalbe#c": [
+      "10pt",
+      "11pt",
+      "12pt"
+    ]
+  },
+  "args": [
+    "\\usepackage/schwalbe#c"
+  ]
 }

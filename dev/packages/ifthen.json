@@ -1,41 +1,89 @@
 {
-  "includes": {},
-  "macros": {
-    "ifthenelse{}{}{}": {
-      "snippet": "ifthenelse{${1:test}}{${2:then clause}}{${3:else clause}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "ifthenelse",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:test}}{${2:then clause}}{${3:else clause}}"
+      }
     },
-    "isodd{}": {
-      "snippet": "isodd{${1:number}}"
+    {
+      "name": "isodd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "isundefined{}": {
-      "snippet": "isundefined{${1:command}}"
+    {
+      "name": "isundefined",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command%plain}}"
+      }
     },
-    "equal{}{}": {
-      "snippet": "equal{${1:string}}{${2:string}}"
+    {
+      "name": "equal",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:string}}{${2:string}}"
+      },
+      "detail": "=",
+      "doc": "Equals sign r:"
     },
-    "AND": {},
-    "OR": {},
-    "NOT": {},
-    "lengthtest{}": {
-      "snippet": "lengthtest{${1:dimen operator dimen}}"
+    {
+      "name": "AND"
     },
-    "boolean{}": {
-      "snippet": "boolean{${1:name}}"
+    {
+      "name": "OR"
     },
-    "newboolean{}": {
-      "snippet": "newboolean{${1:name}}"
+    {
+      "name": "NOT"
     },
-    "provideboolean{}": {
-      "snippet": "provideboolean{${1:name}}"
+    {
+      "name": "lengthtest",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen operator dimen}}"
+      }
     },
-    "setboolean{}{}": {
-      "snippet": "setboolean{${1:name}}{${2:truth value}}"
+    {
+      "name": "boolean",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "whiledo{}{}": {
-      "snippet": "whiledo{${1:test}}{${2:while clause}}"
+    {
+      "name": "newboolean",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "provideboolean",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "setboolean",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:truth value}}"
+      }
+    },
+    {
+      "name": "whiledo",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:test}}{${2:while clause}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

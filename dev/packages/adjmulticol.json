@@ -1,29 +1,38 @@
 {
-  "includes": {
-    "multicol": []
-  },
-  "macros": {
-    "adjmulticols": {},
-    "endadjmulticols": {}
-  },
-  "envs": {
-    "adjmulticols{}{}{}": {
-      "name": "adjmulticols",
-      "snippet": "{${1:number}}{${2:inner margin}}{${3:outer margin}}"
-    },
-    "adjmulticols*{}{}{}": {
-      "name": "adjmulticols*",
-      "snippet": "{${1:number}}{${2:inner margin}}{${3:outer margin}}"
+  "deps": [
+    {
+      "name": "multicol"
     }
-  },
-  "options": [
-    "errorshow",
-    "infoshow",
-    "balancingshow",
-    "markshow",
-    "debugshow",
-    "grid",
-    "colaction"
   ],
-  "keyvals": []
+  "macros": [],
+  "envs": [
+    {
+      "name": "adjmulticols",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:number}}{${2:inner margin%l}}{${3:outer margin%l}}"
+      }
+    },
+    {
+      "name": "adjmulticols*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:number}}{${2:inner margin%l}}{${3:outer margin%l}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/adjmulticol#c": [
+      "errorshow",
+      "infoshow",
+      "balancingshow",
+      "markshow",
+      "debugshow",
+      "grid",
+      "colaction"
+    ]
+  },
+  "args": [
+    "\\usepackage/adjmulticol#c"
+  ]
 }

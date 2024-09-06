@@ -1,33 +1,71 @@
 {
-  "includes": {
-    "color": [],
-    "tocloft": [],
-    "ifthen": [],
-    "ifdraft": []
-  },
-  "macros": {
-    "todo{}": {
-      "snippet": "todo{${1:note}}"
+  "deps": [
+    {
+      "name": "color"
     },
-    "todoi{}": {
-      "snippet": "todoi{${1:note}}"
+    {
+      "name": "tocloft"
     },
-    "todoii{}{}": {
-      "snippet": "todoii{${1:note}}{${2:information}}"
+    {
+      "name": "ifthen"
     },
-    "listoftodos": {},
-    "todoindextitle": {},
-    "todoindexpagetitle": {},
-    "todocolor": {},
-    "listoftodosname": {}
-  },
-  "envs": {},
-  "options": [
-    "chapter",
-    "section",
-    "obeyFinal",
-    "enable",
-    "disable"
+    {
+      "name": "ifdraft"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "todo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note%todo}}"
+      }
+    },
+    {
+      "name": "todoi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note%todo}}"
+      }
+    },
+    {
+      "name": "todoii",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:note%todo}}{${2:information%text}}"
+      }
+    },
+    {
+      "name": "listoftodos"
+    },
+    {
+      "name": "todoindextitle",
+      "unusual": true
+    },
+    {
+      "name": "todoindexpagetitle",
+      "unusual": true
+    },
+    {
+      "name": "todocolor",
+      "unusual": true
+    },
+    {
+      "name": "listoftodosname",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/easy-todo#c": [
+      "chapter",
+      "section",
+      "obeyFinal",
+      "enable",
+      "disable"
+    ]
+  },
+  "args": [
+    "\\usepackage/easy-todo#c"
+  ]
 }

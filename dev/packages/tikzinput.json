@@ -1,34 +1,62 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "graphicx": [],
-    "tikz": [],
-    "standalone": []
-  },
-  "macros": {
-    "tikzinput{}": {
-      "snippet": "tikzinput{${1:file}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "tikzinput[]{}": {
-      "snippet": "tikzinput[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "graphicx"
     },
-    "ctikzinput{}": {
-      "snippet": "ctikzinput{${1:file}}"
+    {
+      "name": "tikz"
     },
-    "ctikzinput[]{}": {
-      "snippet": "ctikzinput[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "standalone"
     }
-  },
-  "envs": {},
-  "options": [
-    "image"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "tikzinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "tikzinput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\tikzinput,\\ctikzinput"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ctikzinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "ctikzinput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\tikzinput,\\ctikzinput"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tikzinput#c": [
+      "image"
+    ],
+    "\\tikzinput,\\ctikzinput": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -59,5 +87,8 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
+  },
+  "args": [
+    "\\usepackage/tikzinput#c"
   ]
 }

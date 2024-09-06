@@ -1,42 +1,81 @@
 {
-  "includes": {
-    "ifthen": [],
-    "calc": []
-  },
-  "macros": {
-    "ticketdefault": {},
-    "ticket{}": {
-      "snippet": "ticket{${1:content}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "ticketreset": {},
-    "backside": {},
-    "ticketskip{}": {
-      "snippet": "ticketskip{${1:number}}"
-    },
-    "ticketNumbers{}{}": {
-      "snippet": "ticketNumbers{${1:x}}{${2:y}}"
-    },
-    "ticketWidth": {},
-    "ticketHeight": {},
-    "ticketSize{}{}": {
-      "snippet": "ticketSize{${1:width}}{${2:height}}"
-    },
-    "ticketDistance{}{}": {
-      "snippet": "ticketDistance{${1:x}}{${2:y}}"
-    },
-    "ticketToUse": {},
-    "filedate": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [
-    "${1:.tdf file}",
-    "boxed",
-    "crossmark",
-    "circlemark",
-    "emptycrossmark",
-    "cutmark",
-    "rowmode"
+    {
+      "name": "calc"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ticketdefault"
+    },
+    {
+      "name": "ticket",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "ticketreset"
+    },
+    {
+      "name": "backside"
+    },
+    {
+      "name": "ticketskip",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "ticketNumbers",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "ticketWidth"
+    },
+    {
+      "name": "ticketHeight"
+    },
+    {
+      "name": "ticketSize",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "ticketDistance",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "ticketToUse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ticket#c": [
+      "${1:.tdf file}",
+      "boxed",
+      "crossmark",
+      "circlemark",
+      "emptycrossmark",
+      "cutmark",
+      "rowmode"
+    ]
+  },
+  "args": [
+    "\\usepackage/ticket#c"
+  ]
 }

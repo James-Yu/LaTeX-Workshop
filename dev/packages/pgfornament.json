@@ -1,68 +1,175 @@
 {
-  "includes": {
-    "tikz": [],
-    "pgfopts": []
-  },
-  "macros": {
-    "newpgfornamentfamily{}": {
-      "snippet": "newpgfornamentfamily{${1:family}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "pgfornament{}": {
-      "snippet": "pgfornament{${1:ornament number}}"
-    },
-    "pgfornament[]{}": {
-      "snippet": "pgfornament[${2:options}]{${1:ornament number}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pgfornamentline{}{}{}{}": {
-      "snippet": "pgfornamentline{${1:point1}}{${2:point2}}{${3:number}}{${4:ornament number}}"
-    },
-    "pgfornamentline[]{}{}{}{}": {
-      "snippet": "pgfornamentline[${5:options}]{${1:point1}}{${2:point2}}{${3:number}}{${4:ornament number}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pgfornamenthline{}{}{}{}": {
-      "snippet": "pgfornamenthline{${1:anchor1}}{${2:anchor2}}{${3:direction}}{${4:ornament number}}"
-    },
-    "pgfornamentvline{}{}{}{}": {
-      "snippet": "pgfornamentvline{${1:anchor1}}{${2:anchor2}}{${3:direction}}{${4:ornament number}}"
-    },
-    "getornamentlength{}{}{}{}": {
-      "snippet": "getornamentlength{${1:anchor1}}{${2:anchor2}}{${3:direction}}{${4:ornament number}}"
-    },
-    "resetpgfornamentstyle": {},
-    "callornament{}": {
-      "snippet": "callornament{${1:file}}"
-    },
-    "pgfornamentscale": {},
-    "pgfornamentwidth": {},
-    "pgfornamentheight": {},
-    "pgfornamentcolor": {},
-    "pgfornamentopacity": {},
-    "pgfornamentanchor": {},
-    "pgfornamentydelta": {},
-    "ornamenttopos": {},
-    "ornamenttoanchor": {},
-    "ornamenttosymmetry": {},
-    "ornamentlen": {},
-    "nbo": {},
-    "pgfOrnamentsObject": {},
-    "OrnamentsFamily": {},
-    "SavedOrnamentsFamily": {}
-  },
-  "envs": {
-    "newfamily[]": {
-      "name": "newfamily",
-      "snippet": "[${1:family}]"
+    {
+      "name": "pgfopts"
     }
-  },
-  "options": [
-    "object=${1|vectorian,pgfhan|}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "newpgfornamentfamily",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family%keyvals}}",
+        "keys": [
+          "\\newpgfornamentfamily,\\begin{newfamily}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pgfornament",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ornament number}}"
+      }
+    },
+    {
+      "name": "pgfornament",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:ornament number}}",
+        "keys": [
+          "\\pgfornament#c,\\pgfornamentline#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pgfornamentline",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:point1}}{${2:point2}}{${3:number}}{${4:ornament number}}"
+      }
+    },
+    {
+      "name": "pgfornamentline",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:point1}}{${2:point2}}{${3:number}}{${4:ornament number}}",
+        "keys": [
+          "\\pgfornament#c,\\pgfornamentline#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pgfornamenthline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:anchor1}}{${2:anchor2}}{${3:direction}}{${4:ornament number}}"
+      }
+    },
+    {
+      "name": "pgfornamentvline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:anchor1}}{${2:anchor2}}{${3:direction}}{${4:ornament number}}"
+      }
+    },
+    {
+      "name": "getornamentlength",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:anchor1}}{${2:anchor2}}{${3:direction}}{${4:ornament number}}"
+      }
+    },
+    {
+      "name": "resetpgfornamentstyle",
+      "unusual": true
+    },
+    {
+      "name": "callornament",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "pgfornamentscale",
+      "unusual": true
+    },
+    {
+      "name": "pgfornamentwidth",
+      "unusual": true
+    },
+    {
+      "name": "pgfornamentheight",
+      "unusual": true
+    },
+    {
+      "name": "pgfornamentcolor",
+      "unusual": true
+    },
+    {
+      "name": "pgfornamentopacity",
+      "unusual": true
+    },
+    {
+      "name": "pgfornamentanchor",
+      "unusual": true
+    },
+    {
+      "name": "pgfornamentydelta",
+      "unusual": true
+    },
+    {
+      "name": "ornamenttopos",
+      "unusual": true
+    },
+    {
+      "name": "ornamenttoanchor",
+      "unusual": true
+    },
+    {
+      "name": "ornamenttosymmetry",
+      "unusual": true
+    },
+    {
+      "name": "ornamentlen",
+      "unusual": true
+    },
+    {
+      "name": "pgfOrnamentsObject",
+      "unusual": true
+    },
+    {
+      "name": "OrnamentsFamily",
+      "unusual": true
+    },
+    {
+      "name": "SavedOrnamentsFamily",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "newfamily",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:family%keyvals}]",
+        "keys": [
+          "\\newpgfornamentfamily,\\begin{newfamily}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/pgfornament#c": [
+      "object=${1|vectorian,pgfhan|}"
+    ],
+    "\\newpgfornamentfamily,\\begin{newfamily}": [
+      "pgfhan",
+      "vectorian"
+    ],
+    "\\pgfornament#c,\\pgfornamentline#c": [
       "scale=${1:factor}",
       "width=",
       "height=",
@@ -72,5 +179,8 @@
       "symmetry=${1|v,h,c,none|}",
       "anchor=${1:anchor}"
     ]
+  },
+  "args": [
+    "\\usepackage/pgfornament#c"
   ]
 }

@@ -1,99 +1,193 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "tableplace": {},
-    "figureplace": {},
-    "floatplace": {},
-    "efloatheading": {},
-    "AtBeginFigures": {},
-    "AtBeginTables": {},
-    "AtBeginDelayedFloats": {},
-    "addtodelayedfloat{}{}": {
-      "snippet": "addtodelayedfloat{${1:float type}}{${2:code}}"
-    },
-    "addtodelayedfloat*{}{}": {
-      "snippet": "addtodelayedfloat*{${1:float type}}{${2:code}}"
-    },
-    "processdelayedfloats": {},
-    "efloatpreamble": {},
-    "efloatseparator": {},
-    "efloatpostamble": {},
-    "efloattype": {},
-    "efloatbegin": {},
-    "efloatend": {},
-    "efloatbeginlist": {},
-    "efloatendlist": {},
-    "DeclareDelayedFloatFlavor{}{}": {
-      "snippet": "DeclareDelayedFloatFlavor{${1:envname}}{${2:float type}}"
-    },
-    "DeclareDelayedFloatFlavour{}{}": {
-      "snippet": "DeclareDelayedFloatFlavour{${1:envname}}{${2:float type}}"
-    },
-    "DeclareDelayedFloatFlavor*{}{}": {
-      "snippet": "DeclareDelayedFloatFlavor*{${1:envname}}{${2:float type}}"
-    },
-    "DeclareDelayedFloatFlavour*{}{}": {
-      "snippet": "DeclareDelayedFloatFlavour*{${1:envname}}{${2:float type}}"
-    },
-    "DeclareDelayedFloat{}{}": {
-      "snippet": "DeclareDelayedFloat{${1:envname}}{${2:heading}}"
-    },
-    "DeclareDelayedFloat{}[]{}": {
-      "snippet": "DeclareDelayedFloat{${1:envname}}[${2:file ext}]{${3:heading}}"
-    },
-    "SetupDelayedFloat{}{}": {
-      "snippet": "SetupDelayedFloat{${1:float type}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "dofiglist": {},
-    "dotablist": {},
-    "markersintext": {},
-    "nomarkersintext": {},
-    "nofiglist": {},
-    "notablist": {},
-    "processotherdelayedfloats": {},
-    "thepostfigure": {},
-    "theposttable": {},
-    "thepostfig": {},
-    "theposttbl": {},
-    "docdate": {},
-    "filedate": {},
-    "filename": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [
-    "nofiglist",
-    "notablist",
-    "nolists",
-    "figlist",
-    "tablist",
-    "lists",
-    "nofighead",
-    "notabhead",
-    "noheads",
-    "fighead",
-    "tabhead",
-    "heads",
-    "markers",
-    "nomarkers",
-    "tablesfirst",
-    "figuresfirst",
-    "tablesonly",
-    "figuresonly",
-    "notables",
-    "nofigures",
-    "disable"
+  "deps": [
+    {
+      "name": "keyval"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "tableplace",
+      "unusual": true
+    },
+    {
+      "name": "figureplace",
+      "unusual": true
+    },
+    {
+      "name": "floatplace",
+      "unusual": true
+    },
+    {
+      "name": "efloatheading",
+      "unusual": true
+    },
+    {
+      "name": "AtBeginFigures"
+    },
+    {
+      "name": "AtBeginTables"
+    },
+    {
+      "name": "AtBeginDelayedFloats"
+    },
+    {
+      "name": "addtodelayedfloat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:float type}}{${2:code}}"
+      }
+    },
+    {
+      "name": "addtodelayedfloat*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:float type}}{${2:code}}"
+      }
+    },
+    {
+      "name": "processdelayedfloats"
+    },
+    {
+      "name": "efloatpreamble",
+      "unusual": true
+    },
+    {
+      "name": "efloatseparator",
+      "unusual": true
+    },
+    {
+      "name": "efloatpostamble",
+      "unusual": true
+    },
+    {
+      "name": "efloattype",
+      "unusual": true
+    },
+    {
+      "name": "efloatbegin",
+      "unusual": true
+    },
+    {
+      "name": "efloatend",
+      "unusual": true
+    },
+    {
+      "name": "efloatbeginlist",
+      "unusual": true
+    },
+    {
+      "name": "efloatendlist",
+      "unusual": true
+    },
+    {
+      "name": "DeclareDelayedFloatFlavor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:float type}}"
+      }
+    },
+    {
+      "name": "DeclareDelayedFloatFlavor*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:float type}}"
+      }
+    },
+    {
+      "name": "DeclareDelayedFloat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:heading}}"
+      }
+    },
+    {
+      "name": "DeclareDelayedFloat",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:envname}}[${3:file ext}]{${2:heading}}"
+      }
+    },
+    {
+      "name": "SetupDelayedFloat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:float type}}{${2:options%keyvals}}",
+        "keys": [
+          "\\SetupDelayedFloat"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "dofiglist",
+      "unusual": true
+    },
+    {
+      "name": "dotablist",
+      "unusual": true
+    },
+    {
+      "name": "markersintext",
+      "unusual": true
+    },
+    {
+      "name": "nomarkersintext",
+      "unusual": true
+    },
+    {
+      "name": "nofiglist",
+      "unusual": true
+    },
+    {
+      "name": "notablist",
+      "unusual": true
+    },
+    {
+      "name": "processotherdelayedfloats",
+      "unusual": true
+    },
+    {
+      "name": "thepostfigure",
+      "unusual": true
+    },
+    {
+      "name": "theposttable",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/endfloat#c": [
+      "nofiglist",
+      "notablist",
+      "nolists",
+      "figlist",
+      "tablist",
+      "lists",
+      "nofighead",
+      "notabhead",
+      "noheads",
+      "fighead",
+      "tabhead",
+      "heads",
+      "markers",
+      "nomarkers",
+      "tablesfirst",
+      "figuresfirst",
+      "tablesonly",
+      "figuresonly",
+      "notables",
+      "nofigures",
+      "disable"
+    ],
+    "\\SetupDelayedFloat": [
       "nolist",
       "list",
       "nohead",
       "head"
     ]
+  },
+  "args": [
+    "\\usepackage/endfloat#c"
   ]
 }

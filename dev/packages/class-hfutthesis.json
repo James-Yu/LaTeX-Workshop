@@ -1,185 +1,359 @@
 {
-  "includes": {
-    "iftex": [],
-    "kvdefinekeys": [],
-    "kvsetkeys": [],
-    "kvoptions": [],
-    "class-ctexbook": [],
-    "xeCJK": [],
-    "etoolbox": [],
-    "amsmath": [],
-    "fontspec": [],
-    "geometry": [],
-    "graphicx": [],
-    "fancyhdr": [],
-    "color": [],
-    "titletoc": [],
-    "caption": [],
-    "footmisc": [],
-    "url": [],
-    "calc": [],
-    "ulem": [],
-    "multirow": [],
-    "enumitem": [],
-    "bicaption": [],
-    "natbib": [],
-    "filehook": [],
-    "unicode-math": [],
-    "newtxtext": [
-      "font=newtx"
-    ],
-    "newtxmath": [
-      "math-font=newtx"
-    ],
-    "bm": [
-      "math-font=newtx",
-      "math-font=cm",
-      "math-font=none"
-    ],
-    "amssymb": [
-      "math-font=cm",
-      "math-font=none"
-    ]
-  },
-  "macros": {
-    "hfutsetup{}": {
-      "snippet": "hfutsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "blacksquare": {
-      "detail": "⬛",
-      "documentation": "BLACK LARGE SQUARE"
+    {
+      "name": "kvdefinekeys"
     },
-    "bm{}": {
-      "snippet": "bm{${1:text}}"
+    {
+      "name": "kvsetkeys"
     },
-    "checkmark": {
-      "detail": "✓",
-      "documentation": "CHECK MARK"
+    {
+      "name": "kvoptions"
     },
-    "copyrightpage": {},
-    "hfutthesisversion": {},
-    "inlinecite{}": {
-      "snippet": "inlinecite{${1:bibid}}"
+    {
+      "name": "class-ctexbook"
     },
-    "lwtm": {},
-    "notationlabel{}": {
-      "snippet": "notationlabel{${1:text}}"
+    {
+      "name": "xeCJK"
     },
-    "note{}": {
-      "snippet": "note{${1:notes}}"
+    {
+      "name": "etoolbox"
     },
-    "signaturepage": {},
-    "square": {
-      "detail": "⬜",
-      "documentation": "WHITE LARGE SQUARE"
+    {
+      "name": "amsmath"
     },
-    "titleBox{}": {
-      "snippet": "titleBox{${1:text}}"
+    {
+      "name": "fontspec"
     },
-    "titleLRExtraWd": {},
-    "titleMultiLineMaxWd": {},
-    "titleSepWd": {},
-    "titleSingleLineMaxWd": {},
-    "titleUnderline": {},
-    "underlineFixlen[]{}": {
-      "snippet": "underlineFixlen[${2:width}]{${1:text}}"
+    {
+      "name": "geometry"
     },
-    "underlineFixlen{}": {
-      "snippet": "underlineFixlen{${1:text}}"
+    {
+      "name": "graphicx"
     },
-    "cosupervisor{}": {
-      "snippet": "cosupervisor{${1:arg1}}"
+    {
+      "name": "fancyhdr"
     },
-    "endate{}": {
-      "snippet": "endate{${1:arg1}}"
+    {
+      "name": "color"
     },
-    "enkeywords{}": {
-      "snippet": "enkeywords{${1:arg1}}"
+    {
+      "name": "titletoc"
     },
-    "keywords{}": {
-      "snippet": "keywords{${1:arg1}}"
+    {
+      "name": "caption"
     },
-    "makestatement": {}
-  },
-  "envs": {
-    "abstract*": {},
-    "acknowledgements": {},
-    "notation": {},
-    "notationlist{}": {
-      "name": "notationlist",
-      "snippet": "{${1:width}}"
+    {
+      "name": "footmisc"
     },
-    "publications": {},
-    "theorem": {},
-    "theorem[]": {
-      "name": "theorem",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "url"
     },
-    "assertion": {},
-    "assertion[]": {
-      "name": "assertion",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "calc"
     },
-    "axiom": {},
-    "axiom[]": {
-      "name": "axiom",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "ulem"
     },
-    "corollary": {},
-    "corollary[]": {
-      "name": "corollary",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "multirow"
     },
-    "lemma": {},
-    "lemma[]": {
-      "name": "lemma",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "enumitem"
     },
-    "proposition": {},
-    "proposition[]": {
-      "name": "proposition",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "bicaption"
     },
-    "assumption": {},
-    "assumption[]": {
-      "name": "assumption",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "natbib"
     },
-    "definition": {},
-    "definition[]": {
-      "name": "definition",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "filehook"
     },
-    "example": {},
-    "example[]": {
-      "name": "example",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "unicode-math"
     },
-    "remark": {},
-    "remark[]": {
-      "name": "remark",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "newtxtext",
+      "if": "font=newtx"
     },
-    "proof[]": {
-      "name": "proof",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "newtxmath",
+      "if": "math-font=newtx"
     },
-    "acknowledgments": {},
-    "enabstract": {}
-  },
-  "options": [
-    "degree=${1|bachelor,master,doctor|}",
-    "degree-type=${1|academic,professional|}",
-    "language=${1|chinese,english|}",
-    "fontset=${1|auto,windows,mac,ubuntu,fandol,none|}",
-    "output=${1|print,electronic|}",
-    "section-style=${1|chinese,arabic|}",
-    "cite-style=${1|super,inline,authoryear|}"
+    {
+      "name": "bm",
+      "if": "math-font=newtx"
+    },
+    {
+      "name": "amssymb",
+      "if": "math-font=cm"
+    },
+    {
+      "name": "bm",
+      "if": "math-font=cm"
+    },
+    {
+      "name": "amssymb",
+      "if": "math-font=none"
+    },
+    {
+      "name": "bm",
+      "if": "math-font=none"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "hfutsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\hfutsetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "blacksquare"
+    },
+    {
+      "name": "bm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "checkmark",
+      "detail": "✓ (\"amsfonts\" command)",
+      "doc": "\\ballotcheck (arevmath), tick, check mark"
+    },
+    {
+      "name": "copyrightpage"
+    },
+    {
+      "name": "hfutthesisversion",
+      "unusual": true
+    },
+    {
+      "name": "inlinecite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "lwtm",
+      "unusual": true
+    },
+    {
+      "name": "notationlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "note",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:notes%text}}"
+      }
+    },
+    {
+      "name": "signaturepage"
+    },
+    {
+      "name": "square"
+    },
+    {
+      "name": "titleBox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "titleLRExtraWd",
+      "unusual": true
+    },
+    {
+      "name": "titleMultiLineMaxWd",
+      "unusual": true
+    },
+    {
+      "name": "titleSepWd",
+      "unusual": true
+    },
+    {
+      "name": "titleSingleLineMaxWd",
+      "unusual": true
+    },
+    {
+      "name": "titleUnderline",
+      "unusual": true
+    },
+    {
+      "name": "underlineFixlen",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:text}}"
+      }
+    },
+    {
+      "name": "underlineFixlen",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "abstract*"
+    },
+    {
+      "name": "acknowledgements"
+    },
+    {
+      "name": "notation"
+    },
+    {
+      "name": "notationlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "publications"
+    },
+    {
+      "name": "theorem"
+    },
+    {
+      "name": "theorem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "assertion"
+    },
+    {
+      "name": "assertion",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "axiom"
+    },
+    {
+      "name": "axiom",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "corollary"
+    },
+    {
+      "name": "corollary",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "lemma"
+    },
+    {
+      "name": "lemma",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "proposition"
+    },
+    {
+      "name": "proposition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "assumption"
+    },
+    {
+      "name": "assumption",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "definition"
+    },
+    {
+      "name": "definition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "example"
+    },
+    {
+      "name": "example",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "remark"
+    },
+    {
+      "name": "remark",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "proof",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/hfutthesis#c": [
+      "degree=${1|bachelor,master,doctor|}",
+      "degree-type=${1|academic,professional|}",
+      "language=${1|chinese,english|}",
+      "fontset=${1|auto,windows,mac,ubuntu,fandol,none|}",
+      "output=${1|print,electronic|}",
+      "section-style=${1|chinese,arabic|}",
+      "cite-style=${1|super,inline,authoryear|}"
+    ],
+    "\\hfutsetup#c": [
       "font=${1|auto,times,termes,stix,xits,libertinus,newcm,lm,newtx,none|}",
       "cjk-font=${1|auto,windows,mac,noto,fandol,none|}",
       "math-font=${1|auto,stix,xits,libertinus,newcm,cm,lm,newtx,none|}",
@@ -223,5 +397,8 @@
       "keywords={${1:关键词 1; 关键词 2; ...}}",
       "keywords*={${1:English keywords}}"
     ]
+  },
+  "args": [
+    "\\documentclass/hfutthesis#c"
   ]
 }

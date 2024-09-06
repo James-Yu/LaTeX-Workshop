@@ -28,9 +28,7 @@ export function convertFilenameEncoding(filePath: string): string | undefined {
             if (fs.existsSync(fpath)) {
                 return fpath
             }
-        } catch (e) {
-
-        }
+        } catch (_) {}
     }
     return
 }

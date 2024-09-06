@@ -1,17 +1,25 @@
 {
-  "includes": {},
-  "macros": {
-    "author[]{}": {
-      "snippet": "author[${2:short name}]{${1:name}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "author",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short name}]{${1:name}}"
+      }
     },
-    "emails": {},
-    "filedate": {},
-    "filename": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [
-    "foot"
+    {
+      "name": "emails",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/amsaddr#c": [
+      "foot"
+    ]
+  },
+  "args": [
+    "\\usepackage/amsaddr#c"
+  ]
 }

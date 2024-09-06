@@ -1,149 +1,359 @@
 {
-  "includes": {
-    "times": [],
-    "graphicx": [],
-    "color": [],
-    "url": [],
-    "amsmath": [],
-    "amsthm": [],
-    "amsfonts": [],
-    "amssymb": [],
-    "pifont": []
-  },
-  "macros": {
-    "doi{}": {
-      "snippet": "doi{${1:DOI}}"
+  "deps": [
+    {
+      "name": "times"
     },
-    "iftrimmarks": {},
-    "trimmarksfalse": {},
-    "trimmarkstrue": {},
-    "papertrimheight": {},
-    "papertrimwidth": {},
-    "journalname": {},
-    "thevolume": {},
-    "theissue": {},
-    "theannual": {},
-    "themonth": {},
-    "copysize": {},
-    "sectionsize": {},
-    "titlesize": {},
-    "scsize": {},
-    "editor{}{}": {
-      "snippet": "editor{${1:name}}{${2:affiliation}}"
+    {
+      "name": "graphicx"
     },
-    "editors{}{}": {
-      "snippet": "editors{${1:names}}{${2:affiliations}}"
+    {
+      "name": "color"
     },
-    "schapter{}": {
-      "snippet": "schapter{${1:title}}"
+    {
+      "name": "url"
     },
-    "intro": {},
-    "copyright": {},
-    "registered": {},
-    "copyrightsf": {},
-    "registeredsf": {},
-    "opargboxed[]": {
-      "snippet": "opargboxed[${1:arg}]"
+    {
+      "name": "amsmath"
     },
-    "regboxed": {},
-    "ifuppercase": {},
-    "uppercasetrue": {},
-    "uppercasefalse": {},
-    "fillerhead{}": {
-      "snippet": "fillerhead{${1:title}}"
+    {
+      "name": "amsthm"
     },
-    "fillerheadmark{}": {
-      "snippet": "fillerheadmark{${1:code}}"
+    {
+      "name": "amsfonts"
     },
-    "opargenumerate[]": {
-      "snippet": "opargenumerate[${1:arg}]"
+    {
+      "name": "amssymb"
     },
-    "regenumerate": {},
-    "psection{}": {
-      "snippet": "psection{${1:title}}"
+    {
+      "name": "pifont"
+    }
+  ],
+  "macros": [
+    {
+      "name": "doi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:DOI}}"
+      }
     },
-    "psection[]{}": {
-      "snippet": "psection[${2:short title}]{${1:title}}"
+    {
+      "name": "papertrimheight",
+      "unusual": true
     },
-    "psection*{}": {
-      "snippet": "psection*{${1:title}}"
+    {
+      "name": "papertrimwidth",
+      "unusual": true
     },
-    "refsection{}": {
-      "snippet": "refsection{${1:title}}"
+    {
+      "name": "journalname",
+      "unusual": true
     },
-    "refsection[]{}": {
-      "snippet": "refsection[${2:short title}]{${1:title}}"
+    {
+      "name": "thevolume",
+      "unusual": true
     },
-    "refsection*{}": {
-      "snippet": "refsection*{${1:title}}"
+    {
+      "name": "theissue",
+      "unusual": true
     },
-    "refsectionmark{}": {
-      "snippet": "refsectionmark{${1:code}}"
+    {
+      "name": "theannual",
+      "unusual": true
     },
-    "boxedhead{}": {
-      "snippet": "boxedhead{${1:title}}"
+    {
+      "name": "themonth",
+      "unusual": true
     },
-    "boxedhead[]{}": {
-      "snippet": "boxedhead[${2:short title}]{${1:title}}"
+    {
+      "name": "copysize",
+      "unusual": true
     },
-    "boxedhead*{}": {
-      "snippet": "boxedhead*{${1:title}}"
+    {
+      "name": "sectionsize",
+      "unusual": true
     },
-    "biogwidth": {},
-    "regbiog": {},
-    "opargbiog[]": {
-      "snippet": "opargbiog[${1:arg}]"
+    {
+      "name": "titlesize",
+      "unusual": true
     },
-    "biogpic{}": {
-      "snippet": "biogpic{${1:graphics code}}"
+    {
+      "name": "scsize",
+      "unusual": true
     },
-    "tempbiogpic{}": {
-      "snippet": "tempbiogpic{${1:arg}}"
+    {
+      "name": "editor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:affiliation%text}}"
+      }
     },
-    "separator": {},
-    "fudgetrimdown": {},
-    "fudgetrimright": {},
-    "tlmark": {},
-    "trmark": {},
-    "brmark": {},
-    "blmark": {},
-    "imagemarks": {},
-    "timestring": {},
-    "dffudge": {},
-    "jotskip": {},
-    "abrule": {},
-    "arule": {},
-    "brule": {},
-    "settildes": {},
-    "threeem": {},
-    "bysame": {},
-    "final": {}
-  },
-  "envs": {
-    "absquotation": {},
-    "filler": {},
-    "parlist": {},
-    "unlist": {},
-    "biog": {},
-    "biog[]": {
+    {
+      "name": "editors",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:names}}{${2:affiliations%text}}"
+      }
+    },
+    {
+      "name": "schapter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "intro",
+      "unusual": true
+    },
+    {
+      "name": "copyright",
+      "unusual": true
+    },
+    {
+      "name": "registered",
+      "unusual": true
+    },
+    {
+      "name": "copyrightsf",
+      "unusual": true
+    },
+    {
+      "name": "registeredsf",
+      "unusual": true
+    },
+    {
+      "name": "fillerhead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "fillerheadmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "psection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "psection",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "psection*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "refsection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "refsection",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "refsection*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "refsectionmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "boxedhead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "boxedhead",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "boxedhead*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "biogwidth",
+      "unusual": true
+    },
+    {
+      "name": "biogpic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "separator",
+      "unusual": true
+    },
+    {
+      "name": "fudgetrimdown",
+      "unusual": true
+    },
+    {
+      "name": "fudgetrimright",
+      "unusual": true
+    },
+    {
+      "name": "tlmark",
+      "unusual": true
+    },
+    {
+      "name": "trmark",
+      "unusual": true
+    },
+    {
+      "name": "brmark",
+      "unusual": true
+    },
+    {
+      "name": "blmark",
+      "unusual": true
+    },
+    {
+      "name": "imagemarks",
+      "unusual": true
+    },
+    {
+      "name": "timestring",
+      "unusual": true
+    },
+    {
+      "name": "dffudge",
+      "unusual": true
+    },
+    {
+      "name": "jotskip",
+      "unusual": true
+    },
+    {
+      "name": "abrule",
+      "unusual": true
+    },
+    {
+      "name": "arule",
+      "unusual": true
+    },
+    {
+      "name": "brule",
+      "unusual": true
+    },
+    {
+      "name": "settildes",
+      "unusual": true
+    },
+    {
+      "name": "threeem",
+      "unusual": true
+    },
+    {
+      "name": "bysame",
+      "unusual": true
+    },
+    {
+      "name": "final",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "absquotation"
+    },
+    {
+      "name": "filler",
+      "unusual": true
+    },
+    {
+      "name": "parlist",
+      "unusual": true
+    },
+    {
+      "name": "unlist",
+      "unusual": true
+    },
+    {
+      "name": "biog"
+    },
+    {
       "name": "biog",
-      "snippet": "[${1:heading}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
     },
-    "affil": {},
-    "acknowledgment": {},
-    "acknowledgment[]": {
+    {
+      "name": "affil"
+    },
+    {
+      "name": "acknowledgment"
+    },
+    {
       "name": "acknowledgment",
-      "snippet": "[${1:heading}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
     },
-    "acknowledge": {},
-    "acknowledge[]": {
-      "name": "acknowledge",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "mtable",
+      "unusual": true
     },
-    "mtable": {},
-    "dbleqnarray": {},
-    "dbleqnarray*": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "dbleqnarray",
+      "unusual": true
+    },
+    {
+      "name": "dbleqnarray*",
+      "unusual": true
+    }
+  ],
+  "keys": {},
+  "args": []
 }

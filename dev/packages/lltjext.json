@@ -1,145 +1,287 @@
 {
-  "includes": {
-    "luatexja": []
-  },
-  "macros": {
-    "parbox<>{}{}": {
-      "snippet": "parbox<${3:dir}>{${1:width}}{${2:text}}"
-    },
-    "parbox<>[]{}{}": {
-      "snippet": "parbox<${4:dir}>[${3:position}]{${1:width}}{${2:text}}"
-    },
-    "parbox<>[][]{}{}": {
-      "snippet": "parbox<${5:dir}>[${3:position}][${4:height}]{${1:width}}{${2:text}}"
-    },
-    "parbox<>[][][]{}{}": {
-      "snippet": "parbox<${6:dir}>[${3:position}][${4:height}][${5:inner-pos}]{${1:width}}{${2:text}}"
-    },
-    "pbox{}": {
-      "snippet": "pbox{${1:contents}}"
-    },
-    "pbox[]{}": {
-      "snippet": "pbox[${2:width}]{${1:contents}}"
-    },
-    "pbox[][]{}": {
-      "snippet": "pbox[${2:width}][${3:pos}]{${1:contents}}"
-    },
-    "pbox<>{}": {
-      "snippet": "pbox<${2:dir}>{${1:contents}}"
-    },
-    "pbox<>[]{}": {
-      "snippet": "pbox<${3:dir}>[${2:width}]{${1:contents}}"
-    },
-    "pbox<>[][]{}": {
-      "snippet": "pbox<${4:dir}>[${2:width}][${3:pos}]{${1:contents}}"
-    },
-    "floatwidth": {},
-    "floatheight": {},
-    "floatruletick": {},
-    "captionfloatsep": {},
-    "captiondir": {},
-    "captionwidth": {},
-    "captionfontsetup": {},
-    "layoutfloat{}": {
-      "snippet": "layoutfloat{${1:content}}"
-    },
-    "layoutfloat[]{}": {
-      "snippet": "layoutfloat[${2:pos}]{${1:content}}"
-    },
-    "layoutfloat(){}": {
-      "snippet": "layoutfloat(${2:x},${3:y}){${1:content}}"
-    },
-    "layoutfloat()[]{}": {
-      "snippet": "layoutfloat(${3:x},${4:y})[${2:pos}]{${1:content}}"
-    },
-    "DeclareLayoutCaption{}<>()[]": {
-      "snippet": "DeclareLayoutCaption{${1:floatname}}<${3:dir}>(${4:width})[${2:pos1pos2}]"
-    },
-    "layoutcaption": {},
-    "pcaption{}": {
-      "snippet": "pcaption{${1:caption}}"
-    },
-    "rensujiskip": {},
-    "rensuji{}": {
-      "snippet": "rensuji{${1:contents}}"
-    },
-    "rensuji[]{}": {
-      "snippet": "rensuji[${2:pos}]{${1:contents}}"
-    },
-    "Rensuji{}": {
-      "snippet": "Rensuji{${1:contents}}"
-    },
-    "Rensuji[]{}": {
-      "snippet": "Rensuji[${2:pos}]{${1:contents}}"
-    },
-    "prensuji{}": {
-      "snippet": "prensuji{${1:contents}}"
-    },
-    "prensuji[]{}": {
-      "snippet": "prensuji[${2:pos}]{${1:contents}}"
-    },
-    "Kanji{}": {
-      "snippet": "Kanji{${1:counter}}"
-    },
-    "kanji": {},
-    "boutenchar": {},
-    "bou{}": {
-      "snippet": "bou{${1:contents}}"
-    },
-    "kasen{}": {
-      "snippet": "kasen{${1:contents}}"
+  "deps": [
+    {
+      "name": "luatexja"
     }
-  },
-  "envs": {
-    "tabular<>{}": {
-      "name": "tabular",
-      "snippet": "<${2:dir}>{${1:cols}}"
+  ],
+  "macros": [
+    {
+      "name": "parbox<dir>",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:text}}"
+      }
     },
-    "tabular<>[]{}": {
-      "name": "tabular",
-      "snippet": "<${3:dir}>[${2:pos}]{${1:cols}}"
+    {
+      "name": "parbox<dir>",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:position}]{${1:width}}{${2:text}}"
+      }
     },
-    "tabular*<>{}[]{}": {
-      "name": "tabular*",
-      "snippet": "<${4:dir}>{${1:width}}[${2:pos}]{${3:cols}}"
+    {
+      "name": "parbox<dir>",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:position}][${4:height}]{${1:width}}{${2:text}}"
+      }
     },
-    "tabular*<>{}{}": {
-      "name": "tabular*",
-      "snippet": "<${3:dir}>{${1:width}}{${2:cols}}"
+    {
+      "name": "parbox<dir>",
+      "arg": {
+        "format": "[][][]{}{}",
+        "snippet": "[${3:position}][${4:height}][${5:inner-pos}]{${1:width}}{${2:text}}"
+      }
     },
-    "array<>{}": {
-      "name": "array",
-      "snippet": "<${2:dir}>{${1:cols}}"
+    {
+      "name": "pbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
     },
-    "array<>[]{}": {
-      "name": "array",
-      "snippet": "<${3:dir}>[${2:pos}]{${1:cols}}"
+    {
+      "name": "pbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:contents%text}}"
+      }
     },
-    "minipage<>{}": {
-      "name": "minipage",
-      "snippet": "<${2:dir}>{${1:width}}"
+    {
+      "name": "pbox",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:width}][${3:pos}]{${1:contents%text}}"
+      }
     },
-    "minipage<>[]{}": {
-      "name": "minipage",
-      "snippet": "<${3:dir}>[${2:position}]{${1:width}}"
+    {
+      "name": "pbox<dir>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
     },
-    "minipage<>[][]{}": {
-      "name": "minipage",
-      "snippet": "<${4:dir}>[${2:position}][${3:height}]{${1:width}}"
+    {
+      "name": "pbox<dir>",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:contents%text}}"
+      }
     },
-    "minipage<>[][][]{}": {
-      "name": "minipage",
-      "snippet": "<${5:dir}>[${2:position}][${3:height}][${4:inner pos}]{${1:width}}"
+    {
+      "name": "pbox<dir>",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:width}][${3:pos}]{${1:contents%text}}"
+      }
     },
-    "picture<>(width,height)": {
-      "name": "picture",
-      "snippet": "<${1:dir}>(${2:width},${3:height})"
+    {
+      "name": "floatwidth",
+      "unusual": true
     },
-    "picture<>(width,height)(xoffset,yoffset)": {
-      "name": "picture",
-      "snippet": "<${1:dir}>(${2:width},${3:height})(${4:xoffset},${5:yoffset})"
+    {
+      "name": "floatheight",
+      "unusual": true
+    },
+    {
+      "name": "floatruletick",
+      "unusual": true
+    },
+    {
+      "name": "captionfloatsep",
+      "unusual": true
+    },
+    {
+      "name": "captiondir",
+      "unusual": true
+    },
+    {
+      "name": "captionwidth",
+      "unusual": true
+    },
+    {
+      "name": "captionfontsetup",
+      "unusual": true
+    },
+    {
+      "name": "layoutfloat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "layoutfloat",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pos}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "layoutfloat",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:content%text}}"
+      }
+    },
+    {
+      "name": "layoutfloat",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "(${3:x},${4:y})[${2:pos}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "DeclareLayoutCaption",
+      "unusual": true,
+      "arg": {
+        "format": "{}<>()[]",
+        "snippet": "{${1:floatname}}<${3:dir}>(${4:width})[${2:pos1pos2}]"
+      }
+    },
+    {
+      "name": "layoutcaption",
+      "unusual": true
+    },
+    {
+      "name": "pcaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:caption%text}}"
+      }
+    },
+    {
+      "name": "rensujiskip"
+    },
+    {
+      "name": "rensuji",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "rensuji",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pos}]{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "Kanji",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "kanji",
+      "unusual": true
+    },
+    {
+      "name": "boutenchar"
+    },
+    {
+      "name": "bou",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "kasen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "tabular",
+      "arg": {
+        "format": "<>{}",
+        "snippet": "<${2:dir}>{${1:cols}}"
+      }
+    },
+    {
+      "name": "tabular",
+      "arg": {
+        "format": "<>[]{}",
+        "snippet": "<${3:dir}>[${2:pos}]{${1:cols}}"
+      }
+    },
+    {
+      "name": "tabular*",
+      "arg": {
+        "format": "<>{}[]{}",
+        "snippet": "<${4:dir}>{${1:width}}[${3:pos}]{${2:cols}}"
+      }
+    },
+    {
+      "name": "tabular*",
+      "arg": {
+        "format": "<>{}{}",
+        "snippet": "<${3:dir}>{${1:width}}{${2:cols}}"
+      }
+    },
+    {
+      "name": "array",
+      "arg": {
+        "format": "<>{}",
+        "snippet": "<${2:dir}>{${1:cols}}"
+      }
+    },
+    {
+      "name": "array",
+      "arg": {
+        "format": "<>[]{}",
+        "snippet": "<${3:dir}>[${2:pos}]{${1:cols}}"
+      }
+    },
+    {
+      "name": "minipage",
+      "arg": {
+        "format": "<>{}",
+        "snippet": "<${2:dir}>{${1:width}}"
+      }
+    },
+    {
+      "name": "minipage",
+      "arg": {
+        "format": "<>[]{}",
+        "snippet": "<${3:dir}>[${2:position}]{${1:width}}"
+      }
+    },
+    {
+      "name": "minipage",
+      "arg": {
+        "format": "<>[][]{}",
+        "snippet": "<${4:dir}>[${2:position}][${3:height}]{${1:width}}"
+      }
+    },
+    {
+      "name": "minipage",
+      "arg": {
+        "format": "<>[][][]{}",
+        "snippet": "<${5:dir}>[${2:position}][${3:height}][${4:inner pos}]{${1:width}}"
+      }
+    },
+    {
+      "name": "picture",
+      "arg": {
+        "format": "<>()",
+        "snippet": "<${1:dir}>(${2:width},${3:height})"
+      }
+    },
+    {
+      "name": "picture",
+      "arg": {
+        "format": "<>()()",
+        "snippet": "<${1:dir}>(${2:width},${3:height})(${4:xoffset},${5:yoffset})"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

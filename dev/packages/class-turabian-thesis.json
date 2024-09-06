@@ -1,38 +1,74 @@
 {
-  "includes": {
-    "class-book": [],
-    "turabian-formatting": []
-  },
-  "macros": {
-    "subtitle{}": {
-      "snippet": "subtitle{${1:subtitle}}"
+  "deps": [
+    {
+      "name": "class-book"
     },
-    "submissioninfo{}": {
-      "snippet": "submissioninfo{${1:info}}"
-    },
-    "institution{}": {
-      "snippet": "institution{${1:institution}}"
-    },
-    "department{}": {
-      "snippet": "department{${1:department}}"
-    },
-    "location{}": {
-      "snippet": "location{${1:location}}"
-    },
-    "theappendix": {},
-    "enoteheading": {}
-  },
-  "envs": {
-    "appendixes": {}
-  },
-  "options": [
-    "noraggedright",
-    "authordate",
-    "noadjustbib",
-    "endnotes",
-    "10pt",
-    "11pt",
-    "12pt"
+    {
+      "name": "turabian-formatting"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subtitle%text}}"
+      }
+    },
+    {
+      "name": "submissioninfo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:info%text}}"
+      }
+    },
+    {
+      "name": "institution",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:institution%text}}"
+      }
+    },
+    {
+      "name": "department",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:department%text}}"
+      }
+    },
+    {
+      "name": "location",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:location%text}}"
+      }
+    },
+    {
+      "name": "theappendix",
+      "unusual": true
+    },
+    {
+      "name": "enoteheading",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "appendixes"
+    }
+  ],
+  "keys": {
+    "\\documentclass/turabian-thesis#c": [
+      "noraggedright",
+      "authordate",
+      "noadjustbib",
+      "endnotes",
+      "10pt",
+      "11pt",
+      "12pt"
+    ]
+  },
+  "args": [
+    "\\documentclass/turabian-thesis#c"
+  ]
 }

@@ -1,47 +1,101 @@
 {
-  "includes": {
-    "luatex": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "nosingledefaults": {},
-    "singlechars{}{}": {
-      "snippet": "singlechars{${1:language}}{${2:letters}}"
+  "deps": [
+    {
+      "name": "luatex"
     },
-    "compoundinitials{}{}": {
-      "snippet": "compoundinitials{${1:language}}{${2:compounds}}"
-    },
-    "enablesplithyphens{}": {
-      "snippet": "enablesplithyphens{${1:language}}"
-    },
-    "disablesplithyphens{}": {
-      "snippet": "disablesplithyphens{${1:language}}"
-    },
-    "singlecharsgetlang{}": {
-      "snippet": "singlecharsgetlang{${1:language}}"
-    },
-    "preventsingledebugon": {},
-    "preventsinglelang{}": {
-      "snippet": "preventsinglelang{${1:language}}"
-    },
-    "preventsinglestatus": {},
-    "preventsingleon": {},
-    "preventsingleoff": {},
-    "preventsingledebugoff": {},
-    "nopredegrees": {},
-    "nosufdegrees": {},
-    "nounits": {},
-    "noinitials": {}
-  },
-  "envs": {},
-  "options": [
-    "noinitials",
-    "nounits",
-    "nopredegrees",
-    "nosufdegrees",
-    "noprocess",
-    "debug",
-    "defaults"
+    {
+      "name": "kvoptions"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "nosingledefaults"
+    },
+    {
+      "name": "singlechars",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:letters}}"
+      }
+    },
+    {
+      "name": "compoundinitials",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:compounds}}"
+      }
+    },
+    {
+      "name": "enablesplithyphens",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "disablesplithyphens",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "singlecharsgetlang",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "preventsingledebugon"
+    },
+    {
+      "name": "preventsinglelang",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "preventsinglestatus",
+      "unusual": true
+    },
+    {
+      "name": "preventsingleon"
+    },
+    {
+      "name": "preventsingleoff"
+    },
+    {
+      "name": "preventsingledebugoff"
+    },
+    {
+      "name": "nopredegrees"
+    },
+    {
+      "name": "nosufdegrees"
+    },
+    {
+      "name": "nounits"
+    },
+    {
+      "name": "noinitials"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/luavlna#c": [
+      "noinitials",
+      "nounits",
+      "nopredegrees",
+      "nosufdegrees",
+      "noprocess",
+      "debug",
+      "defaults"
+    ]
+  },
+  "args": [
+    "\\usepackage/luavlna#c"
+  ]
 }

@@ -1,34 +1,73 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "calc": [],
-    "xcolor": [],
-    "eso-pic": [],
-    "svn": [
-      "id=svn",
-      "id=gitnotsvn"
-    ],
-    "svn-multi": [
-      "id=svn-multi",
-      "id=svn-multi-currfile"
-    ],
-    "currfile": [
-      "id=svn-multi-currfile"
+  "deps": [
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "eso-pic"
+    },
+    {
+      "name": "svn",
+      "if": "id=svn"
+    },
+    {
+      "name": "svn",
+      "if": "id=gitnotsvn"
+    },
+    {
+      "name": "svn-multi",
+      "if": "id=svn-multi"
+    },
+    {
+      "name": "currfile",
+      "if": "id=svn-multi-currfile"
+    },
+    {
+      "name": "svn-multi",
+      "if": "id=svn-multi-currfile"
+    }
+  ],
+  "macros": [
+    {
+      "name": "phfsvnShipoutWatermarkXposRight",
+      "unusual": true
+    },
+    {
+      "name": "phfsvnShipoutWatermarkYposBaseline",
+      "unusual": true
+    },
+    {
+      "name": "phfsvnVersionIdTag",
+      "unusual": true
+    },
+    {
+      "name": "phfsvnVersionIdTag*",
+      "unusual": true
+    },
+    {
+      "name": "phfsvnVersionIdTagInnerFont",
+      "unusual": true
+    },
+    {
+      "name": "phfsvnVersionIdTagOuterFont",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/phfsvnwatermark#c": [
+      "id=${1|svn,gitnotsvn,svn-multi,svn-multi-currfile|}",
+      "watermark",
+      "placement=${1|shipout,manual|}"
     ]
   },
-  "macros": {
-    "phfsvnShipoutWatermarkXposRight": {},
-    "phfsvnShipoutWatermarkYposBaseline": {},
-    "phfsvnVersionIdTag": {},
-    "phfsvnVersionIdTag*": {},
-    "phfsvnVersionIdTagInnerFont": {},
-    "phfsvnVersionIdTagOuterFont": {}
-  },
-  "envs": {},
-  "options": [
-    "id=${1|svn,gitnotsvn,svn-multi,svn-multi-currfile|}",
-    "watermark",
-    "placement=${1|shipout,manual|}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/phfsvnwatermark#c"
+  ]
 }

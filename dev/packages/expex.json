@@ -1,260 +1,546 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "lingset{}": {
-      "snippet": "lingset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
+    }
+  ],
+  "macros": [
+    {
+      "name": "lingset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\lingset,\\ex,\\pex,\\definelabeltype,\\definelingstyle,\\begingl,\\glpreamble,\\gla,\\glb,\\glc,\\glft,\\beginglpanel,\\labels,\\exdisplay,\\Lingset#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "ex": {},
-    "ex<>": {
-      "snippet": "ex<${1:tag}>"
+    {
+      "name": "ex"
     },
-    "ex[]": {
-      "snippet": "ex[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ex<tag>"
     },
-    "ex[]<>": {
-      "snippet": "ex[${1:options}]<${2:tag}>",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ex",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\lingset,\\ex,\\pex,\\definelabeltype,\\definelingstyle,\\begingl,\\glpreamble,\\gla,\\glb,\\glc,\\glft,\\beginglpanel,\\labels,\\exdisplay,\\Lingset#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "xe": {},
-    "excnt": {},
-    "lingnumoffset": {},
-    "lingtextoffset": {},
-    "lingaboveexskip": {},
-    "lingbelowexskip": {},
-    "pex": {},
-    "pex<>": {
-      "snippet": "pex<${1:tag}>"
+    {
+      "name": "ex",
+      "arg": {
+        "format": "[]<>",
+        "snippet": "[${1:options%keyvals}]<${2:tag}>",
+        "keys": [
+          "\\lingset,\\ex,\\pex,\\definelabeltype,\\definelingstyle,\\begingl,\\glpreamble,\\gla,\\glb,\\glc,\\glft,\\beginglpanel,\\labels,\\exdisplay,\\Lingset#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "pex[]": {
-      "snippet": "pex[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xe"
     },
-    "pex[]<>": {
-      "snippet": "pex[${1:options}]<${2:tag}>",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "excnt",
+      "unusual": true
     },
-    "pexcnt": {},
-    "linglabeloffset": {},
-    "linglabelwidth": {},
-    "lingpreambleoffset": {},
-    "linginterpartskip": {},
-    "lingbelowgpreambleskip": {},
-    "a": {
-      "detail": "𝑎",
-      "documentation": "MATHEMATICAL ITALIC SMALL A"
+    {
+      "name": "lingnumoffset",
+      "unusual": true
     },
-    "a<>": {
-      "snippet": "a<${1:label}>"
+    {
+      "name": "lingtextoffset",
+      "unusual": true
     },
-    "a[]": {
-      "snippet": "a[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "lingaboveexskip",
+      "unusual": true
     },
-    "a[]<>": {
-      "snippet": "a[${1:options}]<${2:label}>",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "lingbelowexskip",
+      "unusual": true
     },
-    "definelabeltype{}{}": {
-      "snippet": "definelabeltype{${1:name}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "pex"
     },
-    "actualexno": {},
-    "keepexcntlocal": {},
-    "definelingstyle{}{}": {
-      "snippet": "definelingstyle{${1:name}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "pex<tag>"
     },
-    "lingeveryex": {},
-    "lingEveryex": {},
-    "judge{}": {
-      "snippet": "judge{${1:string}}"
+    {
+      "name": "pex",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\lingset,\\ex,\\pex,\\definelabeltype,\\definelingstyle,\\begingl,\\glpreamble,\\gla,\\glb,\\glc,\\glft,\\beginglpanel,\\labels,\\exdisplay,\\Lingset#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "judge*": {},
-    "ljudge{}": {
-      "snippet": "ljudge{${1:string}}"
+    {
+      "name": "pex",
+      "arg": {
+        "format": "[]<>",
+        "snippet": "[${1:options%keyvals}]<${2:tag}>",
+        "keys": [
+          "\\lingset,\\ex,\\pex,\\definelabeltype,\\definelingstyle,\\begingl,\\glpreamble,\\gla,\\glb,\\glc,\\glft,\\beginglpanel,\\labels,\\exdisplay,\\Lingset#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "ljudge*": {},
-    "begingl": {},
-    "begingl[]": {
-      "snippet": "begingl[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pexcnt",
+      "unusual": true
     },
-    "glpreamble": {},
-    "glpreamble[]": {
-      "snippet": "glpreamble[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "linglabeloffset",
+      "unusual": true
     },
-    "gla": {
+    {
+      "name": "linglabelwidth",
+      "unusual": true
+    },
+    {
+      "name": "lingpreambleoffset",
+      "unusual": true
+    },
+    {
+      "name": "linginterpartskip",
+      "unusual": true
+    },
+    {
+      "name": "lingbelowgpreambleskip",
+      "unusual": true
+    },
+    {
+      "name": "a"
+    },
+    {
+      "name": "a<label>"
+    },
+    {
+      "name": "a",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\a"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "a",
+      "arg": {
+        "format": "[]<>",
+        "snippet": "[${1:options%keyvals}]<${2:label}>",
+        "keys": [
+          "\\a"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "definelabeltype",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\lingset,\\ex,\\pex,\\definelabeltype,\\definelingstyle,\\begingl,\\glpreamble,\\gla,\\glb,\\glc,\\glft,\\beginglpanel,\\labels,\\exdisplay,\\Lingset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "actualexno"
+    },
+    {
+      "name": "keepexcntlocal"
+    },
+    {
+      "name": "definelingstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\lingset,\\ex,\\pex,\\definelabeltype,\\definelingstyle,\\begingl,\\glpreamble,\\gla,\\glb,\\glc,\\glft,\\beginglpanel,\\labels,\\exdisplay,\\Lingset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "lingeveryex",
+      "unusual": true
+    },
+    {
+      "name": "lingEveryex",
+      "unusual": true
+    },
+    {
+      "name": "judge",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
+    },
+    {
+      "name": "judge*"
+    },
+    {
+      "name": "ljudge",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
+    },
+    {
+      "name": "ljudge*"
+    },
+    {
+      "name": "begingl"
+    },
+    {
+      "name": "begingl",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "glpreamble"
+    },
+    {
+      "name": "glpreamble",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\lingset,\\ex,\\pex,\\definelabeltype,\\definelingstyle,\\begingl,\\glpreamble,\\gla,\\glb,\\glc,\\glft,\\beginglpanel,\\labels,\\exdisplay,\\Lingset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gla",
       "detail": "⪥",
-      "documentation": "GREATER-THAN BESIDE LESS-THAN"
+      "doc": "Greater-than beside less-than"
     },
-    "gla[]": {
-      "snippet": "gla[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "gla",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\lingset,\\ex,\\pex,\\definelabeltype,\\definelingstyle,\\begingl,\\glpreamble,\\gla,\\glb,\\glc,\\glft,\\beginglpanel,\\labels,\\exdisplay,\\Lingset#c"
+        ],
+        "keyPos": 0
+      },
+      "detail": "⪥",
+      "doc": "Greater-than beside less-than"
     },
-    "glb": {},
-    "glb[]": {
-      "snippet": "glb[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "glb"
     },
-    "glc": {},
-    "glc[]": {
-      "snippet": "glc[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "glb",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\lingset,\\ex,\\pex,\\definelabeltype,\\definelingstyle,\\begingl,\\glpreamble,\\gla,\\glb,\\glc,\\glft,\\beginglpanel,\\labels,\\exdisplay,\\Lingset#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "glft": {},
-    "glft[]": {
-      "snippet": "glft[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "glc"
     },
-    "endgl": {},
-    "lingaboveglbskip": {},
-    "lingaboveglcskip": {},
-    "lingbelowglpreambleskip": {},
-    "lingaboveglftskip": {},
-    "lingextraglskip": {},
-    "lingglspace": {},
-    "nogloss{}": {
-      "snippet": "nogloss{${1:code}}"
+    {
+      "name": "glc",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\lingset,\\ex,\\pex,\\definelabeltype,\\definelingstyle,\\begingl,\\glpreamble,\\gla,\\glb,\\glc,\\glft,\\beginglpanel,\\labels,\\exdisplay,\\Lingset#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "endpreamble": {},
-    "trailingcitation{}": {
-      "snippet": "trailingcitation{${1:text}}"
+    {
+      "name": "glft"
     },
-    "rightcomment{}": {
-      "snippet": "rightcomment{${1:text}}"
+    {
+      "name": "glft",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\lingset,\\ex,\\pex,\\definelabeltype,\\definelingstyle,\\begingl,\\glpreamble,\\gla,\\glb,\\glc,\\glft,\\beginglpanel,\\labels,\\exdisplay,\\Lingset#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "defineglwlevels{}": {
-      "snippet": "defineglwlevels{${1:name1,${2:name2},...}}"
+    {
+      "name": "endgl"
     },
-    "beginglpanel": {},
-    "beginglpanel[]": {
-      "snippet": "beginglpanel[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "lingaboveglbskip",
+      "unusual": true
     },
-    "endpanel": {},
-    "gluf": {},
-    "lastx": {},
-    "nextx": {},
-    "blastx": {},
-    "anextx": {},
-    "bblastx": {},
-    "deftag{}{}": {
-      "snippet": "deftag{${1:reference}}{${2:name}}"
+    {
+      "name": "lingaboveglcskip",
+      "unusual": true
     },
-    "deftagex{}": {
-      "snippet": "deftagex{${1:name}}"
+    {
+      "name": "lingbelowglpreambleskip",
+      "unusual": true
     },
-    "deftaglabel{}": {
-      "snippet": "deftaglabel{${1:name}}"
+    {
+      "name": "lingaboveglftskip",
+      "unusual": true
     },
-    "deftagpage{}": {
-      "snippet": "deftagpage{${1:name}}"
+    {
+      "name": "lingextraglskip",
+      "unusual": true
     },
-    "getref{}": {
-      "snippet": "getref{${1:tag.label}}"
+    {
+      "name": "lingglspace",
+      "unusual": true
     },
-    "getfullref{}": {
-      "snippet": "getfullref{${1:tag.label}}"
+    {
+      "name": "nogloss",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
     },
-    "refproofing": {},
-    "gathertags": {},
-    "tagfilesuffix{}": {
-      "snippet": "tagfilesuffix{${1:suffix}}"
+    {
+      "name": "endpreamble"
     },
-    "lastlabel": {},
-    "hwit{}": {
-      "snippet": "hwit{${1:text}}"
+    {
+      "name": "trailingcitation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "labels": {},
-    "labels[]": {
-      "snippet": "labels[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "rightcomment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "tl": {},
-    "nl": {},
-    "tspace": {},
-    "tspace[]": {
-      "snippet": "tspace[${1:key}]"
+    {
+      "name": "defineglwlevels",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name1,name2,...}}"
+      }
     },
-    "crs": {},
-    "exdisplay": {},
-    "exdisplay[]": {
-      "snippet": "exdisplay[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "beginglpanel"
     },
-    "noexno": {},
-    "exnoprint": {},
-    "crnb": {},
-    "Lingset{}": {
-      "snippet": "Lingset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "beginglpanel",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "exbreak": {},
-    "exbreak[]": {
-      "snippet": "exbreak[${1:dimen}]"
+    {
+      "name": "endpanel"
     },
-    "ExPexMessage": {},
-    "XKVforn{}": {
-      "snippet": "XKVforn{${1:arg}}"
+    {
+      "name": "gluf",
+      "unusual": true
     },
-    "aboveskiplist": {},
-    "alist": {},
-    "blist": {},
-    "cascadeshape": {},
-    "clist": {},
-    "colorlist": {},
-    "everylist": {},
-    "foop": {},
-    "glhangcarry": {},
-    "glstrut": {},
-    "glwordalign": {},
-    "itemtypelist": {},
-    "itlist": {},
-    "lingaboveglaskip": {},
-    "mainlist": {},
-    "next": {},
-    "pageno": {},
-    "printlbrack": {},
-    "printrbrack": {},
-    "pstglcolors": {},
-    "resetatcatcode": {},
-    "resumepexcnt": {},
-    "rightcite": {},
-    "stepexcnt": {},
-    "strutlist": {},
-    "tspacea": {},
-    "tspaceb": {},
-    "tspacec": {},
-    "worklist": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "lastx"
+    },
+    {
+      "name": "nextx"
+    },
+    {
+      "name": "blastx"
+    },
+    {
+      "name": "anextx"
+    },
+    {
+      "name": "bblastx"
+    },
+    {
+      "name": "deftag",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:reference%text}}{${2:name}}"
+      }
+    },
+    {
+      "name": "deftagex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "deftaglabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "deftagpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "getref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag}}"
+      }
+    },
+    {
+      "name": "getref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag.label}}"
+      }
+    },
+    {
+      "name": "getfullref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag}}"
+      }
+    },
+    {
+      "name": "getfullref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag.label}}"
+      }
+    },
+    {
+      "name": "refproofing"
+    },
+    {
+      "name": "gathertags"
+    },
+    {
+      "name": "tagfilesuffix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:suffix}}"
+      }
+    },
+    {
+      "name": "lastlabel"
+    },
+    {
+      "name": "hwit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "labels"
+    },
+    {
+      "name": "labels",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\lingset,\\ex,\\pex,\\definelabeltype,\\definelingstyle,\\begingl,\\glpreamble,\\gla,\\glb,\\glc,\\glft,\\beginglpanel,\\labels,\\exdisplay,\\Lingset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tl"
+    },
+    {
+      "name": "nl"
+    },
+    {
+      "name": "tspace"
+    },
+    {
+      "name": "tspace",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "crs"
+    },
+    {
+      "name": "exdisplay"
+    },
+    {
+      "name": "exdisplay",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\lingset,\\ex,\\pex,\\definelabeltype,\\definelingstyle,\\begingl,\\glpreamble,\\gla,\\glb,\\glc,\\glft,\\beginglpanel,\\labels,\\exdisplay,\\Lingset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "noexno"
+    },
+    {
+      "name": "exnoprint"
+    },
+    {
+      "name": "crnb"
+    },
+    {
+      "name": "Lingset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\lingset,\\ex,\\pex,\\definelabeltype,\\definelingstyle,\\begingl,\\glpreamble,\\gla,\\glb,\\glc,\\glft,\\beginglpanel,\\labels,\\exdisplay,\\Lingset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "exbreak"
+    },
+    {
+      "name": "exbreak",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:dimen%l}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\a": [
+      "label=${1:text}",
+      "tag=${1:tag}"
+    ],
+    "\\lingset,\\ex,\\pex,\\definelabeltype,\\definelingstyle,\\begingl,\\glpreamble,\\gla,\\glb,\\glc,\\glft,\\beginglpanel,\\labels,\\exdisplay,\\Lingset#c": [
       "numoffset=",
       "textoffset=",
       "aboveexskip=",
@@ -324,10 +610,7 @@
       "exbreakfil=",
       "exbreakpenalty=${1:integer}",
       "splitpartspenalty=${1:integer}"
-    ],
-    [
-      "label=${1:text}",
-      "tag=${1:tag}"
     ]
-  ]
+  },
+  "args": []
 }

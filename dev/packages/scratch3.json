@@ -1,183 +1,407 @@
 {
-  "includes": {
-    "simplekv": [],
-    "tikz": [],
-    "tikzlibraryshapes.misc": [],
-    "tikzlibrarybending": []
-  },
-  "macros": {
-    "blockmove{}": {
-      "snippet": "blockmove{${1:text}}"
+  "deps": [
+    {
+      "name": "simplekv"
     },
-    "blocklook{}": {
-      "snippet": "blocklook{${1:text}}"
+    {
+      "name": "tikz"
     },
-    "blocksound{}": {
-      "snippet": "blocksound{${1:text}}"
+    {
+      "name": "tikzlibraryshapes.misc"
     },
-    "blockpen{}": {
-      "snippet": "blockpen{${1:text}}"
-    },
-    "blockvariable{}": {
-      "snippet": "blockvariable{${1:text}}"
-    },
-    "blocklist{}": {
-      "snippet": "blocklist{${1:text}}"
-    },
-    "blockevent{}": {
-      "snippet": "blockevent{${1:text}}"
-    },
-    "blockcontrol{}": {
-      "snippet": "blockcontrol{${1:text}}"
-    },
-    "blocksensing{}": {
-      "snippet": "blocksensing{${1:text}}"
-    },
-    "ovalnum{}": {
-      "snippet": "ovalnum{${1:number}}"
-    },
-    "ovalmove{}": {
-      "snippet": "ovalmove{${1:text}}"
-    },
-    "ovalmove*{}": {
-      "snippet": "ovalmove*{${1:text}}"
-    },
-    "ovallook{}": {
-      "snippet": "ovallook{${1:text}}"
-    },
-    "ovallook*{}": {
-      "snippet": "ovallook*{${1:text}}"
-    },
-    "ovalsound{}": {
-      "snippet": "ovalsound{${1:text}}"
-    },
-    "ovalsound*{}": {
-      "snippet": "ovalsound*{${1:text}}"
-    },
-    "ovalpen{}": {
-      "snippet": "ovalpen{${1:text}}"
-    },
-    "ovalpen*{}": {
-      "snippet": "ovalpen*{${1:text}}"
-    },
-    "ovalvariable{}": {
-      "snippet": "ovalvariable{${1:text}}"
-    },
-    "ovalvariable*{}": {
-      "snippet": "ovalvariable*{${1:text}}"
-    },
-    "ovallist{}": {
-      "snippet": "ovallist{${1:text}}"
-    },
-    "ovallist*{}": {
-      "snippet": "ovallist*{${1:text}}"
-    },
-    "ovalcontrol{}": {
-      "snippet": "ovalcontrol{${1:text}}"
-    },
-    "ovalcontrol*{}": {
-      "snippet": "ovalcontrol*{${1:text}}"
-    },
-    "ovalsensing{}": {
-      "snippet": "ovalsensing{${1:text}}"
-    },
-    "ovalsensing*{}": {
-      "snippet": "ovalsensing*{${1:text}}"
-    },
-    "ovaloperator{}": {
-      "snippet": "ovaloperator{${1:text}}"
-    },
-    "ovaloperator*{}": {
-      "snippet": "ovaloperator*{${1:text}}"
-    },
-    "turnleft": {},
-    "turnright": {},
-    "pencolor{}": {
-      "snippet": "pencolor{${1:color}}"
-    },
-    "blockinit": {},
-    "blockinitclone": {},
-    "greenflag": {},
-    "selectmenu{}": {
-      "snippet": "selectmenu{${1:text}}"
-    },
-    "blockif{}{}": {
-      "snippet": "blockif{${1:test}}{${2:true-instructions}}"
-    },
-    "blockifelse{}{}{}": {
-      "snippet": "blockifelse{${1:test}}{${2:true-instructions}}{${3:false-instructions}}"
-    },
-    "booloperator{}": {
-      "snippet": "booloperator{${1:text}}"
-    },
-    "boolsensing{}": {
-      "snippet": "boolsensing{${1:text}}"
-    },
-    "boollist{}": {
-      "snippet": "boollist{${1:text}}"
-    },
-    "boolempty": {},
-    "boolempty[]": {
-      "snippet": "boolempty[${1:dimen}]"
-    },
-    "blockstop{}": {
-      "snippet": "blockstop{${1:text}}"
-    },
-    "blockrepeat{}{}": {
-      "snippet": "blockrepeat{${1:text}}{${2:instructions}}"
-    },
-    "blockinfloop{}{}": {
-      "snippet": "blockinfloop{${1:text}}{${2:instructions}}"
-    },
-    "initmoreblocks{}": {
-      "snippet": "initmoreblocks{${1:text}}"
-    },
-    "namemoreblocks{}": {
-      "snippet": "namemoreblocks{${1:text}}"
-    },
-    "ovalmoreblocks{}": {
-      "snippet": "ovalmoreblocks{${1:text}}"
-    },
-    "blockmoreblocks{}": {
-      "snippet": "blockmoreblocks{${1:text}}"
-    },
-    "boolmoreblocks{}": {
-      "snippet": "boolmoreblocks{${1:text}}"
-    },
-    "blockspace": {},
-    "blockspace[]": {
-      "snippet": "blockspace[${1:coeff}]"
-    },
-    "setscratch{}": {
-      "snippet": "setscratch{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "setdefaultscratch{}": {
-      "snippet": "setdefaultscratch{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "resetscratch": {},
-    "numblock{}": {
-      "snippet": "numblock{${1:text}}"
-    },
-    "scrdate": {},
-    "scrname": {},
-    "scrver": {}
-  },
-  "envs": {
-    "scratch": {},
-    "scratch[]": {
-      "name": "scratch",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarybending"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "blockmove",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "blocklook",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "blocksound",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "blockpen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "blockvariable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "blocklist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "blockevent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "blockcontrol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "blocksensing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovalnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "ovalmove",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovalmove*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovallook",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovallook*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovalsound",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovalsound*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovalpen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovalpen*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovalvariable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovalvariable*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovallist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovallist*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovalcontrol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovalcontrol*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovalsensing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovalsensing*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovaloperator",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovaloperator*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "turnleft"
+    },
+    {
+      "name": "turnright"
+    },
+    {
+      "name": "pencolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "blockinit"
+    },
+    {
+      "name": "blockinitclone"
+    },
+    {
+      "name": "greenflag"
+    },
+    {
+      "name": "selectmenu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "blockif",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:test%text}}{${2:true-instructions%text}}"
+      }
+    },
+    {
+      "name": "blockifelse",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:test%text}}{${2:true-instructions%text}}{${3:false-instructions%text}}"
+      }
+    },
+    {
+      "name": "booloperator",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "boolsensing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "boollist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "boolempty"
+    },
+    {
+      "name": "boolempty",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:dimen%l}]"
+      }
+    },
+    {
+      "name": "blockstop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "blockrepeat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:instructions}}"
+      }
+    },
+    {
+      "name": "blockinfloop",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:instructions}}"
+      }
+    },
+    {
+      "name": "initmoreblocks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "namemoreblocks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ovalmoreblocks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "blockmoreblocks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "boolmoreblocks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "blockspace"
+    },
+    {
+      "name": "blockspace",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:coeff}]"
+      }
+    },
+    {
+      "name": "setscratch",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{scratch},\\setscratch,\\setdefaultscratch"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setdefaultscratch",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{scratch},\\setscratch,\\setdefaultscratch"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "resetscratch"
+    },
+    {
+      "name": "numblock",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "scratch"
+    },
+    {
+      "name": "scratch",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{scratch},\\setscratch,\\setdefaultscratch"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{scratch},\\setscratch,\\setdefaultscratch": [
       "else word=${1:characters}",
       "pre text=${1:code}",
       "x sep=",
@@ -203,5 +427,6 @@
       "num start=${1:integer}",
       "baseline=${1:l, c, or <integer>}"
     ]
-  ]
+  },
+  "args": []
 }

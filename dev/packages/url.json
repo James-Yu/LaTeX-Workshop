@@ -1,41 +1,114 @@
 {
-  "includes": {},
-  "macros": {
-    "url{}": {
-      "snippet": "url{${1:URL}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "url",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
     },
-    "path{}": {
-      "snippet": "path{${1:URL}}"
+    {
+      "name": "path",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
     },
-    "urldef{}": {
-      "snippet": "urldef{${1:cmd}}"
+    {
+      "name": "urldef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
     },
-    "DeclareUrlCommand{}{}": {
-      "snippet": "DeclareUrlCommand{${1:cmd}}{${2:definition}}"
+    {
+      "name": "DeclareUrlCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "urlstyle{}": {
-      "snippet": "urlstyle{${1:style}}"
+    {
+      "name": "urlstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style%keyvals}}",
+        "keys": [
+          "\\urlstyle#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "UrlBreaks": {},
-    "UrlBigBreaks": {},
-    "UrlNoBreaks": {},
-    "UrlOrds": {},
-    "UrlSpecials": {},
-    "UrlTildeSpecial": {},
-    "UrlFont": {},
-    "UrlLeft": {},
-    "UrlRight": {},
-    "Urlmuskip": {},
-    "UrlBreakPenalty": {},
-    "UrlBigBreakPenalty": {}
-  },
-  "envs": {},
-  "options": [
-    "obeyspaces",
-    "hyphens",
-    "spaces",
-    "lowtilde",
-    "allowmove"
+    {
+      "name": "UrlBreaks",
+      "unusual": true
+    },
+    {
+      "name": "UrlBigBreaks",
+      "unusual": true
+    },
+    {
+      "name": "UrlNoBreaks",
+      "unusual": true
+    },
+    {
+      "name": "UrlOrds",
+      "unusual": true
+    },
+    {
+      "name": "UrlSpecials",
+      "unusual": true
+    },
+    {
+      "name": "UrlTildeSpecial",
+      "unusual": true
+    },
+    {
+      "name": "UrlFont",
+      "unusual": true
+    },
+    {
+      "name": "UrlLeft",
+      "unusual": true
+    },
+    {
+      "name": "UrlRight",
+      "unusual": true
+    },
+    {
+      "name": "Urlmuskip",
+      "unusual": true
+    },
+    {
+      "name": "UrlBreakPenalty",
+      "unusual": true
+    },
+    {
+      "name": "UrlBigBreakPenalty",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/url#c": [
+      "obeyspaces",
+      "hyphens",
+      "spaces",
+      "lowtilde",
+      "allowmove"
+    ],
+    "\\urlstyle#c": [
+      "tt",
+      "rm",
+      "sf",
+      "same"
+    ]
+  },
+  "args": [
+    "\\usepackage/url#c"
+  ]
 }

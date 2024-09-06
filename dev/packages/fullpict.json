@@ -1,136 +1,284 @@
 {
-  "includes": {},
-  "macros": {
-    "xaxis": {},
-    "yaxis": {},
-    "axes": {},
-    "xticks{}": {
-      "snippet": "xticks{${1:gap}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "xaxis"
     },
-    "xticks{}[]": {
-      "snippet": "xticks{${1:gap}}[${2:length}]"
+    {
+      "name": "yaxis"
     },
-    "yticks{}": {
-      "snippet": "yticks{${1:gap}}"
+    {
+      "name": "axes"
     },
-    "yticks{}[]": {
-      "snippet": "yticks{${1:gap}}[${2:length}]"
+    {
+      "name": "xticks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gap}}"
+      }
     },
-    "ticks{}": {
-      "snippet": "ticks{${1:gap}}"
+    {
+      "name": "xticks",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:gap}}[${2:length}]"
+      }
     },
-    "ticks{}[]": {
-      "snippet": "ticks{${1:gap}}[${2:length}]"
+    {
+      "name": "yticks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gap}}"
+      }
     },
-    "xnums{}": {
-      "snippet": "xnums{${1:gap}}"
+    {
+      "name": "yticks",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:gap}}[${2:length}]"
+      }
     },
-    "xnums{}[]": {
-      "snippet": "xnums{${1:gap}}[${2:dist}]"
+    {
+      "name": "ticks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gap}}"
+      }
     },
-    "ynums{}": {
-      "snippet": "ynums{${1:gap}}"
+    {
+      "name": "ticks",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:gap}}[${2:length}]"
+      }
     },
-    "ynums{}[]": {
-      "snippet": "ynums{${1:gap}}[${2:dist}]"
+    {
+      "name": "xnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gap}}"
+      }
     },
-    "nums{}": {
-      "snippet": "nums{${1:gap}}"
+    {
+      "name": "xnums",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:gap}}[${2:dist}]"
+      }
     },
-    "nums{}[]": {
-      "snippet": "nums{${1:gap}}[${2:dist}]"
+    {
+      "name": "ynums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gap}}"
+      }
     },
-    "origin{}": {
-      "snippet": "origin{${1:size}}"
+    {
+      "name": "ynums",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:gap}}[${2:dist}]"
+      }
     },
-    "cput(){}": {
-      "snippet": "cput(${2:x},${3:y}){${1:text}}"
+    {
+      "name": "nums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gap}}"
+      }
     },
-    "nput(){}": {
-      "snippet": "nput(${2:x},${3:y}){${1:text}}"
+    {
+      "name": "nums",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:gap}}[${2:dist}]"
+      }
     },
-    "sput(){}": {
-      "snippet": "sput(${2:x},${3:y}){${1:text}}"
+    {
+      "name": "origin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size}}"
+      }
     },
-    "eput(){}": {
-      "snippet": "eput(${2:x},${3:y}){${1:text}}"
+    {
+      "name": "cput",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
+      }
     },
-    "wput(){}": {
-      "snippet": "wput(${2:x},${3:y}){${1:text}}"
+    {
+      "name": "nput",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
+      }
     },
-    "neput(){}": {
-      "snippet": "neput(${2:x},${3:y}){${1:text}}"
+    {
+      "name": "sput",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
+      }
     },
-    "seput(){}": {
-      "snippet": "seput(${2:x},${3:y}){${1:text}}"
+    {
+      "name": "eput",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
+      }
     },
-    "nwput(){}": {
-      "snippet": "nwput(${2:x},${3:y}){${1:text}}"
+    {
+      "name": "wput",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
+      }
     },
-    "swput(){}": {
-      "snippet": "swput(${2:x},${3:y}){${1:text}}"
+    {
+      "name": "neput",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
+      }
     },
-    "angleput{}(){}": {
-      "snippet": "angleput{${1:angle}}(${3:x},${4:y}){${2:text}}"
+    {
+      "name": "seput",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
+      }
     },
-    "angleput{}[](){}": {
-      "snippet": "angleput{${1:angle}}[${2:radius}](${4:x},${5:y}){${3:text}}"
+    {
+      "name": "nwput",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
+      }
     },
-    "Vector(){}": {
-      "snippet": "Vector(${2:x},${3:y}){${1:length}}"
+    {
+      "name": "swput",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
+      }
     },
-    "lcm": {}
-  },
-  "envs": {
-    "fullpicture(width,height)": {
-      "name": "fullpicture",
-      "snippet": "(${1:width},${2:height})"
+    {
+      "name": "angleput",
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "{${1:angle}}(${3:x},${4:y}){${2:text}}"
+      }
     },
-    "fullpicture(width,height)(xoffset,yoffset)": {
-      "name": "fullpicture",
-      "snippet": "(${1:width},${2:height})(${3:xoffset},${4:yoffset})"
+    {
+      "name": "angleput",
+      "arg": {
+        "format": "{}[](){}",
+        "snippet": "{${1:angle}}[${3:radius}](${4:x},${5:y}){${2:text}}"
+      }
     },
-    "halfpicture(width,height)": {
-      "name": "halfpicture",
-      "snippet": "(${1:width},${2:height})"
+    {
+      "name": "Vector",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:length}}"
+      }
     },
-    "halfpicture(width,height)(xoffset,yoffset)": {
-      "name": "halfpicture",
-      "snippet": "(${1:width},${2:height})(${3:xoffset},${4:yoffset})"
-    },
-    "scalepicture{}(width,height)": {
-      "name": "scalepicture",
-      "snippet": "{${1:percent}}(${2:width},${3:height})"
-    },
-    "scalepicture{}(width,height)(xoffset,yoffset)": {
-      "name": "scalepicture",
-      "snippet": "{${1:percent}}(${2:width},${3:height})(${4:xoffset},${5:yoffset})"
-    },
-    "Scalepicture{}(width,height)": {
-      "name": "Scalepicture",
-      "snippet": "{${1:percent}}(${2:width},${3:height})"
-    },
-    "Scalepicture{}(width,height)(xoffset,yoffset)": {
-      "name": "Scalepicture",
-      "snippet": "{${1:percent}}(${2:width},${3:height})(${4:xoffset},${5:yoffset})"
-    },
-    "scaledpicture{}(width,height)": {
-      "name": "scaledpicture",
-      "snippet": "{${1:percent}}(${2:width},${3:height})"
-    },
-    "scaledpicture{}(width,height)(xoffset,yoffset)": {
-      "name": "scaledpicture",
-      "snippet": "{${1:percent}}(${2:width},${3:height})(${4:xoffset},${5:yoffset})"
-    },
-    "Scaledpicture{}(width,height)": {
-      "name": "Scaledpicture",
-      "snippet": "{${1:percent}}(${2:width},${3:height})"
-    },
-    "Scaledpicture{}(width,height)(xoffset,yoffset)": {
-      "name": "Scaledpicture",
-      "snippet": "{${1:percent}}(${2:width},${3:height})(${4:xoffset},${5:yoffset})"
+    {
+      "name": "lcm"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "fullpicture",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:width},${2:height})"
+      }
+    },
+    {
+      "name": "fullpicture",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:width},${2:height})(${3:xoffset},${4:yoffset})"
+      }
+    },
+    {
+      "name": "halfpicture",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:width},${2:height})"
+      }
+    },
+    {
+      "name": "halfpicture",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:width},${2:height})(${3:xoffset},${4:yoffset})"
+      }
+    },
+    {
+      "name": "scalepicture",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:percent}}(${2:width},${3:height})"
+      }
+    },
+    {
+      "name": "scalepicture",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "{${1:percent}}(${2:width},${3:height})(${4:xoffset},${5:yoffset})"
+      }
+    },
+    {
+      "name": "Scalepicture",
+      "unusual": true,
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:percent}}(${2:width},${3:height})"
+      }
+    },
+    {
+      "name": "Scalepicture",
+      "unusual": true,
+      "arg": {
+        "format": "{}()()",
+        "snippet": "{${1:percent}}(${2:width},${3:height})(${4:xoffset},${5:yoffset})"
+      }
+    },
+    {
+      "name": "scaledpicture",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:percent}}(${2:width},${3:height})"
+      }
+    },
+    {
+      "name": "scaledpicture",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "{${1:percent}}(${2:width},${3:height})(${4:xoffset},${5:yoffset})"
+      }
+    },
+    {
+      "name": "Scaledpicture",
+      "unusual": true,
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:percent}}(${2:width},${3:height})"
+      }
+    },
+    {
+      "name": "Scaledpicture",
+      "unusual": true,
+      "arg": {
+        "format": "{}()()",
+        "snippet": "{${1:percent}}(${2:width},${3:height})(${4:xoffset},${5:yoffset})"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

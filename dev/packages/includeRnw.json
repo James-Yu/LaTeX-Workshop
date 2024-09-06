@@ -1,60 +1,125 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "pdftexcmds": []
-  },
-  "macros": {
-    "includeRnw{}": {
-      "snippet": "includeRnw{${1:file}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "includeRnw[]{}": {
-      "snippet": "includeRnw[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "rnwInputDirectory{}": {
-      "snippet": "rnwInputDirectory{${1:directory}}"
-    },
-    "rnwKnittedSuffix{}": {
-      "snippet": "rnwKnittedSuffix{${1:text}}"
-    },
-    "rnwKnitlogFile{}": {
-      "snippet": "rnwKnitlogFile{${1:file}}"
-    },
-    "rnwKnitheadName{}": {
-      "snippet": "rnwKnitheadName{${1:file}}"
-    },
-    "incl{}": {
-      "snippet": "incl{${1:file}}"
-    },
-    "includeRnwVer": {},
-    "bs": {},
-    "doublebs": {},
-    "fourbs": {},
-    "givenopt": {},
-    "inspw{}": {
-      "snippet": "inspw{${1:arg}}"
-    },
-    "insp{}": {
-      "snippet": "insp{${1:arg}}"
-    },
-    "knitOutfile": {},
-    "purgeOutDir": {}
-  },
-  "envs": {},
-  "options": [
-    "halt",
-    "build",
-    "new",
-    "knithead",
-    "noknithead",
-    "texenv",
-    "classicenv"
+    {
+      "name": "pdftexcmds"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "includeRnw",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "includeRnw",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\includeRnw"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rnwInputDirectory",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:directory%URL}}"
+      }
+    },
+    {
+      "name": "rnwKnittedSuffix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "rnwKnitlogFile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "rnwKnitheadName",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "incl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "bs",
+      "unusual": true
+    },
+    {
+      "name": "doublebs",
+      "unusual": true
+    },
+    {
+      "name": "fourbs",
+      "unusual": true
+    },
+    {
+      "name": "givenopt",
+      "unusual": true
+    },
+    {
+      "name": "inspw",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "insp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "knitOutfile",
+      "unusual": true
+    },
+    {
+      "name": "purgeOutDir",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/includeRnw#c": [
+      "halt",
+      "build",
+      "new",
+      "knithead",
+      "noknithead",
+      "texenv",
+      "classicenv"
+    ],
+    "\\includeRnw": [
       "h",
       "f"
     ]
+  },
+  "args": [
+    "\\usepackage/includeRnw#c"
   ]
 }

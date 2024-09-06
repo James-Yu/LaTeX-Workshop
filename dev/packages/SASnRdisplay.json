@@ -1,194 +1,370 @@
 {
-  "includes": {
-    "listings": [],
-    "xkeyval": [],
-    "xcolor": [],
-    "etoolbox": [],
-    "caption": [],
-    "needspace": []
-  },
-  "macros": {
-    "inputSAScode{}": {
-      "snippet": "inputSAScode{${1:file}}"
+  "deps": [
+    {
+      "name": "listings"
     },
-    "inputSAScode[]{}": {
-      "snippet": "inputSAScode[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xkeyval"
     },
-    "inputSAScode*{}": {
-      "snippet": "inputSAScode*{${1:file}}"
+    {
+      "name": "xcolor"
     },
-    "inputSAScode*[]{}": {
-      "snippet": "inputSAScode*[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "etoolbox"
     },
-    "inputSASoutput{}": {
-      "snippet": "inputSASoutput{${1:file}}"
+    {
+      "name": "caption"
     },
-    "inputSASoutput[]{}": {
-      "snippet": "inputSASoutput[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "inputSASoutput*{}": {
-      "snippet": "inputSASoutput*{${1:file}}"
-    },
-    "inputSASoutput*[]{}": {
-      "snippet": "inputSASoutput*[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "inputRcode{}": {
-      "snippet": "inputRcode{${1:file}}"
-    },
-    "inputRcode[]{}": {
-      "snippet": "inputRcode[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "inputRcode*{}": {
-      "snippet": "inputRcode*{${1:file}}"
-    },
-    "inputRcode*[]{}": {
-      "snippet": "inputRcode*[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "inputRoutput{}": {
-      "snippet": "inputRoutput{${1:file}}"
-    },
-    "inputRoutput[]{}": {
-      "snippet": "inputRoutput[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "inputRoutput*{}": {
-      "snippet": "inputRoutput*{${1:file}}"
-    },
-    "inputRoutput*[]{}": {
-      "snippet": "inputRoutput*[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "SASinline": {
-      "snippet": "SASinline|${1:code}|"
-    },
-    "SASinline[]": {
-      "snippet": "SASinline[${1:options}]|${2:code}|",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "SASinline[]{}": {
-      "snippet": "SASinline[${2:options}]{${1:verbatimSymbol}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Rinline": {
-      "snippet": "Rinline|${1:code}|"
-    },
-    "Rinline[]": {
-      "snippet": "Rinline[${1:options}]|${2:code}|",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Rinline[]{}": {
-      "snippet": "Rinline[${2:options}]{${1:verbatimSymbol}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "lstlgrindeffile": {
-      "option": "lgrind"
-    },
-    "lstdefineformat{}{}": {
-      "snippet": "lstdefineformat{${1:name}}{${2:format}}",
-      "option": "formats"
-    },
-    "lstformatfiles": {
-      "option": "formats"
-    },
-    "SnRRcodename": {},
-    "SnRSAScodename": {},
-    "SnRRoutputname": {},
-    "SnRSASoutputname": {},
-    "SnRversion": {}
-  },
-  "envs": {
-    "SAScode": {},
-    "SAScode[]": {
-      "name": "SAScode",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "SAScode*": {},
-    "SAScode*[]": {
-      "name": "SAScode*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "SASoutput": {},
-    "SASoutput[]": {
-      "name": "SASoutput",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "SASoutput*": {},
-    "SASoutput*[]": {
-      "name": "SASoutput*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Rcode": {},
-    "Rcode[]": {
-      "name": "Rcode",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Rcode*": {},
-    "Rcode*[]": {
-      "name": "Rcode*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Routput": {},
-    "Routput[]": {
-      "name": "Routput",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Routput*": {},
-    "Routput*[]": {
-      "name": "Routput*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "needspace"
     }
-  },
-  "options": [
-    "danish",
-    "english",
-    "grayscale",
-    "countbysection",
-    "countbychapter",
-    "consecutive",
-    "countbylistings",
-    "noautotitles-r",
-    "noautotitles-sas",
-    "needspace=",
-    "noneedspace",
-    "sweave",
-    "sasweave"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "inputSAScode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "inputSAScode",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inputSAScode*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "inputSAScode*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inputSASoutput",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "inputSASoutput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inputSASoutput*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "inputSASoutput*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inputRcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "inputRcode",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inputRcode*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "inputRcode*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inputRoutput",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "inputRoutput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inputRoutput*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "inputRoutput*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SASinline",
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:code}|"
+      }
+    },
+    {
+      "name": "SASinline",
+      "arg": {
+        "format": "[]||",
+        "snippet": "[${1:options}]|${2:code}|",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Rinline",
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:code}|"
+      }
+    },
+    {
+      "name": "Rinline",
+      "arg": {
+        "format": "[]||",
+        "snippet": "[${1:options}]|${2:code}|",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "lstlgrindeffile",
+      "if": "lgrind"
+    },
+    {
+      "name": "lstdefineformat",
+      "if": "formats",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:format}}"
+      }
+    },
+    {
+      "name": "lstformatfiles",
+      "if": "formats",
+      "unusual": true
+    },
+    {
+      "name": "SnRRcodename",
+      "unusual": true
+    },
+    {
+      "name": "SnRSAScodename",
+      "unusual": true
+    },
+    {
+      "name": "SnRRoutputname",
+      "unusual": true
+    },
+    {
+      "name": "SnRSASoutputname",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "SAScode"
+    },
+    {
+      "name": "SAScode",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SAScode*"
+    },
+    {
+      "name": "SAScode*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SASoutput"
+    },
+    {
+      "name": "SASoutput",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SASoutput*"
+    },
+    {
+      "name": "SASoutput*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Rcode"
+    },
+    {
+      "name": "Rcode",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Rcode*"
+    },
+    {
+      "name": "Rcode*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Routput"
+    },
+    {
+      "name": "Routput",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Routput*"
+    },
+    {
+      "name": "Routput*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/SASnRdisplay#c": [
+      "danish",
+      "english",
+      "grayscale",
+      "countbysection",
+      "countbychapter",
+      "consecutive",
+      "countbylistings",
+      "noautotitles-r",
+      "noautotitles-sas",
+      "needspace=",
+      "noneedspace",
+      "sweave",
+      "sasweave"
+    ],
+    "\\begin{SAScode},\\begin{SAScode*},\\begin{SASoutput},\\begin{SASoutput*},\\begin{Rcode},\\begin{Rcode*},\\begin{Routput},\\begin{Routput*},\\inputSAScode,\\inputSAScode*,\\inputSASoutput,\\inputSASoutput*,\\inputRcode,\\inputRcode*,\\inputRoutput,\\inputRoutput*,\\SASinline,\\Rinline": [
       "inputpath=${1:path}",
       "aboveskip=",
       "belowskip=",
@@ -376,6 +552,22 @@
       "deletekeywordcomment={${1:keywords}}",
       "keywordcommentsemicolon={${1:keywords}}{${2:keywords}}{${3:keywords}}",
       "podcomment"
+    ],
+    "\\lstset,\\lstinline,\\begin{lstlisting},\\lstinputlisting": [
+      "procnamekeys={${1:keywords}}",
+      "moreprocnamekeys={${1:keywords}}",
+      "deleteprocnamekeys={${1:keywords}}",
+      "procnamestyle=${1:style}",
+      "indexprocnames",
+      "hyperref={${1:identifiers}}",
+      "morehyperref={${1:identifiers}}",
+      "deletehyperref={${1:identifiers}}",
+      "hyperanchor=${1:two-parameter macro}",
+      "hyperlink=${1:two-parameter macro}",
+      "lgrindef=${1:language}"
     ]
+  },
+  "args": [
+    "\\usepackage/SASnRdisplay#c"
   ]
 }

@@ -1,35 +1,75 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "tikz": []
-  },
-  "macros": {
-    "coffeestainA{}{}{}{}{}": {
-      "snippet": "coffeestainA{${1:transparency}}{${2:scale}}{${3:angle}}{${4:xoff}}{${5:yoff}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "coffeestainB{}{}{}{}{}": {
-      "snippet": "coffeestainB{${1:transparency}}{${2:scale}}{${3:angle}}{${4:xoff}}{${5:yoff}}"
-    },
-    "coffeestainC{}{}{}{}{}": {
-      "snippet": "coffeestainC{${1:transparency}}{${2:scale}}{${3:angle}}{${4:xoff}}{${5:yoff}}"
-    },
-    "coffeestainD{}{}{}{}{}": {
-      "snippet": "coffeestainD{${1:transparency}}{${2:scale}}{${3:angle}}{${4:xoff}}{${5:yoff}}"
-    },
-    "stainA{}{}": {
-      "snippet": "stainA{${1:transparency}}{${2:scale}}"
-    },
-    "stainB{}{}": {
-      "snippet": "stainB{${1:transparency}}{${2:scale}}"
-    },
-    "stainC{}{}": {
-      "snippet": "stainC{${1:transparency}}{${2:scale}}"
-    },
-    "stainD{}{}": {
-      "snippet": "stainD{${1:transparency}}{${2:scale}}"
+    {
+      "name": "tikz"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "coffeestainA",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:transparency}}{${2:scale}}{${3:angle}}{${4:xoff%l}}{${5:yoff%l}}"
+      }
+    },
+    {
+      "name": "coffeestainB",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:transparency}}{${2:scale}}{${3:angle}}{${4:xoff%l}}{${5:yoff%l}}"
+      }
+    },
+    {
+      "name": "coffeestainC",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:transparency}}{${2:scale}}{${3:angle}}{${4:xoff%l}}{${5:yoff%l}}"
+      }
+    },
+    {
+      "name": "coffeestainD",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:transparency}}{${2:scale}}{${3:angle}}{${4:xoff%l}}{${5:yoff%l}}"
+      }
+    },
+    {
+      "name": "stainA",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:transparency}}{${2:scale}}"
+      }
+    },
+    {
+      "name": "stainB",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:transparency}}{${2:scale}}"
+      }
+    },
+    {
+      "name": "stainC",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:transparency}}{${2:scale}}"
+      }
+    },
+    {
+      "name": "stainD",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:transparency}}{${2:scale}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,26 +1,52 @@
 {
-  "includes": {
-    "xltxtra": [],
-    "lettrine": []
-  },
-  "macros": {
-    "textinit{}{}": {
-      "snippet": "textinit{${1:letter}}{${2:text}}",
-      "option": "global"
+  "deps": [
+    {
+      "name": "xltxtra"
     },
-    "phkl": {},
-    "textphlk{}": {
-      "snippet": "textphlk{${1:text}}"
-    },
-    "dsubop": {},
-    "dUnit": {},
-    "dunit": {},
-    "dunknown": {}
-  },
-  "envs": {},
-  "options": [
-    "global",
-    "local"
+    {
+      "name": "lettrine"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "textinit",
+      "if": "global",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:letter}}{${2:text}}"
+      }
+    },
+    {
+      "name": "phkl"
+    },
+    {
+      "name": "textphlk",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "dsubop"
+    },
+    {
+      "name": "dUnit"
+    },
+    {
+      "name": "dunit"
+    },
+    {
+      "name": "dunknown"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/philokalia#c": [
+      "global",
+      "local"
+    ]
+  },
+  "args": [
+    "\\usepackage/philokalia#c"
+  ]
 }

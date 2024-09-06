@@ -1,57 +1,112 @@
 {
-  "includes": {},
-  "macros": {
-    "bibliographyunit": {},
-    "bibliographyunit[]": {
-      "snippet": "bibliographyunit[${1:unit}]"
+  "deps": [],
+  "macros": [
+    {
+      "name": "bibliographyunit"
     },
-    "cite*{}": {
-      "snippet": "cite*{${1:bibid}}"
+    {
+      "name": "bibliographyunit",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:unit}]"
+      }
     },
-    "nocite*{}": {
-      "snippet": "nocite*{${1:bibid}}"
+    {
+      "name": "cite*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
     },
-    "putbib": {},
-    "putbib[]": {
-      "snippet": "putbib[${1:bib file}]"
+    {
+      "name": "nocite*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
     },
-    "defaultbibliography{}": {
-      "snippet": "defaultbibliography{${1:bib file}}"
+    {
+      "name": "putbib"
     },
-    "defaultbibliographystyle{}": {
-      "snippet": "defaultbibliographystyle{${1:style}}"
+    {
+      "name": "putbib",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:bib file}]"
+      }
     },
-    "bibliography*{}": {
-      "snippet": "bibliography*{${1:bib file}}"
+    {
+      "name": "defaultbibliography",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bib file}}"
+      }
     },
-    "bibliographystyle*{}": {
-      "snippet": "bibliographystyle*{${1:style}}"
+    {
+      "name": "defaultbibliographystyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style%keyvals}}",
+        "keys": [
+          "\\begin{bibunit}#c,\\defaultbibliographystyle#c,\\bibliographystyle*#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "iflabelstoglobalaux": {},
-    "labelstoglobalauxtrue": {},
-    "labelstoglobalauxfalse": {},
-    "ifglobalcitecopy": {},
-    "globalcitecopytrue": {},
-    "globalcitecopyfalse": {},
-    "stdthebibliography": {},
-    "remequivalent": {},
-    "from": {},
-    "given": {},
-    "plugh": {},
-    "hgulp": {}
-  },
-  "envs": {
-    "bibunit": {},
-    "bibunit[]": {
-      "name": "bibunit",
-      "snippet": "[${1:style}]"
+    {
+      "name": "bibliography*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bib file}}"
+      }
+    },
+    {
+      "name": "bibliographystyle*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style%keyvals}}",
+        "keys": [
+          "\\begin{bibunit}#c,\\defaultbibliographystyle#c,\\bibliographystyle*#c"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "options": [
-    "globalcitecopy",
-    "labelstoglobalaux",
-    "sectionbib",
-    "subsectionbib"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "bibunit"
+    },
+    {
+      "name": "bibunit",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:style%keyvals}]",
+        "keys": [
+          "\\begin{bibunit}#c,\\defaultbibliographystyle#c,\\bibliographystyle*#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/bibunits#c": [
+      "globalcitecopy",
+      "labelstoglobalaux",
+      "sectionbib",
+      "subsectionbib"
+    ],
+    "\\begin{bibunit}#c,\\defaultbibliographystyle#c,\\bibliographystyle*#c": [
+      "abbrv",
+      "acm",
+      "alpha",
+      "apalike",
+      "ieeetr",
+      "plain",
+      "siam",
+      "unsrt"
+    ]
+  },
+  "args": [
+    "\\usepackage/bibunits#c"
+  ]
 }

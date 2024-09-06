@@ -1,170 +1,370 @@
 {
-  "includes": {
-    "keyval": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "microtypesetup{}": {
-      "snippet": "microtypesetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "DeclareMicrotypeSet{}{}": {
-      "snippet": "DeclareMicrotypeSet{${1:name}}{${2:fonts}}"
-    },
-    "DeclareMicrotypeSet[]{}{}": {
-      "snippet": "DeclareMicrotypeSet[${3:features}]{${1:name}}{${2:fonts}}"
-    },
-    "DeclareMicrotypeSet*{}{}": {
-      "snippet": "DeclareMicrotypeSet*{${1:name}}{${2:fonts}}"
-    },
-    "DeclareMicrotypeSet*[]{}{}": {
-      "snippet": "DeclareMicrotypeSet*[${3:features}]{${1:name}}{${2:fonts}}"
-    },
-    "UseMicrotypeSet{}": {
-      "snippet": "UseMicrotypeSet{${1:name}}"
-    },
-    "UseMicrotypeSet[]{}": {
-      "snippet": "UseMicrotypeSet[${2:features}]{${1:name}}"
-    },
-    "DeclareMicrotypeSetDefault{}": {
-      "snippet": "DeclareMicrotypeSetDefault{${1:name}}"
-    },
-    "DeclareMicrotypeSetDefault[]{}": {
-      "snippet": "DeclareMicrotypeSetDefault[${2:features}]{${1:name}}"
-    },
-    "SetProtrusion{}{}": {
-      "snippet": "SetProtrusion{${1:fonts}}{${2:settings}}"
-    },
-    "SetProtrusion[]{}{}": {
-      "snippet": "SetProtrusion[${3:options}]{${1:fonts}}{${2:settings}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "SetExpansion{}{}": {
-      "snippet": "SetExpansion{${1:fonts}}{${2:settings}}"
-    },
-    "SetExpansion[]{}{}": {
-      "snippet": "SetExpansion[${3:options}]{${1:fonts}}{${2:settings}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "SetTracking{}{}": {
-      "snippet": "SetTracking{${1:fonts}}{${2:settings}}"
-    },
-    "SetTracking[]{}{}": {
-      "snippet": "SetTracking[${3:options}]{${1:fonts}}{${2:settings}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "SetExtraKerning{}{}": {
-      "snippet": "SetExtraKerning{${1:fonts}}{${2:settings}}"
-    },
-    "SetExtraKerning[]{}{}": {
-      "snippet": "SetExtraKerning[${3:options}]{${1:fonts}}{${2:settings}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "SetExtraSpacing{}{}": {
-      "snippet": "SetExtraSpacing{${1:fonts}}{${2:settings}}"
-    },
-    "SetExtraSpacing[]{}{}": {
-      "snippet": "SetExtraSpacing[${3:options}]{${1:fonts}}{${2:settings}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "DeclareCharacterInheritance{}{}": {
-      "snippet": "DeclareCharacterInheritance{${1:fonts}}{${2:list}}"
-    },
-    "DeclareCharacterInheritance[]{}{}": {
-      "snippet": "DeclareCharacterInheritance[${3:features}]{${1:fonts}}{${2:list}}"
-    },
-    "DeclareMicrotypeVariants{}": {
-      "snippet": "DeclareMicrotypeVariants{${1:suffixes}}"
-    },
-    "DeclareMicrotypeVariants*{}": {
-      "snippet": "DeclareMicrotypeVariants*{${1:suffixes}}"
-    },
-    "DeclareMicrotypeAlias{}{}": {
-      "snippet": "DeclareMicrotypeAlias{${1:font}}{${2:alias}}"
-    },
-    "LoadMicrotypeFile{}": {
-      "snippet": "LoadMicrotypeFile{${1:font}}"
-    },
-    "DeclareMicrotypeFilePrefix{}": {
-      "snippet": "DeclareMicrotypeFilePrefix{${1:prefix}}"
-    },
-    "microtypecontext{}": {
-      "snippet": "microtypecontext{${1:context}}"
-    },
-    "textmicrotypecontext{}{}": {
-      "snippet": "textmicrotypecontext{${1:context}}{${2:text}}"
-    },
-    "DeclareMicrotypeBabelHook{}{}": {
-      "snippet": "DeclareMicrotypeBabelHook{${1:languages}}{${2:context}}"
-    },
-    "textls{}": {
-      "snippet": "textls{${1:text}}"
-    },
-    "textls[]{}": {
-      "snippet": "textls[${2:amount}]{${1:text}}"
-    },
-    "textls*{}": {
-      "snippet": "textls*{${1:text}}"
-    },
-    "textls*[]{}": {
-      "snippet": "textls*[${2:amount}]{${1:text}}"
-    },
-    "lsstyle": {},
-    "lslig{}": {
-      "snippet": "lslig{${1:ligature}}"
-    },
-    "DisableLigatures{}": {
-      "snippet": "DisableLigatures{${1:fonts}}"
-    },
-    "DisableLigatures[]{}": {
-      "snippet": "DisableLigatures[${2:characters}]{${1:fonts}}"
-    },
-    "leftprotrusion{}": {
-      "snippet": "leftprotrusion{${1:text}}"
-    },
-    "rightprotrusion{}": {
-      "snippet": "rightprotrusion{${1:text}}"
-    },
-    "noprotrusionifhmode": {}
-  },
-  "envs": {
-    "microtypecontext{}": {
-      "name": "microtypecontext",
-      "snippet": "{${1:context}}"
+    {
+      "name": "etoolbox"
     }
-  },
-  "options": [
-    "protrusion=",
-    "expansion=",
-    "activate=",
-    "tracking=",
-    "kerning=",
-    "spacing=",
-    "factor=${1:integer}",
-    "patch=${1|all,none,item,toc,footnote,verbatim,eqnum|}",
-    "nopatch=${1|all,none,item,toc,footnote,verbatim,eqnum|}",
-    "unit=${1:dimension}",
-    "auto",
-    "stretch=${1:integer}",
-    "shrink=${1:integer}",
-    "step=${1:integer}",
-    "selected",
-    "letterspace=${1:integer}",
-    "disable=${1|true,false,ifdraft|}",
-    "final",
-    "verbose=${1|true,false,errors,silent|}",
-    "babel",
-    "DVIoutput",
-    "config=${1:file name}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "microtypesetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\microtypesetup,\\usepackage/microtype#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DeclareMicrotypeSet",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:fonts%keyvals}}",
+        "keys": [
+          "\\DeclareMicrotypeSet,\\DeclareMicrotypeSet*,\\DeclareCharacterInheritance,\\DisableLigatures"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "DeclareMicrotypeSet",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:features}]{${1:name%specialDef}}{${2:fonts%keyvals}}",
+        "keys": [
+          "\\DeclareMicrotypeSet,\\DeclareMicrotypeSet*,\\DeclareCharacterInheritance,\\DisableLigatures"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "DeclareMicrotypeSet*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:fonts%keyvals}}",
+        "keys": [
+          "\\DeclareMicrotypeSet,\\DeclareMicrotypeSet*,\\DeclareCharacterInheritance,\\DisableLigatures"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "DeclareMicrotypeSet*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:features}]{${1:name%specialDef}}{${2:fonts%keyvals}}",
+        "keys": [
+          "\\DeclareMicrotypeSet,\\DeclareMicrotypeSet*,\\DeclareCharacterInheritance,\\DisableLigatures"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "UseMicrotypeSet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "UseMicrotypeSet",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:features}]{${1:name}}"
+      }
+    },
+    {
+      "name": "DeclareMicrotypeSetDefault",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "DeclareMicrotypeSetDefault",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:features}]{${1:name}}"
+      }
+    },
+    {
+      "name": "SetProtrusion",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:fonts}}{${2:settings}}"
+      }
+    },
+    {
+      "name": "SetProtrusion",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:fonts}}{${2:settings}}",
+        "keys": [
+          "\\SetProtrusion"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SetExpansion",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:fonts}}{${2:settings}}"
+      }
+    },
+    {
+      "name": "SetExpansion",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:fonts}}{${2:settings}}",
+        "keys": [
+          "\\SetExpansion"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SetTracking",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:fonts}}{${2:settings}}"
+      }
+    },
+    {
+      "name": "SetTracking",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:fonts}}{${2:settings}}",
+        "keys": [
+          "\\SetTracking"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SetExtraKerning",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:fonts}}{${2:settings}}"
+      }
+    },
+    {
+      "name": "SetExtraKerning",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:fonts}}{${2:settings}}",
+        "keys": [
+          "\\SetExtraKerning"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SetExtraSpacing",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:fonts}}{${2:settings}}"
+      }
+    },
+    {
+      "name": "SetExtraSpacing",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:fonts}}{${2:settings}}",
+        "keys": [
+          "\\SetExtraSpacing"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DeclareCharacterInheritance",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:fonts%keyvals}}{${2:list}}",
+        "keys": [
+          "\\DeclareMicrotypeSet,\\DeclareMicrotypeSet*,\\DeclareCharacterInheritance,\\DisableLigatures"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DeclareCharacterInheritance",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:features}]{${1:fonts%keyvals}}{${2:list}}",
+        "keys": [
+          "\\DeclareMicrotypeSet,\\DeclareMicrotypeSet*,\\DeclareCharacterInheritance,\\DisableLigatures"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "DeclareMicrotypeVariants",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:suffixes}}"
+      }
+    },
+    {
+      "name": "DeclareMicrotypeVariants*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:suffixes}}"
+      }
+    },
+    {
+      "name": "DeclareMicrotypeAlias",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:font}}{${2:alias}}"
+      }
+    },
+    {
+      "name": "LoadMicrotypeFile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "DeclareMicrotypeFilePrefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:prefix}}"
+      }
+    },
+    {
+      "name": "microtypecontext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:context%keyvals}}",
+        "keys": [
+          "\\microtypecontext,\\begin{microtypecontext},\\textmicrotypecontext,\\DeclareMicrotypeBabelHook"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "textmicrotypecontext",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:context%keyvals}}{${2:text}}",
+        "keys": [
+          "\\microtypecontext,\\begin{microtypecontext},\\textmicrotypecontext,\\DeclareMicrotypeBabelHook"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DeclareMicrotypeBabelHook",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:languages}}{${2:context%keyvals}}",
+        "keys": [
+          "\\microtypecontext,\\begin{microtypecontext},\\textmicrotypecontext,\\DeclareMicrotypeBabelHook"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "textls",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textls",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:amount}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textls*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textls*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:amount}]{${1:text}}"
+      }
+    },
+    {
+      "name": "lsstyle"
+    },
+    {
+      "name": "lslig",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ligature}}"
+      }
+    },
+    {
+      "name": "DisableLigatures",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:fonts%keyvals}}",
+        "keys": [
+          "\\DeclareMicrotypeSet,\\DeclareMicrotypeSet*,\\DeclareCharacterInheritance,\\DisableLigatures"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DisableLigatures",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:characters}]{${1:fonts%keyvals}}",
+        "keys": [
+          "\\DeclareMicrotypeSet,\\DeclareMicrotypeSet*,\\DeclareCharacterInheritance,\\DisableLigatures"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "leftprotrusion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rightprotrusion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "noprotrusionifhmode",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "microtypecontext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:context%keyvals}}",
+        "keys": [
+          "\\microtypecontext,\\begin{microtypecontext},\\textmicrotypecontext,\\DeclareMicrotypeBabelHook"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\microtypesetup,\\usepackage/microtype#c": [
       "protrusion=",
       "expansion=",
       "activate=",
@@ -187,7 +387,10 @@
       "babel",
       "DVIoutput"
     ],
-    [
+    "\\usepackage/microtype#c": [
+      "config=${1:file name}"
+    ],
+    "\\SetProtrusion": [
       "name=",
       "load=",
       "factor=${1:integer}",
@@ -196,7 +399,7 @@
       "inputenc=",
       "context="
     ],
-    [
+    "\\SetExpansion": [
       "name=",
       "load=",
       "preset=",
@@ -208,7 +411,7 @@
       "step=${1:integer}",
       "factor="
     ],
-    [
+    "\\SetTracking": [
       "name=",
       "unit=",
       "context=",
@@ -216,6 +419,44 @@
       "outer spacing=",
       "outer kerning=",
       "no ligatures="
+    ],
+    "\\SetExtraKerning": [
+      "name=",
+      "load=",
+      "factor=${1:integer}",
+      "preset=",
+      "inputenc=",
+      "unit=",
+      "context="
+    ],
+    "\\SetExtraSpacing": [
+      "name=",
+      "load=",
+      "factor=${1:integer}",
+      "preset=",
+      "inputenc=",
+      "context=",
+      "unit="
+    ],
+    "\\microtypecontext,\\begin{microtypecontext},\\textmicrotypecontext,\\DeclareMicrotypeBabelHook": [
+      "protrusion=",
+      "expansion=",
+      "activate=",
+      "tracking=",
+      "spacing=",
+      "kerning="
+    ],
+    "\\DeclareMicrotypeSet,\\DeclareMicrotypeSet*,\\DeclareCharacterInheritance,\\DisableLigatures": [
+      "encoding=",
+      "family=",
+      "series=",
+      "shape=",
+      "size=",
+      "font="
     ]
+  },
+  "args": [
+    "\\microtypesetup,\\usepackage/microtype#c",
+    "\\usepackage/microtype#c"
   ]
 }

@@ -1,196 +1,475 @@
 {
-  "includes": {
-    "marginnote": [],
-    "caption": [],
-    "calc": [],
-    "etoolbox": [],
-    "l3keys2e": [],
-    "ifoddpage": [],
-    "mparhack": [],
-    "xspace": [],
-    "changepage": [],
-    "ragged2e": [
-      "Ragged"
+  "deps": [
+    {
+      "name": "marginnote"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "ifoddpage"
+    },
+    {
+      "name": "mparhack"
+    },
+    {
+      "name": "xspace"
+    },
+    {
+      "name": "changepage"
+    },
+    {
+      "name": "ragged2e",
+      "if": "Ragged"
+    }
+  ],
+  "macros": [
+    {
+      "name": "sidenote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "sidenote*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "sidenotetext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "sidenotetext*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "sidenotetextbefore",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "sidenotetextbefore*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "sidenotemark",
+      "unusual": true
+    },
+    {
+      "name": "sidenotemark",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:%<mark%>})"
+      }
+    },
+    {
+      "name": "sidenotemark*",
+      "unusual": true
+    },
+    {
+      "name": "sidenotemark*",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:%<mark%>})"
+      }
+    },
+    {
+      "name": "sidealert",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "sidealert*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "sidepar"
+    },
+    {
+      "name": "sidecaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sidecaption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidecaption<offset>",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidecaption*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sidecaption*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidecaption*<offset>",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "raggedinner"
+    },
+    {
+      "name": "raggedouter"
+    },
+    {
+      "name": "margincaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "margincaption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "margincaption*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "margincaption*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidecite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecite",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecite",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecite*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecite*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecite*",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecitebefore",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecitebefore",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecitebefore",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecitebefore*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecitebefore*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecitebefore*",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sideciteafter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sideciteafter",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sideciteafter",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sideciteafter*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sideciteafter*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sideciteafter*",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecitemark"
+    },
+    {
+      "name": "sidecitemark*"
+    },
+    {
+      "name": "sidecitet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecitet",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecitet",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecitet*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecitet*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "sidecitet*",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "snptest",
+      "unusual": true
+    },
+    {
+      "name": "IfNoValueOrEmptyTF",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg}}{${2:-NoValue-Code}}{${3:ValueCode}}"
+      }
+    },
+    {
+      "name": "thesidenote",
+      "unusual": true
+    },
+    {
+      "name": "thesidealert",
+      "unusual": true
+    },
+    {
+      "name": "IfsTF",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg}}{${2:-NoValue-Code}}{${3:ValueCode}}"
+      }
+    },
+    {
+      "name": "istwosided",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true code}}{${2:false code}}"
+      }
+    },
+    {
+      "name": "marginparsepodd",
+      "unusual": true
+    },
+    {
+      "name": "marginparsepeven",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "marginfigure"
+    },
+    {
+      "name": "marginfigure",
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:float offset}|"
+      }
+    },
+    {
+      "name": "margintable"
+    },
+    {
+      "name": "margintable",
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:float offset}|"
+      }
+    },
+    {
+      "name": "text*"
+    },
+    {
+      "name": "text*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width factor}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/sidenotesplus#c": [
+      "mark=${1|alph,Alph,arabic,roman,Roman,fnsymbol|}",
+      "font=${1|rm,sf|}",
+      "size=${1|footnote,normal,small,script|}",
+      "shape=${1|up,it,sl|}",
+      "ragged",
+      "Ragged",
+      "classic",
+      "sepdiff=",
+      "alerton"
     ]
   },
-  "macros": {
-    "sidenote{}": {
-      "snippet": "sidenote{${1:content}}"
-    },
-    "sidenote*{}": {
-      "snippet": "sidenote*{${1:content}}"
-    },
-    "sidenotetext{}": {
-      "snippet": "sidenotetext{${1:content}}"
-    },
-    "sidenotetext*{}": {
-      "snippet": "sidenotetext*{${1:content}}"
-    },
-    "sidenotetextbefore{}": {
-      "snippet": "sidenotetextbefore{${1:content}}"
-    },
-    "sidenotetextbefore*{}": {
-      "snippet": "sidenotetextbefore*{${1:content}}"
-    },
-    "sidenotemark": {},
-    "sidenotemark()": {
-      "snippet": "sidenotemark(${1:mark})"
-    },
-    "sidenotemark*": {},
-    "sidenotemark*()": {
-      "snippet": "sidenotemark*(${1:mark})"
-    },
-    "sidealert{}": {
-      "snippet": "sidealert{${1:content}}"
-    },
-    "sidealert*{}": {
-      "snippet": "sidealert*{${1:content}}"
-    },
-    "sidepar": {},
-    "sidecaption{}": {
-      "snippet": "sidecaption{${1:text}}"
-    },
-    "sidecaption[]{}": {
-      "snippet": "sidecaption[${2:short text}]{${1:text}}"
-    },
-    "sidecaption<>[]{}": {
-      "snippet": "sidecaption<${3:offset}>[${2:short text}]{${1:text}}"
-    },
-    "sidecaption*{}": {
-      "snippet": "sidecaption*{${1:text}}"
-    },
-    "sidecaption*[]{}": {
-      "snippet": "sidecaption*[${2:short text}]{${1:text}}"
-    },
-    "sidecaption*<>[]{}": {
-      "snippet": "sidecaption*<${3:offset}>[${2:short text}]{${1:text}}"
-    },
-    "raggedinner": {},
-    "raggedouter": {},
-    "margincaption{}": {
-      "snippet": "margincaption{${1:text}}"
-    },
-    "margincaption[]{}": {
-      "snippet": "margincaption[${2:short text}]{${1:text}}"
-    },
-    "margincaption*{}": {
-      "snippet": "margincaption*{${1:text}}"
-    },
-    "margincaption*[]{}": {
-      "snippet": "margincaption*[${2:short text}]{${1:text}}"
-    },
-    "sidecite{}": {
-      "snippet": "sidecite{${1:bibid}}"
-    },
-    "sidecite[]{}": {
-      "snippet": "sidecite[${2:postnote}]{${1:bibid}}"
-    },
-    "sidecite[][]{}": {
-      "snippet": "sidecite[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "sidecite*{}": {
-      "snippet": "sidecite*{${1:bibid}}"
-    },
-    "sidecite*[]{}": {
-      "snippet": "sidecite*[${2:postnote}]{${1:bibid}}"
-    },
-    "sidecite*[][]{}": {
-      "snippet": "sidecite*[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "sidecitebefore{}": {
-      "snippet": "sidecitebefore{${1:bibid}}"
-    },
-    "sidecitebefore[]{}": {
-      "snippet": "sidecitebefore[${2:postnote}]{${1:bibid}}"
-    },
-    "sidecitebefore[][]{}": {
-      "snippet": "sidecitebefore[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "sidecitebefore*{}": {
-      "snippet": "sidecitebefore*{${1:bibid}}"
-    },
-    "sidecitebefore*[]{}": {
-      "snippet": "sidecitebefore*[${2:postnote}]{${1:bibid}}"
-    },
-    "sidecitebefore*[][]{}": {
-      "snippet": "sidecitebefore*[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "sideciteafter{}": {
-      "snippet": "sideciteafter{${1:bibid}}"
-    },
-    "sideciteafter[]{}": {
-      "snippet": "sideciteafter[${2:postnote}]{${1:bibid}}"
-    },
-    "sideciteafter[][]{}": {
-      "snippet": "sideciteafter[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "sideciteafter*{}": {
-      "snippet": "sideciteafter*{${1:bibid}}"
-    },
-    "sideciteafter*[]{}": {
-      "snippet": "sideciteafter*[${2:postnote}]{${1:bibid}}"
-    },
-    "sideciteafter*[][]{}": {
-      "snippet": "sideciteafter*[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "sidecitemark": {},
-    "sidecitemark*": {},
-    "sidecitet{}": {
-      "snippet": "sidecitet{${1:bibid}}"
-    },
-    "sidecitet[]{}": {
-      "snippet": "sidecitet[${2:postnote}]{${1:bibid}}"
-    },
-    "sidecitet[][]{}": {
-      "snippet": "sidecitet[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "sidecitet*{}": {
-      "snippet": "sidecitet*{${1:bibid}}"
-    },
-    "sidecitet*[]{}": {
-      "snippet": "sidecitet*[${2:postnote}]{${1:bibid}}"
-    },
-    "sidecitet*[][]{}": {
-      "snippet": "sidecitet*[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "snptest": {},
-    "IfNoValueOrEmptyTF{}{}{}": {
-      "snippet": "IfNoValueOrEmptyTF{${1:arg}}{${2:-NoValue-Code}}{${3:ValueCode}}"
-    },
-    "thesidenote": {},
-    "thesidealert": {},
-    "oldmarginpar": {},
-    "IfsTF{}{}{}": {
-      "snippet": "IfsTF{${1:arg}}{${2:-NoValue-Code}}{${3:ValueCode}}"
-    },
-    "istwosided{}{}": {
-      "snippet": "istwosided{${1:true code}}{${2:false code}}"
-    },
-    "marginparsepodd": {},
-    "marginparsepeven": {},
-    "patcherr": {},
-    "patchok": {},
-    "patch": {}
-  },
-  "envs": {
-    "marginfigure": {},
-    "margintable": {},
-    "text*": {},
-    "text*[]": {
-      "name": "text*",
-      "snippet": "[${1:width factor}]"
-    }
-  },
-  "options": [
-    "mark=${1|alph,Alph,arabic,roman,Roman,fnsymbol|}",
-    "font=${1|rm,sf|}",
-    "size=${1|footnote,normal,small,script|}",
-    "shape=${1|up,it,sl|}",
-    "ragged",
-    "Ragged",
-    "classic",
-    "sepdiff=",
-    "alerton"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/sidenotesplus#c"
+  ]
 }

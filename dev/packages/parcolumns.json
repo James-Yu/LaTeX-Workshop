@@ -1,31 +1,50 @@
 {
-  "includes": {
-    "processkv": []
-  },
-  "macros": {
-    "colchunk{}": {
-      "snippet": "colchunk{${1:chunk}}"
-    },
-    "colchunk[]{}": {
-      "snippet": "colchunk[${2:column}]{${1:chunk}}"
-    },
-    "colplacechunks": {}
-  },
-  "envs": {
-    "parcolumns{}": {
-      "name": "parcolumns",
-      "snippet": "{${1:number of cols}}"
-    },
-    "parcolumns[]{}": {
-      "name": "parcolumns",
-      "snippet": "[${2:options}]{${1:number of cols}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "processkv"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "colchunk",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:chunk%text}}"
+      }
+    },
+    {
+      "name": "colchunk",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:column}]{${1:chunk%text}}"
+      }
+    },
+    {
+      "name": "colplacechunks"
+    }
+  ],
+  "envs": [
+    {
+      "name": "parcolumns",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number of cols}}"
+      }
+    },
+    {
+      "name": "parcolumns",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:number of cols}}",
+        "keys": [
+          "\\begin{parcolumns}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{parcolumns}": [
       "colwidths={${1:col=width,...}}",
       "distance=",
       "rulebetween",
@@ -33,5 +52,6 @@
       "sloppy",
       "sloppyspaces"
     ]
-  ]
+  },
+  "args": []
 }

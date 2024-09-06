@@ -1,269 +1,792 @@
 {
-  "includes": {
-    "hyphsubst": [],
-    "iftex": [],
-    "xkeyval": [],
-    "dtk-url": [],
-    "hvqrurl": [],
-    "class-scrbook": [],
-    "scrhack": [],
-    "listings": [],
-    "hvextern": [],
-    "babel": [],
-    "csquotes": [],
-    "microtype": [],
-    "biblatex": [],
-    "ragged2e": [],
-    "dtk-logos": [],
-    "scrlayer-scrpage": [],
-    "xcolor": [],
-    "marginnote": [],
-    "enumitem": [],
-    "multicol": [
-      "full",
-      "full=true"
-    ],
-    "graphicx": [
-      "full",
-      "full=true"
-    ],
-    "tabularx": [
-      "full",
-      "full=true"
-    ],
-    "datetime2": [
-      "full",
-      "full=true"
-    ],
-    "splitidx": [
-      "full",
-      "full=true"
-    ],
-    "trimspaces": [
-      "full",
-      "full=true"
-    ],
-    "picture": [
-      "full",
-      "full=true"
-    ],
-    "inputenc": [],
-    "fontenc": [],
-    "libertine": [],
-    "AnonymousPro": []
-  },
-  "macros": {
-    "AtEmbeddedBeginDocument": {
-      "option": "full=true"
+  "deps": [
+    {
+      "name": "hyphsubst"
     },
-    "AtEmbeddedEndDocument": {
-      "option": "full=true"
+    {
+      "name": "iftex"
     },
-    "AutorenListenName": {
-      "option": "full=true"
+    {
+      "name": "xkeyval"
     },
-    "DTKinput{}": {
-      "snippet": "DTKinput{${1:file}}",
-      "option": "full=true"
+    {
+      "name": "dtk-url"
     },
-    "DTKissueTOmonth{}": {
-      "snippet": "DTKissueTOmonth{${1:number}}",
-      "option": "full=true"
+    {
+      "name": "hvqrurl"
     },
-    "DTKmonthName": {
-      "option": "full=true"
+    {
+      "name": "class-scrbook"
     },
-    "DTKschriftenListe": {
-      "option": "full=true"
+    {
+      "name": "scrhack"
     },
-    "ErzeugeMitarbeiterListe": {
-      "option": "full=true"
+    {
+      "name": "listings"
     },
-    "formatPosNumber{}": {
-      "snippet": "formatPosNumber{${1:number}}",
-      "option": "full=true"
+    {
+      "name": "hvextern"
     },
-    "InfoTeX": {
-      "option": "full=true"
+    {
+      "name": "babel"
     },
-    "makePosNumbers{}{}": {
-      "snippet": "makePosNumbers{${1:arg1}}{${2:arg2}}",
-      "option": "full=true"
+    {
+      "name": "csquotes"
     },
-    "MitarbeiterListe": {
-      "option": "full=true"
+    {
+      "name": "microtype"
     },
-    "Part*{}": {
-      "snippet": "Part*{${1:title}}",
-      "option": "full=true"
+    {
+      "name": "biblatex"
     },
-    "Part[]{}": {
-      "snippet": "Part[${2:short title}]{${1:title}}",
-      "option": "full=true"
+    {
+      "name": "ragged2e"
     },
-    "Part{}": {
-      "snippet": "Part{${1:title}}",
-      "option": "full=true"
+    {
+      "name": "dtk-logos"
     },
-    "rolllabel{}": {
-      "snippet": "rolllabel{${1:label}}",
-      "option": "full=true"
+    {
+      "name": "scrlayer-scrpage"
     },
-    "theartcounter": {
-      "option": "full=true"
+    {
+      "name": "xcolor"
     },
-    "Author{}{}{}": {
-      "snippet": "Author{${1:Vorname}}{${2:Nachname}}{${3:Adresse}}"
+    {
+      "name": "marginnote"
     },
-    "Class{}": {
-      "snippet": "Class{${1:class}}"
+    {
+      "name": "enumitem"
     },
-    "Code{}": {
-      "snippet": "Code{${1:code}}"
+    {
+      "name": "multicol",
+      "if": "full"
     },
-    "Command{}": {
-      "snippet": "Command{${1:command}}"
+    {
+      "name": "graphicx",
+      "if": "full"
     },
-    "DTKcorrVersion": {},
-    "DTKdate": {},
-    "DTKfullIssue": {},
-    "DTKissn": {},
-    "DTKissue": {},
-    "DTKlstfont": {},
-    "DTKlstKeywordfont": {},
-    "DTKmonth": {},
-    "DTKrecordfalse": {},
-    "DTKrecordtrue": {},
-    "DTKversion": {},
-    "DTKversiondate": {},
-    "DTKvolume": {},
-    "DTKyear": {},
-    "Env{}": {
-      "snippet": "Env{${1:envname}}"
+    {
+      "name": "tabularx",
+      "if": "full"
     },
-    "Environment{}": {
-      "snippet": "Environment{${1:envname}}"
+    {
+      "name": "datetime2",
+      "if": "full"
     },
-    "fullwidth": {},
-    "ifDTKrecord": {},
-    "journalname": {},
-    "Klasse{}": {
-      "snippet": "Klasse{${1:class}}"
+    {
+      "name": "splitidx",
+      "if": "full"
     },
-    "Macro{}": {
-      "snippet": "Macro{${1:csname}}"
+    {
+      "name": "trimspaces",
+      "if": "full"
     },
-    "ORIGprintbibliography": {},
-    "Package{}": {
-      "snippet": "Package{${1:package}}"
+    {
+      "name": "picture",
+      "if": "full"
     },
-    "Paket{}": {
-      "snippet": "Paket{${1:package}}"
+    {
+      "name": "multicol",
+      "if": "full=true"
     },
-    "Program{}": {
-      "snippet": "Program{${1:program name}}"
+    {
+      "name": "graphicx",
+      "if": "full=true"
     },
-    "Programm{}": {
-      "snippet": "Programm{${1:program}}"
+    {
+      "name": "tabularx",
+      "if": "full=true"
     },
-    "tex": {},
-    "AutorenListe": {},
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}"
+    {
+      "name": "datetime2",
+      "if": "full=true"
     },
-    "DTKrmFontName": {},
-    "DTKsfFontName": {},
-    "DTKttFontName": {},
-    "DTKmathFontName": {},
-    "captionsenglish": {},
-    "dateenglish": {},
-    "extrasenglish": {},
-    "noextrasenglish": {},
-    "englishhyphenmins": {},
-    "britishhyphenmins": {},
-    "americanhyphenmins": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "captionsngerman": {},
-    "datengerman": {},
-    "extrasngerman": {},
-    "noextrasngerman": {},
-    "dq": {},
-    "ntosstrue": {},
-    "ntossfalse": {},
-    "mdqon": {},
-    "mdqoff": {},
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
+    {
+      "name": "splitidx",
+      "if": "full=true"
     },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
+    {
+      "name": "trimspaces",
+      "if": "full=true"
     },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {}
-  },
-  "envs": {
-    "roll": {
-      "option": "full=true"
+    {
+      "name": "picture",
+      "if": "full=true"
     },
-    "roll[]": {
-      "name": "roll",
-      "snippet": "[${1:labelwidth}]",
-      "option": "full=true"
+    {
+      "name": "inputenc"
     },
-    "theAutoren": {
-      "option": "full=true"
+    {
+      "name": "fontenc"
     },
-    "Figure": {},
-    "Figure[]{}": {
-      "name": "Figure",
-      "snippet": "[${2:width}]{${1:caption}}"
+    {
+      "name": "libertine"
     },
-    "Figure{}": {
-      "name": "Figure",
-      "snippet": "{${1:caption}}"
-    },
-    "Table[]{caption": {
-      "name": "Table",
-      "snippet": "[${1:width}]{caption"
-    },
-    "Table{}": {
-      "name": "Table",
-      "snippet": "{${1:caption}}"
+    {
+      "name": "AnonymousPro"
     }
-  },
-  "options": [
-    "Ausgabe=",
-    "Jahr=",
-    "Monat=",
-    "korr",
-    "full",
-    "color"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "AtEmbeddedBeginDocument",
+      "if": "full",
+      "unusual": true
+    },
+    {
+      "name": "AtEmbeddedEndDocument",
+      "if": "full",
+      "unusual": true
+    },
+    {
+      "name": "AutorenListenName",
+      "if": "full",
+      "unusual": true
+    },
+    {
+      "name": "DTKinput",
+      "if": "full",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "DTKissueTOmonth",
+      "if": "full",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "DTKmonthName",
+      "if": "full",
+      "unusual": true
+    },
+    {
+      "name": "DTKschriftenListe",
+      "if": "full",
+      "unusual": true
+    },
+    {
+      "name": "ErzeugeMitarbeiterListe",
+      "if": "full",
+      "unusual": true
+    },
+    {
+      "name": "formatPosNumber",
+      "if": "full",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "InfoTeX",
+      "if": "full",
+      "unusual": true
+    },
+    {
+      "name": "makePosNumbers",
+      "if": "full",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "MitarbeiterListe",
+      "if": "full",
+      "unusual": true
+    },
+    {
+      "name": "Part*",
+      "if": "full",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "Part",
+      "if": "full",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "Part",
+      "if": "full",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "rolllabel",
+      "if": "full",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "theartcounter",
+      "if": "full",
+      "unusual": true
+    },
+    {
+      "name": "AtEmbeddedBeginDocument",
+      "if": "full=true",
+      "unusual": true
+    },
+    {
+      "name": "AtEmbeddedEndDocument",
+      "if": "full=true",
+      "unusual": true
+    },
+    {
+      "name": "AutorenListenName",
+      "if": "full=true",
+      "unusual": true
+    },
+    {
+      "name": "DTKinput",
+      "if": "full=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "DTKissueTOmonth",
+      "if": "full=true",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "DTKmonthName",
+      "if": "full=true",
+      "unusual": true
+    },
+    {
+      "name": "DTKschriftenListe",
+      "if": "full=true",
+      "unusual": true
+    },
+    {
+      "name": "ErzeugeMitarbeiterListe",
+      "if": "full=true",
+      "unusual": true
+    },
+    {
+      "name": "formatPosNumber",
+      "if": "full=true",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "InfoTeX",
+      "if": "full=true",
+      "unusual": true
+    },
+    {
+      "name": "makePosNumbers",
+      "if": "full=true",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "MitarbeiterListe",
+      "if": "full=true",
+      "unusual": true
+    },
+    {
+      "name": "Part*",
+      "if": "full=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "Part",
+      "if": "full=true",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "Part",
+      "if": "full=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "rolllabel",
+      "if": "full=true",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "theartcounter",
+      "if": "full=true",
+      "unusual": true
+    },
+    {
+      "name": "Author",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:Vorname}}{${2:Nachname}}{${3:Adresse}}"
+      }
+    },
+    {
+      "name": "Class",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:class%plain}}"
+      }
+    },
+    {
+      "name": "Code",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "Command",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "DTKcorrVersion",
+      "unusual": true
+    },
+    {
+      "name": "DTKdate",
+      "unusual": true
+    },
+    {
+      "name": "DTKfullIssue",
+      "unusual": true
+    },
+    {
+      "name": "DTKissn",
+      "unusual": true
+    },
+    {
+      "name": "DTKissue",
+      "unusual": true
+    },
+    {
+      "name": "DTKlstfont",
+      "unusual": true
+    },
+    {
+      "name": "DTKlstKeywordfont",
+      "unusual": true
+    },
+    {
+      "name": "DTKmonth",
+      "unusual": true
+    },
+    {
+      "name": "DTKrecordfalse",
+      "unusual": true
+    },
+    {
+      "name": "DTKrecordtrue",
+      "unusual": true
+    },
+    {
+      "name": "DTKversion",
+      "unusual": true
+    },
+    {
+      "name": "DTKversiondate",
+      "unusual": true
+    },
+    {
+      "name": "DTKvolume",
+      "unusual": true
+    },
+    {
+      "name": "DTKyear",
+      "unusual": true
+    },
+    {
+      "name": "Env",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "Environment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "fullwidth",
+      "unusual": true
+    },
+    {
+      "name": "ifDTKrecord",
+      "unusual": true
+    },
+    {
+      "name": "journalname"
+    },
+    {
+      "name": "Klasse",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:class}}"
+      }
+    },
+    {
+      "name": "Macro",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "Package",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package%plain}}"
+      }
+    },
+    {
+      "name": "Paket",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package%plain}}"
+      }
+    },
+    {
+      "name": "Program",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:program name}}"
+      }
+    },
+    {
+      "name": "Programm",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:program}}"
+      }
+    },
+    {
+      "name": "tex4ht"
+    },
+    {
+      "name": "AutorenListe",
+      "unusual": true
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "DTKrmFontName",
+      "unusual": true
+    },
+    {
+      "name": "DTKsfFontName",
+      "unusual": true
+    },
+    {
+      "name": "DTKttFontName",
+      "unusual": true
+    },
+    {
+      "name": "DTKmathFontName",
+      "unusual": true
+    },
+    {
+      "name": "captionsenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateenglish",
+      "unusual": true
+    },
+    {
+      "name": "extrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "captionsngerman"
+    },
+    {
+      "name": "datengerman"
+    },
+    {
+      "name": "extrasngerman"
+    },
+    {
+      "name": "noextrasngerman"
+    },
+    {
+      "name": "dq"
+    },
+    {
+      "name": "ntosstrue",
+      "unusual": true
+    },
+    {
+      "name": "ntossfalse",
+      "unusual": true
+    },
+    {
+      "name": "mdqon",
+      "unusual": true
+    },
+    {
+      "name": "mdqoff",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [
+    {
+      "name": "roll",
+      "if": "full"
+    },
+    {
+      "name": "roll",
+      "if": "full",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:labelwidth%l}]"
+      }
+    },
+    {
+      "name": "theAutoren",
+      "if": "full"
+    },
+    {
+      "name": "roll",
+      "if": "full=true"
+    },
+    {
+      "name": "roll",
+      "if": "full=true",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:labelwidth%l}]"
+      }
+    },
+    {
+      "name": "theAutoren",
+      "if": "full=true"
+    },
+    {
+      "name": "Figure"
+    },
+    {
+      "name": "Figure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:caption%text}}"
+      }
+    },
+    {
+      "name": "Figure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:caption%text}}"
+      }
+    },
+    {
+      "name": "Table",
+      "arg": {
+        "format": "[]{caption",
+        "snippet": "[${1:width}]{caption"
+      }
+    },
+    {
+      "name": "Table",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:caption%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/dtk#c": [
+      "Ausgabe=",
+      "Jahr=",
+      "Monat=",
+      "korr",
+      "full",
+      "color"
+    ]
+  },
+  "args": [
+    "\\documentclass/dtk#c"
+  ]
 }

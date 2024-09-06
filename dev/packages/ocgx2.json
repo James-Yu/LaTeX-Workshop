@@ -1,150 +1,374 @@
 {
-  "includes": {
-    "ocgbase": [],
-    "tikz": [
-      "tikz",
-      "tikz=true"
-    ],
-    "tikzlibrarycalc": [
-      "tikz",
-      "tikz=true"
-    ]
-  },
-  "macros": {
-    "AllOn{}": {
-      "snippet": "AllOn{${1:ocg1,${2:ocg2},...}}"
+  "deps": [
+    {
+      "name": "ocgbase"
     },
-    "AnyOn{}": {
-      "snippet": "AnyOn{${1:ocg1,${2:ocg2},...}}"
+    {
+      "name": "tikz",
+      "if": "tikz"
     },
-    "AnyOff{}": {
-      "snippet": "AnyOff{${1:ocg1,${2:ocg2},...}}"
+    {
+      "name": "tikzlibrarycalc",
+      "if": "tikz"
     },
-    "AllOff{}": {
-      "snippet": "AllOff{${1:ocg1,${2:ocg2},...}}"
+    {
+      "name": "tikz",
+      "if": "tikz=true"
     },
-    "Not{}": {
-      "snippet": "Not{${1:item}}"
-    },
-    "And{}": {
-      "snippet": "And{${1:item1,${2:item2},...}}"
-    },
-    "Or{}": {
-      "snippet": "Or{${1:item1,${2:item2},...}}"
-    },
-    "switchocg{}{}": {
-      "snippet": "switchocg{${1:ocg1,${3:ocg2},...}}{${2:link text}}"
-    },
-    "switchocg[]{}{}": {
-      "snippet": "switchocg[${3:trigger}]{${1:ocg1,${4:ocg2},...}}{${2:link text}}"
-    },
-    "switchocg*{}{}": {
-      "snippet": "switchocg*{${1:ocg1,${3:ocg2},...}}{${2:link text}}"
-    },
-    "switchocg*[]{}{}": {
-      "snippet": "switchocg*[${3:trigger}]{${1:ocg1,${4:ocg2},...}}{${2:link text}}"
-    },
-    "showocg{}{}": {
-      "snippet": "showocg{${1:ocg1,${3:ocg2},...}}{${2:link text}}"
-    },
-    "showocg[]{}{}": {
-      "snippet": "showocg[${3:trigger}]{${1:ocg1,${4:ocg2},...}}{${2:link text}}"
-    },
-    "showocg*{}{}": {
-      "snippet": "showocg*{${1:ocg1,${3:ocg2},...}}{${2:link text}}"
-    },
-    "showocg*[]{}{}": {
-      "snippet": "showocg*[${3:trigger}]{${1:ocg1,${4:ocg2},...}}{${2:link text}}"
-    },
-    "hideocg{}{}": {
-      "snippet": "hideocg{${1:ocg1,${3:ocg2},...}}{${2:link text}}"
-    },
-    "hideocg[]{}{}": {
-      "snippet": "hideocg[${3:trigger}]{${1:ocg1,${4:ocg2},...}}{${2:link text}}"
-    },
-    "hideocg*{}{}": {
-      "snippet": "hideocg*{${1:ocg1,${3:ocg2},...}}{${2:link text}}"
-    },
-    "hideocg*[]{}{}": {
-      "snippet": "hideocg*[${3:trigger}]{${1:ocg1,${4:ocg2},...}}{${2:link text}}"
-    },
-    "actionsocg{}{}{}{}": {
-      "snippet": "actionsocg{${1:switchocg1,${5:...}}{${2:showocg1},${6:...}}{${3:hideocg1},...}}{${4:link text}}"
-    },
-    "actionsocg[]{}{}{}{}": {
-      "snippet": "actionsocg[${5:trigger}]{${1:switchocg1,${6:...}}{${2:showocg1},${7:...}}{${3:hideocg1},...}}{${4:link text}}"
-    },
-    "actionsocg*{}{}{}{}": {
-      "snippet": "actionsocg*{${1:switchocg1,${5:...}}{${2:showocg1},${6:...}}{${3:hideocg1},...}}{${4:link text}}"
-    },
-    "actionsocg*[]{}{}{}{}": {
-      "snippet": "actionsocg*[${5:trigger}]{${1:switchocg1,${6:...}}{${2:showocg1},${7:...}}{${3:hideocg1},...}}{${4:link text}}"
-    },
-    "ocglinkprotect{}": {
-      "snippet": "ocglinkprotect{${1:text}}"
-    },
-    "toggleocgs{}{}": {
-      "snippet": "toggleocgs{${1:layerid1 layerid2 ...}}{${2:link text}}"
-    },
-    "toggleocgs[]{}{}": {
-      "snippet": "toggleocgs[${3:option}]{${1:layerid1 layerid2 ...}}{${2:link text}}"
-    },
-    "showocgs{}{}": {
-      "snippet": "showocgs{${1:layerid1 layerid2 ...}}{${2:link text}}"
-    },
-    "showocgs[]{}{}": {
-      "snippet": "showocgs[${3:option}]{${1:layerid1 layerid2 ...}}{${2:link text}}"
-    },
-    "hideocgs{}{}": {
-      "snippet": "hideocgs{${1:layerid1 layerid2 ...}}{${2:link text}}"
-    },
-    "hideocgs[]{}{}": {
-      "snippet": "hideocgs[${3:option}]{${1:layerid1 layerid2 ...}}{${2:link text}}"
-    },
-    "setocgs{}{}{}{}": {
-      "snippet": "setocgs{${1:tlayerid1 ...}}{${2:slayerid1 ...}}{${3:hlayerid1 ...}}{${4:link text}}"
-    },
-    "setocgs[]{}{}{}{}": {
-      "snippet": "setocgs[${5:option}]{${1:tlayerid1 ...}}{${2:slayerid1 ...}}{${3:hlayerid1 ...}}{${4:link text}}"
+    {
+      "name": "tikzlibrarycalc",
+      "if": "tikz=true"
     }
-  },
-  "envs": {
-    "ocg{}{}{}": {
-      "name": "ocg",
-      "snippet": "{${1:layer name}}{${2:ocg id}}{${3:initial visibility}}"
-    },
-    "ocg[]{}{}{}": {
-      "name": "ocg",
-      "snippet": "[${4:options}]{${1:layer name}}{${2:ocg id}}{${3:initial visibility}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ocmd{}": {
-      "name": "ocmd",
-      "snippet": "{${1:visibility policy,visibility expression}}"
-    },
-    "ocmd[]{}": {
-      "name": "ocmd",
-      "snippet": "[${2:id}]{${1:visibility policy,visibility expression}}"
-    }
-  },
-  "options": [
-    "dvipdfmx",
-    "viewocg=${1|always,never,ifvisible|}",
-    "printocg=${1|always,never,ifvisible|}",
-    "exportocg=${1|always,never,ifvisible|}",
-    "showingui=${1|true,false,always,never,iffirstuse|}",
-    "tikz",
-    "ocgcolorlinks"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "AllOn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ocg1,ocg2,...}}"
+      }
+    },
+    {
+      "name": "AnyOn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ocg1,ocg2,...}}"
+      }
+    },
+    {
+      "name": "AnyOff",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ocg1,ocg2,...}}"
+      }
+    },
+    {
+      "name": "AllOff",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ocg1,ocg2,...}}"
+      }
+    },
+    {
+      "name": "Not",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:item}}"
+      },
+      "detail": "⫬",
+      "doc": "Double stroke not sign"
+    },
+    {
+      "name": "And",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:item1,item2,...}}"
+      }
+    },
+    {
+      "name": "Or",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:item1,item2,...}}"
+      }
+    },
+    {
+      "name": "switchocg",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ocg1,ocg2,...}}{${2:link text%text}}"
+      }
+    },
+    {
+      "name": "switchocg",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}",
+        "keys": [
+          "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "switchocg*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ocg1,ocg2,...}}{${2:link text%text}}"
+      }
+    },
+    {
+      "name": "switchocg*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}",
+        "keys": [
+          "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "showocg",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ocg1,ocg2,...}}{${2:link text%text}}"
+      }
+    },
+    {
+      "name": "showocg",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}",
+        "keys": [
+          "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "showocg*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ocg1,ocg2,...}}{${2:link text%text}}"
+      }
+    },
+    {
+      "name": "showocg*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}",
+        "keys": [
+          "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hideocg",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ocg1,ocg2,...}}{${2:link text%text}}"
+      }
+    },
+    {
+      "name": "hideocg",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}",
+        "keys": [
+          "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hideocg*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ocg1,ocg2,...}}{${2:link text%text}}"
+      }
+    },
+    {
+      "name": "hideocg*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}",
+        "keys": [
+          "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "actionsocg",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:switchocg1,...}}{${2:showocg1,...}}{${3:hideocg1,...}}{${4:link text%text}}"
+      }
+    },
+    {
+      "name": "actionsocg",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:trigger%keyvals}]{${1:switchocg1,...}}{${2:showocg1,...}}{${3:hideocg1,...}}{${4:link text%text}}",
+        "keys": [
+          "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "actionsocg*",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:switchocg1,...}}{${2:showocg1,...}}{${3:hideocg1,...}}{${4:link text%text}}"
+      }
+    },
+    {
+      "name": "actionsocg*",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:trigger%keyvals}]{${1:switchocg1,...}}{${2:showocg1,...}}{${3:hideocg1,...}}{${4:link text%text}}",
+        "keys": [
+          "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ocglinkprotect",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "toggleocgs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:layerid1 layerid2 ...}}{${2:link text%text}}"
+      }
+    },
+    {
+      "name": "toggleocgs",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:option%keyvals}]{${1:layerid1 layerid2 ...}}{${2:link text%text}}"
+      }
+    },
+    {
+      "name": "showocgs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:layerid1 layerid2 ...}}{${2:link text%text}}"
+      }
+    },
+    {
+      "name": "showocgs",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:option%keyvals}]{${1:layerid1 layerid2 ...}}{${2:link text%text}}"
+      }
+    },
+    {
+      "name": "hideocgs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:layerid1 layerid2 ...}}{${2:link text%text}}"
+      }
+    },
+    {
+      "name": "hideocgs",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:option%keyvals}]{${1:layerid1 layerid2 ...}}{${2:link text%text}}"
+      }
+    },
+    {
+      "name": "setocgs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:tlayerid1 ...}}{${2:slayerid1 ...}}{${3:hlayerid1 ...}}{${4:link text%text}}"
+      }
+    },
+    {
+      "name": "setocgs",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:option%keyvals}]{${1:tlayerid1 ...}}{${2:slayerid1 ...}}{${3:hlayerid1 ...}}{${4:link text%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "ocg",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:layer name}}{${2:ocg id}}{${3:initial visibility}}"
+      }
+    },
+    {
+      "name": "ocg",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:layer name}}{${2:ocg id}}{${3:initial visibility}}",
+        "keys": [
+          "\\begin{ocg}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ocmd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:visibility policy,visibility expression}}"
+      }
+    },
+    {
+      "name": "ocmd",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:visibility policy,visibility expression}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/ocgx2#c": [
+      "dvipdfmx",
+      "viewocg=${1|always,never,ifvisible|}",
+      "printocg=${1|always,never,ifvisible|}",
+      "exportocg=${1|always,never,ifvisible|}",
+      "showingui=${1|true,false,always,never,iffirstuse|}",
+      "tikz",
+      "ocgcolorlinks"
+    ],
+    "\\begin{ocg}": [
       "viewocg=${1|always,never,ifvisible|}",
       "printocg=${1|always,never,ifvisible|}",
       "exportocg=${1|always,never,ifvisible|}",
       "showingui=${1|true,false,always,never,iffirstuse|}",
       "listintoolbar=${1|true,false,always,never,iffirstuse|}",
       "radiobtngrps={${1:group1,group2,...}}"
+    ],
+    "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*": [
+      "onmousenter",
+      "onmouseexit",
+      "onmousedown",
+      "onmouseup",
+      "onmouseall"
+    ],
+    "\\tikzset#c,\\begin{tikzpicture}#c,\\begin{scope}#c,\\node#c": [
+      "ocg={${1:options}}",
+      "ocmd={${1:options}}",
+      "trigger ocg=${1|onmousenter,onmouseexit,onmousedown,onmouseup,onmouseall|}",
+      "switch ocg={${1:ocg list}}",
+      "show ocg={${1:ocg list}}",
+      "hide ocg={${1:ocg list}}",
+      "actions ocg={${1:ocg list1}}{${2:ocg list2}}{${3:ocg list3}}",
+      "switch ocg with mark on={${1:ocg ref}}{${2:ocg list}}",
+      "switch ocg with mark off={${1:ocg ref}}{${2:ocg list}}",
+      "ocg={${1:options}}",
+      "ocmd={${1:options}}",
+      "trigger ocg=${1|onmousenter,onmouseexit,onmousedown,onmouseup,onmouseall|}",
+      "switch ocg={${1:ocg list}}",
+      "show ocg={${1:ocg list}}",
+      "hide ocg={${1:ocg list}}",
+      "actions ocg={${1:ocg list1}}{${2:ocg list2}}{${3:ocg list3}}",
+      "switch ocg with mark on={${1:ocg ref}}{${2:ocg list}}",
+      "switch ocg with mark off={${1:ocg ref}}{${2:ocg list}}"
     ]
+  },
+  "args": [
+    "\\usepackage/ocgx2#c"
   ]
 }

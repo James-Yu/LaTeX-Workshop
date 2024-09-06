@@ -1,18 +1,34 @@
 {
-  "includes": {
-    "geometry": [],
-    "graphicx": [],
-    "hyperref": [],
-    "moreverb": []
-  },
-  "macros": {
-    "pagefill": {},
-    "pagefill[]": {
-      "snippet": "pagefill[${1:length}]"
+  "deps": [
+    {
+      "name": "geometry"
     },
-    "ebook": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "moreverb"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pagefill"
+    },
+    {
+      "name": "pagefill",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:length}]"
+      }
+    },
+    {
+      "name": "ebook"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

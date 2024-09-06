@@ -1,90 +1,254 @@
 {
-  "includes": {
-    "class-ctexart": [],
-    "graphicx": [],
-    "geometry": [],
-    "multicol": [],
-    "xstring": [],
-    "listofitems": [],
-    "color": [],
-    "calc": [],
-    "rulerbox": [
-      "rulerhead"
-    ],
-    "makebarcode": [
-      "colbarcode"
-    ],
-    "qrcode": [
-      "detbarcode"
+  "deps": [
+    {
+      "name": "class-ctexart"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "multicol"
+    },
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "listofitems"
+    },
+    {
+      "name": "color"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "rulerbox",
+      "if": "rulerhead"
+    },
+    {
+      "name": "makebarcode",
+      "if": "colbarcode"
+    },
+    {
+      "name": "qrcode",
+      "if": "detbarcode"
+    }
+  ],
+  "macros": [
+    {
+      "name": "heading",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subheading",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "collect"
+    },
+    {
+      "name": "identify"
+    },
+    {
+      "name": "Collect"
+    },
+    {
+      "name": "Identify"
+    },
+    {
+      "name": "Altitude",
+      "unusual": true
+    },
+    {
+      "name": "ChnName",
+      "unusual": true
+    },
+    {
+      "name": "ColDate",
+      "unusual": true
+    },
+    {
+      "name": "ColNum",
+      "unusual": true
+    },
+    {
+      "name": "Collector",
+      "unusual": true
+    },
+    {
+      "name": "DBH",
+      "unusual": true
+    },
+    {
+      "name": "DateIdentification",
+      "unusual": true
+    },
+    {
+      "name": "Descr",
+      "unusual": true
+    },
+    {
+      "name": "Family",
+      "unusual": true
+    },
+    {
+      "name": "Habitat",
+      "unusual": true
+    },
+    {
+      "name": "Height",
+      "unusual": true
+    },
+    {
+      "name": "Identifier",
+      "unusual": true
+    },
+    {
+      "name": "IdentifierStd",
+      "unusual": true
+    },
+    {
+      "name": "LatName",
+      "unusual": true
+    },
+    {
+      "name": "Latitude",
+      "unusual": true
+    },
+    {
+      "name": "LifeForm",
+      "unusual": true
+    },
+    {
+      "name": "Location",
+      "unusual": true
+    },
+    {
+      "name": "Longitude",
+      "unusual": true
+    },
+    {
+      "name": "NumDup",
+      "unusual": true
+    },
+    {
+      "name": "PhotoNum",
+      "unusual": true
+    },
+    {
+      "name": "RecNum",
+      "unusual": true
+    },
+    {
+      "name": "Remark",
+      "unusual": true
+    },
+    {
+      "name": "aster",
+      "unusual": true
+    },
+    {
+      "name": "degree",
+      "unusual": true
+    },
+    {
+      "name": "detchinesestyle",
+      "unusual": true
+    },
+    {
+      "name": "detcommonnamestyle",
+      "unusual": true
+    },
+    {
+      "name": "detlatinstyle",
+      "unusual": true
+    },
+    {
+      "name": "headerstyle",
+      "unusual": true
+    },
+    {
+      "name": "headingstyle",
+      "unusual": true
+    },
+    {
+      "name": "herbariumcode",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "identifierstyle",
+      "unusual": true
+    },
+    {
+      "name": "mapdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:name}}{${2:file}}{${3:longmin}}{${4:longmax}}{${5:latmin}}{${6:latmax}}"
+      }
+    },
+    {
+      "name": "mapseries",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "printbarcode",
+      "unusual": true
+    },
+    {
+      "name": "printform",
+      "unusual": true
+    },
+    {
+      "name": "printheadings",
+      "unusual": true
+    },
+    {
+      "name": "printmap",
+      "unusual": true
+    },
+    {
+      "name": "printqrcode",
+      "unusual": true
+    },
+    {
+      "name": "strsubs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:stringA}}{${2:stringB}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/nanicolle#c": [
+      "rulerhead",
+      "colbarcode",
+      "detbarcode",
+      "nomap",
+      "autoduplicate",
+      "internal"
     ]
   },
-  "macros": {
-    "heading{}": {
-      "snippet": "heading{${1:text}}"
-    },
-    "subheading{}": {
-      "snippet": "subheading{${1:text}}"
-    },
-    "collect": {},
-    "identify": {},
-    "Collect": {},
-    "Identify": {},
-    "Altitude": {},
-    "ChnName": {},
-    "ColDate": {},
-    "ColNum": {},
-    "Collector": {},
-    "DBH": {},
-    "DateIdentification": {},
-    "Descr": {},
-    "Family": {},
-    "Habitat": {},
-    "Height": {},
-    "Identifier": {},
-    "IdentifierStd": {},
-    "LatName": {},
-    "Latitude": {},
-    "LifeForm": {},
-    "Location": {},
-    "Longitude": {},
-    "NumDup": {},
-    "PhotoNum": {},
-    "RecNum": {},
-    "Remark": {},
-    "aster": {},
-    "degree": {},
-    "detchinesestyle": {},
-    "detcommonnamestyle": {},
-    "detlatinstyle": {},
-    "headerstyle": {},
-    "headingstyle": {},
-    "herbariumcode{}": {
-      "snippet": "herbariumcode{${1:arg}}"
-    },
-    "identifierstyle": {},
-    "mapdef{}{}{}{}{}{}": {
-      "snippet": "mapdef{${1:name}}{${2:file}}{${3:longmin}}{${4:longmax}}{${5:latmin}}{${6:latmax}}"
-    },
-    "mapseries{}": {
-      "snippet": "mapseries{${1:name}}"
-    },
-    "printbarcode": {},
-    "printform": {},
-    "printheadings": {},
-    "printmap": {},
-    "printqrcode": {},
-    "strsubs{}{}": {
-      "snippet": "strsubs{${1:stringA}}{${2:stringB}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "rulerhead",
-    "colbarcode",
-    "detbarcode",
-    "nomap",
-    "autoduplicate",
-    "internal"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/nanicolle#c"
+  ]
 }

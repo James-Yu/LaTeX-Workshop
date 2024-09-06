@@ -1,20 +1,34 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "fontenc": [],
-    "ifthen": [],
-    "mweights": [],
-    "fontaxes": []
-  },
-  "macros": {},
-  "envs": {},
-  "options": [
-    "scaled=${1|${1:factor},MatchLowercase|}",
-    "lining",
-    "tabular",
-    "mainfont",
-    "bold",
-    "regular"
+  "deps": [
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "mweights"
+    },
+    {
+      "name": "fontaxes"
+    }
   ],
-  "keyvals": []
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\usepackage/Magra#c": [
+      "scaled=${2|${1:factor},MatchLowercase|}",
+      "lining",
+      "tabular",
+      "mainfont",
+      "bold",
+      "regular"
+    ]
+  },
+  "args": [
+    "\\usepackage/Magra#c"
+  ]
 }

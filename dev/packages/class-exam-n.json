@@ -1,341 +1,745 @@
 {
-  "includes": {
-    "babel": [],
-    "amsmath": [],
-    "siunitx": [],
-    "xcolor": [],
-    "ifpdf": [],
-    "fancyhdr": [],
-    "mathptm": [
-      "mathptm"
-    ],
-    "times": [
+  "deps": [
+    {
+      "name": "babel"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "siunitx"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "mathptm",
+      "if": "mathptm"
+    },
+    {
+      "name": "times",
+      "if": "mathptm"
+    },
+    {
+      "name": "fontenc",
+      "if": "mathtime"
+    },
+    {
+      "name": "mathtime",
+      "if": "mathtime"
+    },
+    {
+      "name": "times",
+      "if": "mathtime"
+    },
+    {
+      "name": "mtpro2",
+      "if": "mtpro2"
+    },
+    {
+      "name": "fontenc",
+      "if": "mtpro2"
+    },
+    {
+      "name": "stix2",
+      "if": "stix2"
+    },
+    {
+      "name": "helvet",
+      "if": "sansserif"
+    }
+  ],
+  "macros": [
+    {
+      "name": "DH",
+      "if": "mathtime"
+    },
+    {
+      "name": "dh",
+      "if": "mathtime"
+    },
+    {
+      "name": "guillemotleft",
+      "if": "mathtime"
+    },
+    {
+      "name": "guillemotright",
+      "if": "mathtime"
+    },
+    {
+      "name": "guilsinglleft",
+      "if": "mathtime"
+    },
+    {
+      "name": "guilsinglright",
+      "if": "mathtime"
+    },
+    {
+      "name": "k",
+      "if": "mathtime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "quotedblbase",
+      "if": "mathtime"
+    },
+    {
+      "name": "quotesinglbase",
+      "if": "mathtime"
+    },
+    {
+      "name": "textdivide",
+      "if": "mathtime"
+    },
+    {
+      "name": "textlogicalnot",
+      "if": "mathtime"
+    },
+    {
+      "name": "textmultiply",
+      "if": "mathtime"
+    },
+    {
+      "name": "textplusminus",
+      "if": "mathtime"
+    },
+    {
+      "name": "textquotedbl",
+      "if": "mathtime"
+    },
+    {
+      "name": "textquotedblbase",
+      "if": "mathtime"
+    },
+    {
+      "name": "textquotesinglbase",
+      "if": "mathtime"
+    },
+    {
+      "name": "textspace",
+      "if": "mathtime"
+    },
+    {
+      "name": "TH",
+      "if": "mathtime"
+    },
+    {
+      "name": "th",
+      "if": "mathtime"
+    },
+    {
+      "name": "DH",
+      "if": "mtpro2"
+    },
+    {
+      "name": "dh",
+      "if": "mtpro2"
+    },
+    {
+      "name": "dj",
+      "if": "mtpro2"
+    },
+    {
+      "name": "DJ",
+      "if": "mtpro2"
+    },
+    {
+      "name": "guillemetleft",
+      "if": "mtpro2"
+    },
+    {
+      "name": "guillemetright",
+      "if": "mtpro2"
+    },
+    {
+      "name": "guillemotleft",
+      "if": "mtpro2",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "if": "mtpro2",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft",
+      "if": "mtpro2"
+    },
+    {
+      "name": "guilsinglright",
+      "if": "mtpro2"
+    },
+    {
+      "name": "Hwithstroke",
+      "if": "mtpro2"
+    },
+    {
+      "name": "hwithstroke",
+      "if": "mtpro2"
+    },
+    {
+      "name": "k",
+      "if": "mtpro2",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG",
+      "if": "mtpro2"
+    },
+    {
+      "name": "ng",
+      "if": "mtpro2"
+    },
+    {
+      "name": "quotedblbase",
+      "if": "mtpro2"
+    },
+    {
+      "name": "quotesinglbase",
+      "if": "mtpro2"
+    },
+    {
+      "name": "textogonekcentered",
+      "if": "mtpro2",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl",
+      "if": "mtpro2"
+    },
+    {
+      "name": "th",
+      "if": "mtpro2"
+    },
+    {
+      "name": "TH",
+      "if": "mtpro2"
+    },
+    {
+      "name": "italicpi",
+      "if": "uprightpi"
+    },
+    {
+      "name": "ifbigfont",
+      "unusual": true
+    },
+    {
+      "name": "bigfonttrue",
+      "unusual": true
+    },
+    {
+      "name": "bigfontfalse",
+      "unusual": true
+    },
+    {
+      "name": "QuestionNumberChecksOff"
+    },
+    {
+      "name": "answer"
+    },
+    {
+      "name": "multiplechoiceanswers",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
+    },
+    {
+      "name": "includequestion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "includequestion",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:question number}]{${1:file}}"
+      }
+    },
+    {
+      "name": "partmarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "partmarks*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "comment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "shout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "leftnudge",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "questionpreamble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "exambanner",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "universitycoursecode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "schoolcoursecode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "degreedescriptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "coursetitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "paperident",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "examdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "examtime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:time}}"
+      }
+    },
+    {
+      "name": "rubric",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "norubric"
+    },
+    {
+      "name": "baserubric",
+      "unusual": true
+    },
+    {
+      "name": "numquestions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "BSc"
+    },
+    {
+      "name": "MSci"
+    },
+    {
+      "name": "MSc"
+    },
+    {
+      "name": "MA"
+    },
+    {
+      "name": "MEng"
+    },
+    {
+      "name": "BEng"
+    },
+    {
+      "name": "dd"
+    },
+    {
+      "name": "ddd"
+    },
+    {
+      "name": "Diffl",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:var}}"
+      }
+    },
+    {
+      "name": "Diffl",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:ord}]{${1:arg}}{${2:var}}"
+      }
+    },
+    {
+      "name": "Diffl*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:var}}"
+      }
+    },
+    {
+      "name": "Diffl*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:ord}]{${1:arg}}{${2:var}}"
+      }
+    },
+    {
+      "name": "Partial",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:var}}"
+      }
+    },
+    {
+      "name": "Partial",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:ord}]{${1:arg}}{${2:var}}"
+      }
+    },
+    {
+      "name": "Partial*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:var}}"
+      }
+    },
+    {
+      "name": "Partial*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:ord}]{${1:arg}}{${2:var}}"
+      }
+    },
+    {
+      "name": "Partial"
+    },
+    {
+      "name": "e"
+    },
+    {
+      "name": "units",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:units%formula}}"
+      }
+    },
+    {
+      "name": "constantssheet",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "OverrideFormatting",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:formatting commands}}"
+      }
+    },
+    {
+      "name": "FormatPartMarks",
+      "unusual": true
+    },
+    {
+      "name": "FormatPartNumber",
+      "unusual": true
+    },
+    {
+      "name": "StylePartNumber",
+      "unusual": true
+    },
+    {
+      "name": "FormatQuestionNumber",
+      "unusual": true
+    },
+    {
+      "name": "iffussydescription",
+      "unusual": true
+    },
+    {
+      "name": "defaultpartmarkscategory",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:category}}"
+      }
+    },
+    {
+      "name": "RequiredMetadata",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:field}}{${2:description}}{${3:help-text}}"
+      }
+    },
+    {
+      "name": "CheckExamMetadata"
+    },
+    {
+      "name": "CheckTotalQuestions",
+      "unusual": true
+    },
+    {
+      "name": "ClosingText",
+      "unusual": true
+    },
+    {
+      "name": "formatcontinuations",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "highlighted",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "marginsize",
+      "unusual": true
+    },
+    {
+      "name": "markgoal",
+      "unusual": true
+    },
+    {
+      "name": "marktotal",
+      "unusual": true
+    },
+    {
+      "name": "theanswerpartnumber",
+      "unusual": true
+    },
+    {
+      "name": "thepartnumber",
+      "unusual": true
+    },
+    {
+      "name": "thequestionnumber",
+      "unusual": true
+    },
+    {
+      "name": "UniLogo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "WriteLastPageLabel",
+      "unusual": true
+    },
+    {
+      "name": "captionsenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateenglish",
+      "unusual": true
+    },
+    {
+      "name": "extrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "question",
+      "if": "noperquestionmarks"
+    },
+    {
+      "name": "question",
+      "if": "noperquestionmarks",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:question number}]"
+      }
+    },
+    {
+      "name": "question",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:marks}}"
+      }
+    },
+    {
+      "name": "question",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:question number}]{${1:marks}}"
+      }
+    },
+    {
+      "name": "solution"
+    },
+    {
+      "name": "questiondata"
+    },
+    {
+      "name": "mcq"
+    }
+  ],
+  "keys": {
+    "\\documentclass/exam-n#c": [
+      "compose",
+      "draft",
+      "final",
+      "psfonts",
+      "cmfonts",
       "mathptm",
-      "mathtime"
-    ],
-    "fontenc": [
       "mathtime",
-      "mtpro2"
-    ],
-    "mathtime": [
-      "mathtime"
-    ],
-    "mtpro2": [
-      "mtpro2"
-    ],
-    "stix2": [
-      "stix2"
-    ],
-    "helvet": [
-      "sansserif"
+      "mtpro2",
+      "stix2",
+      "uprightpi",
+      "siunitx",
+      "nosiunitx",
+      "serif",
+      "sansserif",
+      "showsolutions",
+      "noshowsolutions",
+      "pageperquestion",
+      "nopageperquestion",
+      "perquestionmarks",
+      "noperquestionmarks",
+      "showmarktotals",
+      "noshowmarktotals",
+      "twoside",
+      "oneside",
+      "fleqn",
+      "sloppydescription",
+      "mono",
+      "colour",
+      "largefont",
+      "hugefont",
+      "A1"
     ]
   },
-  "macros": {
-    "DH": {
-      "option": "mtpro2"
-    },
-    "dh": {
-      "option": "mtpro2"
-    },
-    "guillemotleft": {
-      "option": "mtpro2"
-    },
-    "guillemotright": {
-      "option": "mtpro2"
-    },
-    "guilsinglleft": {
-      "option": "mtpro2"
-    },
-    "guilsinglright": {
-      "option": "mtpro2"
-    },
-    "k{}": {
-      "snippet": "k{${1:arg}}",
-      "option": "mtpro2"
-    },
-    "quotedblbase": {
-      "option": "mtpro2"
-    },
-    "quotesinglbase": {
-      "option": "mtpro2"
-    },
-    "textdivide": {
-      "option": "mathtime"
-    },
-    "textlogicalnot": {
-      "option": "mathtime"
-    },
-    "textmultiply": {
-      "option": "mathtime"
-    },
-    "textplusminus": {
-      "option": "mathtime"
-    },
-    "textquotedbl": {
-      "option": "mtpro2"
-    },
-    "textquotedblbase": {
-      "option": "mathtime"
-    },
-    "textquotesinglbase": {
-      "option": "mathtime"
-    },
-    "textspace": {
-      "option": "mathtime"
-    },
-    "TH": {
-      "option": "mtpro2"
-    },
-    "th": {
-      "option": "mtpro2"
-    },
-    "dj": {
-      "option": "mtpro2"
-    },
-    "DJ": {
-      "option": "mtpro2"
-    },
-    "guillemetleft": {
-      "option": "mtpro2"
-    },
-    "guillemetright": {
-      "option": "mtpro2"
-    },
-    "Hwithstroke": {
-      "option": "mtpro2"
-    },
-    "hwithstroke": {
-      "option": "mtpro2"
-    },
-    "NG": {
-      "option": "mtpro2"
-    },
-    "ng": {
-      "option": "mtpro2"
-    },
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}",
-      "option": "mtpro2"
-    },
-    "italicpi": {
-      "option": "uprightpi"
-    },
-    "ifbigfont": {},
-    "bigfonttrue": {},
-    "bigfontfalse": {},
-    "QuestionNumberChecksOff": {},
-    "answer": {},
-    "multiplechoiceanswers{}": {
-      "snippet": "multiplechoiceanswers{${1:n}}"
-    },
-    "includequestion{}": {
-      "snippet": "includequestion{${1:file}}"
-    },
-    "includequestion[]{}": {
-      "snippet": "includequestion[${2:question number}]{${1:file}}"
-    },
-    "partmarks{}": {
-      "snippet": "partmarks{${1:number}}"
-    },
-    "partmarks*{}": {
-      "snippet": "partmarks*{${1:number}}"
-    },
-    "comment{}": {
-      "snippet": "comment{${1:text}}"
-    },
-    "shout{}": {
-      "snippet": "shout{${1:text}}"
-    },
-    "leftnudge{}": {
-      "snippet": "leftnudge{${1:length}}"
-    },
-    "questionpreamble{}": {
-      "snippet": "questionpreamble{${1:content}}"
-    },
-    "exambanner{}": {
-      "snippet": "exambanner{${1:text}}"
-    },
-    "universitycoursecode{}": {
-      "snippet": "universitycoursecode{${1:text}}"
-    },
-    "schoolcoursecode{}": {
-      "snippet": "schoolcoursecode{${1:text}}"
-    },
-    "degreedescriptions{}": {
-      "snippet": "degreedescriptions{${1:text}}"
-    },
-    "coursetitle{}": {
-      "snippet": "coursetitle{${1:text}}"
-    },
-    "paperident{}": {
-      "snippet": "paperident{${1:text}}"
-    },
-    "examdate{}": {
-      "snippet": "examdate{${1:date}}"
-    },
-    "examtime{}": {
-      "snippet": "examtime{${1:time}}"
-    },
-    "rubric{}": {
-      "snippet": "rubric{${1:text}}"
-    },
-    "norubric": {},
-    "baserubric": {},
-    "numquestions{}": {
-      "snippet": "numquestions{${1:number}}"
-    },
-    "BSc": {},
-    "MSci": {},
-    "MSc": {},
-    "MA": {},
-    "MEng": {},
-    "BEng": {},
-    "dd": {
-      "detail": "ⅆ",
-      "documentation": "DOUBLE-STRUCK ITALIC SMALL D"
-    },
-    "ddd": {},
-    "Diffl{}{}": {
-      "snippet": "Diffl{${1:arg}}{${2:var}}"
-    },
-    "Diffl[]{}{}": {
-      "snippet": "Diffl[${3:ord}]{${1:arg}}{${2:var}}"
-    },
-    "Diffl*{}{}": {
-      "snippet": "Diffl*{${1:arg}}{${2:var}}"
-    },
-    "Diffl*[]{}{}": {
-      "snippet": "Diffl*[${3:ord}]{${1:arg}}{${2:var}}"
-    },
-    "Partial{}{}": {
-      "snippet": "Partial{${1:arg}}{${2:var}}"
-    },
-    "Partial[]{}{}": {
-      "snippet": "Partial[${3:ord}]{${1:arg}}{${2:var}}"
-    },
-    "Partial*{}{}": {
-      "snippet": "Partial*{${1:arg}}{${2:var}}"
-    },
-    "Partial*[]{}{}": {
-      "snippet": "Partial*[${3:ord}]{${1:arg}}{${2:var}}"
-    },
-    "Partial": {},
-    "e": {
-      "detail": "𝑒",
-      "documentation": "MATHEMATICAL ITALIC SMALL E"
-    },
-    "units{}": {
-      "snippet": "units{${1:units}}"
-    },
-    "constantssheet{}": {
-      "snippet": "constantssheet{${1:content}}"
-    },
-    "OverrideFormatting{}": {
-      "snippet": "OverrideFormatting{${1:formatting commands}}"
-    },
-    "FormatPartMarks": {},
-    "FormatPartNumber": {},
-    "StylePartNumber": {},
-    "FormatQuestionNumber": {},
-    "iffussydescription": {},
-    "fussydescriptiontrue": {},
-    "fussydescriptionfalse": {},
-    "defaultpartmarkscategory{}": {
-      "snippet": "defaultpartmarkscategory{${1:category}}"
-    },
-    "RequiredMetadata{}{}{}": {
-      "snippet": "RequiredMetadata{${1:field}}{${2:description}}{${3:help-text}}"
-    },
-    "CheckExamMetadata": {},
-    "CheckTotalQuestions": {},
-    "ClosingText": {},
-    "formatcontinuations{}": {
-      "snippet": "formatcontinuations{${1:text}}"
-    },
-    "highlighted{}": {
-      "snippet": "highlighted{${1:text}}"
-    },
-    "marginsize": {},
-    "markgoal": {},
-    "marktotal": {},
-    "theanswerpartnumber": {},
-    "thepartnumber": {},
-    "thequestionnumber": {},
-    "UniLogo{}": {
-      "snippet": "UniLogo{${1:length}}"
-    },
-    "WriteLastPageLabel": {},
-    "captionsenglish": {},
-    "dateenglish": {},
-    "extrasenglish": {},
-    "noextrasenglish": {},
-    "englishhyphenmins": {},
-    "britishhyphenmins": {},
-    "americanhyphenmins": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {}
-  },
-  "envs": {
-    "question": {
-      "option": "noperquestionmarks"
-    },
-    "question[]": {
-      "name": "question",
-      "snippet": "[${1:question number}]",
-      "option": "noperquestionmarks"
-    },
-    "question{}": {
-      "name": "question",
-      "snippet": "{${1:marks}}"
-    },
-    "question[]{}": {
-      "name": "question",
-      "snippet": "[${2:question number}]{${1:marks}}"
-    },
-    "solution": {},
-    "questiondata": {},
-    "mcq": {}
-  },
-  "options": [
-    "compose",
-    "draft",
-    "final",
-    "psfonts",
-    "cmfonts",
-    "mathptm",
-    "mathtime",
-    "mtpro2",
-    "stix2",
-    "uprightpi",
-    "siunitx",
-    "nosiunitx",
-    "serif",
-    "sansserif",
-    "showsolutions",
-    "noshowsolutions",
-    "pageperquestion",
-    "nopageperquestion",
-    "perquestionmarks",
-    "noperquestionmarks",
-    "showmarktotals",
-    "noshowmarktotals",
-    "twoside",
-    "oneside",
-    "fleqn",
-    "sloppydescription",
-    "mono",
-    "colour",
-    "largefont",
-    "hugefont",
-    "A1"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/exam-n#c"
+  ]
 }

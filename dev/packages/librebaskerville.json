@@ -1,23 +1,48 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "librebaskerville": {},
-    "sufigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "librebaskervillefamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1|${1:factor},MatchLowercase|}",
-    "type1"
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "librebaskerville"
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "librebaskervillefamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/librebaskerville#c": [
+      "scaled=${2|${1:factor},MatchLowercase|}",
+      "type1"
+    ]
+  },
+  "args": [
+    "\\usepackage/librebaskerville#c"
+  ]
 }

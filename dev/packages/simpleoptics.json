@@ -1,55 +1,137 @@
 {
-  "includes": {
-    "tikz": []
-  },
-  "macros": {
-    "mirror{}{}{}{}": {
-      "snippet": "mirror{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}"
+  "deps": [
+    {
+      "name": "tikz"
+    }
+  ],
+  "macros": [
+    {
+      "name": "mirror",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}"
+      }
     },
-    "leftplanoconvexlens{}{}{}{}{}": {
-      "snippet": "leftplanoconvexlens{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}{${5:thickness}}"
+    {
+      "name": "leftplanoconvexlens",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}{${5:thickness}}"
+      }
     },
-    "rightplanoconvexlens{}{}{}{}{}": {
-      "snippet": "rightplanoconvexlens{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}{${5:thickness}}"
+    {
+      "name": "rightplanoconvexlens",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}{${5:thickness}}"
+      }
     },
-    "leftplanoconcavelens{}{}{}{}{}": {
-      "snippet": "leftplanoconcavelens{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}{${5:thickness}}"
+    {
+      "name": "leftplanoconcavelens",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}{${5:thickness}}"
+      }
     },
-    "rightplanoconcavelens{}{}{}{}{}": {
-      "snippet": "rightplanoconcavelens{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}{${5:thickness}}"
+    {
+      "name": "rightplanoconcavelens",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}{${5:thickness}}"
+      }
     },
-    "biconvexlens{}{}{}{}{}": {
-      "snippet": "biconvexlens{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}{${5:thickness}}"
+    {
+      "name": "biconvexlens",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}{${5:thickness}}"
+      }
     },
-    "biconcavelens{}{}{}{}{}": {
-      "snippet": "biconcavelens{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}{${5:thickness}}"
+    {
+      "name": "biconcavelens",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}{${5:thickness}}"
+      }
     },
-    "convexconcavelens{}{}{}{}{}": {
-      "snippet": "convexconcavelens{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}{${5:thickness}}"
+    {
+      "name": "convexconcavelens",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}{${5:thickness}}"
+      }
     },
-    "concaveconvexlens{}{}{}{}{}": {
-      "snippet": "concaveconvexlens{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}{${5:thickness}}"
+    {
+      "name": "concaveconvexlens",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:focal length}}{${4:mirror height}}{${5:thickness}}"
+      }
     },
-    "lens{}{}{}{}{}": {
-      "snippet": "lens{${1:x}}{${2:y}}{${3:focal length}}{${4:height}}{${5:thickness}}"
+    {
+      "name": "lens",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:focal length}}{${4:height}}{${5:thickness}}"
+      }
     },
-    "straightline{}{}": {
-      "snippet": "straightline{${1:x1,${3:y1}}{${2:x2},y2}}"
+    {
+      "name": "straightline",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x1,y1}}{${2:x2,y2}}"
+      }
     },
-    "mirrorX": {},
-    "mirrorY": {},
-    "mirrorRadius": {},
-    "mirrorHeight": {},
-    "startAngle": {},
-    "lensX": {},
-    "lensY": {},
-    "lensRadius": {},
-    "lensHeight": {},
-    "lensThickness": {},
-    "lensXright": {},
-    "lensXleft": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "mirrorX",
+      "unusual": true
+    },
+    {
+      "name": "mirrorY",
+      "unusual": true
+    },
+    {
+      "name": "mirrorRadius",
+      "unusual": true
+    },
+    {
+      "name": "mirrorHeight",
+      "unusual": true
+    },
+    {
+      "name": "startAngle",
+      "unusual": true
+    },
+    {
+      "name": "lensX",
+      "unusual": true
+    },
+    {
+      "name": "lensY",
+      "unusual": true
+    },
+    {
+      "name": "lensRadius",
+      "unusual": true
+    },
+    {
+      "name": "lensHeight",
+      "unusual": true
+    },
+    {
+      "name": "lensThickness",
+      "unusual": true
+    },
+    {
+      "name": "lensXright",
+      "unusual": true
+    },
+    {
+      "name": "lensXleft",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

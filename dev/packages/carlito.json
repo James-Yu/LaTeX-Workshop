@@ -1,41 +1,80 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontaxes": [],
-    "fontenc": []
-  },
-  "macros": {
-    "carlito": {},
-    "carlitoOsF": {},
-    "carlitoLF": {},
-    "carlitoTLF": {},
-    "carlitoTOsF": {},
-    "sufigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "infigures": {},
-    "textin{}": {
-      "snippet": "textin{${1:text}}"
+    {
+      "name": "ifluatex"
     },
-    "carlitofamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "scaled=${1:factor}",
-    "default",
-    "sfdefault",
-    "osf",
-    "oldstyle",
-    "lf",
-    "lining",
-    "proportional",
-    "p",
-    "tabular",
-    "t"
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "fontenc"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "carlito"
+    },
+    {
+      "name": "carlitoOsF"
+    },
+    {
+      "name": "carlitoLF"
+    },
+    {
+      "name": "carlitoTLF"
+    },
+    {
+      "name": "carlitoTOsF"
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "infigures"
+    },
+    {
+      "name": "textin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "carlitofamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/carlito#c": [
+      "scale=${1:factor}",
+      "scaled=${1:factor}",
+      "default",
+      "sfdefault",
+      "osf",
+      "oldstyle",
+      "lf",
+      "lining",
+      "proportional",
+      "p",
+      "tabular",
+      "t"
+    ]
+  },
+  "args": [
+    "\\usepackage/carlito#c"
+  ]
 }

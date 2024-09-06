@@ -1,23 +1,133 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "fontspec": [],
-    "graphicx": []
-  },
-  "macros": {
-    "hcrkey{}": {
-      "snippet": "hcrkey{${1:keyname}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "hcrkeys[]{}": {
-      "snippet": "hcrkeys[${2:separator}]{${1:key, ...}}"
+    {
+      "name": "fontspec"
     },
-    "hcrkeyfontname": {},
-    "}": {
-      "detail": "}",
-      "documentation": "RIGHT CURLY BRACKET"
+    {
+      "name": "graphicx"
     }
+  ],
+  "macros": [
+    {
+      "name": "hcrkey",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyname%keyvals}}",
+        "keys": [
+          "\\hcrkey#c,\\hcrkeys#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hcrkeys",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:separator}]{${1:key, ...%keyvals}}",
+        "keys": [
+          "\\hcrkey#c,\\hcrkeys#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "hcrkeyfontname"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\hcrkey#c,\\hcrkeys#c": [
+      "ESC",
+      "Alt",
+      "Ctrl",
+      "TAB",
+      "capslock",
+      "Shift",
+      "space",
+      "backspace",
+      "del",
+      "ins",
+      "enter",
+      "left",
+      "right",
+      "up",
+      "down",
+      "pgup",
+      "pgdn",
+      "home",
+      "end",
+      "backquote",
+      "tilde",
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "!",
+      "hash",
+      "dollar",
+      "percent",
+      "caret",
+      "ampersand",
+      "*",
+      "(",
+      ")",
+      "-",
+      "_",
+      "+",
+      "=",
+      "[",
+      "]",
+      "\\{",
+      "\\}",
+      "backslash",
+      "|",
+      ":",
+      ";",
+      ">",
+      ".",
+      "<",
+      ",",
+      "?",
+      "/",
+      "PrtSc",
+      "ScrollLock",
+      "Pause",
+      "NumLock",
+      "num/",
+      "num*",
+      "num-",
+      "num+",
+      "numEnter",
+      "num1",
+      "num2",
+      "num3",
+      "num4",
+      "num5",
+      "num6",
+      "num7",
+      "num8",
+      "num9",
+      "numins",
+      "numdel",
+      "numpgup",
+      "numpgdn",
+      "numleft",
+      "numright",
+      "numup",
+      "numdown",
+      "windows",
+      "blank",
+      "fn"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

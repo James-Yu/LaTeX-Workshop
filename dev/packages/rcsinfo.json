@@ -1,33 +1,62 @@
 {
-  "includes": {
-    "fancyhdr": [],
-    "scrpage2": [
-      "scrpage2"
+  "deps": [
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "scrpage2",
+      "if": "scrpage2"
+    }
+  ],
+  "macros": [
+    {
+      "name": "rcsInfoFile"
+    },
+    {
+      "name": "rcsInfoRevision"
+    },
+    {
+      "name": "rcsInfoDate"
+    },
+    {
+      "name": "rcsInfoTime"
+    },
+    {
+      "name": "rcsInfoOwner"
+    },
+    {
+      "name": "rcsInfoStatus"
+    },
+    {
+      "name": "rcsInfoLocker"
+    },
+    {
+      "name": "rcsInfoYear"
+    },
+    {
+      "name": "rcsInfoMonth"
+    },
+    {
+      "name": "rcsInfoDay"
+    },
+    {
+      "name": "rcsInfoLongDate"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/rcsinfo#c": [
+      "today",
+      "fancy",
+      "fancyhdr",
+      "scrpage2",
+      "nofancy",
+      "long",
+      "short",
+      "datehyphen"
     ]
   },
-  "macros": {
-    "rcsInfoFile": {},
-    "rcsInfoRevision": {},
-    "rcsInfoDate": {},
-    "rcsInfoTime": {},
-    "rcsInfoOwner": {},
-    "rcsInfoStatus": {},
-    "rcsInfoLocker": {},
-    "rcsInfoYear": {},
-    "rcsInfoMonth": {},
-    "rcsInfoDay": {},
-    "rcsInfoLongDate": {}
-  },
-  "envs": {},
-  "options": [
-    "today",
-    "fancy",
-    "fancyhdr",
-    "scrpage2",
-    "nofancy",
-    "long",
-    "short",
-    "datehyphen"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/rcsinfo#c"
+  ]
 }

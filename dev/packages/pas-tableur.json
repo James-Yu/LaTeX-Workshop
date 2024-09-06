@@ -1,62 +1,125 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "xstring": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "tableur{}": {
-      "snippet": "tableur{${1:colonnes}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "tableur[]{}": {
-      "snippet": "tableur[${2:nombre de lignes}]{${1:colonnes}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "tableur*{}": {
-      "snippet": "tableur*{${1:col1/dim1,${2:col2/dim2},...}}"
+    {
+      "name": "xstring"
     },
-    "tableur*[]{}": {
-      "snippet": "tableur*[${2:nombre de lignes}]{${1:col1/dim1,${3:col2/dim2},...}}"
+    {
+      "name": "xkeyval"
+    }
+  ],
+  "macros": [
+    {
+      "name": "tableur",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:colonnes}}"
+      }
     },
-    "tabcolwidth{}": {
-      "snippet": "tabcolwidth{${1:width}}"
+    {
+      "name": "tableur",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:nombre de lignes}]{${1:colonnes}}"
+      }
     },
-    "tabnumlinewidth{}": {
-      "snippet": "tabnumlinewidth{${1:width}}"
+    {
+      "name": "tableur*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:col1/dim1,col2/dim2,...}}"
+      }
     },
-    "tablineheight{}": {
-      "snippet": "tablineheight{${1:height}}"
+    {
+      "name": "tableur*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:nombre de lignes}]{${1:col1/dim1,col2/dim2,...}}"
+      }
     },
-    "helvbx": {},
-    "celtxt{}{}{}": {
-      "snippet": "celtxt{${1:colonne}}{${2:ligne}}{${3:texte}}"
+    {
+      "name": "tabcolwidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
     },
-    "celtxt[]{}{}{}": {
-      "snippet": "celtxt[${4:options}]{${1:colonne}}{${2:ligne}}{${3:texte}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tabnumlinewidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
     },
-    "celtxt*{}{}{}": {
-      "snippet": "celtxt*{${1:colonne}}{${2:ligne}}{${3:texte}}"
+    {
+      "name": "tablineheight",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:height}}"
+      }
     },
-    "celtxt*[]{}{}{}": {
-      "snippet": "celtxt*[${4:options}]{${1:colonne}}{${2:ligne}}{${3:texte}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "helvbx"
     },
-    "selecCell{}{}": {
-      "snippet": "selecCell{${1:colonne}}{${2:ligne}}"
+    {
+      "name": "celtxt",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:colonne}}{${2:ligne}}{${3:texte}}"
+      }
     },
-    "multiSelec{}{}": {
-      "snippet": "multiSelec{${1:colonnes}}{${2:lignes}}"
+    {
+      "name": "celtxt",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:colonne}}{${2:ligne}}{${3:texte}}",
+        "keys": [
+          "\\celtxt,\\celtxt*"
+        ],
+        "keyPos": 0
+      }
     },
-    "fileversion": {},
-    "filedate": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "celtxt*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:colonne}}{${2:ligne}}{${3:texte}}"
+      }
+    },
+    {
+      "name": "celtxt*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:colonne}}{${2:ligne}}{${3:texte}}",
+        "keys": [
+          "\\celtxt,\\celtxt*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "selecCell",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:colonne}}{${2:ligne}}"
+      }
+    },
+    {
+      "name": "multiSelec",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:colonnes}}{${2:lignes}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\celtxt,\\celtxt*": [
       "align=${1|center,left,right|}",
       "c",
       "l",
@@ -66,5 +129,6 @@
       "color=",
       "font=${1:font commands}"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,375 +1,1004 @@
 {
-  "includes": {
-    "amsmath": [],
-    "enumitem": [],
-    "eso-pic": [],
-    "esvect": [],
-    "pgfopts": [],
-    "iftex": [],
-    "makebox": [],
-    "mandi": [],
-    "mathtools": [],
-    "nicematrix": [],
-    "qrcode": [],
-    "tcolorbox": [],
-    "tcolorboxlibrarymost": [],
-    "tensor": [],
-    "tikz": [],
-    "tikzlibraryshapes": [],
-    "tikzlibraryfit": [],
-    "tikzlibrarytikzmark": [],
-    "hyperref": []
-  },
-  "macros": {
-    "mandistudentversion": {},
-    "vec*{}": {
-      "snippet": "vec*{${1:symbol}}"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "dirvec{}": {
-      "snippet": "dirvec{${1:symbol}}"
+    {
+      "name": "enumitem"
     },
-    "dirvec*{}": {
-      "snippet": "dirvec*{${1:symbol}}"
+    {
+      "name": "eso-pic"
     },
-    "zerovec": {},
-    "zerovec*": {},
-    "changein": {},
-    "doublebars{}": {
-      "snippet": "doublebars{${1:quantity}}"
+    {
+      "name": "esvect"
     },
-    "doublebars[]{}": {
-      "snippet": "doublebars[${2:size}]{${1:quantity}}"
+    {
+      "name": "pgfopts"
     },
-    "doublebars*{}": {
-      "snippet": "doublebars*{${1:quantity}}"
+    {
+      "name": "iftex"
     },
-    "doublebars*[]{}": {
-      "snippet": "doublebars*[${2:size}]{${1:quantity}}"
+    {
+      "name": "makebox"
     },
-    "singlebars{}": {
-      "snippet": "singlebars{${1:quantity}}"
+    {
+      "name": "mandi"
     },
-    "singlebars[]{}": {
-      "snippet": "singlebars[${2:size}]{${1:quantity}}"
+    {
+      "name": "mathtools"
     },
-    "singlebars*{}": {
-      "snippet": "singlebars*{${1:quantity}}"
+    {
+      "name": "nicematrix"
     },
-    "singlebars*[]{}": {
-      "snippet": "singlebars*[${2:size}]{${1:quantity}}"
+    {
+      "name": "qrcode"
     },
-    "anglebrackets{}": {
-      "snippet": "anglebrackets{${1:quantity}}"
+    {
+      "name": "tcolorbox"
     },
-    "anglebrackets[]{}": {
-      "snippet": "anglebrackets[${2:size}]{${1:quantity}}"
+    {
+      "name": "tcolorboxlibrarymost"
     },
-    "anglebrackets*{}": {
-      "snippet": "anglebrackets*{${1:quantity}}"
+    {
+      "name": "tensor"
     },
-    "anglebrackets*[]{}": {
-      "snippet": "anglebrackets*[${2:size}]{${1:quantity}}"
+    {
+      "name": "tikz"
     },
-    "parentheses{}": {
-      "snippet": "parentheses{${1:quantity}}"
+    {
+      "name": "tikzlibraryshapes"
     },
-    "parentheses[]{}": {
-      "snippet": "parentheses[${2:size}]{${1:quantity}}"
+    {
+      "name": "tikzlibraryfit"
     },
-    "parentheses*{}": {
-      "snippet": "parentheses*{${1:quantity}}"
+    {
+      "name": "tikzlibrarytikzmark"
     },
-    "parentheses*[]{}": {
-      "snippet": "parentheses*[${2:size}]{${1:quantity}}"
-    },
-    "squarebrackets{}": {
-      "snippet": "squarebrackets{${1:quantity}}"
-    },
-    "squarebrackets[]{}": {
-      "snippet": "squarebrackets[${2:size}]{${1:quantity}}"
-    },
-    "squarebrackets*{}": {
-      "snippet": "squarebrackets*{${1:quantity}}"
-    },
-    "squarebrackets*[]{}": {
-      "snippet": "squarebrackets*[${2:size}]{${1:quantity}}"
-    },
-    "curlybraces{}": {
-      "snippet": "curlybraces{${1:quantity}}"
-    },
-    "curlybraces[]{}": {
-      "snippet": "curlybraces[${2:size}]{${1:quantity}}"
-    },
-    "curlybraces*{}": {
-      "snippet": "curlybraces*{${1:quantity}}"
-    },
-    "curlybraces*[]{}": {
-      "snippet": "curlybraces*[${2:size}]{${1:quantity}}"
-    },
-    "magnitude{}": {
-      "snippet": "magnitude{${1:quantity}}"
-    },
-    "magnitude[]{}": {
-      "snippet": "magnitude[${2:size}]{${1:quantity}}"
-    },
-    "magnitude*{}": {
-      "snippet": "magnitude*{${1:quantity}}"
-    },
-    "magnitude*[]{}": {
-      "snippet": "magnitude*[${2:size}]{${1:quantity}}"
-    },
-    "norm{}": {
-      "snippet": "norm{${1:quantity}}"
-    },
-    "norm[]{}": {
-      "snippet": "norm[${2:size}]{${1:quantity}}"
-    },
-    "norm*{}": {
-      "snippet": "norm*{${1:quantity}}"
-    },
-    "norm*[]{}": {
-      "snippet": "norm*[${2:size}]{${1:quantity}}"
-    },
-    "absolutevalue{}": {
-      "snippet": "absolutevalue{${1:quantity}}"
-    },
-    "absolutevalue[]{}": {
-      "snippet": "absolutevalue[${2:size}]{${1:quantity}}"
-    },
-    "absolutevalue*{}": {
-      "snippet": "absolutevalue*{${1:quantity}}"
-    },
-    "absolutevalue*[]{}": {
-      "snippet": "absolutevalue*[${2:size}]{${1:quantity}}"
-    },
-    "parallelto": {},
-    "perpendicularto": {},
-    "problempart": {},
-    "reason{}": {
-      "snippet": "reason{${1:reason}}"
-    },
-    "hilite{}": {
-      "snippet": "hilite{${1:content}}"
-    },
-    "hilite{}[]": {
-      "snippet": "hilite{${1:content}}[${2:shape}]"
-    },
-    "hilite[]{}": {
-      "snippet": "hilite[${2:color}]{${1:content}}"
-    },
-    "hilite[]{}[]": {
-      "snippet": "hilite[${2:color}]{${1:content}}[${3:shape}]"
-    },
-    "image{}{}{}": {
-      "snippet": "image{${1:imagefile}}{${2:caption}}{${3:label}}"
-    },
-    "image[]{}{}{}": {
-      "snippet": "image[${4:options}]{${1:imagefile}}{${2:caption}}{${3:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "colvec{}": {
-      "snippet": "colvec{${1:c1,${2:c2},...}}"
-    },
-    "colvec[]{}": {
-      "snippet": "colvec[${2:delimiter}]{${1:c1,${3:c2},...}}"
-    },
-    "rowvec{}": {
-      "snippet": "rowvec{${1:c1,${2:c2},...}}"
-    },
-    "rowvec[]{}": {
-      "snippet": "rowvec[${2:delimiter}]{${1:c1,${3:c2},...}}"
-    },
-    "veccomp{}": {
-      "snippet": "veccomp{${1:symbol}}"
-    },
-    "veccomp*{}": {
-      "snippet": "veccomp*{${1:symbol}}"
-    },
-    "tencomp{}": {
-      "snippet": "tencomp{${1:symbol}}"
-    },
-    "tencomp*{}": {
-      "snippet": "tencomp*{${1:symbol}}"
-    },
-    "valence{}{}": {
-      "snippet": "valence{${1:index1}}{${2:index2}}"
-    },
-    "valence*{}{}": {
-      "snippet": "valence*{${1:index1}}{${2:index2}}"
-    },
-    "contraction{}": {
-      "snippet": "contraction{${1:sub}}"
-    },
-    "contraction*{}": {
-      "snippet": "contraction*{${1:sub}}"
-    },
-    "slot": {},
-    "slot[]": {
-      "snippet": "slot[${1:vector}]"
-    },
-    "slot*": {},
-    "slot*[]": {
-      "snippet": "slot*[${1:vector}]"
-    },
-    "df": {},
-    "df*": {},
-    "vpythonfile{}{}": {
-      "snippet": "vpythonfile{${1:file}}{${2:caption}}"
-    },
-    "vpythonfile(){}{}": {
-      "snippet": "vpythonfile(${3:link}){${1:file}}{${2:caption}}"
-    },
-    "vpythonfile[]{}{}": {
-      "snippet": "vpythonfile[${3:options}]{${1:file}}{${2:caption}}"
-    },
-    "vpythonfile[](){}{}": {
-      "snippet": "vpythonfile[${3:options}](${4:link}){${1:file}}{${2:caption}}"
-    },
-    "webvpythoninline{}": {
-      "snippet": "webvpythoninline{${1:Web VPython code}}"
-    },
-    "vpythoninline{}": {
-      "snippet": "vpythoninline{${1:VPython code}}"
-    },
-    "listofvpythonprograms": {},
-    "listofwebvpythonprograms": {},
-    "symsfitDelta": {},
-    "symsfitGamma": {},
-    "symsfitLambda": {},
-    "symsfitOmega": {},
-    "symsfitPhi": {},
-    "symsfitPi": {},
-    "symsfitPsi": {},
-    "symsfitSigma": {},
-    "symsfitTheta": {},
-    "symsfitUpsilon": {},
-    "symsfitXi": {},
-    "symsfitalpha": {},
-    "symsfitbeta": {},
-    "symsfitchi": {},
-    "symsfitdelta": {},
-    "symsfitepsilon": {},
-    "symsfiteta": {},
-    "symsfitgamma": {},
-    "symsfitiota": {},
-    "symsfitkappa": {},
-    "symsfitlambda": {},
-    "symsfitmu": {},
-    "symsfitnu": {},
-    "symsfitomega": {},
-    "symsfitomicron": {},
-    "symsfitphi": {},
-    "symsfitpi": {},
-    "symsfitpsi": {},
-    "symsfitrho": {},
-    "symsfitsigma": {},
-    "symsfittau": {},
-    "symsfittheta": {},
-    "symsfitupsilon": {},
-    "symsfitvarepsilon": {},
-    "symsfitvarphi": {},
-    "symsfitvarpi": {},
-    "symsfitvarrho": {},
-    "symsfitvarsigma": {},
-    "symsfitvartheta": {},
-    "symsfitxi": {},
-    "symsfitzeta": {},
-    "symsfupDelta": {},
-    "symsfupGamma": {},
-    "symsfupLambda": {},
-    "symsfupOmega": {},
-    "symsfupPhi": {},
-    "symsfupPi": {},
-    "symsfupPsi": {},
-    "symsfupSigma": {},
-    "symsfupTheta": {},
-    "symsfupUpsilon": {},
-    "symsfupXi": {},
-    "symsfupalpha": {},
-    "symsfupbeta": {},
-    "symsfupchi": {},
-    "symsfupdelta": {},
-    "symsfupepsilon": {},
-    "symsfupeta": {},
-    "symsfupgamma": {},
-    "symsfupiota": {},
-    "symsfupkappa": {},
-    "symsfuplambda": {},
-    "symsfupmu": {},
-    "symsfupnu": {},
-    "symsfupomega": {},
-    "symsfupomicron": {},
-    "symsfupphi": {},
-    "symsfuppi": {},
-    "symsfuppsi": {},
-    "symsfuprho": {},
-    "symsfupsigma": {},
-    "symsfuptau": {},
-    "symsfuptheta": {},
-    "symsfupupsilon": {},
-    "symsfupvarepsilon": {},
-    "symsfupvarphi": {},
-    "symsfupvarpi": {},
-    "symsfupvarrho": {},
-    "symsfupvarsigma": {},
-    "symsfupvartheta": {},
-    "symsfupxi": {},
-    "symsfupzeta": {},
-    "thetikzhighlightnode": {},
-    "symsfgreek{}": {
-      "snippet": "symsfgreek{${1:arg}}"
-    },
-    "colordigits": {},
-    "gsfontfamily": {}
-  },
-  "envs": {
-    "physicsproblem{}": {
-      "name": "physicsproblem",
-      "snippet": "{${1:title}}"
-    },
-    "physicsproblem*{}": {
-      "name": "physicsproblem*",
-      "snippet": "{${1:title}}"
-    },
-    "parts": {},
-    "physicssolution": {},
-    "physicssolution*": {},
-    "webvpythonblock(link){}": {
-      "name": "webvpythonblock",
-      "snippet": "(${2:link}){${1:caption}}"
-    },
-    "webvpythonblock[](link){}": {
-      "name": "webvpythonblock",
-      "snippet": "[${2:options}](${3:link}){${1:caption}}"
-    },
-    "webvpythonblock*(link){}": {
-      "name": "webvpythonblock*",
-      "snippet": "(${2:link}){${1:caption}}"
-    },
-    "webvpythonblock*[](link){}": {
-      "name": "webvpythonblock*",
-      "snippet": "[${2:options}](${3:link}){${1:caption}}"
-    },
-    "enumerate*": {},
-    "enumerate*[]": {
-      "name": "enumerate*",
-      "snippet": "[${1:options}]"
-    },
-    "itemize*": {},
-    "itemize*[]": {
-      "name": "itemize*",
-      "snippet": "[${1:options}]"
-    },
-    "description*": {},
-    "description*[]": {
-      "name": "description*",
-      "snippet": "[${1:options}]"
+    {
+      "name": "hyperref"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "mandistudentversion",
+      "unusual": true
+    },
+    {
+      "name": "vec*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "dirvec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "dirvec*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "zerovec"
+    },
+    {
+      "name": "zerovec*"
+    },
+    {
+      "name": "changein"
+    },
+    {
+      "name": "doublebars",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "doublebars",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "doublebars*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "doublebars*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "singlebars",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "singlebars",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "singlebars*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "singlebars*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "anglebrackets",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "anglebrackets",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "anglebrackets*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "anglebrackets*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "parentheses",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "parentheses",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "parentheses*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "parentheses*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "squarebrackets",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "squarebrackets",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "squarebrackets*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "squarebrackets*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "curlybraces",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "curlybraces",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "curlybraces*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "curlybraces*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "magnitude",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "magnitude",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "magnitude*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "magnitude*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "norm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "norm",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "norm*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "norm*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "absolutevalue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "absolutevalue",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "absolutevalue*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "absolutevalue*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:quantity}}"
+      }
+    },
+    {
+      "name": "parallelto"
+    },
+    {
+      "name": "perpendicularto"
+    },
+    {
+      "name": "problempart"
+    },
+    {
+      "name": "reason",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:reason%text}}"
+      }
+    },
+    {
+      "name": "hilite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "hilite",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:content}}[${2:shape}]"
+      }
+    },
+    {
+      "name": "hilite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color}]{${1:content}}"
+      }
+    },
+    {
+      "name": "hilite",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:color}]{${1:content}}[${3:shape}]"
+      }
+    },
+    {
+      "name": "image",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:imagefile}}{${2:caption%text}}{${3:label}}"
+      }
+    },
+    {
+      "name": "image",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:imagefile}}{${2:caption%text}}{${3:label}}",
+        "keys": [
+          "\\image"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "colvec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:c1,c2,...}}"
+      }
+    },
+    {
+      "name": "colvec",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:delimiter}]{${1:c1,c2,...}}"
+      }
+    },
+    {
+      "name": "rowvec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:c1,c2,...}}"
+      }
+    },
+    {
+      "name": "rowvec",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:delimiter}]{${1:c1,c2,...}}"
+      }
+    },
+    {
+      "name": "veccomp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "veccomp*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "tencomp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "tencomp*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "valence",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:index1}}{${2:index2}}"
+      }
+    },
+    {
+      "name": "valence*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:index1}}{${2:index2}}"
+      }
+    },
+    {
+      "name": "contraction",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sub}}"
+      }
+    },
+    {
+      "name": "contraction*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sub}}"
+      }
+    },
+    {
+      "name": "slot"
+    },
+    {
+      "name": "slot",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:vector}]"
+      }
+    },
+    {
+      "name": "slot*"
+    },
+    {
+      "name": "slot*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:vector}]"
+      }
+    },
+    {
+      "name": "df"
+    },
+    {
+      "name": "df*"
+    },
+    {
+      "name": "vpythonfile",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "vpythonfile",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "(${3:link%URL}){${1:file}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "vpythonfile",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:file}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "vpythonfile",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "[${3:options}](${4:link%URL}){${1:file}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "webvpythoninline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Web VPython code%definition}}"
+      }
+    },
+    {
+      "name": "vpythoninline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:VPython code%definition}}"
+      }
+    },
+    {
+      "name": "listofvpythonprograms"
+    },
+    {
+      "name": "listofwebvpythonprograms"
+    },
+    {
+      "name": "symsfitDelta",
+      "unusual": true
+    },
+    {
+      "name": "symsfitGamma",
+      "unusual": true
+    },
+    {
+      "name": "symsfitLambda",
+      "unusual": true
+    },
+    {
+      "name": "symsfitOmega",
+      "unusual": true
+    },
+    {
+      "name": "symsfitPhi",
+      "unusual": true
+    },
+    {
+      "name": "symsfitPi",
+      "unusual": true
+    },
+    {
+      "name": "symsfitPsi",
+      "unusual": true
+    },
+    {
+      "name": "symsfitSigma",
+      "unusual": true
+    },
+    {
+      "name": "symsfitTheta",
+      "unusual": true
+    },
+    {
+      "name": "symsfitUpsilon",
+      "unusual": true
+    },
+    {
+      "name": "symsfitXi",
+      "unusual": true
+    },
+    {
+      "name": "symsfitalpha",
+      "unusual": true
+    },
+    {
+      "name": "symsfitbeta",
+      "unusual": true
+    },
+    {
+      "name": "symsfitchi",
+      "unusual": true
+    },
+    {
+      "name": "symsfitdelta",
+      "unusual": true
+    },
+    {
+      "name": "symsfitepsilon",
+      "unusual": true
+    },
+    {
+      "name": "symsfiteta",
+      "unusual": true
+    },
+    {
+      "name": "symsfitgamma",
+      "unusual": true
+    },
+    {
+      "name": "symsfitiota",
+      "unusual": true
+    },
+    {
+      "name": "symsfitkappa",
+      "unusual": true
+    },
+    {
+      "name": "symsfitlambda",
+      "unusual": true
+    },
+    {
+      "name": "symsfitmu",
+      "unusual": true
+    },
+    {
+      "name": "symsfitnu",
+      "unusual": true
+    },
+    {
+      "name": "symsfitomega",
+      "unusual": true
+    },
+    {
+      "name": "symsfitomicron",
+      "unusual": true
+    },
+    {
+      "name": "symsfitphi",
+      "unusual": true
+    },
+    {
+      "name": "symsfitpi",
+      "unusual": true
+    },
+    {
+      "name": "symsfitpsi",
+      "unusual": true
+    },
+    {
+      "name": "symsfitrho",
+      "unusual": true
+    },
+    {
+      "name": "symsfitsigma",
+      "unusual": true
+    },
+    {
+      "name": "symsfittau",
+      "unusual": true
+    },
+    {
+      "name": "symsfittheta",
+      "unusual": true
+    },
+    {
+      "name": "symsfitupsilon",
+      "unusual": true
+    },
+    {
+      "name": "symsfitvarepsilon",
+      "unusual": true
+    },
+    {
+      "name": "symsfitvarphi",
+      "unusual": true
+    },
+    {
+      "name": "symsfitvarpi",
+      "unusual": true
+    },
+    {
+      "name": "symsfitvarrho",
+      "unusual": true
+    },
+    {
+      "name": "symsfitvarsigma",
+      "unusual": true
+    },
+    {
+      "name": "symsfitvartheta",
+      "unusual": true
+    },
+    {
+      "name": "symsfitxi",
+      "unusual": true
+    },
+    {
+      "name": "symsfitzeta",
+      "unusual": true
+    },
+    {
+      "name": "symsfupDelta",
+      "unusual": true
+    },
+    {
+      "name": "symsfupGamma",
+      "unusual": true
+    },
+    {
+      "name": "symsfupLambda",
+      "unusual": true
+    },
+    {
+      "name": "symsfupOmega",
+      "unusual": true
+    },
+    {
+      "name": "symsfupPhi",
+      "unusual": true
+    },
+    {
+      "name": "symsfupPi",
+      "unusual": true
+    },
+    {
+      "name": "symsfupPsi",
+      "unusual": true
+    },
+    {
+      "name": "symsfupSigma",
+      "unusual": true
+    },
+    {
+      "name": "symsfupTheta",
+      "unusual": true
+    },
+    {
+      "name": "symsfupUpsilon",
+      "unusual": true
+    },
+    {
+      "name": "symsfupXi",
+      "unusual": true
+    },
+    {
+      "name": "symsfupalpha",
+      "unusual": true
+    },
+    {
+      "name": "symsfupbeta",
+      "unusual": true
+    },
+    {
+      "name": "symsfupchi",
+      "unusual": true
+    },
+    {
+      "name": "symsfupdelta",
+      "unusual": true
+    },
+    {
+      "name": "symsfupepsilon",
+      "unusual": true
+    },
+    {
+      "name": "symsfupeta",
+      "unusual": true
+    },
+    {
+      "name": "symsfupgamma",
+      "unusual": true
+    },
+    {
+      "name": "symsfupiota",
+      "unusual": true
+    },
+    {
+      "name": "symsfupkappa",
+      "unusual": true
+    },
+    {
+      "name": "symsfuplambda",
+      "unusual": true
+    },
+    {
+      "name": "symsfupmu",
+      "unusual": true
+    },
+    {
+      "name": "symsfupnu",
+      "unusual": true
+    },
+    {
+      "name": "symsfupomega",
+      "unusual": true
+    },
+    {
+      "name": "symsfupomicron",
+      "unusual": true
+    },
+    {
+      "name": "symsfupphi",
+      "unusual": true
+    },
+    {
+      "name": "symsfuppi",
+      "unusual": true
+    },
+    {
+      "name": "symsfuppsi",
+      "unusual": true
+    },
+    {
+      "name": "symsfuprho",
+      "unusual": true
+    },
+    {
+      "name": "symsfupsigma",
+      "unusual": true
+    },
+    {
+      "name": "symsfuptau",
+      "unusual": true
+    },
+    {
+      "name": "symsfuptheta",
+      "unusual": true
+    },
+    {
+      "name": "symsfupupsilon",
+      "unusual": true
+    },
+    {
+      "name": "symsfupvarepsilon",
+      "unusual": true
+    },
+    {
+      "name": "symsfupvarphi",
+      "unusual": true
+    },
+    {
+      "name": "symsfupvarpi",
+      "unusual": true
+    },
+    {
+      "name": "symsfupvarrho",
+      "unusual": true
+    },
+    {
+      "name": "symsfupvarsigma",
+      "unusual": true
+    },
+    {
+      "name": "symsfupvartheta",
+      "unusual": true
+    },
+    {
+      "name": "symsfupxi",
+      "unusual": true
+    },
+    {
+      "name": "symsfupzeta",
+      "unusual": true
+    },
+    {
+      "name": "thetikzhighlightnode",
+      "unusual": true
+    },
+    {
+      "name": "symsfgreek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "colordigits",
+      "unusual": true
+    },
+    {
+      "name": "gsfontfamily",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "physicsproblem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "physicsproblem*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "parts"
+    },
+    {
+      "name": "physicssolution"
+    },
+    {
+      "name": "physicssolution*"
+    },
+    {
+      "name": "webvpythonblock",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:link}){${1:caption}}"
+      }
+    },
+    {
+      "name": "webvpythonblock",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options}](${3:link}){${1:caption}}"
+      }
+    },
+    {
+      "name": "webvpythonblock*",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:link}){${1:caption}}"
+      }
+    },
+    {
+      "name": "webvpythonblock*",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options}](${3:link}){${1:caption}}"
+      }
+    },
+    {
+      "name": "enumerate*"
+    },
+    {
+      "name": "enumerate*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "itemize*"
+    },
+    {
+      "name": "itemize*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "description*"
+    },
+    {
+      "name": "description*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\image": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -400,5 +1029,6 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
-  ]
+  },
+  "args": []
 }

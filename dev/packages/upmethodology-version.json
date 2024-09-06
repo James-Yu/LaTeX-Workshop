@@ -1,52 +1,116 @@
 {
-  "includes": {
-    "upmethodology-p-common": [],
-    "upmethodology-fmt": []
-  },
-  "macros": {
-    "upmrestricted": {},
-    "upmvalidable": {},
-    "upmvalidated": {},
-    "upmpublic": {},
-    "upmdate{}": {
-      "snippet": "upmdate{${1:date}}"
+  "deps": [
+    {
+      "name": "upmethodology-p-common"
     },
-    "upmdescription{}": {
-      "snippet": "upmdescription{${1:text}}"
-    },
-    "upmstatus{}": {
-      "snippet": "upmstatus{${1:text}}"
-    },
-    "theupmdate": {},
-    "theupmlastmodif": {},
-    "theupmstatus": {},
-    "updateversion{}{}{}{}": {
-      "snippet": "updateversion{${1:version}}{${2:date}}{${3:description}}{${4:status}}"
-    },
-    "initialversion{}{}{}": {
-      "snippet": "initialversion{${1:date}}{${2:description}}{${3:status}}"
-    },
-    "initialversion[]{}{}{}": {
-      "snippet": "initialversion[${4:version}]{${1:date}}{${2:description}}{${3:status}}"
-    },
-    "incversion{}{}{}": {
-      "snippet": "incversion{${1:date}}{${2:description}}{${3:status}}"
-    },
-    "incsubversion{}{}{}": {
-      "snippet": "incsubversion{${1:date}}{${2:description}}{${3:status}}"
-    },
-    "theupmversion": {},
-    "upmhistory": {},
-    "upmhistory[]": {
-      "snippet": "upmhistory[${1:width}]"
-    },
-    "upmcopyrightdate": {}
-  },
-  "envs": {},
-  "options": [
-    "french",
-    "francais",
-    "english"
+    {
+      "name": "upmethodology-fmt"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "upmrestricted"
+    },
+    {
+      "name": "upmvalidable"
+    },
+    {
+      "name": "upmvalidated"
+    },
+    {
+      "name": "upmpublic"
+    },
+    {
+      "name": "upmdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "upmdescription",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "upmstatus",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "theupmdate"
+    },
+    {
+      "name": "theupmlastmodif"
+    },
+    {
+      "name": "theupmstatus"
+    },
+    {
+      "name": "updateversion",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:version}}{${2:date}}{${3:description%text}}{${4:status%text}}"
+      }
+    },
+    {
+      "name": "initialversion",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:date}}{${2:description%text}}{${3:status%text}}"
+      }
+    },
+    {
+      "name": "initialversion",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:version}]{${1:date}}{${2:description%text}}{${3:status%text}}"
+      }
+    },
+    {
+      "name": "incversion",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:date}}{${2:description%text}}{${3:status%text}}"
+      }
+    },
+    {
+      "name": "incsubversion",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:date}}{${2:description%text}}{${3:status%text}}"
+      }
+    },
+    {
+      "name": "theupmversion"
+    },
+    {
+      "name": "upmhistory"
+    },
+    {
+      "name": "upmhistory",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
+    },
+    {
+      "name": "upmcopyrightdate"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/upmethodology-version#c": [
+      "french",
+      "francais",
+      "english"
+    ]
+  },
+  "args": [
+    "\\usepackage/upmethodology-version#c"
+  ]
 }

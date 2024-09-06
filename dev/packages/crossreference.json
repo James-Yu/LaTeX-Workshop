@@ -1,22 +1,37 @@
 {
-  "includes": {},
-  "macros": {
-    "addxref{}": {
-      "snippet": "addxref{${1:label}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "addxref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "crossreferences": {},
-    "thexref": {},
-    "xreflabel{}": {
-      "snippet": "xreflabel{${1:arg}}"
+    {
+      "name": "crossreferences"
     },
-    "xref{}": {
-      "snippet": "xref{${1:key}}"
+    {
+      "name": "thexref",
+      "unusual": true
     },
-    "docdate": {},
-    "filedate": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "xreflabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "xref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

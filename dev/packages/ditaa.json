@@ -1,28 +1,59 @@
 {
-  "includes": {
-    "fancyvrb": [],
-    "graphicx": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "ditaacaption": {},
-    "ditaadir": {},
-    "ditaafigwidth": {},
-    "ditaafile": {},
-    "ditaastem": {}
-  },
-  "envs": {
-    "ditaa{}{}": {
-      "name": "ditaa",
-      "snippet": "{${1:caption}}{${2:name}}"
+  "deps": [
+    {
+      "name": "fancyvrb"
     },
-    "ditaa[]{}{}": {
-      "name": "ditaa",
-      "snippet": "[${3:width}]{${1:caption}}{${2:name}}"
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "kvoptions"
     }
-  },
-  "options": [
-    "imagepath=${1:path}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ditaacaption",
+      "unusual": true
+    },
+    {
+      "name": "ditaadir",
+      "unusual": true
+    },
+    {
+      "name": "ditaafigwidth",
+      "unusual": true
+    },
+    {
+      "name": "ditaafile",
+      "unusual": true
+    },
+    {
+      "name": "ditaastem",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "ditaa",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:caption%text}}{${2:name}}"
+      }
+    },
+    {
+      "name": "ditaa",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:width}]{${1:caption%text}}{${2:name}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/ditaa#c": [
+      "imagepath=${1:path}"
+    ]
+  },
+  "args": [
+    "\\usepackage/ditaa#c"
+  ]
 }

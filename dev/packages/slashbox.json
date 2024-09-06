@@ -1,26 +1,65 @@
 {
-  "includes": {},
-  "macros": {
-    "backslashbox{}{}": {
-      "snippet": "backslashbox{${1:left}}{${2:right}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "backslashbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left%text}}{${2:right%text}}"
+      }
     },
-    "backslashbox[]{}{}": {
-      "snippet": "backslashbox[${3:width}]{${1:left}}{${2:right}}"
+    {
+      "name": "backslashbox",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:width}]{${1:left%text}}{${2:right%text}}"
+      }
     },
-    "backslashbox[][]{}{}": {
-      "snippet": "backslashbox[${3:width}][${4:trim}]{${1:left}}{${2:right}}"
+    {
+      "name": "backslashbox",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:width}][${4:trim%keyvals}]{${1:left%text}}{${2:right%text}}",
+        "keys": [
+          "\\backslashbox,\\slashbox"
+        ],
+        "keyPos": 1
+      }
     },
-    "slashbox{}{}": {
-      "snippet": "slashbox{${1:left}}{${2:right}}"
+    {
+      "name": "slashbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left%text}}{${2:right%text}}"
+      }
     },
-    "slashbox[]{}{}": {
-      "snippet": "slashbox[${3:width}]{${1:left}}{${2:right}}"
+    {
+      "name": "slashbox",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:width}]{${1:left%text}}{${2:right%text}}"
+      }
     },
-    "slashbox[][]{}{}": {
-      "snippet": "slashbox[${3:width}][${4:trim}]{${1:left}}{${2:right}}"
+    {
+      "name": "slashbox",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:width}][${4:trim%keyvals}]{${1:left%text}}{${2:right%text}}",
+        "keys": [
+          "\\backslashbox,\\slashbox"
+        ],
+        "keyPos": 1
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\backslashbox,\\slashbox": [
+      "l",
+      "r",
+      "lr",
+      "rl"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

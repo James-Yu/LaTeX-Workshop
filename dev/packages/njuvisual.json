@@ -1,42 +1,106 @@
 {
-  "includes": {
-    "tikz": []
-  },
-  "macros": {
-    "njuemblem{}{}": {
-      "snippet": "njuemblem{${1:宽度}}{${2:高度}}"
-    },
-    "njuemblem[]{}{}": {
-      "snippet": "njuemblem[${3:选项}]{${1:宽度}}{${2:高度}}"
-    },
-    "njuname{}{}": {
-      "snippet": "njuname{${1:宽度}}{${2:高度}}"
-    },
-    "njuname[]{}{}": {
-      "snippet": "njuname[${3:选项}]{${1:宽度}}{${2:高度}}"
-    },
-    "njuname*{}{}": {
-      "snippet": "njuname*{${1:宽度}}{${2:高度}}"
-    },
-    "njuname*[]{}{}": {
-      "snippet": "njuname*[${3:选项}]{${1:宽度}}{${2:高度}}"
-    },
-    "njumotto{}{}": {
-      "snippet": "njumotto{${1:宽度}}{${2:高度}}"
-    },
-    "njumotto[]{}{}": {
-      "snippet": "njumotto[${3:color}]{${1:宽度}}{${2:高度}}"
-    },
-    "njuspirit{}{}": {
-      "snippet": "njuspirit{${1:宽度}}{${2:高度}}"
-    },
-    "njuspirit[]{}{}": {
-      "snippet": "njuspirit[${3:color}]{${1:宽度}}{${2:高度}}"
+  "deps": [
+    {
+      "name": "tikz"
     }
-  },
-  "envs": {},
-  "options": [
-    "force"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "njuemblem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:宽度}}{${2:高度}}"
+      }
+    },
+    {
+      "name": "njuemblem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:选项%keyvals}]{${1:宽度}}{${2:高度}}",
+        "keys": [
+          "\\njuemblem,\\njuname,\\njuname*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "njuname",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:宽度}}{${2:高度}}"
+      }
+    },
+    {
+      "name": "njuname",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:选项%keyvals}]{${1:宽度}}{${2:高度}}",
+        "keys": [
+          "\\njuemblem,\\njuname,\\njuname*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "njuname*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:宽度}}{${2:高度}}"
+      }
+    },
+    {
+      "name": "njuname*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:选项%keyvals}]{${1:宽度}}{${2:高度}}",
+        "keys": [
+          "\\njuemblem,\\njuname,\\njuname*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "njumotto",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:宽度}}{${2:高度}}"
+      }
+    },
+    {
+      "name": "njumotto",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:color}]{${1:宽度}}{${2:高度}}"
+      }
+    },
+    {
+      "name": "njuspirit",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:宽度}}{${2:高度}}"
+      }
+    },
+    {
+      "name": "njuspirit",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:color}]{${1:宽度}}{${2:高度}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/njuvisual#c": [
+      "force"
+    ],
+    "\\njuemblem,\\njuname,\\njuname*": [
+      "color=",
+      "color*=",
+      "%color",
+      "department=${1:院系名称}"
+    ]
+  },
+  "args": [
+    "\\usepackage/njuvisual#c"
+  ]
 }

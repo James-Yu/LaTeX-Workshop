@@ -1,38 +1,240 @@
 {
-  "includes": {
-    "graphicx": [],
-    "latexsym": [],
-    "ifthen": [],
-    "rotating": [],
-    "calc": [],
-    "textcase": [],
-    "booktabs": [],
-    "color": [],
-    "endnotes": [],
-    "amsfonts": [],
-    "amssymb": [],
-    "amsbsy": [],
-    "amsmath": [],
-    "amsthm": [],
-    "tracefnt": [],
-    "caption": [],
-    "times": [
-      "times"
-    ],
-    "helvet": [
-      "times"
-    ],
-    "setspace": [
-      "doublespace"
-    ],
-    "natbib": [
+  "deps": [
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "latexsym"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "rotating"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "textcase"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "color"
+    },
+    {
+      "name": "endnotes"
+    },
+    {
+      "name": "amsfonts"
+    },
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "amsbsy"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "amsthm"
+    },
+    {
+      "name": "tracefnt"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "times",
+      "if": "times"
+    },
+    {
+      "name": "helvet",
+      "if": "times"
+    },
+    {
+      "name": "setspace",
+      "if": "doublespace"
+    },
+    {
+      "name": "natbib",
+      "if": "sageh"
+    },
+    {
+      "name": "natbib",
+      "if": "sagev"
+    },
+    {
+      "name": "mslapa",
+      "if": "sageapa"
+    },
+    {
+      "name": "geometry",
+      "if": "shortAfour"
+    },
+    {
+      "name": "ftnright",
+      "if": "shortAfour"
+    },
+    {
+      "name": "geometry",
+      "if": "Afour"
+    },
+    {
+      "name": "ftnright",
+      "if": "Afour"
+    },
+    {
+      "name": "geometry",
+      "if": "MCfour"
+    },
+    {
+      "name": "ftnright",
+      "if": "MCfour"
+    },
+    {
+      "name": "geometry",
+      "if": "PCfour"
+    },
+    {
+      "name": "ftnright",
+      "if": "PCfour"
+    },
+    {
+      "name": "geometry",
+      "if": "Royal"
+    },
+    {
+      "name": "geometry",
+      "if": "Crown"
+    },
+    {
+      "name": "geometry",
+      "if": "Review"
+    }
+  ],
+  "macros": [
+    {
+      "name": "affiliation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:affiliation%text}}"
+      }
+    },
+    {
+      "name": "affilnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "corrauth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name and address%text}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "endpage",
+      "unusual": true
+    },
+    {
+      "name": "issuenumber",
+      "unusual": true
+    },
+    {
+      "name": "journalclass",
+      "unusual": true
+    },
+    {
+      "name": "journalclassshort",
+      "unusual": true
+    },
+    {
+      "name": "journalname",
+      "unusual": true
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:word1,word2,...%text}}"
+      }
+    },
+    {
+      "name": "refsize",
+      "unusual": true
+    },
+    {
+      "name": "runninghead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "startpage",
+      "unusual": true
+    },
+    {
+      "name": "titlesize",
+      "unusual": true
+    },
+    {
+      "name": "volumenumber",
+      "unusual": true
+    },
+    {
+      "name": "volumeyear",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "acks"
+    },
+    {
+      "name": "biog"
+    },
+    {
+      "name": "biogs"
+    },
+    {
+      "name": "dci"
+    },
+    {
+      "name": "funding"
+    },
+    {
+      "name": "proof",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "sm"
+    }
+  ],
+  "keys": {
+    "\\documentclass/sagej#c": [
+      "times",
+      "doublespace",
       "sageh",
-      "sagev"
-    ],
-    "mslapa": [
-      "sageapa"
-    ],
-    "geometry": [
+      "sagev",
+      "sageapa",
       "shortAfour",
       "Afour",
       "MCfour",
@@ -40,72 +242,9 @@
       "Royal",
       "Crown",
       "Review"
-    ],
-    "ftnright": [
-      "shortAfour",
-      "Afour",
-      "MCfour",
-      "PCfour"
     ]
   },
-  "macros": {
-    "absbox": {},
-    "affiliation{}": {
-      "snippet": "affiliation{${1:affiliation}}"
-    },
-    "affilnum{}": {
-      "snippet": "affilnum{${1:number}}"
-    },
-    "corrauth{}": {
-      "snippet": "corrauth{${1:name and address}}"
-    },
-    "email{}": {
-      "snippet": "email{${1:email}}"
-    },
-    "endpage": {},
-    "issuenumber": {},
-    "journalclass": {},
-    "journalclassshort": {},
-    "journalname": {},
-    "keywords{}": {
-      "snippet": "keywords{${1:word1,${2:word2},...}}"
-    },
-    "refsize": {},
-    "runninghead{}": {
-      "snippet": "runninghead{${1:text}}"
-    },
-    "sagesf": {},
-    "startpage": {},
-    "titlesize": {},
-    "update": {},
-    "volumenumber": {},
-    "volumeyear": {}
-  },
-  "envs": {
-    "acks": {},
-    "biog": {},
-    "biogs": {},
-    "dci": {},
-    "funding": {},
-    "proof[]": {
-      "name": "proof",
-      "snippet": "[${1:heading}]"
-    },
-    "sm": {}
-  },
-  "options": [
-    "times",
-    "doublespace",
-    "sageh",
-    "sagev",
-    "sageapa",
-    "shortAfour",
-    "Afour",
-    "MCfour",
-    "PCfour",
-    "Royal",
-    "Crown",
-    "Review"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/sagej#c"
+  ]
 }

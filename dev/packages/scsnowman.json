@@ -1,47 +1,83 @@
 {
-  "includes": {
-    "tikz": [],
-    "keyval": []
-  },
-  "macros": {
-    "scsnowman": {},
-    "scsnowman[]": {
-      "snippet": "scsnowman[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "scsnowmandefault{}": {
-      "snippet": "scsnowmandefault{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "scsnowmannumeral{}": {
-      "snippet": "scsnowmannumeral{${1:number}}"
-    },
-    "scsnowmannumeral[]{}": {
-      "snippet": "scsnowmannumeral[${2:options}]{${1:number}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "usescsnowmanlibrary{}": {
-      "snippet": "usescsnowmanlibrary{${1:library}}"
-    },
-    "makeitemsnowman": {},
-    "makeitemother": {},
-    "makeqedsnowman": {},
-    "makeqedother": {},
-    "enumsnowman{}": {
-      "snippet": "enumsnowman{${1:arg}}"
-    },
-    "makedocumentsnowman": {},
-    "scsnowmanNumeral{}{}": {
-      "snippet": "scsnowmanNumeral{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "scsnowman"
+    },
+    {
+      "name": "scsnowman",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\scsnowman#c,\\scsnowmandefault#c,\\scsnowmannumeral#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "scsnowmandefault",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\scsnowman#c,\\scsnowmandefault#c,\\scsnowmannumeral#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "scsnowmannumeral",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "scsnowmannumeral",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:number}}",
+        "keys": [
+          "\\scsnowman#c,\\scsnowmandefault#c,\\scsnowmannumeral#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "usescsnowmanlibrary",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:library%file}}"
+      }
+    },
+    {
+      "name": "makeitemsnowman",
+      "unusual": true
+    },
+    {
+      "name": "makeitemother",
+      "unusual": true
+    },
+    {
+      "name": "makeqedsnowman",
+      "unusual": true
+    },
+    {
+      "name": "makeqedother",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\scsnowman#c,\\scsnowmandefault#c,\\scsnowmannumeral#c": [
       "scale=${1:factor}",
       "adjustbaseline",
       "body",
@@ -72,6 +108,10 @@
       "mouthshape=${1|smile,tight,frown|}",
       "mikan=",
       "leaf="
+    ],
+    "\\pagenumbering#c": [
+      "enumsnowman"
     ]
-  ]
+  },
+  "args": []
 }

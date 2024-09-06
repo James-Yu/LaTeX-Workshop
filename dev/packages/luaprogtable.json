@@ -1,71 +1,155 @@
 {
-  "includes": {
-    "iftex": [],
-    "luatexbase": []
-  },
-  "macros": {
-    "LPTNewTable{}{}{}": {
-      "snippet": "LPTNewTable{${1:name}}{${2:num cols}}{${3:preamble}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "LPTNewTable{}{}{}[]": {
-      "snippet": "LPTNewTable{${1:name}}{${2:num cols}}{${3:preamble}}[${4:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "LPTSetCurrentTable{}": {
-      "snippet": "LPTSetCurrentTable{${1:table name}}"
-    },
-    "LPTGetCurrentTable": {},
-    "LPTAddRow": {},
-    "LPTAddRow[]": {
-      "snippet": "LPTAddRow[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "LPTSetRowProp{}{}": {
-      "snippet": "LPTSetRowProp{${1:index expr}}{${2:row options}}"
-    },
-    "LPTUseTable": {},
-    "LPTDeleteTable{}": {
-      "snippet": "LPTDeleteTable{${1:table name}}"
-    },
-    "LPTSetCell{}{}": {
-      "snippet": "LPTSetCell{${1:index expr}}{${2:content}}"
-    },
-    "LPTSetCell{}[]{}": {
-      "snippet": "LPTSetCell{${1:index expr}}[${2:shape}]{${3:content}}"
-    },
-    "LPTFill{}{}": {
-      "snippet": "LPTFill{${1:index expr}}{${2:content}}"
-    },
-    "LPTGetTableNames": {},
-    "LPTGetTableShape": {},
-    "LPTGetCellData{}": {
-      "snippet": "LPTGetCellData{${1:index expr}}"
-    },
-    "LPTGetCellShape{}": {
-      "snippet": "LPTGetCellShape{${1:index expr}}"
-    },
-    "LPTGetCellParent{}": {
-      "snippet": "LPTGetCellParent{${1:index expr}}"
-    },
-    "LPTGetCellMetaIndex{}{}": {
-      "snippet": "LPTGetCellMetaIndex{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "luatexbase"
     }
-  },
-  "envs": {
-    "lptview{}": {
+  ],
+  "macros": [
+    {
+      "name": "LPTNewTable",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:num cols}}{${3:preamble}}"
+      }
+    },
+    {
+      "name": "LPTNewTable",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:name%specialDef}}{${2:num cols}}{${3:preamble}}[${4:options%keyvals}]",
+        "keys": [
+          "\\LPTNewTable"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "LPTSetCurrentTable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:table name%keyvals}}",
+        "keys": [
+          "\\LPTSetCurrentTable#c,\\LPTDeleteTable#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "LPTGetCurrentTable"
+    },
+    {
+      "name": "LPTAddRow"
+    },
+    {
+      "name": "LPTAddRow",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\LPTAddRow,\\LPTSetRowProp"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "LPTSetRowProp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:index expr}}{${2:row options%keyvals}}",
+        "keys": [
+          "\\LPTAddRow,\\LPTSetRowProp"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "LPTUseTable"
+    },
+    {
+      "name": "LPTDeleteTable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:table name%keyvals}}"
+      }
+    },
+    {
+      "name": "LPTSetCell",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:index expr}}{${2:content}}"
+      }
+    },
+    {
+      "name": "LPTSetCell",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:index expr}}[${3:shape}]{${2:content}}"
+      }
+    },
+    {
+      "name": "LPTFill",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:index expr}}{${2:content}}"
+      }
+    },
+    {
+      "name": "LPTGetTableNames"
+    },
+    {
+      "name": "LPTGetTableShape"
+    },
+    {
+      "name": "LPTGetCellData",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:index expr}}"
+      }
+    },
+    {
+      "name": "LPTGetCellShape",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:index expr}}"
+      }
+    },
+    {
+      "name": "LPTGetCellParent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:index expr}}"
+      }
+    },
+    {
+      "name": "LPTGetCellMetaIndex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [
+    {
       "name": "lptview",
-      "snippet": "{${1:index expr}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:index expr}}"
+      }
     },
-    "lptfill{}": {
+    {
       "name": "lptfill",
-      "snippet": "{${1:index expr}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:index expr}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\LPTNewTable": [
       "backend=${1:envname}",
       "default before line=${1:code}",
       "default after line=${1:code}",
@@ -73,10 +157,14 @@
       "input method=${1|file,stringbuffer|}",
       "nrows=${1:integer}"
     ],
-    [
+    "\\LPTSetCurrentTable#c,\\LPTDeleteTable#c": [
+      "%LPTtablename"
+    ],
+    "\\LPTAddRow,\\LPTSetRowProp": [
       "before line",
       "after line",
       "after spacing"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,115 +1,221 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "pgfplots": [],
-    "pgfplotstable": [],
-    "pgfcalendar": [],
-    "tabularx": [],
-    "booktabs": [],
-    "colortbl": [],
-    "ifthen": [],
-    "calc": [],
-    "translations": [],
-    "amsmath": [],
-    "tcolorbox": [],
-    "tcolorboxlibrarymany": [],
-    "environ": [],
-    "multicol": [],
-    "amssymb": [],
-    "pgfplotslibrarydateplot": []
-  },
-  "macros": {
-    "diadiatab{}{}": {
-      "snippet": "diadiatab{${1:pgfplotstable options}}{${2:file}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "diadiatab[]{}{}": {
-      "snippet": "diadiatab[${3:options}]{${1:pgfplotstable options}}{${2:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgfplots"
     },
-    "diadiaaddplot{}{}{}": {
-      "snippet": "diadiaaddplot{${1:addplot options}}{${2:key mappings}}{${3:file}}"
+    {
+      "name": "pgfplotstable"
     },
-    "diadiaaddplot*{}{}{}": {
-      "snippet": "diadiaaddplot*{${1:addplot options}}{${2:key mappings}}{${3:file}}"
+    {
+      "name": "pgfcalendar"
     },
-    "legend{}": {
-      "snippet": "legend{${1:list}}"
+    {
+      "name": "tabularx"
     },
-    "annotation{}{}{}": {
-      "snippet": "annotation{${1:x}}{${2:y}}{${3:annotation}}"
+    {
+      "name": "booktabs"
     },
-    "annotation[]{}{}{}": {
-      "snippet": "annotation[${4:TikZ options}]{${1:x}}{${2:y}}{${3:annotation}}"
+    {
+      "name": "colortbl"
     },
-    "setlimit{}": {
-      "snippet": "setlimit{${1:limit list}}"
+    {
+      "name": "ifthen"
     },
-    "setlimit[]{}": {
-      "snippet": "setlimit[${2:TikZ options}]{${1:limit list}}"
+    {
+      "name": "calc"
     },
-    "mcentry{}{}{}{}{}{}": {
-      "snippet": "mcentry{${1:pharmaceutical}}{${2:morning}}{${3:noon}}{${4:evening}}{${5:night}}{${6:note}}"
+    {
+      "name": "translations"
     },
-    "infobox{}{}{}": {
-      "snippet": "infobox{${1:tcolorbox options}}{${2:date}}{${3:information}}"
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "tcolorbox"
+    },
+    {
+      "name": "tcolorboxlibrarymany"
+    },
+    {
+      "name": "environ"
+    },
+    {
+      "name": "multicol"
+    },
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "pgfplotslibrarydateplot"
     }
-  },
-  "envs": {
-    "diadiaplot{}": {
-      "name": "diadiaplot",
-      "snippet": "{${1:pgfplots options}}"
-    },
-    "diadiaplot[]{}": {
-      "name": "diadiaplot",
-      "snippet": "[${2:options}]{${1:pgfplots options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "medicationchart{}{}": {
-      "name": "medicationchart",
-      "snippet": "{${1:tcolorbox options}}{${2:date}}"
-    },
-    "medicationchart[]{}{}": {
-      "name": "medicationchart",
-      "snippet": "[${3:options}]{${1:tcolorbox options}}{${2:date}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "diadiasidebyside": {},
-    "diadiasidebyside[]": {
-      "name": "diadiasidebyside",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    }
-  },
-  "options": [
-    "tabstyle=${1|simple,advanced|}",
-    "tabcolor=",
-    "plotstyle=${1|none,bloodsugar,bloodpressure,insulin,weight,cu,pulse,hbaonec|}",
-    "plotclosedcycle",
-    "mcnotewidth=",
-    "columnsep=",
-    "columnseprule=",
-    "columnseprulecolor=${1:color command}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "diadiatab",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pgfplotstable options}}{${2:file}}"
+      }
+    },
+    {
+      "name": "diadiatab",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:pgfplotstable options}}{${2:file}}",
+        "keys": [
+          "\\diadiatab#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "diadiaaddplot",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:addplot options}}{${2:key mappings}}{${3:file}}"
+      }
+    },
+    {
+      "name": "diadiaaddplot*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:addplot options}}{${2:key mappings}}{${3:file}}"
+      }
+    },
+    {
+      "name": "legend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "annotation",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:annotation%text}}"
+      }
+    },
+    {
+      "name": "annotation",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:TikZ options}]{${1:x}}{${2:y}}{${3:annotation%text}}"
+      }
+    },
+    {
+      "name": "setlimit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:limit list}}"
+      }
+    },
+    {
+      "name": "setlimit",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:TikZ options}]{${1:limit list}}"
+      }
+    },
+    {
+      "name": "mcentry",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:pharmaceutical}}{${2:morning}}{${3:noon}}{${4:evening}}{${5:night}}{${6:note%text}}"
+      }
+    },
+    {
+      "name": "infobox",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:tcolorbox options}}{${2:date}}{${3:information%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "diadiaplot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pgfplots options}}"
+      }
+    },
+    {
+      "name": "diadiaplot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:pgfplots options}}",
+        "keys": [
+          "\\begin{diadiaplot}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "medicationchart",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:tcolorbox options}}{${2:date}}"
+      }
+    },
+    {
+      "name": "medicationchart",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:tcolorbox options}}{${2:date}}",
+        "keys": [
+          "\\begin{medicationchart}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "diadiasidebyside"
+    },
+    {
+      "name": "diadiasidebyside",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{diadiasidebyside}#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/diadia#c": [
+      "tabstyle=${1|simple,advanced|}",
+      "tabcolor=",
+      "plotstyle=${1|none,bloodsugar,bloodpressure,insulin,weight,cu,pulse,hbaonec|}",
+      "plotclosedcycle",
+      "mcnotewidth=",
+      "columnsep=",
+      "columnseprule=",
+      "columnseprulecolor=${1:color command}"
+    ],
+    "\\diadiatab#c": [
       "tabstyle=${1|simple,advanced|}",
       "tabcolor="
     ],
-    [
+    "\\begin{diadiaplot}#c": [
       "plotstyle=${1|none,bloodsugar,bloodpressure,insulin,weight,cu,pulse,hbaonec|}",
       "plotclosedcycle"
     ],
-    [
+    "\\begin{medicationchart}#c": [
       "mcnotewidth="
     ],
-    [
+    "\\begin{diadiasidebyside}#c": [
       "columnsep=",
       "columnseprule=",
       "columnseprulecolor=${1:color command}"
     ]
+  },
+  "args": [
+    "\\usepackage/diadia#c"
   ]
 }

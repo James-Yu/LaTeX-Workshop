@@ -1,89 +1,253 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarycalc": []
-  },
-  "macros": {
-    "wheelchart{}": {
-      "snippet": "wheelchart{${1:wheelchart data}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "wheelchart[]{}": {
-      "snippet": "wheelchart[${2:options}]{${1:wheelchart data}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarycalc"
+    }
+  ],
+  "macros": [
+    {
+      "name": "wheelchart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:wheelchart data}}"
+      }
     },
-    "WCangle{}{}{}{}": {
-      "snippet": "WCangle{${1:angle pos}}{${2:angle shift}}{${3:pos}}{${4:sep}}"
+    {
+      "name": "wheelchart",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:wheelchart data}}",
+        "keys": [
+          "\\wheelchart#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "WCangle[]{}{}{}{}": {
-      "snippet": "WCangle[${5:number}]{${1:angle pos}}{${2:angle shift}}{${3:pos}}{${4:sep}}"
+    {
+      "name": "WCangle",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:angle pos}}{${2:angle shift}}{${3:pos}}{${4:sep}}"
+      }
     },
-    "WCcoordinate{}": {
-      "snippet": "WCcoordinate{${1:name}}"
+    {
+      "name": "WCangle",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:number}]{${1:angle pos}}{${2:angle shift}}{${3:pos}}{${4:sep}}"
+      }
     },
-    "WCcoordinate[]{}": {
-      "snippet": "WCcoordinate[${2:number}]{${1:name}}"
+    {
+      "name": "WCcoordinate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "WCcount": {},
-    "WCcountdiscrete": {},
-    "WCdataangle": {},
-    "WCetocthelinkedname": {},
-    "WCetocthelinkednumber": {},
-    "WCetocthelinkedpage": {},
-    "WCetocthename": {},
-    "WCetocthenumber": {},
-    "WCetocthenumberofpages": {},
-    "WCetocthepage": {},
-    "WClegend": {},
-    "WCmidangle": {},
-    "WCperc": {},
-    "WCpercentage": {},
-    "WCpercentagerounded": {},
-    "WCpoint{}{}{}{}": {
-      "snippet": "WCpoint{${1:angle pos}}{${2:angle shift}}{${3:pos}}{${4:sep}}"
+    {
+      "name": "WCcoordinate",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number}]{${1:name}}"
+      }
     },
-    "WCpoint[]{}{}{}{}": {
-      "snippet": "WCpoint[${5:number}]{${1:angle pos}}{${2:angle shift}}{${3:pos}}{${4:sep}}"
+    {
+      "name": "WCcount"
     },
-    "WCradius{}{}": {
-      "snippet": "WCradius{${1:pos}}{${2:sep}}"
+    {
+      "name": "WCcountdiscrete"
     },
-    "WCradius[]{}{}": {
-      "snippet": "WCradius[${3:number}]{${1:pos}}{${2:sep}}"
+    {
+      "name": "WCdataangle"
     },
-    "WCtotalcount": {},
-    "WCtotalnum": {},
-    "WCvarA": {},
-    "WCvarB": {},
-    "WCvarC": {},
-    "WCvarD": {},
-    "WCvarE": {},
-    "WCvarF": {},
-    "WCvarG": {},
-    "WCvarH": {},
-    "WCvarI": {},
-    "WCvarJ": {},
-    "WCvarK": {},
-    "WCvarL": {},
-    "WCvarM": {},
-    "WCvarN": {},
-    "WCvarO": {},
-    "WCvarP": {},
-    "WCvarQ": {},
-    "WCvarR": {},
-    "WCvarS": {},
-    "WCvarT": {},
-    "WCvarU": {},
-    "WCvarV": {},
-    "WCvarW": {},
-    "WCvarX": {},
-    "WCvarY": {},
-    "WCvarZ": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "WCetocthelinkedname",
+      "unusual": true
+    },
+    {
+      "name": "WCetocthelinkednumber",
+      "unusual": true
+    },
+    {
+      "name": "WCetocthelinkedpage",
+      "unusual": true
+    },
+    {
+      "name": "WCetocthename",
+      "unusual": true
+    },
+    {
+      "name": "WCetocthenumber",
+      "unusual": true
+    },
+    {
+      "name": "WCetocthenumberofpages",
+      "unusual": true
+    },
+    {
+      "name": "WCetocthepage",
+      "unusual": true
+    },
+    {
+      "name": "WClegend"
+    },
+    {
+      "name": "WCmidangle"
+    },
+    {
+      "name": "WCperc"
+    },
+    {
+      "name": "WCpercentage"
+    },
+    {
+      "name": "WCpercentagerounded"
+    },
+    {
+      "name": "WCpoint",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:angle pos}}{${2:angle shift}}{${3:pos}}{${4:sep}}"
+      }
+    },
+    {
+      "name": "WCpoint",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:number}]{${1:angle pos}}{${2:angle shift}}{${3:pos}}{${4:sep}}"
+      }
+    },
+    {
+      "name": "WCradius",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pos}}{${2:sep}}"
+      }
+    },
+    {
+      "name": "WCradius",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:number}]{${1:pos}}{${2:sep}}"
+      }
+    },
+    {
+      "name": "WCtotalcount"
+    },
+    {
+      "name": "WCtotalnum"
+    },
+    {
+      "name": "WCvarA",
+      "unusual": true
+    },
+    {
+      "name": "WCvarB",
+      "unusual": true
+    },
+    {
+      "name": "WCvarC",
+      "unusual": true
+    },
+    {
+      "name": "WCvarD",
+      "unusual": true
+    },
+    {
+      "name": "WCvarE",
+      "unusual": true
+    },
+    {
+      "name": "WCvarF",
+      "unusual": true
+    },
+    {
+      "name": "WCvarG",
+      "unusual": true
+    },
+    {
+      "name": "WCvarH",
+      "unusual": true
+    },
+    {
+      "name": "WCvarI",
+      "unusual": true
+    },
+    {
+      "name": "WCvarJ",
+      "unusual": true
+    },
+    {
+      "name": "WCvarK",
+      "unusual": true
+    },
+    {
+      "name": "WCvarL",
+      "unusual": true
+    },
+    {
+      "name": "WCvarM",
+      "unusual": true
+    },
+    {
+      "name": "WCvarN",
+      "unusual": true
+    },
+    {
+      "name": "WCvarO",
+      "unusual": true
+    },
+    {
+      "name": "WCvarP",
+      "unusual": true
+    },
+    {
+      "name": "WCvarQ",
+      "unusual": true
+    },
+    {
+      "name": "WCvarR",
+      "unusual": true
+    },
+    {
+      "name": "WCvarS",
+      "unusual": true
+    },
+    {
+      "name": "WCvarT",
+      "unusual": true
+    },
+    {
+      "name": "WCvarU",
+      "unusual": true
+    },
+    {
+      "name": "WCvarV",
+      "unusual": true
+    },
+    {
+      "name": "WCvarW",
+      "unusual": true
+    },
+    {
+      "name": "WCvarX",
+      "unusual": true
+    },
+    {
+      "name": "WCvarY",
+      "unusual": true
+    },
+    {
+      "name": "WCvarZ",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\wheelchart#c": [
       "after slices={${1:code}}",
       "anchor xsep=${1:degrees}",
       "anchor ysep=${1:degrees}",
@@ -265,5 +429,6 @@
       "xbar={${1:width}}{${2:height}}",
       "ybar={${1:width}}{${2:height}}"
     ]
-  ]
+  },
+  "args": []
 }

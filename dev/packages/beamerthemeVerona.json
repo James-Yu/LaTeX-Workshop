@@ -1,76 +1,161 @@
 {
-  "includes": {
-    "tikz": [],
-    "tcolorbox": [],
-    "tcolorboxlibraryskins": []
-  },
-  "macros": {
-    "lecturename": {},
-    "autorecitazione": {},
-    "structureA": {},
-    "structureB": {},
-    "oldtitlegraphic": {},
-    "titlegraphic{}{}": {
-      "snippet": "titlegraphic{${1:imagefile}}{${2:TikZ options}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "titlegraphic[]{}{}": {
-      "snippet": "titlegraphic[${3:options}]{${1:imagefile}}{${2:TikZ options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tcolorbox"
     },
-    "sidegraphics{}{}": {
-      "snippet": "sidegraphics{${1:imagefile}}{${2:TikZ options}}",
-      "option": "sidebar"
-    },
-    "sidegraphics[]{}{}": {
-      "snippet": "sidegraphics[${3:options}]{${1:imagefile}}{${2:TikZ options}}",
-      "option": "sidebar",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "sidegraphics<>{}{}": {
-      "snippet": "sidegraphics<${3:overlay specification}>{${1:imagefile}}{${2:TikZ options}}",
-      "option": "sidebar"
-    },
-    "sidegraphics<>[]{}{}": {
-      "snippet": "sidegraphics<${4:overlay specification}>[${3:options}]{${1:imagefile}}{${2:TikZ options}}",
-      "option": "sidebar",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "lectureinfoot": {},
-    "frametitlesidebar": {},
-    "mail{}": {
-      "snippet": "mail{${1:address}}"
-    },
-    "datelecture": {}
-  },
-  "envs": {
-    "citazione": {},
-    "citazione<>": {
-      "name": "citazione",
-      "snippet": "<${1:action specification}>"
-    },
-    "citazione[]": {
-      "name": "citazione",
-      "snippet": "[${1:author}]"
-    },
-    "citazione<>[]": {
-      "name": "citazione",
-      "snippet": "<${2:action specification}>[${1:author}]"
-    },
-    "quotation[]": {
-      "name": "quotation",
-      "snippet": "[${1:author}]"
-    },
-    "quotation<>[]": {
-      "name": "quotation",
-      "snippet": "<${2:action specification}>[${1:author}]"
+    {
+      "name": "tcolorboxlibraryskins"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "lecturename",
+      "unusual": true
+    },
+    {
+      "name": "autorecitazione",
+      "unusual": true
+    },
+    {
+      "name": "structureA",
+      "unusual": true
+    },
+    {
+      "name": "structureB",
+      "unusual": true
+    },
+    {
+      "name": "titlegraphic",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:imagefile}}{${2:TikZ options}}"
+      }
+    },
+    {
+      "name": "titlegraphic",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:imagefile}}{${2:TikZ options}}",
+        "keys": [
+          "\\titlegraphic,\\sidegraphics"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sidegraphics",
+      "if": "sidebar",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:imagefile}}{${2:TikZ options}}"
+      }
+    },
+    {
+      "name": "sidegraphics",
+      "if": "sidebar",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:imagefile}}{${2:TikZ options}}",
+        "keys": [
+          "\\titlegraphic,\\sidegraphics"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sidegraphics<overlay specification>",
+      "if": "sidebar",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:imagefile}}{${2:TikZ options}}"
+      }
+    },
+    {
+      "name": "sidegraphics<overlay specification>",
+      "if": "sidebar",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:imagefile}}{${2:TikZ options}}"
+      }
+    },
+    {
+      "name": "lectureinfoot",
+      "unusual": true
+    },
+    {
+      "name": "frametitlesidebar",
+      "unusual": true
+    },
+    {
+      "name": "mail",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address%text}}"
+      }
+    },
+    {
+      "name": "datelecture",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "citazione",
+      "unusual": true
+    },
+    {
+      "name": "citazione",
+      "unusual": true,
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:action specification}>"
+      }
+    },
+    {
+      "name": "citazione",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:author%text}]"
+      }
+    },
+    {
+      "name": "citazione",
+      "unusual": true,
+      "arg": {
+        "format": "<>[]",
+        "snippet": "<${2:action specification}>[${1:author%text}]"
+      }
+    },
+    {
+      "name": "quotation",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:author%text}]"
+      }
+    },
+    {
+      "name": "quotation",
+      "arg": {
+        "format": "<>[]",
+        "snippet": "<${2:action specification}>[${1:author%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usetheme/Verona#c": [
+      "showheader",
+      "red",
+      "gray",
+      "colorblocks",
+      "graytitle",
+      "sidebar",
+      "noframetitlerule"
+    ],
+    "\\titlegraphic,\\sidegraphics": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -101,5 +186,6 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
-  ]
+  },
+  "args": []
 }

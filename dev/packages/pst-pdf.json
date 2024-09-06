@@ -1,72 +1,120 @@
 {
-  "includes": {
-    "ifpdf": [],
-    "ifxetex": [],
-    "ifvtex": [],
-    "luatex85": [],
-    "graphicx": [],
-    "pstricks": [],
-    "preview": [],
-    "environ": [],
-    "pst-calculate": [
-      "useCalc"
-    ],
-    "pdfcolmk": [
-      "fixpdftex"
-    ]
-  },
-  "macros": {
-    "PDFcontainer": {},
-    "savepicture{}": {
-      "snippet": "savepicture{${1:name}}"
+  "deps": [
+    {
+      "name": "ifpdf"
     },
-    "usepicture{}": {
-      "snippet": "usepicture{${1:name}}"
+    {
+      "name": "ifxetex"
     },
-    "usepicture[]{}": {
-      "snippet": "usepicture[${2:options}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifvtex"
     },
-    "thepspicture": {}
-  },
-  "envs": {
-    "postscript": {},
-    "postscript[]": {
-      "name": "postscript",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "luatex85"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "pstricks"
+    },
+    {
+      "name": "preview"
+    },
+    {
+      "name": "environ"
+    },
+    {
+      "name": "pst-calculate",
+      "if": "useCalc"
+    },
+    {
+      "name": "pdfcolmk",
+      "if": "fixpdftex"
     }
-  },
-  "options": [
-    "active",
-    "inactive",
-    "pstricks",
-    "nopstricks",
-    "draft",
-    "final",
-    "tightpage",
-    "notightpage",
-    "displaymath",
-    "noxcolor",
-    "useCalc",
-    "gsfonts",
-    "psfonts",
-    "noEngineCheck",
-    "pdf",
-    "xetex",
-    "distiller",
-    "monochrome",
-    "grayscale"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "PDFcontainer"
+    },
+    {
+      "name": "savepicture",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "usepicture",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "usepicture",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\includegraphics,\\usepicture,\\begin{postscript}",
+          "\\usepicture,\\begin{postscript}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "thepspicture",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "postscript"
+    },
+    {
+      "name": "postscript",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\includegraphics,\\usepicture,\\begin{postscript}",
+          "\\usepicture,\\begin{postscript}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/pst-pdf#c": [
+      "active",
+      "inactive",
+      "pstricks",
+      "nopstricks",
+      "draft",
+      "final",
+      "tightpage",
+      "notightpage",
+      "displaymath",
+      "noxcolor",
+      "useCalc",
+      "gsfonts",
+      "psfonts",
+      "noEngineCheck",
+      "pdf",
+      "xetex",
+      "distiller",
+      "monochrome",
+      "grayscale"
+    ],
+    "\\includegraphics,\\usepicture,\\begin{postscript}": [
       "frame",
       "innerframe",
       "ignore",
       "showname",
-      "namefont=${1:font commands}",
+      "namefont=${1:font commands}"
+    ],
+    "\\usepicture,\\begin{postscript}": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -97,5 +145,8 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
+  },
+  "args": [
+    "\\usepackage/pst-pdf#c"
   ]
 }

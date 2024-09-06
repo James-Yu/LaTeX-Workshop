@@ -1,42 +1,99 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": [],
-    "pst-plot": [],
-    "pst-node": []
-  },
-  "macros": {
-    "psVehicle{}{}{}": {
-      "snippet": "psVehicle{${1:scaling factor}}{${2:abscissa back wheel}}{${3:function}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psVehicle[]{}{}{}": {
-      "snippet": "psVehicle[${4:options}]{${1:scaling factor}}{${2:abscissa back wheel}}{${3:function}}"
+    {
+      "name": "pst-xkey"
     },
-    "Bike": {},
-    "Tractor": {},
-    "HighWheeler": {},
-    "Truck": {},
-    "Segway": {},
-    "UniCycle": {},
-    "wheelA": {},
-    "wheelB": {},
-    "wheelC": {},
-    "wheelD": {},
-    "arrowWheel": {},
-    "TruckWheel": {},
-    "segWheel": {},
-    "SpokesWheelCrossed": {},
-    "SpokesWheelA": {},
-    "SpokesWheelB": {},
-    "TractorFrontWheel": {},
-    "TractorRearWheel": {},
-    "SlopeoMeter{}{}": {
-      "snippet": "SlopeoMeter{${1:color}}{${2:angle}}"
+    {
+      "name": "pst-plot"
     },
-    "SelfDefinedVehicle": {},
-    "PSTvehicleLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "pst-node"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psVehicle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:scaling factor}}{${2:abscissa back wheel}}{${3:function}}"
+      }
+    },
+    {
+      "name": "psVehicle",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:scaling factor}}{${2:abscissa back wheel}}{${3:function}}"
+      }
+    },
+    {
+      "name": "Bike"
+    },
+    {
+      "name": "Tractor"
+    },
+    {
+      "name": "HighWheeler"
+    },
+    {
+      "name": "Truck"
+    },
+    {
+      "name": "Segway"
+    },
+    {
+      "name": "UniCycle"
+    },
+    {
+      "name": "wheelA"
+    },
+    {
+      "name": "wheelB"
+    },
+    {
+      "name": "wheelC"
+    },
+    {
+      "name": "wheelD"
+    },
+    {
+      "name": "arrowWheel"
+    },
+    {
+      "name": "TruckWheel"
+    },
+    {
+      "name": "segWheel"
+    },
+    {
+      "name": "SpokesWheelCrossed"
+    },
+    {
+      "name": "SpokesWheelA"
+    },
+    {
+      "name": "SpokesWheelB"
+    },
+    {
+      "name": "TractorFrontWheel"
+    },
+    {
+      "name": "TractorRearWheel"
+    },
+    {
+      "name": "SlopeoMeter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "SelfDefinedVehicle"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

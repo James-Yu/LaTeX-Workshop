@@ -1,74 +1,175 @@
 {
-  "includes": {
-    "array": [],
-    "pifont": [],
-    "fancybox": [],
-    "color": [],
-    "jurabase": [],
-    "class-scrartcl": []
-  },
-  "macros": {
-    "formulierung{}": {
-      "snippet": "formulierung{${1:text}}"
+  "deps": [
+    {
+      "name": "array"
     },
-    "hand": {},
-    "jdef": {},
-    "lonelyhand{}": {
-      "snippet": "lonelyhand{${1:text}}"
+    {
+      "name": "pifont"
     },
-    "lonelytriangle{}": {
-      "snippet": "lonelytriangle{${1:text}}"
+    {
+      "name": "fancybox"
     },
-    "merke{}": {
-      "snippet": "merke{${1:text}}"
+    {
+      "name": "color"
     },
-    "okay": {},
-    "settheme{}{}": {
-      "snippet": "settheme{${1:thema}}{${2:datum}}"
+    {
+      "name": "jurabase"
     },
-    "biggerparskip": {},
-    "bspname": {},
-    "fall[]{}": {
-      "snippet": "fall[${2:quelle}]{${1:definitionstext}}"
+    {
+      "name": "class-scrartcl"
+    }
+  ],
+  "macros": [
+    {
+      "name": "formulierung",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "fall{}": {
-      "snippet": "fall{${1:definitionstext}}"
+    {
+      "name": "hand"
     },
-    "greybox[]{}": {
-      "snippet": "greybox[${2:width}]{${1:text}}"
+    {
+      "name": "jdef"
     },
-    "greybox{}": {
-      "snippet": "greybox{${1:text}}"
+    {
+      "name": "lonelyhand",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "jdef[]{}": {
-      "snippet": "jdef[${2:quelle}]{${1:definitionstext}}"
+    {
+      "name": "lonelytriangle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "jdef{}": {
-      "snippet": "jdef{${1:definitionstext}}"
+    {
+      "name": "merke",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "jdefboxwidth": {},
-    "lithinweis{}": {
-      "snippet": "lithinweis{${1:text}}"
+    {
+      "name": "okay"
     },
-    "litname": {},
-    "merkename": {},
-    "oldparskip": {},
-    "oldtoc": {},
-    "resetparskip": {}
-  },
-  "envs": {
-    "aufzaehlung": {},
-    "beispiel": {},
-    "gesetzestext{}{}": {
+    {
+      "name": "settheme",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:thema}}{${2:datum}}"
+      }
+    },
+    {
+      "name": "bigg"
+    },
+    {
+      "name": "bspname",
+      "unusual": true
+    },
+    {
+      "name": "fall",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:quelle}]{${1:definitionstext%text}}"
+      }
+    },
+    {
+      "name": "fall",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:definitionstext%text}}"
+      }
+    },
+    {
+      "name": "greybox",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:text}}"
+      }
+    },
+    {
+      "name": "greybox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "jdef",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:quelle}]{${1:definitionstext%text}}"
+      }
+    },
+    {
+      "name": "jdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:definitionstext%text}}"
+      }
+    },
+    {
+      "name": "lithinweis",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "litname",
+      "unusual": true
+    },
+    {
+      "name": "merkename",
+      "unusual": true
+    },
+    {
+      "name": "resetparskip",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "aufzaehlung"
+    },
+    {
+      "name": "beispiel"
+    },
+    {
       "name": "gesetzestext",
-      "snippet": "{${1:paragraph}}{${2:ueberschrift}}"
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:paragraph%text}}{${2:ueberschrift%text}}"
+      }
     },
-    "hands": {},
-    "hinweis": {},
-    "stars": {},
-    "triangles": {},
-    "uebersicht": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "hands"
+    },
+    {
+      "name": "hinweis"
+    },
+    {
+      "name": "stars"
+    },
+    {
+      "name": "triangles"
+    },
+    {
+      "name": "uebersicht"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

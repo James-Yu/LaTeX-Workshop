@@ -1,73 +1,89 @@
 {
-  "includes": {
-    "ctex": [],
-    "class-beamer": [],
-    "ucs": [
+  "deps": [
+    {
+      "name": "ctex"
+    },
+    {
+      "name": "class-beamer"
+    },
+    {
+      "name": "ucs",
+      "if": "ucs"
+    },
+    {
+      "name": "inputenc",
+      "if": "utf8x"
+    },
+    {
+      "name": "ucs",
+      "if": "utf8x"
+    },
+    {
+      "name": "inputenc",
+      "if": "utf8"
+    }
+  ],
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\documentclass/ctexbeamer#c": [
+      "GBK",
+      "UTF8",
+      "zhmap=${1|true,false,zhmCJK|}",
+      "zihao=${1|-4,5,false|}",
+      "heading",
+      "scheme=${1|chinese,plain|}",
+      "linespread=${1:number}",
+      "fontset=${1|adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none|}",
+      "punct=${1|quanjiao,banjiao,kaiming,CCT,plain|}",
+      "space=${1|true,false,auto|}",
+      "autoindent=",
+      "usepdftitle",
+      "envcountsect",
+      "notheorems",
+      "noamsthm",
+      "compress",
+      "t",
+      "c",
+      "leqno",
+      "fleqn",
+      "handout",
+      "trans",
+      "pdftex",
+      "nativepdf",
+      "pdfmark",
+      "dvips",
+      "dviwindo",
+      "dvipsone",
+      "vtex",
+      "ps2pdf",
+      "ignorenonframetext",
+      "noamssymb",
+      "bigger",
+      "smaller",
+      "8pt",
+      "9pt",
+      "10pt",
+      "11pt",
+      "12pt",
+      "14pt",
+      "17pt",
+      "20pt",
+      "draft",
+      "CJK",
+      "cjk",
+      "onlytextwidth",
+      "pgf={${1:pgf options}}",
+      "hyperref={${1:hyperref options}}",
+      "color={${1:color options}}",
+      "xcolor={${1:xcolor options}}",
       "ucs",
-      "utf8x"
-    ],
-    "inputenc": [
       "utf8x",
-      "utf8"
+      "utf8",
+      "aspectratio=${2|2013,1610,169,149,141,54,43,32,${1:xxxx}|}"
     ]
   },
-  "macros": {},
-  "envs": {},
-  "options": [
-    "GBK",
-    "UTF8",
-    "zhmap=${1|true,false,zhmCJK|}",
-    "zihao=${1|-4,5,false|}",
-    "heading",
-    "scheme=${1|chinese,plain|}",
-    "linespread=${1:number}",
-    "fontset=${1|adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none|}",
-    "punct=${1|quanjiao,banjiao,kaiming,CCT,plain|}",
-    "space=${1|true,false,auto|}",
-    "autoindent=",
-    "usepdftitle",
-    "envcountsect",
-    "notheorems",
-    "noamsthm",
-    "compress",
-    "t",
-    "c",
-    "leqno",
-    "fleqn",
-    "handout",
-    "trans",
-    "pdftex",
-    "nativepdf",
-    "pdfmark",
-    "dvips",
-    "dviwindo",
-    "dvipsone",
-    "vtex",
-    "ps2pdf",
-    "ignorenonframetext",
-    "noamssymb",
-    "bigger",
-    "smaller",
-    "8pt",
-    "9pt",
-    "10pt",
-    "11pt",
-    "12pt",
-    "14pt",
-    "17pt",
-    "20pt",
-    "draft",
-    "CJK",
-    "cjk",
-    "onlytextwidth",
-    "pgf={${1:pgf options}}",
-    "hyperref={${1:hyperref options}}",
-    "color={${1:color options}}",
-    "xcolor={${1:xcolor options}}",
-    "ucs",
-    "utf8x",
-    "utf8",
-    "aspectratio=${1|2013,1610,169,149,141,54,43,32,${1:xxxx}|}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/ctexbeamer#c"
+  ]
 }

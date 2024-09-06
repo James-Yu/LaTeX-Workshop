@@ -1,29 +1,59 @@
 {
-  "includes": {},
-  "macros": {
-    "euro": {
+  "deps": [],
+  "macros": [
+    {
+      "name": "euro",
       "detail": "€",
-      "documentation": "EURO SIGN"
+      "doc": "Euro sign"
     },
-    "EUR{}": {
-      "snippet": "EUR{${1:amount}}"
+    {
+      "name": "EUR",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:amount}}"
+      }
     },
-    "eurobars": {},
-    "eurobarsnarrow": {},
-    "eurobarswide": {},
-    "geneuro": {},
-    "geneuronarrow": {},
-    "geneurowide": {},
-    "officialeuro": {}
-  },
-  "envs": {},
-  "options": [
-    "left",
-    "right",
-    "official",
-    "gen",
-    "gennarrow",
-    "genwide"
+    {
+      "name": "eurobars",
+      "unusual": true
+    },
+    {
+      "name": "eurobarsnarrow",
+      "unusual": true
+    },
+    {
+      "name": "eurobarswide",
+      "unusual": true
+    },
+    {
+      "name": "geneuro",
+      "unusual": true
+    },
+    {
+      "name": "geneuronarrow",
+      "unusual": true
+    },
+    {
+      "name": "geneurowide",
+      "unusual": true
+    },
+    {
+      "name": "officialeuro",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/eurosym#c": [
+      "left",
+      "right",
+      "official",
+      "gen",
+      "gennarrow",
+      "genwide"
+    ]
+  },
+  "args": [
+    "\\usepackage/eurosym#c"
+  ]
 }

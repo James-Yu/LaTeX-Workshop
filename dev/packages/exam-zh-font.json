@@ -1,27 +1,41 @@
 {
-  "includes": {
-    "unicode-math": [],
-    "filehook": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "bm{}": {
-      "snippet": "bm{${1:arg}}"
+  "deps": [
+    {
+      "name": "unicode-math"
     },
-    "square": {
-      "detail": "⬜",
-      "documentation": "WHITE LARGE SQUARE"
+    {
+      "name": "filehook"
     },
-    "blacksquare": {
-      "detail": "⬛",
-      "documentation": "BLACK LARGE SQUARE"
-    },
-    "checkmark": {
-      "detail": "✓",
-      "documentation": "CHECK MARK"
+    {
+      "name": "etoolbox"
     }
+  ],
+  "macros": [
+    {
+      "name": "bm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "square"
+    },
+    {
+      "name": "blacksquare"
+    },
+    {
+      "name": "checkmark",
+      "detail": "✓ (\"amsfonts\" command)",
+      "doc": "\\ballotcheck (arevmath), tick, check mark"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\examsetup,\\ExamPrintAnswerSet": [
+      "font=${1|newcm,lm,times,termes,stix,xits,libertinus,garamond,pala,none|}",
+      "math-font=${1|newcm,lm,termes,stix,xits,libertinus,cambria,garamond,pala,asana,none|}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

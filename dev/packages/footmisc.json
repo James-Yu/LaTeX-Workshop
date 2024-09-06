@@ -1,68 +1,144 @@
 {
-  "includes": {},
-  "macros": {
-    "DefineFNsymbols{}[]{}": {
-      "snippet": "DefineFNsymbols{${1:set name}}[${2:style}]{${3:symbol list}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "DefineFNsymbols",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:set name%specialDef}}[${3:style}]{${2:symbol list}}"
+      }
     },
-    "DefineFNsymbols*{}[]{}": {
-      "snippet": "DefineFNsymbols*{${1:set name}}[${2:style}]{${3:symbol list}}"
+    {
+      "name": "DefineFNsymbols*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:set name%specialDef}}[${3:style}]{${2:symbol list}}"
+      }
     },
-    "setfnsymbol{}": {
-      "snippet": "setfnsymbol{${1:set name}}"
+    {
+      "name": "setfnsymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:set name%keyvals}}",
+        "keys": [
+          "\\setfnsymbol#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "mpfootnotemark": {},
-    "mpfootnotemark[]": {
-      "snippet": "mpfootnotemark[${1:number}]"
+    {
+      "name": "mpfootnotemark"
     },
-    "footref{}": {
-      "snippet": "footref{${1:label}}"
+    {
+      "name": "mpfootnotemark",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
     },
-    "footnotelayout": {},
-    "footglue": {},
-    "footnotebaselineskip": {},
-    "fudgefactor": {},
-    "makefootnoteparagraph": {},
-    "makehboxofhboxes": {},
-    "removehboxes": {},
-    "footnotehint": {},
-    "footnotemargin": {},
-    "hangfootparskip": {},
-    "hangfootparindent": {},
-    "mpfootnoterule": {
-      "option": "splitrule"
+    {
+      "name": "footref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "pagefootnoterule": {
-      "option": "splitrule"
+    {
+      "name": "footnotelayout",
+      "unusual": true
     },
-    "splitfootnoterule": {
-      "option": "splitrule"
+    {
+      "name": "footglue",
+      "unusual": true
     },
-    "multiplefootnotemarker": {
-      "option": "multiple"
+    {
+      "name": "footnotebaselineskip",
+      "unusual": true
     },
-    "multfootsep": {
-      "option": "multiple"
+    {
+      "name": "fudgefactor",
+      "unusual": true
+    },
+    {
+      "name": "makefootnoteparagraph",
+      "unusual": true
+    },
+    {
+      "name": "makehboxofhboxes",
+      "unusual": true
+    },
+    {
+      "name": "removehboxes",
+      "unusual": true
+    },
+    {
+      "name": "footnotehint",
+      "unusual": true
+    },
+    {
+      "name": "footnotemargin",
+      "unusual": true
+    },
+    {
+      "name": "hangfootparskip",
+      "unusual": true
+    },
+    {
+      "name": "hangfootparindent",
+      "unusual": true
+    },
+    {
+      "name": "mpfootnoterule",
+      "if": "splitrule"
+    },
+    {
+      "name": "pagefootnoterule",
+      "if": "splitrule"
+    },
+    {
+      "name": "splitfootnoterule",
+      "if": "splitrule"
+    },
+    {
+      "name": "multiplefootnotemarker",
+      "if": "multiple",
+      "unusual": true
+    },
+    {
+      "name": "multfootsep",
+      "if": "multiple",
+      "unusual": true
     }
-  },
-  "envs": {},
-  "options": [
-    "perpage",
-    "para",
-    "side",
-    "ragged",
-    "symbol",
-    "symbol*",
-    "abovefloats",
-    "belowfloats",
-    "bottom",
-    "bottomfloats",
-    "marginal",
-    "flushmargin",
-    "hang",
-    "norule",
-    "splitrule",
-    "stable",
-    "multiple"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/footmisc#c": [
+      "perpage",
+      "para",
+      "side",
+      "ragged",
+      "symbol",
+      "symbol*",
+      "abovefloats",
+      "belowfloats",
+      "bottom",
+      "bottomfloats",
+      "marginal",
+      "flushmargin",
+      "hang",
+      "norule",
+      "splitrule",
+      "stable",
+      "multiple"
+    ],
+    "\\setfnsymbol#c": [
+      "bringhurst",
+      "chicago",
+      "wiley",
+      "%fnsymbolset"
+    ]
+  },
+  "args": [
+    "\\usepackage/footmisc#c"
+  ]
 }

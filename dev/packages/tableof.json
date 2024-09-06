@@ -1,59 +1,127 @@
 {
-  "includes": {
-    "atveryend": []
-  },
-  "macros": {
-    "toftagstart{}": {
-      "snippet": "toftagstart{${1:tag1,${2:tag2},...}}"
+  "deps": [
+    {
+      "name": "atveryend"
+    }
+  ],
+  "macros": [
+    {
+      "name": "toftagstart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag1,tag2,...}}"
+      }
     },
-    "toftagstop{}": {
-      "snippet": "toftagstop{${1:tag1,${2:tag2},...}}"
+    {
+      "name": "toftagstop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag1,tag2,...}}"
+      }
     },
-    "toftagthis{}": {
-      "snippet": "toftagthis{${1:tag1,${2:tag2},...}}"
+    {
+      "name": "toftagthis",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag1,tag2,...}}"
+      }
     },
-    "tofuntagthis{}": {
-      "snippet": "tofuntagthis{${1:tag1,${2:tag2},...}}"
+    {
+      "name": "tofuntagthis",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag1,tag2,...}}"
+      }
     },
-    "nexttocwithtags{}{}": {
-      "snippet": "nexttocwithtags{${1:required-tag1,${3:required-tag2},${4:...}}{${2:excluded-tag1},${5:excluded-tag2},...}}"
+    {
+      "name": "nexttocwithtags",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:required-tag1,required-tag2,...}}{${2:excluded-tag1,excluded-tag2,...}}"
+      }
     },
-    "nexttocwithtags*{}{}": {
-      "snippet": "nexttocwithtags*{${1:required-tag1,${3:required-tag2},${4:...}}{${2:excluded-tag1},${5:excluded-tag2},...}}"
+    {
+      "name": "nexttocwithtags*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:required-tag1,required-tag2,...}}{${2:excluded-tag1,excluded-tag2,...}}"
+      }
     },
-    "nexttocwithtags{}*{}": {
-      "snippet": "nexttocwithtags{${1:required-tag1,${3:required-tag2},${4:...}}*{${2:excluded-tag1},${5:excluded-tag2},...}}"
+    {
+      "name": "nexttocwithtags",
+      "arg": {
+        "format": "{}*{}",
+        "snippet": "{${1:required-tag1,required-tag2,...}}*{${2:excluded-tag1,excluded-tag2,...}}"
+      }
     },
-    "nexttocwithtags*{}*{}": {
-      "snippet": "nexttocwithtags*{${1:required-tag1,${3:required-tag2},${4:...}}*{${2:excluded-tag1},${5:excluded-tag2},...}}"
+    {
+      "name": "nexttocwithtags*",
+      "arg": {
+        "format": "{}*{}",
+        "snippet": "{${1:required-tag1,required-tag2,...}}*{${2:excluded-tag1,excluded-tag2,...}}"
+      }
     },
-    "tableoftaggedcontents{}{}": {
-      "snippet": "tableoftaggedcontents{${1:required-tag1,${3:required-tag2},${4:...}}{${2:excluded-tag1},${5:excluded-tag2},...}}"
+    {
+      "name": "tableoftaggedcontents",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:required-tag1,required-tag2,...}}{${2:excluded-tag1,excluded-tag2,...}}"
+      }
     },
-    "tableoftaggedcontents*{}{}": {
-      "snippet": "tableoftaggedcontents*{${1:required-tag1,${3:required-tag2},${4:...}}{${2:excluded-tag1},${5:excluded-tag2},...}}"
+    {
+      "name": "tableoftaggedcontents*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:required-tag1,required-tag2,...}}{${2:excluded-tag1,excluded-tag2,...}}"
+      }
     },
-    "tableoftaggedcontents{}*{}": {
-      "snippet": "tableoftaggedcontents{${1:required-tag1,${3:required-tag2},${4:...}}*{${2:excluded-tag1},${5:excluded-tag2},...}}"
+    {
+      "name": "tableoftaggedcontents",
+      "arg": {
+        "format": "{}*{}",
+        "snippet": "{${1:required-tag1,required-tag2,...}}*{${2:excluded-tag1,excluded-tag2,...}}"
+      }
     },
-    "tableoftaggedcontents*{}*{}": {
-      "snippet": "tableoftaggedcontents*{${1:required-tag1,${3:required-tag2},${4:...}}*{${2:excluded-tag1},${5:excluded-tag2},...}}"
+    {
+      "name": "tableoftaggedcontents*",
+      "arg": {
+        "format": "{}*{}",
+        "snippet": "{${1:required-tag1,required-tag2,...}}*{${2:excluded-tag1,excluded-tag2,...}}"
+      }
     },
-    "tableof{}": {
-      "snippet": "tableof{${1:required-tag1,${2:required-tag2},...}}"
+    {
+      "name": "tableof",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:required-tag1,required-tag2,...}}"
+      }
     },
-    "tableof*{}": {
-      "snippet": "tableof*{${1:required-tag1,${2:required-tag2},...}}"
+    {
+      "name": "tableof*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:required-tag1,required-tag2,...}}"
+      }
     },
-    "tablenotof{}": {
-      "snippet": "tablenotof{${1:excluded-tag1,${2:excluded-tag2},...}}"
+    {
+      "name": "tablenotof",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:excluded-tag1,excluded-tag2,...}}"
+      }
     },
-    "tablenotof*{}": {
-      "snippet": "tablenotof*{${1:excluded-tag1,${2:excluded-tag2},...}}"
+    {
+      "name": "tablenotof*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:excluded-tag1,excluded-tag2,...}}"
+      }
     },
-    "tofOpenTocFileForWrite": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "tofOpenTocFileForWrite"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,263 +1,651 @@
 {
-  "includes": {
-    "amssymb": [],
-    "etoolbox": [],
-    "ifthen": [],
-    "bm": [],
-    "tikzlibrarycd": [],
-    "tikzlibrarybackgrounds": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibraryshapes": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryintersections": []
-  },
-  "macros": {
-    "zx{}": {
-      "snippet": "zx{${1:diagram}}"
+  "deps": [
+    {
+      "name": "amssymb"
     },
-    "zx[]{}": {
-      "snippet": "zx[${2:options}]{${1:diagram}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "etoolbox"
     },
-    "zxEmptyDiagram": {},
-    "zxNone{}": {
-      "snippet": "zxNone{${1:text}}"
+    {
+      "name": "ifthen"
     },
-    "zxN{}": {
-      "snippet": "zxN{${1:text}}"
+    {
+      "name": "bm"
     },
-    "zxNoneDouble{}": {
-      "snippet": "zxNoneDouble{${1:text}}"
+    {
+      "name": "tikzlibrarycd"
     },
-    "zxFracZ{}{}": {
-      "snippet": "zxFracZ{${1:numerator}}{${2:denominator}}"
+    {
+      "name": "tikzlibrarybackgrounds"
     },
-    "zxFracZ{}[][]{}": {
-      "snippet": "zxFracZ{${1:numerator}}[${2:num with parens}][${3:denom with parens}]{${4:denominator}}"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "zxFracX{}{}": {
-      "snippet": "zxFracX{${1:numerator}}{${2:denominator}}"
+    {
+      "name": "tikzlibraryshapes"
     },
-    "zxZ{}": {
-      "snippet": "zxZ{${1:text}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "zxZ[]{}": {
-      "snippet": "zxZ[${2:options}]{${1:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "zxZ*{}": {
-      "snippet": "zxZ*{${1:text}}"
-    },
-    "zxZ[]*{}": {
-      "snippet": "zxZ[${2:options}]*{${1:text}}"
-    },
-    "zxX{}": {
-      "snippet": "zxX{${1:text}}"
-    },
-    "zxX[]{}": {
-      "snippet": "zxX[${2:options}]{${1:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "zxX*{}": {
-      "snippet": "zxX*{${1:text}}"
-    },
-    "zxX[]*{}": {
-      "snippet": "zxX[${2:options}]*{${1:text}}"
-    },
-    "zxH{}": {
-      "snippet": "zxH{${1:text}}"
-    },
-    "zxH[]{}": {
-      "snippet": "zxH[${2:options}]{${1:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "leftManyDots{}": {
-      "snippet": "leftManyDots{${1:text}}"
-    },
-    "leftManyDots[]{}": {
-      "snippet": "leftManyDots[${2:text scale}]{${1:text}}"
-    },
-    "leftManyDots[][]{}": {
-      "snippet": "leftManyDots[${2:text scale}][${3:dots scale}]{${1:text}}"
-    },
-    "rightManyDots{}": {
-      "snippet": "rightManyDots{${1:text}}"
-    },
-    "rightManyDots[]{}": {
-      "snippet": "rightManyDots[${2:text scale}]{${1:text}}"
-    },
-    "rightManyDots[][]{}": {
-      "snippet": "rightManyDots[${2:text scale}][${3:dots scale}]{${1:text}}"
-    },
-    "middleManyDots": {},
-    "zxLoop{}": {
-      "snippet": "zxLoop{${1:}}"
-    },
-    "zxLoop[]{}": {
-      "snippet": "zxLoop[${2:dir angle}]{${1:}}"
-    },
-    "zxLoop[][]{}": {
-      "snippet": "zxLoop[${2:dir angle}][${3:open angle}]{${1:}}"
-    },
-    "zxLoop[][][]{}": {
-      "snippet": "zxLoop[${2:dir angle}][${3:open angle}][${4:styles}]{${1:}}"
-    },
-    "zxLoopAboveDots{}": {
-      "snippet": "zxLoopAboveDots{${1:}}"
-    },
-    "zxLoopAboveDots[]{}": {
-      "snippet": "zxLoopAboveDots[${2:open angle}]{${1:}}"
-    },
-    "zxLoopAboveDots[][]{}": {
-      "snippet": "zxLoopAboveDots[${2:open angle}][${3:styles}]{${1:}}"
-    },
-    "zxDebugMode": {},
-    "arrow[]": {
-      "snippet": "arrow[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "arrow[]{}": {
-      "snippet": "arrow[${2:options}]{${1:direction}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ar[]": {
-      "snippet": "ar[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "rar[]{}": {
-      "snippet": "rar[${2:options}]{${1:labels}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "lar[]{}": {
-      "snippet": "lar[${2:options}]{${1:labels}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "dar[]{}": {
-      "snippet": "dar[${2:options}]{${1:labels}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "uar[]{}": {
-      "snippet": "uar[${2:options}]{${1:labels}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "drar[]{}": {
-      "snippet": "drar[${2:options}]{${1:labels}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "urar[]{}": {
-      "snippet": "urar[${2:options}]{${1:labels}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "dlar[]{}": {
-      "snippet": "dlar[${2:options}]{${1:labels}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ular[]{}": {
-      "snippet": "ular[${2:options}]{${1:labels}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "zxConvertToFracInContent": {},
-    "zxConvertToFracInLabel": {},
-    "zxMinusInShort": {},
-    "zxHCol": {},
-    "zxHRow": {},
-    "zxHColFlat": {},
-    "zxHRowFlat": {},
-    "zxSCol": {},
-    "zxSRow": {},
-    "zxSColFlat": {},
-    "zxSRowFlat": {},
-    "zxHSCol": {},
-    "zxHSRow": {},
-    "zxHSColFlat": {},
-    "zxHSRowFlat": {},
-    "zxWCol": {},
-    "zxWRow": {},
-    "zxwCol": {},
-    "zxwRow": {},
-    "zxDotsCol": {},
-    "zxDotsRow": {},
-    "zxZeroCol": {},
-    "zxZeroRow": {},
-    "zxNCol": {},
-    "zxNRow": {},
-    "zxDefaultColumnSep": {},
-    "zxDefaultRowSep": {},
-    "zxDefaultSoftAngleS": {},
-    "zxDefaultSoftAngleN": {},
-    "zxDefaultSoftAngleO": {},
-    "zxDefaultSoftAngleChevron": {},
-    "zxScaleDots": {},
-    "zxMinus": {},
-    "zxEdgesAbove": {},
-    "zxControlPointsVisible": {},
-    "zxEnableIntersections": {},
-    "zxDisableIntersections": {},
-    "zxEnableIntersectionsNodes": {},
-    "zxEnableIntersectionsWires": {},
-    "zxIntersectionLineBetweenStartEnd": {},
-    "zxDefaultLineWidth": {},
-    "zxSaveDiagram{}{}": {
-      "snippet": "zxSaveDiagram{${1:cmd}}{${2:diagram}}"
-    },
-    "zxSaveDiagram{}[]{}": {
-      "snippet": "zxSaveDiagram{${1:cmd}}[${2:options}]{${3:diagram}}"
-    },
-    "chdots": {},
-    "controlOne": {},
-    "controlTwo": {},
-    "cvdots": {},
-    "cvdotsAboveBaseline": {},
-    "cvdotsCenterBaseline": {},
-    "cvdotsCenterMathline": {},
-    "ifAnchorExists{}{}{}{}": {
-      "snippet": "ifAnchorExists{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "ifAnchorExistsFromShape{}{}{}{}": {
-      "snippet": "ifAnchorExistsFromShape{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "ifPgfpointOrNode{}{}{}": {
-      "snippet": "ifPgfpointOrNode{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "StartPoint": {},
-    "TargetPoint": {},
-    "zxChooseStyle{}{}{}{}": {
-      "snippet": "zxChooseStyle{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "zxMaxDepthPlusHeight": {},
-    "zxMaxRatio": {},
-    "zxUseDiagram{}": {
-      "snippet": "zxUseDiagram{${1:arg}}"
-    },
-    "zxWireInsideIfNoIntersectionName": {}
-  },
-  "envs": {
-    "ZX": {},
-    "ZX[]": {
-      "name": "ZX",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryintersections"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "zx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:diagram%formula}}"
+      }
+    },
+    {
+      "name": "zx",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:diagram%formula}}",
+        "keys": [
+          "\\zx#c,\\begin{ZX}#c,\\zxSaveDiagram#c",
+          "\\zx#c,\\begin{ZX}#c,\\zxSaveDiagram#c,\\zxZ#c,\\zxX#c,\\zxH#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "zxEmptyDiagram"
+    },
+    {
+      "name": "zxNone",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxNone",
+      "arg": {
+        "format": "|{}",
+        "snippet": "|{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxN",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxN",
+      "unusual": true,
+      "arg": {
+        "format": "|{}",
+        "snippet": "|{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxNoneDouble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxNoneDouble",
+      "arg": {
+        "format": "|{}",
+        "snippet": "|{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxFracZ",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "zxFracZ",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:numerator}}[${3:num with parens}][${4:denom with parens}]{${2:denominator}}"
+      }
+    },
+    {
+      "name": "zxFracX",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "zxZ",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxZ",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text%plain}}",
+        "keys": [
+          "\\zx#c,\\begin{ZX}#c,\\zxSaveDiagram#c,\\zxZ#c,\\zxX#c,\\zxH#c",
+          "\\zxZ#c,\\zxX#c,\\zxH#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "zxZ*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxZ",
+      "arg": {
+        "format": "[]*{}",
+        "snippet": "[${2:options%keyvals}]*{${1:text%plain}}",
+        "keys": [
+          "\\zx#c,\\begin{ZX}#c,\\zxSaveDiagram#c,\\zxZ#c,\\zxX#c,\\zxH#c",
+          "\\zxZ#c,\\zxX#c,\\zxH#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "zxX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxX",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text%plain}}",
+        "keys": [
+          "\\zx#c,\\begin{ZX}#c,\\zxSaveDiagram#c,\\zxZ#c,\\zxX#c,\\zxH#c",
+          "\\zxZ#c,\\zxX#c,\\zxH#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "zxX*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxX",
+      "arg": {
+        "format": "[]*{}",
+        "snippet": "[${2:options%keyvals}]*{${1:text%plain}}",
+        "keys": [
+          "\\zx#c,\\begin{ZX}#c,\\zxSaveDiagram#c,\\zxZ#c,\\zxX#c,\\zxH#c",
+          "\\zxZ#c,\\zxX#c,\\zxH#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "zxH",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxH",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text%plain}}",
+        "keys": [
+          "\\zx#c,\\begin{ZX}#c,\\zxSaveDiagram#c,\\zxZ#c,\\zxX#c,\\zxH#c",
+          "\\zxZ#c,\\zxX#c,\\zxH#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "leftManyDots",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "leftManyDots",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:text scale}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "leftManyDots",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:text scale}][${3:dots scale}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "rightManyDots",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "rightManyDots",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:text scale}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "rightManyDots",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:text scale}][${3:dots scale}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "middleManyDots"
+    },
+    {
+      "name": "zxLoop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:}}"
+      }
+    },
+    {
+      "name": "zxLoop",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:dir angle}]{${1:}}"
+      }
+    },
+    {
+      "name": "zxLoop",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:dir angle}][${3:open angle}]{${1:}}"
+      }
+    },
+    {
+      "name": "zxLoop",
+      "arg": {
+        "format": "[][][]{}",
+        "snippet": "[${2:dir angle}][${3:open angle}][${4:styles}]{${1:}}"
+      }
+    },
+    {
+      "name": "zxLoopAboveDots",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:}}"
+      }
+    },
+    {
+      "name": "zxLoopAboveDots",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:open angle}]{${1:}}"
+      }
+    },
+    {
+      "name": "zxLoopAboveDots",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:open angle}][${3:styles}]{${1:}}"
+      }
+    },
+    {
+      "name": "zxDebugMode",
+      "unusual": true
+    },
+    {
+      "name": "arrow",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "arrow",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:direction}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labels}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "lar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labels}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "dar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labels}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "uar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labels}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "drar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labels}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "urar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labels}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "dlar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labels}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ular",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labels}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "zxConvertToFracInContent",
+      "unusual": true
+    },
+    {
+      "name": "zxConvertToFracInLabel",
+      "unusual": true
+    },
+    {
+      "name": "zxMinusInShort",
+      "unusual": true
+    },
+    {
+      "name": "zxHCol",
+      "unusual": true
+    },
+    {
+      "name": "zxHRow",
+      "unusual": true
+    },
+    {
+      "name": "zxHColFlat",
+      "unusual": true
+    },
+    {
+      "name": "zxHRowFlat",
+      "unusual": true
+    },
+    {
+      "name": "zxSCol",
+      "unusual": true
+    },
+    {
+      "name": "zxSRow",
+      "unusual": true
+    },
+    {
+      "name": "zxSColFlat",
+      "unusual": true
+    },
+    {
+      "name": "zxSRowFlat",
+      "unusual": true
+    },
+    {
+      "name": "zxHSCol",
+      "unusual": true
+    },
+    {
+      "name": "zxHSRow",
+      "unusual": true
+    },
+    {
+      "name": "zxHSColFlat",
+      "unusual": true
+    },
+    {
+      "name": "zxHSRowFlat",
+      "unusual": true
+    },
+    {
+      "name": "zxWCol",
+      "unusual": true
+    },
+    {
+      "name": "zxWRow",
+      "unusual": true
+    },
+    {
+      "name": "zxwCol",
+      "unusual": true
+    },
+    {
+      "name": "zxwRow",
+      "unusual": true
+    },
+    {
+      "name": "zxDotsCol",
+      "unusual": true
+    },
+    {
+      "name": "zxDotsRow",
+      "unusual": true
+    },
+    {
+      "name": "zxZeroCol",
+      "unusual": true
+    },
+    {
+      "name": "zxZeroRow",
+      "unusual": true
+    },
+    {
+      "name": "zxNCol",
+      "unusual": true
+    },
+    {
+      "name": "zxNRow",
+      "unusual": true
+    },
+    {
+      "name": "zxDefaultColumnSep",
+      "unusual": true
+    },
+    {
+      "name": "zxDefaultRowSep",
+      "unusual": true
+    },
+    {
+      "name": "zxDefaultSoftAngleS",
+      "unusual": true
+    },
+    {
+      "name": "zxDefaultSoftAngleN",
+      "unusual": true
+    },
+    {
+      "name": "zxDefaultSoftAngleO",
+      "unusual": true
+    },
+    {
+      "name": "zxDefaultSoftAngleChevron",
+      "unusual": true
+    },
+    {
+      "name": "zxScaleDots",
+      "unusual": true
+    },
+    {
+      "name": "zxMinus",
+      "unusual": true
+    },
+    {
+      "name": "zxEdgesAbove",
+      "unusual": true
+    },
+    {
+      "name": "zxControlPointsVisible",
+      "unusual": true
+    },
+    {
+      "name": "zxEnableIntersections",
+      "unusual": true
+    },
+    {
+      "name": "zxDisableIntersections",
+      "unusual": true
+    },
+    {
+      "name": "zxEnableIntersectionsNodes",
+      "unusual": true
+    },
+    {
+      "name": "zxEnableIntersectionsWires",
+      "unusual": true
+    },
+    {
+      "name": "zxIntersectionLineBetweenStartEnd",
+      "unusual": true
+    },
+    {
+      "name": "zxDefaultLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "zxSaveDiagram",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:diagram%formula}}"
+      }
+    },
+    {
+      "name": "zxSaveDiagram",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:options%keyvals}]{${2:diagram%formula}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "ZX"
+    },
+    {
+      "name": "ZX",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\zx#c,\\begin{ZX}#c,\\zxSaveDiagram#c",
+          "\\zx#c,\\begin{ZX}#c,\\zxSaveDiagram#c,\\zxZ#c,\\zxX#c,\\zxH#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\zx#c,\\begin{ZX}#c,\\zxSaveDiagram#c": [
       "every diagram",
       "diagrams={${1:options}}",
       "every matrix",
@@ -291,7 +679,9 @@
       "math baseline=${1:node alias}",
       "zx column sep=",
       "zx row sep=",
-      "use diagram={${1:\\name}}{${2:nodes}}",
+      "use diagram={${1:\\name}}{${2:nodes}}"
+    ],
+    "\\zx#c,\\begin{ZX}#c,\\zxSaveDiagram#c,\\zxZ#c,\\zxX#c,\\zxH#c": [
       "phase in content",
       "phase in label",
       "phase in label={${1:styles}}",
@@ -315,32 +705,10 @@
       "pill={${1:styles}}",
       "text="
     ],
-    [
-      "phase in content",
-      "phase in label",
-      "phase in label={${1:styles}}",
-      "pil",
-      "pil={${1:styles}}",
-      "phase in label above",
-      "phase in label above={${1:styles}}",
-      "pila",
-      "pila={${1:styles}}",
-      "phase in label below",
-      "phase in label below={${1:styles}}",
-      "pilb",
-      "pilb={${1:styles}}",
-      "phase in label right",
-      "phase in label right={${1:styles}}",
-      "pilr",
-      "pilr={${1:styles}}",
-      "phase in label left",
-      "phase in label left={${1:styles}}",
-      "pill",
-      "pill={${1:styles}}",
-      "text=",
+    "\\zxZ#c,\\zxX#c,\\zxH#c": [
       "a=${1:alias}"
     ],
-    [
+    "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c": [
       "C",
       "C=${1:radius ratio}",
       "C.",
@@ -516,5 +884,6 @@
       "dont use intersections",
       "ui"
     ]
-  ]
+  },
+  "args": []
 }

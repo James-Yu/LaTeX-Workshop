@@ -1,1421 +1,2883 @@
 {
-  "includes": {
-    "amsmath": [],
-    "mathtools": [],
-    "xcolor": [],
-    "calc": [],
-    "tikz": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibrarycalc": [],
-    "ifthen": [],
-    "xargs": [],
-    "pgf": [],
-    "forloop": [],
-    "array": [],
-    "pbox": [],
-    "varwidth": [],
-    "suffix": [],
-    "etoolbox": [],
-    "environ": [],
-    "xkeyval": [],
-    "amsfonts": [
-      "probability",
-      "sets"
-    ],
-    "centernot": [
-      "logic"
-    ]
-  },
-  "macros": {
-    "sample": {
-      "option": "operators"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "floor{}": {
-      "snippet": "floor{${1:arg}}",
-      "option": "operators"
+    {
+      "name": "mathtools"
     },
-    "tfloor{}": {
-      "snippet": "tfloor{${1:arg}}",
-      "option": "operators"
+    {
+      "name": "xcolor"
     },
-    "ceil{}": {
-      "snippet": "ceil{${1:arg}}",
-      "option": "operators"
+    {
+      "name": "calc"
     },
-    "tceil{}": {
-      "snippet": "tceil{${1:arg}}",
-      "option": "operators"
+    {
+      "name": "tikz"
     },
-    "Angle{}": {
-      "snippet": "Angle{${1:arg}}",
-      "option": "operators"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "tAngle{}": {
-      "snippet": "tAngle{${1:arg}}",
-      "option": "operators"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "abs{}": {
-      "snippet": "abs{${1:arg}}",
-      "option": "operators"
+    {
+      "name": "ifthen"
     },
-    "tabs{}": {
-      "snippet": "tabs{${1:arg}}",
-      "option": "operators"
+    {
+      "name": "xargs"
     },
-    "norm{}": {
-      "snippet": "norm{${1:arg}}",
-      "option": "operators"
+    {
+      "name": "pgf"
     },
-    "tnorm{}": {
-      "snippet": "tnorm{${1:arg}}",
-      "option": "operators"
+    {
+      "name": "forloop"
     },
-    "concat": {
-      "option": "operators"
+    {
+      "name": "array"
     },
-    "emptystring": {
-      "option": "operators"
+    {
+      "name": "pbox"
     },
-    "argmax": {
-      "option": "operators"
+    {
+      "name": "varwidth"
     },
-    "argmin": {
-      "option": "operators"
+    {
+      "name": "suffix"
     },
-    "pindist": {
-      "option": "operators"
+    {
+      "name": "etoolbox"
     },
-    "sindist": {
-      "option": "operators"
+    {
+      "name": "environ"
     },
-    "cindist": {
-      "option": "operators"
+    {
+      "name": "xkeyval"
     },
-    "adversary{}": {
-      "snippet": "adversary{${1:text}}",
-      "option": "adversary"
+    {
+      "name": "amsfonts",
+      "if": "probability"
     },
-    "adv": {
-      "option": "adversary"
+    {
+      "name": "amsfonts",
+      "if": "sets"
     },
-    "bdv": {
-      "option": "adversary"
-    },
-    "cdv": {
-      "option": "adversary"
-    },
-    "ddv": {
-      "option": "adversary"
-    },
-    "edv": {
-      "option": "adversary"
-    },
-    "mdv": {
-      "option": "adversary"
-    },
-    "pdv": {
-      "option": "adversary"
-    },
-    "rdv": {
-      "option": "adversary"
-    },
-    "sdv": {
-      "option": "adversary"
-    },
-    "bigO{}": {
-      "snippet": "bigO{${1:arg}}",
-      "option": "landau"
-    },
-    "smallO{}": {
-      "snippet": "smallO{${1:arg}}",
-      "option": "landau"
-    },
-    "bigOmega{}": {
-      "snippet": "bigOmega{${1:arg}}",
-      "option": "landau"
-    },
-    "smallOmega{}": {
-      "snippet": "smallOmega{${1:arg}}",
-      "option": "landau"
-    },
-    "bigTheta{}": {
-      "snippet": "bigTheta{${1:arg}}",
-      "option": "landau"
-    },
-    "orderOf": {
-      "option": "landau"
-    },
-    "bigsmallO{}": {
-      "snippet": "bigsmallO{${1:arg}}",
-      "option": "landau"
-    },
-    "probname": {
-      "option": "probability"
-    },
-    "expectationname": {
-      "option": "probability"
-    },
-    "supportname": {
-      "option": "probability"
-    },
-    "tprob{}": {
-      "snippet": "tprob{${1:arg}}",
-      "option": "probability"
-    },
-    "prob{}": {
-      "snippet": "prob{${1:arg}}",
-      "option": "probability"
-    },
-    "tprobsub{}{}": {
-      "snippet": "tprobsub{${1:sub}}{${2:arg}}",
-      "option": "probability"
-    },
-    "probsub{}{}": {
-      "snippet": "probsub{${1:sub}}{${2:arg}}",
-      "option": "probability"
-    },
-    "probsublong{}{}": {
-      "snippet": "probsublong{${1:sub}}{${2:arg}}",
-      "option": "probability"
-    },
-    "tcondprob{}{}": {
-      "snippet": "tcondprob{${1:arg}}{${2:condition}}",
-      "option": "probability"
-    },
-    "condprob{}{}": {
-      "snippet": "condprob{${1:arg}}{${2:condition}}",
-      "option": "probability"
-    },
-    "tcondprobsub{}{}{}": {
-      "snippet": "tcondprobsub{${1:sub}}{${2:arg}}{${3:condition}}",
-      "option": "probability"
-    },
-    "condprobsub{}{}{}": {
-      "snippet": "condprobsub{${1:sub}}{${2:arg}}{${3:condition}}",
-      "option": "probability"
-    },
-    "texpect{}": {
-      "snippet": "texpect{${1:arg}}",
-      "option": "probability"
-    },
-    "expect{}": {
-      "snippet": "expect{${1:arg}}",
-      "option": "probability"
-    },
-    "texpsub{}{}": {
-      "snippet": "texpsub{${1:sub}}{${2:arg}}",
-      "option": "probability"
-    },
-    "expsub{}{}": {
-      "snippet": "expsub{${1:sub}}{${2:arg}}",
-      "option": "probability"
-    },
-    "tcondexp{}{}": {
-      "snippet": "tcondexp{${1:arg}}{${2:condition}}",
-      "option": "probability"
-    },
-    "condexp{}{}": {
-      "snippet": "condexp{${1:arg}}{${2:condition}}",
-      "option": "probability"
-    },
-    "tcondexpsub{}{}{}": {
-      "snippet": "tcondexpsub{${1:sub}}{${2:arg}}{${3:condition}}",
-      "option": "probability"
-    },
-    "condexpsub{}{}{}": {
-      "snippet": "condexpsub{${1:sub}}{${2:arg}}{${3:condition}}",
-      "option": "probability"
-    },
-    "supp{}": {
-      "snippet": "supp{${1:arg}}",
-      "option": "probability"
-    },
-    "entropy{}": {
-      "snippet": "entropy{${1:arg}}",
-      "option": "probability"
-    },
-    "condentropy{}{}": {
-      "snippet": "condentropy{${1:arg}}{${2:condition}}",
-      "option": "probability"
-    },
-    "minentropy{}": {
-      "snippet": "minentropy{${1:arg}}",
-      "option": "probability"
-    },
-    "tminentropy{}": {
-      "snippet": "tminentropy{${1:arg}}",
-      "option": "probability"
-    },
-    "condminentropy{}{}": {
-      "snippet": "condminentropy{${1:arg}}{${2:condition}}",
-      "option": "probability"
-    },
-    "tcondminentropy{}{}": {
-      "snippet": "tcondminentropy{${1:arg}}{${2:condition}}",
-      "option": "probability"
-    },
-    "condavgminentropy{}{}": {
-      "snippet": "condavgminentropy{${1:arg}}{${2:condition}}",
-      "option": "probability"
-    },
-    "tcondavgminentropy{}{}": {
-      "snippet": "tcondavgminentropy{${1:arg}}{${2:condition}}",
-      "option": "probability"
-    },
-    "NN": {
-      "option": "sets"
-    },
-    "ZZ": {
-      "option": "sets"
-    },
-    "CC": {
-      "option": "sets"
-    },
-    "QQ": {
-      "option": "sets"
-    },
-    "RR": {
-      "option": "sets"
-    },
-    "PP": {
-      "option": "sets"
-    },
-    "FF": {
-      "option": "sets"
-    },
-    "GG": {
-      "option": "sets"
-    },
-    "set{}": {
-      "snippet": "set{${1:arg}}",
-      "option": "sets"
-    },
-    "sequence{}": {
-      "snippet": "sequence{${1:arg}}",
-      "option": "sets"
-    },
-    "bin{}": {
-      "snippet": "bin{${1:arg}}",
-      "option": "sets"
-    },
-    "indcpa": {
-      "option": "notions"
-    },
-    "indcca": {
-      "option": "notions"
-    },
-    "indccai": {
-      "option": "notions"
-    },
-    "indccaii": {
-      "option": "notions"
-    },
-    "priv": {
-      "option": "notions"
-    },
-    "ind": {
-      "option": "notions"
-    },
-    "indcda": {
-      "option": "notions"
-    },
-    "prvcda": {
-      "option": "notions"
-    },
-    "prvrcda": {
-      "option": "notions"
-    },
-    "kiae": {
-      "option": "notions"
-    },
-    "kdae": {
-      "option": "notions"
-    },
-    "mle": {
-      "option": "notions"
-    },
-    "uce": {
-      "option": "notions"
-    },
-    "eufcma": {
-      "option": "notions"
-    },
-    "eufnacma": {
-      "option": "notions"
-    },
-    "seufcma": {
-      "option": "notions"
-    },
-    "eufko": {
-      "option": "notions"
-    },
-    "AND": {
-      "option": "logic"
-    },
-    "OR": {
-      "option": "logic"
-    },
-    "NOR": {
-      "option": "logic"
-    },
-    "NOT": {
-      "option": "logic"
-    },
-    "NAND": {
-      "option": "logic"
-    },
-    "XOR": {
-      "option": "logic"
-    },
-    "XNOR": {
-      "option": "logic"
-    },
-    "xor": {
-      "option": "logic"
-    },
-    "false": {
-      "option": "logic"
-    },
-    "true": {
-      "option": "logic"
-    },
-    "notimplies": {
-      "option": "logic"
-    },
-    "kgen": {
-      "option": "ff"
-    },
-    "pgen": {
-      "option": "ff"
-    },
-    "eval": {
-      "option": "ff"
-    },
-    "invert": {
-      "option": "ff"
-    },
-    "il": {
-      "option": "ff"
-    },
-    "ol": {
-      "option": "ff"
-    },
-    "kl": {
-      "option": "ff"
-    },
-    "nl": {
-      "option": "ff"
-    },
-    "rl": {
-      "option": "ff"
-    },
-    "CRKT": {
-      "option": "mm"
-    },
-    "TM": {
-      "option": "mm"
-    },
-    "PROG": {
-      "option": "mm"
-    },
-    "uTM": {
-      "option": "mm"
-    },
-    "uC": {
-      "option": "mm"
-    },
-    "uP": {
-      "option": "mm"
-    },
-    "csize": {
-      "option": "mm"
-    },
-    "tmtime": {
-      "option": "mm"
-    },
-    "ppt": {
-      "option": "mm"
-    },
-    "pcadvantagesuperstyle{}": {
-      "snippet": "pcadvantagesuperstyle{${1:text}}",
-      "option": "advantage"
-    },
-    "pcadvantagesubstyle{}": {
-      "snippet": "pcadvantagesubstyle{${1:text}}",
-      "option": "advantage"
-    },
-    "pcadvantagename": {
-      "option": "advantage"
-    },
-    "advantage{}{}": {
-      "snippet": "advantage{${1:sup}}{${2:sub}}",
-      "option": "advantage"
-    },
-    "advantage{}{}[]": {
-      "snippet": "advantage{${1:sup}}{${2:sub}}[${3:arg}]",
-      "option": "advantage"
-    },
-    "prover": {
-      "option": "primitives"
-    },
-    "verifier": {
-      "option": "primitives"
-    },
-    "nizk": {
-      "option": "primitives"
-    },
-    "hash": {
-      "option": "primitives",
-      "detail": "⋕",
-      "documentation": "parallel, equal; equal or parallel"
-    },
-    "gash": {
-      "option": "primitives"
-    },
-    "fash": {
-      "option": "primitives"
-    },
-    "pad": {
-      "option": "primitives"
-    },
-    "enc": {
-      "option": "primitives"
-    },
-    "dec": {
-      "option": "primitives"
-    },
-    "sig": {
-      "option": "primitives"
-    },
-    "sign": {
-      "option": "primitives"
-    },
-    "verify": {
-      "option": "primitives"
-    },
-    "obf": {
-      "option": "primitives"
-    },
-    "iO": {
-      "option": "primitives"
-    },
-    "diO": {
-      "option": "primitives"
-    },
-    "owf": {
-      "option": "primitives"
-    },
-    "owp": {
-      "option": "primitives"
-    },
-    "tdf": {
-      "option": "primitives"
-    },
-    "inv": {
-      "option": "primitives"
-    },
-    "hcf": {
-      "option": "primitives"
-    },
-    "prf": {
-      "option": "primitives"
-    },
-    "prp": {
-      "option": "primitives"
-    },
-    "prg": {
-      "option": "primitives"
-    },
-    "mac": {
-      "option": "primitives"
-    },
-    "puncture": {
-      "option": "primitives"
-    },
-    "source": {
-      "option": "primitives"
-    },
-    "predictor": {
-      "option": "primitives"
-    },
-    "sam": {
-      "option": "primitives"
-    },
-    "dist": {
-      "option": "primitives"
-    },
-    "distinguisher": {
-      "option": "primitives"
-    },
-    "simulator": {
-      "option": "primitives"
-    },
-    "ext": {
-      "option": "primitives"
-    },
-    "extractor": {
-      "option": "primitives"
-    },
-    "Oracle{}": {
-      "snippet": "Oracle{${1:arg}}",
-      "option": "oracles"
-    },
-    "oracle": {
-      "option": "oracles"
-    },
-    "oracle[]": {
-      "snippet": "oracle[${1:arg}]",
-      "option": "oracles"
-    },
-    "ro": {
-      "option": "oracles"
-    },
-    "event{}": {
-      "snippet": "event{${1:arg}}",
-      "option": "events"
-    },
-    "nevent{}": {
-      "snippet": "nevent{${1:arg}}",
-      "option": "events"
-    },
-    "bad": {
-      "option": "events"
-    },
-    "nbad": {
-      "option": "events"
-    },
-    "complclass{}": {
-      "snippet": "complclass{${1:text}}",
-      "option": "complexity"
-    },
-    "cocomplclass{}": {
-      "snippet": "cocomplclass{${1:text}}",
-      "option": "complexity"
-    },
-    "npol": {
-      "option": "complexity"
-    },
-    "conpol": {
-      "option": "complexity"
-    },
-    "pol": {
-      "option": "complexity"
-    },
-    "bpp": {
-      "option": "complexity"
-    },
-    "ppoly": {
-      "option": "complexity"
-    },
-    "AM": {
-      "option": "complexity"
-    },
-    "coAM": {
-      "option": "complexity"
-    },
-    "AC{}": {
-      "snippet": "AC{${1:sup}}",
-      "option": "complexity"
-    },
-    "NC{}": {
-      "snippet": "NC{${1:sup}}",
-      "option": "complexity"
-    },
-    "TC{}": {
-      "snippet": "TC{${1:sup}}",
-      "option": "complexity"
-    },
-    "PH": {
-      "option": "complexity"
-    },
-    "csigma{}": {
-      "snippet": "csigma{${1:sub}}",
-      "option": "complexity"
-    },
-    "cpi{}": {
-      "snippet": "cpi{${1:sub}}",
-      "option": "complexity"
-    },
-    "cosigma{}": {
-      "snippet": "cosigma{${1:sub}}",
-      "option": "complexity"
-    },
-    "copi{}": {
-      "snippet": "copi{${1:sub}}",
-      "option": "complexity"
-    },
-    "negl": {
-      "option": "asymptotics"
-    },
-    "negl[]": {
-      "snippet": "negl[${1:arg}]",
-      "option": "asymptotics"
-    },
-    "poly": {
-      "option": "asymptotics"
-    },
-    "poly[]": {
-      "snippet": "poly[${1:arg}]",
-      "option": "asymptotics"
-    },
-    "pp": {
-      "option": "asymptotics"
-    },
-    "pp[]": {
-      "snippet": "pp[${1:arg}]",
-      "option": "asymptotics"
-    },
-    "cc": {
-      "option": "asymptotics"
-    },
-    "ee": {
-      "option": "asymptotics",
-      "detail": "ⅇ",
-      "documentation": "DOUBLE-STRUCK ITALIC SMALL E"
-    },
-    "kk": {
-      "option": "asymptotics"
-    },
-    "mm": {
-      "option": "asymptotics"
-    },
-    "nn": {
-      "option": "asymptotics"
-    },
-    "qq": {
-      "option": "asymptotics"
-    },
-    "rr": {
-      "option": "asymptotics"
-    },
-    "pk": {
-      "option": "keys"
-    },
-    "vk": {
-      "option": "keys"
-    },
-    "sk": {
-      "option": "keys"
-    },
-    "key": {
-      "option": "keys"
-    },
-    "key[]": {
-      "snippet": "key[${1:arg}]",
-      "option": "keys"
-    },
-    "hk": {
-      "option": "keys"
-    },
-    "gk": {
-      "option": "keys"
-    },
-    "fk": {
-      "option": "keys"
-    },
-    "st": {
-      "option": "keys"
-    },
-    "state": {
-      "option": "keys"
-    },
-    "state[]": {
-      "snippet": "state[${1:arg}]",
-      "option": "keys"
-    },
-    "SECPAR": {},
-    "secpar": {},
-    "secparam": {},
-    "pseudocode{}": {
-      "snippet": "pseudocode{${1:body}}"
-    },
-    "pseudocode[]{}": {
-      "snippet": "pseudocode[${2:options}]{${1:body}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pseudocodeblock{}": {
-      "snippet": "pseudocodeblock{${1:body}}"
-    },
-    "pseudocodeblock[]{}": {
-      "snippet": "pseudocodeblock[${2:options}]{${1:body}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "procedure{}{}": {
-      "snippet": "procedure{${1:header}}{${2:body}}"
-    },
-    "procedure[]{}{}": {
-      "snippet": "procedure[${3:options}]{${1:header}}{${2:body}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "procedureblock{}{}": {
-      "snippet": "procedureblock{${1:header}}{${2:body}}"
-    },
-    "procedureblock[]{}{}": {
-      "snippet": "procedureblock[${3:options}]{${1:header}}{${2:body}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "createpseudocodecommand{}{}{}{}": {
-      "snippet": "createpseudocodecommand{${1:csname}}{${2:begin code}}{${3:head prefix}}{${4:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "createpseudocodeblock{}{}{}{}{}": {
-      "snippet": "createpseudocodeblock{${1:csname}}{${2:stack options}}{${3:begin code}}{${4:head prefix}}{${5:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 4
-    },
-    "createprocedurecommand{}{}{}{}": {
-      "snippet": "createprocedurecommand{${1:csname}}{${2:begin code}}{${3:head prefix}}{${4:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "createprocedureblock{}{}{}{}{}": {
-      "snippet": "createprocedureblock{${1:csname}}{${2:stack options}}{${3:begin code}}{${4:head prefix}}{${5:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 4
-    },
-    "pcminlineheight": {},
-    "<": {
-      "detail": "<",
-      "documentation": "LESS-THAN SIGN r:"
-    },
-    ">": {
-      "detail": ">",
-      "documentation": "GREATER-THAN SIGN r:"
-    },
-    "pcind": {},
-    "pcind[]": {
-      "snippet": "pcind[${1:level}]"
-    },
-    "t[]": {
-      "snippet": "t[${1:level}]"
-    },
-    "pcindentname": {},
-    "pcif": {},
-    "pcif[]": {
-      "snippet": "pcif[${1:suffix}]"
-    },
-    "pcfor": {},
-    "pcwhile": {},
-    "pcrepeat{}": {
-      "snippet": "pcrepeat{${1:arg}}"
-    },
-    "pcrepeatuntil{}{}": {
-      "snippet": "pcrepeatuntil{${1:arg1}}{${2:arg2}}"
-    },
-    "pcforeach": {},
-    "pcfi": {},
-    "pcendif": {},
-    "pcendfor": {},
-    "pcendwhile": {},
-    "pcuntil": {},
-    "pcendforeach": {},
-    "pcelse": {},
-    "pcelse[]": {
-      "snippet": "pcelse[${1:suffix}]"
-    },
-    "pcelseif": {},
-    "pcelseif[]": {
-      "snippet": "pcelseif[${1:suffix}]"
-    },
-    "pcabort": {},
-    "pcassert": {},
-    "pccontinue": {},
-    "pccomment{}": {
-      "snippet": "pccomment{${1:comment}}"
-    },
-    "pccomment[]{}": {
-      "snippet": "pccomment[${2:skip}]{${1:comment}}"
-    },
-    "pclinecomment{}": {
-      "snippet": "pclinecomment{${1:comment}}"
-    },
-    "pclinecomment[]{}": {
-      "snippet": "pclinecomment[${2:skip}]{${1:comment}}"
-    },
-    "pcdo": {},
-    "pcdo[]": {
-      "snippet": "pcdo[${1:prefix}]"
-    },
-    "pcdo[][]": {
-      "snippet": "pcdo[${1:prefix}][${2:suffix}]"
-    },
-    "pcdone": {},
-    "pcfail": {},
-    "pcfalse": {},
-    "pcglobvar": {},
-    "pcin": {},
-    "pcin[]": {
-      "snippet": "pcin[${1:prefix}]"
-    },
-    "pcin[][]": {
-      "snippet": "pcin[${1:prefix}][${2:suffix}]"
-    },
-    "pcnew": {},
-    "pcnull": {},
-    "pcparse": {},
-    "pcreturn": {},
-    "pcthen": {},
-    "pcthen[]": {
-      "snippet": "pcthen[${1:prefix}]"
-    },
-    "pcthen[][]": {
-      "snippet": "pcthen[${1:prefix}][${2:suffix}]"
-    },
-    "pctrue": {},
-    "highlightkeyword{}": {
-      "snippet": "highlightkeyword{${1:word}}"
-    },
-    "highlightkeyword[]{}": {
-      "snippet": "highlightkeyword[${2:suffix}]{${1:word}}"
-    },
-    "highlightaltkeyword{}": {
-      "snippet": "highlightaltkeyword{${1:word}}"
-    },
-    "highlightaltkeyword[]{}": {
-      "snippet": "highlightaltkeyword[${2:suffix}]{${1:word}}"
-    },
-    "pcskipln": {},
-    "pcln": {},
-    "pclnseparator": {},
-    "pclnstyle{}": {
-      "snippet": "pclnstyle{${1:text}}"
-    },
-    "pchspace": {},
-    "pchspace[]": {
-      "snippet": "pchspace[${1:length}]"
-    },
-    "pcvspace": {},
-    "pcvspace[]": {
-      "snippet": "pcvspace[${1:length}]"
-    },
-    "pcvstackspace": {},
-    "pchstackspace": {},
-    "pcsetargs{}": {
-      "snippet": "pcsetargs{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pcsethstackargs{}": {
-      "snippet": "pcsethstackargs{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "pcsetvstackargs{}": {
-      "snippet": "pcsetvstackargs{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "pcnode{}": {
-      "snippet": "pcnode{${1:text}}"
-    },
-    "pcnode{}[]": {
-      "snippet": "pcnode{${1:text}}[${2:options}]"
-    },
-    "pcdraw{}": {
-      "snippet": "pcdraw{${1:TikZ commands}}"
-    },
-    "pcdraw{}[]": {
-      "snippet": "pcdraw{${1:TikZ commands}}[${2:TikZ keys}]"
-    },
-    "pctabname": {},
-    "pcdbltabname": {},
-    "sendmessageright{}": {
-      "snippet": "sendmessageright{${1:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "sendmessageright[]{}": {
-      "snippet": "sendmessageright[${2:TikZ keys}]{${1:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 1
-    },
-    "sendmessageright*{}": {
-      "snippet": "sendmessageright*{${1:message}}"
-    },
-    "sendmessageright*[]{}": {
-      "snippet": "sendmessageright*[${2:length}]{${1:message}}"
-    },
-    "sendmessageleft{}": {
-      "snippet": "sendmessageleft{${1:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "sendmessageleft[]{}": {
-      "snippet": "sendmessageleft[${2:TikZ keys}]{${1:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 1
-    },
-    "sendmessageleft*{}": {
-      "snippet": "sendmessageleft*{${1:message}}"
-    },
-    "sendmessageleft*[]{}": {
-      "snippet": "sendmessageleft*[${2:length}]{${1:message}}"
-    },
-    "sendmessagerightleft*{}": {
-      "snippet": "sendmessagerightleft*{${1:message}}"
-    },
-    "sendmessagerightleft*[]{}": {
-      "snippet": "sendmessagerightleft*[${2:length}]{${1:message}}"
-    },
-    "sendmessage{}{}": {
-      "snippet": "sendmessage{${1:TikZ keys}}{${2:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 1
-    },
-    "sendmessage*{}{}": {
-      "snippet": "sendmessage*{${1:TikZ keys}}{${2:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 1
-    },
-    "sendmessagerightx{}{}": {
-      "snippet": "sendmessagerightx{${1:columnspan}}{${2:message}}"
-    },
-    "sendmessagerightx{}[]{}": {
-      "snippet": "sendmessagerightx{${1:columnspan}}[${2:below}]{${3:message}}"
-    },
-    "sendmessagerightx[]{}{}": {
-      "snippet": "sendmessagerightx[${3:length}]{${1:columnspan}}{${2:message}}"
-    },
-    "sendmessagerightx[]{}[]{}": {
-      "snippet": "sendmessagerightx[${3:length}]{${1:columnspan}}[${4:below}]{${2:message}}"
-    },
-    "sendmessageleftx{}{}": {
-      "snippet": "sendmessageleftx{${1:columnspan}}{${2:message}}"
-    },
-    "sendmessageleftx{}[]{}": {
-      "snippet": "sendmessageleftx{${1:columnspan}}[${2:below}]{${3:message}}"
-    },
-    "sendmessageleftx[]{}{}": {
-      "snippet": "sendmessageleftx[${3:length}]{${1:columnspan}}{${2:message}}"
-    },
-    "sendmessageleftx[]{}[]{}": {
-      "snippet": "sendmessageleftx[${3:length}]{${1:columnspan}}[${4:below}]{${2:message}}"
-    },
-    "pcintertext{}": {
-      "snippet": "pcintertext{${1:text}}"
-    },
-    "pcintertext[]{}": {
-      "snippet": "pcintertext[${2:dotted|center}]{${1:text}}"
-    },
-    "pclb": {},
-    "pclnr": {},
-    "pcrln": {},
-    "pcrlnseparator": {},
-    "pclnspace": {},
-    "pclnrspace": {},
-    "gameprocedure{}": {
-      "snippet": "gameprocedure{${1:body}}"
-    },
-    "gameprocedure[]{}": {
-      "snippet": "gameprocedure[${2:options}]{${1:body}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pcgame": {},
-    "pcgame[]": {
-      "snippet": "pcgame[${1:sub}]"
-    },
-    "gamechange{}": {
-      "snippet": "gamechange{${1:text}}"
-    },
-    "gamechange[]{}": {
-      "snippet": "gamechange[${2:color}]{${1:text}}"
-    },
-    "tbxgameprocedure{}": {
-      "snippet": "tbxgameprocedure{${1:body}}"
-    },
-    "tbxgameprocedure[]{}": {
-      "snippet": "tbxgameprocedure[${2:options}]{${1:body}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pcbox{}": {
-      "snippet": "pcbox{${1:formula}}"
-    },
-    "addgamehop{}{}{}": {
-      "snippet": "addgamehop{${1:start}}{${2:end}}{${3:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 2
-    },
-    "addstartgamehop{}": {
-      "snippet": "addstartgamehop{${1:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "addstartgamehop[]{}": {
-      "snippet": "addstartgamehop[${2:first game}]{${1:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 1
-    },
-    "addendgamehop{}": {
-      "snippet": "addendgamehop{${1:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "addendgamehop[]{}": {
-      "snippet": "addendgamehop[${2:last game}]{${1:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 1
-    },
-    "pcgamename": {},
-    "gameprocedurearg": {},
-    "bxgameprocedure{}{}": {
-      "snippet": "bxgameprocedure{${1:number}}{${2:body}}"
-    },
-    "bxgameprocedure[]{}{}": {
-      "snippet": "bxgameprocedure[${3:options}]{${1:number}}{${2:body}}"
-    },
-    "addloopgamehop{}": {
-      "snippet": "addloopgamehop{${1:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "addloopgamehop[]{}": {
-      "snippet": "addloopgamehop[${2:number}]{${1:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 1
-    },
-    "describegame": {},
-    "describegame[]": {
-      "snippet": "describegame[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "bbrinput{}": {
-      "snippet": "bbrinput{${1:input}}"
-    },
-    "bbrinput{}[]": {
-      "snippet": "bbrinput{${1:input}}[${2:options}]"
-    },
-    "bbroutput{}": {
-      "snippet": "bbroutput{${1:output}}"
-    },
-    "bbroutput{}[]": {
-      "snippet": "bbroutput{${1:output}}[${2:options}]"
-    },
-    "bbrmsgto{}": {
-      "snippet": "bbrmsgto{${1:options}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "bbrmsgfrom{}": {
-      "snippet": "bbrmsgfrom{${1:options}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "bbrmsgtofrom{}{}": {
-      "snippet": "bbrmsgtofrom{${1:to options}}{${2:from options}}"
-    },
-    "bbrmsgfromto{}{}": {
-      "snippet": "bbrmsgfromto{${1:from options}}{${2:to options}}"
-    },
-    "bbrqryto{}": {
-      "snippet": "bbrqryto{${1:options}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "bbrqryfrom{}": {
-      "snippet": "bbrqryfrom{${1:options}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "bbrqrytofrom{}{}": {
-      "snippet": "bbrqrytofrom{${1:to options}}{${2:from options}}"
-    },
-    "bbrqryfromto{}{}": {
-      "snippet": "bbrqryfromto{${1:from options}}{${2:to options}}"
-    },
-    "bbrfirstmessageoffset": {},
-    "bbrmsgvdots": {},
-    "bbrmsgvdots[]": {
-      "snippet": "bbrmsgvdots[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "bbrqryvdots": {},
-    "bbrqryvdots[]": {
-      "snippet": "bbrqryvdots[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "bbrmsgspace{}": {
-      "snippet": "bbrmsgspace{${1:space}}"
-    },
-    "bbrqryspace{}": {
-      "snippet": "bbrqryspace{${1:space}}"
-    },
-    "bbrloop{}{}{}": {
-      "snippet": "bbrloop{${1:beginloop}}{${2:endloop}}{${3:options}}",
-      "keyvalindex": 6,
-      "keyvalpos": 2
-    },
-    "bbrmsgtxt{}": {
-      "snippet": "bbrmsgtxt{${1:text}}"
-    },
-    "bbrmsgtxt[]{}": {
-      "snippet": "bbrmsgtxt[${2:options}]{${1:text}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "bbrqrytxt{}": {
-      "snippet": "bbrqrytxt{${1:text}}"
-    },
-    "bbrqrytxt[]{}": {
-      "snippet": "bbrqrytxt[${2:options}]{${1:text}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "bbroracleqryfrom{}": {
-      "snippet": "bbroracleqryfrom{${1:options}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "bbroracleqryto{}": {
-      "snippet": "bbroracleqryto{${1:options}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "bbroracleqrytofrom{}{}": {
-      "snippet": "bbroracleqrytofrom{${1:to options}}{${2:from options}}"
-    },
-    "bbroracleqryfromto{}{}": {
-      "snippet": "bbroracleqryfromto{${1:from options}}{${2:to options}}"
-    },
-    "bbroracleqryspace": {},
-    "bbroracletxt{}": {
-      "snippet": "bbroracletxt{${1:text}}"
-    },
-    "bbroracletxt[]{}": {
-      "snippet": "bbroracletxt[${2:options}]{${1:text}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "bbrchallengerqryfrom{}": {
-      "snippet": "bbrchallengerqryfrom{${1:options}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "bbrchallengerqryto{}": {
-      "snippet": "bbrchallengerqryto{${1:options}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "bbrchallengerqrytofrom{}{}": {
-      "snippet": "bbrchallengerqrytofrom{${1:to options}}{${2:from options}}"
-    },
-    "bbrchallengerqryfromto{}{}": {
-      "snippet": "bbrchallengerqryfromto{${1:from options}}{${2:to options}}"
-    },
-    "bbrchallengerqryspace{}": {
-      "snippet": "bbrchallengerqryspace{${1:space}}"
-    },
-    "bbrchallengertxt{}": {
-      "snippet": "bbrchallengertxt{${1:text}}"
-    },
-    "bbrchallengertxt[]{}": {
-      "snippet": "bbrchallengertxt[${2:options}]{${1:text}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "addbxgamehop{}{}{}": {
-      "snippet": "addbxgamehop{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "bbrboxabovesep": {},
-    "bbrboxafterskip": {},
-    "bbrboxminheight": {},
-    "bbrboxminwidth": {},
-    "bbrboxname": {},
-    "bbrboxnamepos": {},
-    "bbrboxnamestyle": {},
-    "bbrboxstyle": {},
-    "bbrboxxshift": {},
-    "bbrboxyshift": {},
-    "bbrchallengerhdistance": {},
-    "bbrchallengernodenameprefix": {},
-    "bbrchallengervdistance": {},
-    "bbrcomloopangle": {},
-    "bbrcomloopcenter": {},
-    "bbrcomloopcenterstyle": {},
-    "bbrcomloopclockwise": {},
-    "bbrcomloopleft": {},
-    "bbrcomloopleftstyle": {},
-    "bbrcomloopright": {},
-    "bbrcomlooprightstyle": {},
-    "bbrenvnodenameprefix": {},
-    "bbrinputbottom": {},
-    "bbrinputbottomstyle": {},
-    "bbrinputedgestyle": {},
-    "bbrinputhoffset": {},
-    "bbrinputlength": {},
-    "bbrinputnodename": {},
-    "bbrinputnodestyle": {},
-    "bbrinputtop": {},
-    "bbrinputtopstyle": {},
-    "bbrintertexthoffset": {},
-    "bbroraclehdistance": {},
-    "bbroraclenodenameprefix": {},
-    "bbroraclevdistance": {},
-    "bbrtikzargs": {},
-    "centerincol{}": {
-      "snippet": "centerincol{${1:arg}}"
-    },
-    "pcadvstyle{}": {
-      "snippet": "pcadvstyle{${1:text}}"
-    },
-    "pcafterhstackskip": {},
-    "pcaftermessageskip": {},
-    "pcalgostyle{}": {
-      "snippet": "pcalgostyle{${1:text}}"
-    },
-    "pcbeforehstackskip": {},
-    "pcbeforemessageskip": {},
-    "pccomplexitystyle{}": {
-      "snippet": "pccomplexitystyle{${1:text}}"
-    },
-    "pcdefaultlongmessagelength": {},
-    "pcdefaultmessagelength": {},
-    "pcfixcleveref": {},
-    "pcfixhyperref": {},
-    "pcgameprocedurestyle{}": {
-      "snippet": "pcgameprocedurestyle{${1:text}}"
-    },
-    "pckeystyle{}": {
-      "snippet": "pckeystyle{${1:text}}"
-    },
-    "pcmachinemodelstyle{}": {
-      "snippet": "pcmachinemodelstyle{${1:text}}"
-    },
-    "pcmessagearrow": {},
-    "pcnotionstyle{}": {
-      "snippet": "pcnotionstyle{${1:text}}"
-    },
-    "pcolb": {},
-    "pcoraclestyle{}": {
-      "snippet": "pcoraclestyle{${1:text}}"
-    },
-    "pcpolynomialstyle{}": {
-      "snippet": "pcpolynomialstyle{${1:text}}"
-    },
-    "pcsetstyle{}": {
-      "snippet": "pcsetstyle{${1:text}}"
-    },
-    "pcshortmessageoffset": {},
-    "theHpcgamecounter": {},
-    "theHpclinenumber": {},
-    "theHpcrlinenumber": {},
-    "thepccolumncounter": {},
-    "thepcgamecounter": {},
-    "thepclinenumber": {},
-    "thepcrlinenumber": {},
-    "thepcstartgamecounter": {},
-    "setgameproceduredefaultstyle{}": {
-      "snippet": "setgameproceduredefaultstyle{${1:options}}"
+    {
+      "name": "centernot",
+      "if": "logic"
     }
-  },
-  "envs": {
-    "subprocedure": {},
-    "pchstack": {},
-    "pchstack[]": {
-      "name": "pchstack",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "pcvstack": {},
-    "pcvstack[]": {
-      "name": "pcvstack",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "pcmbox": {},
-    "pcimage": {},
-    "gameproof": {},
-    "gameproof[]": {
-      "name": "gameproof",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "gamedescription": {},
-    "gamedescription[]": {
-      "name": "gamedescription",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "bbrenv{}": {
-      "name": "bbrenv",
-      "snippet": "{${1:id}}"
-    },
-    "bbrenv[]{}": {
-      "name": "bbrenv",
-      "snippet": "[${2:options}]{${1:id}}",
-      "keyvalindex": 8,
-      "keyvalpos": 0
-    },
-    "bbrbox": {},
-    "bbrbox[]": {
-      "name": "bbrbox",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 9,
-      "keyvalpos": 0
-    },
-    "bbroracle{}": {
-      "name": "bbroracle",
-      "snippet": "{${1:id}}"
-    },
-    "bbroracle{}[]": {
-      "name": "bbroracle",
-      "snippet": "{${1:id}}[${2:options}]",
-      "keyvalindex": 10,
-      "keyvalpos": 1
-    },
-    "bbrchallenger{}": {
-      "name": "bbrchallenger",
-      "snippet": "{${1:id}}"
-    },
-    "bbrchallenger{}[]": {
-      "name": "bbrchallenger",
-      "snippet": "{${1:id}}[${2:options}]",
-      "keyvalindex": 10,
-      "keyvalpos": 1
-    },
-    "bbrpic": {},
-    "bbrpic[]": {
-      "name": "bbrpic",
-      "snippet": "[${1:TikZ keys}]"
-    },
-    "pccenter": {}
-  },
-  "options": [
-    "operators",
-    "adversary",
-    "landau",
-    "probability",
-    "sets",
-    "noamsfonts",
-    "notions",
-    "logic",
-    "ff",
-    "mm",
-    "advantage",
-    "primitives",
-    "oracles",
-    "events",
-    "complexity",
-    "asymptotics",
-    "keys",
-    "n",
-    "lambda"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "sample",
+      "if": "operators"
+    },
+    {
+      "name": "floor",
+      "if": "operators",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "tfloor",
+      "if": "operators",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ceil",
+      "if": "operators",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "tceil",
+      "if": "operators",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Angle",
+      "if": "operators",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "tAngle",
+      "if": "operators",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "abs",
+      "if": "operators",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "tabs",
+      "if": "operators",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "norm",
+      "if": "operators",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "tnorm",
+      "if": "operators",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "concat",
+      "if": "operators"
+    },
+    {
+      "name": "emptystring",
+      "if": "operators"
+    },
+    {
+      "name": "argmax",
+      "if": "operators"
+    },
+    {
+      "name": "argmin",
+      "if": "operators"
+    },
+    {
+      "name": "pindist",
+      "if": "operators"
+    },
+    {
+      "name": "sindist",
+      "if": "operators"
+    },
+    {
+      "name": "cindist",
+      "if": "operators"
+    },
+    {
+      "name": "adversary",
+      "if": "adversary",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "adv",
+      "if": "adversary"
+    },
+    {
+      "name": "bdv",
+      "if": "adversary"
+    },
+    {
+      "name": "cdv",
+      "if": "adversary"
+    },
+    {
+      "name": "ddv",
+      "if": "adversary"
+    },
+    {
+      "name": "edv",
+      "if": "adversary"
+    },
+    {
+      "name": "mdv",
+      "if": "adversary"
+    },
+    {
+      "name": "pdv",
+      "if": "adversary"
+    },
+    {
+      "name": "rdv",
+      "if": "adversary"
+    },
+    {
+      "name": "sdv",
+      "if": "adversary"
+    },
+    {
+      "name": "bigO",
+      "if": "landau",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "smallO",
+      "if": "landau",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "bigOmega",
+      "if": "landau",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "smallOmega",
+      "if": "landau",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "bigTheta",
+      "if": "landau",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "orderOf",
+      "if": "landau"
+    },
+    {
+      "name": "probname",
+      "if": "probability",
+      "unusual": true
+    },
+    {
+      "name": "expectationname",
+      "if": "probability",
+      "unusual": true
+    },
+    {
+      "name": "supportname",
+      "if": "probability",
+      "unusual": true
+    },
+    {
+      "name": "tprob",
+      "if": "probability",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "prob",
+      "if": "probability",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "tprobsub",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sub%formula}}{${2:arg%formula}}"
+      }
+    },
+    {
+      "name": "probsub",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sub%formula}}{${2:arg%formula}}"
+      }
+    },
+    {
+      "name": "probsublong",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sub%formula}}{${2:arg%formula}}"
+      }
+    },
+    {
+      "name": "tcondprob",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg%formula}}{${2:condition%formula}}"
+      }
+    },
+    {
+      "name": "condprob",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg%formula}}{${2:condition%formula}}"
+      }
+    },
+    {
+      "name": "tcondprobsub",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:sub%formula}}{${2:arg%formula}}{${3:condition%formula}}"
+      }
+    },
+    {
+      "name": "condprobsub",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:sub%formula}}{${2:arg%formula}}{${3:condition%formula}}"
+      }
+    },
+    {
+      "name": "texpect",
+      "if": "probability",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "expect",
+      "if": "probability",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "texpsub",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sub%formula}}{${2:arg%formula}}"
+      }
+    },
+    {
+      "name": "expsub",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sub%formula}}{${2:arg%formula}}"
+      }
+    },
+    {
+      "name": "tcondexp",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg%formula}}{${2:condition%formula}}"
+      }
+    },
+    {
+      "name": "condexp",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg%formula}}{${2:condition%formula}}"
+      }
+    },
+    {
+      "name": "tcondexpsub",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:sub%formula}}{${2:arg%formula}}{${3:condition%formula}}"
+      }
+    },
+    {
+      "name": "condexpsub",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:sub%formula}}{${2:arg%formula}}{${3:condition%formula}}"
+      }
+    },
+    {
+      "name": "supp",
+      "if": "probability",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "entropy",
+      "if": "probability",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "condentropy",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg%formula}}{${2:condition%formula}}"
+      }
+    },
+    {
+      "name": "minentropy",
+      "if": "probability",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "tminentropy",
+      "if": "probability",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "condminentropy",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg%formula}}{${2:condition%formula}}"
+      }
+    },
+    {
+      "name": "tcondminentropy",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg%formula}}{${2:condition%formula}}"
+      }
+    },
+    {
+      "name": "condavgminentropy",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg%formula}}{${2:condition%formula}}"
+      }
+    },
+    {
+      "name": "tcondavgminentropy",
+      "if": "probability",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg%formula}}{${2:condition%formula}}"
+      }
+    },
+    {
+      "name": "NN",
+      "if": "sets"
+    },
+    {
+      "name": "ZZ",
+      "if": "sets"
+    },
+    {
+      "name": "CC",
+      "if": "sets"
+    },
+    {
+      "name": "QQ",
+      "if": "sets"
+    },
+    {
+      "name": "RR",
+      "if": "sets"
+    },
+    {
+      "name": "PP",
+      "if": "sets"
+    },
+    {
+      "name": "FF",
+      "if": "sets"
+    },
+    {
+      "name": "GG",
+      "if": "sets"
+    },
+    {
+      "name": "set",
+      "if": "sets",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "sequence",
+      "if": "sets",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "bin",
+      "if": "sets",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "indcpa",
+      "if": "notions"
+    },
+    {
+      "name": "indcca",
+      "if": "notions"
+    },
+    {
+      "name": "indccai",
+      "if": "notions"
+    },
+    {
+      "name": "indccaii",
+      "if": "notions"
+    },
+    {
+      "name": "priv",
+      "if": "notions"
+    },
+    {
+      "name": "ind",
+      "if": "notions"
+    },
+    {
+      "name": "indcda",
+      "if": "notions"
+    },
+    {
+      "name": "prvcda",
+      "if": "notions"
+    },
+    {
+      "name": "prvrcda",
+      "if": "notions"
+    },
+    {
+      "name": "kiae",
+      "if": "notions"
+    },
+    {
+      "name": "kdae",
+      "if": "notions"
+    },
+    {
+      "name": "mle",
+      "if": "notions"
+    },
+    {
+      "name": "uce",
+      "if": "notions"
+    },
+    {
+      "name": "eufcma",
+      "if": "notions"
+    },
+    {
+      "name": "eufnacma",
+      "if": "notions"
+    },
+    {
+      "name": "seufcma",
+      "if": "notions"
+    },
+    {
+      "name": "eufko",
+      "if": "notions"
+    },
+    {
+      "name": "AND",
+      "if": "logic"
+    },
+    {
+      "name": "OR",
+      "if": "logic"
+    },
+    {
+      "name": "NOR",
+      "if": "logic"
+    },
+    {
+      "name": "NOT",
+      "if": "logic"
+    },
+    {
+      "name": "NAND",
+      "if": "logic"
+    },
+    {
+      "name": "XOR",
+      "if": "logic"
+    },
+    {
+      "name": "XNOR",
+      "if": "logic"
+    },
+    {
+      "name": "xor",
+      "if": "logic"
+    },
+    {
+      "name": "false",
+      "if": "logic"
+    },
+    {
+      "name": "true",
+      "if": "logic"
+    },
+    {
+      "name": "notimplies",
+      "if": "logic"
+    },
+    {
+      "name": "kgen",
+      "if": "ff"
+    },
+    {
+      "name": "pgen",
+      "if": "ff"
+    },
+    {
+      "name": "eval",
+      "if": "ff"
+    },
+    {
+      "name": "invert",
+      "if": "ff"
+    },
+    {
+      "name": "il",
+      "if": "ff"
+    },
+    {
+      "name": "ol",
+      "if": "ff"
+    },
+    {
+      "name": "kl",
+      "if": "ff"
+    },
+    {
+      "name": "nl",
+      "if": "ff"
+    },
+    {
+      "name": "rl",
+      "if": "ff"
+    },
+    {
+      "name": "CRKT",
+      "if": "mm"
+    },
+    {
+      "name": "TM",
+      "if": "mm"
+    },
+    {
+      "name": "PROG",
+      "if": "mm"
+    },
+    {
+      "name": "uTM",
+      "if": "mm"
+    },
+    {
+      "name": "uC",
+      "if": "mm"
+    },
+    {
+      "name": "uP",
+      "if": "mm"
+    },
+    {
+      "name": "csize",
+      "if": "mm"
+    },
+    {
+      "name": "tmtime",
+      "if": "mm"
+    },
+    {
+      "name": "ppt",
+      "if": "mm"
+    },
+    {
+      "name": "pcadvantagesuperstyle",
+      "if": "advantage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "pcadvantagesubstyle",
+      "if": "advantage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "pcadvantagename",
+      "if": "advantage",
+      "unusual": true
+    },
+    {
+      "name": "advantage",
+      "if": "advantage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sup%formula}}{${2:sub%formula}}"
+      }
+    },
+    {
+      "name": "advantage",
+      "if": "advantage",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:sup%formula}}{${2:sub%formula}}[${3:arg%formula}]"
+      }
+    },
+    {
+      "name": "prover",
+      "if": "primitives"
+    },
+    {
+      "name": "verifier",
+      "if": "primitives"
+    },
+    {
+      "name": "nizk",
+      "if": "primitives"
+    },
+    {
+      "name": "hash",
+      "if": "primitives"
+    },
+    {
+      "name": "gash",
+      "if": "primitives"
+    },
+    {
+      "name": "fash",
+      "if": "primitives"
+    },
+    {
+      "name": "pad",
+      "if": "primitives"
+    },
+    {
+      "name": "enc",
+      "if": "primitives"
+    },
+    {
+      "name": "dec",
+      "if": "primitives"
+    },
+    {
+      "name": "sig",
+      "if": "primitives"
+    },
+    {
+      "name": "sign",
+      "if": "primitives"
+    },
+    {
+      "name": "verify",
+      "if": "primitives"
+    },
+    {
+      "name": "obf",
+      "if": "primitives"
+    },
+    {
+      "name": "iO",
+      "if": "primitives"
+    },
+    {
+      "name": "diO",
+      "if": "primitives"
+    },
+    {
+      "name": "owf",
+      "if": "primitives"
+    },
+    {
+      "name": "owp",
+      "if": "primitives"
+    },
+    {
+      "name": "tdf",
+      "if": "primitives"
+    },
+    {
+      "name": "inv",
+      "if": "primitives"
+    },
+    {
+      "name": "hcf",
+      "if": "primitives"
+    },
+    {
+      "name": "prf",
+      "if": "primitives"
+    },
+    {
+      "name": "prp",
+      "if": "primitives"
+    },
+    {
+      "name": "prg",
+      "if": "primitives"
+    },
+    {
+      "name": "mac",
+      "if": "primitives"
+    },
+    {
+      "name": "puncture",
+      "if": "primitives"
+    },
+    {
+      "name": "source",
+      "if": "primitives"
+    },
+    {
+      "name": "predictor",
+      "if": "primitives"
+    },
+    {
+      "name": "sam",
+      "if": "primitives"
+    },
+    {
+      "name": "dist",
+      "if": "primitives"
+    },
+    {
+      "name": "distinguisher",
+      "if": "primitives"
+    },
+    {
+      "name": "simulator",
+      "if": "primitives"
+    },
+    {
+      "name": "ext",
+      "if": "primitives"
+    },
+    {
+      "name": "extractor",
+      "if": "primitives"
+    },
+    {
+      "name": "Oracle",
+      "if": "oracles",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "oracle",
+      "if": "oracles"
+    },
+    {
+      "name": "oracle",
+      "if": "oracles",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:arg%formula}]"
+      }
+    },
+    {
+      "name": "ro",
+      "if": "oracles"
+    },
+    {
+      "name": "event",
+      "if": "events",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "nevent",
+      "if": "events",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "bad",
+      "if": "events"
+    },
+    {
+      "name": "nbad",
+      "if": "events"
+    },
+    {
+      "name": "complclass",
+      "if": "complexity",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%formula}}"
+      }
+    },
+    {
+      "name": "cocomplclass",
+      "if": "complexity",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%formula}}"
+      }
+    },
+    {
+      "name": "npol",
+      "if": "complexity"
+    },
+    {
+      "name": "conpol",
+      "if": "complexity"
+    },
+    {
+      "name": "pol",
+      "if": "complexity"
+    },
+    {
+      "name": "bpp",
+      "if": "complexity"
+    },
+    {
+      "name": "ppoly",
+      "if": "complexity"
+    },
+    {
+      "name": "AM",
+      "if": "complexity"
+    },
+    {
+      "name": "coAM",
+      "if": "complexity"
+    },
+    {
+      "name": "AC",
+      "if": "complexity",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sup%formula}}"
+      }
+    },
+    {
+      "name": "NC",
+      "if": "complexity",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sup%formula}}"
+      }
+    },
+    {
+      "name": "TC",
+      "if": "complexity",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sup%formula}}"
+      }
+    },
+    {
+      "name": "PH",
+      "if": "complexity"
+    },
+    {
+      "name": "csigma",
+      "if": "complexity",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sub}}"
+      }
+    },
+    {
+      "name": "cpi",
+      "if": "complexity",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sub}}"
+      }
+    },
+    {
+      "name": "cosigma",
+      "if": "complexity",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sub}}"
+      }
+    },
+    {
+      "name": "copi",
+      "if": "complexity",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sub}}"
+      }
+    },
+    {
+      "name": "negl",
+      "if": "asymptotics"
+    },
+    {
+      "name": "negl",
+      "if": "asymptotics",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:arg}]"
+      }
+    },
+    {
+      "name": "poly",
+      "if": "asymptotics"
+    },
+    {
+      "name": "poly",
+      "if": "asymptotics",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:arg}]"
+      }
+    },
+    {
+      "name": "pp",
+      "if": "asymptotics"
+    },
+    {
+      "name": "pp",
+      "if": "asymptotics",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:arg%formula}]"
+      }
+    },
+    {
+      "name": "cc",
+      "if": "asymptotics"
+    },
+    {
+      "name": "ee",
+      "if": "asymptotics"
+    },
+    {
+      "name": "kk",
+      "if": "asymptotics"
+    },
+    {
+      "name": "mm",
+      "if": "asymptotics"
+    },
+    {
+      "name": "nn",
+      "if": "asymptotics"
+    },
+    {
+      "name": "qq",
+      "if": "asymptotics"
+    },
+    {
+      "name": "rr",
+      "if": "asymptotics"
+    },
+    {
+      "name": "pk",
+      "if": "keys"
+    },
+    {
+      "name": "vk",
+      "if": "keys"
+    },
+    {
+      "name": "sk",
+      "if": "keys"
+    },
+    {
+      "name": "key",
+      "if": "keys"
+    },
+    {
+      "name": "key",
+      "if": "keys",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:arg%formula}]"
+      }
+    },
+    {
+      "name": "hk",
+      "if": "keys"
+    },
+    {
+      "name": "gk",
+      "if": "keys"
+    },
+    {
+      "name": "fk",
+      "if": "keys"
+    },
+    {
+      "name": "st",
+      "if": "keys"
+    },
+    {
+      "name": "state",
+      "if": "keys"
+    },
+    {
+      "name": "state",
+      "if": "keys",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:arg%formula}]"
+      }
+    },
+    {
+      "name": "SECPAR"
+    },
+    {
+      "name": "secpar"
+    },
+    {
+      "name": "secparam"
+    },
+    {
+      "name": "pseudocode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:body%formula}}"
+      }
+    },
+    {
+      "name": "pseudocode",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:body%formula}}",
+        "keys": [
+          "\\pseudocode,\\pseudocodeblock,\\procedure,\\procedureblock,\\createpseudocodecommand,\\createpseudocodeblock,\\createprocedurecommand,\\createprocedureblock,\\pcsetargs,\\gameprocedure,\\tbxgameprocedure"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pseudocodeblock",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:body%formula}}"
+      }
+    },
+    {
+      "name": "pseudocodeblock",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:body%formula}}",
+        "keys": [
+          "\\pseudocode,\\pseudocodeblock,\\procedure,\\procedureblock,\\createpseudocodecommand,\\createpseudocodeblock,\\createprocedurecommand,\\createprocedureblock,\\pcsetargs,\\gameprocedure,\\tbxgameprocedure"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "procedure",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:header%text}}{${2:body%formula}}"
+      }
+    },
+    {
+      "name": "procedure",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:header%text}}{${2:body%formula}}",
+        "keys": [
+          "\\pseudocode,\\pseudocodeblock,\\procedure,\\procedureblock,\\createpseudocodecommand,\\createpseudocodeblock,\\createprocedurecommand,\\createprocedureblock,\\pcsetargs,\\gameprocedure,\\tbxgameprocedure"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "procedureblock",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:header%text}}{${2:body%formula}}"
+      }
+    },
+    {
+      "name": "procedureblock",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:header%text}}{${2:body%formula}}",
+        "keys": [
+          "\\pseudocode,\\pseudocodeblock,\\procedure,\\procedureblock,\\createpseudocodecommand,\\createpseudocodeblock,\\createprocedurecommand,\\createprocedureblock,\\pcsetargs,\\gameprocedure,\\tbxgameprocedure"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "createpseudocodecommand",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:csname}}{${2:begin code}}{${3:head prefix}}{${4:options%keyvals}}",
+        "keys": [
+          "\\pseudocode,\\pseudocodeblock,\\procedure,\\procedureblock,\\createpseudocodecommand,\\createpseudocodeblock,\\createprocedurecommand,\\createprocedureblock,\\pcsetargs,\\gameprocedure,\\tbxgameprocedure"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "createpseudocodeblock",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:csname}}{${2:stack options}}{${3:begin code}}{${4:head prefix}}{${5:options%keyvals}}",
+        "keys": [
+          "\\pseudocode,\\pseudocodeblock,\\procedure,\\procedureblock,\\createpseudocodecommand,\\createpseudocodeblock,\\createprocedurecommand,\\createprocedureblock,\\pcsetargs,\\gameprocedure,\\tbxgameprocedure"
+        ],
+        "keyPos": 4
+      }
+    },
+    {
+      "name": "createprocedurecommand",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:csname}}{${2:begin code}}{${3:head prefix}}{${4:options%keyvals}}",
+        "keys": [
+          "\\pseudocode,\\pseudocodeblock,\\procedure,\\procedureblock,\\createpseudocodecommand,\\createpseudocodeblock,\\createprocedurecommand,\\createprocedureblock,\\pcsetargs,\\gameprocedure,\\tbxgameprocedure"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "createprocedureblock",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:csname}}{${2:stack options}}{${3:begin code}}{${4:head prefix}}{${5:options%keyvals}}",
+        "keys": [
+          "\\pseudocode,\\pseudocodeblock,\\procedure,\\procedureblock,\\createpseudocodecommand,\\createpseudocodeblock,\\createprocedurecommand,\\createprocedureblock,\\pcsetargs,\\gameprocedure,\\tbxgameprocedure"
+        ],
+        "keyPos": 4
+      }
+    },
+    {
+      "name": "pcminlineheight",
+      "unusual": true
+    },
+    {
+      "name": "pcind"
+    },
+    {
+      "name": "pcind",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:level}]"
+      }
+    },
+    {
+      "name": "t",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:level}]"
+      }
+    },
+    {
+      "name": "pcindentname",
+      "unusual": true
+    },
+    {
+      "name": "pcif"
+    },
+    {
+      "name": "pcif",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:suffix}]"
+      }
+    },
+    {
+      "name": "pcfor"
+    },
+    {
+      "name": "pcfor"
+    },
+    {
+      "name": "pcwhile"
+    },
+    {
+      "name": "pcrepeat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "pcrepeatuntil",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1%formula}}{${2:arg2%formula}}"
+      }
+    },
+    {
+      "name": "pcforeach"
+    },
+    {
+      "name": "pcfi"
+    },
+    {
+      "name": "pcendif"
+    },
+    {
+      "name": "pcendfor"
+    },
+    {
+      "name": "pcendwhile"
+    },
+    {
+      "name": "pcuntil"
+    },
+    {
+      "name": "pcendforeach"
+    },
+    {
+      "name": "pcelse"
+    },
+    {
+      "name": "pcelse",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:suffix}]"
+      }
+    },
+    {
+      "name": "pcelseif"
+    },
+    {
+      "name": "pcelseif",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:suffix}]"
+      }
+    },
+    {
+      "name": "pcabort"
+    },
+    {
+      "name": "pcassert"
+    },
+    {
+      "name": "pccontinue"
+    },
+    {
+      "name": "pccomment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "pccomment",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:skip%l}]{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "pclinecomment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "pclinecomment",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:skip%l}]{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "pcdo"
+    },
+    {
+      "name": "pcdo",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:prefix}]"
+      }
+    },
+    {
+      "name": "pcdo",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:prefix}][${2:suffix}]"
+      }
+    },
+    {
+      "name": "pcdone"
+    },
+    {
+      "name": "pcfail"
+    },
+    {
+      "name": "pcfalse"
+    },
+    {
+      "name": "pcglobvar"
+    },
+    {
+      "name": "pcin"
+    },
+    {
+      "name": "pcin",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:prefix}]"
+      }
+    },
+    {
+      "name": "pcin",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:prefix}][${2:suffix}]"
+      }
+    },
+    {
+      "name": "pcnew"
+    },
+    {
+      "name": "pcnull"
+    },
+    {
+      "name": "pcparse"
+    },
+    {
+      "name": "pcreturn"
+    },
+    {
+      "name": "pcthen"
+    },
+    {
+      "name": "pcthen",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:prefix}]"
+      }
+    },
+    {
+      "name": "pcthen",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:prefix}][${2:suffix}]"
+      }
+    },
+    {
+      "name": "pctrue"
+    },
+    {
+      "name": "highlightkeyword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:word%formula}}"
+      }
+    },
+    {
+      "name": "highlightkeyword",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:suffix}]{${1:word%formula}}"
+      }
+    },
+    {
+      "name": "highlightaltkeyword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:word%formula}}"
+      }
+    },
+    {
+      "name": "highlightaltkeyword",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:suffix}]{${1:word%formula}}"
+      }
+    },
+    {
+      "name": "pcskipln"
+    },
+    {
+      "name": "pcln"
+    },
+    {
+      "name": "pclnseparator",
+      "unusual": true
+    },
+    {
+      "name": "pclnstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pchspace"
+    },
+    {
+      "name": "pchspace",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:length}]"
+      }
+    },
+    {
+      "name": "pcvspace"
+    },
+    {
+      "name": "pcvspace",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:length}]"
+      }
+    },
+    {
+      "name": "pcvstackspace",
+      "unusual": true
+    },
+    {
+      "name": "pchstackspace",
+      "unusual": true
+    },
+    {
+      "name": "pcsetargs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pseudocode,\\pseudocodeblock,\\procedure,\\procedureblock,\\createpseudocodecommand,\\createpseudocodeblock,\\createprocedurecommand,\\createprocedureblock,\\pcsetargs,\\gameprocedure,\\tbxgameprocedure"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pcsethstackargs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{pchstack},\\begin{pcvstack},\\pcsethstackargs,\\pcsetvstackargs"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pcsetvstackargs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{pchstack},\\begin{pcvstack},\\pcsethstackargs,\\pcsetvstackargs"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pcnode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "pcnode",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:text%plain}}[${2:options}]"
+      }
+    },
+    {
+      "name": "pcdraw",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TikZ commands}}"
+      }
+    },
+    {
+      "name": "pcdraw",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:TikZ commands}}[${2:TikZ keys}]"
+      }
+    },
+    {
+      "name": "pctabname",
+      "unusual": true
+    },
+    {
+      "name": "pcdbltabname",
+      "unusual": true
+    },
+    {
+      "name": "sendmessageright",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\sendmessageright,\\sendmessageleft,\\sendmessage#c,\\sendmessage*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sendmessageright",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:TikZ keys}]{${1:options%keyvals}}",
+        "keys": [
+          "\\sendmessageright,\\sendmessageleft,\\sendmessage#c,\\sendmessage*#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "sendmessageright*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:message%formula}}"
+      }
+    },
+    {
+      "name": "sendmessageright*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:length}]{${1:message%formula}}"
+      }
+    },
+    {
+      "name": "sendmessageleft",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\sendmessageright,\\sendmessageleft,\\sendmessage#c,\\sendmessage*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sendmessageleft",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:TikZ keys}]{${1:options%keyvals}}",
+        "keys": [
+          "\\sendmessageright,\\sendmessageleft,\\sendmessage#c,\\sendmessage*#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "sendmessageleft*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:message%formula}}"
+      }
+    },
+    {
+      "name": "sendmessageleft*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:length}]{${1:message%formula}}"
+      }
+    },
+    {
+      "name": "sendmessagerightleft*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:message%formula}}"
+      }
+    },
+    {
+      "name": "sendmessagerightleft*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:length}]{${1:message%formula}}"
+      }
+    },
+    {
+      "name": "sendmessage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:TikZ keys}}{${2:options%keyvals}}",
+        "keys": [
+          "\\sendmessageright,\\sendmessageleft,\\sendmessage#c,\\sendmessage*#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "sendmessage*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:TikZ keys}}{${2:options%keyvals}}",
+        "keys": [
+          "\\sendmessageright,\\sendmessageleft,\\sendmessage#c,\\sendmessage*#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "sendmessagerightx",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:columnspan}}{${2:message%formula}}"
+      }
+    },
+    {
+      "name": "sendmessagerightx",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:columnspan}}[${3:below%formula}]{${2:message%formula}}"
+      }
+    },
+    {
+      "name": "sendmessagerightx",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:length}]{${1:columnspan}}{${2:message%formula}}"
+      }
+    },
+    {
+      "name": "sendmessagerightx",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:length}]{${1:columnspan}}[${4:below%formula}]{${2:message%formula}}"
+      }
+    },
+    {
+      "name": "sendmessageleftx",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:columnspan}}{${2:message%formula}}"
+      }
+    },
+    {
+      "name": "sendmessageleftx",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:columnspan}}[${3:below%formula}]{${2:message%formula}}"
+      }
+    },
+    {
+      "name": "sendmessageleftx",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:length}]{${1:columnspan}}{${2:message%formula}}"
+      }
+    },
+    {
+      "name": "sendmessageleftx",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:length}]{${1:columnspan}}[${4:below%formula}]{${2:message%formula}}"
+      }
+    },
+    {
+      "name": "pcintertext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pcintertext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:dotted|center}]{${1:text}}"
+      }
+    },
+    {
+      "name": "pclb"
+    },
+    {
+      "name": "pclnr"
+    },
+    {
+      "name": "pcrln"
+    },
+    {
+      "name": "pclnseparator",
+      "unusual": true
+    },
+    {
+      "name": "pcrlnseparator",
+      "unusual": true
+    },
+    {
+      "name": "pclnspace",
+      "unusual": true
+    },
+    {
+      "name": "pclnrspace",
+      "unusual": true
+    },
+    {
+      "name": "gameprocedure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:body%formula}}"
+      }
+    },
+    {
+      "name": "gameprocedure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:body%formula}}",
+        "keys": [
+          "\\pseudocode,\\pseudocodeblock,\\procedure,\\procedureblock,\\createpseudocodecommand,\\createpseudocodeblock,\\createprocedurecommand,\\createprocedureblock,\\pcsetargs,\\gameprocedure,\\tbxgameprocedure"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pcgame"
+    },
+    {
+      "name": "pcgame",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:sub%formula}]"
+      }
+    },
+    {
+      "name": "gamechange",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "gamechange",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color}]{${1:text}}"
+      }
+    },
+    {
+      "name": "tbxgameprocedure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:body%formula}}"
+      }
+    },
+    {
+      "name": "tbxgameprocedure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:body%formula}}",
+        "keys": [
+          "\\pseudocode,\\pseudocodeblock,\\procedure,\\procedureblock,\\createpseudocodecommand,\\createpseudocodeblock,\\createprocedurecommand,\\createprocedureblock,\\pcsetargs,\\gameprocedure,\\tbxgameprocedure"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pcbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:formula}}"
+      }
+    },
+    {
+      "name": "addgamehop",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:start}}{${2:end}}{${3:options%keyvals}}",
+        "keys": [
+          "\\addgamehop,\\addstartgamehop,\\addendgamehop,\\addloopgamehop,\\describegame"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "addstartgamehop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\addgamehop,\\addstartgamehop,\\addendgamehop,\\addloopgamehop,\\describegame"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addstartgamehop",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:first game}]{${1:options%keyvals}}",
+        "keys": [
+          "\\addgamehop,\\addstartgamehop,\\addendgamehop,\\addloopgamehop,\\describegame"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "addendgamehop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\addgamehop,\\addstartgamehop,\\addendgamehop,\\addloopgamehop,\\describegame"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addendgamehop",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:last game}]{${1:options%keyvals}}",
+        "keys": [
+          "\\addgamehop,\\addstartgamehop,\\addendgamehop,\\addloopgamehop,\\describegame"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "pcgamename",
+      "unusual": true
+    },
+    {
+      "name": "gameprocedurearg",
+      "unusual": true
+    },
+    {
+      "name": "bxgameprocedure",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:number}}{${2:body%formula}}"
+      }
+    },
+    {
+      "name": "bxgameprocedure",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:number}}{${2:body%formula}}"
+      }
+    },
+    {
+      "name": "addloopgamehop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\addgamehop,\\addstartgamehop,\\addendgamehop,\\addloopgamehop,\\describegame"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addloopgamehop",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number}]{${1:options%keyvals}}",
+        "keys": [
+          "\\addgamehop,\\addstartgamehop,\\addendgamehop,\\addloopgamehop,\\describegame"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "describegame"
+    },
+    {
+      "name": "describegame",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\addgamehop,\\addstartgamehop,\\addendgamehop,\\addloopgamehop,\\describegame"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:input}}"
+      }
+    },
+    {
+      "name": "bbrinput",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:input}}[${2:options}]"
+      }
+    },
+    {
+      "name": "bbroutput",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:output}}"
+      }
+    },
+    {
+      "name": "bbroutput",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:output}}[${2:options}]"
+      }
+    },
+    {
+      "name": "bbrmsgto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrmsgfrom",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrmsgtofrom",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:to options%keyvals}}{${2:from options%keyvals}}",
+        "keys": [
+          "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrmsgfromto",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:from options%keyvals}}{${2:to options%keyvals}}",
+        "keys": [
+          "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrqryto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrqryfrom",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrqrytofrom",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:to options%keyvals}}{${2:from options%keyvals}}",
+        "keys": [
+          "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrqryfromto",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:from options%keyvals}}{${2:to options%keyvals}}",
+        "keys": [
+          "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrfirstmessageoffset",
+      "unusual": true
+    },
+    {
+      "name": "bbrmsgvdots"
+    },
+    {
+      "name": "bbrmsgvdots",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\bbrmsgtxt,\\bbrqrytxt,\\bbrmsgvdots,\\bbrqryvdots,\\bbroracletxt,\\bbrchallengertxt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrqryvdots"
+    },
+    {
+      "name": "bbrqryvdots",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\bbrmsgtxt,\\bbrqrytxt,\\bbrmsgvdots,\\bbrqryvdots,\\bbroracletxt,\\bbrchallengertxt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrmsgspace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space%l}}"
+      }
+    },
+    {
+      "name": "bbrqryspace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space%l}}"
+      }
+    },
+    {
+      "name": "bbrloop",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:beginloop}}{${2:endloop}}{${3:options%keyvals}}",
+        "keys": [
+          "\\bbrloop"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "bbrmsgtxt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "bbrmsgtxt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\bbrmsgtxt,\\bbrqrytxt,\\bbrmsgvdots,\\bbrqryvdots,\\bbroracletxt,\\bbrchallengertxt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrqrytxt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "bbrqrytxt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\bbrmsgtxt,\\bbrqrytxt,\\bbrmsgvdots,\\bbrqryvdots,\\bbroracletxt,\\bbrchallengertxt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbroracleqryfrom",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbroracleqryto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbroracleqrytofrom",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:to options%keyvals}}{${2:from options%keyvals}}",
+        "keys": [
+          "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbroracleqryfromto",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:from options%keyvals}}{${2:to options%keyvals}}",
+        "keys": [
+          "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbroracleqryspace",
+      "unusual": true
+    },
+    {
+      "name": "bbroracletxt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "bbroracletxt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\bbrmsgtxt,\\bbrqrytxt,\\bbrmsgvdots,\\bbrqryvdots,\\bbroracletxt,\\bbrchallengertxt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrchallengerqryfrom",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrchallengerqryto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrchallengerqrytofrom",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:to options%keyvals}}{${2:from options%keyvals}}",
+        "keys": [
+          "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrchallengerqryfromto",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:from options%keyvals}}{${2:to options%keyvals}}",
+        "keys": [
+          "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrchallengerqryspace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space%l}}"
+      }
+    },
+    {
+      "name": "bbrchallengertxt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "bbrchallengertxt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\bbrmsgtxt,\\bbrqrytxt,\\bbrmsgvdots,\\bbrqryvdots,\\bbroracletxt,\\bbrchallengertxt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addbxgamehop",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "bbrboxabovesep",
+      "unusual": true
+    },
+    {
+      "name": "bbrboxafterskip",
+      "unusual": true
+    },
+    {
+      "name": "bbrboxminheight",
+      "unusual": true
+    },
+    {
+      "name": "bbrboxminwidth",
+      "unusual": true
+    },
+    {
+      "name": "bbrboxname",
+      "unusual": true
+    },
+    {
+      "name": "bbrboxnamepos",
+      "unusual": true
+    },
+    {
+      "name": "bbrboxnamestyle",
+      "unusual": true
+    },
+    {
+      "name": "bbrboxstyle",
+      "unusual": true
+    },
+    {
+      "name": "bbrboxxshift",
+      "unusual": true
+    },
+    {
+      "name": "bbrboxyshift",
+      "unusual": true
+    },
+    {
+      "name": "bbrchallengerhdistance",
+      "unusual": true
+    },
+    {
+      "name": "bbrchallengernodenameprefix",
+      "unusual": true
+    },
+    {
+      "name": "bbrchallengervdistance",
+      "unusual": true
+    },
+    {
+      "name": "bbrcomloopangle",
+      "unusual": true
+    },
+    {
+      "name": "bbrcomloopcenter",
+      "unusual": true
+    },
+    {
+      "name": "bbrcomloopcenterstyle",
+      "unusual": true
+    },
+    {
+      "name": "bbrcomloopclockwise",
+      "unusual": true
+    },
+    {
+      "name": "bbrcomloopleft",
+      "unusual": true
+    },
+    {
+      "name": "bbrcomloopleftstyle",
+      "unusual": true
+    },
+    {
+      "name": "bbrcomloopright",
+      "unusual": true
+    },
+    {
+      "name": "bbrcomlooprightstyle",
+      "unusual": true
+    },
+    {
+      "name": "bbrenvnodenameprefix",
+      "unusual": true
+    },
+    {
+      "name": "bbrinputbottom",
+      "unusual": true
+    },
+    {
+      "name": "bbrinputbottomstyle",
+      "unusual": true
+    },
+    {
+      "name": "bbrinputedgestyle",
+      "unusual": true
+    },
+    {
+      "name": "bbrinputhoffset",
+      "unusual": true
+    },
+    {
+      "name": "bbrinputlength",
+      "unusual": true
+    },
+    {
+      "name": "bbrinputnodename",
+      "unusual": true
+    },
+    {
+      "name": "bbrinputnodestyle",
+      "unusual": true
+    },
+    {
+      "name": "bbrinputtop",
+      "unusual": true
+    },
+    {
+      "name": "bbrinputtopstyle",
+      "unusual": true
+    },
+    {
+      "name": "bbrintertexthoffset",
+      "unusual": true
+    },
+    {
+      "name": "bbroraclehdistance",
+      "unusual": true
+    },
+    {
+      "name": "bbroraclenodenameprefix",
+      "unusual": true
+    },
+    {
+      "name": "bbroraclevdistance",
+      "unusual": true
+    },
+    {
+      "name": "bbrtikzargs",
+      "unusual": true
+    },
+    {
+      "name": "centerincol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "pcadvstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "pcafterhstackskip",
+      "unusual": true
+    },
+    {
+      "name": "pcaftermessageskip",
+      "unusual": true
+    },
+    {
+      "name": "pcalgostyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%formula}}"
+      }
+    },
+    {
+      "name": "pcbeforehstackskip",
+      "unusual": true
+    },
+    {
+      "name": "pcbeforemessageskip",
+      "unusual": true
+    },
+    {
+      "name": "pccomplexitystyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%formula}}"
+      }
+    },
+    {
+      "name": "pcdefaultlongmessagelength",
+      "unusual": true
+    },
+    {
+      "name": "pcdefaultmessagelength",
+      "unusual": true
+    },
+    {
+      "name": "pcfixcleveref",
+      "unusual": true
+    },
+    {
+      "name": "pcfixhyperref",
+      "unusual": true
+    },
+    {
+      "name": "pcgameprocedurestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%formula}}"
+      }
+    },
+    {
+      "name": "pckeystyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%formula}}"
+      }
+    },
+    {
+      "name": "pcmachinemodelstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%formula}}"
+      }
+    },
+    {
+      "name": "pcmessagearrow",
+      "unusual": true
+    },
+    {
+      "name": "pcnotionstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%formula}}"
+      }
+    },
+    {
+      "name": "pcolb",
+      "unusual": true
+    },
+    {
+      "name": "pcoraclestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%formula}}"
+      }
+    },
+    {
+      "name": "pcpolynomialstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%formula}}"
+      }
+    },
+    {
+      "name": "pcsetstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "pcshortmessageoffset",
+      "unusual": true
+    },
+    {
+      "name": "theHpcgamecounter",
+      "unusual": true
+    },
+    {
+      "name": "theHpclinenumber",
+      "unusual": true
+    },
+    {
+      "name": "theHpcrlinenumber",
+      "unusual": true
+    },
+    {
+      "name": "thepccolumncounter",
+      "unusual": true
+    },
+    {
+      "name": "thepcgamecounter",
+      "unusual": true
+    },
+    {
+      "name": "thepclinenumber",
+      "unusual": true
+    },
+    {
+      "name": "thepcrlinenumber",
+      "unusual": true
+    },
+    {
+      "name": "thepcstartgamecounter",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "subprocedure"
+    },
+    {
+      "name": "pchstack"
+    },
+    {
+      "name": "pchstack",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{pchstack},\\begin{pcvstack},\\pcsethstackargs,\\pcsetvstackargs"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pcvstack"
+    },
+    {
+      "name": "pcvstack",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{pchstack},\\begin{pcvstack},\\pcsethstackargs,\\pcsetvstackargs"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pcmbox"
+    },
+    {
+      "name": "pcimage"
+    },
+    {
+      "name": "gameproof"
+    },
+    {
+      "name": "gameproof",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{gameproof},\\begin{gamedescription}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gamedescription"
+    },
+    {
+      "name": "gamedescription",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{gameproof},\\begin{gamedescription}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrenv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "bbrenv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}",
+        "keys": [
+          "\\begin{bbrenv}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbrbox"
+    },
+    {
+      "name": "bbrbox",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{bbrbox}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bbroracle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "bbroracle",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:id}}[${2:options%keyvals}]",
+        "keys": [
+          "\\begin{bbroracle},\\begin{bbrchallenger}"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "bbrchallenger",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "bbrchallenger",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:id}}[${2:options%keyvals}]",
+        "keys": [
+          "\\begin{bbroracle},\\begin{bbrchallenger}"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "bbrpic",
+      "unusual": true
+    },
+    {
+      "name": "bbrpic",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:TikZ keys}]"
+      }
+    },
+    {
+      "name": "pccenter",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/cryptocode#c": [
+      "operators",
+      "adversary",
+      "landau",
+      "probability",
+      "sets",
+      "noamsfonts",
+      "notions",
+      "logic",
+      "ff",
+      "mm",
+      "advantage",
+      "primitives",
+      "oracles",
+      "events",
+      "complexity",
+      "asymptotics",
+      "keys",
+      "n",
+      "lambda"
+    ],
+    "\\pseudocode,\\pseudocodeblock,\\procedure,\\procedureblock,\\createpseudocodecommand,\\createpseudocodeblock,\\createprocedurecommand,\\createprocedureblock,\\pcsetargs,\\gameprocedure,\\tbxgameprocedure": [
       "skipfirstln",
       "headlinesep=",
       "bodylinesep=",
@@ -1451,7 +2913,7 @@
       "minlineheight=",
       "space=${1|keep,auto|}"
     ],
-    [
+    "\\begin{pchstack},\\begin{pcvstack},\\pcsethstackargs,\\pcsetvstackargs": [
       "center",
       "boxed",
       "noindent",
@@ -1460,7 +2922,7 @@
       "aboveskip=",
       "belowskip="
     ],
-    [
+    "\\sendmessageright,\\sendmessageleft,\\sendmessage#c,\\sendmessage*#c": [
       "centercol=${1:column number}",
       "width=",
       "style={${1:TikZ keys}}",
@@ -1484,7 +2946,12 @@
       "leftaligned",
       "rightaligned"
     ],
-    [
+    "\\begin{gameproof},\\begin{gamedescription}": [
+      "nr=${1:number}",
+      "name=${1:name}",
+      "arg=${1:argument}"
+    ],
+    "\\addgamehop,\\addstartgamehop,\\addendgamehop,\\addloopgamehop,\\describegame": [
       "hint=${1:text}",
       "belowhint=${1:text}",
       "inhint=${1:text}",
@@ -1493,7 +2960,24 @@
       "edgestyle={${1:TikZ keys}}",
       "pathstyle={${1:TikZ keys}}"
     ],
-    [
+    "\\begin{bbrenv}": [
+      "aboveskip=",
+      "belowskip=",
+      "tikzargs={${1:TikZ keys}}"
+    ],
+    "\\begin{bbrbox}": [
+      "abovesep=",
+      "name=${1:name}",
+      "namestyle={${1:TikZ keys}}",
+      "namepos=${1|left,center,right,top left,top center,top right,middle|}",
+      "style={${1:TikZ keys}}",
+      "minwidth=",
+      "addheight=",
+      "minheight=",
+      "xshift=",
+      "yshift="
+    ],
+    "\\bbrmsgto,\\bbrmsgfrom,\\bbrmsgtofrom,\\bbrmsgfromto,\\bbrqryto,\\bbrqryfrom,\\bbrqrytofrom,\\bbrqryfromto,\\bbroracleqryfrom,\\bbroracleqryto,\\bbroracleqrytofrom,\\bbroracleqryfromto,\\bbrchallengerqryfrom,\\bbrchallengerqryto,\\bbrchallengerqrytofrom,\\bbrchallengerqryfromto": [
       "sidestyle={${1:TikZ keys}}",
       "osidestyle={${1:TikZ keys}}",
       "topstyle={${1:TikZ keys}}",
@@ -1516,7 +3000,17 @@
       "fixedboffset=",
       "islast"
     ],
-    [
+    "\\bbrloop": [
+      "left=${1:left label}",
+      "leftstyle={${1:TikZ keys}}",
+      "right=${1:right label}",
+      "rightstyle={${1:TikZ keys}}",
+      "center=${1:center label}",
+      "centerstyle={${1:TikZ keys}}",
+      "angle=${1:degrees}",
+      "clockwise"
+    ],
+    "\\bbrmsgtxt,\\bbrqrytxt,\\bbrmsgvdots,\\bbrqryvdots,\\bbroracletxt,\\bbrchallengertxt": [
       "sidestyle={${1:TikZ keys}}",
       "osidestyle={${1:TikZ keys}}",
       "topstyle={${1:TikZ keys}}",
@@ -1542,42 +3036,13 @@
       "nodename=${1:name}",
       "xshift="
     ],
-    [
-      "left=${1:left label}",
-      "leftstyle={${1:TikZ keys}}",
-      "right=${1:right label}",
-      "rightstyle={${1:TikZ keys}}",
-      "center=${1:center label}",
-      "centerstyle={${1:TikZ keys}}",
-      "angle=${1:degrees}",
-      "clockwise"
-    ],
-    [
-      "nr=${1:number}",
-      "name=${1:name}",
-      "arg=${1:argument}"
-    ],
-    [
-      "aboveskip=",
-      "belowskip=",
-      "tikzargs={${1:TikZ keys}}"
-    ],
-    [
-      "abovesep=",
-      "name=${1:name}",
-      "namestyle={${1:TikZ keys}}",
-      "namepos=${1|left,center,right,top left,top center,top right,middle|}",
-      "style={${1:TikZ keys}}",
-      "minwidth=",
-      "addheight=",
-      "minheight=",
-      "xshift=",
-      "yshift="
-    ],
-    [
+    "\\begin{bbroracle},\\begin{bbrchallenger}": [
       "distance=",
       "hdistance=",
       "vdistance="
     ]
+  },
+  "args": [
+    "\\usepackage/cryptocode#c"
   ]
 }

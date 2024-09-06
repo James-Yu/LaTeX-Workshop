@@ -1,24 +1,48 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "quattrocento": {},
-    "quattrocentosans": {},
-    "quattrocentofamily": {},
-    "quattrocentosffamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}",
-    "sf",
-    "rm",
-    "sfdefault",
-    "type1"
+  "deps": [
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "quattrocento"
+    },
+    {
+      "name": "quattrocentosans"
+    },
+    {
+      "name": "quattrocentofamily",
+      "unusual": true
+    },
+    {
+      "name": "quattrocentosffamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/quattrocento#c": [
+      "scaled=${1:factor}",
+      "sf",
+      "rm",
+      "sfdefault",
+      "type1"
+    ]
+  },
+  "args": [
+    "\\usepackage/quattrocento#c"
+  ]
 }

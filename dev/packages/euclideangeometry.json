@@ -1,174 +1,312 @@
 {
-  "includes": {
-    "curve2e": []
-  },
-  "macros": {
-    "Alfa": {},
-    "ArgBis": {},
-    "Aux": {},
-    "Auy": {},
-    "B": {
-      "detail": "𝐵",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL B"
+  "deps": [
+    {
+      "name": "curve2e"
+    }
+  ],
+  "macros": [
+    {
+      "name": "EllipseWithFocus",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "(${1:vertex1})(${2:vertex2})(${3:vertex3})(${4:focus})"
+      }
     },
-    "Cdue": {},
-    "Ce": {},
-    "CI": {},
-    "Cuno": {},
-    "Den": {},
-    "Dird": {},
-    "EllipseWithFocus()()()()": {
-      "snippet": "EllipseWithFocus(${1:vertex1})(${2:vertex2})(${3:vertex3})(${4:focus})"
+    {
+      "name": "EllipseWithFocus*",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "(${1:vertex1})(${2:vertex2})(${3:vertex3})(${4:focus})"
+      }
     },
-    "EllipseWithFocus*()()()()": {
-      "snippet": "EllipseWithFocus*(${1:vertex1})(${2:vertex2})(${3:vertex3})(${4:focus})"
+    {
+      "name": "ellisse*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:semiaxis-h}}{${2:semiaxis-v}}"
+      }
     },
-    "ellisse*{}{}": {
-      "snippet": "ellisse*{${1:semiaxis-h}}{${2:semiaxis-v}}"
+    {
+      "name": "ellisse",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:semiaxis-h}}{${2:semiaxis-v}}"
+      }
     },
-    "ellisse{}{}": {
-      "snippet": "ellisse{${1:semiaxis-h}}{${2:semiaxis-v}}"
+    {
+      "name": "EllisseConFuoco",
+      "unusual": true,
+      "arg": {
+        "format": "()()()()",
+        "snippet": "(${1:vertex1})(${2:vertex2})(${3:vertex3})(${4:focus})"
+      }
     },
-    "EllisseConFuoco()()()()": {
-      "snippet": "EllisseConFuoco(${1:vertex1})(${2:vertex2})(${3:vertex3})(${4:focus})"
+    {
+      "name": "EllisseConFuoco*",
+      "unusual": true,
+      "arg": {
+        "format": "()()()()",
+        "snippet": "(${1:vertex1})(${2:vertex2})(${3:vertex3})(${4:focus})"
+      }
     },
-    "EllisseConFuoco*()()()()": {
-      "snippet": "EllisseConFuoco*(${1:vertex1})(${2:vertex2})(${3:vertex3})(${4:focus})"
+    {
+      "name": "EllisseSteiner",
+      "unusual": true,
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:vertex1})(${2:vertex2})(${3:vertex3})"
+      }
     },
-    "EllisseSteiner()()()": {
-      "snippet": "EllisseSteiner(${1:vertex1})(${2:vertex2})(${3:vertex3})"
+    {
+      "name": "EllisseSteiner",
+      "unusual": true,
+      "arg": {
+        "format": "()()()[]",
+        "snippet": "(${2:vertex1})(${3:vertex2})(${4:vertex3})[${1:diameter}]"
+      }
     },
-    "EllisseSteiner()()()[]": {
-      "snippet": "EllisseSteiner(${2:vertex1})(${3:vertex2})(${4:vertex3})[${1:diameter}]"
+    {
+      "name": "EllisseSteiner*",
+      "unusual": true,
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:vertex1})(${2:vertex2})(${3:vertex3})"
+      }
     },
-    "EllisseSteiner*()()()": {
-      "snippet": "EllisseSteiner*(${1:vertex1})(${2:vertex2})(${3:vertex3})"
+    {
+      "name": "EllisseSteiner*",
+      "unusual": true,
+      "arg": {
+        "format": "()()()[]",
+        "snippet": "(${2:vertex1})(${3:vertex2})(${4:vertex3})[${1:diameter}]"
+      }
     },
-    "EllisseSteiner*()()()[]": {
-      "snippet": "EllisseSteiner*(${2:vertex1})(${3:vertex2})(${4:vertex3})[${1:diameter}]"
+    {
+      "name": "EUGpolyvector",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:arg})"
+      }
     },
-    "EUGpolyvector()": {
-      "snippet": "EUGpolyvector(${1:arg})"
+    {
+      "name": "EUGpreviouspoint",
+      "unusual": true
     },
-    "EUGpreviouspoint": {},
-    "EUGsplitArgs(){}{}": {
-      "snippet": "EUGsplitArgs(${3:x},${4:y}){${1:xmacro}}{${2:ymacro}}"
+    {
+      "name": "EUGsplitArgs",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "(${3:x},${4:y}){${1:xmacro%cmd}}{${2:ymacro%cmd}}"
+      }
     },
-    "Int": {},
-    "IntersectionOfLines()() and ()() to ()": {
-      "snippet": "IntersectionOfLines(${1:point1})(${2:dir1}) and (${3:point2})(${4:dir2}) to (${5:vector})"
+    {
+      "name": "IntersectionOfLines",
+      "arg": {
+        "format": "()() and ()() to ()",
+        "snippet": "(${1:%<point1%>})(${2:%<dir1%>}) and (${3:%<point2%>})(${4:%<dir2%>}) to (${5:%<vector%>})"
+      }
     },
-    "IntersectionOfSegments()() and ()() to ()": {
-      "snippet": "IntersectionOfSegments(${1:point1})(${2:dir1}) and (${3:point2})(${4:dir2}) to (${5:vector})"
+    {
+      "name": "IntersectionOfSegments",
+      "arg": {
+        "format": "()() and ()() to ()",
+        "snippet": "(${1:%<point1%>})(${2:%<dir1%>}) and (${3:%<point2%>})(${4:%<dir2%>}) to (${5:%<vector%>})"
+      }
     },
-    "IntPd": {},
-    "IntPu": {},
-    "K": {
-      "detail": "𝐾",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL K"
+    {
+      "name": "RegPolygon",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "(${3:center}){${1:radius}}{${2:sides}}"
+      }
     },
-    "Md": {},
-    "Mt": {},
-    "Numx": {},
-    "Numy": {},
-    "Pq": {},
-    "Pt": {},
-    "R": {
-      "detail": "𝑅",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL R"
+    {
+      "name": "RegPolygon",
+      "arg": {
+        "format": "(){}{}[]",
+        "snippet": "(${4:center}){${1:radius}}{${2:sides}}[${3:angle}]"
+      }
     },
-    "Rdue": {},
-    "RegPolygon(){}{}": {
-      "snippet": "RegPolygon(${3:center}){${1:radius}}{${2:sides}}"
+    {
+      "name": "RegPolygon",
+      "arg": {
+        "format": "(){}{}[]<>",
+        "snippet": "(${5:center}){${1:radius}}{${2:sides}}[${3:angle}]<${4:settings}>"
+      }
     },
-    "RegPolygon(){}{}[]": {
-      "snippet": "RegPolygon(${4:center}){${1:radius}}{${2:sides}}[${3:angle}]"
+    {
+      "name": "RegPolygon*",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "(${3:center}){${1:radius}}{${2:sides}}"
+      }
     },
-    "RegPolygon(){}{}[]<>": {
-      "snippet": "RegPolygon(${5:center}){${1:radius}}{${2:sides}}[${3:angle}]<${4:settings}>"
+    {
+      "name": "RegPolygon*",
+      "arg": {
+        "format": "(){}{}[]",
+        "snippet": "(${4:center}){${1:radius}}{${2:sides}}[${3:angle}]"
+      }
     },
-    "RegPolygon*(){}{}": {
-      "snippet": "RegPolygon*(${3:center}){${1:radius}}{${2:sides}}"
+    {
+      "name": "RegPolygon*",
+      "arg": {
+        "format": "(){}{}[]<>",
+        "snippet": "(${5:center}){${1:radius}}{${2:sides}}[${3:angle}]<${4:settings}>"
+      }
     },
-    "RegPolygon*(){}{}[]": {
-      "snippet": "RegPolygon*(${4:center}){${1:radius}}{${2:sides}}[${3:angle}]"
+    {
+      "name": "Sellisse*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:semiaxis-h}}{${2:semiaxis-v}}"
+      }
     },
-    "RegPolygon*(){}{}[]<>": {
-      "snippet": "RegPolygon*(${5:center}){${1:radius}}{${2:sides}}[${3:angle}]<${4:settings}>"
+    {
+      "name": "Sellisse*",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:semiaxis-h}}{${2:semiaxis-v}}[${3:shear}]"
+      }
     },
-    "Runo": {},
-    "Sangdue": {},
-    "Sellisse*{}{}": {
-      "snippet": "Sellisse*{${1:semiaxis-h}}{${2:semiaxis-v}}"
+    {
+      "name": "Sellisse",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:semiaxis-h}}{${2:semiaxis-v}}"
+      }
     },
-    "Sellisse*{}{}[]": {
-      "snippet": "Sellisse*{${1:semiaxis-h}}{${2:semiaxis-v}}[${3:shear}]"
+    {
+      "name": "Sellisse",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:semiaxis-h}}{${2:semiaxis-v}}[${3:shear}]"
+      }
     },
-    "Sellisse{}{}": {
-      "snippet": "Sellisse{${1:semiaxis-h}}{${2:semiaxis-v}}"
+    {
+      "name": "setfontsize",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:linespread}]{${1:size}}"
+      }
     },
-    "Sellisse{}{}[]": {
-      "snippet": "Sellisse{${1:semiaxis-h}}{${2:semiaxis-v}}[${3:shear}]"
+    {
+      "name": "setfontsize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size}}"
+      }
     },
-    "setfontsize[]{}": {
-      "snippet": "setfontsize[${2:linespread}]{${1:size}}"
+    {
+      "name": "SteinerEllipse",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:vertex1})(${2:vertex2})(${3:vertex3})"
+      }
     },
-    "setfontsize{}": {
-      "snippet": "setfontsize{${1:size}}"
+    {
+      "name": "SteinerEllipse",
+      "arg": {
+        "format": "()()()[]",
+        "snippet": "(${2:vertex1})(${3:vertex2})(${4:vertex3})[${1:diameter}]"
+      }
     },
-    "SteinerEllipse()()()": {
-      "snippet": "SteinerEllipse(${1:vertex1})(${2:vertex2})(${3:vertex3})"
+    {
+      "name": "SteinerEllipse*",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:vertex1})(${2:vertex2})(${3:vertex3})"
+      }
     },
-    "SteinerEllipse()()()[]": {
-      "snippet": "SteinerEllipse(${2:vertex1})(${3:vertex2})(${4:vertex3})[${1:diameter}]"
+    {
+      "name": "SteinerEllipse*",
+      "arg": {
+        "format": "()()()[]",
+        "snippet": "(${2:vertex1})(${3:vertex2})(${4:vertex3})[${1:diameter}]"
+      }
     },
-    "SteinerEllipse*()()()": {
-      "snippet": "SteinerEllipse*(${1:vertex1})(${2:vertex2})(${3:vertex3})"
+    {
+      "name": "ThreePointCircle",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:%<point1%>})(${2:%<point2%>})(${3:%<point3%>})"
+      }
     },
-    "SteinerEllipse*()()()[]": {
-      "snippet": "SteinerEllipse*(${2:vertex1})(${3:vertex2})(${4:vertex3})[${1:diameter}]"
+    {
+      "name": "ThreePointCircle*",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:%<point1%>})(${2:%<point2%>})(${3:%<point3%>})"
+      }
     },
-    "TCIdiffR": {},
-    "ThreePointCircle()()()": {
-      "snippet": "ThreePointCircle(${1:point1})(${2:point2})(${3:point3})"
+    {
+      "name": "TriangleCircummcircle",
+      "unusual": true,
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:%<point1%>})(${2:%<point2%>})(${3:%<point3%>})"
+      }
     },
-    "ThreePointCircle*()()()": {
-      "snippet": "ThreePointCircle*(${1:point1})(${2:point2})(${3:point3})"
+    {
+      "name": "Xellisse",
+      "arg": {
+        "format": "()[]<>{}{}[][]",
+        "snippet": "(${7:center})[${3:angle}]<${6:shear}>{${1:semiaxis-h}}{${2:semiaxis-v}}[${4:settings1}][${5:settings2}]"
+      }
     },
-    "TriangleCircummcircle()()()": {
-      "snippet": "TriangleCircummcircle(${1:point1})(${2:point2})(${3:point3})"
+    {
+      "name": "Xellisse",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "(${3:center}){${1:semiaxis-h}}{${2:semiaxis-v}}"
+      }
     },
-    "Ud": {},
-    "Uu": {},
-    "VScale": {},
-    "Xellisse()[]<>{}{}[][]": {
-      "snippet": "Xellisse(${7:center})[${3:angle}]<${6:shear}>{${1:semiaxis-h}}{${2:semiaxis-v}}[${4:settings1}][${5:settings2}]"
+    {
+      "name": "Xellisse*",
+      "arg": {
+        "format": "()[]<>{}{}[][]",
+        "snippet": "(${7:center})[${3:angle}]<${6:shear}>{${1:semiaxis-h}}{${2:semiaxis-v}}[${4:settings1}][${5:settings2}]"
+      }
     },
-    "Xellisse(){}{}": {
-      "snippet": "Xellisse(${3:center}){${1:semiaxis-h}}{${2:semiaxis-v}}"
+    {
+      "name": "Xellisse*",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "(${3:center}){${1:semiaxis-h}}{${2:semiaxis-v}}"
+      }
     },
-    "Xellisse*()[]<>{}{}[][]": {
-      "snippet": "Xellisse*(${7:center})[${3:angle}]<${6:shear}>{${1:semiaxis-h}}{${2:semiaxis-v}}[${4:settings1}][${5:settings2}]"
+    {
+      "name": "XSellisse",
+      "arg": {
+        "format": "()[]<>{}{}[][]",
+        "snippet": "(${7:center})[${3:angle}]<${6:shear}>{${1:semiaxis-h}}{${2:semiaxis-v}}[${4:settings1}][${5:settings2}]"
+      }
     },
-    "Xellisse*(){}{}": {
-      "snippet": "Xellisse*(${3:center}){${1:semiaxis-h}}{${2:semiaxis-v}}"
+    {
+      "name": "XSellisse",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "(${3:center}){${1:semiaxis-h}}{${2:semiaxis-v}}"
+      }
     },
-    "XSellisse()[]<>{}{}[][]": {
-      "snippet": "XSellisse(${7:center})[${3:angle}]<${6:shear}>{${1:semiaxis-h}}{${2:semiaxis-v}}[${4:settings1}][${5:settings2}]"
+    {
+      "name": "XSellisse*",
+      "arg": {
+        "format": "()[]<>{}{}[][]",
+        "snippet": "(${7:center})[${3:angle}]<${6:shear}>{${1:semiaxis-h}}{${2:semiaxis-v}}[${4:settings1}][${5:settings2}]"
+      }
     },
-    "XSellisse(){}{}": {
-      "snippet": "XSellisse(${3:center}){${1:semiaxis-h}}{${2:semiaxis-v}}"
-    },
-    "XSellisse*()[]<>{}{}[][]": {
-      "snippet": "XSellisse*(${7:center})[${3:angle}]<${6:shear}>{${1:semiaxis-h}}{${2:semiaxis-v}}[${4:settings1}][${5:settings2}]"
-    },
-    "XSellisse*(){}{}": {
-      "snippet": "XSellisse*(${3:center}){${1:semiaxis-h}}{${2:semiaxis-v}}"
-    },
-    "Ys": {},
-    "ZTesto": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "XSellisse*",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "(${3:center}){${1:semiaxis-h}}{${2:semiaxis-v}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,169 +1,364 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "etoolbox": [],
-    "xcolor": [],
-    "bbding": [],
-    "marginnote": [],
-    "array": [],
-    "xltabular": [],
-    "ltablex": [
-      "tablepkg=ltablex"
-    ],
-    "tabularx": [
-      "tablepkg=tabularx"
-    ],
-    "asciilist": [
-      "withAsciilist",
-      "withAsciilist=true"
-    ]
-  },
-  "macros": {
-    "CheckListSet{}": {
-      "snippet": "CheckListSet{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "Goal{}{}": {
-      "snippet": "Goal{${1:status}}{${2:description}}"
+    {
+      "name": "etoolbox"
     },
-    "Goal[]{}{}": {
-      "snippet": "Goal[${3:options}]{${1:status}}{${2:description}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "xcolor"
     },
-    "Task{}{}": {
-      "snippet": "Task{${1:status}}{${2:description}}"
+    {
+      "name": "bbding"
     },
-    "Task[]{}{}": {
-      "snippet": "Task[${3:options}]{${1:status}}{${2:description}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "marginnote"
     },
-    "Artifact{}{}": {
-      "snippet": "Artifact{${1:status}}{${2:description}}"
+    {
+      "name": "array"
     },
-    "Artifact[]{}{}": {
-      "snippet": "Artifact[${3:options}]{${1:status}}{${2:description}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "xltabular"
     },
-    "Milestone{}{}": {
-      "snippet": "Milestone{${1:status}}{${2:description}}"
+    {
+      "name": "ltablex",
+      "if": "tablepkg=ltablex"
     },
-    "Milestone[]{}{}": {
-      "snippet": "Milestone[${3:options}]{${1:status}}{${2:description}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tabularx",
+      "if": "tablepkg=tabularx"
     },
-    "CheckListAddType{}{}": {
-      "snippet": "CheckListAddType{${1:type}}{${2:symbol}}"
+    {
+      "name": "asciilist",
+      "if": "withAsciilist"
     },
-    "CheckListAddStatus{}{}{}{}": {
-      "snippet": "CheckListAddStatus{${1:types}}{${2:status}}{${3:is-closed}}{${4:symbol}}"
-    },
-    "CheckListDeclareLayout{}{}{}{}": {
-      "snippet": "CheckListDeclareLayout{${1:name}}{${2:fields}}{${3:begindef}}{${4:enddef}}"
-    },
-    "CheckListDefineFieldFormat{}{}{}": {
-      "snippet": "CheckListDefineFieldFormat{${1:layout}}{${2:field}}{${3:code}}"
-    },
-    "CheckListExtendLayout{}{}{}": {
-      "snippet": "CheckListExtendLayout{${1:name}}{${2:base}}{${3:fields}}"
-    },
-    "CheckListStatusSymbol{}": {
-      "snippet": "CheckListStatusSymbol{${1:status}}"
-    },
-    "CheckListSigned{}": {
-      "snippet": "CheckListSigned{${1:text}}"
-    },
-    "CheckListSigned[]{}": {
-      "snippet": "CheckListSigned[${2:core}]{${1:text}}"
-    },
-    "CheckListDefaultLabel{}": {
-      "snippet": "CheckListDefaultLabel{${1:label}}"
-    },
-    "CheckListDisplayDeadline{}{}": {
-      "snippet": "CheckListDisplayDeadline{${1:status}}{${2:deadline}}"
-    },
-    "CheckListHighlightDeadline{}{}{}": {
-      "snippet": "CheckListHighlightDeadline{${1:is-closed}}{${2:is-passed}}{${3:deadline}}"
-    },
-    "CheckListAddEntryOption{}{}": {
-      "snippet": "CheckListAddEntryOption{${1:name}}{${2:default}}"
-    },
-    "CheckListFilterClosed": {},
-    "CheckListFilterClosed[]": {
-      "snippet": "CheckListFilterClosed[${1:types}]"
-    },
-    "CheckListFilterValue{}{}": {
-      "snippet": "CheckListFilterValue{${1:field}}{${2:value}}"
-    },
-    "CheckListFilterValue[]{}{}": {
-      "snippet": "CheckListFilterValue[${3:types}]{${1:field}}{${2:value}}"
-    },
-    "CheckListFilterDeadline{}{}{}": {
-      "snippet": "CheckListFilterDeadline{${1:comp}}{${2:date}}{${3:filter-inv}}"
-    },
-    "CheckListFilterDeadline[]{}{}{}": {
-      "snippet": "CheckListFilterDeadline[${4:types}]{${1:comp}}{${2:date}}{${3:filter-inv}}"
-    },
-    "CheckListFilterReset": {},
-    "CheckListFilterReset[]": {
-      "snippet": "CheckListFilterReset[${1:types}]"
-    },
-    "CheckListSetFilter{}{}": {
-      "snippet": "CheckListSetFilter{${1:fields}}{${2:filter code}}"
-    },
-    "CheckListSetFilter[]{}{}": {
-      "snippet": "CheckListSetFilter[${3:types}]{${1:fields}}{${2:filter code}}"
-    },
-    "CheckListDateCompare{}{}{}{}{}{}": {
-      "snippet": "CheckListDateCompare{${1:date}}{${2:comp}}{${3:refdate}}{${4:true}}{${5:false}}{${6:fail}}"
-    },
-    "CheckListDefaultLayout{}": {
-      "snippet": "CheckListDefaultLayout{${1:layout}}"
-    },
-    "CheckListIfClosed{}{}{}": {
-      "snippet": "CheckListIfClosed{${1:status}}{${2:true}}{${3:false}}"
-    },
-    "CheckListParseDate{}{}{}": {
-      "snippet": "CheckListParseDate{${1:date}}{${2:cmd}}{${3:fail}}"
+    {
+      "name": "asciilist",
+      "if": "withAsciilist=true"
     }
-  },
-  "envs": {
-    "CheckList{}": {
-      "name": "CheckList",
-      "snippet": "{${1:type}}"
-    },
-    "CheckList[]{}": {
-      "name": "CheckList",
-      "snippet": "[${2:options}]{${1:type}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    }
-  },
-  "options": [
-    "withAsciilist",
-    "tablepkg=${1|ltablex,tabularx,xltabular|}",
-    "onecounter",
-    "layout=${1|list,table,hidden|}",
-    "input-dates=${1|d.m.y,m/d/y,y-m-d|}",
-    "output-dates=${1|d.m.y,m/d/y,y-m-d,d.m.yy,m/d/yy,yy-m-d,d.m.,m/d,m-d,same,datetime|}",
-    "strict-dates"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "CheckListSet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{CheckList},\\CheckListSet"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Goal",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:status}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "Goal",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:status}}{${2:description%text}}",
+        "keys": [
+          "\\Goal,\\Task,\\Artifact,\\Milestone"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Task",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:status}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "Task",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:status}}{${2:description%text}}",
+        "keys": [
+          "\\Goal,\\Task,\\Artifact,\\Milestone"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Artifact",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:status}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "Artifact",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:status}}{${2:description%text}}",
+        "keys": [
+          "\\Goal,\\Task,\\Artifact,\\Milestone"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Milestone",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:status}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "Milestone",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:status}}{${2:description%text}}",
+        "keys": [
+          "\\Goal,\\Task,\\Artifact,\\Milestone"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "CheckListAddType",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type}}{${2:symbol}}"
+      }
+    },
+    {
+      "name": "CheckListAddStatus",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:types}}{${2:status}}{${3:is-closed}}{${4:symbol}}"
+      }
+    },
+    {
+      "name": "CheckListDeclareLayout",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:name}}{${2:fields}}{${3:begindef}}{${4:enddef}}"
+      }
+    },
+    {
+      "name": "CheckListDefineFieldFormat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:layout}}{${2:field}}{${3:code}}"
+      }
+    },
+    {
+      "name": "CheckListExtendLayout",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:base}}{${3:fields}}"
+      }
+    },
+    {
+      "name": "CheckListStatusSymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:status}}"
+      }
+    },
+    {
+      "name": "CheckListSigned",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "CheckListSigned",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:core}]{${1:text}}"
+      }
+    },
+    {
+      "name": "CheckListDefaultLabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "CheckListDisplayDeadline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:status}}{${2:deadline}}"
+      }
+    },
+    {
+      "name": "CheckListHighlightDeadline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:is-closed}}{${2:is-passed}}{${3:deadline}}"
+      }
+    },
+    {
+      "name": "CheckListAddEntryOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:default}}"
+      }
+    },
+    {
+      "name": "CheckListFilterClosed"
+    },
+    {
+      "name": "CheckListFilterClosed",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:types}]"
+      }
+    },
+    {
+      "name": "CheckListFilterValue",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:field}}{${2:value}}"
+      }
+    },
+    {
+      "name": "CheckListFilterValue",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:types}]{${1:field}}{${2:value}}"
+      }
+    },
+    {
+      "name": "CheckListFilterDeadline",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:comp}}{${2:date}}{${3:filter-inv}}"
+      }
+    },
+    {
+      "name": "CheckListFilterDeadline",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:types}]{${1:comp}}{${2:date}}{${3:filter-inv}}"
+      }
+    },
+    {
+      "name": "CheckListFilterReset"
+    },
+    {
+      "name": "CheckListFilterReset",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:types}]"
+      }
+    },
+    {
+      "name": "CheckListSetFilter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:fields}}{${2:filter code}}"
+      }
+    },
+    {
+      "name": "CheckListSetFilter",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:types}]{${1:fields}}{${2:filter code}}"
+      }
+    },
+    {
+      "name": "CheckListDateCompare",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:date}}{${2:comp}}{${3:refdate}}{${4:true}}{${5:false}}{${6:fail}}"
+      }
+    },
+    {
+      "name": "CheckListDefaultLayout",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:layout}}"
+      }
+    },
+    {
+      "name": "CheckListIfClosed",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:status}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "CheckListParseDate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:date}}{${2:cmd}}{${3:fail}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "CheckList",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type}}"
+      }
+    },
+    {
+      "name": "CheckList",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:type}}",
+        "keys": [
+          "\\begin{CheckList},\\CheckListSet"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/typed-checklist#c": [
+      "withAsciilist",
+      "tablepkg=${1|ltablex,tabularx,xltabular|}",
+      "onecounter",
       "layout=${1|list,table,hidden|}",
       "input-dates=${1|d.m.y,m/d/y,y-m-d|}",
       "output-dates=${1|d.m.y,m/d/y,y-m-d,d.m.yy,m/d/yy,yy-m-d,d.m.,m/d,m-d,same,datetime|}",
       "strict-dates"
     ],
-    [
+    "\\begin{CheckList},\\CheckListSet": [
+      "layout=${1|list,table,hidden|}",
+      "input-dates=${1|d.m.y,m/d/y,y-m-d|}",
+      "output-dates=${1|d.m.y,m/d/y,y-m-d,d.m.yy,m/d/yy,yy-m-d,d.m.,m/d,m-d,same,datetime|}",
+      "strict-dates"
+    ],
+    "\\Goal,\\Task,\\Artifact,\\Milestone": [
       "who={${1:text}}",
       "deadline=${1:date}",
       "label=",
       "%checklistentryoption"
     ]
+  },
+  "args": [
+    "\\usepackage/typed-checklist#c"
   ]
 }

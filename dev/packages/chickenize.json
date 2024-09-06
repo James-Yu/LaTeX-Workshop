@@ -1,159 +1,422 @@
 {
-  "includes": {
-    "luatex": []
-  },
-  "macros": {
-    "ALT": {},
-    "allownumberincommands": {},
-    "BEClerize": {},
-    "boustrophedon": {},
-    "unboustrophedon": {},
-    "boustrophedonglyphs": {},
-    "unboustrophedonglyphs": {},
-    "boustrophedoninverse": {},
-    "unboustrophedoninverse": {},
-    "rongorongonize": {},
-    "unrongorongonize": {},
-    "bubblesort": {},
-    "unbubblesort": {},
-    "chickenize": {},
-    "unchickenize": {},
-    "hendlnize": {},
-    "unhendlnize": {},
-    "colorstretch": {},
-    "uncolorstretch": {},
-    "countglyphs": {},
-    "countwords": {},
-    "detectdoublewords": {},
-    "dubstepenize": {},
-    "dubstepize": {},
-    "explainbackslashes": {},
-    "francize": {},
-    "unfrancize": {},
-    "gameoflife": {},
-    "gameofchicken{}": {
-      "snippet": "gameofchicken{${1:lua commands}}"
+  "deps": [
+    {
+      "name": "luatex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ALT",
+      "unusual": true
     },
-    "gameofchimken{}": {
-      "snippet": "gameofchimken{${1:lua commands}}"
+    {
+      "name": "allownumberincommands"
     },
-    "guttenbergenize": {},
-    "hammertime": {},
-    "unhammertime": {},
-    "italianizerandwords": {},
-    "unitalianizerandwords": {},
-    "italianize": {},
-    "unitalianize": {},
-    "kernmanipulate": {},
-    "unkernmanipulate": {},
-    "leetspeak": {},
-    "unleetspeak": {},
-    "leftsideright{}": {
-      "snippet": "leftsideright{${1:index}}"
+    {
+      "name": "BEClerize"
     },
-    "unleftsideright": {},
-    "letterspaceadjust": {},
-    "unletterspaceadjust": {},
-    "listallcommands": {},
-    "stealsheep": {},
-    "unstealsheep": {},
-    "returnsheep": {},
-    "matrixize": {},
-    "unmatrixize": {},
-    "medievalumlaut": {},
-    "unmedievalumlaut": {},
-    "pancakenize": {},
-    "rainbowcolor": {},
-    "unrainbowcolor": {},
-    "nyanize": {},
-    "unnyanize": {},
-    "randomchars": {},
-    "unrandomchars": {},
-    "randomcolor": {},
-    "unrandomcolor": {},
-    "randomerror": {},
-    "unrandomerror": {},
-    "randomfonts": {},
-    "unrandomfonts": {},
-    "randomuclc": {},
-    "unrandomuclc": {},
-    "relationship": {},
-    "scorpionize": {},
-    "unscorpionize": {},
-    "substitutewords": {},
-    "unsubstitutewords": {},
-    "addtosubstitutions{}{}": {
-      "snippet": "addtosubstitutions{${1:word1}}{${2:word2}}"
+    {
+      "name": "boustrophedon"
     },
-    "suppressonecharbreak": {},
-    "unsuppressonecharbreak": {},
-    "tabularasa": {},
-    "untabularasa": {},
-    "tanjanize": {},
-    "untanjanize": {},
-    "uppercasecolor": {},
-    "unuppercasecolor": {},
-    "upsidedown{}": {
-      "snippet": "upsidedown{${1:index}}"
+    {
+      "name": "unboustrophedon"
     },
-    "unupsidedown": {},
-    "variantjustification": {},
-    "unvariantjustification": {},
-    "zebranize": {},
-    "unzebranize": {},
-    "leetattr": {},
-    "letterspaceadjustattr": {},
-    "randcolorattr": {},
-    "randfontsattr": {},
-    "randuclcattr": {},
-    "tabularasaattr": {},
-    "uppercasecolorattr": {},
-    "textleetspeak{}": {
-      "snippet": "textleetspeak{${1:text}}"
+    {
+      "name": "boustrophedonglyphs"
     },
-    "textletterspaceadjust{}": {
-      "snippet": "textletterspaceadjust{${1:text}}"
+    {
+      "name": "unboustrophedonglyphs"
     },
-    "textlsa{}": {
-      "snippet": "textlsa{${1:text}}"
+    {
+      "name": "boustrophedoninverse"
     },
-    "textrandomcolor{}": {
-      "snippet": "textrandomcolor{${1:text}}"
+    {
+      "name": "unboustrophedoninverse"
     },
-    "textrandomfonts{}": {
-      "snippet": "textrandomfonts{${1:text}}"
+    {
+      "name": "rongorongonize"
     },
-    "textrandomuclc{}": {
-      "snippet": "textrandomuclc{${1:text}}"
+    {
+      "name": "unrongorongonize"
     },
-    "texttabularasa{}": {
-      "snippet": "texttabularasa{${1:text}}"
+    {
+      "name": "bubblesort"
     },
-    "textuppercasecolor{}": {
-      "snippet": "textuppercasecolor{${1:text}}"
+    {
+      "name": "unbubblesort"
     },
-    "chickenizesetup{}": {
-      "snippet": "chickenizesetup{${1:lua commands}}"
+    {
+      "name": "chickenize"
     },
-    "luadraw{}{}": {
-      "snippet": "luadraw{${1:vshift}}{${2:lua commands}}"
+    {
+      "name": "unchickenize"
     },
-    "drawchicken": {},
-    "drawcov": {},
-    "drawhorse": {},
-    "drawfathorse": {},
-    "drawunicorn": {},
-    "drawfatunicorn": {},
-    "balmerpeak": {},
-    "coffeestainize": {},
-    "uncoffeestainize": {},
-    "dosomethingfunny": {},
-    "milkcow": {},
-    "unmilkcow": {},
-    "spankmonkey": {},
-    "unspankmonkey": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "hendlnize"
+    },
+    {
+      "name": "unhendlnize"
+    },
+    {
+      "name": "colorstretch"
+    },
+    {
+      "name": "uncolorstretch"
+    },
+    {
+      "name": "countglyphs"
+    },
+    {
+      "name": "countwords"
+    },
+    {
+      "name": "detectdoublewords"
+    },
+    {
+      "name": "dubstepenize"
+    },
+    {
+      "name": "dubstepize"
+    },
+    {
+      "name": "explainbackslashes"
+    },
+    {
+      "name": "francize"
+    },
+    {
+      "name": "unfrancize"
+    },
+    {
+      "name": "gameoflife"
+    },
+    {
+      "name": "gameofchicken",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lua commands%definition}}"
+      }
+    },
+    {
+      "name": "gameofchimken",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lua commands%definition}}"
+      }
+    },
+    {
+      "name": "guttenbergenize"
+    },
+    {
+      "name": "hammertime"
+    },
+    {
+      "name": "unhammertime"
+    },
+    {
+      "name": "italianizerandwords"
+    },
+    {
+      "name": "unitalianizerandwords"
+    },
+    {
+      "name": "italianize"
+    },
+    {
+      "name": "unitalianize"
+    },
+    {
+      "name": "kernmanipulate"
+    },
+    {
+      "name": "unkernmanipulate"
+    },
+    {
+      "name": "leetspeak"
+    },
+    {
+      "name": "unleetspeak"
+    },
+    {
+      "name": "leftsideright",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:index}}"
+      }
+    },
+    {
+      "name": "unleftsideright"
+    },
+    {
+      "name": "letterspaceadjust"
+    },
+    {
+      "name": "unletterspaceadjust"
+    },
+    {
+      "name": "listallcommands"
+    },
+    {
+      "name": "stealsheep"
+    },
+    {
+      "name": "unstealsheep"
+    },
+    {
+      "name": "returnsheep"
+    },
+    {
+      "name": "matrixize"
+    },
+    {
+      "name": "unmatrixize"
+    },
+    {
+      "name": "medievalumlaut"
+    },
+    {
+      "name": "unmedievalumlaut"
+    },
+    {
+      "name": "pancakenize"
+    },
+    {
+      "name": "rainbowcolor"
+    },
+    {
+      "name": "unrainbowcolor"
+    },
+    {
+      "name": "nyanize"
+    },
+    {
+      "name": "unnyanize"
+    },
+    {
+      "name": "randomchars"
+    },
+    {
+      "name": "unrandomchars"
+    },
+    {
+      "name": "randomcolor"
+    },
+    {
+      "name": "unrandomcolor"
+    },
+    {
+      "name": "randomerror"
+    },
+    {
+      "name": "unrandomerror"
+    },
+    {
+      "name": "randomfonts"
+    },
+    {
+      "name": "unrandomfonts"
+    },
+    {
+      "name": "randomuclc"
+    },
+    {
+      "name": "unrandomuclc"
+    },
+    {
+      "name": "relationship"
+    },
+    {
+      "name": "scorpionize"
+    },
+    {
+      "name": "unscorpionize"
+    },
+    {
+      "name": "substitutewords"
+    },
+    {
+      "name": "unsubstitutewords"
+    },
+    {
+      "name": "addtosubstitutions",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:word1}}{${2:word2}}"
+      }
+    },
+    {
+      "name": "suppressonecharbreak"
+    },
+    {
+      "name": "unsuppressonecharbreak"
+    },
+    {
+      "name": "tabularasa"
+    },
+    {
+      "name": "untabularasa"
+    },
+    {
+      "name": "tanjanize"
+    },
+    {
+      "name": "untanjanize"
+    },
+    {
+      "name": "uppercasecolor"
+    },
+    {
+      "name": "unuppercasecolor"
+    },
+    {
+      "name": "upsidedown",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:index}}"
+      }
+    },
+    {
+      "name": "unupsidedown"
+    },
+    {
+      "name": "variantjustification"
+    },
+    {
+      "name": "unvariantjustification"
+    },
+    {
+      "name": "zebranize"
+    },
+    {
+      "name": "unzebranize"
+    },
+    {
+      "name": "leetattr",
+      "unusual": true
+    },
+    {
+      "name": "letterspaceadjustattr",
+      "unusual": true
+    },
+    {
+      "name": "randcolorattr",
+      "unusual": true
+    },
+    {
+      "name": "randfontsattr",
+      "unusual": true
+    },
+    {
+      "name": "randuclcattr",
+      "unusual": true
+    },
+    {
+      "name": "tabularasaattr",
+      "unusual": true
+    },
+    {
+      "name": "uppercasecolorattr",
+      "unusual": true
+    },
+    {
+      "name": "textleetspeak",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textletterspaceadjust",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textlsa",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textrandomcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textrandomfonts",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textrandomfonts",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textrandomuclc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texttabularasa",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textuppercasecolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "chickenizesetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lua commands%definition}}"
+      }
+    },
+    {
+      "name": "luadraw",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:vshift}}{${2:lua commands%definition}}"
+      }
+    },
+    {
+      "name": "drawchicken"
+    },
+    {
+      "name": "drawcov"
+    },
+    {
+      "name": "drawhorse"
+    },
+    {
+      "name": "drawfathorse"
+    },
+    {
+      "name": "drawunicorn"
+    },
+    {
+      "name": "drawfatunicorn"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

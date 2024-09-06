@@ -1,30 +1,53 @@
 {
-  "includes": {},
-  "macros": {
-    "QueryWorkingDirectory{}": {
-      "snippet": "QueryWorkingDirectory{${1:result cmd}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "QueryWorkingDirectory",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:result cmd%cmd}}"
+      }
     },
-    "QueryFiles{}{}": {
-      "snippet": "QueryFiles{${1:spec}}{${2:function}}"
+    {
+      "name": "QueryFiles",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:spec}}{${2:function}}"
+      }
     },
-    "QueryFiles[]{}{}": {
-      "snippet": "QueryFiles[${3:options}]{${1:spec}}{${2:function}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "QueryFiles",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:spec}}{${2:function}}",
+        "keys": [
+          "\\QueryFiles,\\QueryFilesTF"
+        ],
+        "keyPos": 0
+      }
     },
-    "QueryFilesTF{}{}{}{}": {
-      "snippet": "QueryFilesTF{${1:spec}}{${2:function}}{${3:pre code}}{${4:empty list code}}"
+    {
+      "name": "QueryFilesTF",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:spec}}{${2:function}}{${3:pre code}}{${4:empty list code}}"
+      }
     },
-    "QueryFilesTF[]{}{}{}{}": {
-      "snippet": "QueryFilesTF[${5:options}]{${1:spec}}{${2:function}}{${3:pre code}}{${4:empty list code}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "QueryFilesTF",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:spec}}{${2:function}}{${3:pre code}}{${4:empty list code}}",
+        "keys": [
+          "\\QueryFiles,\\QueryFilesTF"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "envs": [],
+  "keys": {
+    "\\QueryFiles,\\QueryFilesTF": [
       "recursive",
       "ignore-case",
       "reverse",
@@ -33,5 +56,6 @@
       "type=${1|d,f|}",
       "exclude=${1:Lua pattern}"
     ]
-  ]
+  },
+  "args": []
 }

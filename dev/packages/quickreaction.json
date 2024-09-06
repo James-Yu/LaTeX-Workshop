@@ -1,38 +1,65 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarymatrix": [],
-    "tikzlibrarypositioning": []
-  },
-  "macros": {
-    "quickarrow": {},
-    "quickarrow[]": {
-      "snippet": "quickarrow[${1:above}]"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "quickarrow[][]": {
-      "snippet": "quickarrow[${1:above}][${2:below}]"
+    {
+      "name": "tikzlibrarymatrix"
     },
-    "fixrow": {},
-    "pippo": {},
-    "reactionbody": {},
-    "saltyarrowmax": {},
-    "settomaxwidth{}{}": {
-      "snippet": "settomaxwidth{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "tikzlibrarypositioning"
     }
-  },
-  "envs": {
-    "quickreaction": {},
-    "quickreaction[]": {
-      "name": "quickreaction",
-      "snippet": "[${1:opt1}]"
-    },
-    "quickreaction[][]": {
-      "name": "quickreaction",
-      "snippet": "[${1:opt1}][${2:opt2}]"
-    }
-  },
-  "options": [
-    "iupac"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "quickarrow"
+    },
+    {
+      "name": "quickarrow",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:above}]"
+      }
+    },
+    {
+      "name": "quickarrow",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:above}][${2:below}]"
+      }
+    },
+    {
+      "name": "fixrow",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "quickreaction"
+    },
+    {
+      "name": "quickreaction",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:opt1}]"
+      }
+    },
+    {
+      "name": "quickreaction",
+      "unusual": true,
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:opt1}][${2:opt2}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/quickreaction#c": [
+      "iupac"
+    ]
+  },
+  "args": [
+    "\\usepackage/quickreaction#c"
+  ]
 }

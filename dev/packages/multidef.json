@@ -1,22 +1,35 @@
 {
-  "includes": {
-    "trimspaces": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "multidef{}{}": {
-      "snippet": "multidef{${1:definition}}{${2:csname list}}"
+  "deps": [
+    {
+      "name": "trimspaces"
     },
-    "multidef[]{}{}": {
-      "snippet": "multidef[${3:options}]{${1:definition}}{${2:csname list}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "multidef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:definition}}{${2:csname list}}"
+      }
+    },
+    {
+      "name": "multidef",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:definition}}{${2:csname list}}",
+        "keys": [
+          "\\multidef"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\multidef": [
       "arg=${1:num of args}",
       "noerr",
       "nowarn",
@@ -28,5 +41,6 @@
       "global",
       "robust"
     ]
-  ]
+  },
+  "args": []
 }

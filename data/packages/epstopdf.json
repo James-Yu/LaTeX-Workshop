@@ -1,40 +1,82 @@
 {
-  "includes": {
-    "infwarerr": [],
-    "grfext": [],
-    "kvoptions": [],
-    "pdftexcmds": []
-  },
-  "macros": {
-    "epstopdfsetup{}": {
-      "snippet": "epstopdfsetup{${1:key-value-list}}"
+  "deps": [
+    {
+      "name": "infwarerr"
     },
-    "OutputFile": {},
-    "SourceFile": {},
-    "SourceExt": {},
-    "epstopdfDeclareGraphicsRule{}{}{}{}": {
-      "snippet": "epstopdfDeclareGraphicsRule{${1:ext}}{${2:type}}{${3:read-file}}{${4:command}}"
+    {
+      "name": "grfext"
     },
-    "epstopdfcall{}": {
-      "snippet": "epstopdfcall{${1:arg}}"
+    {
+      "name": "kvoptions"
     },
-    "AppendGraphicsExtensions{}": {
-      "snippet": "AppendGraphicsExtensions{${1:ext}}"
-    },
-    "PrependGraphicsExtensions{}": {
-      "snippet": "PrependGraphicsExtensions{${1:ext}}"
+    {
+      "name": "pdftexcmds"
     }
-  },
-  "envs": {},
-  "options": [
-    "update",
-    "append",
-    "prepend",
-    "outdir=${1:directory}",
-    "suffix=${1:string}",
-    "prefersuffix",
-    "program@epstopdf=${1:program}",
-    "verbose"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "epstopdfsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key-value-list%keyvals}}",
+        "keys": [
+          "\\epstopdfsetup,\\usepackage/epstopdf#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "OutputFile"
+    },
+    {
+      "name": "SourceFile"
+    },
+    {
+      "name": "SourceExt"
+    },
+    {
+      "name": "epstopdfDeclareGraphicsRule",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:ext}}{${2:type}}{${3:read-file}}{${4:command%plain}}"
+      }
+    },
+    {
+      "name": "epstopdfcall",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "AppendGraphicsExtensions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ext}}"
+      }
+    },
+    {
+      "name": "PrependGraphicsExtensions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ext}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\epstopdfsetup,\\usepackage/epstopdf#c": [
+      "update",
+      "append",
+      "prepend",
+      "outdir=${1:directory}",
+      "suffix=${1:string}",
+      "prefersuffix",
+      "program@epstopdf=${1:program}",
+      "verbose"
+    ]
+  },
+  "args": [
+    "\\epstopdfsetup,\\usepackage/epstopdf#c"
+  ]
 }

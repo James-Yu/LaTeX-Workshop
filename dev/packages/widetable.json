@@ -1,24 +1,22 @@
 {
-  "includes": {},
-  "macros": {},
-  "envs": {
-    "widetabular{}{}": {
+  "deps": [],
+  "macros": [],
+  "envs": [
+    {
       "name": "widetabular",
-      "snippet": "{${1:width}}{${2:preamble}}"
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:preamble}}"
+      }
     },
-    "widetabular{}[]{}": {
+    {
       "name": "widetabular",
-      "snippet": "{${1:width}}[${2:alignment}]{${3:preamble}}"
-    },
-    "widetable{}{}": {
-      "name": "widetable",
-      "snippet": "{${1:width}}{${2:preamble}}"
-    },
-    "widetable{}[]{}": {
-      "name": "widetable",
-      "snippet": "{${1:width}}[${2:alignment}]{${3:preamble}}"
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:width}}[${3:alignment}]{${2:preamble}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

@@ -1,141 +1,391 @@
 {
-  "includes": {
-    "scrkbase": [],
-    "scrlogo": []
-  },
-  "macros": {
-    "changefontsizes{}": {
-      "snippet": "changefontsizes{${1:font size}}"
+  "deps": [
+    {
+      "name": "scrkbase"
     },
-    "cleardoubleemptypage": {},
-    "cleardoubleevenemptypage": {},
-    "cleardoubleevenpage": {},
-    "cleardoubleevenpageusingstyle{}": {
-      "snippet": "cleardoubleevenpageusingstyle{${1:pagestyle}}"
-    },
-    "cleardoubleevenplainpage": {},
-    "cleardoubleevenstandardpage": {},
-    "cleardoubleoddemptypage": {},
-    "cleardoubleoddpage": {},
-    "cleardoubleoddpageusingstyle{}": {
-      "snippet": "cleardoubleoddpageusingstyle{${1:pagestyle}}"
-    },
-    "cleardoubleoddplainpage": {},
-    "cleardoubleoddstandardpage": {},
-    "cleardoublepageusingstyle{}": {
-      "snippet": "cleardoublepageusingstyle{${1:pagestyle}}"
-    },
-    "cleardoubleplainpage": {},
-    "cleardoublestandardpage": {},
-    "coverpagebottommargin": {},
-    "coverpageleftmargin": {},
-    "coverpagerightmargin": {},
-    "coverpagetopmargin": {},
-    "dedication{}": {
-      "snippet": "dedication{${1:dedication}}"
-    },
-    "deffootnote[]{}{}{}": {
-      "snippet": "deffootnote[${4:mark width}]{${1:indent}}{${2:parindent}}{${3:definition}}"
-    },
-    "deffootnote{}{}{}": {
-      "snippet": "deffootnote{${1:indent}}{${2:parindent}}{${3:definition}}"
-    },
-    "deffootnotemark{}": {
-      "snippet": "deffootnotemark{${1:definition}}"
-    },
-    "dictum[]{}": {
-      "snippet": "dictum[${2:author}]{${1:text}}"
-    },
-    "dictum{}": {
-      "snippet": "dictum{${1:text}}"
-    },
-    "dictumauthorformat{}": {
-      "snippet": "dictumauthorformat{${1:author}}"
-    },
-    "dictumrule": {},
-    "dictumwidth": {},
-    "extratitle{}": {
-      "snippet": "extratitle{${1:short title}}"
-    },
-    "FamilyElseValue": {},
-    "frontispiece{}": {
-      "snippet": "frontispiece{${1:frontispiece}}"
-    },
-    "Ifthispageodd{}{}": {
-      "snippet": "Ifthispageodd{${1:true code}}{${2:false code}}"
-    },
-    "ifthispagewasodd": {},
-    "labelinglabel{}": {
-      "snippet": "labelinglabel{${1:arg}}"
-    },
-    "lowertitleback{}": {
-      "snippet": "lowertitleback{${1:titlebackfoot}}"
-    },
-    "maketitle[]": {
-      "snippet": "maketitle[${1:page number}]"
-    },
-    "marginline{}": {
-      "snippet": "marginline{${1:margin note}}"
-    },
-    "maybesffamily": {},
-    "multfootsep": {},
-    "multiplefootnotemarker": {},
-    "multiplefootnoteseparator": {},
-    "publishers{}": {
-      "snippet": "publishers{${1:publisher}}"
-    },
-    "raggeddictum": {},
-    "raggeddictumauthor": {},
-    "raggeddictumtext": {},
-    "raggedfootnote": {},
-    "sectfont": {},
-    "subject{}": {
-      "snippet": "subject{${1:subject}}"
-    },
-    "subtitle{}": {
-      "snippet": "subtitle{${1:subtitle}}"
-    },
-    "textmaybesf{}": {
-      "snippet": "textmaybesf{${1:text}}"
-    },
-    "thefootnotemark": {},
-    "thispagewasoddfalse": {},
-    "thispagewasoddtrue": {},
-    "titlefont": {},
-    "titlehead{}": {
-      "snippet": "titlehead{${1:title head}}"
-    },
-    "uppertitleback{}": {
-      "snippet": "uppertitleback{${1:titlebackhead}}"
-    },
-    "ifthispageodd": {}
-  },
-  "envs": {
-    "addmargin*[]{}": {
-      "name": "addmargin*",
-      "snippet": "[${2:inner indent}]{${1:indent}}"
-    },
-    "addmargin*{}": {
-      "name": "addmargin*",
-      "snippet": "{${1:indent}}"
-    },
-    "addmargin[]{}": {
-      "name": "addmargin",
-      "snippet": "[${2:left indent}]{${1:indent}}"
-    },
-    "addmargin{}": {
-      "name": "addmargin",
-      "snippet": "{${1:indent}}"
-    },
-    "labeling[]{}": {
-      "name": "labeling",
-      "snippet": "[${2:delimiter}]{${1:widest pattern}}"
-    },
-    "labeling{}": {
-      "name": "labeling",
-      "snippet": "{${1:widest pattern}}"
+    {
+      "name": "scrlogo"
     }
+  ],
+  "macros": [
+    {
+      "name": "changefontsizes",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font size}}"
+      }
+    },
+    {
+      "name": "cleardoubleemptypage"
+    },
+    {
+      "name": "cleardoubleevenemptypage"
+    },
+    {
+      "name": "cleardoubleevenpage"
+    },
+    {
+      "name": "cleardoubleevenpageusingstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pagestyle%keyvals}}",
+        "keys": [
+          "\\cleardoubleevenpageusingstyle#c,\\cleardoubleoddpageusingstyle#c,\\cleardoublepageusingstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cleardoubleevenplainpage"
+    },
+    {
+      "name": "cleardoubleevenstandardpage"
+    },
+    {
+      "name": "cleardoubleoddemptypage"
+    },
+    {
+      "name": "cleardoubleoddpage"
+    },
+    {
+      "name": "cleardoubleoddpageusingstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pagestyle%keyvals}}",
+        "keys": [
+          "\\cleardoubleevenpageusingstyle#c,\\cleardoubleoddpageusingstyle#c,\\cleardoublepageusingstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cleardoubleoddplainpage"
+    },
+    {
+      "name": "cleardoubleoddstandardpage"
+    },
+    {
+      "name": "cleardoublepageusingstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pagestyle%keyvals}}",
+        "keys": [
+          "\\cleardoubleevenpageusingstyle#c,\\cleardoubleoddpageusingstyle#c,\\cleardoublepageusingstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cleardoubleplainpage"
+    },
+    {
+      "name": "cleardoublestandardpage"
+    },
+    {
+      "name": "coverpagebottommargin",
+      "unusual": true
+    },
+    {
+      "name": "coverpageleftmargin",
+      "unusual": true
+    },
+    {
+      "name": "coverpagerightmargin",
+      "unusual": true
+    },
+    {
+      "name": "coverpagetopmargin",
+      "unusual": true
+    },
+    {
+      "name": "dedication",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dedication%text}}"
+      }
+    },
+    {
+      "name": "deffootnote",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:mark width%l}]{${1:indent%l}}{${2:parindent%l}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "deffootnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:indent%l}}{${2:parindent%l}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "deffootnotemark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:definition}}"
+      }
+    },
+    {
+      "name": "dictum",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:author}]{${1:text}}"
+      }
+    },
+    {
+      "name": "dictum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "dictumauthorformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:author}}"
+      }
+    },
+    {
+      "name": "dictumrule",
+      "unusual": true
+    },
+    {
+      "name": "dictumwidth",
+      "unusual": true
+    },
+    {
+      "name": "extratitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:short title}}"
+      }
+    },
+    {
+      "name": "FamilyElseValue",
+      "unusual": true
+    },
+    {
+      "name": "frontispiece",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:frontispiece%text}}"
+      }
+    },
+    {
+      "name": "Ifthispageodd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true code}}{${2:false code}}"
+      }
+    },
+    {
+      "name": "ifthispagewasodd",
+      "unusual": true
+    },
+    {
+      "name": "labelinglabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "lowertitleback",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:titlebackfoot%text}}"
+      }
+    },
+    {
+      "name": "maketitle",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:page number}]"
+      }
+    },
+    {
+      "name": "marginline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:margin note%text}}"
+      }
+    },
+    {
+      "name": "maybesffamily"
+    },
+    {
+      "name": "multfootsep",
+      "unusual": true
+    },
+    {
+      "name": "multiplefootnotemarker",
+      "unusual": true
+    },
+    {
+      "name": "multiplefootnoteseparator",
+      "unusual": true
+    },
+    {
+      "name": "publishers",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:publisher}}"
+      }
+    },
+    {
+      "name": "raggeddictum",
+      "unusual": true
+    },
+    {
+      "name": "raggeddictumauthor",
+      "unusual": true
+    },
+    {
+      "name": "raggeddictumtext",
+      "unusual": true
+    },
+    {
+      "name": "raggedfootnote",
+      "unusual": true
+    },
+    {
+      "name": "sectfont",
+      "unusual": true
+    },
+    {
+      "name": "subject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subject%text}}"
+      }
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subtitle%text}}"
+      }
+    },
+    {
+      "name": "textmaybesf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "thefootnotemark",
+      "unusual": true
+    },
+    {
+      "name": "thispagewasoddfalse",
+      "unusual": true
+    },
+    {
+      "name": "thispagewasoddtrue",
+      "unusual": true
+    },
+    {
+      "name": "titlefont",
+      "unusual": true
+    },
+    {
+      "name": "titlehead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title head%text}}"
+      }
+    },
+    {
+      "name": "uppertitleback",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:titlebackhead%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "addmargin*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:inner indent%l}]{${1:indent%l}}"
+      }
+    },
+    {
+      "name": "addmargin*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:indent%l}}"
+      }
+    },
+    {
+      "name": "addmargin",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:left indent%l}]{${1:indent%l}}"
+      }
+    },
+    {
+      "name": "addmargin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:indent%l}}"
+      }
+    },
+    {
+      "name": "labeling",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:delimiter}]{${1:widest pattern}}"
+      }
+    },
+    {
+      "name": "labeling",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:widest pattern}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\KOMAoptions#c": [
+      "draft=${1|true,on,yes,false,off,no|}",
+      "overfullrule=${1|true,on,yes,false,off,no|}",
+      "fontsize=",
+      "titlepage=${1|true,on,yes,false,off,no,firstiscover|}",
+      "cleardoublepage=${1|empty,headings,letter,myheadings,plain,plain.letter,scrheadings,plain.scrheadings,current|}",
+      "footnotes=${1|multiple,nomultiple|}"
+    ],
+    "\\setkomafont#c,\\addtokomafont#c,\\usekomafont#c,\\usesizeofkomafont#c,\\usefamilyofkomafont#c,\\useseriesofkomafont#c,\\useshapeofkomafont#c,\\useencodingofkomafont#c,\\usefontofkomafont#c": [
+      "subtitle",
+      "titlehead",
+      "author",
+      "date",
+      "publishers",
+      "dedication",
+      "sectioning",
+      "disposition",
+      "dictum",
+      "dictumauthor",
+      "dictumtext",
+      "labelinglabel",
+      "labelingseparator"
+    ],
+    "\\cleardoubleevenpageusingstyle#c,\\cleardoubleoddpageusingstyle#c,\\cleardoublepageusingstyle#c": [
+      "headings",
+      "myheadings",
+      "empty",
+      "plain"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

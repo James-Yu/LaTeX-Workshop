@@ -1,25 +1,41 @@
 {
-  "includes": {
-    "shellesc": [],
-    "pgfopts": [],
-    "pgfkeys": []
-  },
-  "macros": {
-    "iexec{}": {
-      "snippet": "iexec{${1:shell command}}"
+  "deps": [
+    {
+      "name": "shellesc"
     },
-    "iexec[]{}": {
-      "snippet": "iexec[${2:options}]{${1:shell command}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgfopts"
+    },
+    {
+      "name": "pgfkeys"
     }
-  },
-  "envs": {},
-  "options": [
-    "trace"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "iexec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shell command%definition}}"
+      }
+    },
+    {
+      "name": "iexec",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:shell command%definition}}",
+        "keys": [
+          "\\iexec"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/iexec#c": [
+      "trace"
+    ],
+    "\\iexec": [
       "quiet",
       "stdout=${1:file name}",
       "stderr=${1:file name}",
@@ -32,5 +48,8 @@
       "ignore",
       "maybe"
     ]
+  },
+  "args": [
+    "\\usepackage/iexec#c"
   ]
 }

@@ -1,127 +1,295 @@
 {
-  "includes": {
-    "luatexbase": [],
-    "luacode": [],
-    "atbegshi": []
-  },
-  "macros": {
-    "placeat(){}": {
-      "snippet": "placeat(${2:x},${3:y}){${1:content}}"
+  "deps": [
+    {
+      "name": "luatexbase"
     },
-    "placeat(){}[]": {
-      "snippet": "placeat(${3:x},${4:y}){${1:content}}[${2:name}]"
+    {
+      "name": "luacode"
     },
-    "placeat()[]{}": {
-      "snippet": "placeat(${3:x},${4:y})[${2:content-left}]{${1:content}}"
+    {
+      "name": "atbegshi"
+    }
+  ],
+  "macros": [
+    {
+      "name": "placeat",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:content}}"
+      }
     },
-    "placeat()[]{}[]": {
-      "snippet": "placeat(${4:x},${5:y})[${2:content-left}]{${1:content}}[${3:name}]"
+    {
+      "name": "placeat",
+      "arg": {
+        "format": "(){}[]",
+        "snippet": "(${3:x},${4:y}){${1:content}}[${2:name}]"
+      }
     },
-    "placeat{}{}{}": {
-      "snippet": "placeat{${1:x}}{${2:y}}{${3:content}}"
+    {
+      "name": "placeat",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "(${3:x},${4:y})[${2:content-left}]{${1:content}}"
+      }
     },
-    "placeat{}{}{}[]": {
-      "snippet": "placeat{${1:x}}{${2:y}}{${3:content}}[${4:name}]"
+    {
+      "name": "placeat",
+      "arg": {
+        "format": "()[]{}[]",
+        "snippet": "(${4:x},${5:y})[${2:content-left}]{${1:content}}[${3:name}]"
+      }
     },
-    "placeat{}{}[]{}": {
-      "snippet": "placeat{${1:x}}{${2:y}}[${3:content-left}]{${4:content}}"
+    {
+      "name": "placeat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:content}}"
+      }
     },
-    "placeat{}{}[]{}[]": {
-      "snippet": "placeat{${1:x}}{${2:y}}[${3:content-left}]{${4:content}}[${5:name}]"
+    {
+      "name": "placeat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:x}}{${2:y}}{${3:content}}[${4:name}]"
+      }
     },
-    "placerelto[](){}": {
-      "snippet": "placerelto[${2:name}](${3:x},${4:y}){${1:content}}"
+    {
+      "name": "placeat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:x}}{${2:y}}[${4:content-left}]{${3:content}}"
+      }
     },
-    "placerelto[](){}[]": {
-      "snippet": "placerelto[${2:name}](${4:x},${5:y}){${1:content}}[${3:name}]"
+    {
+      "name": "placeat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}[]",
+        "snippet": "{${1:x}}{${2:y}}[${4:content-left}]{${3:content}}[${5:name}]"
+      }
     },
-    "placerelto[]{}{}{}": {
-      "snippet": "placerelto[${4:name}]{${1:x}}{${2:y}}{${3:content}}"
+    {
+      "name": "placerelto",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:name}](${3:x},${4:y}){${1:content}}"
+      }
     },
-    "placerelto[]{}{}{}[]": {
-      "snippet": "placerelto[${4:name}]{${1:x}}{${2:y}}{${3:content}}[${5:name}]"
+    {
+      "name": "placerelto",
+      "arg": {
+        "format": "[](){}[]",
+        "snippet": "[${2:name}](${4:x},${5:y}){${1:content}}[${3:name}]"
+      }
     },
-    "placeminipageat{}{}{}": {
-      "snippet": "placeminipageat{${1:x}}{${2:y}}{${3:content}}"
+    {
+      "name": "placerelto",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:name}]{${1:x}}{${2:y}}{${3:content}}"
+      }
     },
-    "placeminipageat{}{}[]{}": {
-      "snippet": "placeminipageat{${1:x}}{${2:y}}[${3:width}]{${4:content}}"
+    {
+      "name": "placerelto",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:name}]{${1:x}}{${2:y}}{${3:content}}[${5:name}]"
+      }
     },
-    "placeatsetup{}": {
-      "snippet": "placeatsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "placeminipageat",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:content}}"
+      }
     },
-    "placelineat()()": {
-      "snippet": "placelineat(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    {
+      "name": "placeminipageat",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:x}}{${2:y}}[${4:width}]{${3:content}}"
+      }
     },
-    "placelineat[]()()": {
-      "snippet": "placelineat[${1:color}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+    {
+      "name": "placeatsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\placeatsetup"
+        ],
+        "keyPos": 0
+      }
     },
-    "placearrowat()()": {
-      "snippet": "placearrowat(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    {
+      "name": "placelineat",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
     },
-    "placearrowat[]()()": {
-      "snippet": "placearrowat[${1:color}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+    {
+      "name": "placelineat",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:color}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
     },
-    "placecircleat(){}": {
-      "snippet": "placecircleat(${2:x},${3:y}){${1:r}}"
+    {
+      "name": "placearrowat",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
     },
-    "placecircleat[](){}": {
-      "snippet": "placecircleat[${2:color}](${3:x},${4:y}){${1:r}}"
+    {
+      "name": "placearrowat",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:color}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
     },
-    "placefilledcircleat(){}": {
-      "snippet": "placefilledcircleat(${2:x},${3:y}){${1:r}}"
+    {
+      "name": "placecircleat",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:r}}"
+      }
     },
-    "placefilledcircleat[](){}": {
-      "snippet": "placefilledcircleat[${2:color}](${3:x},${4:y}){${1:r}}"
+    {
+      "name": "placecircleat",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:color}](${3:x},${4:y}){${1:r}}"
+      }
     },
-    "placesquareat(){}": {
-      "snippet": "placesquareat(${2:x},${3:y}){${1:r}}"
+    {
+      "name": "placefilledcircleat",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:r}}"
+      }
     },
-    "placesquareat[](){}": {
-      "snippet": "placesquareat[${2:color}](${3:x},${4:y}){${1:r}}"
+    {
+      "name": "placefilledcircleat",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:color}](${3:x},${4:y}){${1:r}}"
+      }
     },
-    "placerectangleat()()": {
-      "snippet": "placerectangleat(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    {
+      "name": "placesquareat",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:r}}"
+      }
     },
-    "placerectangleat[]()()": {
-      "snippet": "placerectangleat[${1:color}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+    {
+      "name": "placesquareat",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:color}](${3:x},${4:y}){${1:r}}"
+      }
     },
-    "placefilledrectangleat()()": {
-      "snippet": "placefilledrectangleat(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    {
+      "name": "placerectangleat",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
     },
-    "placefilledrectangleat[]()()": {
-      "snippet": "placefilledrectangleat[${1:color}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+    {
+      "name": "placerectangleat",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:color}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
     },
-    "placecurveat()()()()": {
-      "snippet": "placecurveat(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})(${7:x4},${8:y4})"
+    {
+      "name": "placefilledrectangleat",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
     },
-    "placecurveat[]()()()()": {
-      "snippet": "placecurveat[${1:color}](${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3})(${8:x4},${9:y4})"
+    {
+      "name": "placefilledrectangleat",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:color}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
     },
-    "placeroundedat()()": {
-      "snippet": "placeroundedat(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    {
+      "name": "placecurveat",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})(${7:x4},${8:y4})"
+      }
     },
-    "placeroundedat[]()()": {
-      "snippet": "placeroundedat[${1:color}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+    {
+      "name": "placecurveat",
+      "arg": {
+        "format": "[]()()()()",
+        "snippet": "[${1:color}](${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3})(${8:x4},${9:y4})"
+      }
     },
-    "placeatthreenumbers{}{}{}": {
-      "snippet": "placeatthreenumbers{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "placeroundedat",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
     },
-    "firstof{}{}": {
-      "snippet": "firstof{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "placeroundedat",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:color}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
     },
-    "secondof{}{}": {
-      "snippet": "secondof{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "placeatthreenumbers",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
     },
-    "drawgridnum": {},
-    "drawgrid": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "firstof",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "secondof",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "drawgridnum",
+      "unusual": true
+    },
+    {
+      "name": "drawgrid",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\placeatsetup": [
       "gridnumber=",
       "gridnumberx=",
       "gridnumbery=",
@@ -136,5 +304,6 @@
       "gridlinewidth=",
       "arrowheadlength="
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,544 +1,1277 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-node": [],
-    "pst-xkey": [],
-    "multido": []
-  },
-  "macros": {
-    "wire()()": {
-      "snippet": "wire(${1:A})(${2:B})"
-    },
-    "wire[]()()": {
-      "snippet": "wire[${1:options}](${2:A})(${3:B})"
-    },
-    "tension()(){}": {
-      "snippet": "tension(${2:A})(${3:B}){${1:label}}"
-    },
-    "tension[]()(){}": {
-      "snippet": "tension[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "ground()": {
-      "snippet": "ground(${1:A})"
-    },
-    "ground{}()": {
-      "snippet": "ground{${1:angle}}(${2:A})"
-    },
-    "ground[]()": {
-      "snippet": "ground[${1:options}](${2:A})"
-    },
-    "ground[]{}()": {
-      "snippet": "ground[${2:options}]{${1:angle}}(${3:A})"
-    },
-    "resistor()(){}": {
-      "snippet": "resistor(${2:A})(${3:B}){${1:label}}"
-    },
-    "resistor[]()(){}": {
-      "snippet": "resistor[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "RFLine()(){}": {
-      "snippet": "RFLine(${2:A})(${3:B}){${1:label}}"
-    },
-    "RFLine[]()(){}": {
-      "snippet": "RFLine[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "capacitor()(){}": {
-      "snippet": "capacitor(${2:A})(${3:B}){${1:label}}"
-    },
-    "capacitor[]()(){}": {
-      "snippet": "capacitor[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "battery()(){}": {
-      "snippet": "battery(${2:A})(${3:B}){${1:label}}"
-    },
-    "battery[]()(){}": {
-      "snippet": "battery[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "coil()(){}": {
-      "snippet": "coil(${2:A})(${3:B}){${1:label}}"
-    },
-    "coil[]()(){}": {
-      "snippet": "coil[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "Ucc()(){}": {
-      "snippet": "Ucc(${2:A})(${3:B}){${1:label}}"
-    },
-    "Ucc[]()(){}": {
-      "snippet": "Ucc[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "Icc()(){}": {
-      "snippet": "Icc(${2:A})(${3:B}){${1:label}}"
-    },
-    "Icc[]()(){}": {
-      "snippet": "Icc[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "switch()(){}": {
-      "snippet": "switch(${2:A})(${3:B}){${1:label}}"
-    },
-    "switch[]()(){}": {
-      "snippet": "switch[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "arrowswitch()(){}": {
-      "snippet": "arrowswitch(${2:A})(${3:B}){${1:label}}"
-    },
-    "arrowswitch[]()(){}": {
-      "snippet": "arrowswitch[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "diode()(){}": {
-      "snippet": "diode(${2:A})(${3:B}){${1:label}}"
-    },
-    "diode[]()(){}": {
-      "snippet": "diode[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "Zener()(){}": {
-      "snippet": "Zener(${2:A})(${3:B}){${1:label}}"
-    },
-    "Zener[]()(){}": {
-      "snippet": "Zener[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "lamp()(){}": {
-      "snippet": "lamp(${2:A})(${3:B}){${1:label}}"
-    },
-    "lamp[]()(){}": {
-      "snippet": "lamp[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "circledipole()(){}": {
-      "snippet": "circledipole(${2:A})(${3:B}){${1:label}}"
-    },
-    "circledipole[]()(){}": {
-      "snippet": "circledipole[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "LED()(){}": {
-      "snippet": "LED(${2:A})(${3:B}){${1:label}}"
-    },
-    "LED[]()(){}": {
-      "snippet": "LED[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "SQUID()(){}": {
-      "snippet": "SQUID(${2:A})(${3:B}){${1:label}}"
-    },
-    "SQUID[]()(){}": {
-      "snippet": "SQUID[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "RelayNOP()(){}": {
-      "snippet": "RelayNOP(${2:A})(${3:B}){${1:label}}"
-    },
-    "RelayNOP[]()(){}": {
-      "snippet": "RelayNOP[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "Suppressor()(){}": {
-      "snippet": "Suppressor(${2:A})(${3:B}){${1:label}}"
-    },
-    "Suppressor[]()(){}": {
-      "snippet": "Suppressor[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "Arrestor()(){}": {
-      "snippet": "Arrestor(${2:A})(${3:B}){${1:label}}"
-    },
-    "Arrestor[]()(){}": {
-      "snippet": "Arrestor[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "cell()(){}": {
-      "snippet": "cell(${2:A})(${3:B}){${1:label}}"
-    },
-    "cell[]()(){}": {
-      "snippet": "cell[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "igbt()(){}": {
-      "snippet": "igbt(${2:A})(${3:B}){${1:label}}"
-    },
-    "igbt[]()(){}": {
-      "snippet": "igbt[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "OA()()()": {
-      "snippet": "OA(${1:A})(${2:B})(${3:C})"
-    },
-    "OA[]()()()": {
-      "snippet": "OA[${1:options}](${2:A})(${3:B})(${4:C})"
-    },
-    "GM()()()": {
-      "snippet": "GM(${1:A})(${2:B})(${3:C})"
-    },
-    "GM[]()()()": {
-      "snippet": "GM[${1:options}](${2:A})(${3:B})(${4:C})"
-    },
-    "Tswitch()()()": {
-      "snippet": "Tswitch(${1:A})(${2:B})(${3:C})"
-    },
-    "Tswitch[]()()()": {
-      "snippet": "Tswitch[${1:options}](${2:A})(${3:B})(${4:C})"
-    },
-    "potentiometer()()()": {
-      "snippet": "potentiometer(${1:A})(${2:B})(${3:C})"
-    },
-    "potentiometer[]()()()": {
-      "snippet": "potentiometer[${1:options}](${2:A})(${3:B})(${4:C})"
-    },
-    "transistor()()()": {
-      "snippet": "transistor(${1:A})(${2:B})(${3:C})"
-    },
-    "transistor[]()()()": {
-      "snippet": "transistor[${1:options}](${2:A})(${3:B})(${4:C})"
-    },
-    "quadripole()()()(){}": {
-      "snippet": "quadripole(${2:A})(${3:B})(${4:C})(${5:D}){${1:text}}"
-    },
-    "quadripole[]()()()(){}": {
-      "snippet": "quadripole[${2:options}](${3:A})(${4:B})(${5:C})(${6:D}){${1:text}}"
-    },
-    "transformer()()()(){}": {
-      "snippet": "transformer(${2:A})(${3:B})(${4:C})(${5:D}){${1:text}}"
-    },
-    "transformer[]()()()(){}": {
-      "snippet": "transformer[${2:options}](${3:A})(${4:B})(${5:C})(${6:D}){${1:text}}"
-    },
-    "newtransformer()()()(){}": {
-      "snippet": "newtransformer(${2:A})(${3:B})(${4:C})(${5:D}){${1:text}}"
-    },
-    "newtransformer[]()()()(){}": {
-      "snippet": "newtransformer[${2:options}](${3:A})(${4:B})(${5:C})(${6:D}){${1:text}}"
-    },
-    "newtransformerquad()()()(){}": {
-      "snippet": "newtransformerquad(${2:A})(${3:B})(${4:C})(${5:D}){${1:text}}"
-    },
-    "newtransformerquad[]()()()(){}": {
-      "snippet": "newtransformerquad[${2:options}](${3:A})(${4:B})(${5:C})(${6:D}){${1:text}}"
-    },
-    "optoCoupler()()()(){}": {
-      "snippet": "optoCoupler(${2:A})(${3:B})(${4:C})(${5:D}){${1:text}}"
-    },
-    "optoCoupler[]()()()(){}": {
-      "snippet": "optoCoupler[${2:options}](${3:A})(${4:B})(${5:C})(${6:D}){${1:text}}"
-    },
-    "multidipole()()": {
-      "snippet": "multidipole(${1:A})(${2:B})"
-    },
-    "multidipole[]()()": {
-      "snippet": "multidipole[${1:options}](${2:A})(${3:B})"
-    },
-    "OpenDipol()(){}": {
-      "snippet": "OpenDipol(${2:A})(${3:B}){${1:label}}"
-    },
-    "OpenDipol[]()(){}": {
-      "snippet": "OpenDipol[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "OpenTripol()(){}": {
-      "snippet": "OpenTripol(${2:A})(${3:B}){${1:label}}"
-    },
-    "OpenTripol[]()(){}": {
-      "snippet": "OpenTripol[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "dashpot()(){}": {
-      "snippet": "dashpot(${2:A})(${3:B}){${1:label}}"
-    },
-    "dashpot[]()(){}": {
-      "snippet": "dashpot[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "newground()": {
-      "snippet": "newground(${1:A})"
-    },
-    "newground{}()": {
-      "snippet": "newground{${1:angle}}(${2:A})"
-    },
-    "newground[]()": {
-      "snippet": "newground[${1:options}](${2:A})"
-    },
-    "newground[]{}()": {
-      "snippet": "newground[${2:options}]{${1:angle}}(${3:A})"
-    },
-    "newdiode()(){}": {
-      "snippet": "newdiode(${2:A})(${3:B}){${1:label}}"
-    },
-    "newdiode[]()(){}": {
-      "snippet": "newdiode[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "newZener()(){}": {
-      "snippet": "newZener(${2:A})(${3:B}){${1:label}}"
-    },
-    "newZener[]()(){}": {
-      "snippet": "newZener[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "newLED()(){}": {
-      "snippet": "newLED(${2:A})(${3:B}){${1:label}}"
-    },
-    "newLED[]()(){}": {
-      "snippet": "newLED[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "newSwitch()(){}": {
-      "snippet": "newSwitch(${2:A})(${3:B}){${1:label}}"
-    },
-    "newSwitch[]()(){}": {
-      "snippet": "newSwitch[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "newcapacitor()(){}": {
-      "snippet": "newcapacitor(${2:A})(${3:B}){${1:label}}"
-    },
-    "newcapacitor[]()(){}": {
-      "snippet": "newcapacitor[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "newarmature()(){}": {
-      "snippet": "newarmature(${2:A})(${3:B}){${1:label}}"
-    },
-    "newarmature[]()(){}": {
-      "snippet": "newarmature[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "vdc()(){}": {
-      "snippet": "vdc(${2:A})(${3:B}){${1:label}}"
-    },
-    "vdc[]()(){}": {
-      "snippet": "vdc[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "vac()(){}": {
-      "snippet": "vac(${2:A})(${3:B}){${1:label}}"
-    },
-    "vac[]()(){}": {
-      "snippet": "vac[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "antenna()": {
-      "snippet": "antenna(${1:A})"
-    },
-    "antenna{}()": {
-      "snippet": "antenna{${1:angle}}(${2:A})"
-    },
-    "antenna[]()": {
-      "snippet": "antenna[${1:options}](${2:A})"
-    },
-    "antenna[]{}()": {
-      "snippet": "antenna[${2:options}]{${1:angle}}(${3:A})"
-    },
-    "oscillator(){}{}": {
-      "snippet": "oscillator(${3:A}){${1:label}}{${2:pstricks options}}"
-    },
-    "oscillator[](){}{}": {
-      "snippet": "oscillator[${3:options}](${4:A}){${1:label}}{${2:pstricks options}}"
-    },
-    "filter()(){}": {
-      "snippet": "filter(${2:A})(${3:B}){${1:label}}"
-    },
-    "filter[]()(){}": {
-      "snippet": "filter[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "isolator()(){}": {
-      "snippet": "isolator(${2:A})(${3:B}){${1:label}}"
-    },
-    "isolator[]()(){}": {
-      "snippet": "isolator[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "freqmult()(){}": {
-      "snippet": "freqmult(${2:A})(${3:B}){${1:label}}"
-    },
-    "freqmult[]()(){}": {
-      "snippet": "freqmult[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "phaseshifter()(){}": {
-      "snippet": "phaseshifter(${2:A})(${3:B}){${1:label}}"
-    },
-    "phaseshifter[]()(){}": {
-      "snippet": "phaseshifter[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "vco()(){}": {
-      "snippet": "vco(${2:A})(${3:B}){${1:label}}"
-    },
-    "vco[]()(){}": {
-      "snippet": "vco[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "amplifier()(){}": {
-      "snippet": "amplifier(${2:A})(${3:B}){${1:label}}"
-    },
-    "amplifier[]()(){}": {
-      "snippet": "amplifier[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "detector()(){}": {
-      "snippet": "detector(${2:A})(${3:B}){${1:label}}"
-    },
-    "detector[]()(){}": {
-      "snippet": "detector[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "attenuator()(){}": {
-      "snippet": "attenuator(${2:A})(${3:B}){${1:label}}"
-    },
-    "attenuator[]()(){}": {
-      "snippet": "attenuator[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "mixer()()(){}{}": {
-      "snippet": "mixer(${3:A})(${4:B})(${5:C}){${1:label}}{${2:pstricks options}}"
-    },
-    "mixer[]()()(){}{}": {
-      "snippet": "mixer[${3:options}](${4:A})(${5:B})(${6:C}){${1:label}}{${2:pstricks options}}"
-    },
-    "splitter()()(){}{}": {
-      "snippet": "splitter(${3:A})(${4:B})(${5:C}){${1:label}}{${2:pstricks options}}"
-    },
-    "splitter[]()()(){}{}": {
-      "snippet": "splitter[${3:options}](${4:A})(${5:B})(${6:C}){${1:label}}{${2:pstricks options}}"
-    },
-    "circulator{}()()(){}{}": {
-      "snippet": "circulator{${1:angle}}(${4:A})(${5:B})(${6:C}){${2:label}}{${3:pstricks options}}"
-    },
-    "circulator[]{}()()(){}{}": {
-      "snippet": "circulator[${4:options}]{${1:angle}}(${5:A})(${6:B})(${7:C}){${2:label}}{${3:pstricks options}}"
-    },
-    "agc()()(){}{}": {
-      "snippet": "agc(${3:A})(${4:B})(${5:C}){${1:label}}{${2:pstricks options}}"
-    },
-    "agc[]()()(){}{}": {
-      "snippet": "agc[${3:options}](${4:A})(${5:B})(${6:C}){${1:label}}{${2:pstricks options}}"
-    },
-    "coupler()()()(){}{}": {
-      "snippet": "coupler(${3:A})(${4:B})(${5:C})(${6:D}){${1:label}}{${2:pstricks options}}"
-    },
-    "coupler[]()()()(){}{}": {
-      "snippet": "coupler[${3:options}](${4:A})(${5:B})(${6:C})(${7:D}){${1:label}}{${2:pstricks options}}"
-    },
-    "logic{}": {
-      "snippet": "logic{${1:label}}"
-    },
-    "logic(){}": {
-      "snippet": "logic(${2:x},${3:y}){${1:label}}"
-    },
-    "logic[]{}": {
-      "snippet": "logic[${2:options}]{${1:label}}"
-    },
-    "logic[](){}": {
-      "snippet": "logic[${2:options}](${3:x},${4:y}){${1:label}}"
-    },
-    "logicnot(){}": {
-      "snippet": "logicnot(${2:x},${3:y}){${1:label}}"
-    },
-    "logicnot[](){}": {
-      "snippet": "logicnot[${2:options}](${3:x},${4:y}){${1:label}}"
-    },
-    "logicand(){}": {
-      "snippet": "logicand(${2:x},${3:y}){${1:label}}"
-    },
-    "logicand[](){}": {
-      "snippet": "logicand[${2:options}](${3:x},${4:y}){${1:label}}"
-    },
-    "logicor(){}": {
-      "snippet": "logicor(${2:x},${3:y}){${1:label}}"
-    },
-    "logicor[](){}": {
-      "snippet": "logicor[${2:options}](${3:x},${4:y}){${1:label}}"
-    },
-    "logicxor(){}": {
-      "snippet": "logicxor(${2:x},${3:y}){${1:label}}"
-    },
-    "logicxor[](){}": {
-      "snippet": "logicxor[${2:options}](${3:x},${4:y}){${1:label}}"
-    },
-    "logicff(){}": {
-      "snippet": "logicff(${2:x},${3:y}){${1:label}}"
-    },
-    "logicff[](){}": {
-      "snippet": "logicff[${2:options}](${3:x},${4:y}){${1:label}}"
-    },
-    "logicic(){}": {
-      "snippet": "logicic(${2:x},${3:y}){${1:label}}"
-    },
-    "logicic[](){}": {
-      "snippet": "logicic[${2:options}](${3:x},${4:y}){${1:label}}"
-    },
-    "sevensegmentdisplay(){}": {
-      "snippet": "sevensegmentdisplay(${2:x},${3:y}){${1:label}}"
-    },
-    "sevensegmentdisplay[](){}": {
-      "snippet": "sevensegmentdisplay[${2:options}](${3:x},${4:y}){${1:label}}"
-    },
-    "xic()": {
-      "snippet": "xic(${1:x},${2:y})"
-    },
-    "xic[]()": {
-      "snippet": "xic[${1:options}](${2:x},${3:y})"
-    },
-    "xio()": {
-      "snippet": "xio(${1:x},${2:y})"
-    },
-    "xio[]()": {
-      "snippet": "xio[${1:options}](${2:x},${3:y})"
-    },
-    "ote()": {
-      "snippet": "ote(${1:x},${2:y})"
-    },
-    "ote[]()": {
-      "snippet": "ote[${1:options}](${2:x},${3:y})"
-    },
-    "osr()": {
-      "snippet": "osr(${1:x},${2:y})"
-    },
-    "osr[]()": {
-      "snippet": "osr[${1:options}](${2:x},${3:y})"
-    },
-    "res()": {
-      "snippet": "res(${1:x},${2:y})"
-    },
-    "res[]()": {
-      "snippet": "res[${1:options}](${2:x},${3:y})"
-    },
-    "swpb()": {
-      "snippet": "swpb(${1:x},${2:y})"
-    },
-    "swpb[]()": {
-      "snippet": "swpb[${1:options}](${2:x},${3:y})"
-    },
-    "swtog()": {
-      "snippet": "swtog(${1:x},${2:y})"
-    },
-    "swtog[]()": {
-      "snippet": "swtog[${1:options}](${2:x},${3:y})"
-    },
-    "contact()": {
-      "snippet": "contact(${1:x},${2:y})"
-    },
-    "contact[]()": {
-      "snippet": "contact[${1:options}](${2:x},${3:y})"
-    },
-    "armature()": {
-      "snippet": "armature(${1:x},${2:y})"
-    },
-    "armature[]()": {
-      "snippet": "armature[${1:options}](${2:x},${3:y})"
-    },
-    "newCircDipole{}": {
-      "snippet": "newCircDipole{${1:name}}"
-    },
-    "newCircDipole[]{}": {
-      "snippet": "newCircDipole[${2:options}]{${1:name}}"
-    },
-    "icheight": {},
-    "icwidth": {},
-    "icleft": {},
-    "icmid": {},
-    "icright": {},
-    "node()": {
-      "snippet": "node(${1:x},${2:y})"
-    },
-    "modulator()(){}": {
-      "snippet": "modulator(${2:A})(${3:B}){${1:label}}"
-    },
-    "modulator[]()(){}": {
-      "snippet": "modulator[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "plug{}()": {
-      "snippet": "plug{${1:angle}}(${2:A})"
-    },
-    "plug[]{}()": {
-      "snippet": "plug[${2:options}]{${1:angle}}(${3:A})"
-    },
-    "ampsinu()(){}": {
-      "snippet": "ampsinu(${2:A})(${3:B}){${1:label}}"
-    },
-    "ampsinu[]()(){}": {
-      "snippet": "ampsinu[${2:options}](${3:A})(${4:B}){${1:label}}"
-    },
-    "powermeter()()(){}": {
-      "snippet": "powermeter(${2:A})(${3:B})(${4:C}){${1:label}}"
-    },
-    "powermeter[]()()(){}": {
-      "snippet": "powermeter[${2:options}](${3:A})(${4:B})(${5:C}){${1:label}}"
-    },
-    "PSTcircLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "deps": [
+    {
+      "name": "pstricks"
+    },
+    {
+      "name": "pst-node"
+    },
+    {
+      "name": "pst-xkey"
+    },
+    {
+      "name": "multido"
+    }
+  ],
+  "macros": [
+    {
+      "name": "wire",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:A})(${2:B})"
+      }
+    },
+    {
+      "name": "wire",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:A})(${3:B})"
+      }
+    },
+    {
+      "name": "tension",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "tension",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "ground",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A})"
+      }
+    },
+    {
+      "name": "ground",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:angle}}(${2:A})"
+      }
+    },
+    {
+      "name": "ground",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:A})"
+      }
+    },
+    {
+      "name": "ground",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:options%keyvals}]{${1:angle}}(${3:A})"
+      }
+    },
+    {
+      "name": "resistor",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "resistor",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "RFLine",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "RFLine",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "capacitor",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "capacitor",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "battery",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "battery",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "coil",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "coil",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "Ucc",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "Ucc",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "Icc",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "Icc",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "switch",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "switch",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "arrowswitch",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "arrowswitch",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "diode",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "diode",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "Zener",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "Zener",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "lamp",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "lamp",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "circledipole",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "circledipole",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "LED",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "LED",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "SQUID",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "SQUID",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "RelayNOP",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "RelayNOP",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "Suppressor",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "Suppressor",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "Arrestor",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "Arrestor",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "cell",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "cell",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "igbt",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "igbt",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "OA",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:A})(${2:B})(${3:C})"
+      }
+    },
+    {
+      "name": "OA",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "[${1:options%keyvals}](${2:A})(${3:B})(${4:C})"
+      }
+    },
+    {
+      "name": "GM",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:A})(${2:B})(${3:C})"
+      }
+    },
+    {
+      "name": "GM",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "[${1:options%keyvals}](${2:A})(${3:B})(${4:C})"
+      }
+    },
+    {
+      "name": "Tswitch",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:A})(${2:B})(${3:C})"
+      }
+    },
+    {
+      "name": "Tswitch",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "[${1:options%keyvals}](${2:A})(${3:B})(${4:C})"
+      }
+    },
+    {
+      "name": "potentiometer",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:A})(${2:B})(${3:C})"
+      }
+    },
+    {
+      "name": "potentiometer",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "[${1:options%keyvals}](${2:A})(${3:B})(${4:C})"
+      }
+    },
+    {
+      "name": "transistor",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:A})(${2:B})(${3:C})"
+      }
+    },
+    {
+      "name": "transistor",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "[${1:options%keyvals}](${2:A})(${3:B})(${4:C})"
+      }
+    },
+    {
+      "name": "quadripole",
+      "arg": {
+        "format": "()()()(){}",
+        "snippet": "(${2:A})(${3:B})(${4:C})(${5:D}){${1:text%plain}}"
+      }
+    },
+    {
+      "name": "quadripole",
+      "arg": {
+        "format": "[]()()()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B})(${5:C})(${6:D}){${1:text%plain}}"
+      }
+    },
+    {
+      "name": "transformer",
+      "arg": {
+        "format": "()()()(){}",
+        "snippet": "(${2:A})(${3:B})(${4:C})(${5:D}){${1:text%plain}}"
+      }
+    },
+    {
+      "name": "transformer",
+      "arg": {
+        "format": "[]()()()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B})(${5:C})(${6:D}){${1:text%plain}}"
+      }
+    },
+    {
+      "name": "newtransformer",
+      "arg": {
+        "format": "()()()(){}",
+        "snippet": "(${2:A})(${3:B})(${4:C})(${5:D}){${1:text%plain}}"
+      }
+    },
+    {
+      "name": "newtransformer",
+      "arg": {
+        "format": "[]()()()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B})(${5:C})(${6:D}){${1:text%plain}}"
+      }
+    },
+    {
+      "name": "newtransformerquad",
+      "arg": {
+        "format": "()()()(){}",
+        "snippet": "(${2:A})(${3:B})(${4:C})(${5:D}){${1:text%plain}}"
+      }
+    },
+    {
+      "name": "newtransformerquad",
+      "arg": {
+        "format": "[]()()()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B})(${5:C})(${6:D}){${1:text%plain}}"
+      }
+    },
+    {
+      "name": "optoCoupler",
+      "arg": {
+        "format": "()()()(){}",
+        "snippet": "(${2:A})(${3:B})(${4:C})(${5:D}){${1:text%plain}}"
+      }
+    },
+    {
+      "name": "optoCoupler",
+      "arg": {
+        "format": "[]()()()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B})(${5:C})(${6:D}){${1:text%plain}}"
+      }
+    },
+    {
+      "name": "multidipole",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:A})(${2:B})"
+      }
+    },
+    {
+      "name": "multidipole",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:A})(${3:B})"
+      }
+    },
+    {
+      "name": "OpenDipol",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "OpenDipol",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "OpenTripol",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "OpenTripol",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "dashpot",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "dashpot",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "newground",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A})"
+      }
+    },
+    {
+      "name": "newground",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:angle}}(${2:A})"
+      }
+    },
+    {
+      "name": "newground",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:A})"
+      }
+    },
+    {
+      "name": "newground",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:options%keyvals}]{${1:angle}}(${3:A})"
+      }
+    },
+    {
+      "name": "newdiode",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "newdiode",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "newZener",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "newZener",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "newLED",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "newLED",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "newSwitch",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "newSwitch",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "newcapacitor",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "newcapacitor",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "newarmature",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "newarmature",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "vdc",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "vdc",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "vac",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "vac",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "antenna",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A})"
+      }
+    },
+    {
+      "name": "antenna",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:angle}}(${2:A})"
+      }
+    },
+    {
+      "name": "antenna",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:A})"
+      }
+    },
+    {
+      "name": "antenna",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:options%keyvals}]{${1:angle}}(${3:A})"
+      }
+    },
+    {
+      "name": "oscillator",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "(${3:A}){${1:label}}{${2:pstricks options}}"
+      }
+    },
+    {
+      "name": "oscillator",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "[${3:options%keyvals}](${4:A}){${1:label}}{${2:pstricks options}}"
+      }
+    },
+    {
+      "name": "filter",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "filter",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "isolator",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "isolator",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "freqmult",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "freqmult",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "phaseshifter",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "phaseshifter",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "vco",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "vco",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "amplifier",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "amplifier",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "detector",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "detector",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "attenuator",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "attenuator",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "mixer",
+      "arg": {
+        "format": "()()(){}{}",
+        "snippet": "(${3:A})(${4:B})(${5:C}){${1:label}}{${2:pstricks options}}"
+      }
+    },
+    {
+      "name": "mixer",
+      "arg": {
+        "format": "[]()()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:A})(${5:B})(${6:C}){${1:label}}{${2:pstricks options}}"
+      }
+    },
+    {
+      "name": "splitter",
+      "arg": {
+        "format": "()()(){}{}",
+        "snippet": "(${3:A})(${4:B})(${5:C}){${1:label}}{${2:pstricks options}}"
+      }
+    },
+    {
+      "name": "splitter",
+      "arg": {
+        "format": "[]()()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:A})(${5:B})(${6:C}){${1:label}}{${2:pstricks options}}"
+      }
+    },
+    {
+      "name": "circulator",
+      "arg": {
+        "format": "{}()()(){}{}",
+        "snippet": "{${1:angle}}(${4:A})(${5:B})(${6:C}){${2:label}}{${3:pstricks options}}"
+      }
+    },
+    {
+      "name": "circulator",
+      "arg": {
+        "format": "[]{}()()(){}{}",
+        "snippet": "[${4:options%keyvals}]{${1:angle}}(${5:A})(${6:B})(${7:C}){${2:label}}{${3:pstricks options}}"
+      }
+    },
+    {
+      "name": "agc",
+      "arg": {
+        "format": "()()(){}{}",
+        "snippet": "(${3:A})(${4:B})(${5:C}){${1:label}}{${2:pstricks options}}"
+      }
+    },
+    {
+      "name": "agc",
+      "arg": {
+        "format": "[]()()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:A})(${5:B})(${6:C}){${1:label}}{${2:pstricks options}}"
+      }
+    },
+    {
+      "name": "coupler",
+      "arg": {
+        "format": "()()()(){}{}",
+        "snippet": "(${3:A})(${4:B})(${5:C})(${6:D}){${1:label}}{${2:pstricks options}}"
+      }
+    },
+    {
+      "name": "coupler",
+      "arg": {
+        "format": "[]()()()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:A})(${5:B})(${6:C})(${7:D}){${1:label}}{${2:pstricks options}}"
+      }
+    },
+    {
+      "name": "logic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "logic",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:label}}"
+      }
+    },
+    {
+      "name": "logic",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "logic",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:label}}"
+      }
+    },
+    {
+      "name": "logicnot",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:label}}"
+      }
+    },
+    {
+      "name": "logicnot",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:label}}"
+      }
+    },
+    {
+      "name": "logicand",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:label}}"
+      }
+    },
+    {
+      "name": "logicand",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:label}}"
+      }
+    },
+    {
+      "name": "logicor",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:label}}"
+      }
+    },
+    {
+      "name": "logicor",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:label}}"
+      }
+    },
+    {
+      "name": "logicxor",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:label}}"
+      }
+    },
+    {
+      "name": "logicxor",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:label}}"
+      }
+    },
+    {
+      "name": "logicff",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:label}}"
+      }
+    },
+    {
+      "name": "logicff",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:label}}"
+      }
+    },
+    {
+      "name": "logicic",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:label}}"
+      }
+    },
+    {
+      "name": "logicic",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:label}}"
+      }
+    },
+    {
+      "name": "sevensegmentdisplay",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:label}}"
+      }
+    },
+    {
+      "name": "sevensegmentdisplay",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:label}}"
+      }
+    },
+    {
+      "name": "xic",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "xic",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "xio",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "xio",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "ote",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "ote",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "osr",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "osr",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "res",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "res",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "swpb",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "swpb",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "swtog",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "swtog",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "contact",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "contact",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "armature",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "armature",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "newCircDipole",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "newCircDipole",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:name}}"
+      }
+    },
+    {
+      "name": "icheight",
+      "unusual": true
+    },
+    {
+      "name": "icwidth",
+      "unusual": true
+    },
+    {
+      "name": "icleft",
+      "unusual": true
+    },
+    {
+      "name": "icmid",
+      "unusual": true
+    },
+    {
+      "name": "icright",
+      "unusual": true
+    },
+    {
+      "name": "node",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "modulator",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "modulator",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "plug",
+      "unusual": true,
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:angle}}(${2:A})"
+      }
+    },
+    {
+      "name": "plug",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:options%keyvals}]{${1:angle}}(${3:A})"
+      }
+    },
+    {
+      "name": "ampsinu",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "ampsinu",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:label}}"
+      }
+    },
+    {
+      "name": "powermeter",
+      "unusual": true,
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "(${2:A})(${3:B})(${4:C}){${1:label}}"
+      }
+    },
+    {
+      "name": "powermeter",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B})(${5:C}){${1:label}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

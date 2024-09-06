@@ -1,39 +1,100 @@
 {
-  "includes": {
-    "calc": [],
-    "ifthen": []
-  },
-  "macros": {
-    "alter": {},
-    "name{}": {
-      "snippet": "name{${1:name}}"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "name[]{}": {
-      "snippet": "name[${2:prefix}]{${1:name}}"
-    },
-    "altindent": {},
-    "hang": {},
-    "keylabelwidth": {},
-    "oldparindent": {},
-    "panic{}": {
-      "snippet": "panic{${1:arg}}"
-    },
-    "thebacksteps": {},
-    "thebinarycounter": {},
-    "thebincouplet": {},
-    "thecouplet": {},
-    "thedelta": {},
-    "theindentcounter": {},
-    "thelastcouplet": {},
-    "thetemp": {},
-    "gprefix": {}
-  },
-  "envs": {
-    "Key{}": {
-      "name": "Key",
-      "snippet": "{${1:prefix}}"
+    {
+      "name": "ifthen"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "alter"
+    },
+    {
+      "name": "name",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "name",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix}]{${1:name}}"
+      }
+    },
+    {
+      "name": "altindent",
+      "unusual": true
+    },
+    {
+      "name": "hang",
+      "unusual": true
+    },
+    {
+      "name": "keylabelwidth",
+      "unusual": true
+    },
+    {
+      "name": "oldparindent",
+      "unusual": true
+    },
+    {
+      "name": "panic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "thebacksteps",
+      "unusual": true
+    },
+    {
+      "name": "thebinarycounter",
+      "unusual": true
+    },
+    {
+      "name": "thebincouplet",
+      "unusual": true
+    },
+    {
+      "name": "thecouplet",
+      "unusual": true
+    },
+    {
+      "name": "thedelta",
+      "unusual": true
+    },
+    {
+      "name": "theindentcounter",
+      "unusual": true
+    },
+    {
+      "name": "thelastcouplet",
+      "unusual": true
+    },
+    {
+      "name": "thetemp",
+      "unusual": true
+    },
+    {
+      "name": "gprefix",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "Key",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:prefix}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

@@ -1,16 +1,21 @@
 {
-  "includes": {},
-  "macros": {
-    "CelticDrawPath{}": {
-      "snippet": "CelticDrawPath{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [],
+  "macros": [
+    {
+      "name": "CelticDrawPath",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\CelticDrawPath#c"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "envs": [],
+  "keys": {
+    "\\CelticDrawPath#c": [
       "max steps=${1:integer}",
       "flip",
       "width=",
@@ -24,6 +29,13 @@
       "at=${1:coordinate}",
       "inner clip=${1:integer}",
       "outer clip=${1:integer}"
+    ],
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "celtic surround/.style={${1:TikZ keys}}",
+      "celtic bar/.style={${1:TikZ keys}}",
+      "celtic path/.style={${1:TikZ keys}}",
+      "celtic path ${1:⟨n⟩}/.style={${2:TikZ keys}}"
     ]
-  ]
+  },
+  "args": []
 }

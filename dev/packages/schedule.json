@@ -1,64 +1,190 @@
 {
-  "includes": {
-    "calc": [],
-    "xcolor": []
-  },
-  "macros": {
-    "class{}{}{}{}": {
-      "snippet": "class{${1:name}}{${2:location}}{${3:days of week}}{${4:start-end}}"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "CellHeight{}": {
-      "snippet": "CellHeight{${1:height}}"
-    },
-    "CellWidth{}": {
-      "snippet": "CellWidth{${1:width}}"
-    },
-    "TimeRange{}": {
-      "snippet": "TimeRange{${1:start-end}}"
-    },
-    "SubUnits{}": {
-      "snippet": "SubUnits{${1:number}}"
-    },
-    "BeginOn{}": {
-      "snippet": "BeginOn{${1:day}}"
-    },
-    "TextSize{}": {
-      "snippet": "TextSize{${1:size}}"
-    },
-    "FiveDay": {},
-    "SevenDay": {},
-    "TwelveHour": {},
-    "TwentyFourHour": {},
-    "NewAppointment{}{}{}": {
-      "snippet": "NewAppointment{${1:name}}{${2:background color}}{${3:text color}}"
-    },
-    "LineThickness{}": {
-      "snippet": "LineThickness{${1:dimen}}"
-    },
-    "IncludeWeekends": {},
-    "NoWeekends": {},
-    "ifweekends": {},
-    "weekendstrue": {},
-    "weekendsfalse": {},
-    "iftwelve": {},
-    "twelvetrue": {},
-    "twelvefalse": {},
-    "ifsetboxdepth": {},
-    "setboxdepthtrue": {},
-    "setboxdepthfalse": {},
-    "ifinrange": {},
-    "inrangetrue": {},
-    "inrangefalse": {},
-    "thexcoords": {},
-    "theycoords": {}
-  },
-  "envs": {
-    "schedule": {},
-    "schedule[]": {
-      "name": "schedule",
-      "snippet": "[${1:title}]"
+    {
+      "name": "xcolor"
     }
+  ],
+  "macros": [
+    {
+      "name": "class",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:name}}{${2:location}}{${3:days of week%keyvals}}{${4:start-end}}",
+        "keys": [
+          "\\class"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "CellHeight",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:height}}"
+      }
+    },
+    {
+      "name": "CellWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "TimeRange",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:start-end}}"
+      }
+    },
+    {
+      "name": "SubUnits",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "BeginOn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:day%keyvals}}",
+        "keys": [
+          "\\BeginOn"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "TextSize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size}}"
+      }
+    },
+    {
+      "name": "FiveDay"
+    },
+    {
+      "name": "SevenDay"
+    },
+    {
+      "name": "TwelveHour"
+    },
+    {
+      "name": "TwentyFourHour"
+    },
+    {
+      "name": "NewAppointment",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:background color}}{${3:text color}}"
+      }
+    },
+    {
+      "name": "LineThickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen%l}}"
+      }
+    },
+    {
+      "name": "IncludeWeekends",
+      "unusual": true
+    },
+    {
+      "name": "NoWeekends",
+      "unusual": true
+    },
+    {
+      "name": "ifweekends",
+      "unusual": true
+    },
+    {
+      "name": "weekendstrue",
+      "unusual": true
+    },
+    {
+      "name": "weekendsfalse",
+      "unusual": true
+    },
+    {
+      "name": "iftwelve",
+      "unusual": true
+    },
+    {
+      "name": "twelvetrue",
+      "unusual": true
+    },
+    {
+      "name": "twelvefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsetboxdepth",
+      "unusual": true
+    },
+    {
+      "name": "setboxdepthtrue",
+      "unusual": true
+    },
+    {
+      "name": "setboxdepthfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifinrange",
+      "unusual": true
+    },
+    {
+      "name": "inrangetrue",
+      "unusual": true
+    },
+    {
+      "name": "inrangefalse",
+      "unusual": true
+    },
+    {
+      "name": "thexcoords",
+      "unusual": true
+    },
+    {
+      "name": "theycoords",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "schedule"
+    },
+    {
+      "name": "schedule",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%plain}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\class": [
+      "M",
+      "T",
+      "W",
+      "Th",
+      "F"
+    ],
+    "\\BeginOn": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

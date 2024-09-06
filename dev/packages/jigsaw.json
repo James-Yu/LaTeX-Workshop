@@ -1,37 +1,81 @@
 {
-  "includes": {
-    "tikz": [],
-    "ifluatex": [],
-    "ifxetex": []
-  },
-  "macros": {
-    "piece{}{}{}{}": {
-      "snippet": "piece{${1:bottom}}{${2:right}}{${3:top}}{${4:left}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "piece[]{}{}{}{}": {
-      "snippet": "piece[${5:color}]{${1:bottom}}{${2:right}}{${3:top}}{${4:left}}"
+    {
+      "name": "ifluatex"
     },
-    "tile{}{}{}{}": {
-      "snippet": "tile{${1:bottom}}{${2:right}}{${3:top}}{${4:left}}"
+    {
+      "name": "ifxetex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "piece",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:bottom}}{${2:right}}{${3:top}}{${4:left}}"
+      }
     },
-    "tile[]{}{}{}{}": {
-      "snippet": "tile[${5:color}]{${1:bottom}}{${2:right}}{${3:top}}{${4:left}}"
+    {
+      "name": "piece",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:color}]{${1:bottom}}{${2:right}}{${3:top}}{${4:left}}"
+      }
     },
-    "jigsaw{}{}": {
-      "snippet": "jigsaw{${1:rows}}{${2:columns}}"
+    {
+      "name": "tile",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:bottom}}{${2:right}}{${3:top}}{${4:left}}"
+      }
     },
-    "side{}": {
-      "snippet": "side{${1:number}}"
+    {
+      "name": "tile",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:color}]{${1:bottom}}{${2:right}}{${3:top}}{${4:left}}"
+      }
     },
-    "bottom": {},
-    "halfpiece{}{}": {
-      "snippet": "halfpiece{${1:num1}}{${2:num2}}"
+    {
+      "name": "jigsaw",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:rows}}{${2:columns}}"
+      }
     },
-    "tmp": {},
-    "xmax": {},
-    "ymax": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "side",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "bottom",
+      "unusual": true
+    },
+    {
+      "name": "halfpiece",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}"
+      }
+    },
+    {
+      "name": "xmax",
+      "unusual": true
+    },
+    {
+      "name": "ymax",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

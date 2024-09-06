@@ -1,161 +1,366 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "makecmds": []
-  },
-  "macros": {
-    "setcounterprefix{}": {
-      "snippet": "setcounterprefix{${1:prefix}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "clearcounterprefix": {},
-    "xnewcounter{}": {
-      "snippet": "xnewcounter{${1:counter name}}"
-    },
-    "xprovidecounter{}": {
-      "snippet": "xprovidecounter{${1:counter name}}"
-    },
-    "xsetcounter{}{}": {
-      "snippet": "xsetcounter{${1:counter}}{${2:integer}}"
-    },
-    "xaddtocounter{}{}": {
-      "snippet": "xaddtocounter{${1:counter}}{${2:integer}}"
-    },
-    "xvalue{}": {
-      "snippet": "xvalue{${1:counter}}"
-    },
-    "ifctrequal{}{}{}{}": {
-      "snippet": "ifctrequal{${1:counter1}}{${2:counter2}}{${3:true}}{${4:false}}"
-    },
-    "ifctrless{}{}{}{}": {
-      "snippet": "ifctrless{${1:counter1}}{${2:counter2}}{${3:true}}{${4:false}}"
-    },
-    "ifctrmore{}{}{}{}": {
-      "snippet": "ifctrmore{${1:counter1}}{${2:counter2}}{${3:true}}{${4:false}}"
-    },
-    "ifctrzero{}{}{}": {
-      "snippet": "ifctrzero{${1:counter}}{${2:true}}{${3:false}}"
-    },
-    "ifctrneg{}{}{}": {
-      "snippet": "ifctrneg{${1:counter}}{${2:true}}{${3:false}}"
-    },
-    "ifctrpos{}{}{}": {
-      "snippet": "ifctrpos{${1:counter}}{${2:true}}{${3:false}}"
-    },
-    "xarabic{}": {
-      "snippet": "xarabic{${1:counter}}"
-    },
-    "xroman{}": {
-      "snippet": "xroman{${1:counter}}"
-    },
-    "xRoman{}": {
-      "snippet": "xRoman{${1:counter}}"
-    },
-    "xalph{}": {
-      "snippet": "xalph{${1:counter}}"
-    },
-    "xAlph{}": {
-      "snippet": "xAlph{${1:counter}}"
-    },
-    "xfnsymbol{}": {
-      "snippet": "xfnsymbol{${1:counter}}"
-    },
-    "xsigned{}": {
-      "snippet": "xsigned{${1:counter}}"
-    },
-    "xsignednz{}": {
-      "snippet": "xsignednz{${1:counter}}"
-    },
-    "xarabicnz{}": {
-      "snippet": "xarabicnz{${1:counter}}"
-    },
-    "xnegof{}": {
-      "snippet": "xnegof{${1:counter}}"
-    },
-    "xnegofnz{}": {
-      "snippet": "xnegofnz{${1:counter}}"
-    },
-    "xnegsigned{}": {
-      "snippet": "xnegsigned{${1:counter}}"
-    },
-    "xnegsignednz{}": {
-      "snippet": "xnegsignednz{${1:counter}}"
-    },
-    "xabsof{}": {
-      "snippet": "xabsof{${1:counter}}"
-    },
-    "xsignof{}": {
-      "snippet": "xsignof{${1:counter}}"
-    },
-    "xnegsignof{}": {
-      "snippet": "xnegsignof{${1:counter}}"
-    },
-    "xabsofcoef{}": {
-      "snippet": "xabsofcoef{${1:counter}}"
-    },
-    "xsignofcoef{}": {
-      "snippet": "xsignofcoef{${1:counter}}"
-    },
-    "xnegsignofcoef{}": {
-      "snippet": "xnegsignofcoef{${1:counter}}"
-    },
-    "xcoef{}": {
-      "snippet": "xcoef{${1:counter}}"
-    },
-    "xsignedcoef{}": {
-      "snippet": "xsignedcoef{${1:counter}}"
-    },
-    "xnegcoef{}": {
-      "snippet": "xnegcoef{${1:counter}}"
-    },
-    "xnegsignedcoef{}": {
-      "snippet": "xnegsignedcoef{${1:counter}}"
-    },
-    "randsetcounter{}{}{}": {
-      "snippet": "randsetcounter{${1:counter}}{${2:min}}{${3:max}}"
-    },
-    "xrandsetcounter{}{}{}": {
-      "snippet": "xrandsetcounter{${1:counter}}{${2:min}}{${3:max}}"
-    },
-    "randaddtocounter{}{}{}": {
-      "snippet": "randaddtocounter{${1:counter}}{${2:min}}{${3:max}}"
-    },
-    "xrandaddtocounter{}{}{}": {
-      "snippet": "xrandaddtocounter{${1:counter}}{${2:min}}{${3:max}}"
-    },
-    "randomizectr": {},
-    "norandomizectr": {},
-    "ifrandomizectr{}{}": {
-      "snippet": "ifrandomizectr{${1:true}}{${2:false}}"
-    },
-    "opencountersfile": {},
-    "countersfile": {},
-    "savecounter{}": {
-      "snippet": "savecounter{${1:counter}}"
-    },
-    "xsavecounter{}": {
-      "snippet": "xsavecounter{${1:counter}}"
-    },
-    "inputcountersfile": {},
-    "promptrandomizectr{}{}": {
-      "snippet": "promptrandomizectr{${1:message}}{${2:string}}"
-    },
-    "promptrandomizectr[]{}{}": {
-      "snippet": "promptrandomizectr[${3:macro}]{${1:message}}{${2:string}}"
-    },
-    "randprovidecounter{}{}{}": {
-      "snippet": "randprovidecounter{${1:counter}}{${2:min}}{${3:max}}"
-    },
-    "randprovidecounternz{}{}{}": {
-      "snippet": "randprovidecounternz{${1:counter}}{${2:min}}{${3:max}}"
-    },
-    "xrandprovidecounter{}{}{}": {
-      "snippet": "xrandprovidecounter{${1:counter}}{${2:min}}{${3:max}}"
-    },
-    "xrandprovidecounternz{}{}{}": {
-      "snippet": "xrandprovidecounternz{${1:counter}}{${2:min}}{${3:max}}"
+    {
+      "name": "makecmds"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "setcounterprefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:prefix}}"
+      }
+    },
+    {
+      "name": "clearcounterprefix"
+    },
+    {
+      "name": "xnewcounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter name}}"
+      }
+    },
+    {
+      "name": "xprovidecounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter name}}"
+      }
+    },
+    {
+      "name": "xsetcounter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:counter}}{${2:integer}}"
+      }
+    },
+    {
+      "name": "xaddtocounter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:counter}}{${2:integer}}"
+      }
+    },
+    {
+      "name": "xvalue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "ifctrequal",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:counter1}}{${2:counter2}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "ifctrless",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:counter1}}{${2:counter2}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "ifctrmore",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:counter1}}{${2:counter2}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "ifctrzero",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:counter}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifctrneg",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:counter}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifctrpos",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:counter}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "xarabic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xroman",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xRoman",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xalph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xAlph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xfnsymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xsigned",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xsignednz",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xarabicnz",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xnegof",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xnegofnz",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xnegsigned",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xnegsignednz",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xabsof",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xsignof",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xnegsignof",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xabsofcoef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xsignofcoef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xnegsignofcoef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xcoef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xsignedcoef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xnegcoef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xnegsignedcoef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "randsetcounter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:counter}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "xrandsetcounter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:counter}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "randaddtocounter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:counter}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "xrandaddtocounter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:counter}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "randomizectr"
+    },
+    {
+      "name": "norandomizectr"
+    },
+    {
+      "name": "ifrandomizectr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "opencountersfile"
+    },
+    {
+      "name": "savecounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xsavecounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "inputcountersfile"
+    },
+    {
+      "name": "promptrandomizectr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:message}}{${2:string}}"
+      }
+    },
+    {
+      "name": "promptrandomizectr",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:macro%cmd}]{${1:message}}{${2:string}}"
+      }
+    },
+    {
+      "name": "randprovidecounter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:counter}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "randprovidecounternz",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:counter}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "xrandprovidecounter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:counter}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "xrandprovidecounternz",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:counter}}{${2:min}}{${3:max}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

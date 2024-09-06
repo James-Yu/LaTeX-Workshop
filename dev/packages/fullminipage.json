@@ -1,21 +1,31 @@
 {
-  "includes": {
-    "color": [],
-    "keyval": []
-  },
-  "macros": {},
-  "envs": {
-    "fullminipage": {},
-    "fullminipage[]": {
-      "name": "fullminipage",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "color"
+    },
+    {
+      "name": "keyval"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [],
+  "envs": [
+    {
+      "name": "fullminipage"
+    },
+    {
+      "name": "fullminipage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{fullminipage}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{fullminipage}": [
       "left=",
       "right=",
       "top=",
@@ -26,5 +36,6 @@
       "background=${1:code}",
       "pagebreak=${1:code}"
     ]
-  ]
+  },
+  "args": []
 }

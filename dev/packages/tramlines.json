@@ -1,15 +1,23 @@
 {
-  "includes": {
-    "booktabs": []
-  },
-  "macros": {
-    "tramlines{}": {
-      "snippet": "tramlines{${1:text}}"
+  "deps": [
+    {
+      "name": "booktabs"
+    }
+  ],
+  "macros": [
+    {
+      "name": "tramlines",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "tramlinesep": {},
-    "tramlinesversionnumber": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "tramlinesep",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,464 +1,1550 @@
 {
-  "includes": {
-    "tikz": []
-  },
-  "macros": {
-    "Blt": {},
-    "Dlt": {},
-    "DrawTwoCube": {},
-    "DrawTwoCubeF": {},
-    "DrawTwoCubeFrontFace": {},
-    "DrawTwoCubeLD": {},
-    "DrawTwoCubeLU": {},
-    "DrawTwoCubeRD": {},
-    "DrawTwoCubeRU": {},
-    "DrawTwoCubeSF": {},
-    "DrawTwoCubeSidebarBD{}": {
-      "snippet": "DrawTwoCubeSidebarBD{${1:view direction}}"
+  "deps": [
+    {
+      "name": "tikz"
+    }
+  ],
+  "macros": [
+    {
+      "name": "Blt",
+      "unusual": true
     },
-    "DrawTwoCubeSidebarBDLD": {},
-    "DrawTwoCubeSidebarBDRD": {},
-    "DrawTwoCubeSidebarBL{}": {
-      "snippet": "DrawTwoCubeSidebarBL{${1:view direction}}"
+    {
+      "name": "Dlt",
+      "unusual": true
     },
-    "DrawTwoCubeSidebarBLLD": {},
-    "DrawTwoCubeSidebarBLLU": {},
-    "DrawTwoCubeSidebarBR{}": {
-      "snippet": "DrawTwoCubeSidebarBR{${1:view direction}}"
+    {
+      "name": "DrawTwoCube"
     },
-    "DrawTwoCubeSidebarBRRD": {},
-    "DrawTwoCubeSidebarBRRU": {},
-    "DrawTwoCubeSidebarBU{}": {
-      "snippet": "DrawTwoCubeSidebarBU{${1:view direction}}"
+    {
+      "name": "DrawTwoCubeF"
     },
-    "DrawTwoCubeSidebarBULU": {},
-    "DrawTwoCubeSidebarBURU": {},
-    "DrawTwoCubeSidebarDB{}": {
-      "snippet": "DrawTwoCubeSidebarDB{${1:view direction}}"
+    {
+      "name": "DrawTwoCubeFrontFace",
+      "unusual": true
     },
-    "DrawTwoCubeSidebarDBLD": {},
-    "DrawTwoCubeSidebarDBRD": {},
-    "DrawTwoCubeSidebarDF{}": {
-      "snippet": "DrawTwoCubeSidebarDF{${1:view direction}}"
+    {
+      "name": "DrawTwoCubeLD"
     },
-    "DrawTwoCubeSidebarDFLU": {},
-    "DrawTwoCubeSidebarDFRU": {},
-    "DrawTwoCubeSidebarFD{}": {
-      "snippet": "DrawTwoCubeSidebarFD{${1:view direction}}"
+    {
+      "name": "DrawTwoCubeLU"
     },
-    "DrawTwoCubeSidebarFDLU": {},
-    "DrawTwoCubeSidebarFDRU": {},
-    "DrawTwoCubeSidebarFL{}": {
-      "snippet": "DrawTwoCubeSidebarFL{${1:view direction}}"
+    {
+      "name": "DrawTwoCubeRD"
     },
-    "DrawTwoCubeSidebarFLRD": {},
-    "DrawTwoCubeSidebarFLRU": {},
-    "DrawTwoCubeSidebarFR{}": {
-      "snippet": "DrawTwoCubeSidebarFR{${1:view direction}}"
+    {
+      "name": "DrawTwoCubeRU"
     },
-    "DrawTwoCubeSidebarFRLD": {},
-    "DrawTwoCubeSidebarFRLU": {},
-    "DrawTwoCubeSidebarFU{}": {
-      "snippet": "DrawTwoCubeSidebarFU{${1:view direction}}"
+    {
+      "name": "DrawTwoCubeSF"
     },
-    "DrawTwoCubeSidebarFULD": {},
-    "DrawTwoCubeSidebarFURD": {},
-    "DrawTwoCubeSidebarLB{}": {
-      "snippet": "DrawTwoCubeSidebarLB{${1:view direction}}"
+    {
+      "name": "DrawTwoCubeSidebarBD",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
     },
-    "DrawTwoCubeSidebarLBLD": {},
-    "DrawTwoCubeSidebarLBLU": {},
-    "DrawTwoCubeSidebarLF{}": {
-      "snippet": "DrawTwoCubeSidebarLF{${1:view direction}}"
+    {
+      "name": "DrawTwoCubeSidebarBDLD",
+      "unusual": true
     },
-    "DrawTwoCubeSidebarLFRD": {},
-    "DrawTwoCubeSidebarLFRU": {},
-    "DrawTwoCubeSidebarRB{}": {
-      "snippet": "DrawTwoCubeSidebarRB{${1:view direction}}"
+    {
+      "name": "DrawTwoCubeSidebarBDRD",
+      "unusual": true
     },
-    "DrawTwoCubeSidebarRBRD": {},
-    "DrawTwoCubeSidebarRBRU": {},
-    "DrawTwoCubeSidebarRF{}": {
-      "snippet": "DrawTwoCubeSidebarRF{${1:view direction}}"
+    {
+      "name": "DrawTwoCubeSidebarBL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
     },
-    "DrawTwoCubeSidebarRFLD": {},
-    "DrawTwoCubeSidebarRFLU": {},
-    "DrawTwoCubeSidebarUB{}": {
-      "snippet": "DrawTwoCubeSidebarUB{${1:view direction}}"
+    {
+      "name": "DrawTwoCubeSidebarBLLD",
+      "unusual": true
     },
-    "DrawTwoCubeSidebarUBLU": {},
-    "DrawTwoCubeSidebarUBRU": {},
-    "DrawTwoCubeSidebarUF{}": {
-      "snippet": "DrawTwoCubeSidebarUF{${1:view direction}}"
+    {
+      "name": "DrawTwoCubeSidebarBLLU",
+      "unusual": true
     },
-    "DrawTwoCubeSidebarUFLD": {},
-    "DrawTwoCubeSidebarUFRD": {},
-    "DrawTwoFaceB": {},
-    "DrawTwoFaceBack": {},
-    "DrawTwoFaceBackSide": {},
-    "DrawTwoFaceBS": {},
-    "DrawTwoFaceD": {},
-    "DrawTwoFaceDown": {},
-    "DrawTwoFaceDownSide": {},
-    "DrawTwoFaceDS": {},
-    "DrawTwoFaceF": {},
-    "DrawTwoFaceFront": {},
-    "DrawTwoFaceFrontSide": {},
-    "DrawTwoFaceFS": {},
-    "DrawTwoFaceL": {},
-    "DrawTwoFaceLeft": {},
-    "DrawTwoFaceLeftSide": {},
-    "DrawTwoFaceLS": {},
-    "DrawTwoFaceR": {},
-    "DrawTwoFaceRight": {},
-    "DrawTwoFaceRightSide": {},
-    "DrawTwoFaceRS": {},
-    "DrawTwoFaceU": {},
-    "DrawTwoFaceUp": {},
-    "DrawTwoFaceUpSide": {},
-    "DrawTwoFaceUS": {},
-    "DrawTwoFlatBack{}{}": {
-      "snippet": "DrawTwoFlatBack{${1:x}}{${2:y}}"
+    {
+      "name": "DrawTwoCubeSidebarBR",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
     },
-    "DrawTwoFlatDown{}{}": {
-      "snippet": "DrawTwoFlatDown{${1:x}}{${2:y}}"
+    {
+      "name": "DrawTwoCubeSidebarBRRD",
+      "unusual": true
     },
-    "DrawTwoFlatFront": {},
-    "DrawTwoFlatLeft{}{}": {
-      "snippet": "DrawTwoFlatLeft{${1:x}}{${2:y}}"
+    {
+      "name": "DrawTwoCubeSidebarBRRU",
+      "unusual": true
     },
-    "DrawTwoFlatRight{}{}": {
-      "snippet": "DrawTwoFlatRight{${1:x}}{${2:y}}"
+    {
+      "name": "DrawTwoCubeSidebarBU",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
     },
-    "DrawTwoFlatUp{}{}": {
-      "snippet": "DrawTwoFlatUp{${1:x}}{${2:y}}"
+    {
+      "name": "DrawTwoCubeSidebarBULU",
+      "unusual": true
     },
-    "Flb": {},
-    "Flt": {},
-    "Llb": {},
-    "Llt": {},
-    "NoSidebar{}": {
-      "snippet": "NoSidebar{${1:color-code}}"
+    {
+      "name": "DrawTwoCubeSidebarBURU",
+      "unusual": true
     },
-    "Rlt": {},
-    "RTCfiledate": {},
-    "RTCfileversion": {},
-    "rubiktwocube": {},
-    "SaveTwoState{}": {
-      "snippet": "SaveTwoState{${1:filename}}"
+    {
+      "name": "DrawTwoCubeSidebarDB",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
     },
-    "SquaretD": {},
-    "SquaretDp": {},
-    "SquaretL": {},
-    "SquaretLp": {},
-    "SquaretR": {},
-    "SquaretRp": {},
-    "SquaretU": {},
-    "SquaretUp": {},
-    "textTwo{}": {
-      "snippet": "textTwo{${1:rotation code}}"
+    {
+      "name": "DrawTwoCubeSidebarDBLD",
+      "unusual": true
     },
-    "textTwoB": {},
-    "textTwob": {},
-    "textTwoBc": {},
-    "textTwoBcp": {},
-    "textTwoBp": {},
-    "textTwobp": {},
-    "textTwoCB": {},
-    "textTwoCBp": {},
-    "textTwoCD": {},
-    "textTwoCDp": {},
-    "textTwoCF": {},
-    "textTwoCFp": {},
-    "textTwoCL": {},
-    "textTwoCLp": {},
-    "textTwoCR": {},
-    "textTwoCRp": {},
-    "textTwoCU": {},
-    "textTwoCUp": {},
-    "textTwoD": {},
-    "textTwod": {},
-    "textTwoDc": {},
-    "textTwoDcp": {},
-    "textTwoDp": {},
-    "textTwodp": {},
-    "textTwoF": {},
-    "textTwof": {},
-    "textTwoFc": {},
-    "textTwoFcp": {},
-    "textTwoFp": {},
-    "textTwofp": {},
-    "textTwoL": {},
-    "textTwol": {},
-    "textTwoLc": {},
-    "textTwoLcp": {},
-    "textTwoLp": {},
-    "textTwolp": {},
-    "textTwoR": {},
-    "textTwor": {},
-    "textTwoRc": {},
-    "textTwoRcp": {},
-    "textTwoRp": {},
-    "textTworp": {},
-    "textTwoU": {},
-    "textTwou": {},
-    "textTwoUc": {},
-    "textTwoUcp": {},
-    "textTwoUp": {},
-    "textTwoup": {},
-    "textTwox": {},
-    "textTwoxp": {},
-    "textTwoy": {},
-    "textTwoyp": {},
-    "textTwoz": {},
-    "textTwozp": {},
-    "tr{}": {
-      "snippet": "tr{${1:rotation code}}"
+    {
+      "name": "DrawTwoCubeSidebarDBRD",
+      "unusual": true
     },
-    "trB": {},
-    "trb": {},
-    "trBc": {},
-    "trBcp": {},
-    "trBp": {},
-    "trbp": {},
-    "trCB": {},
-    "trCBp": {},
-    "trCD": {},
-    "trCDp": {},
-    "trCF": {},
-    "trCFp": {},
-    "trCL": {},
-    "trCLp": {},
-    "trCR": {},
-    "trCRp": {},
-    "trCU": {},
-    "trCUp": {},
-    "trD": {},
-    "trd": {},
-    "trDc": {},
-    "trDcp": {},
-    "trDp": {},
-    "trdp": {},
-    "trF": {},
-    "trf": {},
-    "trFc": {},
-    "trFcp": {},
-    "trFp": {},
-    "trfp": {},
-    "trh{}": {
-      "snippet": "trh{${1:rotation code}}"
+    {
+      "name": "DrawTwoCubeSidebarDF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
     },
-    "trhB": {},
-    "trhb": {},
-    "trhBc": {},
-    "trhBcp": {},
-    "trhBp": {},
-    "trhbp": {},
-    "trhCB": {},
-    "trhCBp": {},
-    "trhCD": {},
-    "trhCDp": {},
-    "trhCF": {},
-    "trhCFp": {},
-    "trhCL": {},
-    "trhCLp": {},
-    "trhCR": {},
-    "trhCRp": {},
-    "trhCU": {},
-    "trhCUp": {},
-    "trhD": {},
-    "trhd": {},
-    "trhDc": {},
-    "trhDcp": {},
-    "trhDp": {},
-    "trhdp": {},
-    "trhF": {},
-    "trhf": {},
-    "trhFc": {},
-    "trhFcp": {},
-    "trhFp": {},
-    "trhfp": {},
-    "trhL": {},
-    "trhl": {},
-    "trhLc": {},
-    "trhLcp": {},
-    "trhLp": {},
-    "trhlp": {},
-    "trhR": {},
-    "trhr": {},
-    "trhRc": {},
-    "trhRcp": {},
-    "trhRp": {},
-    "trhrp": {},
-    "trhU": {},
-    "trhu": {},
-    "trhUc": {},
-    "trhUcp": {},
-    "trhUp": {},
-    "trhup": {},
-    "trhx": {},
-    "trhxp": {},
-    "trhy": {},
-    "trhyp": {},
-    "trhz": {},
-    "trhzp": {},
-    "trL": {},
-    "trl": {},
-    "trLc": {},
-    "trLcp": {},
-    "trLp": {},
-    "trlp": {},
-    "trR": {},
-    "trr": {},
-    "trRc": {},
-    "trRcp": {},
-    "trRp": {},
-    "trrp": {},
-    "trU": {},
-    "tru": {},
-    "trUc": {},
-    "trUcp": {},
-    "trUp": {},
-    "trup": {},
-    "trx": {},
-    "trxp": {},
-    "try": {},
-    "tryp": {},
-    "trz": {},
-    "trzp": {},
-    "Two{}": {
-      "snippet": "Two{${1:rotation code}}"
+    {
+      "name": "DrawTwoCubeSidebarDFLU",
+      "unusual": true
     },
-    "TwoB": {},
-    "Twob": {},
-    "TwoBc": {},
-    "TwoBcp": {},
-    "TwoBp": {},
-    "Twobp": {},
-    "TwoCB": {},
-    "TwoCBp": {},
-    "TwoCD": {},
-    "TwoCDp": {},
-    "TwoCF": {},
-    "TwoCFp": {},
-    "TwoCL": {},
-    "TwoCLp": {},
-    "TwoCR": {},
-    "TwoCRp": {},
-    "TwoCU": {},
-    "TwoCubeGray": {},
-    "TwoCubeGrayAll": {},
-    "TwoCubeGrey": {},
-    "TwoCubeGreyAll": {},
-    "TwoCubeSolved": {},
-    "TwoCubeSolvedWB": {},
-    "TwoCubeSolvedWY": {},
-    "TwoCUp": {},
-    "TwoD": {},
-    "Twod": {},
-    "TwoDc": {},
-    "TwoDcp": {},
-    "TwoDp": {},
-    "Twodp": {},
-    "TwoF": {},
-    "Twof": {},
-    "TwoFaceBack{}{}{}{}": {
-      "snippet": "TwoFaceBack{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    {
+      "name": "DrawTwoCubeSidebarDFRU",
+      "unusual": true
     },
-    "TwoFaceBackAll{}": {
-      "snippet": "TwoFaceBackAll{${1:color}}"
+    {
+      "name": "DrawTwoCubeSidebarFD",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
     },
-    "TwoFaceDown{}{}{}{}": {
-      "snippet": "TwoFaceDown{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    {
+      "name": "DrawTwoCubeSidebarFDLU",
+      "unusual": true
     },
-    "TwoFaceDownAll{}": {
-      "snippet": "TwoFaceDownAll{${1:color}}"
+    {
+      "name": "DrawTwoCubeSidebarFDRU",
+      "unusual": true
     },
-    "TwoFaceFront{}{}{}{}": {
-      "snippet": "TwoFaceFront{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    {
+      "name": "DrawTwoCubeSidebarFL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
     },
-    "TwoFaceFrontAll{}": {
-      "snippet": "TwoFaceFrontAll{${1:color}}"
+    {
+      "name": "DrawTwoCubeSidebarFLRD",
+      "unusual": true
     },
-    "TwoFaceLeft{}{}{}{}": {
-      "snippet": "TwoFaceLeft{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    {
+      "name": "DrawTwoCubeSidebarFLRU",
+      "unusual": true
     },
-    "TwoFaceLeftAll{}": {
-      "snippet": "TwoFaceLeftAll{${1:color}}"
+    {
+      "name": "DrawTwoCubeSidebarFR",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
     },
-    "TwoFaceRight{}{}{}{}": {
-      "snippet": "TwoFaceRight{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    {
+      "name": "DrawTwoCubeSidebarFRLD",
+      "unusual": true
     },
-    "TwoFaceRightAll{}": {
-      "snippet": "TwoFaceRightAll{${1:color}}"
+    {
+      "name": "DrawTwoCubeSidebarFRLU",
+      "unusual": true
     },
-    "TwoFaceUp{}{}{}{}": {
-      "snippet": "TwoFaceUp{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    {
+      "name": "DrawTwoCubeSidebarFU",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
     },
-    "TwoFaceUpAll{}": {
-      "snippet": "TwoFaceUpAll{${1:color}}"
+    {
+      "name": "DrawTwoCubeSidebarFULD",
+      "unusual": true
     },
-    "TwoFc": {},
-    "TwoFcp": {},
-    "TwoFp": {},
-    "Twofp": {},
-    "TwoL": {},
-    "Twol": {},
-    "TwoLc": {},
-    "TwoLcp": {},
-    "TwoLp": {},
-    "Twolp": {},
-    "TwoR": {},
-    "Twor": {},
-    "TwoRc": {},
-    "TwoRcp": {},
-    "TwoRotation[]{}": {
-      "snippet": "TwoRotation[${2:integer}]{${1:sequence}}"
+    {
+      "name": "DrawTwoCubeSidebarFURD",
+      "unusual": true
     },
-    "TwoRotation{}": {
-      "snippet": "TwoRotation{${1:sequence}}"
+    {
+      "name": "DrawTwoCubeSidebarLB",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
     },
-    "TwoRp": {},
-    "Tworp": {},
-    "TwoSidebarLength{}": {
-      "snippet": "TwoSidebarLength{${1:number}}"
+    {
+      "name": "DrawTwoCubeSidebarLBLD",
+      "unusual": true
     },
-    "TwoSidebarSep{}": {
-      "snippet": "TwoSidebarSep{${1:number}}"
+    {
+      "name": "DrawTwoCubeSidebarLBLU",
+      "unusual": true
     },
-    "TwoSidebarWidth{}": {
-      "snippet": "TwoSidebarWidth{${1:number}}"
+    {
+      "name": "DrawTwoCubeSidebarLF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
     },
-    "TwoSliceBottomL{}{}{}{}": {
-      "snippet": "TwoSliceBottomL{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    {
+      "name": "DrawTwoCubeSidebarLFRD",
+      "unusual": true
     },
-    "TwoSliceBottomR{}{}{}{}": {
-      "snippet": "TwoSliceBottomR{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    {
+      "name": "DrawTwoCubeSidebarLFRU",
+      "unusual": true
     },
-    "TwoSliceTopL{}{}{}{}": {
-      "snippet": "TwoSliceTopL{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    {
+      "name": "DrawTwoCubeSidebarRB",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
     },
-    "TwoSliceTopR{}{}{}{}": {
-      "snippet": "TwoSliceTopR{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+    {
+      "name": "DrawTwoCubeSidebarRBRD",
+      "unusual": true
     },
-    "TwoSolvedConfig{}{}{}{}{}{}": {
-      "snippet": "TwoSolvedConfig{${1:X+color}}{${2:X-color}}{${3:Y+color}}{${4:Y-color}}{${5:Z+color}}{${6:Z-color}}"
+    {
+      "name": "DrawTwoCubeSidebarRBRU",
+      "unusual": true
     },
-    "TwoU": {},
-    "Twou": {},
-    "TwoUc": {},
-    "TwoUcp": {},
-    "TwoUp": {},
-    "Twoup": {},
-    "Twox": {},
-    "Twoxp": {},
-    "Twoy": {},
-    "Twoyp": {},
-    "Twoz": {},
-    "Twozp": {},
-    "Ult": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "DrawTwoCubeSidebarRF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawTwoCubeSidebarRFLD",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoCubeSidebarRFLU",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoCubeSidebarUB",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawTwoCubeSidebarUBLU",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoCubeSidebarUBRU",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoCubeSidebarUF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:view direction}}"
+      }
+    },
+    {
+      "name": "DrawTwoCubeSidebarUFLD",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoCubeSidebarUFRD",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoFaceB",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoFaceBack"
+    },
+    {
+      "name": "DrawTwoFaceBackSide"
+    },
+    {
+      "name": "DrawTwoFaceBS",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoFaceD",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoFaceDown"
+    },
+    {
+      "name": "DrawTwoFaceDownSide"
+    },
+    {
+      "name": "DrawTwoFaceDS",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoFaceF",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoFaceFront"
+    },
+    {
+      "name": "DrawTwoFaceFrontSide"
+    },
+    {
+      "name": "DrawTwoFaceFS",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoFaceL",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoFaceLeft"
+    },
+    {
+      "name": "DrawTwoFaceLeftSide"
+    },
+    {
+      "name": "DrawTwoFaceLS",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoFaceR",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoFaceRight"
+    },
+    {
+      "name": "DrawTwoFaceRightSide"
+    },
+    {
+      "name": "DrawTwoFaceRS",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoFaceU",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoFaceUp"
+    },
+    {
+      "name": "DrawTwoFaceUpSide"
+    },
+    {
+      "name": "DrawTwoFaceUS",
+      "unusual": true
+    },
+    {
+      "name": "DrawTwoFlatBack",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "DrawTwoFlatDown",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "DrawTwoFlatFront"
+    },
+    {
+      "name": "DrawTwoFlatLeft",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "DrawTwoFlatRight",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "DrawTwoFlatUp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "Flb",
+      "unusual": true
+    },
+    {
+      "name": "Flt",
+      "unusual": true
+    },
+    {
+      "name": "Llb",
+      "unusual": true
+    },
+    {
+      "name": "Llt",
+      "unusual": true
+    },
+    {
+      "name": "NoSidebar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color-code}}"
+      }
+    },
+    {
+      "name": "Rlt",
+      "unusual": true
+    },
+    {
+      "name": "RTCfiledate",
+      "unusual": true
+    },
+    {
+      "name": "RTCfileversion",
+      "unusual": true
+    },
+    {
+      "name": "rubiktwocube",
+      "unusual": true
+    },
+    {
+      "name": "SaveTwoState",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename%file}}"
+      }
+    },
+    {
+      "name": "SquaretD",
+      "unusual": true
+    },
+    {
+      "name": "SquaretDp",
+      "unusual": true
+    },
+    {
+      "name": "SquaretL",
+      "unusual": true
+    },
+    {
+      "name": "SquaretLp",
+      "unusual": true
+    },
+    {
+      "name": "SquaretR",
+      "unusual": true
+    },
+    {
+      "name": "SquaretRp",
+      "unusual": true
+    },
+    {
+      "name": "SquaretU",
+      "unusual": true
+    },
+    {
+      "name": "SquaretUp",
+      "unusual": true
+    },
+    {
+      "name": "textTwo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:rotation code}}"
+      }
+    },
+    {
+      "name": "textTwoB",
+      "unusual": true
+    },
+    {
+      "name": "textTwob",
+      "unusual": true
+    },
+    {
+      "name": "textTwoBc",
+      "unusual": true
+    },
+    {
+      "name": "textTwoBcp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoBp",
+      "unusual": true
+    },
+    {
+      "name": "textTwobp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoCB",
+      "unusual": true
+    },
+    {
+      "name": "textTwoCBp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoCD",
+      "unusual": true
+    },
+    {
+      "name": "textTwoCDp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoCF",
+      "unusual": true
+    },
+    {
+      "name": "textTwoCFp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoCL",
+      "unusual": true
+    },
+    {
+      "name": "textTwoCLp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoCR",
+      "unusual": true
+    },
+    {
+      "name": "textTwoCRp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoCU",
+      "unusual": true
+    },
+    {
+      "name": "textTwoCUp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoD",
+      "unusual": true
+    },
+    {
+      "name": "textTwod",
+      "unusual": true
+    },
+    {
+      "name": "textTwoDc",
+      "unusual": true
+    },
+    {
+      "name": "textTwoDcp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoDp",
+      "unusual": true
+    },
+    {
+      "name": "textTwodp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoF",
+      "unusual": true
+    },
+    {
+      "name": "textTwof",
+      "unusual": true
+    },
+    {
+      "name": "textTwoFc",
+      "unusual": true
+    },
+    {
+      "name": "textTwoFcp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoFp",
+      "unusual": true
+    },
+    {
+      "name": "textTwofp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoL",
+      "unusual": true
+    },
+    {
+      "name": "textTwol",
+      "unusual": true
+    },
+    {
+      "name": "textTwoLc",
+      "unusual": true
+    },
+    {
+      "name": "textTwoLcp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoLp",
+      "unusual": true
+    },
+    {
+      "name": "textTwolp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoR",
+      "unusual": true
+    },
+    {
+      "name": "textTwor",
+      "unusual": true
+    },
+    {
+      "name": "textTwoRc",
+      "unusual": true
+    },
+    {
+      "name": "textTwoRcp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoRp",
+      "unusual": true
+    },
+    {
+      "name": "textTworp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoU",
+      "unusual": true
+    },
+    {
+      "name": "textTwou",
+      "unusual": true
+    },
+    {
+      "name": "textTwoUc",
+      "unusual": true
+    },
+    {
+      "name": "textTwoUcp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoUp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoup",
+      "unusual": true
+    },
+    {
+      "name": "textTwox",
+      "unusual": true
+    },
+    {
+      "name": "textTwoxp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoy",
+      "unusual": true
+    },
+    {
+      "name": "textTwoyp",
+      "unusual": true
+    },
+    {
+      "name": "textTwoz",
+      "unusual": true
+    },
+    {
+      "name": "textTwozp",
+      "unusual": true
+    },
+    {
+      "name": "tr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:rotation code}}"
+      }
+    },
+    {
+      "name": "trB",
+      "unusual": true
+    },
+    {
+      "name": "trb",
+      "unusual": true
+    },
+    {
+      "name": "trBc",
+      "unusual": true
+    },
+    {
+      "name": "trBcp",
+      "unusual": true
+    },
+    {
+      "name": "trBp",
+      "unusual": true
+    },
+    {
+      "name": "trbp",
+      "unusual": true
+    },
+    {
+      "name": "trCB",
+      "unusual": true
+    },
+    {
+      "name": "trCBp",
+      "unusual": true
+    },
+    {
+      "name": "trCD",
+      "unusual": true
+    },
+    {
+      "name": "trCDp",
+      "unusual": true
+    },
+    {
+      "name": "trCF",
+      "unusual": true
+    },
+    {
+      "name": "trCFp",
+      "unusual": true
+    },
+    {
+      "name": "trCL",
+      "unusual": true
+    },
+    {
+      "name": "trCLp",
+      "unusual": true
+    },
+    {
+      "name": "trCR",
+      "unusual": true
+    },
+    {
+      "name": "trCRp",
+      "unusual": true
+    },
+    {
+      "name": "trCU",
+      "unusual": true
+    },
+    {
+      "name": "trCUp",
+      "unusual": true
+    },
+    {
+      "name": "trD",
+      "unusual": true
+    },
+    {
+      "name": "trd",
+      "unusual": true
+    },
+    {
+      "name": "trDc",
+      "unusual": true
+    },
+    {
+      "name": "trDcp",
+      "unusual": true
+    },
+    {
+      "name": "trDp",
+      "unusual": true
+    },
+    {
+      "name": "trdp",
+      "unusual": true
+    },
+    {
+      "name": "trF",
+      "unusual": true
+    },
+    {
+      "name": "trf",
+      "unusual": true
+    },
+    {
+      "name": "trFc",
+      "unusual": true
+    },
+    {
+      "name": "trFcp",
+      "unusual": true
+    },
+    {
+      "name": "trFp",
+      "unusual": true
+    },
+    {
+      "name": "trfp",
+      "unusual": true
+    },
+    {
+      "name": "trh",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:rotation code}}"
+      }
+    },
+    {
+      "name": "trhB",
+      "unusual": true
+    },
+    {
+      "name": "trhb",
+      "unusual": true
+    },
+    {
+      "name": "trhBc",
+      "unusual": true
+    },
+    {
+      "name": "trhBcp",
+      "unusual": true
+    },
+    {
+      "name": "trhBp",
+      "unusual": true
+    },
+    {
+      "name": "trhbp",
+      "unusual": true
+    },
+    {
+      "name": "trhCB",
+      "unusual": true
+    },
+    {
+      "name": "trhCBp",
+      "unusual": true
+    },
+    {
+      "name": "trhCD",
+      "unusual": true
+    },
+    {
+      "name": "trhCDp",
+      "unusual": true
+    },
+    {
+      "name": "trhCF",
+      "unusual": true
+    },
+    {
+      "name": "trhCFp",
+      "unusual": true
+    },
+    {
+      "name": "trhCL",
+      "unusual": true
+    },
+    {
+      "name": "trhCLp",
+      "unusual": true
+    },
+    {
+      "name": "trhCR",
+      "unusual": true
+    },
+    {
+      "name": "trhCRp",
+      "unusual": true
+    },
+    {
+      "name": "trhCU",
+      "unusual": true
+    },
+    {
+      "name": "trhCUp",
+      "unusual": true
+    },
+    {
+      "name": "trhD",
+      "unusual": true
+    },
+    {
+      "name": "trhd",
+      "unusual": true
+    },
+    {
+      "name": "trhDc",
+      "unusual": true
+    },
+    {
+      "name": "trhDcp",
+      "unusual": true
+    },
+    {
+      "name": "trhDp",
+      "unusual": true
+    },
+    {
+      "name": "trhdp",
+      "unusual": true
+    },
+    {
+      "name": "trhF",
+      "unusual": true
+    },
+    {
+      "name": "trhf",
+      "unusual": true
+    },
+    {
+      "name": "trhFc",
+      "unusual": true
+    },
+    {
+      "name": "trhFcp",
+      "unusual": true
+    },
+    {
+      "name": "trhFp",
+      "unusual": true
+    },
+    {
+      "name": "trhfp",
+      "unusual": true
+    },
+    {
+      "name": "trhL",
+      "unusual": true
+    },
+    {
+      "name": "trhl",
+      "unusual": true
+    },
+    {
+      "name": "trhLc",
+      "unusual": true
+    },
+    {
+      "name": "trhLcp",
+      "unusual": true
+    },
+    {
+      "name": "trhLp",
+      "unusual": true
+    },
+    {
+      "name": "trhlp",
+      "unusual": true
+    },
+    {
+      "name": "trhR",
+      "unusual": true
+    },
+    {
+      "name": "trhr",
+      "unusual": true
+    },
+    {
+      "name": "trhRc",
+      "unusual": true
+    },
+    {
+      "name": "trhRcp",
+      "unusual": true
+    },
+    {
+      "name": "trhRp",
+      "unusual": true
+    },
+    {
+      "name": "trhrp",
+      "unusual": true
+    },
+    {
+      "name": "trhU",
+      "unusual": true
+    },
+    {
+      "name": "trhu",
+      "unusual": true
+    },
+    {
+      "name": "trhUc",
+      "unusual": true
+    },
+    {
+      "name": "trhUcp",
+      "unusual": true
+    },
+    {
+      "name": "trhUp",
+      "unusual": true
+    },
+    {
+      "name": "trhup",
+      "unusual": true
+    },
+    {
+      "name": "trhx",
+      "unusual": true
+    },
+    {
+      "name": "trhxp",
+      "unusual": true
+    },
+    {
+      "name": "trhy",
+      "unusual": true
+    },
+    {
+      "name": "trhyp",
+      "unusual": true
+    },
+    {
+      "name": "trhz",
+      "unusual": true
+    },
+    {
+      "name": "trhzp",
+      "unusual": true
+    },
+    {
+      "name": "trL",
+      "unusual": true
+    },
+    {
+      "name": "trl",
+      "unusual": true
+    },
+    {
+      "name": "trLc",
+      "unusual": true
+    },
+    {
+      "name": "trLcp",
+      "unusual": true
+    },
+    {
+      "name": "trLp",
+      "unusual": true
+    },
+    {
+      "name": "trlp",
+      "unusual": true
+    },
+    {
+      "name": "trR",
+      "unusual": true
+    },
+    {
+      "name": "trr",
+      "unusual": true
+    },
+    {
+      "name": "trRc",
+      "unusual": true
+    },
+    {
+      "name": "trRcp",
+      "unusual": true
+    },
+    {
+      "name": "trRp",
+      "unusual": true
+    },
+    {
+      "name": "trrp",
+      "unusual": true
+    },
+    {
+      "name": "trU",
+      "unusual": true
+    },
+    {
+      "name": "tru",
+      "unusual": true
+    },
+    {
+      "name": "trUc",
+      "unusual": true
+    },
+    {
+      "name": "trUcp",
+      "unusual": true
+    },
+    {
+      "name": "trUp",
+      "unusual": true
+    },
+    {
+      "name": "trup",
+      "unusual": true
+    },
+    {
+      "name": "trx",
+      "unusual": true
+    },
+    {
+      "name": "trxp",
+      "unusual": true
+    },
+    {
+      "name": "try",
+      "unusual": true
+    },
+    {
+      "name": "tryp",
+      "unusual": true
+    },
+    {
+      "name": "trz",
+      "unusual": true
+    },
+    {
+      "name": "trzp",
+      "unusual": true
+    },
+    {
+      "name": "Two",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:rotation code}}"
+      }
+    },
+    {
+      "name": "TwoB",
+      "unusual": true
+    },
+    {
+      "name": "Twob",
+      "unusual": true
+    },
+    {
+      "name": "TwoBc",
+      "unusual": true
+    },
+    {
+      "name": "TwoBcp",
+      "unusual": true
+    },
+    {
+      "name": "TwoBp",
+      "unusual": true
+    },
+    {
+      "name": "Twobp",
+      "unusual": true
+    },
+    {
+      "name": "TwoCB",
+      "unusual": true
+    },
+    {
+      "name": "TwoCBp",
+      "unusual": true
+    },
+    {
+      "name": "TwoCD",
+      "unusual": true
+    },
+    {
+      "name": "TwoCDp",
+      "unusual": true
+    },
+    {
+      "name": "TwoCF",
+      "unusual": true
+    },
+    {
+      "name": "TwoCFp",
+      "unusual": true
+    },
+    {
+      "name": "TwoCL",
+      "unusual": true
+    },
+    {
+      "name": "TwoCLp",
+      "unusual": true
+    },
+    {
+      "name": "TwoCR",
+      "unusual": true
+    },
+    {
+      "name": "TwoCRp",
+      "unusual": true
+    },
+    {
+      "name": "TwoCU",
+      "unusual": true
+    },
+    {
+      "name": "TwoCubeGrey"
+    },
+    {
+      "name": "TwoCubeGreyAll"
+    },
+    {
+      "name": "TwoCubeSolved"
+    },
+    {
+      "name": "TwoCubeSolvedWB"
+    },
+    {
+      "name": "TwoCubeSolvedWY"
+    },
+    {
+      "name": "TwoCUp",
+      "unusual": true
+    },
+    {
+      "name": "TwoD",
+      "unusual": true
+    },
+    {
+      "name": "Twod",
+      "unusual": true
+    },
+    {
+      "name": "TwoDc",
+      "unusual": true
+    },
+    {
+      "name": "TwoDcp",
+      "unusual": true
+    },
+    {
+      "name": "TwoDp",
+      "unusual": true
+    },
+    {
+      "name": "Twodp",
+      "unusual": true
+    },
+    {
+      "name": "TwoF",
+      "unusual": true
+    },
+    {
+      "name": "Twof",
+      "unusual": true
+    },
+    {
+      "name": "TwoFaceBack",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+      }
+    },
+    {
+      "name": "TwoFaceBackAll",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "TwoFaceDown",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+      }
+    },
+    {
+      "name": "TwoFaceDownAll",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "TwoFaceFront",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+      }
+    },
+    {
+      "name": "TwoFaceFrontAll",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "TwoFaceLeft",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+      }
+    },
+    {
+      "name": "TwoFaceLeftAll",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "TwoFaceRight",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+      }
+    },
+    {
+      "name": "TwoFaceRightAll",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "TwoFaceUp",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+      }
+    },
+    {
+      "name": "TwoFaceUpAll",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "TwoFc",
+      "unusual": true
+    },
+    {
+      "name": "TwoFcp",
+      "unusual": true
+    },
+    {
+      "name": "TwoFp",
+      "unusual": true
+    },
+    {
+      "name": "Twofp",
+      "unusual": true
+    },
+    {
+      "name": "TwoL",
+      "unusual": true
+    },
+    {
+      "name": "Twol",
+      "unusual": true
+    },
+    {
+      "name": "TwoLc",
+      "unusual": true
+    },
+    {
+      "name": "TwoLcp",
+      "unusual": true
+    },
+    {
+      "name": "TwoLp",
+      "unusual": true
+    },
+    {
+      "name": "Twolp",
+      "unusual": true
+    },
+    {
+      "name": "TwoR",
+      "unusual": true
+    },
+    {
+      "name": "Twor",
+      "unusual": true
+    },
+    {
+      "name": "TwoRc",
+      "unusual": true
+    },
+    {
+      "name": "TwoRcp",
+      "unusual": true
+    },
+    {
+      "name": "TwoRotation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:integer}]{${1:sequence}}"
+      }
+    },
+    {
+      "name": "TwoRotation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sequence}}"
+      }
+    },
+    {
+      "name": "TwoRp",
+      "unusual": true
+    },
+    {
+      "name": "Tworp",
+      "unusual": true
+    },
+    {
+      "name": "TwoSidebarLength",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "TwoSidebarSep",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "TwoSidebarWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "TwoSliceBottomL",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+      }
+    },
+    {
+      "name": "TwoSliceBottomR",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+      }
+    },
+    {
+      "name": "TwoSliceTopL",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+      }
+    },
+    {
+      "name": "TwoSliceTopR",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}"
+      }
+    },
+    {
+      "name": "TwoSolvedConfig",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:X+color}}{${2:X-color}}{${3:Y+color}}{${4:Y-color}}{${5:Z+color}}{${6:Z-color}}"
+      }
+    },
+    {
+      "name": "TwoU",
+      "unusual": true
+    },
+    {
+      "name": "Twou",
+      "unusual": true
+    },
+    {
+      "name": "TwoUc",
+      "unusual": true
+    },
+    {
+      "name": "TwoUcp",
+      "unusual": true
+    },
+    {
+      "name": "TwoUp",
+      "unusual": true
+    },
+    {
+      "name": "Twoup",
+      "unusual": true
+    },
+    {
+      "name": "Twox",
+      "unusual": true
+    },
+    {
+      "name": "Twoxp",
+      "unusual": true
+    },
+    {
+      "name": "Twoy",
+      "unusual": true
+    },
+    {
+      "name": "Twoyp",
+      "unusual": true
+    },
+    {
+      "name": "Twoz",
+      "unusual": true
+    },
+    {
+      "name": "Twozp",
+      "unusual": true
+    },
+    {
+      "name": "Ult",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

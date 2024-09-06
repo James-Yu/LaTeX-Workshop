@@ -1,601 +1,1381 @@
 {
-  "includes": {
-    "fancyvrb": [],
-    "trace": [],
-    "xkeyval": [],
-    "class-report": [],
-    "iftex": [],
-    "babel": [],
-    "toptesi": [],
-    "frontespizio": [
-      "tipotesi=frontespizio"
-    ],
-    "toptesi-scudo": [
-      "tipotesi=scudo"
-    ],
-    "toptesi-sss": [
-      "tipotesi=secondaria",
-      "tipotesi=sss"
+  "deps": [
+    {
+      "name": "fancyvrb"
+    },
+    {
+      "name": "trace"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "class-report"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "toptesi"
+    },
+    {
+      "name": "frontespizio",
+      "if": "tipotesi=frontespizio"
+    },
+    {
+      "name": "toptesi-scudo",
+      "if": "tipotesi=scudo"
+    },
+    {
+      "name": "toptesi-sss",
+      "if": "tipotesi=secondaria"
+    },
+    {
+      "name": "toptesi-sss",
+      "if": "tipotesi=sss"
+    }
+  ],
+  "macros": [
+    {
+      "name": "CandidateNames",
+      "if": "tipotesi=triennale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:candidate list headings%text}}"
+      }
+    },
+    {
+      "name": "corsodistudi",
+      "if": "tipotesi=triennale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:degree proper name%text}}"
+      }
+    },
+    {
+      "name": "giorno",
+      "if": "tipotesi=triennale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "luogo",
+      "if": "tipotesi=triennale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:location}}"
+      }
+    },
+    {
+      "name": "NomeAteneo",
+      "if": "tipotesi=triennale",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:university proper name%text}}"
+      }
+    },
+    {
+      "name": "NomeCorsoDiStudi",
+      "if": "tipotesi=triennale",
+      "unusual": true
+    },
+    {
+      "name": "NomeElaborato",
+      "if": "tipotesi=triennale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:thesis name%text}}"
+      }
+    },
+    {
+      "name": "NomeRelatore",
+      "if": "tipotesi=triennale",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:singular}}{${2:plural}}"
+      }
+    },
+    {
+      "name": "StrutturaDi",
+      "if": "tipotesi=triennale",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%text}}"
+      }
+    },
+    {
+      "name": "TitoloListaCandidati",
+      "if": "tipotesi=triennale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:candidate list headings%text}}"
+      }
+    },
+    {
+      "name": "CandidateNames",
+      "if": "tipotesi=monografia",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:candidate list headings%text}}"
+      }
+    },
+    {
+      "name": "corsodistudi",
+      "if": "tipotesi=monografia",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:degree proper name%text}}"
+      }
+    },
+    {
+      "name": "giorno",
+      "if": "tipotesi=monografia",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "luogo",
+      "if": "tipotesi=monografia",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:location}}"
+      }
+    },
+    {
+      "name": "NomeAteneo",
+      "if": "tipotesi=monografia",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:university proper name%text}}"
+      }
+    },
+    {
+      "name": "NomeCorsoDiStudi",
+      "if": "tipotesi=monografia",
+      "unusual": true
+    },
+    {
+      "name": "NomeElaborato",
+      "if": "tipotesi=monografia",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:thesis name%text}}"
+      }
+    },
+    {
+      "name": "NomeRelatore",
+      "if": "tipotesi=monografia",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:singular}}{${2:plural}}"
+      }
+    },
+    {
+      "name": "StrutturaDi",
+      "if": "tipotesi=monografia",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%text}}"
+      }
+    },
+    {
+      "name": "TitoloListaCandidati",
+      "if": "tipotesi=monografia",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:candidate list headings%text}}"
+      }
+    },
+    {
+      "name": "CandidateNames",
+      "if": "tipotesi=magistrale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:candidate list headings%text}}"
+      }
+    },
+    {
+      "name": "TitoloListaCandidati",
+      "if": "tipotesi=magistrale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:candidate list headings%text}}"
+      }
+    },
+    {
+      "name": "GetFileInfo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "classdate",
+      "unusual": true
+    },
+    {
+      "name": "filedate",
+      "unusual": true
+    },
+    {
+      "name": "fileinfo",
+      "unusual": true
+    },
+    {
+      "name": "filename",
+      "unusual": true
+    },
+    {
+      "name": "fileversion",
+      "unusual": true
+    },
+    {
+      "name": "stydate",
+      "unusual": true
+    },
+    {
+      "name": "captionsenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateenglish",
+      "unusual": true
+    },
+    {
+      "name": "extrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "captionsitalian",
+      "unusual": true
+    },
+    {
+      "name": "dateitalian",
+      "unusual": true
+    },
+    {
+      "name": "extrasitalian",
+      "unusual": true
+    },
+    {
+      "name": "noextrasitalian",
+      "unusual": true
+    },
+    {
+      "name": "italianhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "setactivedoublequote"
+    },
+    {
+      "name": "setISOcompliance",
+      "unusual": true
+    },
+    {
+      "name": "IntelligentComma"
+    },
+    {
+      "name": "NoIntelligentComma"
+    },
+    {
+      "name": "XXIletters"
+    },
+    {
+      "name": "XXVIletters"
+    },
+    {
+      "name": "ap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "ped",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "unit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:unit}}"
+      }
+    },
+    {
+      "name": "virgola"
+    },
+    {
+      "name": "virgoladecimale"
+    },
+    {
+      "name": "LtxSymbCaporali",
+      "unusual": true
+    },
+    {
+      "name": "CaporaliFrom",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:open guill slot}}{${4:close guill slot}}"
+      }
+    },
+    {
+      "name": "captionsgreek",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "dategreek",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "extrasgreek",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "noextrasgreek",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "greekscript",
+      "if": "greek"
+    },
+    {
+      "name": "greektext",
+      "if": "greek"
+    },
+    {
+      "name": "ensuregreek",
+      "if": "greek",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textgreek",
+      "if": "greek",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "greeknumeral",
+      "if": "greek",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Greeknumeral",
+      "if": "greek",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "greekfontencoding",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textol",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "outlfamily",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "greekhyphenmins",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "Grtoday",
+      "if": "greek"
+    },
+    {
+      "name": "anwtonos",
+      "if": "greek"
+    },
+    {
+      "name": "katwtonos",
+      "if": "greek"
+    },
+    {
+      "name": "qoppa",
+      "if": "greek"
+    },
+    {
+      "name": "varqoppa",
+      "if": "greek"
+    },
+    {
+      "name": "stigma",
+      "if": "greek"
+    },
+    {
+      "name": "sampi",
+      "if": "greek"
+    },
+    {
+      "name": "Digamma",
+      "if": "greek"
+    },
+    {
+      "name": "ddigamma",
+      "if": "greek"
+    },
+    {
+      "name": "euro",
+      "if": "greek",
+      "detail": "€",
+      "doc": "Euro sign"
+    },
+    {
+      "name": "permill",
+      "if": "greek"
+    },
+    {
+      "name": "textAlpha",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textBeta",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textGamma",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textDelta",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textEpsilon",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textZeta",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textEta",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textTheta",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textIota",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textKappa",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textLambda",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textMu",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textNu",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textXi",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textOmicron",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textPi",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textRho",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textSigma",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textTau",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textUpsilon",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textPhi",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textChi",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textPsi",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textOmega",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textalpha",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textbeta",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textgamma",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textdelta",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textepsilon",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textzeta",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "texteta",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "texttheta",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textiota",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textkappa",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textlambda",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textmu",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textnu",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textxi",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textomicron",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textpi",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textrho",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textsigma",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textfinalsigma",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textautosigma",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "texttau",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textupsilon",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textphi",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textchi",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textpsi",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textomega",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textpentedeka",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textpentehekaton",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textpenteqilioi",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textstigma",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textvarstigma",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textKoppa",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textkoppa",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textqoppa",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textQoppa",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textStigma",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textSampi",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textsampi",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textanoteleia",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "texterotimatiko",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textdigamma",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textDigamma",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textdexiakeraia",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textaristerikeraia",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textvarsigma",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textstigmagreek",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textkoppagreek",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textStigmagreek",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textSampigreek",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textsampigreek",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textdigammagreek",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textDigammagreek",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textnumeralsigngreek",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textnumeralsignlowergreek",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textpentemuria",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textpercent",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textmicro",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textschwa",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "textampersand",
+      "if": "greek"
+    },
+    {
+      "name": "accdialytika",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "acctonos",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accdasia",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accpsili",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accvaria",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accperispomeni",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "prosgegrammeni",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "ypogegrammeni",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "accdialytikaperispomeni",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accdialytikatonos",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accdialytikavaria",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accdasiaperispomeni",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accdasiavaria",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accdasiaoxia",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:a}}"
+      }
+    },
+    {
+      "name": "accpsiliperispomeni",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:a}}"
+      }
+    },
+    {
+      "name": "accpsilioxia",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accpsilivaria",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accinvertedbrevebelow",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textsubarch",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accbrevebelow",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accvaria",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accdasia",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accpsili",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accdasiavaria",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "acctonos",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accdasiaoxia",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accpsilioxia",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accpsilivaria",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accperispomeni",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accdasiaperispomeni",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accpsiliperispomeni",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accvaria",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accdasia",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "accpsili",
+      "if": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "prefacename",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "if": "greek",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "if": "greek",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "ThesisTitlePage",
+      "if": "tipotesi=triennale"
+    },
+    {
+      "name": "ThesisTitlePage",
+      "if": "tipotesi=triennale",
+      "arg": {
+        "format": "*",
+        "snippet": "*"
+      }
+    },
+    {
+      "name": "ThesisTitlePage",
+      "if": "tipotesi=monografia"
+    },
+    {
+      "name": "ThesisTitlePage",
+      "if": "tipotesi=monografia",
+      "arg": {
+        "format": "*",
+        "snippet": "*"
+      }
+    },
+    {
+      "name": "ThesisTitlePage",
+      "if": "tipotesi=magistrale"
+    },
+    {
+      "name": "ThesisTitlePage",
+      "if": "tipotesi=magistrale",
+      "arg": {
+        "format": "*",
+        "snippet": "*"
+      }
+    },
+    {
+      "name": "ThesisTitlePage",
+      "if": "tipotesi=dottorale"
+    },
+    {
+      "name": "ThesisTitlePage",
+      "if": "tipotesi=dottorale",
+      "arg": {
+        "format": "*",
+        "snippet": "*"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/toptesi#c": [
+      "formato=${1:formato della carta}",
+      "cucitura=",
+      "corpo=",
+      "chapterbib",
+      "evenboxes",
+      "libro",
+      "stile=${1|standard,classica,trieste|}",
+      "autoretitolo",
+      "oldstyle",
+      "nocenterfolio",
+      "nocenterhead",
+      "folioinhead",
+      "numerazioneromana",
+      "tipotesi=${1|topfront,frontespizio,triennale,monografia,magistrale,dottorale,scudo,secondaria,sss,custom|}",
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage",
+      "openright",
+      "openany",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "fleqn",
+      "openbib"
     ]
   },
-  "macros": {
-    "CandidateNames{}": {
-      "snippet": "CandidateNames{${1:candidate list headings}}",
-      "option": "tipotesi=magistrale"
-    },
-    "corsodistudi{}": {
-      "snippet": "corsodistudi{${1:degree proper name}}",
-      "option": "tipotesi=monografia"
-    },
-    "giorno{}": {
-      "snippet": "giorno{${1:date}}",
-      "option": "tipotesi=monografia"
-    },
-    "luogo{}": {
-      "snippet": "luogo{${1:location}}",
-      "option": "tipotesi=monografia"
-    },
-    "NomeAteneo{}": {
-      "snippet": "NomeAteneo{${1:university proper name}}",
-      "option": "tipotesi=monografia"
-    },
-    "NomeCorsoDiStudi": {
-      "option": "tipotesi=monografia"
-    },
-    "NomeElaborato{}": {
-      "snippet": "NomeElaborato{${1:thesis name}}",
-      "option": "tipotesi=monografia"
-    },
-    "NomeRelatore{}{}": {
-      "snippet": "NomeRelatore{${1:singular}}{${2:plural}}",
-      "option": "tipotesi=monografia"
-    },
-    "StrutturaDi{}": {
-      "snippet": "StrutturaDi{${1:name}}",
-      "option": "tipotesi=monografia"
-    },
-    "TitoloListaCandidati{}": {
-      "snippet": "TitoloListaCandidati{${1:candidate list headings}}",
-      "option": "tipotesi=magistrale"
-    },
-    "GetFileInfo{}": {
-      "snippet": "GetFileInfo{${1:file}}"
-    },
-    "classdate": {},
-    "filedate": {},
-    "fileinfo": {},
-    "filename": {},
-    "fileversion": {},
-    "stydate": {},
-    "captionsenglish": {},
-    "dateenglish": {},
-    "extrasenglish": {},
-    "noextrasenglish": {},
-    "englishhyphenmins": {},
-    "britishhyphenmins": {},
-    "americanhyphenmins": {},
-    "prefacename": {
-      "option": "greek"
-    },
-    "bibname": {
-      "option": "greek"
-    },
-    "chaptername": {
-      "option": "greek"
-    },
-    "enclname": {
-      "option": "greek"
-    },
-    "ccname": {
-      "option": "greek"
-    },
-    "headtoname": {
-      "option": "greek"
-    },
-    "seename": {
-      "option": "greek"
-    },
-    "alsoname": {
-      "option": "greek"
-    },
-    "proofname": {
-      "option": "greek"
-    },
-    "glossaryname": {
-      "option": "greek"
-    },
-    "captionsitalian": {},
-    "dateitalian": {},
-    "extrasitalian": {},
-    "noextrasitalian": {},
-    "italianhyphenmins": {},
-    "setactivedoublequote": {},
-    "setISOcompliance": {},
-    "IntelligentComma": {},
-    "NoIntelligentComma": {},
-    "XXIletters": {},
-    "XXVIletters": {},
-    "ap{}": {
-      "snippet": "ap{${1:text}}"
-    },
-    "ped{}": {
-      "snippet": "ped{${1:text}}"
-    },
-    "unit{}": {
-      "snippet": "unit{${1:unit}}"
-    },
-    "virgola": {},
-    "virgoladecimale": {},
-    "LtxSymbCaporali": {},
-    "CaporaliFrom{}{}{}{}": {
-      "snippet": "CaporaliFrom{${1:encoding}}{${2:family}}{${3:open guill slot}}{${4:close guill slot}}"
-    },
-    "captionsgreek": {
-      "option": "greek"
-    },
-    "dategreek": {
-      "option": "greek"
-    },
-    "extrasgreek": {
-      "option": "greek"
-    },
-    "noextrasgreek": {
-      "option": "greek"
-    },
-    "greekscript": {
-      "option": "greek"
-    },
-    "greektext": {
-      "option": "greek"
-    },
-    "ensuregreek{}": {
-      "snippet": "ensuregreek{${1:text}}",
-      "option": "greek"
-    },
-    "textgreek{}": {
-      "snippet": "textgreek{${1:text}}",
-      "option": "greek"
-    },
-    "greeknumeral{}": {
-      "snippet": "greeknumeral{${1:number}}",
-      "option": "greek"
-    },
-    "Greeknumeral{}": {
-      "snippet": "Greeknumeral{${1:number}}",
-      "option": "greek"
-    },
-    "greekfontencoding": {
-      "option": "greek"
-    },
-    "textol{}": {
-      "snippet": "textol{${1:text}}",
-      "option": "greek"
-    },
-    "outlfamily": {
-      "option": "greek"
-    },
-    "greekhyphenmins": {
-      "option": "greek"
-    },
-    "Grtoday": {
-      "option": "greek"
-    },
-    "anwtonos": {
-      "option": "greek"
-    },
-    "katwtonos": {
-      "option": "greek"
-    },
-    "qoppa": {
-      "option": "greek",
-      "detail": "ϙ",
-      "documentation": "GREEK SMALL LETTER ARCHAIC KOPPA"
-    },
-    "varqoppa": {
-      "option": "greek"
-    },
-    "stigma": {
-      "option": "greek",
-      "detail": "ϛ",
-      "documentation": "GREEK SMALL LETTER STIGMA"
-    },
-    "sampi": {
-      "option": "greek",
-      "detail": "ϡ",
-      "documentation": "GREEK SMALL LETTER SAMPI"
-    },
-    "Digamma": {
-      "option": "greek",
-      "detail": "Ϝ",
-      "documentation": "capital digamma"
-    },
-    "ddigamma": {
-      "option": "greek"
-    },
-    "euro": {
-      "option": "greek",
-      "detail": "€",
-      "documentation": "EURO SIGN"
-    },
-    "permill": {
-      "option": "greek"
-    },
-    "textAlpha": {
-      "option": "greek"
-    },
-    "textBeta": {
-      "option": "greek"
-    },
-    "textGamma": {
-      "option": "greek"
-    },
-    "textDelta": {
-      "option": "greek"
-    },
-    "textEpsilon": {
-      "option": "greek"
-    },
-    "textZeta": {
-      "option": "greek"
-    },
-    "textEta": {
-      "option": "greek"
-    },
-    "textTheta": {
-      "option": "greek"
-    },
-    "textIota": {
-      "option": "greek"
-    },
-    "textKappa": {
-      "option": "greek"
-    },
-    "textLambda": {
-      "option": "greek"
-    },
-    "textMu": {
-      "option": "greek"
-    },
-    "textNu": {
-      "option": "greek"
-    },
-    "textXi": {
-      "option": "greek"
-    },
-    "textOmicron": {
-      "option": "greek"
-    },
-    "textPi": {
-      "option": "greek"
-    },
-    "textRho": {
-      "option": "greek"
-    },
-    "textSigma": {
-      "option": "greek"
-    },
-    "textTau": {
-      "option": "greek"
-    },
-    "textUpsilon": {
-      "option": "greek"
-    },
-    "textPhi": {
-      "option": "greek"
-    },
-    "textChi": {
-      "option": "greek"
-    },
-    "textPsi": {
-      "option": "greek"
-    },
-    "textOmega": {
-      "option": "greek"
-    },
-    "textalpha": {
-      "option": "greek"
-    },
-    "textbeta": {
-      "option": "greek"
-    },
-    "textgamma": {
-      "option": "greek"
-    },
-    "textdelta": {
-      "option": "greek"
-    },
-    "textepsilon": {
-      "option": "greek"
-    },
-    "textzeta": {
-      "option": "greek"
-    },
-    "texteta": {
-      "option": "greek"
-    },
-    "texttheta": {
-      "option": "greek"
-    },
-    "textiota": {
-      "option": "greek"
-    },
-    "textkappa": {
-      "option": "greek"
-    },
-    "textlambda": {
-      "option": "greek"
-    },
-    "textmu": {
-      "option": "greek"
-    },
-    "textnu": {
-      "option": "greek"
-    },
-    "textxi": {
-      "option": "greek"
-    },
-    "textomicron": {
-      "option": "greek"
-    },
-    "textpi": {
-      "option": "greek"
-    },
-    "textrho": {
-      "option": "greek"
-    },
-    "textsigma": {
-      "option": "greek"
-    },
-    "textfinalsigma": {
-      "option": "greek"
-    },
-    "textautosigma": {
-      "option": "greek"
-    },
-    "texttau": {
-      "option": "greek"
-    },
-    "textupsilon": {
-      "option": "greek"
-    },
-    "textphi": {
-      "option": "greek"
-    },
-    "textchi": {
-      "option": "greek"
-    },
-    "textpsi": {
-      "option": "greek"
-    },
-    "textomega": {
-      "option": "greek"
-    },
-    "textpentedeka": {
-      "option": "greek"
-    },
-    "textpentehekaton": {
-      "option": "greek"
-    },
-    "textpenteqilioi": {
-      "option": "greek"
-    },
-    "textstigma": {
-      "option": "greek"
-    },
-    "textvarstigma": {
-      "option": "greek"
-    },
-    "textKoppa": {
-      "option": "greek"
-    },
-    "textkoppa": {
-      "option": "greek"
-    },
-    "textqoppa": {
-      "option": "greek"
-    },
-    "textQoppa": {
-      "option": "greek"
-    },
-    "textStigma": {
-      "option": "greek"
-    },
-    "textSampi": {
-      "option": "greek"
-    },
-    "textsampi": {
-      "option": "greek"
-    },
-    "textanoteleia": {
-      "option": "greek"
-    },
-    "texterotimatiko": {
-      "option": "greek"
-    },
-    "textdigamma": {
-      "option": "greek"
-    },
-    "textDigamma": {
-      "option": "greek"
-    },
-    "textdexiakeraia": {
-      "option": "greek"
-    },
-    "textaristerikeraia": {
-      "option": "greek"
-    },
-    "textvarsigma": {
-      "option": "greek"
-    },
-    "textstigmagreek": {
-      "option": "greek"
-    },
-    "textkoppagreek": {
-      "option": "greek"
-    },
-    "textStigmagreek": {
-      "option": "greek"
-    },
-    "textSampigreek": {
-      "option": "greek"
-    },
-    "textsampigreek": {
-      "option": "greek"
-    },
-    "textdigammagreek": {
-      "option": "greek"
-    },
-    "textDigammagreek": {
-      "option": "greek"
-    },
-    "textnumeralsigngreek": {
-      "option": "greek"
-    },
-    "textnumeralsignlowergreek": {
-      "option": "greek"
-    },
-    "textpentemuria": {
-      "option": "greek"
-    },
-    "textpercent": {
-      "option": "greek"
-    },
-    "textmicro": {
-      "option": "greek"
-    },
-    "textschwa": {
-      "option": "greek"
-    },
-    "textampersand": {
-      "option": "greek"
-    },
-    "accdialytika{}": {
-      "snippet": "accdialytika{${1:arg}}",
-      "option": "greek"
-    },
-    "acctonos{}": {
-      "snippet": "acctonos{${1:arg}}",
-      "option": "greek"
-    },
-    "accdasia{}": {
-      "snippet": "accdasia{${1:arg}}",
-      "option": "greek"
-    },
-    "accpsili{}": {
-      "snippet": "accpsili{${1:arg}}",
-      "option": "greek"
-    },
-    "accvaria{}": {
-      "snippet": "accvaria{${1:arg}}",
-      "option": "greek"
-    },
-    "accperispomeni{}": {
-      "snippet": "accperispomeni{${1:arg}}",
-      "option": "greek"
-    },
-    "prosgegrammeni": {
-      "option": "greek"
-    },
-    "ypogegrammeni": {
-      "option": "greek"
-    },
-    "accdialytikaperispomeni{}": {
-      "snippet": "accdialytikaperispomeni{${1:arg}}",
-      "option": "greek"
-    },
-    "accdialytikatonos{}": {
-      "snippet": "accdialytikatonos{${1:arg}}",
-      "option": "greek"
-    },
-    "accdialytikavaria{}": {
-      "snippet": "accdialytikavaria{${1:arg}}",
-      "option": "greek"
-    },
-    "accdasiaperispomeni{}": {
-      "snippet": "accdasiaperispomeni{${1:arg}}",
-      "option": "greek"
-    },
-    "accdasiavaria{}": {
-      "snippet": "accdasiavaria{${1:arg}}",
-      "option": "greek"
-    },
-    "accdasiaoxia{}": {
-      "snippet": "accdasiaoxia{${1:arg}}",
-      "option": "greek"
-    },
-    "accpsiliperispomeni{}": {
-      "snippet": "accpsiliperispomeni{${1:arg}}",
-      "option": "greek"
-    },
-    "accpsilioxia{}": {
-      "snippet": "accpsilioxia{${1:arg}}",
-      "option": "greek"
-    },
-    "accpsilivaria{}": {
-      "snippet": "accpsilivaria{${1:arg}}",
-      "option": "greek"
-    },
-    "accinvertedbrevebelow{}": {
-      "snippet": "accinvertedbrevebelow{${1:arg}}",
-      "option": "greek"
-    },
-    "textsubarch{}": {
-      "snippet": "textsubarch{${1:arg}}",
-      "option": "greek"
-    },
-    "accbrevebelow{}": {
-      "snippet": "accbrevebelow{${1:arg}}",
-      "option": "greek"
-    }
-  },
-  "envs": {
-    "ThesisTitlePage": {
-      "option": "tipotesi=dottorale"
-    },
-    "ThesisTitlePage*": {
-      "name": "ThesisTitlePage",
-      "snippet": "*",
-      "option": "tipotesi=dottorale"
-    }
-  },
-  "options": [
-    "formato=${1:formato della carta}",
-    "cucitura=",
-    "corpo=",
-    "chapterbib",
-    "evenboxes",
-    "libro",
-    "stile=${1|standard,classica,trieste|}",
-    "autoretitolo",
-    "oldstyle",
-    "nocenterfolio",
-    "nocenterhead",
-    "folioinhead",
-    "numerazioneromana",
-    "tipotesi=${1|topfront,frontespizio,triennale,monografia,magistrale,dottorale,scudo,secondaria,sss,custom|}",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "openright",
-    "openany",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/toptesi#c"
+  ]
 }

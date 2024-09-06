@@ -1,21 +1,37 @@
 {
-  "includes": {
-    "hyperref": []
-  },
-  "macros": {
-    "UCSPU{}": {
-      "snippet": "UCSPU{${1:number}}"
-    },
-    "UCSPUrange{}{}": {
-      "snippet": "UCSPUrange{${1:num1}}{${2:num2}}"
+  "deps": [
+    {
+      "name": "hyperref"
     }
-  },
-  "envs": {},
-  "options": [
-    "nodirect",
-    "direct",
-    "noprerender",
-    "prerender"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "UCSPU",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "UCSPUrange",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ucshyper#c": [
+      "nodirect",
+      "direct",
+      "noprerender",
+      "prerender"
+    ]
+  },
+  "args": [
+    "\\usepackage/ucshyper#c"
+  ]
 }

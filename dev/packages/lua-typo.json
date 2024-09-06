@@ -1,52 +1,106 @@
 {
-  "includes": {
-    "luatexbase": [],
-    "luacode": [],
-    "luacolor": [],
-    "atveryend": []
-  },
-  "macros": {
-    "luatypoLLminWD": {},
-    "luatypoBackPI": {},
-    "luatypoBackFuzz": {},
-    "luatypoMarginparTol": {},
-    "luatypoStretchMax": {},
-    "luatypoHyphMax": {},
-    "luatypoPageMin": {},
-    "luatypoMinFull": {},
-    "luatypoMinPart": {},
-    "luatypoMinLen": {},
-    "luatypoOneChar{}{}": {
-      "snippet": "luatypoOneChar{${1:language}}{${2:list of words}}"
+  "deps": [
+    {
+      "name": "luatexbase"
     },
-    "luatypoTwoChars{}{}": {
-      "snippet": "luatypoTwoChars{${1:language}}{${2:list of words}}"
+    {
+      "name": "luacode"
     },
-    "luatypoSetColor{}{}": {
-      "snippet": "luatypoSetColor{${1:number}}{${2:color}}"
+    {
+      "name": "luacolor"
+    },
+    {
+      "name": "atveryend"
     }
-  },
-  "envs": {},
-  "options": [
-    "ShowOptions",
-    "None",
-    "All",
-    "BackParindent",
-    "ShortLines",
-    "ShortPages",
-    "OverfullLines",
-    "UnderfullLines",
-    "Widows",
-    "Orphans",
-    "EOPHyphens",
-    "RepeatedHyphens",
-    "ParLastHyphen",
-    "EOLShortWords",
-    "FirstWordMatch",
-    "LastWordMatch",
-    "FootnoteSplit",
-    "ShortFinalWord",
-    "MarginparPos"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "luatypoLLminWD",
+      "unusual": true
+    },
+    {
+      "name": "luatypoBackPI",
+      "unusual": true
+    },
+    {
+      "name": "luatypoBackFuzz",
+      "unusual": true
+    },
+    {
+      "name": "luatypoMarginparTol",
+      "unusual": true
+    },
+    {
+      "name": "luatypoStretchMax",
+      "unusual": true
+    },
+    {
+      "name": "luatypoHyphMax",
+      "unusual": true
+    },
+    {
+      "name": "luatypoPageMin",
+      "unusual": true
+    },
+    {
+      "name": "luatypoMinFull",
+      "unusual": true
+    },
+    {
+      "name": "luatypoMinPart",
+      "unusual": true
+    },
+    {
+      "name": "luatypoMinLen",
+      "unusual": true
+    },
+    {
+      "name": "luatypoOneChar",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:list of words}}"
+      }
+    },
+    {
+      "name": "luatypoTwoChars",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:list of words}}"
+      }
+    },
+    {
+      "name": "luatypoSetColor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:number}}{${2:color}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/lua-typo#c": [
+      "ShowOptions",
+      "None",
+      "All",
+      "BackParindent",
+      "ShortLines",
+      "ShortPages",
+      "OverfullLines",
+      "UnderfullLines",
+      "Widows",
+      "Orphans",
+      "EOPHyphens",
+      "RepeatedHyphens",
+      "ParLastHyphen",
+      "EOLShortWords",
+      "FirstWordMatch",
+      "LastWordMatch",
+      "FootnoteSplit",
+      "ShortFinalWord",
+      "MarginparPos"
+    ]
+  },
+  "args": [
+    "\\usepackage/lua-typo#c"
+  ]
 }

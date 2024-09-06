@@ -1,42 +1,78 @@
 {
-  "includes": {
-    "tkz-fct": []
-  },
-  "macros": {
-    "nlAxisX{}{}": {
-      "snippet": "nlAxisX{${1:min}}{${2:max}}"
-    },
-    "nlinfnum{}{}": {
-      "snippet": "nlinfnum{${1:number}}{${2:o or c}}"
-    },
-    "nlinfnum[]{}[]{}[]": {
-      "snippet": "nlinfnum[${3:options}]{${1:number}}[${4:sub}]{${2:o or c}}[${5:height}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "nlnuminf{}{}": {
-      "snippet": "nlnuminf{${1:number}}{${2:o or c}}"
-    },
-    "nlnuminf[]{}[]{}[]": {
-      "snippet": "nlnuminf[${3:options}]{${1:number}}[${4:sub}]{${2:o or c}}[${5:height}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "nlnumnum{}{}{}{}": {
-      "snippet": "nlnumnum{${1:number1}}{${2:o or c}}{${3:number2}}{${4:o or c}}"
-    },
-    "nlnumnum[]{}[]{}{}[]{}[]": {
-      "snippet": "nlnumnum[${5:options}]{${1:number1}}[${6:sub1}]{${2:o or c}}{${3:number2}}[${7:sub2}]{${4:o or c}}[${8:height}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tkz-fct"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "nlAxisX",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:min}}{${2:max}}"
+      }
+    },
+    {
+      "name": "nlinfnum",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:number}}{${2:o or c}}"
+      }
+    },
+    {
+      "name": "nlinfnum",
+      "arg": {
+        "format": "[]{}[]{}[]",
+        "snippet": "[${3:options%keyvals}]{${1:number}}[${4:sub}]{${2:o or c}}[${5:height}]",
+        "keys": [
+          "\\nlinfnum#c,\\nlnuminf#c,\\nlnumnum#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nlnuminf",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:number}}{${2:o or c}}"
+      }
+    },
+    {
+      "name": "nlnuminf",
+      "arg": {
+        "format": "[]{}[]{}[]",
+        "snippet": "[${3:options%keyvals}]{${1:number}}[${4:sub}]{${2:o or c}}[${5:height}]",
+        "keys": [
+          "\\nlinfnum#c,\\nlnuminf#c,\\nlnumnum#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nlnumnum",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:number1}}{${2:o or c}}{${3:number2}}{${4:o or c}}"
+      }
+    },
+    {
+      "name": "nlnumnum",
+      "arg": {
+        "format": "[]{}[]{}{}[]{}[]",
+        "snippet": "[${5:options%keyvals}]{${1:number1}}[${6:sub1}]{${2:o or c}}{${3:number2}}[${7:sub2}]{${4:o or c}}[${8:height}]",
+        "keys": [
+          "\\nlinfnum#c,\\nlnuminf#c,\\nlnumnum#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\nlinfnum#c,\\nlnuminf#c,\\nlnumnum#c": [
       "pattern=",
       "color="
     ]
-  ]
+  },
+  "args": []
 }

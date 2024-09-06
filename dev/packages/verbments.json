@@ -1,34 +1,62 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "fancyvrb": [],
-    "framed": [],
-    "xcolor": [],
-    "calc": []
-  },
-  "macros": {
-    "plset{}": {
-      "snippet": "plset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "listofpyglistings": {},
-    "listofpyglistingsname{}": {
-      "snippet": "listofpyglistingsname{${1:name}}"
+    {
+      "name": "fancyvrb"
+    },
+    {
+      "name": "framed"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "calc"
     }
-  },
-  "envs": {
-    "pyglist": {},
-    "pyglist[]": {
+  ],
+  "macros": [
+    {
+      "name": "plset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{pyglist},\\plset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "listofpyglistings"
+    },
+    {
+      "name": "listofpyglistingsname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "pyglist"
+    },
+    {
       "name": "pyglist",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{pyglist},\\plset"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\begin{pyglist},\\plset": [
       "abovecaptionskip=",
       "belowcaptionskip=",
       "bgcolor=",
@@ -50,5 +78,6 @@
       "style=${1:Pygments style}",
       "texcl"
     ]
-  ]
+  },
+  "args": []
 }

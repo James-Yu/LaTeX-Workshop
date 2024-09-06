@@ -1,131 +1,311 @@
 {
-  "includes": {
-    "tikzlibrarymatrix": [],
-    "tikzlibraryquotes": [],
-    "tikzlibraryarrows.meta": []
-  },
-  "macros": {
-    "arrow[]": {
-      "snippet": "arrow[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikzlibrarymatrix"
     },
-    "arrow[]{}{}": {
-      "snippet": "arrow[${3:options}]{${1:direction}}{${2:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryquotes"
     },
-    "arrow[]{}[]{}": {
-      "snippet": "arrow[${3:options}]{${1:direction}}[${4:label options}]{${2:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ar[]": {
-      "snippet": "ar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "rar[]": {
-      "snippet": "rar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "rar[]{}": {
-      "snippet": "rar[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "lar[]": {
-      "snippet": "lar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "lar[]{}": {
-      "snippet": "lar[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "dar[]": {
-      "snippet": "dar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "dar[]{}": {
-      "snippet": "dar[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "uar[]": {
-      "snippet": "uar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "uar[]{}": {
-      "snippet": "uar[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drar[]": {
-      "snippet": "drar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drar[]{}": {
-      "snippet": "drar[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "urar[]": {
-      "snippet": "urar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "urar[]{}": {
-      "snippet": "urar[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "dlar[]": {
-      "snippet": "dlar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "dlar[]{}": {
-      "snippet": "dlar[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ular[]": {
-      "snippet": "ular[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ular[]{}": {
-      "snippet": "ular[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "tikzcdset{}": {
-      "snippet": "tikzcdset{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "tikzcd": {},
-    "endtikzcd": {},
-    "tikzcdmatrixname": {}
-  },
-  "envs": {
-    "tikzcd": {},
-    "tikzcd[]": {
-      "name": "tikzcd",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryarrows.meta"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "arrow",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "arrow",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:direction}}{${2:label}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "arrow",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:options}]{${1:direction}}[${4:label options}]{${2:label}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:label}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "lar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "lar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:label}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "dar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "dar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:label}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "uar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "uar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:label}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "drar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "drar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:label}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "urar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "urar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:label}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "dlar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "dlar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:label}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ular",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ular",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:label}}",
+        "keys": [
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tikzcdset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\tikzcdset#c,\\begin{tikzcd}#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tikzcdmatrixname",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "tikzcd"
+    },
+    {
+      "name": "tikzcd",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\tikzcdset#c,\\begin{tikzcd}#c",
+          "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c": [
       "to head",
       "rightarrow",
       "leftarrow",
@@ -165,17 +345,6 @@
       "rightharpoondown",
       "leftharpoonup",
       "leftharpoondown",
-      "shorten=",
-      "crossing over",
-      "crossing over clearance=",
-      "marking",
-      "description",
-      "%color",
-      "color=",
-      "in=${1:degrees}",
-      "out=${1:degrees}",
-      "font=${1:font commands}",
-      "line width=",
       "from=",
       "to=",
       "phantom",
@@ -203,7 +372,7 @@
       "swap",
       "to path={${1:path spec}}"
     ],
-    [
+    "\\tikzcdset#c,\\begin{tikzcd}#c": [
       "every diagram",
       "diagrams={${1:options}}",
       "every matrix",
@@ -221,7 +390,9 @@
       "every label",
       "labels={${1:options}}",
       "center yshift=",
-      "ampersand replacement=${1:macro}",
+      "ampersand replacement=${1:macro}"
+    ],
+    "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c": [
       "shorten=",
       "crossing over",
       "crossing over clearance=",
@@ -234,5 +405,6 @@
       "font=${1:font commands}",
       "line width="
     ]
-  ]
+  },
+  "args": []
 }

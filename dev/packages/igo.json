@@ -1,125 +1,256 @@
 {
-  "includes": {},
-  "macros": {
-    "black[]{}": {
-      "snippet": "black[${2:glyph}]{${1:intersection-list}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "black",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:glyph}]{${1:intersection-list}}"
+      }
     },
-    "black{}": {
-      "snippet": "black{${1:intersection-list}}"
+    {
+      "name": "black",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:intersection-list}}"
+      }
     },
-    "blackstone": {},
-    "blackstone[]": {
-      "snippet": "blackstone[${1:glyph}]"
+    {
+      "name": "blackstone"
     },
-    "clear{}": {
-      "snippet": "clear{${1:intersection-list}}"
+    {
+      "name": "blackstone",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:glyph}]"
+      }
     },
-    "cleargoban": {},
-    "cleargoban[]": {
-      "snippet": "cleargoban[${1:intersection-pair}]"
+    {
+      "name": "clear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:intersection-list}}"
+      }
     },
-    "cleargobansymbols": {},
-    "copyfromgoban{}": {
-      "snippet": "copyfromgoban{${1:n}}"
+    {
+      "name": "cleargoban"
     },
-    "copygoban{}": {
-      "snippet": "copygoban{${1:n}}"
+    {
+      "name": "cleargoban",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:intersection-pair}]"
+      }
     },
-    "copytogoban{}": {
-      "snippet": "copytogoban{${1:n}}"
+    {
+      "name": "cleargobansymbols"
     },
-    "gobansize{}": {
-      "snippet": "gobansize{${1:n}}"
+    {
+      "name": "copyfromgoban",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
     },
-    "gobansymbol{}{}": {
-      "snippet": "gobansymbol{${1:intersection-list}}{${2:symbol}}"
+    {
+      "name": "copygoban",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
     },
-    "gobansymbols{}{}": {
-      "snippet": "gobansymbols{${1:intersection-list}}{${2:symbol}}"
+    {
+      "name": "copytogoban",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
     },
-    "hflipgoban": {},
-    "igobreakafterdiagram": {},
-    "igocircle": {},
-    "igocross": {},
-    "igofontsize{}": {
-      "snippet": "igofontsize{${1:n}}"
+    {
+      "name": "gobansize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
     },
-    "igonone": {},
-    "igosquare": {},
-    "igotriangle": {},
-    "largegoban": {},
-    "mirrorgoban": {},
-    "normalgoban": {},
-    "rotategoban": {},
-    "rotategobanleft": {},
-    "rotategobanright": {},
-    "showfullgoban": {},
-    "showgoban": {},
-    "showgoban[]": {
-      "snippet": "showgoban[${1:intersection-pair}]"
+    {
+      "name": "gobansymbol",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:intersection-list}}{${2:symbol}}"
+      }
     },
-    "smallgoban": {},
-    "stonesize": {},
-    "usegoban{}": {
-      "snippet": "usegoban{${1:n}}"
+    {
+      "name": "gobansymbols",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:intersection-list}}{${2:symbol}}"
+      }
     },
-    "vflipgoban": {},
-    "white[]{}": {
-      "snippet": "white[${2:glyph}]{${1:intersection-list}}"
+    {
+      "name": "hflipgoban"
     },
-    "white{}": {
-      "snippet": "white{${1:intersection-list}}"
+    {
+      "name": "igobreakafterdiagram",
+      "unusual": true
     },
-    "whitestone": {},
-    "whitestone[]": {
-      "snippet": "whitestone[${1:glyph}]"
+    {
+      "name": "igocircle"
     },
-    "breakrepeat": {},
-    "by{}": {
-      "snippet": "by{${1:step}}"
+    {
+      "name": "igocross"
     },
-    "csprotect": {},
-    "downto{}": {
-      "snippet": "downto{${1:end}}"
+    {
+      "name": "igofontsize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
     },
-    "endrepeat": {},
-    "for{}": {
-      "snippet": "for{${1:var}}"
+    {
+      "name": "igonone"
     },
-    "from{}": {
-      "snippet": "from{${1:start}}"
+    {
+      "name": "igosquare"
     },
-    "REPcomp": {},
-    "REPcsarg{}{}": {
-      "snippet": "REPcsarg{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "igotriangle"
     },
-    "REPcsargrom{}{}": {
-      "snippet": "REPcsargrom{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "largegoban"
     },
-    "REPcsrom{}": {
-      "snippet": "REPcsrom{${1:arg}}"
+    {
+      "name": "mirrorgoban"
     },
-    "REPdepth": {},
-    "REPdxbody": {},
-    "REPsetup{}": {
-      "snippet": "REPsetup{${1:arg}}"
+    {
+      "name": "normalgoban"
     },
-    "REPsign": {},
-    "REPtmp": {},
-    "REPtraceexit": {},
-    "REPtraceinit": {},
-    "REPzero": {},
-    "to{}": {
-      "snippet": "to{${1:end}}"
+    {
+      "name": "rotategoban"
     },
-    "until{}": {
-      "snippet": "until{${1:cond}}"
+    {
+      "name": "rotategobanleft"
     },
-    "while{}": {
-      "snippet": "while{${1:cond}}"
+    {
+      "name": "rotategobanright"
+    },
+    {
+      "name": "showfullgoban"
+    },
+    {
+      "name": "showgoban"
+    },
+    {
+      "name": "showgoban",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:intersection-pair}]"
+      }
+    },
+    {
+      "name": "smallgoban"
+    },
+    {
+      "name": "stonesize",
+      "unusual": true
+    },
+    {
+      "name": "usegoban",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
+    },
+    {
+      "name": "vflipgoban"
+    },
+    {
+      "name": "white",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:glyph}]{${1:intersection-list}}"
+      }
+    },
+    {
+      "name": "white",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:intersection-list}}"
+      }
+    },
+    {
+      "name": "whitestone"
+    },
+    {
+      "name": "whitestone",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:glyph}]"
+      }
+    },
+    {
+      "name": "breakrepeat",
+      "unusual": true
+    },
+    {
+      "name": "by",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:step}}"
+      }
+    },
+    {
+      "name": "downto",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:end}}"
+      }
+    },
+    {
+      "name": "for",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
+    },
+    {
+      "name": "from",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:start}}"
+      }
+    },
+    {
+      "name": "to",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:end}}"
+      }
+    },
+    {
+      "name": "until",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cond}}"
+      }
+    },
+    {
+      "name": "while",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cond}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

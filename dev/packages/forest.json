@@ -1,380 +1,1053 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibraryshapes": [],
-    "tikzlibraryfit": [],
-    "tikzlibrarycalc": [],
-    "pgfopts": [],
-    "etoolbox": [],
-    "elocalloc": [],
-    "environ": [],
-    "inlinedef": [],
-    "tikzlibraryexternal": [
-      "external"
-    ]
-  },
-  "macros": {
-    "standardnodestrut": {
-      "option": "linguistics"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "standardnodestrutbox": {
-      "option": "linguistics"
+    {
+      "name": "tikzlibraryshapes"
     },
-    "Forest{}": {
-      "snippet": "Forest{${1:tree}}"
+    {
+      "name": "tikzlibraryfit"
     },
-    "Forest(){}": {
-      "snippet": "Forest(${2:config}){${1:tree}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "Forest*{}": {
-      "snippet": "Forest*{${1:tree}}"
+    {
+      "name": "pgfopts"
     },
-    "Forest*(){}": {
-      "snippet": "Forest*(${2:config}){${1:tree}}"
+    {
+      "name": "etoolbox"
     },
-    "forestset{}": {
-      "snippet": "forestset{${1:specs}}"
+    {
+      "name": "elocalloc"
     },
-    "useforestlibrary{}": {
-      "snippet": "useforestlibrary{${1:libraries}}"
+    {
+      "name": "environ"
     },
-    "useforestlibrary[]{}": {
-      "snippet": "useforestlibrary[${2:options}]{${1:libraries}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "inlinedef"
     },
-    "useforestlibrary*{}": {
-      "snippet": "useforestlibrary*{${1:libraries}}"
-    },
-    "useforestlibrary*[]{}": {
-      "snippet": "useforestlibrary*[${2:options}]{${1:libraries}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "forestapplylibrarydefaults{}": {
-      "snippet": "forestapplylibrarydefaults{${1:libraries}}"
-    },
-    "forestcompat{}": {
-      "snippet": "forestcompat{${1:compat keylist}}"
-    },
-    "forestoption{}": {
-      "snippet": "forestoption{${1:option}}"
-    },
-    "foresteoption{}": {
-      "snippet": "foresteoption{${1:option}}"
-    },
-    "forestregister{}": {
-      "snippet": "forestregister{${1:register}}"
-    },
-    "foresteregister{}": {
-      "snippet": "foresteregister{${1:register}}"
-    },
-    "bracketset{}": {
-      "snippet": "bracketset{${1:bracket options}}"
-    },
-    "bracketResume": {},
-    "forestStandardNode[]{}{}{}": {
-      "snippet": "forestStandardNode[${4:node}]{${1:code}}{${2:calibration}}{${3:export}}"
-    },
-    "apptotoks{}{}": {
-      "snippet": "apptotoks{${1:arg1}}{${2:arg2}}"
-    },
-    "bracketEndParsingHook": {},
-    "bracketParse{}{}": {
-      "snippet": "bracketParse{${1:arg1}}{${2:arg2}}"
-    },
-    "eapptotoks{}{}": {
-      "snippet": "eapptotoks{${1:arg1}}{${2:arg2}}"
-    },
-    "epretotoks{}{}": {
-      "snippet": "epretotoks{${1:arg1}}{${2:arg2}}"
-    },
-    "etotoks{}{}": {
-      "snippet": "etotoks{${1:arg1}}{${2:arg2}}"
-    },
-    "ExpandIfF{}{}": {
-      "snippet": "ExpandIfF{${1:arg1}}{${2:arg2}}"
-    },
-    "ExpandIfT{}{}": {
-      "snippet": "ExpandIfT{${1:arg1}}{${2:arg2}}"
-    },
-    "ExpandIfTF{}{}{}": {
-      "snippet": "ExpandIfTF{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "expandnumberarg{}{}": {
-      "snippet": "expandnumberarg{${1:arg1}}{${2:arg2}}"
-    },
-    "expandthreenumberargs{}{}{}{}": {
-      "snippet": "expandthreenumberargs{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "expandtwonumberargs{}{}{}": {
-      "snippet": "expandtwonumberargs{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "forestanchortotikzanchor{}{}": {
-      "snippet": "forestanchortotikzanchor{${1:arg1}}{${2:arg2}}"
-    },
-    "forestdebugdynamicsfalse": {},
-    "forestdebugdynamicstrue": {},
-    "forestdebugfalse": {},
-    "forestdebugnodewalksfalse": {},
-    "forestdebugnodewalkstrue": {},
-    "forestdebugprocessfalse": {},
-    "forestdebugprocesstrue": {},
-    "forestdebugtempfalse": {},
-    "forestdebugtemptrue": {},
-    "forestdebugtrue": {},
-    "forestdebugtypeouttree()": {
-      "snippet": "forestdebugtypeouttree(${1:arg})"
-    },
-    "forestdebugtypeouttree()[]": {
-      "snippet": "forestdebugtypeouttree(${2:arg})[${1:opt}]"
-    },
-    "forestdebugtypeouttreenodeinfo": {},
-    "forestdebugtypeouttrees": {},
-    "forestdebugtypeouttrees[]": {
-      "snippet": "forestdebugtypeouttrees[${1:opt}]"
-    },
-    "forestdebugtypeouttreesprefix": {},
-    "forestdebugtypeouttreessuffix": {},
-    "forestloopbreak": {},
-    "forestloopBreak{}": {
-      "snippet": "forestloopBreak{${1:arg}}"
-    },
-    "forestloopcount": {},
-    "forestloopCount{}": {
-      "snippet": "forestloopCount{${1:arg}}"
-    },
-    "forestmathadd{}{}": {
-      "snippet": "forestmathadd{${1:arg1}}{${2:arg2}}"
-    },
-    "forestmathdivide{}{}": {
-      "snippet": "forestmathdivide{${1:arg1}}{${2:arg2}}"
-    },
-    "forestmatheq{}{}": {
-      "snippet": "forestmatheq{${1:arg1}}{${2:arg2}}"
-    },
-    "forestmathfalse": {},
-    "forestmathgt{}{}": {
-      "snippet": "forestmathgt{${1:arg1}}{${2:arg2}}"
-    },
-    "forestmathlt{}{}": {
-      "snippet": "forestmathlt{${1:arg1}}{${2:arg2}}"
-    },
-    "forestmathmax": {},
-    "forestmathmin": {},
-    "forestmathmultiply{}{}": {
-      "snippet": "forestmathmultiply{${1:arg1}}{${2:arg2}}"
-    },
-    "forestmathparse{}": {
-      "snippet": "forestmathparse{${1:arg}}"
-    },
-    "forestmathresult": {},
-    "forestmathresulttype": {},
-    "forestmathsetcount{}{}": {
-      "snippet": "forestmathsetcount{${1:arg1}}{${2:arg2}}"
-    },
-    "forestmathsetlength{}{}": {
-      "snippet": "forestmathsetlength{${1:arg1}}{${2:arg2}}"
-    },
-    "forestmathsetlengthmacro{}{}": {
-      "snippet": "forestmathsetlengthmacro{${1:arg1}}{${2:arg2}}"
-    },
-    "forestmathsetmacro{}{}": {
-      "snippet": "forestmathsetmacro{${1:arg1}}{${2:arg2}}"
-    },
-    "forestmathsettypefrom{}": {
-      "snippet": "forestmathsettypefrom{${1:arg}}"
-    },
-    "forestmathtrue": {},
-    "forestmathtruncatemacro{}{}": {
-      "snippet": "forestmathtruncatemacro{${1:arg1}}{${2:arg2}}"
-    },
-    "forestmathzero": {},
-    "forestnovalue": {},
-    "forestoappto{}{}": {
-      "snippet": "forestoappto{${1:arg1}}{${2:arg2}}"
-    },
-    "forestOappto{}{}{}": {
-      "snippet": "forestOappto{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "forestOeappto{}{}{}": {
-      "snippet": "forestOeappto{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "forestOepreto{}{}{}": {
-      "snippet": "forestOepreto{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "forestoeset{}{}": {
-      "snippet": "forestoeset{${1:arg1}}{${2:arg2}}"
-    },
-    "forestOeset{}{}{}": {
-      "snippet": "forestOeset{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "forestoget{}{}": {
-      "snippet": "forestoget{${1:arg1}}{${2:arg2}}"
-    },
-    "forestOget{}{}{}": {
-      "snippet": "forestOget{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "forestoifdefined{}{}{}": {
-      "snippet": "forestoifdefined{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "forestOifdefined{}{}{}{}": {
-      "snippet": "forestOifdefined{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "forestoinit{}": {
-      "snippet": "forestoinit{${1:arg}}"
-    },
-    "forestolet{}{}": {
-      "snippet": "forestolet{${1:arg1}}{${2:arg2}}"
-    },
-    "forestOlet{}{}{}": {
-      "snippet": "forestOlet{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "forestoleto{}{}": {
-      "snippet": "forestoleto{${1:arg1}}{${2:arg2}}"
-    },
-    "forestOleto{}{}{}": {
-      "snippet": "forestOleto{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "forestoletO{}{}{}": {
-      "snippet": "forestoletO{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "forestOletO{}{}{}{}": {
-      "snippet": "forestOletO{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "forestom{}": {
-      "snippet": "forestom{${1:arg}}"
-    },
-    "forestOm{}{}": {
-      "snippet": "forestOm{${1:arg1}}{${2:arg2}}"
-    },
-    "forestOpreto{}{}{}": {
-      "snippet": "forestOpreto{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "forestoset{}{}": {
-      "snippet": "forestoset{${1:arg1}}{${2:arg2}}"
-    },
-    "forestOset{}{}{}": {
-      "snippet": "forestOset{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "forestov{}": {
-      "snippet": "forestov{${1:arg}}"
-    },
-    "forestOv{}{}": {
-      "snippet": "forestOv{${1:arg1}}{${2:arg2}}"
-    },
-    "forestove{}": {
-      "snippet": "forestove{${1:arg}}"
-    },
-    "forestOve{}{}": {
-      "snippet": "forestOve{${1:arg1}}{${2:arg2}}"
-    },
-    "forestrappto{}{}": {
-      "snippet": "forestrappto{${1:arg1}}{${2:arg2}}"
-    },
-    "forestreset{}{}": {
-      "snippet": "forestreset{${1:arg1}}{${2:arg2}}"
-    },
-    "forestrget{}{}": {
-      "snippet": "forestrget{${1:arg1}}{${2:arg2}}"
-    },
-    "forestrifdefined{}{}{}": {
-      "snippet": "forestrifdefined{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "forestrlet{}{}": {
-      "snippet": "forestrlet{${1:arg1}}{${2:arg2}}"
-    },
-    "forestrm{}": {
-      "snippet": "forestrm{${1:arg1}}"
-    },
-    "forestRNOget{}{}": {
-      "snippet": "forestRNOget{${1:arg1}}{${2:arg2}}"
-    },
-    "forestrpreto{}{}": {
-      "snippet": "forestrpreto{${1:arg1}}{${2:arg2}}"
-    },
-    "forestrset{}{}": {
-      "snippet": "forestrset{${1:arg1}}{${2:arg2}}"
-    },
-    "forestrv{}": {
-      "snippet": "forestrv{${1:arg1}}"
-    },
-    "forestrve{}": {
-      "snippet": "forestrve{${1:arg1}}"
-    },
-    "foresttemp": {},
-    "foresttikzcshackfalse": {},
-    "foresttikzcshacktrue": {},
-    "gapptotoks{}{}": {
-      "snippet": "gapptotoks{${1:arg1}}{${2:arg2}}"
-    },
-    "gpretotoks{}{}": {
-      "snippet": "gpretotoks{${1:arg1}}{${2:arg2}}"
-    },
-    "ifforestdebug": {},
-    "ifforestdebugdynamics": {},
-    "ifforestdebugnodewalks": {},
-    "ifforestdebugprocess": {},
-    "ifforestdebugtemp": {},
-    "ifforesttikzcshack": {},
-    "InlineNoDef{}": {
-      "snippet": "InlineNoDef{${1:arg}}"
-    },
-    "lapptotoks{}{}": {
-      "snippet": "lapptotoks{${1:arg1}}{${2:arg2}}"
-    },
-    "makehashother": {},
-    "NewInlineCommand[]{}{}": {
-      "snippet": "NewInlineCommand[${3:args}]{${1:cmd}}{${2:def}}"
-    },
-    "NewInlineCommand{}{}": {
-      "snippet": "NewInlineCommand{${1:cmd}}{${2:def}}"
-    },
-    "newloop{}": {
-      "snippet": "newloop{${1:cmd}}"
-    },
-    "newsafeloop{}": {
-      "snippet": "newsafeloop{${1:name}}"
-    },
-    "newsafeRKloop{}": {
-      "snippet": "newsafeRKloop{${1:name}}"
-    },
-    "pretotoks{}{}": {
-      "snippet": "pretotoks{${1:arg1}}{${2:arg2}}"
-    },
-    "ProvidesForestLibrary{}": {
-      "snippet": "ProvidesForestLibrary{${1:name}}"
-    },
-    "ProvidesForestLibrary{}[]": {
-      "snippet": "ProvidesForestLibrary{${1:name}}[${2:release info}]"
-    },
-    "safeloop": {},
-    "safeloopn": {},
-    "saferepeat": {},
-    "safeRKloop": {},
-    "safeRKloopn": {},
-    "safeRKrepeat": {},
-    "xapptotoks{}{}": {
-      "snippet": "xapptotoks{${1:arg1}}{${2:arg2}}"
-    },
-    "xpretotoks{}{}": {
-      "snippet": "xpretotoks{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "tikzlibraryexternal",
+      "if": "external"
     }
-  },
-  "envs": {
-    "forest": {}
-  },
-  "options": [
-    "external",
-    "linguistics"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "standardnodestrut",
+      "if": "linguistics",
+      "unusual": true
+    },
+    {
+      "name": "standardnodestrutbox",
+      "if": "linguistics",
+      "unusual": true
+    },
+    {
+      "name": "Forest",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tree}}"
+      }
+    },
+    {
+      "name": "Forest",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:config%keyvals}){${1:tree}}"
+      }
+    },
+    {
+      "name": "Forest*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tree}}"
+      }
+    },
+    {
+      "name": "Forest*",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:config%keyvals}){${1:tree}}"
+      }
+    },
+    {
+      "name": "forestset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:specs%keyvals}}",
+        "keys": [
+          "\\forestset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "useforestlibrary",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:libraries}}"
+      }
+    },
+    {
+      "name": "useforestlibrary",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:libraries}}",
+        "keys": [
+          "\\useforestlibrary,\\useforestlibrary*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "useforestlibrary*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:libraries}}"
+      }
+    },
+    {
+      "name": "useforestlibrary*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:libraries}}",
+        "keys": [
+          "\\useforestlibrary,\\useforestlibrary*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "forestapplylibrarydefaults",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:libraries}}"
+      }
+    },
+    {
+      "name": "forestcompat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:compat keylist}}"
+      }
+    },
+    {
+      "name": "forestoption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "foresteoption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "forestregister",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:register}}"
+      }
+    },
+    {
+      "name": "foresteregister",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:register}}"
+      }
+    },
+    {
+      "name": "bracketset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bracket options%keyvals}}",
+        "keys": [
+          "\\bracketset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bracketResume"
+    },
+    {
+      "name": "forestStandardNode",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:node}]{${1:code}}{${2:calibration}}{${3:export}}"
+      }
+    },
+    {
+      "name": "apptotoks",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "bracketEndParsingHook",
+      "unusual": true
+    },
+    {
+      "name": "bracketParse",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "eapptotoks",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "epretotoks",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "etotoks",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ExpandIfF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ExpandIfT",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ExpandIfTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "expandnumberarg",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "expandthreenumberargs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "expandtwonumberargs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "forestanchortotikzanchor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestdebugtypeouttree",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:arg})"
+      }
+    },
+    {
+      "name": "forestdebugtypeouttree",
+      "unusual": true,
+      "arg": {
+        "format": "()[]",
+        "snippet": "(${2:arg})[${1:opt}]"
+      }
+    },
+    {
+      "name": "forestdebugtypeouttreenodeinfo",
+      "unusual": true
+    },
+    {
+      "name": "forestdebugtypeouttrees",
+      "unusual": true
+    },
+    {
+      "name": "forestdebugtypeouttrees",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:opt}]"
+      }
+    },
+    {
+      "name": "forestdebugtypeouttreesprefix",
+      "unusual": true
+    },
+    {
+      "name": "forestdebugtypeouttreessuffix",
+      "unusual": true
+    },
+    {
+      "name": "forestloopbreak",
+      "unusual": true
+    },
+    {
+      "name": "forestloopBreak",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "forestloopcount",
+      "unusual": true
+    },
+    {
+      "name": "forestloopCount",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "forestmathadd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestmathdivide",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestmatheq",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestmathfalse",
+      "unusual": true
+    },
+    {
+      "name": "forestmathgt",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestmathlt",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestmathmax",
+      "unusual": true
+    },
+    {
+      "name": "forestmathmin",
+      "unusual": true
+    },
+    {
+      "name": "forestmathmultiply",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestmathparse",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "forestmathresult",
+      "unusual": true
+    },
+    {
+      "name": "forestmathresulttype",
+      "unusual": true
+    },
+    {
+      "name": "forestmathsetcount",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestmathsetlength",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestmathsetlengthmacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestmathsetmacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestmathsettypefrom",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "forestmathtrue",
+      "unusual": true
+    },
+    {
+      "name": "forestmathtruncatemacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestmathzero",
+      "unusual": true
+    },
+    {
+      "name": "forestnovalue",
+      "unusual": true
+    },
+    {
+      "name": "forestoappto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestOappto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "forestOeappto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "forestOepreto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "forestoeset",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestOeset",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "forestoget",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestOget",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "forestoifdefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "forestOifdefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "forestoinit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "forestolet",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestOlet",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "forestoleto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestOleto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "forestoletO",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "forestOletO",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "forestom",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "forestOm",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestOpreto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "forestoset",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestOset",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "forestov",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "forestOv",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestove",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "forestOve",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestrappto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestreset",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestrget",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestrifdefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "forestrlet",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestrm",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "forestRNOget",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestrpreto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestrset",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "forestrv",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "forestrve",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "gapptotoks",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "gpretotoks",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "InlineNoDef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "lapptotoks",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "makehashother",
+      "unusual": true
+    },
+    {
+      "name": "NewInlineCommand",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:args}]{${1:cmd}}{${2:def}}"
+      }
+    },
+    {
+      "name": "NewInlineCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
+    },
+    {
+      "name": "newloop",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "newsafeloop",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "newsafeRKloop",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "pretotoks",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ProvidesForestLibrary",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "ProvidesForestLibrary",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name}}[${2:release info}]"
+      }
+    },
+    {
+      "name": "safeloop",
+      "unusual": true
+    },
+    {
+      "name": "safeloopn",
+      "unusual": true
+    },
+    {
+      "name": "saferepeat",
+      "unusual": true
+    },
+    {
+      "name": "safeRKloop",
+      "unusual": true
+    },
+    {
+      "name": "safeRKloopn",
+      "unusual": true
+    },
+    {
+      "name": "safeRKrepeat",
+      "unusual": true
+    },
+    {
+      "name": "xapptotoks",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "xpretotoks",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "forest"
+    },
+    {
+      "name": "forest",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:config%keyvals})"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/forest#c": [
+      "external",
+      "linguistics"
+    ],
+    "\\begin{forest}#c,\\Forest#c,\\Forest*#c": [
+      "stages=${1:keylist}"
+    ],
+    "\\forestset#c": [
+      "+form/.style={${1:specs}}",
+      "+format/.style={${1:specs}}",
+      "afterthought/.style={${1:style}}",
+      "also margin/.style={${1:style}}",
+      "anchors/.style={${1:specs}}",
+      "associate/.style={${1:specs}}",
+      "Autoforward register={${1:register}}{${2:style def}}",
+      "Autoforward={${1:option}}{${2:style def}}",
+      "background tree/.style={${1:specs}}",
+      "box/.style={${1:specs}}",
+      "compute xy stage/.style={${1:specs}}",
+      "decision edge label/.style n args={${1:args}}{${2:specs}}",
+      "decision tree/.style={${1:specs}}",
+      "decision/.style={${1:specs}}",
+      "declare boolean register=${1:register name}",
+      "declare dimen register=${1:register name}",
+      "declare dimen={${1:dimen name}}{${2:default value}}",
+      "declare keylist={${1:option name}}{${2:default value}}",
+      "declare toks register=${1:register name}",
+      "declare toks={${1:option name}}{${2:default value}}",
+      "default preamble={${1:specs}}",
+      "define long step/.append code={${1:code}}",
+      "define long step={${1:name}}{${2:options}}{${3:nodewalk}}",
+      "definition color/.initial=",
+      "definition/.style={${1:specs}}",
+      "detokenize/.style={${1:specs}}",
+      "dot/.default=",
+      "dot/.style={${1:specs}}",
+      "draw anchors/.default=",
+      "draw anchors/.style n args={${1:args}}{${2:specs}}",
+      "draw brackets compact/.code={${1:code}}",
+      "draw brackets wide/.code={${1:code}}",
+      "draw brackets/.style={${1:specs}}",
+      "draw tree stage/.style={${1:specs}}",
+      "el/.style={${1:specs}}",
+      "empty/.style={${1:style}}",
+      "encircle/.style={${1:specs}}",
+      "enumerate/.style={${1:specs}}",
+      "environment/.style={${1:style}}",
+      "every index begin/.style={${1:specs}}",
+      "every index end/.style={${1:specs}}",
+      "example color/.initial=",
+      "example/.style={${1:specs}}",
+      "fen/.style={${1:specs}}",
+      "folder/.style={${1:specs}}",
+      "forked edge/.style={${1:specs}}",
+      "forked edge’/.style={${1:specs}}",
+      "forked edges/.default=",
+      "forked edges/.style={${1:specs}}",
+      "form/.style={${1:specs}}",
+      "form+/.style={${1:specs}}",
+      "format/.style={${1:specs}}",
+      "format’/.style={${1:specs}}",
+      "format+/.style={${1:specs}}",
+      "govern/.style={${1:specs}}",
+      "GP1/.default=",
+      "GP1/.style 2 args={${1:specs}}",
+      "handler/.style={${1:style}}",
+      "head/.style={${1:specs}}",
+      "hyper/.style={${1:specs}}",
+      "important/.style={${1:specs}}",
+      "index library/.style={${1:style}}",
+      "item/.style={${1:specs}}",
+      "macro/.style={${1:specs}}",
+      "margin/.style={${1:style}}",
+      "mark/.style={${1:specs}}",
+      "meta/.style={${1:style}}",
+      "myGP1/.style={${1:specs}}",
+      "nice empty nodes/.style={${1:specs}}",
+      "no p-govern/.style={${1:specs}}",
+      "normal color/.initial=",
+      "normal/.style={${1:specs}}",
+      "option value/.style={${1:style}}",
+      "path/.style={${1:style}}",
+      "pgfkey/.style={${1:style}}",
+      "p-govern/.style={${1:specs}}",
+      "print in color/.default=",
+      "print in color/.style={${1:specs}}",
+      "random tree/.style n args={${1:args}}{${2:specs}}",
+      "roof/.style={${1:specs}}",
+      "show boundary/.style={${1:style}}",
+      "sn edges/.style={${1:specs}}",
+      "spread/.style={${1:specs}}",
+      "stages/.style={${1:specs}}",
+      "test/.style n args={${1:args}}{${2:specs}}",
+      "tt/.style={${1:specs}}",
+      "typeset nodes stage/.style={${1:specs}}",
+      "xlist/.default=",
+      "xlist/.style={${1:specs}}"
+    ],
+    "\\useforestlibrary,\\useforestlibrary*": [
       "external",
       "compat={${1:compat keylist}}",
       "tikzcshack",
       "tikzinstallkeys",
       "debug=${1|nodewalks,dynamics,process|}"
+    ],
+    "\\bracketset#c": [
+      "opening bracket=${1:character}",
+      "closing bracket=${1:character}",
+      "action character=${1:character}"
     ]
+  },
+  "args": [
+    "\\usepackage/forest#c"
   ]
 }

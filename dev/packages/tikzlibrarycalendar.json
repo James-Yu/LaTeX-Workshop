@@ -1,16 +1,76 @@
 {
-  "includes": {
-    "pgfcalendar": []
+  "deps": [
+    {
+      "name": "pgfcalendar"
+    }
+  ],
+  "macros": [
+    {
+      "name": "tikzdaycode",
+      "unusual": true
+    },
+    {
+      "name": "tikzdaytext",
+      "unusual": true
+    },
+    {
+      "name": "tikzmonthcode",
+      "unusual": true
+    },
+    {
+      "name": "tikzmonthtext",
+      "unusual": true
+    },
+    {
+      "name": "tikzyearcode",
+      "unusual": true
+    },
+    {
+      "name": "tikzyeartext",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\calendar#c": [
+      "dates=${1:start} to ${2:end}",
+      "day xshift=",
+      "day yshift=",
+      "month xshift=",
+      "month yshift=",
+      "day code={${1:code}}",
+      "day text=${1:text}",
+      "month code={${1:code}}",
+      "month text=${1:text}",
+      "year code={${1:code}}",
+      "year text=${1:text}",
+      "if=(${1:conditions}) ${2:〈code or options〉}",
+      "if=(${1:conditions}) ${2:〈code or options〉} else ${3:〈else code or options〉}",
+      "execute before day scope={${1:code}}",
+      "execute at begin day scope={${1:code}}",
+      "execute at end day scope={${1:code}}",
+      "execute after day scope={${1:code}}",
+      "day list downward",
+      "day list upward",
+      "day list right",
+      "day list left",
+      "week list",
+      "month list",
+      "month label left",
+      "month label left vertical",
+      "month label right",
+      "month label right vertical",
+      "month label above left",
+      "month label above centered",
+      "month label above right",
+      "month label below left",
+      "month label below centered"
+    ],
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c": [
+      "every calendar/.style={${1:options}}",
+      "every month/.style={${1:options}}",
+      "every year/.style={${1:options}}"
+    ]
   },
-  "macros": {
-    "tikzdaycode": {},
-    "tikzdaytext": {},
-    "tikzmonthcode": {},
-    "tikzmonthtext": {},
-    "tikzyearcode": {},
-    "tikzyeartext": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

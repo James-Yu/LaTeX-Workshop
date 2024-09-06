@@ -1,37 +1,75 @@
 {
-  "includes": {
-    "array": [],
-    "etoolbox": [],
-    "amsmath": []
-  },
-  "macros": {
-    "medmath{}": {
-      "snippet": "medmath{${1:formula}}"
+  "deps": [
+    {
+      "name": "array"
     },
-    "medop{}": {
-      "snippet": "medop{${1:operator}}"
+    {
+      "name": "etoolbox"
     },
-    "medint{}": {
-      "snippet": "medint{${1:operator}}"
-    },
-    "medintcorr{}": {
-      "snippet": "medintcorr{${1:length}}"
-    },
-    "mfrac{}{}": {
-      "snippet": "mfrac{${1:num}}{${2:den}}"
-    },
-    "mbinom{}{}": {
-      "snippet": "mbinom{${1:above}}{${2:below}}"
+    {
+      "name": "amsmath"
     }
-  },
-  "envs": {
-    "medsize": {},
-    "mmatrix": {}
-  },
-  "options": [
-    "bare",
-    "base",
-    "all"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "medmath",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:formula}}"
+      }
+    },
+    {
+      "name": "medop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:operator}}"
+      }
+    },
+    {
+      "name": "medint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:operator}}"
+      }
+    },
+    {
+      "name": "medintcorr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "mfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:den}}"
+      }
+    },
+    {
+      "name": "mbinom",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:above}}{${2:below}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "medsize"
+    },
+    {
+      "name": "mmatrix"
+    }
+  ],
+  "keys": {
+    "\\usepackage/medmath#c": [
+      "bare",
+      "base",
+      "all"
+    ]
+  },
+  "args": [
+    "\\usepackage/medmath#c"
+  ]
 }

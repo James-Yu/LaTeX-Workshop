@@ -1,58 +1,134 @@
 {
-  "includes": {
-    "upmethodology-p-common": []
-  },
-  "macros": {
-    "upmcodelang{}": {
-      "snippet": "upmcodelang{${1:language}}"
-    },
-    "jclass{}": {
-      "snippet": "jclass{${1:class}}"
-    },
-    "jinterface{}": {
-      "snippet": "jinterface{${1:interface}}"
-    },
-    "jpackage{}": {
-      "snippet": "jpackage{${1:package}}"
-    },
-    "jfunc{}": {
-      "snippet": "jfunc{${1:function}}"
-    },
-    "jclazz": {},
-    "jvoid": {},
-    "jint": {},
-    "jlong": {},
-    "jfloat": {},
-    "jboolean": {},
-    "jdouble": {},
-    "jchar": {},
-    "jstring": {},
-    "jarray{}": {
-      "snippet": "jarray{${1:text}}"
-    },
-    "jcollection{}": {
-      "snippet": "jcollection{${1:text}}"
-    },
-    "jset{}": {
-      "snippet": "jset{${1:text}}"
-    },
-    "jtrue": {},
-    "jfalse": {},
-    "jop{}": {
-      "snippet": "jop{${1:operator}}"
-    },
-    "jcall{}{}": {
-      "snippet": "jcall{${1:function}}{${2:params}}"
-    },
-    "jcode{}": {
-      "snippet": "jcode{${1:code}}"
+  "deps": [
+    {
+      "name": "upmethodology-p-common"
     }
-  },
-  "envs": {},
-  "options": [
-    "uml",
-    "java",
-    "cpp"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "upmcodelang",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language%keyvals}}",
+        "keys": [
+          "\\usepackage/upmethodology-code#c,\\upmcodelang#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "jclass",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:class%plain}}"
+      }
+    },
+    {
+      "name": "jinterface",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:interface}}"
+      }
+    },
+    {
+      "name": "jpackage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package%plain}}"
+      }
+    },
+    {
+      "name": "jfunc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:function}}"
+      }
+    },
+    {
+      "name": "jclazz"
+    },
+    {
+      "name": "jvoid"
+    },
+    {
+      "name": "jint"
+    },
+    {
+      "name": "jlong"
+    },
+    {
+      "name": "jfloat"
+    },
+    {
+      "name": "jboolean"
+    },
+    {
+      "name": "jdouble"
+    },
+    {
+      "name": "jchar"
+    },
+    {
+      "name": "jstring"
+    },
+    {
+      "name": "jarray",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "jcollection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "jset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "jtrue"
+    },
+    {
+      "name": "jfalse"
+    },
+    {
+      "name": "jop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:operator}}"
+      }
+    },
+    {
+      "name": "jcall",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:function}}{${2:params}}"
+      }
+    },
+    {
+      "name": "jcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/upmethodology-code#c,\\upmcodelang#c": [
+      "uml",
+      "java",
+      "cpp"
+    ]
+  },
+  "args": [
+    "\\usepackage/upmethodology-code#c,\\upmcodelang#c"
+  ]
 }

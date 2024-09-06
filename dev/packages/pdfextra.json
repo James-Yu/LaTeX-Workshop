@@ -1,92 +1,202 @@
 {
-  "includes": {
-    "luatex": []
-  },
-  "macros": {
-    "attach[]": {
-      "snippet": "attach[${1:name}]"
-    },
-    "DDDannot{}": {
-      "snippet": "DDDannot{${1:name}}"
-    },
-    "DDDcontext{}": {
-      "snippet": "DDDcontext{${1:name}}"
-    },
-    "DDDview[][]": {
-      "snippet": "DDDview[${1:view name}][${2:keyvals}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "defaultpageactions[]": {
-      "snippet": "defaultpageactions[${1:additional action specs}]"
-    },
-    "defaultpageduration[]": {
-      "snippet": "defaultpageduration[${1:duration}]"
-    },
-    "defaultpagerotate[]": {
-      "snippet": "defaultpagerotate[${1:rotation spec}]"
-    },
-    "dljavascript[]{}": {
-      "snippet": "dljavascript[${2:name}]{${1:script}}"
-    },
-    "duplexdisplay": {},
-    "fullscreen": {},
-    "hlink[]{}": {
-      "snippet": "hlink[${2:action spec}]{${1:text}}"
-    },
-    "initpageattributes": {},
-    "lininglinks": {},
-    "nolininglinks": {},
-    "openaction[]": {
-      "snippet": "openaction[${1:action spec}]"
-    },
-    "pageactions[]": {
-      "snippet": "pageactions[${1:additional action specs}]"
-    },
-    "pageattributes": {},
-    "pageduration[]": {
-      "snippet": "pageduration[${1:duration}]"
-    },
-    "pagerotate[]": {
-      "snippet": "pagerotate[${1:rotation spec}]"
-    },
-    "pdfaction[]": {
-      "snippet": "pdfaction[${1:action spec}]"
-    },
-    "pdfextraloaded": {},
-    "render[][]{}": {
-      "snippet": "render[${2:name}][${3:options}]{${1:appearance}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "render[]{}": {
-      "snippet": "render[${2:name}]{${1:appearance}}"
-    },
-    "renditionautoplay": {},
-    "RM[][]{}": {
-      "snippet": "RM[${2:name}][${3:options}]{${1:appearance}}",
-      "keyvalindex": 2,
-      "keyvalpos": 1
-    },
-    "RM[]{}": {
-      "snippet": "RM[${2:name}]{${1:appearance}}"
-    },
-    "sdef{}{}": {
-      "snippet": "sdef{${1:string}}{${2:body}}"
-    },
-    "showattached": {},
-    "showoutlines": {},
-    "transition[]": {
-      "snippet": "transition[${1:transition spec}]"
-    },
-    "transitions[]": {
-      "snippet": "transitions[${1:transition spec}]"
+  "deps": [
+    {
+      "name": "luatex"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "attach",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:name}]"
+      }
+    },
+    {
+      "name": "DDDannot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "DDDcontext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "DDDview",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:view name}][${2:keyvals}]",
+        "keys": [
+          "\\DDDview"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "defaultpageactions",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:additional action specs}]"
+      }
+    },
+    {
+      "name": "defaultpageduration",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:duration}]"
+      }
+    },
+    {
+      "name": "defaultpagerotate",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:rotation spec}]"
+      }
+    },
+    {
+      "name": "dljavascript",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name}]{${1:script%definition}}"
+      }
+    },
+    {
+      "name": "duplexdisplay"
+    },
+    {
+      "name": "fullscreen"
+    },
+    {
+      "name": "hlink",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:action spec}]{${1:text}}"
+      }
+    },
+    {
+      "name": "initpageattributes",
+      "unusual": true
+    },
+    {
+      "name": "lininglinks"
+    },
+    {
+      "name": "nolininglinks"
+    },
+    {
+      "name": "openaction",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:action spec}]"
+      }
+    },
+    {
+      "name": "pageactions",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:additional action specs}]"
+      }
+    },
+    {
+      "name": "pageattributes",
+      "unusual": true
+    },
+    {
+      "name": "pageduration",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:duration}]"
+      }
+    },
+    {
+      "name": "pagerotate",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:rotation spec}]"
+      }
+    },
+    {
+      "name": "pdfaction",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:action spec}]"
+      }
+    },
+    {
+      "name": "render",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:name}][${3:options%keyvals}]{${1:appearance}}",
+        "keys": [
+          "\\render"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "render",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name}]{${1:appearance}}"
+      }
+    },
+    {
+      "name": "renditionautoplay"
+    },
+    {
+      "name": "RM",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:name}][${3:options%keyvals}]{${1:appearance}}",
+        "keys": [
+          "\\RM"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "RM",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name}]{${1:appearance}}"
+      }
+    },
+    {
+      "name": "sdef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:string%definition}}{${2:body}}"
+      }
+    },
+    {
+      "name": "showattached"
+    },
+    {
+      "name": "showoutlines"
+    },
+    {
+      "name": "transition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:transition spec}]"
+      }
+    },
+    {
+      "name": "transitions",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:transition spec}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\DDDview": [
       "projection=${1|perspective,ortho|}",
       "scale=${1:factor}",
       "FOV=${1:number 0-180}",
@@ -99,7 +209,7 @@
       "roo=${1:number}",
       "c2c=${1:x y z}"
     ],
-    [
+    "\\render": [
       "controls",
       "volume=${1:number 0-100}",
       "repeat=${1:integer}",
@@ -108,7 +218,7 @@
       "aactions=\\renditionautoplay",
       "name=${1:string}"
     ],
-    [
+    "\\RM": [
       "activation=${1|explicit,auto|}",
       "deactivation=${1|explicit,auto|}",
       "toolbar",
@@ -117,5 +227,6 @@
       "name=${1:string}",
       "background=${1:OpTeX color}"
     ]
-  ]
+  },
+  "args": []
 }

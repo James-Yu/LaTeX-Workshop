@@ -1,37 +1,57 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontaxes": [],
-    "fontenc": [],
-    "mweights": []
-  },
-  "macros": {
-    "sufigures": {},
-    "supfigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "textsup{}": {
-      "snippet": "textsup{${1:text}}"
+    {
+      "name": "ifluatex"
     },
-    "textsuperior{}": {
-      "snippet": "textsuperior{${1:text}}"
+    {
+      "name": "xkeyval"
     },
-    "cphwtfamily": {},
-    "cooperhewitt": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "default",
-    "type1",
-    "semibold",
-    "heavy",
-    "medium",
-    "thin",
-    "light"
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "mweights"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "cphwtfamily",
+      "unusual": true
+    },
+    {
+      "name": "cooperhewitt"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/CooperHewitt#c": [
+      "scale=${1:factor}",
+      "default",
+      "type1",
+      "semibold",
+      "heavy",
+      "medium",
+      "thin",
+      "light"
+    ]
+  },
+  "args": [
+    "\\usepackage/CooperHewitt#c"
+  ]
 }

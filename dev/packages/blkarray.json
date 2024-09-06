@@ -1,66 +1,146 @@
 {
-  "includes": {},
-  "macros": {
-    "BAnewcolumntype{}{}": {
-      "snippet": "BAnewcolumntype{${1:name}}{${2:argument}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "BAnewcolumntype",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%cmd}}{${2:argument}}"
+      }
     },
-    "BAnewcolumntype[]{}{}": {
-      "snippet": "BAnewcolumntype[${3:args}]{${1:name}}{${2:argument}}"
+    {
+      "name": "BAnewcolumntype",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:args}]{${1:name%cmd}}{${2:argument}}"
+      }
     },
-    "BAmulticolumn{}{}{}": {
-      "snippet": "BAmulticolumn{${1:cols}}{${2:pos}}{${3:text}}"
+    {
+      "name": "BAmulticolumn",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cols}}{${2:pos}}{${3:text}}"
+      }
     },
-    "Left{}{}": {
-      "snippet": "Left{${1:text}}{${2:delim}}"
+    {
+      "name": "Left",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:delim}}"
+      }
     },
-    "Right{}{}": {
-      "snippet": "Right{${1:text}}{${2:delim}}"
+    {
+      "name": "Right",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:delim}}"
+      }
     },
-    "BAenum": {},
-    "theBAenumi": {},
-    "testBAtablenotes{}{}": {
-      "snippet": "testBAtablenotes{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "BAenum"
     },
-    "BAtablenotestrue": {},
-    "BAtablenotesfalse": {},
-    "BAparfootnotes": {},
-    "BAnoalign{}": {
-      "snippet": "BAnoalign{${1:text}}"
+    {
+      "name": "theBAenumi"
     },
-    "BAnoalign*{}": {
-      "snippet": "BAnoalign*{${1:text}}"
+    {
+      "name": "testBAtablenotes",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
     },
-    "BAmultirow{}": {
-      "snippet": "BAmultirow{${1:dimen}}"
+    {
+      "name": "BAtablenotestrue"
     },
-    "BAmultirow{}{}": {
-      "snippet": "BAmultirow{${1:dimen}}{${2:text}}"
+    {
+      "name": "BAtablenotesfalse"
     },
-    "BAhline": {},
-    "BAhhline{}": {
-      "snippet": "BAhhline{${1:colspec}}"
+    {
+      "name": "BAparfootnotes"
     },
-    "BAextraheightafterhline": {},
-    "BAextrarowheight": {},
-    "BAtracing": {},
-    "BAarrayrulewidth": {},
-    "BAdoublerulesep": {},
-    "plain": {}
-  },
-  "envs": {
-    "blockarray{}": {
-      "name": "blockarray",
-      "snippet": "{${1:cols}}"
+    {
+      "name": "BAnoalign",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "block{}": {
-      "name": "block",
-      "snippet": "{${1:cols}}"
+    {
+      "name": "BAnoalign*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "block*{}": {
-      "name": "block*",
-      "snippet": "{${1:cols}}"
+    {
+      "name": "BAmultirow",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen%l}}"
+      }
+    },
+    {
+      "name": "BAmultirow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:dimen%l}}{${2:text}}"
+      }
+    },
+    {
+      "name": "BAhline"
+    },
+    {
+      "name": "BAhhline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:colspec}}"
+      }
+    },
+    {
+      "name": "BAextraheightafterhline",
+      "unusual": true
+    },
+    {
+      "name": "BAextrarowheight",
+      "unusual": true
+    },
+    {
+      "name": "BAtracing",
+      "unusual": true
+    },
+    {
+      "name": "BAarrayrulewidth",
+      "unusual": true
+    },
+    {
+      "name": "BAdoublerulesep",
+      "unusual": true
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "blockarray",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    },
+    {
+      "name": "block",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    },
+    {
+      "name": "block*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

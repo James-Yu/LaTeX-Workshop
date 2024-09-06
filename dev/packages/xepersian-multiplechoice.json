@@ -1,65 +1,147 @@
 {
-  "includes": {
-    "pifont": [],
-    "fullpage": [],
-    "ifthen": [],
-    "calc": [],
-    "verbatim": [],
-    "tabularx": []
-  },
-  "macros": {
-    "answernumberfont{}": {
-      "snippet": "answernumberfont{${1:font commands}}"
+  "deps": [
+    {
+      "name": "pifont"
     },
-    "answerstitle{}": {
-      "snippet": "answerstitle{${1:text}}"
+    {
+      "name": "fullpage"
     },
-    "answerstitlefont{}": {
-      "snippet": "answerstitlefont{${1:font commands}}"
+    {
+      "name": "ifthen"
     },
-    "correctionstyle{}": {
-      "snippet": "correctionstyle{${1:font commands}}"
+    {
+      "name": "calc"
     },
-    "false": {},
-    "falsesymbol{}": {
-      "snippet": "falsesymbol{${1:symbol}}"
+    {
+      "name": "verbatim"
     },
-    "headerfont{}": {
-      "snippet": "headerfont{${1:font commands}}"
-    },
-    "makeform": {},
-    "makemask": {},
-    "pbs{}": {
-      "snippet": "pbs{${1:arg}}"
-    },
-    "questionsepspace": {},
-    "questionspace": {},
-    "questiontitle{}": {
-      "snippet": "questiontitle{${1:text}}"
-    },
-    "questiontitlefont{}": {
-      "snippet": "questiontitlefont{${1:font commands}}"
-    },
-    "questiontitlespace": {},
-    "thequestion": {},
-    "true": {},
-    "truesymbol{}": {
-      "snippet": "truesymbol{${1:symbol}}"
-    },
-    "X{}": {
-      "snippet": "X{${1:symbol}}"
+    {
+      "name": "tabularx"
     }
-  },
-  "envs": {
-    "question{}": {
-      "name": "question",
-      "snippet": "{${1:text}}"
-    },
-    "correction": {}
-  },
-  "options": [
-    "nocorrection",
-    "correction"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "answernumberfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "answerstitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "answerstitlefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "correctionstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "false"
+    },
+    {
+      "name": "falsesymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "headerfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "makeform"
+    },
+    {
+      "name": "makemask"
+    },
+    {
+      "name": "pbs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "questionsepspace"
+    },
+    {
+      "name": "questionspace"
+    },
+    {
+      "name": "questiontitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "questiontitlefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "questiontitlespace"
+    },
+    {
+      "name": "thequestion"
+    },
+    {
+      "name": "true"
+    },
+    {
+      "name": "truesymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "X",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "question",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "correction"
+    }
+  ],
+  "keys": {
+    "\\usepackage/xepersian-multiplechoice#c": [
+      "nocorrection",
+      "correction"
+    ]
+  },
+  "args": [
+    "\\usepackage/xepersian-multiplechoice#c"
+  ]
 }

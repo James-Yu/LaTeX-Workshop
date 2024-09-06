@@ -1,78 +1,112 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "ifuptex": [],
-    "otf": [],
-    "mlutf": [
-      "multi"
-    ],
-    "mlcid": [
-      "multi"
-    ],
-    "uplatex": [
-      "uplatex"
+  "deps": [
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "ifuptex"
+    },
+    {
+      "name": "otf"
+    },
+    {
+      "name": "mlutf",
+      "if": "multi"
+    },
+    {
+      "name": "mlcid",
+      "if": "multi"
+    },
+    {
+      "name": "uplatex",
+      "if": "uplatex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "rubydefault",
+      "if": "expert",
+      "unusual": true
+    },
+    {
+      "name": "rubyfamily",
+      "if": "expert"
+    },
+    {
+      "name": "rubykatuji",
+      "if": "expert"
+    },
+    {
+      "name": "mgdefault",
+      "if": "deluxe",
+      "unusual": true
+    },
+    {
+      "name": "propdefault",
+      "if": "deluxe",
+      "unusual": true
+    },
+    {
+      "name": "ebdefault",
+      "if": "deluxe",
+      "unusual": true
+    },
+    {
+      "name": "ltdefault",
+      "if": "deluxe",
+      "unusual": true
+    },
+    {
+      "name": "mathmg",
+      "if": "deluxe",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mgfamily",
+      "if": "deluxe"
+    },
+    {
+      "name": "textmg",
+      "if": "deluxe",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "propshape",
+      "if": "deluxe"
+    },
+    {
+      "name": "ebseries",
+      "if": "deluxe"
+    },
+    {
+      "name": "ltseries",
+      "if": "deluxe"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pxjodel#c": [
+      "prefix=${1:string}",
+      "nomacros",
+      "noreplace",
+      "bold",
+      "expert",
+      "deluxe",
+      "multi",
+      "burasage",
+      "uplatex",
+      "autodetect",
+      "jis2004",
+      "scale=${1:factor}"
     ]
   },
-  "macros": {
-    "rubydefault": {
-      "option": "expert"
-    },
-    "rubyfamily": {
-      "option": "expert"
-    },
-    "rubykatuji": {
-      "option": "expert"
-    },
-    "mgdefault": {
-      "option": "deluxe"
-    },
-    "propdefault": {
-      "option": "deluxe"
-    },
-    "ebdefault": {
-      "option": "deluxe"
-    },
-    "ltdefault": {
-      "option": "deluxe"
-    },
-    "mathmg{}": {
-      "snippet": "mathmg{${1:text}}",
-      "option": "deluxe"
-    },
-    "mgfamily": {
-      "option": "deluxe"
-    },
-    "textmg{}": {
-      "snippet": "textmg{${1:text}}",
-      "option": "deluxe"
-    },
-    "propshape": {
-      "option": "deluxe"
-    },
-    "ebseries": {
-      "option": "deluxe"
-    },
-    "ltseries": {
-      "option": "deluxe"
-    },
-    "bxDebug{}": {
-      "snippet": "bxDebug{${1:arg}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "prefix=${1:string}",
-    "nomacros",
-    "noreplace",
-    "bold",
-    "expert",
-    "deluxe",
-    "multi",
-    "burasage",
-    "uplatex",
-    "autodetect",
-    "jis2004",
-    "scale=${1:factor}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/pxjodel#c"
+  ]
 }

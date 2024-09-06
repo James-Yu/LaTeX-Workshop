@@ -1,31 +1,43 @@
 {
-  "includes": {
-    "xstring": [],
-    "xintexpr": [],
-    "simplekv": []
-  },
-  "macros": {
-    "ipsum": {},
-    "ipsum[]": {
-      "snippet": "ipsum[${1:range}]"
+  "deps": [
+    {
+      "name": "xstring"
     },
-    "ipsum<>": {
-      "snippet": "ipsum<${1:keyvals}>",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xintexpr"
     },
-    "ipsum<>[]": {
-      "snippet": "ipsum<${2:keyvals}>[${1:range}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "simplekv"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "ipsum"
+    },
+    {
+      "name": "ipsum",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:range}]"
+      }
+    },
+    {
+      "name": "ipsum<keyvals>"
+    },
+    {
+      "name": "ipsum<keyvals>",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:range}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\ipsum": [
       "Lang=${1|LAT,EN,FR,DE,ES,PT,IT,NL|}",
       "Type=${1|par,sent,enum,item|}"
     ]
-  ]
+  },
+  "args": []
 }

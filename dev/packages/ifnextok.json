@@ -1,42 +1,100 @@
 {
-  "includes": {},
-  "macros": {
-    "NoNextSkipping": {},
-    "RestoreNextSkipping": {},
-    "StoreStarSkipping": {},
-    "RestoreStarSkipping": {},
-    "NoStarSkipping": {},
-    "IfNextSpace{}{}": {
-      "snippet": "IfNextSpace{${1:if}}{${2:else}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "NoNextSkipping",
+      "unusual": true
     },
-    "MakeNotSkipping{}{}": {
-      "snippet": "MakeNotSkipping{${1:target}}{${2:on-space}}"
+    {
+      "name": "RestoreNextSkipping",
+      "unusual": true
     },
-    "StoreNewlineSkipping": {},
-    "RestoreNewlineSkipping": {},
-    "NoNewlineSkipping": {},
-    "INTactOnEnv{}{}{}": {
-      "snippet": "INTactOnEnv{${1:action1}}{${2:action2}}{${3:envname}}"
+    {
+      "name": "StoreStarSkipping",
+      "unusual": true
     },
-    "StoreSkippingCRs{}": {
-      "snippet": "StoreSkippingCRs{${1:envname}}"
+    {
+      "name": "RestoreStarSkipping",
+      "unusual": true
     },
-    "RestoreSkippingCRs{}": {
-      "snippet": "RestoreSkippingCRs{${1:envname}}"
+    {
+      "name": "NoStarSkipping",
+      "unusual": true
     },
-    "NotSkippingCRs{}": {
-      "snippet": "NotSkippingCRs{${1:envname}}"
+    {
+      "name": "IfNextSpace",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:if}}{${2:else}}"
+      }
+    },
+    {
+      "name": "MakeNotSkipping",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:target}}{${2:on-space}}"
+      }
+    },
+    {
+      "name": "StoreNewlineSkipping",
+      "unusual": true
+    },
+    {
+      "name": "RestoreNewlineSkipping",
+      "unusual": true
+    },
+    {
+      "name": "NoNewlineSkipping",
+      "unusual": true
+    },
+    {
+      "name": "INTactOnEnv",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:action1}}{${2:action2}}{${3:envname}}"
+      }
+    },
+    {
+      "name": "StoreSkippingCRs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "RestoreSkippingCRs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "NotSkippingCRs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "newline",
-    "center",
-    "tab",
-    "array",
-    "tabular",
-    "all",
-    "stdbreaks"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/ifnextok#c": [
+      "newline",
+      "center",
+      "tab",
+      "array",
+      "tabular",
+      "all",
+      "stdbreaks"
+    ]
+  },
+  "args": [
+    "\\usepackage/ifnextok#c"
+  ]
 }

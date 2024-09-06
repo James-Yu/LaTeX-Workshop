@@ -1,148 +1,310 @@
 {
-  "includes": {},
-  "macros": {
-    "email{}": {
-      "snippet": "email{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
     },
-    "institution{}": {
-      "snippet": "institution{${1:text}}"
+    {
+      "name": "institution",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "Logo{}": {
-      "snippet": "Logo{${1:logo text}}"
+    {
+      "name": "Logo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:logo text%text}}"
+      }
     },
-    "Logo(){}": {
-      "snippet": "Logo(${2:x},${3:y}){${1:logo text}}"
+    {
+      "name": "Logo",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:logo text%text}}"
+      }
     },
-    "overlays{}{}": {
-      "snippet": "overlays{${1:number}}{${2:slide environment}}"
+    {
+      "name": "overlays",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:number}}{${2:slide environment%text}}"
+      }
     },
-    "fromSlide{}{}": {
-      "snippet": "fromSlide{${1:slide number}}{${2:text}}"
+    {
+      "name": "fromSlide",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slide number}}{${2:text}}"
+      }
     },
-    "fromSlide*{}{}": {
-      "snippet": "fromSlide*{${1:slide number}}{${2:text}}"
+    {
+      "name": "fromSlide*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slide number}}{${2:text}}"
+      }
     },
-    "onlySlide{}{}": {
-      "snippet": "onlySlide{${1:slide number}}{${2:text}}"
+    {
+      "name": "onlySlide",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slide number}}{${2:text}}"
+      }
     },
-    "onlySlide*{}{}": {
-      "snippet": "onlySlide*{${1:slide number}}{${2:text}}"
+    {
+      "name": "onlySlide*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slide number}}{${2:text}}"
+      }
     },
-    "untilSlide{}{}": {
-      "snippet": "untilSlide{${1:slide number}}{${2:text}}"
+    {
+      "name": "untilSlide",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slide number}}{${2:text}}"
+      }
     },
-    "untilSlide*{}{}": {
-      "snippet": "untilSlide*{${1:slide number}}{${2:text}}"
+    {
+      "name": "untilSlide*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slide number}}{${2:text}}"
+      }
     },
-    "FromSlide{}": {
-      "snippet": "FromSlide{${1:slide number}}"
+    {
+      "name": "FromSlide",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:slide number}}"
+      }
     },
-    "OnlySlide{}": {
-      "snippet": "OnlySlide{${1:slide number}}"
+    {
+      "name": "OnlySlide",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:slide number}}"
+      }
     },
-    "UntilSlide{}": {
-      "snippet": "UntilSlide{${1:slide number}}"
+    {
+      "name": "UntilSlide",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:slide number}}"
+      }
     },
-    "slideCaption{}": {
-      "snippet": "slideCaption{${1:text}}"
+    {
+      "name": "slideCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "fontTitle{}": {
-      "snippet": "fontTitle{${1:text}}"
+    {
+      "name": "fontTitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "fontText{}": {
-      "snippet": "fontText{${1:text}}"
+    {
+      "name": "fontText",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "PDFtransition{}": {
-      "snippet": "PDFtransition{${1:prosper transition}}"
+    {
+      "name": "PDFtransition",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:prosper transition%keyvals}}"
+      }
     },
-    "hiddenitem": {},
-    "prosperpart{}": {
-      "snippet": "prosperpart{${1:text}}"
+    {
+      "name": "hiddenitem"
     },
-    "prosperpart[]{}": {
-      "snippet": "prosperpart[${2:options}]{${1:text}}"
+    {
+      "name": "prosperpart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "tsection{}": {
-      "snippet": "tsection{${1:title}}"
+    {
+      "name": "prosperpart",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
     },
-    "tsection*{}": {
-      "snippet": "tsection*{${1:title}}"
+    {
+      "name": "tsection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "tsectionandpart{}": {
-      "snippet": "tsectionandpart{${1:title}}"
+    {
+      "name": "tsection*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "tsectionandpart[]{}": {
-      "snippet": "tsectionandpart[${2:options}]{${1:title}}"
+    {
+      "name": "tsectionandpart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "tsectionandpart*{}": {
-      "snippet": "tsectionandpart*{${1:title}}"
+    {
+      "name": "tsectionandpart",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title}}"
+      }
     },
-    "tsectionandpart*[]{}": {
-      "snippet": "tsectionandpart*[${2:options}]{${1:title}}"
+    {
+      "name": "tsectionandpart*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "dualslide[][][]{}{}{}": {
-      "snippet": "dualslide[${4:x}][${5:y}][${6:z}]{${1:options}}{${2:left column}}{${3:right column}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
+    {
+      "name": "tsectionandpart*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title}}"
+      }
     },
-    "dualslide[][]{}{}{}": {
-      "snippet": "dualslide[${4:y}][${5:z}]{${1:options}}{${2:left column}}{${3:right column}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
+    {
+      "name": "dualslide",
+      "unusual": true,
+      "arg": {
+        "format": "[][][]{}{}{}",
+        "snippet": "[${4:x}][${5:y}][${6:z}]{${1:options%keyvals}}{${2:left column%text}}{${3:right column%text}}",
+        "keys": [
+          "\\dualslide"
+        ],
+        "keyPos": 3
+      }
     },
-    "dualslide[]{}{}{}": {
-      "snippet": "dualslide[${4:z}]{${1:options}}{${2:left column}}{${3:right column}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "dualslide",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}{}",
+        "snippet": "[${4:y}][${5:z}]{${1:options%keyvals}}{${2:left column%text}}{${3:right column%text}}",
+        "keys": [
+          "\\dualslide"
+        ],
+        "keyPos": 2
+      }
     },
-    "dualslide{}{}{}": {
-      "snippet": "dualslide{${1:options}}{${2:left column}}{${3:right column}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "dualslide",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:z}]{${1:options%keyvals}}{${2:left column%text}}{${3:right column%text}}",
+        "keys": [
+          "\\dualslide"
+        ],
+        "keyPos": 1
+      }
     },
-    "PDForPS{}{}": {
-      "snippet": "PDForPS{${1:PostScript text}}{${2:PDF text}}"
+    {
+      "name": "dualslide",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:options%keyvals}}{${2:left column%text}}{${3:right column%text}}",
+        "keys": [
+          "\\dualslide"
+        ],
+        "keyPos": 0
+      }
     },
-    "onlyInPDF{}": {
-      "snippet": "onlyInPDF{${1:PDF text}}"
+    {
+      "name": "PDForPS",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:PostScript text}}{${2:PDF text}}"
+      }
     },
-    "onlyInPS{}": {
-      "snippet": "onlyInPS{${1:PostScript text}}"
+    {
+      "name": "onlyInPDF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:PDF text}}"
+      }
     },
-    "myitem": {},
-    "FontTitle": {},
-    "FontText": {},
-    "ColorFoot": {},
-    "DefaultTransition": {},
-    "NoFrenchBabelItemize": {},
-    "TitleSlideNav": {},
-    "NormalSlideNav": {},
-    "HAPsetup": {},
-    "LeftFoot": {},
-    "RightFoot": {}
-  },
-  "envs": {
-    "slide{}": {
-      "name": "slide",
-      "snippet": "{${1:frame title}}"
-    },
-    "slide[]{}": {
-      "name": "slide",
-      "snippet": "[${2:options}]{${1:frame title}}"
-    },
-    "notes{}": {
-      "name": "notes",
-      "snippet": "{${1:title}}"
-    },
-    "wideslide": {}
-  },
-  "options": [
-    "framesassubsections"
+    {
+      "name": "onlyInPS",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:PostScript text}}"
+      }
+    }
   ],
-  "keyvals": [
-    [
+  "envs": [
+    {
+      "name": "slide",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:frame title%text}}"
+      }
+    },
+    {
+      "name": "slide",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:frame title%text}}"
+      }
+    },
+    {
+      "name": "notes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/beamerprosper#c": [
+      "framesassubsections"
+    ],
+    "\\begin{slides},\\prosperpart": [
+      "toc=${1:entry}",
+      "trans=${1|Glitter,R,Replace,Split,Blinds,Box,Wipe,Dissolve|}"
+    ],
+    "\\begin{slides},\\prosperpart,\\PDFtransition": [
+      "Glitter",
+      "R",
+      "Replace",
+      "Split",
+      "Blinds",
+      "Box",
+      "Wipe",
+      "Dissolve"
+    ],
+    "\\dualslide": [
       "lcolwidth=",
       "rcolwidth="
     ]
+  },
+  "args": [
+    "\\usepackage/beamerprosper#c"
   ]
 }

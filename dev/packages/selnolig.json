@@ -1,71 +1,174 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "luatexbase": [],
-    "selnolig-english-patterns": [
+  "deps": [
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "luatexbase"
+    },
+    {
+      "name": "selnolig-english-patterns",
+      "if": "english"
+    },
+    {
+      "name": "selnolig-english-hyphex",
+      "if": "english"
+    },
+    {
+      "name": "selnolig-english-patterns",
+      "if": "UKenglish"
+    },
+    {
+      "name": "selnolig-english-hyphex",
+      "if": "UKenglish"
+    },
+    {
+      "name": "selnolig-english-patterns",
+      "if": "british"
+    },
+    {
+      "name": "selnolig-english-hyphex",
+      "if": "british"
+    },
+    {
+      "name": "selnolig-english-patterns",
+      "if": "USenglish"
+    },
+    {
+      "name": "selnolig-english-hyphex",
+      "if": "USenglish"
+    },
+    {
+      "name": "selnolig-english-patterns",
+      "if": "american"
+    },
+    {
+      "name": "selnolig-english-hyphex",
+      "if": "american"
+    },
+    {
+      "name": "selnolig-english-patterns",
+      "if": "canadian"
+    },
+    {
+      "name": "selnolig-english-hyphex",
+      "if": "canadian"
+    },
+    {
+      "name": "selnolig-english-patterns",
+      "if": "australian"
+    },
+    {
+      "name": "selnolig-english-hyphex",
+      "if": "australian"
+    },
+    {
+      "name": "selnolig-english-patterns",
+      "if": "newzealand"
+    },
+    {
+      "name": "selnolig-english-hyphex",
+      "if": "newzealand"
+    },
+    {
+      "name": "selnolig-german-patterns",
+      "if": "ngerman"
+    },
+    {
+      "name": "selnolig-german-hyphex",
+      "if": "ngerman"
+    },
+    {
+      "name": "selnolig-german-patterns",
+      "if": "german"
+    },
+    {
+      "name": "selnolig-german-hyphex",
+      "if": "german"
+    },
+    {
+      "name": "selnolig-german-patterns",
+      "if": "austrian"
+    },
+    {
+      "name": "selnolig-german-hyphex",
+      "if": "austrian"
+    },
+    {
+      "name": "selnolig-german-patterns",
+      "if": "naustrian"
+    },
+    {
+      "name": "selnolig-german-hyphex",
+      "if": "naustrian"
+    },
+    {
+      "name": "selnolig-german-patterns",
+      "if": "swissgerman"
+    },
+    {
+      "name": "selnolig-german-hyphex",
+      "if": "swissgerman"
+    },
+    {
+      "name": "selnolig-german-patterns",
+      "if": "swiss"
+    },
+    {
+      "name": "selnolig-german-hyphex",
+      "if": "swiss"
+    }
+  ],
+  "macros": [
+    {
+      "name": "nolig",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:search string}}{${2:spec string}}"
+      }
+    },
+    {
+      "name": "keeplig",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
+    },
+    {
+      "name": "uselig",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
+    },
+    {
+      "name": "breaklig"
+    },
+    {
+      "name": "debugoff"
+    },
+    {
+      "name": "debugon"
+    },
+    {
+      "name": "selnoligoff"
+    },
+    {
+      "name": "selnoligon"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/selnolig#c": [
       "english",
-      "UKenglish",
-      "british",
-      "USenglish",
-      "american",
-      "canadian",
-      "australian",
-      "newzealand"
-    ],
-    "selnolig-english-hyphex": [
-      "english",
-      "UKenglish",
-      "british",
-      "USenglish",
-      "american",
-      "canadian",
-      "australian",
-      "newzealand"
-    ],
-    "selnolig-german-patterns": [
       "ngerman",
-      "german",
-      "austrian",
-      "naustrian",
-      "swissgerman",
-      "swiss"
-    ],
-    "selnolig-german-hyphex": [
-      "ngerman",
-      "german",
-      "austrian",
-      "naustrian",
-      "swissgerman",
-      "swiss"
+      "noftligs",
+      "broadf",
+      "hdlig",
+      "noadditionalhyphenationpatterns"
     ]
   },
-  "macros": {
-    "nolig{}{}": {
-      "snippet": "nolig{${1:search string}}{${2:spec string}}"
-    },
-    "keeplig{}": {
-      "snippet": "keeplig{${1:string}}"
-    },
-    "uselig{}": {
-      "snippet": "uselig{${1:string}}"
-    },
-    "breaklig": {},
-    "debugoff": {},
-    "debugon": {},
-    "selnoligoff": {},
-    "selnoligon": {},
-    "selnoligpackagename": {},
-    "selnoligpackageversion": {},
-    "selnoligpackagedate": {}
-  },
-  "envs": {},
-  "options": [
-    "english",
-    "ngerman",
-    "noftligs",
-    "broadf",
-    "hdlig",
-    "noadditionalhyphenationpatterns"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/selnolig#c"
+  ]
 }

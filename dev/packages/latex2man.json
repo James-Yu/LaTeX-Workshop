@@ -1,98 +1,229 @@
 {
-  "includes": {
-    "ifthen": [],
-    "fancyhdr": []
-  },
-  "macros": {
-    "COLUMNS": {},
-    "EMPTY": {},
-    "LASTCOL": {},
-    "OPTARG": {},
-    "Opt{}": {
-      "snippet": "Opt{${1:option}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "Arg{}": {
-      "snippet": "Arg{${1:argument}}"
-    },
-    "OptArg{}{}": {
-      "snippet": "OptArg{${1:option}}{${2:argument}}"
-    },
-    "OptoArg{}{}": {
-      "snippet": "OptoArg{${1:option}}{${2:argument}}"
-    },
-    "oOpt{}": {
-      "snippet": "oOpt{${1:option}}"
-    },
-    "oArg{}": {
-      "snippet": "oArg{${1:option}}"
-    },
-    "oOptArg{}{}": {
-      "snippet": "oOptArg{${1:option}}{${2:argument}}"
-    },
-    "oOptoArg{}{}": {
-      "snippet": "oOptoArg{${1:option}}{${2:argument}}"
-    },
-    "File{}": {
-      "snippet": "File{${1:file}}"
-    },
-    "Prog{}": {
-      "snippet": "Prog{${1:program}}"
-    },
-    "Cmd{}{}": {
-      "snippet": "Cmd{${1:command}}{${2:chapter}}"
-    },
-    "Bar": {},
-    "Bs": {},
-    "Tilde": {},
-    "Dots": {},
-    "Bullet": {},
-    "setVersion{}": {
-      "snippet": "setVersion{${1:version}}"
-    },
-    "setVersionWord{}": {
-      "snippet": "setVersionWord{${1:word}}"
-    },
-    "Version": {},
-    "setDate": {},
-    "Date": {},
-    "Email{}": {
-      "snippet": "Email{${1:email}}"
-    },
-    "URL{}": {
-      "snippet": "URL{${1:URL}}"
-    },
-    "LatexManEnd": {},
-    "Lbr": {},
-    "Rbr": {},
-    "LBr": {},
-    "RBr": {},
-    "Dollar": {},
-    "Circum": {},
-    "Percent": {},
-    "TEXbr": {},
-    "TEXIbr": {},
-    "MANbr": {},
-    "HTMLbr": {},
-    "SP": {}
-  },
-  "envs": {
-    "Name{}{}{}{}{}": {
-      "name": "Name",
-      "snippet": "{${1:chapter}}{${2:name}}{${3:author}}{${4:info}}{${5:title}}"
-    },
-    "Table{}": {
-      "name": "Table",
-      "snippet": "{${1:columns}}"
-    },
-    "Table[]{}": {
-      "name": "Table",
-      "snippet": "[${2:width}]{${1:columns}}"
+    {
+      "name": "fancyhdr"
     }
-  },
-  "options": [
-    "fancy",
-    "fancyhdr",
-    "nofancy"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "COLUMNS",
+      "unusual": true
+    },
+    {
+      "name": "EMPTY",
+      "unusual": true
+    },
+    {
+      "name": "LASTCOL",
+      "unusual": true
+    },
+    {
+      "name": "OPTARG",
+      "unusual": true
+    },
+    {
+      "name": "Opt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "Arg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:argument}}"
+      }
+    },
+    {
+      "name": "OptArg",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:argument}}"
+      }
+    },
+    {
+      "name": "OptoArg",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:argument}}"
+      }
+    },
+    {
+      "name": "oOpt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "oArg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "oOptArg",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:argument}}"
+      }
+    },
+    {
+      "name": "oOptoArg",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:argument}}"
+      }
+    },
+    {
+      "name": "File",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file%file}}"
+      }
+    },
+    {
+      "name": "Prog",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:program}}"
+      }
+    },
+    {
+      "name": "Cmd",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command%plain}}{${2:chapter}}"
+      }
+    },
+    {
+      "name": "Bar"
+    },
+    {
+      "name": "Bs"
+    },
+    {
+      "name": "Tilde"
+    },
+    {
+      "name": "Dots"
+    },
+    {
+      "name": "Bullet"
+    },
+    {
+      "name": "setVersion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:version}}"
+      }
+    },
+    {
+      "name": "setVersionWord",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:word%text}}"
+      }
+    },
+    {
+      "name": "Version"
+    },
+    {
+      "name": "setDate"
+    },
+    {
+      "name": "Date"
+    },
+    {
+      "name": "Email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "URL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "LatexManEnd"
+    },
+    {
+      "name": "Lbr"
+    },
+    {
+      "name": "Rbr"
+    },
+    {
+      "name": "LBr"
+    },
+    {
+      "name": "RBr"
+    },
+    {
+      "name": "Dollar"
+    },
+    {
+      "name": "Circum"
+    },
+    {
+      "name": "Percent"
+    },
+    {
+      "name": "TEXbr"
+    },
+    {
+      "name": "TEXIbr"
+    },
+    {
+      "name": "MANbr"
+    },
+    {
+      "name": "HTMLbr"
+    },
+    {
+      "name": "SP"
+    }
+  ],
+  "envs": [
+    {
+      "name": "Name",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:chapter}}{${2:name}}{${3:author}}{${4:info}}{${5:title%text}}"
+      }
+    },
+    {
+      "name": "Table",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:columns}}"
+      }
+    },
+    {
+      "name": "Table",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:columns}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/latex2man#c": [
+      "fancy",
+      "fancyhdr",
+      "nofancy"
+    ]
+  },
+  "args": [
+    "\\usepackage/latex2man#c"
+  ]
 }

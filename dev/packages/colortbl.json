@@ -1,88 +1,163 @@
 {
-  "includes": {
-    "array": [],
-    "color": []
-  },
-  "macros": {
-    "arrayrulecolor{}": {
-      "snippet": "arrayrulecolor{${1:color}}"
+  "deps": [
+    {
+      "name": "array"
     },
-    "arrayrulecolor[]{}": {
-      "snippet": "arrayrulecolor[${2:color model}]{${1:color}}"
-    },
-    "cellcolor{}": {
-      "snippet": "cellcolor{${1:color}}"
-    },
-    "cellcolor[]{}[][]": {
-      "snippet": "cellcolor[${2:color model}]{${1:color}}[${3:left overhang}][${4:right overhang}]"
-    },
-    "columncolor{}": {
-      "snippet": "columncolor{${1:color}}"
-    },
-    "columncolor[]{}[][]": {
-      "snippet": "columncolor[${2:color model}]{${1:color}}[${3:left overhang}][${4:right overhang}]"
-    },
-    "doublerulesepcolor{}": {
-      "snippet": "doublerulesepcolor{${1:color}}"
-    },
-    "doublerulesepcolor[]{}": {
-      "snippet": "doublerulesepcolor[${2:color model}]{${1:color}}"
-    },
-    "rowcolor{}": {
-      "snippet": "rowcolor{${1:color}}"
-    },
-    "rowcolor[]{}[][]": {
-      "snippet": "rowcolor[${2:color model}]{${1:color}}[${3:left overhang}][${4:right overhang}]"
-    },
-    "minrowclearance": {},
-    "rowcolors{}{}{}": {
-      "snippet": "rowcolors{${1:row}}{${2:color}}{${3:color}}"
-    },
-    "rowcolors[]{}{}{}": {
-      "snippet": "rowcolors[${4:commands}]{${1:row}}{${2:color}}{${3:color}}"
-    },
-    "rowcolors*{}{}{}": {
-      "snippet": "rowcolors*{${1:row}}{${2:color}}{${3:color}}"
-    },
-    "rowcolors*[]{}{}{}": {
-      "snippet": "rowcolors*[${4:commands}]{${1:row}}{${2:color}}{${3:color}}"
-    },
-    "showrowcolors": {},
-    "hiderowcolors": {},
-    "rownum": {},
-    "therownum": {}
-  },
-  "envs": {},
-  "options": [
-    "monochrome",
-    "debugshow",
-    "setpagesize",
-    "nosetpagesize",
-    "dvips",
-    "xdvi",
-    "dvipdf",
-    "dvipdfm",
-    "dvipdfmx",
-    "pdftex",
-    "luatex",
-    "dvisvgm",
-    "xetex",
-    "dvipsone",
-    "dviwindo",
-    "emtex",
-    "dviwin",
-    "oztex",
-    "textures",
-    "pctexps",
-    "pctexwin",
-    "pctexhp",
-    "pctex32",
-    "truetex",
-    "tcidvi",
-    "vtex",
-    "dvipsnames",
-    "nodvipsnames",
-    "usenames"
+    {
+      "name": "color"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "arrayrulecolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "arrayrulecolor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color model}]{${1:color}}"
+      }
+    },
+    {
+      "name": "cellcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "cellcolor",
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:color model}]{${1:color}}[${3:left overhang}][${4:right overhang}]"
+      }
+    },
+    {
+      "name": "columncolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "columncolor",
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:color model}]{${1:color}}[${3:left overhang}][${4:right overhang}]"
+      }
+    },
+    {
+      "name": "doublerulesepcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "doublerulesepcolor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color model}]{${1:color}}"
+      }
+    },
+    {
+      "name": "rowcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "rowcolor",
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:color model}]{${1:color}}[${3:left overhang}][${4:right overhang}]"
+      }
+    },
+    {
+      "name": "minrowclearance",
+      "unusual": true
+    },
+    {
+      "name": "rowcolors",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:row}}{${2:odd-row-color}}{${3:even-row-color}}"
+      }
+    },
+    {
+      "name": "rowcolors",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:commands}]{${1:row}}{${2:odd-row-color}}{${3:even-row-color}}"
+      }
+    },
+    {
+      "name": "rowcolors*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:row}}{${2:odd-row-color}}{${3:even-row-color}}"
+      }
+    },
+    {
+      "name": "rowcolors*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:commands}]{${1:row}}{${2:odd-row-color}}{${3:even-row-color}}"
+      }
+    },
+    {
+      "name": "showrowcolors"
+    },
+    {
+      "name": "hiderowcolors"
+    },
+    {
+      "name": "rownum"
+    },
+    {
+      "name": "therownum"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/colortbl#c": [
+      "monochrome",
+      "debugshow",
+      "setpagesize",
+      "nosetpagesize",
+      "dvips",
+      "xdvi",
+      "dvipdf",
+      "dvipdfm",
+      "dvipdfmx",
+      "pdftex",
+      "luatex",
+      "dvisvgm",
+      "xetex",
+      "dvipsone",
+      "dviwindo",
+      "emtex",
+      "dviwin",
+      "oztex",
+      "textures",
+      "pctexps",
+      "pctexwin",
+      "pctexhp",
+      "pctex32",
+      "truetex",
+      "tcidvi",
+      "vtex",
+      "dvipsnames",
+      "nodvipsnames",
+      "usenames"
+    ]
+  },
+  "args": [
+    "\\usepackage/colortbl#c"
+  ]
 }

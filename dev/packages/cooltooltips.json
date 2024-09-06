@@ -1,25 +1,52 @@
 {
-  "includes": {
-    "iftex": []
-  },
-  "macros": {
-    "cooltooltip{}{}{}{}{}": {
-      "snippet": "cooltooltip{${1:subject}}{${2:message}}{${3:URL}}{${4:tooltip}}{${5:text}}"
+  "deps": [
+    {
+      "name": "iftex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "cooltooltip",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:subject%text}}{${2:message%text}}{${3:URL}}{${4:tooltip}}{${5:text}}"
+      }
     },
-    "cooltooltip[]{}{}{}{}{}": {
-      "snippet": "cooltooltip[${6:popup color}]{${1:subject}}{${2:message}}{${3:URL}}{${4:tooltip}}{${5:text}}"
+    {
+      "name": "cooltooltip",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:popup color}]{${1:subject%text}}{${2:message%text}}{${3:URL}}{${4:tooltip}}{${5:text}}"
+      }
     },
-    "cooltooltip[][]{}{}{}{}{}": {
-      "snippet": "cooltooltip[${6:popup color}][${7:link color}]{${1:subject}}{${2:message}}{${3:URL}}{${4:tooltip}}{${5:text}}"
+    {
+      "name": "cooltooltip",
+      "arg": {
+        "format": "[][]{}{}{}{}{}",
+        "snippet": "[${6:popup color}][${7:link color}]{${1:subject%text}}{${2:message%text}}{${3:URL}}{${4:tooltip}}{${5:text}}"
+      }
     },
-    "cooltooltiptoggle{}": {
-      "snippet": "cooltooltiptoggle{${1:text}}"
+    {
+      "name": "cooltooltiptoggle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "ifcoolpdf": {},
-    "coolpdftrue": {},
-    "coolpdffalse": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "ifcoolpdf",
+      "unusual": true
+    },
+    {
+      "name": "coolpdftrue",
+      "unusual": true
+    },
+    {
+      "name": "coolpdffalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,32 +1,73 @@
 {
-  "includes": {
-    "chapterbib": [],
-    "fp": []
-  },
-  "macros": {
-    "setupuuchapterbib": {},
-    "theuuchapterbibfigure": {},
-    "theuuchapterbibsection": {},
-    "theuuchapterbibsubsection": {},
-    "theuuchapterbibsubsubsection": {},
-    "theuuchapterbibtable": {},
-    "uudummyfigure{}{}": {
-      "snippet": "uudummyfigure{${1:title}}{${2:page number}}"
+  "deps": [
+    {
+      "name": "chapterbib"
     },
-    "uudummysection{}{}": {
-      "snippet": "uudummysection{${1:title}}{${2:page number}}"
-    },
-    "uudummysubsection{}{}": {
-      "snippet": "uudummysubsection{${1:title}}{${2:page number}}"
-    },
-    "uudummysubsubsection{}{}": {
-      "snippet": "uudummysubsubsection{${1:title}}{${2:page number}}"
-    },
-    "uudummytable{}{}": {
-      "snippet": "uudummytable{${1:title}}{${2:page number}}"
+    {
+      "name": "fp"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "setupuuchapterbib"
+    },
+    {
+      "name": "theuuchapterbibfigure",
+      "unusual": true
+    },
+    {
+      "name": "theuuchapterbibsection",
+      "unusual": true
+    },
+    {
+      "name": "theuuchapterbibsubsection",
+      "unusual": true
+    },
+    {
+      "name": "theuuchapterbibsubsubsection",
+      "unusual": true
+    },
+    {
+      "name": "theuuchapterbibtable",
+      "unusual": true
+    },
+    {
+      "name": "uudummyfigure",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:page number}}"
+      }
+    },
+    {
+      "name": "uudummysection",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:page number}}"
+      }
+    },
+    {
+      "name": "uudummysubsection",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:page number}}"
+      }
+    },
+    {
+      "name": "uudummysubsubsection",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:page number}}"
+      }
+    },
+    {
+      "name": "uudummytable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:page number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

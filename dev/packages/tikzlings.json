@@ -1,45 +1,107 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-anteaters": [],
-    "tikzlings-bats": [],
-    "tikzlings-bears": [],
-    "tikzlings-bees": [],
-    "tikzlings-bugs": [],
-    "tikzlings-cats": [],
-    "tikzlings-chickens": [],
-    "tikzlings-coatis": [],
-    "tikzlings-elephants": [],
-    "tikzlings-hippos": [],
-    "tikzlings-koalas": [],
-    "tikzlings-marmots": [],
-    "tikzlings-mice": [],
-    "tikzlings-moles": [],
-    "tikzlings-owls": [],
-    "tikzlings-pandas": [],
-    "tikzlings-penguins": [],
-    "tikzlings-pigs": [],
-    "tikzlings-rhinos": [],
-    "tikzlings-sheep": [],
-    "tikzlings-sloths": [],
-    "tikzlings-snowmen": [],
-    "tikzlings-squirrels": [],
-    "tikzlings-wolves": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "tikzling": {},
-    "tikzling[]": {
-      "snippet": "tikzling[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "ExpArgsNnx": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-anteaters"
+    },
+    {
+      "name": "tikzlings-bats"
+    },
+    {
+      "name": "tikzlings-bears"
+    },
+    {
+      "name": "tikzlings-bees"
+    },
+    {
+      "name": "tikzlings-bugs"
+    },
+    {
+      "name": "tikzlings-cats"
+    },
+    {
+      "name": "tikzlings-chickens"
+    },
+    {
+      "name": "tikzlings-coatis"
+    },
+    {
+      "name": "tikzlings-elephants"
+    },
+    {
+      "name": "tikzlings-hippos"
+    },
+    {
+      "name": "tikzlings-koalas"
+    },
+    {
+      "name": "tikzlings-marmots"
+    },
+    {
+      "name": "tikzlings-mice"
+    },
+    {
+      "name": "tikzlings-moles"
+    },
+    {
+      "name": "tikzlings-owls"
+    },
+    {
+      "name": "tikzlings-pandas"
+    },
+    {
+      "name": "tikzlings-penguins"
+    },
+    {
+      "name": "tikzlings-pigs"
+    },
+    {
+      "name": "tikzlings-rhinos"
+    },
+    {
+      "name": "tikzlings-sheep"
+    },
+    {
+      "name": "tikzlings-sloths"
+    },
+    {
+      "name": "tikzlings-snowmen"
+    },
+    {
+      "name": "tikzlings-squirrels"
+    },
+    {
+      "name": "tikzlings-wolves"
+    },
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "tikzling"
+    },
+    {
+      "name": "tikzling",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\tikzling#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ExpArgsNnx",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\tikzling#c": [
       "body=",
       "back",
       "3D",
@@ -159,5 +221,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

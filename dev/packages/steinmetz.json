@@ -1,16 +1,37 @@
 {
-  "includes": {
-    "pict2e": []
-  },
-  "macros": {
-    "phase{}": {
-      "snippet": "phase{${1:arg}}"
-    },
-    "phase[]{}": {
-      "snippet": "phase[${2:stylenum}]{${1:arg}}"
+  "deps": [
+    {
+      "name": "pict2e"
     }
+  ],
+  "macros": [
+    {
+      "name": "phase",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "phase",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:stylenum%keyvals}]{${1:arg}}",
+        "keys": [
+          "\\phase"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\phase": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

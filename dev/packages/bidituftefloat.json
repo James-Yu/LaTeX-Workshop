@@ -1,56 +1,111 @@
 {
-  "includes": {
-    "xifthen": [],
-    "ragged2e": [],
-    "geometry": [],
-    "changepage": [],
-    "optparams": [],
-    "placeins": [],
-    "fancyhdr": []
-  },
-  "macros": {
-    "floatalignment": {},
-    "forcerectofloat": {},
-    "forceversofloat": {},
-    "gsetlength{}{}": {
-      "snippet": "gsetlength{${1:length cmd}}{${2:length}}"
+  "deps": [
+    {
+      "name": "xifthen"
     },
-    "morefloats": {},
-    "newlinetospace{}": {
-      "snippet": "newlinetospace{${1:arg}}"
+    {
+      "name": "ragged2e"
     },
-    "setcaptionfont{}": {
-      "snippet": "setcaptionfont{${1:font commands}}"
+    {
+      "name": "geometry"
     },
-    "setfloatalignment{}": {
-      "snippet": "setfloatalignment{${1:pos}}"
+    {
+      "name": "changepage"
     },
-    "bidituftefloatDebugInfoNL{}": {
-      "snippet": "bidituftefloatDebugInfoNL{${1:text}}"
+    {
+      "name": "optparams"
     },
-    "bidituftefloatError{}{}": {
-      "snippet": "bidituftefloatError{${1:error text}}{${2:help text}}"
+    {
+      "name": "placeins"
     },
-    "bidituftefloatInfoNL{}": {
-      "snippet": "bidituftefloatInfoNL{${1:text}}"
-    },
-    "bidituftefloatRecalculate": {}
-  },
-  "envs": {
-    "fullwidth": {},
-    "marginfigure": {},
-    "marginfigure[]": {
-      "name": "marginfigure",
-      "snippet": "[${1:offset}]"
-    },
-    "margintable": {},
-    "margintable[]": {
-      "name": "margintable",
-      "snippet": "[${1:offset}]"
+    {
+      "name": "fancyhdr"
     }
-  },
-  "options": [
-    "reversegeometry"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "floatalignment",
+      "unusual": true
+    },
+    {
+      "name": "forcerectofloat"
+    },
+    {
+      "name": "forceversofloat"
+    },
+    {
+      "name": "gsetlength",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:length cmd}}{${2:length}}"
+      }
+    },
+    {
+      "name": "morefloats"
+    },
+    {
+      "name": "newlinetospace",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "setcaptionfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "setfloatalignment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pos%keyvals}}",
+        "keys": [
+          "\\setfloatalignment#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "fullwidth"
+    },
+    {
+      "name": "marginfigure"
+    },
+    {
+      "name": "marginfigure",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:offset%l}]"
+      }
+    },
+    {
+      "name": "margintable"
+    },
+    {
+      "name": "margintable",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:offset%l}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/bidituftefloat#c": [
+      "reversegeometry"
+    ],
+    "\\setfloatalignment#c": [
+      "t",
+      "b"
+    ]
+  },
+  "args": [
+    "\\usepackage/bidituftefloat#c"
+  ]
 }

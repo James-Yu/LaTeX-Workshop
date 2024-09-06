@@ -1,22 +1,45 @@
 {
-  "includes": {},
-  "macros": {
-    "nobibliography{}": {
-      "snippet": "nobibliography{${1:bib file}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "nobibliography",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bib file}}"
+      }
     },
-    "nobibliography*": {},
-    "bibentry{}": {
-      "snippet": "bibentry{${1:keylist}}"
+    {
+      "name": "nobibliography*"
     },
-    "urlprefix": {},
-    "url{}": {
-      "snippet": "url{${1:URL}}"
+    {
+      "name": "bibentry",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
     },
-    "doi{}": {
-      "snippet": "doi{${1:DOI}}"
+    {
+      "name": "urlprefix",
+      "unusual": true
+    },
+    {
+      "name": "url",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "doi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:DOI}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

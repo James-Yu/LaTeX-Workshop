@@ -1,24 +1,61 @@
 {
-  "includes": {
-    "ifthen": [],
-    "keyval": [],
-    "fcnumparser": []
-  },
-  "macros": {
-    "latinnumeralstring{}": {
-      "snippet": "latinnumeralstring{${1:counter}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "latinnumeralstring{}[]": {
-      "snippet": "latinnumeralstring{${1:counter}}[${2:prefix options}]"
+    {
+      "name": "keyval"
     },
-    "latinnumeralstringnum{}": {
-      "snippet": "latinnumeralstringnum{${1:number}}"
-    },
-    "latinnumeralstringnum{}[]": {
-      "snippet": "latinnumeralstringnum{${1:number}}[${2:prefix options}]"
+    {
+      "name": "fcnumparser"
     }
+  ],
+  "macros": [
+    {
+      "name": "latinnumeralstring",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "latinnumeralstring",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:counter}}[${2:prefix options%keyvals}]",
+        "keys": [
+          "\\latinnumeralstring#c,\\latinnumeralstringnum#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "latinnumeralstringnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "latinnumeralstringnum",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:number}}[${2:prefix options%keyvals}]",
+        "keys": [
+          "\\latinnumeralstring#c,\\latinnumeralstringnum#c"
+        ],
+        "keyPos": 1
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\latinnumeralstring#c,\\latinnumeralstringnum#c": [
+      "use duode and unde=${1|below 20,never|}",
+      "numeral u in duo",
+      "e accute",
+      "power of millia=${1|recursive,arabic,prefix|}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

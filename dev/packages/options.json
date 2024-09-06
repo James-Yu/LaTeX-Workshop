@@ -1,157 +1,409 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "xcolor": []
-  },
-  "macros": {
-    "options{}": {
-      "snippet": "options{${1:options}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "optionsalso{}": {
-      "snippet": "optionsalso{${1:options}}"
-    },
-    "optionswithremaining{}": {
-      "snippet": "optionswithremaining{${1:options}}"
-    },
-    "option{}": {
-      "snippet": "option{${1:option}}"
-    },
-    "letoption{}{}": {
-      "snippet": "letoption{${1:option}}{${2:macro}}"
-    },
-    "edefoption{}{}": {
-      "snippet": "edefoption{${1:option}}{${2:macro}}"
-    },
-    "ifoptiondefined{}{}{}": {
-      "snippet": "ifoptiondefined{${1:option}}{${2:true}}{${3:false}}"
-    },
-    "ifoptionvoid{}{}{}": {
-      "snippet": "ifoptionvoid{${1:option}}{${2:true}}{${3:false}}"
-    },
-    "ifoptionblank{}{}{}": {
-      "snippet": "ifoptionblank{${1:option}}{${2:true}}{${3:false}}"
-    },
-    "ifoptionequal{}{}{}{}": {
-      "snippet": "ifoptionequal{${1:option}}{${2:value}}{${3:true}}{${4:false}}"
-    },
-    "ifoptionanyof{}{}{}{}": {
-      "snippet": "ifoptionanyof{${1:option}}{${2:list}}{${3:true}}{${4:false}}"
-    },
-    "ifoptiontype{}{}{}{}": {
-      "snippet": "ifoptiontype{${1:option}}{${2:type}}{${3:true}}{${4:false}}"
-    },
-    "ifoptionnil{}{}{}": {
-      "snippet": "ifoptionnil{${1:list option}}{${2:true}}{${3:false}}"
-    },
-    "ifoptioniscode{}{}{}": {
-      "snippet": "ifoptioniscode{${1:option}}{${2:true}}{${3:false}}"
-    },
-    "optionlistdo{}{}": {
-      "snippet": "optionlistdo{${1:list option}}{${2:action}}"
-    },
-    "letoptionlist{}{}": {
-      "snippet": "letoptionlist{${1:list option}}{${2:macro}}"
-    },
-    "ifoptioncontains{}{}{}": {
-      "snippet": "ifoptioncontains{${1:list option}}{${2:true}}{${3:false}}"
-    },
-    "optionshow{}": {
-      "snippet": "optionshow{${1:option}}"
-    },
-    "optionshowall": {},
-    "optionshowall[]": {
-      "snippet": "optionshowall[${1:bool}]"
-    },
-    "optionshowpath{}": {
-      "snippet": "optionshowpath{${1:option}}"
-    },
-    "optionerror{}{}": {
-      "snippet": "optionerror{${1:option}}{${2:message}}"
-    },
-    "optionwarning{}{}": {
-      "snippet": "optionwarning{${1:option}}{${2:message}}"
-    },
-    "letoptiontype{}{}": {
-      "snippet": "letoptiontype{${1:option}}{${2:type}}"
-    },
-    "optionname{}": {
-      "snippet": "optionname{${1:option}}"
-    },
-    "optionprependcode{}{}": {
-      "snippet": "optionprependcode{${1:option}}{${2:code}}"
-    },
-    "optionnewcode{}{}": {
-      "snippet": "optionnewcode{${1:option}}{${2:code}}"
-    },
-    "optionnewcode*{}{}": {
-      "snippet": "optionnewcode*{${1:option}}{${2:code}}"
-    },
-    "optionnewhandler{}{}": {
-      "snippet": "optionnewhandler{${1:option}}{${2:code}}"
-    },
-    "optionnewhandler*{}{}": {
-      "snippet": "optionnewhandler*{${1:option}}{${2:code}}"
-    },
-    "optionvalue": {},
-    "optionnovalue": {},
-    "eifblank{}{}{}": {
-      "snippet": "eifblank{${1:string}}{${2:true}}{${3:false}}"
-    },
-    "eifstrequal{}{}{}": {
-      "snippet": "eifstrequal{${1:string}}{${2:true}}{${3:false}}"
-    },
-    "expandnextcmds{}{}": {
-      "snippet": "expandnextcmds{${1:arg1}}{${2:arg2}}"
-    },
-    "expandnextsingle{}{}": {
-      "snippet": "expandnextsingle{${1:arg1}}{${2:arg2}}"
-    },
-    "expandnext{}{}": {
-      "snippet": "expandnext{${1:arg1}}{${2:arg2}}"
-    },
-    "ifoptioncmd{}{}{}": {
-      "snippet": "ifoptioncmd{${1:option}}{${2:true}}{${3:false}}"
-    },
-    "ifoptioncolortransparent{}{}{}": {
-      "snippet": "ifoptioncolortransparent{${1:color}}{${2:true}}{${3:false}}"
-    },
-    "ifoptionisabsolute{}{}{}": {
-      "snippet": "ifoptionisabsolute{${1:option}}{${2:true}}{${3:false}}"
-    },
-    "letoptionchoices{}{}": {
-      "snippet": "letoptionchoices{${1:option}}{${2:macro}}"
-    },
-    "ontoggle{}{}": {
-      "snippet": "ontoggle{${1:toggle name}}{${2:true}}"
-    },
-    "optioncolorbox{}{}": {
-      "snippet": "optioncolorbox{${1:color}}{${2:code}}"
-    },
-    "optioncolor{}": {
-      "snippet": "optioncolor{${1:color}}"
-    },
-    "optionlist{}": {
-      "snippet": "optionlist{${1:list option}}"
-    },
-    "optionparamcount{}": {
-      "snippet": "optionparamcount{${1:option}}"
-    },
-    "optionshowtype{}": {
-      "snippet": "optionshowtype{${1:option}}"
-    },
-    "optiontextcolor{}{}": {
-      "snippet": "optiontextcolor{${1:color}}{${2:code}}"
-    },
-    "optiontypeout{}": {
-      "snippet": "optiontypeout{${1:option}}"
-    },
-    "optionunit{}": {
-      "snippet": "optionunit{${1:option}}"
+    {
+      "name": "xcolor"
     }
-  },
-  "envs": {},
-  "options": [
-    "debug"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "options",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options}}"
+      }
+    },
+    {
+      "name": "optionsalso",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options}}"
+      }
+    },
+    {
+      "name": "optionswithremaining",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options}}"
+      }
+    },
+    {
+      "name": "option",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "letoption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:macro%cmd}}"
+      }
+    },
+    {
+      "name": "edefoption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:macro%cmd}}"
+      }
+    },
+    {
+      "name": "ifoptiondefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:option}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifoptionvoid",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:option}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifoptionblank",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:option}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifoptionequal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:option}}{${2:value}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "ifoptionanyof",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:option}}{${2:list}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "ifoptiontype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:option}}{${2:type}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "ifoptionnil",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:list option}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifoptioniscode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:option}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "optionlistdo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list option}}{${2:action}}"
+      }
+    },
+    {
+      "name": "letoptionlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list option}}{${2:macro%cmd}}"
+      }
+    },
+    {
+      "name": "ifoptioncontains",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:list option}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "optionshow",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "optionshowall",
+      "unusual": true
+    },
+    {
+      "name": "optionshowall",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:bool}]"
+      }
+    },
+    {
+      "name": "optionshowpath",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "optionerror",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:message%text}}"
+      }
+    },
+    {
+      "name": "optionwarning",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:message%text}}"
+      }
+    },
+    {
+      "name": "letoptiontype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:type}}"
+      }
+    },
+    {
+      "name": "optionname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "optionprependcode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:code}}"
+      }
+    },
+    {
+      "name": "optionnewcode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:code}}"
+      }
+    },
+    {
+      "name": "optionnewcode*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:code}}"
+      }
+    },
+    {
+      "name": "optionnewhandler",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:code}}"
+      }
+    },
+    {
+      "name": "optionnewhandler*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:code}}"
+      }
+    },
+    {
+      "name": "optionvalue",
+      "unusual": true
+    },
+    {
+      "name": "optionnovalue",
+      "unusual": true
+    },
+    {
+      "name": "eifblank",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:string}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "eifstrequal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:string}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "expandnextcmds",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "expandnextsingle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "expandnext",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ifoptioncmd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:option}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifoptioncolortransparent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:color}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifoptionisabsolute",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:option}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "letoptionchoices",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:macro%cmd}}"
+      }
+    },
+    {
+      "name": "ontoggle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:toggle name}}{${2:true}}"
+      }
+    },
+    {
+      "name": "optioncolorbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:code}}"
+      }
+    },
+    {
+      "name": "optioncolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "optionlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list option}}"
+      }
+    },
+    {
+      "name": "optionparamcount",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "optionshowtype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "optiontextcolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:code}}"
+      }
+    },
+    {
+      "name": "optiontypeout",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "optionunit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/options#c": [
+      "debug"
+    ]
+  },
+  "args": [
+    "\\usepackage/options#c"
+  ]
 }

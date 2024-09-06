@@ -1,85 +1,99 @@
 {
-  "includes": {},
-  "macros": {
-    "computeilg": {},
-    "createparshapespec": {},
-    "framepic{}": {
-      "snippet": "framepic{${1:boxname}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "computeilg",
+      "unusual": true
     },
-    "prune{}{}": {
-      "snippet": "prune{${1:box1}}{${2:box2}}"
+    {
+      "name": "createparshapespec",
+      "unusual": true
     },
-    "wframepic{}": {
-      "snippet": "wframepic{${1:boxname}}"
+    {
+      "name": "framepic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:boxname}}"
+      }
     },
-    "wincaption{}": {
-      "snippet": "wincaption{${1:text}}"
+    {
+      "name": "prune",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:box1}}{${2:box2}}"
+      }
     },
-    "winrefstepcounter{}": {
-      "snippet": "winrefstepcounter{${1:counter}}"
+    {
+      "name": "wframepic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:boxname}}"
+      }
     },
-    "winstepcounter{}": {
-      "snippet": "winstepcounter{${1:counter}}"
+    {
+      "name": "wincaption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "wstrut": {},
-    "br": {},
-    "bl": {},
-    "na": {},
-    "nb": {},
-    "tcdsav": {},
-    "tcl": {},
-    "tcd": {},
-    "tcn": {},
-    "cumtcl": {},
-    "cumpartcl": {},
-    "lftside": {},
-    "rtside": {},
-    "hpic": {},
-    "vpic": {},
-    "strutilg": {},
-    "picwd": {},
-    "topheight": {},
-    "ilg": {},
-    "lpic": {},
-    "lwindowsep": {},
-    "rwindowsep": {},
-    "cumpar": {},
-    "twa": {},
-    "la": {},
-    "ra": {},
-    "ha": {},
-    "pictoc": {},
-    "rawtext": {},
-    "holder": {},
-    "windowbox": {},
-    "wartext": {},
-    "finaltext": {},
-    "aslice": {},
-    "bslice": {},
-    "wbox": {},
-    "wstrutbox": {},
-    "picbox": {},
-    "waslice": {},
-    "wbslice": {},
-    "fslice": {}
-  },
-  "envs": {
-    "window": {},
-    "window[]": {
-      "name": "window",
-      "snippet": "[${1:lines,${2:pos},${3:graphics},caption}]"
+    {
+      "name": "winrefstepcounter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
     },
-    "figwindow": {},
-    "figwindow[]": {
-      "name": "figwindow",
-      "snippet": "[${1:lines,${2:pos},${3:graphics},caption}]"
+    {
+      "name": "winstepcounter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
     },
-    "tabwindow": {},
-    "tabwindow[]": {
-      "name": "tabwindow",
-      "snippet": "[${1:lines,${2:pos},${3:graphics},caption}]"
+    {
+      "name": "wstrut",
+      "unusual": true
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "window"
+    },
+    {
+      "name": "window",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:lines,pos,graphics,caption%text}]"
+      }
+    },
+    {
+      "name": "figwindow"
+    },
+    {
+      "name": "figwindow",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:lines,pos,graphics,caption%text}]"
+      }
+    },
+    {
+      "name": "tabwindow"
+    },
+    {
+      "name": "tabwindow",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:lines,pos,graphics,caption%text}]"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

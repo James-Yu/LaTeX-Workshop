@@ -1,61 +1,128 @@
 {
-  "includes": {
-    "luatexja-otf": [],
-    "otf": [
-      "otf"
-    ],
-    "utf": [
-      "utf"
+  "deps": [
+    {
+      "name": "luatexja-otf"
+    },
+    {
+      "name": "otf",
+      "if": "otf"
+    },
+    {
+      "name": "utf",
+      "if": "utf"
+    }
+  ],
+  "macros": [
+    {
+      "name": "endnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "endnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "endnotemark"
+    },
+    {
+      "name": "endnotemark",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "endnotetext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "endnotetext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "addtoendnotes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "enotesize"
+    },
+    {
+      "name": "theendnotes"
+    },
+    {
+      "name": "theendnote",
+      "unusual": true
+    },
+    {
+      "name": "theenmark",
+      "unusual": true
+    },
+    {
+      "name": "makeenmark",
+      "unusual": true
+    },
+    {
+      "name": "enoteformat",
+      "unusual": true
+    },
+    {
+      "name": "enoteheading",
+      "unusual": true
+    },
+    {
+      "name": "notesname",
+      "unusual": true
+    },
+    {
+      "name": "endnotesep",
+      "unusual": true
+    },
+    {
+      "name": "kcharparline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "linesparpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/endnotesj#c": [
+      "tate",
+      "yoko",
+      "auto-tateyoko",
+      "twin",
+      "single",
+      "utf",
+      "otf",
+      "ver3",
+      "ver2",
+      "${1:notesname}"
     ]
   },
-  "macros": {
-    "endnote{}": {
-      "snippet": "endnote{${1:text}}"
-    },
-    "endnote[]{}": {
-      "snippet": "endnote[${2:number}]{${1:text}}"
-    },
-    "endnotemark": {},
-    "endnotemark[]": {
-      "snippet": "endnotemark[${1:number}]"
-    },
-    "endnotetext{}": {
-      "snippet": "endnotetext{${1:text}}"
-    },
-    "endnotetext[]{}": {
-      "snippet": "endnotetext[${2:number}]{${1:text}}"
-    },
-    "addtoendnotes{}": {
-      "snippet": "addtoendnotes{${1:text}}"
-    },
-    "enotesize": {},
-    "theendnotes": {},
-    "theendnote": {},
-    "theenmark": {},
-    "makeenmark": {},
-    "enoteformat": {},
-    "enoteheading": {},
-    "notesname": {},
-    "endnotesep": {},
-    "kcharparline{}": {
-      "snippet": "kcharparline{${1:number}}"
-    },
-    "linesparpage{}": {
-      "snippet": "linesparpage{${1:number}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "tate",
-    "yoko",
-    "auto-tateyoko",
-    "twin",
-    "single",
-    "utf",
-    "otf",
-    "ver3",
-    "ver2",
-    "${1:notesname}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/endnotesj#c"
+  ]
 }

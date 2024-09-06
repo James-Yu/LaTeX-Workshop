@@ -1,50 +1,85 @@
 {
-  "includes": {
-    "verbatim": [],
-    "ifthen": [],
-    "kvoptions": [],
-    "marginnote": []
-  },
-  "macros": {
-    "totalpoints": {},
-    "exercisenewpage": {},
-    "solutionnewpage": {},
-    "ifsolutionthenelse{}{}": {
-      "snippet": "ifsolutionthenelse{${1:then}}{${2:else}}"
+  "deps": [
+    {
+      "name": "verbatim"
     },
-    "thei": {}
-  },
-  "envs": {
-    "exercise": {},
-    "exercise[]": {
-      "name": "exercise",
-      "snippet": "[${1:points}]"
+    {
+      "name": "ifthen"
     },
-    "solution": {},
-    "solution[]": {
-      "name": "solution",
-      "snippet": "[${1:space}]"
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "marginnote"
     }
-  },
-  "options": [
-    "printsolution",
-    "exercisespaceabove=",
-    "exercisespacebelow=",
-    "solutionspaceabove=",
-    "solutionspacebelow=",
-    "blockspace=",
-    "inlinespace=",
-    "exercisenumberformat=${1|arabic,roman,Roman,alph,Alph|}",
-    "pointsposition=${1|aftername,margin|}",
-    "pointsfontsize=${1|normalsize,footnotesize|}",
-    "pointsname=${1:text}",
-    "exercisename=${1:text}",
-    "exercisenameposition=${1|block,inline|}",
-    "solutionname=${1:text}",
-    "solutionnameposition=${1|block,inline|}",
-    "totalpointsname=${1:text}",
-    "braces=${1|nobraces,round,square|}",
-    "starpoints"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "totalpoints"
+    },
+    {
+      "name": "exercisenewpage"
+    },
+    {
+      "name": "solutionnewpage"
+    },
+    {
+      "name": "ifsolutionthenelse",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:then}}{${2:else}}"
+      }
+    },
+    {
+      "name": "thei",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "exercise"
+    },
+    {
+      "name": "exercise",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:points}]"
+      }
+    },
+    {
+      "name": "solution"
+    },
+    {
+      "name": "solution",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:space%l}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/exercises#c": [
+      "printsolution",
+      "exercisespaceabove=",
+      "exercisespacebelow=",
+      "solutionspaceabove=",
+      "solutionspacebelow=",
+      "blockspace=",
+      "inlinespace=",
+      "exercisenumberformat=${1|arabic,roman,Roman,alph,Alph|}",
+      "pointsposition=${1|aftername,margin|}",
+      "pointsfontsize=${1|normalsize,footnotesize|}",
+      "pointsname=${1:text}",
+      "exercisename=${1:text}",
+      "exercisenameposition=${1|block,inline|}",
+      "solutionname=${1:text}",
+      "solutionnameposition=${1|block,inline|}",
+      "totalpointsname=${1:text}",
+      "braces=${1|nobraces,round,square|}",
+      "starpoints"
+    ]
+  },
+  "args": [
+    "\\usepackage/exercises#c"
+  ]
 }

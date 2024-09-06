@@ -1,28 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "snowman": {},
-    "snowman[]": {
-      "snippet": "snowman[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "snowmanhookbackground": {},
-    "snowmanhookbelly": {},
-    "snowmanhookbody": {},
-    "snowmanhookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "snowman"
+    },
+    {
+      "name": "snowman",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\snowman#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "snowmanhookbackground",
+      "unusual": true
+    },
+    {
+      "name": "snowmanhookbelly",
+      "unusual": true
+    },
+    {
+      "name": "snowmanhookbody",
+      "unusual": true
+    },
+    {
+      "name": "snowmanhookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\snowman#c": [
       "body=",
       "eye=",
       "nose=",
@@ -147,5 +182,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

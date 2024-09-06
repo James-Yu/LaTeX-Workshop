@@ -1,37 +1,71 @@
 {
-  "includes": {
-    "listings": [],
-    "xcolor": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "defaultgobble": {},
-    "updatehighlight{}": {
-      "snippet": "updatehighlight{${1:highlight rules}}"
+  "deps": [
+    {
+      "name": "listings"
     },
-    "useblock{}": {
-      "snippet": "useblock{${1:name}}"
+    {
+      "name": "xcolor"
     },
-    "consumeblock{}": {
-      "snippet": "consumeblock{${1:name}}"
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {
-    "highlightblock": {},
-    "highlightblock[]": {
+  ],
+  "macros": [
+    {
+      "name": "defaultgobble",
+      "unusual": true
+    },
+    {
+      "name": "updatehighlight",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:highlight rules%keyvals}}",
+        "keys": [
+          "\\updatehighlight#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "useblock",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "consumeblock",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "highlightblock"
+    },
+    {
       "name": "highlightblock",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{highlightblock}"
+        ],
+        "keyPos": 0
+      }
     },
-    "saveblock{}": {
+    {
       "name": "saveblock",
-      "snippet": "{${1:name}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\begin{highlightblock}": [
       "inputpath=${1:path}",
       "aboveskip=",
       "belowskip=",
@@ -219,6 +253,20 @@
       "deletekeywordcomment={${1:keywords}}",
       "keywordcommentsemicolon={${1:keywords}}{${2:keywords}}{${3:keywords}}",
       "podcomment"
+    ],
+    "\\updatehighlight#c": [
+      "label=",
+      "name=",
+      "classoffset=",
+      "macros=",
+      "commands=",
+      "add=",
+      "remove=",
+      "keywords=",
+      "style=",
+      "color=",
+      "clear"
     ]
-  ]
+  },
+  "args": []
 }

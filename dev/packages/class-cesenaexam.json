@@ -1,105 +1,170 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "pgfkeys": [],
-    "pgfopts": [],
-    "geometry": [],
-    "graphicx": [],
-    "tikz": [],
-    "circuitikz": [],
-    "tikzlibraryintersections": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibraryfit": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarythrough": [],
-    "tikzlibrarybabel": [],
-    "tikzlibrarydecorations.pathmorphing": [],
-    "tikzlibrarybackgrounds": [],
-    "fancyhdr": [],
-    "titlesec": [],
-    "newtxtext": [
-      "times"
-    ],
-    "newtxmath": [
-      "times"
-    ]
-  },
-  "macros": {
-    "examsection{}{}": {
-      "snippet": "examsection{${1:title}}{${2:italic text}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "examsection*{}{}": {
-      "snippet": "examsection*{${1:title}}{${2:italic text}}"
+    {
+      "name": "pgfkeys"
     },
-    "boxempty": {},
-    "boxcheck": {},
-    "examparts{}": {
-      "snippet": "examparts{${1:content}}"
+    {
+      "name": "pgfopts"
     },
-    "maketitle{}{}{}{}{}": {
-      "snippet": "maketitle{${1:surname}}{${2:name}}{${3:id}}{${4:signature}}{${5:N}}"
+    {
+      "name": "geometry"
     },
-    "maketitle[]{}{}{}{}{}": {
-      "snippet": "maketitle[${6:options}]{${1:surname}}{${2:name}}{${3:id}}{${4:signature}}{${5:N}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "graphicx"
     },
-    "maketitle*{}{}{}{}{}": {
-      "snippet": "maketitle*{${1:surname}}{${2:name}}{${3:id}}{${4:signature}}{${5:N}}"
+    {
+      "name": "tikz"
     },
-    "maketitle*[]{}{}{}{}{}": {
-      "snippet": "maketitle*[${6:options}]{${1:surname}}{${2:name}}{${3:id}}{${4:signature}}{${5:N}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "circuitikz"
     },
-    "examtwoblocks{}{}{}{}": {
-      "snippet": "examtwoblocks{${1:length1}}{${2:length2}}{${3:block1}}{${4:block2}}"
+    {
+      "name": "tikzlibraryintersections"
     },
-    "examtwoblockstop{}{}{}{}": {
-      "snippet": "examtwoblockstop{${1:length1}}{${2:length2}}{${3:block1}}{${4:block2}}"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "examoneblocktop{}{}": {
-      "snippet": "examoneblocktop{${1:length}}{${2:block}}"
+    {
+      "name": "tikzlibraryfit"
     },
-    "sectionfont": {},
-    "cesenaexamversion": {},
-    "boxlen": {},
-    "lastboxlen": {},
-    "minheighttypebox": {}
-  },
-  "envs": {},
-  "options": [
-    "noversion",
-    "boxed",
-    "times",
-    "left=",
-    "right=",
-    "top=",
-    "bottom=",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tikzlibrarythrough"
+    },
+    {
+      "name": "tikzlibrarybabel"
+    },
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
+    },
+    {
+      "name": "tikzlibrarybackgrounds"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "titlesec"
+    },
+    {
+      "name": "newtxtext",
+      "if": "times"
+    },
+    {
+      "name": "newtxmath",
+      "if": "times"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "examsection",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title}}{${2:italic text%text}}"
+      }
+    },
+    {
+      "name": "examsection*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title}}{${2:italic text%text}}"
+      }
+    },
+    {
+      "name": "boxempty"
+    },
+    {
+      "name": "boxcheck"
+    },
+    {
+      "name": "examparts",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "maketitle",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:surname}}{${2:name}}{${3:id}}{${4:signature}}{${5:N}}"
+      }
+    },
+    {
+      "name": "maketitle",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:options%keyvals}]{${1:surname}}{${2:name}}{${3:id}}{${4:signature}}{${5:N}}",
+        "keys": [
+          "\\maketitle,\\maketitle*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "examtwoblocks",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:length1%l}}{${2:length2%l}}{${3:block1%text}}{${4:block2%text}}"
+      }
+    },
+    {
+      "name": "examtwoblockstop",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:length1%l}}{${2:length2%l}}{${3:block1%text}}{${4:block2%text}}"
+      }
+    },
+    {
+      "name": "examoneblocktop",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:length}}{${2:block%text}}"
+      }
+    },
+    {
+      "name": "sectionfont",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/cesenaexam#c": [
+      "noversion",
+      "boxed",
+      "times",
+      "left=",
+      "right=",
+      "top=",
+      "bottom=",
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "fleqn",
+      "openbib"
+    ],
+    "\\maketitle,\\maketitle*": [
       "textboxheight=",
       "whiteboxheight=",
       "textboxone={${1:content}}",
@@ -107,5 +172,8 @@
       "textboxthree={${1:content}}",
       "textboxfour={${1:content}}"
     ]
+  },
+  "args": [
+    "\\documentclass/cesenaexam#c"
   ]
 }

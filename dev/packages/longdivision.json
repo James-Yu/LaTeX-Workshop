@@ -1,35 +1,69 @@
 {
-  "includes": {},
-  "macros": {
-    "longdivision{}{}": {
-      "snippet": "longdivision{${1:dividend}}{${2:divisor}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "longdivision",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:dividend}}{${2:divisor}}"
+      },
+      "detail": "⟌",
+      "doc": "Long division"
     },
-    "longdivision[]{}{}": {
-      "snippet": "longdivision[${3:options}]{${1:dividend}}{${2:divisor}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "longdivision",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:dividend}}{${2:divisor}}",
+        "keys": [
+          "\\longdivision#c,\\intlongdivision#c,\\longdivisionkeys#c"
+        ],
+        "keyPos": 0
+      },
+      "detail": "⟌",
+      "doc": "Long division"
     },
-    "intlongdivision{}{}": {
-      "snippet": "intlongdivision{${1:dividend}}{${2:divisor}}"
+    {
+      "name": "intlongdivision",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:dividend}}{${2:divisor}}"
+      }
     },
-    "intlongdivision[]{}{}": {
-      "snippet": "intlongdivision[${3:options}]{${1:dividend}}{${2:divisor}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "intlongdivision",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:dividend}}{${2:divisor}}",
+        "keys": [
+          "\\longdivision#c,\\intlongdivision#c,\\longdivisionkeys#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "longdivisionkeys{}": {
-      "snippet": "longdivisionkeys{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "longdivisionkeys",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\longdivision#c,\\intlongdivision#c,\\longdivisionkeys#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "longdivisiondefinestyle{}{}": {
-      "snippet": "longdivisiondefinestyle{${1:style name}}{${2:definition}}"
+    {
+      "name": "longdivisiondefinestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:style name}}{${2:definition}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "envs": [],
+  "keys": {
+    "\\longdivision#c,\\intlongdivision#c,\\longdivisionkeys#c": [
       "max extra digits=${1:integer}",
       "stage=${1:integer}",
       "style=${1|default,standard,tikz,german|}",
@@ -40,5 +74,6 @@
       "separators in work",
       "german division sign="
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,60 +1,136 @@
 {
-  "includes": {
-    "class-a0poster": [],
-    "xcolor": [],
-    "pgfkeys": [],
-    "pgfopts": [],
-    "relsize": [],
-    "tikz": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibrarybackgrounds": [],
-    "tikzlibraryshapes.misc": [],
-    "enumitem": [],
-    "fontawesome": [],
-    "sfmath": [],
-    "etoolbox": [],
-    "hyperref": [],
-    "environ": [],
-    "FiraSans": [],
-    "helvet": [
+  "deps": [
+    {
+      "name": "class-a0poster"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "pgfkeys"
+    },
+    {
+      "name": "pgfopts"
+    },
+    {
+      "name": "relsize"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibrarypositioning"
+    },
+    {
+      "name": "tikzlibrarybackgrounds"
+    },
+    {
+      "name": "tikzlibraryshapes.misc"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "fontawesome"
+    },
+    {
+      "name": "sfmath"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "environ"
+    },
+    {
+      "name": "FiraSans"
+    },
+    {
+      "name": "helvet",
+      "if": "helvet"
+    }
+  ],
+  "macros": [
+    {
+      "name": "highlight",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "colheight",
+      "unusual": true
+    },
+    {
+      "name": "colwidth",
+      "unusual": true
+    },
+    {
+      "name": "coltextwidth",
+      "unusual": true
+    },
+    {
+      "name": "colsep",
+      "unusual": true
+    },
+    {
+      "name": "boxheight",
+      "unusual": true
+    },
+    {
+      "name": "boxlinewidth",
+      "unusual": true
+    },
+    {
+      "name": "posterbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:contents%text}}"
+      }
+    },
+    {
+      "name": "doubleposterbox",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:title1%text}}{${2:contents1%text}}{${3:title2%text}}{${4:contents2%text}}"
+      }
+    },
+    {
+      "name": "doubleposterbox",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:height}]{${1:title1%text}}{${2:contents1%text}}{${3:title2%text}}{${4:contents2%text}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "thenumcols",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "postercolumn"
+    }
+  ],
+  "keys": {
+    "\\documentclass/modernposter#c": [
+      "hlcolor=${1:HTML color}",
+      "logo=${1:imagefile}",
       "helvet"
     ]
   },
-  "macros": {
-    "highlight{}": {
-      "snippet": "highlight{${1:text}}"
-    },
-    "colheight": {},
-    "colwidth": {},
-    "coltextwidth": {},
-    "colsep": {},
-    "boxheight": {},
-    "boxlinewidth": {},
-    "posterbox{}{}": {
-      "snippet": "posterbox{${1:title}}{${2:contents}}"
-    },
-    "doubleposterbox{}{}{}{}": {
-      "snippet": "doubleposterbox{${1:title1}}{${2:contents1}}{${3:title2}}{${4:contents2}}"
-    },
-    "doubleposterbox[]{}{}{}{}": {
-      "snippet": "doubleposterbox[${5:height}]{${1:title1}}{${2:contents1}}{${3:title2}}{${4:contents2}}"
-    },
-    "oldparboxrestore": {},
-    "faiconold{}": {
-      "snippet": "faiconold{${1:arg}}"
-    },
-    "email{}": {
-      "snippet": "email{${1:email}}"
-    },
-    "thenumcols": {}
-  },
-  "envs": {
-    "postercolumn": {}
-  },
-  "options": [
-    "hlcolor=${1:HTML color}",
-    "logo=${1:imagefile}",
-    "helvet"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/modernposter#c"
+  ]
 }

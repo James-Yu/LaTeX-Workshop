@@ -1,61 +1,182 @@
 {
-  "includes": {
-    "graphicx": [],
-    "amsmath": [],
-    "etoolbox": [],
-    "pdftexcmds": [],
-    "morewrites": []
-  },
-  "macros": {
-    "wolfram{}": {
-      "snippet": "wolfram{${1:code}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "wolfram[]{}": {
-      "snippet": "wolfram[${2:format}]{${1:code}}"
+    {
+      "name": "amsmath"
     },
-    "wolframgraphics{}{}": {
-      "snippet": "wolframgraphics{${1:code}}{${2:file}}"
+    {
+      "name": "etoolbox"
     },
-    "wolframgraphics[]{}{}": {
-      "snippet": "wolframgraphics[${3:format}]{${1:code}}{${2:file}}"
+    {
+      "name": "pdftexcmds"
     },
-    "wolframalpha{}": {
-      "snippet": "wolframalpha{${1:query}}"
-    },
-    "wolframalpha[]{}": {
-      "snippet": "wolframalpha[${2:format}]{${1:query}}"
-    },
-    "wolframsolve{}{}{}": {
-      "snippet": "wolframsolve{${1:equation}}{${2:independent variable}}{${3:dependent variable}}"
-    },
-    "wolframdsolve{}{}{}": {
-      "snippet": "wolframdsolve{${1:equation}}{${2:independent variable}}{${3:dependent variable}}"
-    },
-    "wolframtex{}": {
-      "snippet": "wolframtex{${1:code}}"
-    },
-    "wolframtex[]{}": {
-      "snippet": "wolframtex[${2:format}]{${1:code}}"
-    },
-    "wolframanimation{}{}": {
-      "snippet": "wolframanimation{${1:code}}{${2:folder name}}"
-    },
-    "backslash": {
-      "detail": "\\",
-      "documentation": "REVERSE SOLIDUS"
-    },
-    "instring{}{}": {
-      "snippet": "instring{${1:char}}{${2:string}}"
-    },
-    "wsreturncodefile": {},
-    "wsreturncode": {}
-  },
-  "envs": {},
-  "options": [
-    "local",
-    "cloud",
-    "cache",
-    "nocache"
+    {
+      "name": "morewrites"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "wolfram",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%definition}}"
+      }
+    },
+    {
+      "name": "wolfram",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:format%keyvals}]{${1:code%definition}}",
+        "keys": [
+          "\\wolfram"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "wolframgraphics",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:code%definition}}{${2:file}}"
+      }
+    },
+    {
+      "name": "wolframgraphics",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:format%keyvals}]{${1:code%definition}}{${2:file}}",
+        "keys": [
+          "\\wolframgraphics"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "wolframalpha",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:query}}"
+      }
+    },
+    {
+      "name": "wolframalpha",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:format%keyvals}]{${1:query}}",
+        "keys": [
+          "\\wolframalpha"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "wolframsolve",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:equation%definition}}{${2:independent variable%definition}}{${3:dependent variable%definition}}"
+      }
+    },
+    {
+      "name": "wolframsolve",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:equation%definition}}{${2:independent variable%definition}}{${3:dependent variable%definition}}"
+      }
+    },
+    {
+      "name": "wolframdsolve",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:equation%definition}}{${2:independent variable%definition}}{${3:dependent variable%definition}}"
+      }
+    },
+    {
+      "name": "wolframdsolve",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:equation%definition}}{${2:independent variable%definition}}{${3:dependent variable%definition}}"
+      }
+    },
+    {
+      "name": "wolframtex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%definition}}"
+      }
+    },
+    {
+      "name": "wolframtex",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:format%keyvals}]{${1:code%definition}}",
+        "keys": [
+          "\\wolframtex"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "wolframanimation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:code%definition}}{${2:folder name%definition}}"
+      }
+    },
+    {
+      "name": "backslash",
+      "detail": "\\",
+      "doc": "Reverse solidus"
+    },
+    {
+      "name": "instring",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:char}}{${2:string}}"
+      }
+    },
+    {
+      "name": "wsreturncodefile",
+      "unusual": true
+    },
+    {
+      "name": "wsreturncode",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/latexalpha2#c": [
+      "local",
+      "cloud",
+      "cache",
+      "nocache"
+    ],
+    "\\wolfram": [
+      "tex",
+      "wolfram",
+      "text"
+    ],
+    "\\wolframgraphics": [
+      "pdf",
+      "png",
+      "jpg"
+    ],
+    "\\wolframalpha": [
+      "tex",
+      "wolfram",
+      "wolfram2",
+      "text"
+    ],
+    "\\wolframtex": [
+      "tex",
+      "wolfram",
+      "text"
+    ]
+  },
+  "args": [
+    "\\usepackage/latexalpha2#c"
+  ]
 }

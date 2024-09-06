@@ -1,47 +1,96 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psPrintValue{}": {
-      "snippet": "psPrintValue{${1:PS code}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psPrintValue[]{}": {
-      "snippet": "psPrintValue[${2:options}]{${1:PS code}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psPrintValue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:PS code}}"
+      }
     },
-    "psPrintValueNew{}": {
-      "snippet": "psPrintValueNew{${1:PS code}}"
+    {
+      "name": "psPrintValue",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:PS code}}",
+        "keys": [
+          "\\psPrintValue,\\psPrintValueNew"
+        ],
+        "keyPos": 0
+      }
     },
-    "psPrintValueNew[]{}": {
-      "snippet": "psPrintValueNew[${2:options}]{${1:PS code}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "psPrintValueNew",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:PS code}}"
+      }
     },
-    "psRegisterList{}{}": {
-      "snippet": "psRegisterList{${1:name}}{${2:value list}}"
+    {
+      "name": "psPrintValueNew",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:PS code}}",
+        "keys": [
+          "\\psPrintValue,\\psPrintValueNew",
+          "\\psPrintValueNew"
+        ],
+        "keyPos": 0
+      }
     },
-    "randomi": {},
-    "nextrandom": {},
-    "setrannum{}{}{}": {
-      "snippet": "setrannum{${1:count register}}{${2:min}}{${3:max}}"
+    {
+      "name": "psRegisterList",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:value list}}"
+      }
     },
-    "setrandim{}{}{}": {
-      "snippet": "setrandim{${1:dimen register}}{${2:min}}{${3:max}}"
+    {
+      "name": "randomi",
+      "unusual": true
     },
-    "pointless": {},
-    "PoinTless": {},
-    "ranval": {},
-    "txG": {},
-    "etxG": {},
-    "PSTtoolsLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "nextrandom",
+      "unusual": true
+    },
+    {
+      "name": "setrannum",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:count register%cmd}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "setrandim",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:dimen register%cmd}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "pointless"
+    },
+    {
+      "name": "PoinTless",
+      "unusual": true
+    },
+    {
+      "name": "ranval",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psPrintValue,\\psPrintValueNew": [
       "printfont=${1:font name}",
       "postString=${1:string}",
       "trimSpaces",
@@ -53,19 +102,10 @@
       "VarName=${1:string}",
       "comma"
     ],
-    [
-      "printfont=${1:font name}",
-      "postString=${1:string}",
-      "trimSpaces",
-      "fontscale=${1:scale in pts}",
-      "valuewidth=${1:number}",
-      "decimals=${1:number}",
-      "xShift=${1:shift in pts}",
-      "algebraic",
-      "VarName=${1:string}",
-      "comma",
+    "\\psPrintValueNew": [
       "round",
       "science"
     ]
-  ]
+  },
+  "args": []
 }

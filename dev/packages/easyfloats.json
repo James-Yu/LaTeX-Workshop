@@ -1,202 +1,474 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "pgfkeys": [],
-    "float": [],
-    "caption": [],
-    "environ": [],
-    "subcaption": [],
-    "graphicx": [],
-    "array": [],
-    "booktabs": [],
-    "graphbox": [
-      "graphbox"
-    ],
-    "longtable": [
-      "longtable"
-    ]
-  },
-  "macros": {
-    "includegraphicobject{}": {
-      "snippet": "includegraphicobject{${1:imagefile}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "includegraphicobject[]{}": {
-      "snippet": "includegraphicobject[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgfkeys"
     },
-    "includegraphicsubobject{}": {
-      "snippet": "includegraphicsubobject{${1:imagefile}}"
+    {
+      "name": "float"
     },
-    "includegraphicsubobject[]{}": {
-      "snippet": "includegraphicsubobject[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "caption"
     },
-    "objectset{}": {
-      "snippet": "objectset{${1:options}}"
+    {
+      "name": "environ"
     },
-    "objectset[]{}": {
-      "snippet": "objectset[${2:style names}]{${1:options}}"
+    {
+      "name": "subcaption"
     },
-    "graphicobjectstyle{}": {
-      "snippet": "graphicobjectstyle{${1:style name}}"
+    {
+      "name": "graphicx"
     },
-    "NewObjectStyle{}{}": {
-      "snippet": "NewObjectStyle{${1:style name}}{${2:options}}"
+    {
+      "name": "array"
     },
-    "NewObjectStyleGroup{}{}": {
-      "snippet": "NewObjectStyleGroup{${1:group}}{${2:style names}}"
+    {
+      "name": "booktabs"
     },
-    "AddObjectStyleToGroup{}{}": {
-      "snippet": "AddObjectStyleToGroup{${1:group}}{${2:style name}}"
+    {
+      "name": "graphbox",
+      "if": "graphbox"
     },
-    "AtBeginObject{}": {
-      "snippet": "AtBeginObject{${1:code}}"
-    },
-    "AtBeginSubobject{}": {
-      "snippet": "AtBeginSubobject{${1:code}}"
-    },
-    "AtBeginGraphicObject{}": {
-      "snippet": "AtBeginGraphicObject{${1:code}}"
-    },
-    "ShowObjectStylesInGroup{}": {
-      "snippet": "ShowObjectStylesInGroup{${1:group}}"
-    },
-    "ShowObjectStyleOptions{}": {
-      "snippet": "ShowObjectStyleOptions{${1:style name}}"
-    },
-    "AppendGraphicobjectOption{}{}": {
-      "snippet": "AppendGraphicobjectOption{${1:option}}{${2:value}}"
-    },
-    "AppendOptionToObjectStyle{}{}{}": {
-      "snippet": "AppendOptionToObjectStyle{${1:style name}}{${2:option}}{${3:value}}"
-    },
-    "AppendOptionToObjectStyleGroup{}{}{}": {
-      "snippet": "AppendOptionToObjectStyleGroup{${1:group}}{${2:option}}{${3:value}}"
-    },
-    "AppendOptionToObjectStyleGroups{}{}{}": {
-      "snippet": "AppendOptionToObjectStyleGroups{${1:groups}}{${2:option}}{${3:value}}"
-    },
-    "AppendToOptionsList{}{}{}": {
-      "snippet": "AppendToOptionsList{${1:macro}}{${2:option}}{${3:value}}"
-    },
-    "CheckGraphicobjectOption{}{}": {
-      "snippet": "CheckGraphicobjectOption{${1:option}}{${2:value}}"
-    },
-    "CheckObjectEnvArgs{}{}": {
-      "snippet": "CheckObjectEnvArgs{${1:option}}{${2:value}}"
-    },
-    "CheckObjectGraphicOption{}{}": {
-      "snippet": "CheckObjectGraphicOption{${1:option}}{${2:value}}"
-    },
-    "CheckObjectOption{}{}": {
-      "snippet": "CheckObjectOption{${1:option}}{${2:value}}"
-    },
-    "DeprecateStandardFloatObject{}{}": {
-      "snippet": "DeprecateStandardFloatObject{${1:envname}}{${2:alt object envname}}"
-    },
-    "GobbleLeadingSpaceIn{}": {
-      "snippet": "GobbleLeadingSpaceIn{${1:arg}}"
-    },
-    "IfEndsOn{}{}{}{}": {
-      "snippet": "IfEndsOn{${1:char}}{${2:text}}{${3:true}}{${4:false}}"
-    },
-    "IfEndsOnPlus{}{}{}": {
-      "snippet": "IfEndsOnPlus{${1:arg}}{${2:true}}{${3:false}}"
-    },
-    "IfEndsOnSpacePlus{}{}{}": {
-      "snippet": "IfEndsOnSpacePlus{${1:arg}}{${2:true}}{${3:false}}"
-    },
-    "IfEnvironmentExists{}{}{}": {
-      "snippet": "IfEnvironmentExists{${1:envname}}{${2:true}}{${3:false}}"
-    },
-    "IfEnvironmentExistsOrIsEmpty{}{}{}": {
-      "snippet": "IfEnvironmentExistsOrIsEmpty{${1:envname}}{${2:true}}{${3:false}}"
-    },
-    "IfObjectStyleExists{}{}{}": {
-      "snippet": "IfObjectStyleExists{${1:style name}}{${2:true}}{${3:false}}"
-    },
-    "IfObjectStyleNotGroup{}{}{}": {
-      "snippet": "IfObjectStyleNotGroup{${1:style name}}{${2:true}}{${3:false}}"
-    },
-    "ObjectAppendEnvargs{}": {
-      "snippet": "ObjectAppendEnvargs{${1:macro}}"
-    },
-    "ObjectDefineEnvargs{}{}": {
-      "snippet": "ObjectDefineEnvargs{${1:envname}}{${2:arguments}}"
-    },
-    "ObjectDefineEnvargsAuto{}": {
-      "snippet": "ObjectDefineEnvargsAuto{${1:arguments}}"
-    },
-    "ObjectDefineEnvargsCheckName{}{}": {
-      "snippet": "ObjectDefineEnvargsCheckName{${1:envname}}{${2:arguments}}"
-    },
-    "ObjectProcessArgs{}{}{}": {
-      "snippet": "ObjectProcessArgs{${1:option}}{${2:value}}{${3:else}}"
-    },
-    "ObjectProcessGraphicOption{}{}{}": {
-      "snippet": "ObjectProcessGraphicOption{${1:option}}{${2:value}}{${3:else}}"
-    },
-    "ObjectProcessKeyPattern{}{}{}": {
-      "snippet": "ObjectProcessKeyPattern{${1:option}}{${2:value}}{${3:else}}"
-    },
-    "PatchUnderscore{}": {
-      "snippet": "PatchUnderscore{${1:macro}}"
-    },
-    "StripGraphicSpace{}": {
-      "snippet": "StripGraphicSpace{${1:arg}}"
-    },
-    "strippath{}": {
-      "snippet": "strippath{${1:arg}}"
-    },
-    "StripPlus{}": {
-      "snippet": "StripPlus{${1:arg}}"
-    },
-    "StripSpacePlus{}": {
-      "snippet": "StripSpacePlus{${1:arg}}"
+    {
+      "name": "longtable",
+      "if": "longtable"
     }
-  },
-  "envs": {
-    "object{}": {
-      "name": "object",
-      "snippet": "{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "figureobject{}": {
-      "name": "figureobject",
-      "snippet": "{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "tableobject{}": {
-      "name": "tableobject",
-      "snippet": "{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "subobject{}": {
-      "name": "subobject",
-      "snippet": "{${1:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    }
-  },
-  "options": [
-    "graphicx",
-    "graphbox",
-    "nographic",
-    "longtable",
-    "nolongtable",
-    "booktabs",
-    "nobooktabs",
-    "array",
-    "noarray",
-    "allowstandardfloats"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "includegraphicobject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "includegraphicobject",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\includegraphicobject#c,\\includegraphicsubobject#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "includegraphicsubobject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "includegraphicsubobject",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\includegraphicobject#c,\\includegraphicsubobject#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "objectset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "objectset",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style names}]{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "graphicobjectstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style name}}"
+      }
+    },
+    {
+      "name": "NewObjectStyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:style name}}{${2:options%keyvals}}"
+      }
+    },
+    {
+      "name": "NewObjectStyleGroup",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:group}}{${2:style names}}"
+      }
+    },
+    {
+      "name": "AddObjectStyleToGroup",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:group}}{${2:style name}}"
+      }
+    },
+    {
+      "name": "AtBeginObject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "AtBeginSubobject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "AtBeginGraphicObject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "ShowObjectStylesInGroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:group}}"
+      }
+    },
+    {
+      "name": "ShowObjectStyleOptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style name}}"
+      }
+    },
+    {
+      "name": "AppendGraphicobjectOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:value}}"
+      }
+    },
+    {
+      "name": "AppendOptionToObjectStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:style name}}{${2:option}}{${3:value}}"
+      }
+    },
+    {
+      "name": "AppendOptionToObjectStyleGroup",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:group}}{${2:option}}{${3:value}}"
+      }
+    },
+    {
+      "name": "AppendOptionToObjectStyleGroups",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:groups}}{${2:option}}{${3:value}}"
+      }
+    },
+    {
+      "name": "AppendToOptionsList",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:macro}}{${2:option}}{${3:value}}"
+      }
+    },
+    {
+      "name": "CheckGraphicobjectOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:value}}"
+      }
+    },
+    {
+      "name": "CheckObjectEnvArgs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:value}}"
+      }
+    },
+    {
+      "name": "CheckObjectGraphicOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:value}}"
+      }
+    },
+    {
+      "name": "CheckObjectOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:value}}"
+      }
+    },
+    {
+      "name": "DeprecateStandardFloatObject",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:alt object envname}}"
+      }
+    },
+    {
+      "name": "GobbleLeadingSpaceIn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "IfEndsOn",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:char}}{${2:text}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "IfEndsOnPlus",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "IfEndsOnSpacePlus",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "IfEnvironmentExists",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:envname}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "IfEnvironmentExistsOrIsEmpty",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:envname}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "IfObjectStyleExists",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:style name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "IfObjectStyleNotGroup",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:style name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ObjectAppendEnvargs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macro}}"
+      }
+    },
+    {
+      "name": "ObjectDefineEnvargs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:arguments}}"
+      }
+    },
+    {
+      "name": "ObjectDefineEnvargsAuto",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arguments}}"
+      }
+    },
+    {
+      "name": "ObjectDefineEnvargsCheckName",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:arguments}}"
+      }
+    },
+    {
+      "name": "ObjectProcessArgs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:option}}{${2:value}}{${3:else}}"
+      }
+    },
+    {
+      "name": "ObjectProcessGraphicOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:option}}{${2:value}}{${3:else}}"
+      }
+    },
+    {
+      "name": "ObjectProcessKeyPattern",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:option}}{${2:value}}{${3:else}}"
+      }
+    },
+    {
+      "name": "PatchUnderscore",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macro}}"
+      }
+    },
+    {
+      "name": "StripGraphicSpace",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "strippath",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "StripPlus",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "StripSpacePlus",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "object",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{object}#c,\\begin{figureobject}#c,\\begin{tableobject}#c,\\begin{subobject}#c,\\includegraphicobject#c,\\includegraphicsubobject#c,\\objectset#c,\\NewObjectStyle#c",
+          "\\begin{object}#c,\\begin{figureobject}#c,\\begin{tableobject}#c,\\includegraphicobject#c,\\objectset#c,\\NewObjectStyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "figureobject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{object}#c,\\begin{figureobject}#c,\\begin{tableobject}#c,\\begin{subobject}#c,\\includegraphicobject#c,\\includegraphicsubobject#c,\\objectset#c,\\NewObjectStyle#c",
+          "\\begin{object}#c,\\begin{figureobject}#c,\\begin{tableobject}#c,\\includegraphicobject#c,\\objectset#c,\\NewObjectStyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tableobject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{object}#c,\\begin{figureobject}#c,\\begin{tableobject}#c,\\begin{subobject}#c,\\includegraphicobject#c,\\includegraphicsubobject#c,\\objectset#c,\\NewObjectStyle#c",
+          "\\begin{object}#c,\\begin{figureobject}#c,\\begin{tableobject}#c,\\includegraphicobject#c,\\objectset#c,\\NewObjectStyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "subobject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{subobject}#c,\\includegraphicsubobject#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/easyfloats#c": [
+      "graphicx",
+      "graphbox",
+      "nographic",
+      "longtable",
+      "nolongtable",
+      "booktabs",
+      "nobooktabs",
+      "array",
+      "noarray",
+      "allowstandardfloats"
+    ],
+    "\\includegraphicobject#c,\\includegraphicsubobject#c": [
+      "hide",
+      "align=${1|b,c,l,m,t,u|}",
+      "vsmash=${1|b,c,l,m,n,t,u|}",
+      "hsmash=${1|c,l,n,r|}",
+      "smash=${1:vpos}${2:hpos}",
+      "vshift=",
+      "hshift=",
+      "tmargin=",
+      "bmargin=",
+      "vmargin=",
+      "lmargin=",
+      "rmargin=",
+      "hmargin=",
+      "margin=",
       "auto caption",
       "auto caption strip path",
       "auto label",
@@ -233,7 +505,21 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ],
-    [
+    "\\begin{object}#c,\\begin{figureobject}#c,\\begin{tableobject}#c,\\begin{subobject}#c,\\includegraphicobject#c,\\includegraphicsubobject#c,\\objectset#c,\\NewObjectStyle#c": [
+      "graphic hide",
+      "graphic align=${1|b,c,l,m,t,u|}",
+      "graphic vsmash=${1|b,c,l,m,n,t,u|}",
+      "graphic hsmash=${1|c,l,n,r|}",
+      "graphic smash=${1:vpos}${2:hpos}",
+      "graphic vshift=",
+      "graphic hshift=",
+      "graphic tmargin=",
+      "graphic bmargin=",
+      "graphic vmargin=",
+      "graphic lmargin=",
+      "graphic rmargin=",
+      "graphic hmargin=",
+      "graphic margin=",
       "type=${1:type}",
       "float style=${1|plain,plaintop,ruled,boxed|}",
       "caption=${1:text}",
@@ -294,7 +580,9 @@
       "subpage outer pos=${1|c,t,b,T,B,auto,Auto|}",
       "subpage height=",
       "subpage inner pos=${1|c,t,b,s|}",
-      "subpage align=${1:code}",
+      "subpage align=${1:code}"
+    ],
+    "\\begin{object}#c,\\begin{figureobject}#c,\\begin{tableobject}#c,\\includegraphicobject#c,\\objectset#c,\\NewObjectStyle#c": [
       "first head=${1:code}",
       "last foot=${1:code}",
       "head=${1:code}",
@@ -317,7 +605,7 @@
       "subobject warn no caption",
       "subobject warn no label"
     ],
-    [
+    "\\begin{subobject}#c,\\includegraphicsubobject#c": [
       "linewidth=",
       "sep=${1:code}",
       "hor=${1:code}",
@@ -327,5 +615,8 @@
       "ver sep=${1:code}",
       "ver sep +=${1:code}"
     ]
+  },
+  "args": [
+    "\\usepackage/easyfloats#c"
   ]
 }

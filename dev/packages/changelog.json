@@ -1,65 +1,110 @@
 {
-  "includes": {
-    "translations": []
-  },
-  "macros": {
-    "shortversion{}": {
-      "snippet": "shortversion{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "added": {},
-    "changed": {},
-    "deprecated": {},
-    "removed": {},
-    "fixed": {},
-    "security": {},
-    "misc": {},
-    "newchangelogsection{}{}": {
-      "snippet": "newchangelogsection{${1:command}}{${2:description}}"
-    },
-    "changelogyanked": {},
-    "changelogremark{}": {
-      "snippet": "changelogremark{${1:remark}}"
+  "deps": [
+    {
+      "name": "translations"
     }
-  },
-  "envs": {
-    "changelog": {},
-    "changelog[]": {
+  ],
+  "macros": [
+    {
+      "name": "shortversion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{changelog},\\begin{version},\\shortversion",
+          "\\shortversion"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "added"
+    },
+    {
+      "name": "changed"
+    },
+    {
+      "name": "deprecated"
+    },
+    {
+      "name": "removed"
+    },
+    {
+      "name": "fixed"
+    },
+    {
+      "name": "security"
+    },
+    {
+      "name": "misc"
+    },
+    {
+      "name": "newchangelogsection",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "changelogyanked",
+      "unusual": true
+    },
+    {
+      "name": "changelogremark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:remark%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "changelog"
+    },
+    {
       "name": "changelog",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{changelog}",
+          "\\begin{changelog},\\begin{version},\\shortversion"
+        ],
+        "keyPos": 0
+      }
     },
-    "version": {},
-    "version[]": {
+    {
+      "name": "version"
+    },
+    {
       "name": "version",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{changelog},\\begin{version},\\shortversion"
+        ],
+        "keyPos": 0
+      }
     },
-    "changelogdescription": {},
-    "changelogitemize": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "version=${1:version}",
-      "v=${1:version}",
-      "author=${1:author}",
-      "date=${1:date}",
-      "yanked",
-      "remark=${1:text}",
-      "remarks={${1:text1,text2,...}}",
-      "simple",
-      "short",
-      "changes=${1:change text}"
-    ],
-    [
+    {
+      "name": "changelogdescription",
+      "unusual": true
+    },
+    {
+      "name": "changelogitemize",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\begin{changelog}": [
       "section",
       "sectioncmd=${1:command}",
       "title=${1:text}",
-      "label=",
+      "label="
+    ],
+    "\\begin{changelog},\\begin{version},\\shortversion": [
       "version=${1:version}",
       "v=${1:version}",
       "author=${1:author}",
@@ -70,16 +115,9 @@
       "simple",
       "short"
     ],
-    [
-      "version=${1:version}",
-      "v=${1:version}",
-      "author=${1:author}",
-      "date=${1:date}",
-      "yanked",
-      "remark=${1:text}",
-      "remarks={${1:text1,text2,...}}",
-      "simple",
-      "short"
+    "\\shortversion": [
+      "changes=${1:change text}"
     ]
-  ]
+  },
+  "args": []
 }

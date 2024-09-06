@@ -1,70 +1,171 @@
 {
-  "includes": {},
-  "macros": {
-    "csdiameter": {},
-    "curvelength": {},
-    "overhang": {},
-    "ifcurvewarn": {},
-    "curvewarntrue": {},
-    "curvewarnfalse": {},
-    "ifstraight": {},
-    "straighttrue": {},
-    "straightfalse": {},
-    "curvesymbol{}": {
-      "snippet": "curvesymbol{${1:symbol}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "csdiameter",
+      "unusual": true
     },
-    "curvedashes{}": {
-      "snippet": "curvedashes{${1:dash pattern}}"
+    {
+      "name": "curvelength",
+      "unusual": true
     },
-    "curvedashes[]{}": {
-      "snippet": "curvedashes[${2:length}]{${1:dash pattern}}"
+    {
+      "name": "overhang",
+      "unusual": true
     },
-    "diskpitchstretch": {},
-    "patternresolution": {},
-    "xscale": {},
-    "xscaley": {},
-    "yscale": {},
-    "yscalex": {},
-    "arc(){}": {
-      "snippet": "arc(${2:x},${3:y}){${1:angle}}"
+    {
+      "name": "ifcurvewarn",
+      "unusual": true
     },
-    "arc[](){}": {
-      "snippet": "arc[${2:n}](${3:x},${4:y}){${1:angle}}"
+    {
+      "name": "curvewarntrue"
     },
-    "bigcircle{}": {
-      "snippet": "bigcircle{${1:diameter}}"
+    {
+      "name": "curvewarnfalse"
     },
-    "bigcircle[]{}": {
-      "snippet": "bigcircle[${2:n}]{${1:diameter}}"
+    {
+      "name": "ifstraight",
+      "unusual": true
     },
-    "closecurve()": {
-      "snippet": "closecurve(${1:coords})"
+    {
+      "name": "straighttrue"
     },
-    "closecurve[]()": {
-      "snippet": "closecurve[${1:n}](${2:coords})"
+    {
+      "name": "straightfalse"
     },
-    "curve()": {
-      "snippet": "curve(${1:coords})"
+    {
+      "name": "curvesymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
     },
-    "curve[]()": {
-      "snippet": "curve[${1:n}](${2:coords})"
+    {
+      "name": "curvedashes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dash pattern}}"
+      }
     },
-    "scaleput(){}": {
-      "snippet": "scaleput(${2:x},${3:y}){${1:object}}"
+    {
+      "name": "curvedashes",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:length}]{${1:dash pattern}}"
+      }
     },
-    "tagcurve()": {
-      "snippet": "tagcurve(${1:coords})"
+    {
+      "name": "diskpitchstretch",
+      "unusual": true
     },
-    "tagcurve[]()": {
-      "snippet": "tagcurve[${1:n}](${2:coords})"
+    {
+      "name": "patternresolution",
+      "unusual": true
+    },
+    {
+      "name": "xscale",
+      "unusual": true
+    },
+    {
+      "name": "xscaley",
+      "unusual": true
+    },
+    {
+      "name": "yscale",
+      "unusual": true
+    },
+    {
+      "name": "yscalex",
+      "unusual": true
+    },
+    {
+      "name": "arc",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:angle}}"
+      }
+    },
+    {
+      "name": "arc",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:n}](${3:x},${4:y}){${1:angle}}"
+      }
+    },
+    {
+      "name": "bigcircle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:diameter}}"
+      }
+    },
+    {
+      "name": "bigcircle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:n}]{${1:diameter}}"
+      }
+    },
+    {
+      "name": "closecurve",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:coords})"
+      }
+    },
+    {
+      "name": "closecurve",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:n}](${2:coords})"
+      }
+    },
+    {
+      "name": "curve",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:coords})"
+      }
+    },
+    {
+      "name": "curve",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:n}](${2:coords})"
+      }
+    },
+    {
+      "name": "scaleput",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:object}}"
+      }
+    },
+    {
+      "name": "tagcurve",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:coords})"
+      }
+    },
+    {
+      "name": "tagcurve",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:n}](${2:coords})"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "dvips",
-    "emtex",
-    "xdvi",
-    "WML"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/curves#c": [
+      "dvips",
+      "emtex",
+      "xdvi",
+      "WML"
+    ]
+  },
+  "args": [
+    "\\usepackage/curves#c"
+  ]
 }

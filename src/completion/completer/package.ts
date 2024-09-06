@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
-import type { CompletionProvider, FileCache, Package } from '../../types'
+import type { CompletionProvider, DependencyRaw, FileCache, PackageObsolete, PackageRaw } from '../../types'
 import { argContentToStr } from '../../utils/parser'
 import { replaceArgumentPlaceholders } from '../../utils/utils'
 
@@ -14,17 +14,16 @@ export const usepackage = {
     parse,
     load,
     getAll,
-    getDeps,
-    getOpts,
-    setDeps,
-    setOpts
+    getArgs,
+    getKeys
 }
 
 const data = {
     loaded: [] as string[],
     suggestions: [] as vscode.CompletionItem[],
-    packageDeps: Object.create(null) as { [packageName: string]: { [key: string]: string[] } },
-    packageOptions: Object.create(null) as { [packageName: string]: string[] }
+    packageDeps: Object.create(null) as { [packageName: string]: DependencyRaw[] },
+    packageArgs: Object.create(null) as { [packageName: string]: string[] },
+    packageKeys: Object.create(null) as { [packageName: string]: { [key: string]: string[] } }
 }
 
 type PackageItemEntry = {
@@ -33,6 +32,7 @@ type PackageItemEntry = {
     documentation: string
 }
 
+let _obsoletePackageFileWarned = false
 function load(packageName: string) {
     if (data.loaded.includes(packageName)) {
         return
@@ -45,17 +45,27 @@ function load(packageName: string) {
     }
 
     try {
-        const packageData = JSON.parse(fs.readFileSync(filePath).toString()) as Package
-        populatePackageData(packageData)
+        const packageData = JSON.parse(fs.readFileSync(filePath).toString()) as PackageRaw | PackageObsolete
+        if ('includes' in packageData) {
+            if (!_obsoletePackageFileWarned) {
+                logger.showErrorMessage(`The intellisense file ${filePath} is obsolete. Please update it to the new format: https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#commands-starting-with-`)
+                _obsoletePackageFileWarned = true
+            }
+            logger.log(`The intellisense file ${filePath} is obsolete.`)
+            return
+        }
+        // populatePackageData(packageData)
 
-        setDeps(packageName, packageData.includes)
-        setOpts(packageName, packageData.options)
+        data.packageDeps[packageName] = packageData.deps
+        data.packageArgs[packageName] = packageData.args
+        data.packageKeys[packageName] = packageData.keys
+
         lw.completion.environment.setPackageEnvs(packageName, packageData.envs)
         lw.completion.macro.setPackageCmds(packageName, packageData.macros)
 
         data.loaded.push(packageName)
-    } catch (e) {
-        logger.log(`Cannot parse intellisense file: ${filePath}`)
+    } catch (err) {
+        logger.logError(`Cannot parse intellisense file: ${filePath}`, err)
     }
 }
 
@@ -84,19 +94,19 @@ function resolvePackageFile(packageName: string): string | undefined {
     return
 }
 
-function populatePackageData(packageData: Package) {
-    Object.entries(packageData.macros).forEach(([key, cmd]) => {
-        cmd.macro = key
-        cmd.snippet = cmd.snippet || key
-        cmd.keyvals = packageData.keyvals[cmd.keyvalindex ?? -1]
-    })
-    Object.entries(packageData.envs).forEach(([key, env]) => {
-        env.detail = key
-        env.name = env.name || key
-        env.snippet = env.snippet || ''
-        env.keyvals = packageData.keyvals[env.keyvalindex ?? -1]
-    })
-}
+// function populatePackageData(packageData: PackageRaw): { macros: MacroObsolete[], envs: EnvObsolete[] } {
+//     Object.entries(packageData.macros).forEach(([key, cmd]) => {
+//         cmd.macro = key
+//         cmd.snippet = cmd.snippet || key
+//         cmd.keyvals = packageData.keyvals[cmd.keyvalindex ?? -1]
+//     })
+//     Object.entries(packageData.envs).forEach(([key, env]) => {
+//         env.detail = key
+//         env.name = env.name || key
+//         env.snippet = env.snippet || ''
+//         env.keyvals = packageData.keyvals[env.keyvalindex ?? -1]
+//     })
+// }
 
 function initialize(defaultPackages: {[key: string]: PackageItemEntry}) {
     Object.values(defaultPackages).forEach(item => {
@@ -115,20 +125,16 @@ function from(): vscode.CompletionItem[] {
     return data.suggestions
 }
 
-function setDeps(packageName: string, deps: {[key: string]: string[]}) {
-    data.packageDeps[packageName] = deps
+function getArgs(packageName: string) {
+    return data.packageArgs[packageName].map(key => data.packageKeys[packageName]?.[key] ?? []).flat()
 }
 
-function setOpts(packageName: string, options: string[]) {
-    data.packageOptions[packageName] = options
+function getDeps(packageName: string): DependencyRaw[] {
+    return data.packageDeps[packageName] ?? []
 }
 
-function getOpts(packageName: string) {
-    return data.packageOptions[packageName] || []
-}
-
-function getDeps(packageName: string): {[key: string]: string[]} {
-    return data.packageDeps[packageName] || {}
+function getKeys(packageName: string, key: string) {
+    return data.packageKeys[packageName]?.[key] ?? []
 }
 
 function getAll(languageId: string): {[packageName: string]: string[]} {
@@ -160,14 +166,12 @@ function getAll(languageId: string): {[packageName: string]: string[]} {
 
     while (true) {
         let newPackageInserted = false
-        Object.entries(packages).forEach(([packageName, options]) => Object.keys(getDeps(packageName))
-            .filter(includeName => !excluded.includes(includeName))
-            .forEach(includeName => {
-                const dependOptions = getDeps(packageName)[includeName]
-                const hasOption = dependOptions.length === 0
-                    || options.filter(option => dependOptions.includes(option)).length > 0
-                if (packages[includeName] === undefined && hasOption) {
-                    packages[includeName] = []
+        Object.entries(packages).forEach(([packageName, options]) => getDeps(packageName)
+            .filter(dep => !excluded.includes(dep.name))
+            .forEach(dep => {
+                const hasOption = dep.if === undefined || options.includes(dep.if)
+                if (packages[dep.name] === undefined && hasOption) {
+                    packages[dep.name] = []
                     newPackageInserted = true
                 }
             }

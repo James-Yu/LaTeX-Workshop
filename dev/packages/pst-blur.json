@@ -1,21 +1,41 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psblurbox{}": {
-      "snippet": "psblurbox{${1:stuff}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psblurbox[]{}": {
-      "snippet": "psblurbox[${2:options}]{${1:stuff}}"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psblurbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:stuff}}"
+      }
     },
-    "ifpsblur": {},
-    "psblurtrue": {},
-    "psblurfalse": {},
-    "PstBlurLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "psblurbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:stuff}}"
+      }
+    },
+    {
+      "name": "ifpsblur",
+      "unusual": true
+    },
+    {
+      "name": "psblurtrue",
+      "unusual": true
+    },
+    {
+      "name": "psblurfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

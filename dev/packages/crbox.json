@@ -1,23 +1,35 @@
 {
-  "includes": {
-    "biditools": []
-  },
-  "macros": {
-    "crbox{}": {
-      "snippet": "crbox{${1:text}}"
-    },
-    "crbox[]{}": {
-      "snippet": "crbox[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "biditools"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "crbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "crbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\crbox"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\crbox": [
       "curved",
       "hollowcurved"
     ]
-  ]
+  },
+  "args": []
 }

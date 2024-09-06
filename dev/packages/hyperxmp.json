@@ -1,51 +1,138 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "pdfescape": [],
-    "stringenc": [],
-    "intcalc": [],
-    "iftex": [],
-    "ifmtarg": [],
-    "etoolbox": [],
-    "ifthen": [],
-    "luacode": [],
-    "ifdraft": [],
-    "hyperref": [],
-    "totpages": [],
-    "ifluatex": []
-  },
-  "macros": {
-    "xmplinesep": {},
-    "xmpcomma": {},
-    "xmpquote{}": {
-      "snippet": "xmpquote{${1:text}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "xmptilde": {},
-    "XMPLangAlt{}{}": {
-      "snippet": "XMPLangAlt{${1:language}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "pdfescape"
     },
-    "next": {},
-    "XMPTruncateList{}": {
-      "snippet": "XMPTruncateList{${1:arg}}"
+    {
+      "name": "stringenc"
+    },
+    {
+      "name": "intcalc"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "ifmtarg"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "luacode"
+    },
+    {
+      "name": "ifdraft"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "totpages"
+    },
+    {
+      "name": "ifluatex"
     }
-  },
-  "envs": {},
-  "options": [
-    "verbose",
-    "final",
-    "clear-aux",
-    "no-files",
-    "use-files",
-    "use-aux",
-    "blank"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "xmplinesep",
+      "unusual": true
+    },
+    {
+      "name": "xmpcomma"
+    },
+    {
+      "name": "xmpquote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "xmptilde"
+    },
+    {
+      "name": "XMPLangAlt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:options%keyvals}}",
+        "keys": [
+          "\\XMPLangAlt"
+        ],
+        "keyPos": 1
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hyperxmp#c": [
+      "verbose",
+      "final",
+      "clear-aux",
+      "no-files",
+      "use-files",
+      "use-aux",
+      "blank"
+    ],
+    "\\hypersetup": [
+      "pdfaconformance=${1:conformance}",
+      "pdfapart=${1:conformance level}",
+      "pdfauthortitle=${1:author title}",
+      "pdfbookedition=${1:book edition}",
+      "pdfbytes=${1:file size}",
+      "pdfcaptionwriter=${1:caption writer name}",
+      "pdfcontactaddress=${1:street address}",
+      "pdfcontactcity=${1:city}",
+      "pdfcontactcountry=${1:country}",
+      "pdfcontactemail=${1:email}",
+      "pdfcontactphone=${1:phone number}",
+      "pdfcontactpostcode=${1:postal code}",
+      "pdfcontactregion=${1:state or province}",
+      "pdfcontacturl=${1:URL}",
+      "pdfcopyright=${1:copyright text}",
+      "pdfdate=${1:date}",
+      "pdfdocumentid=uuid:${1:id num}",
+      "pdfdoi=${1:DOI}",
+      "pdfeissn=${1:electronic ISSN}",
+      "pdfidentifier=${1:identifier}",
+      "pdfinstanceid=uuid:${1:id num}",
+      "pdfisbn=${1:ISBN}",
+      "pdfissn=${1:print ISSN}",
+      "pdfissuenum=${1:issue number}",
+      "pdflicenseurl=${1:URL}",
+      "pdfmetadate=${1:date}",
+      "pdfmetalang=${1:meta language}",
+      "pdfnumpages=${1:number of pages}",
+      "pdfpagerange={${1:page ranges}}",
+      "pdfpublication=${1:publication}",
+      "pdfpublisher=${1:publisher}",
+      "pdfpubstatus=${1:publication status}",
+      "pdfpubtype=${1:publication type}",
+      "pdfrendition=${1|default,draft,low-res,proof,screen,thumbnail|}",
+      "pdfsource=${1:source file name}",
+      "pdfsubtitle=${1:subtitle}",
+      "pdftype=${1|Collection,Dataset,Event,Image,InteractiveResource,MovingImage,PhysicalObject,Service,Software,Sound,StillImage,Text|}",
+      "pdfuapart=${1:conformance level}",
+      "pdfurl=${1:URL}",
+      "pdfversionid=${1:version id}",
+      "pdfvolumenum=${1:volume number}",
+      "pdfxstandard=${1:PDF/X standard}",
+      "keeppdfinfo"
+    ],
+    "\\XMPLangAlt": [
       "pdftitle=${1:text}",
       "pdfsubject=${1:subject}",
       "pdfcopyright=${1:copyright text}"
     ]
+  },
+  "args": [
+    "\\usepackage/hyperxmp#c"
   ]
 }

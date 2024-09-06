@@ -1,50 +1,91 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "xcolor": []
-  },
-  "macros": {
-    "fbox[]{}": {
-      "snippet": "fbox[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "fbox*{}": {
-      "snippet": "fbox*{${1:text}}"
-    },
-    "fbox*[]{}": {
-      "snippet": "fbox*[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "fparbox{}": {
-      "snippet": "fparbox{${1:text}}"
-    },
-    "fparbox[]{}": {
-      "snippet": "fparbox[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "fparbox*{}": {
-      "snippet": "fparbox*{${1:text}}"
-    },
-    "fparbox*[]{}": {
-      "snippet": "fparbox*[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xcolor"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "fbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\fbox#c,\\fbox*#c,\\fparbox#c,\\fparbox*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fbox*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "fbox*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\fbox#c,\\fbox*#c,\\fparbox#c,\\fparbox*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fparbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "fparbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\fbox#c,\\fbox*#c,\\fparbox#c,\\fparbox*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fparbox*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "fparbox*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\fbox#c,\\fbox*#c,\\fparbox#c,\\fparbox*#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\fbox#c,\\fbox*#c,\\fparbox#c,\\fparbox*#c": [
       "boxrule=",
       "boxsep=",
       "lcolor=",
       "tcolor=",
       "rcolor=",
       "bcolor=",
-      "linewidth="
+      "linewidth=",
+      ""
     ]
-  ]
+  },
+  "args": []
 }

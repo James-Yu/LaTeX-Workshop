@@ -1,60 +1,115 @@
 {
-  "includes": {
-    "fancyvrb": [],
-    "xcolor": [],
-    "hbaw": [],
-    "pstricks": [
-      "pstricks"
-    ]
-  },
-  "macros": {
-    "showgrid": {}
-  },
-  "envs": {
-    "PCenterExample(x1,y1)(x2,y2)": {
-      "name": "PCenterExample",
-      "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+  "deps": [
+    {
+      "name": "fancyvrb"
     },
-    "PCenterExample[](x1,y1)(x2,y2)": {
-      "name": "PCenterExample",
-      "snippet": "[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+    {
+      "name": "xcolor"
     },
-    "PSideBySideExample(x1,y1)(x2,y2)": {
-      "name": "PSideBySideExample",
-      "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    {
+      "name": "hbaw"
     },
-    "PSideBySideExample[](x1,y1)(x2,y2)": {
-      "name": "PSideBySideExample",
-      "snippet": "[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})"
-    },
-    "Example": {},
-    "Example[]": {
-      "name": "Example",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "CenterExample": {},
-    "CenterExample[]": {
-      "name": "CenterExample",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "SideBySideExample": {},
-    "SideBySideExample[]": {
-      "name": "SideBySideExample",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pstricks",
+      "if": "pstricks"
     }
-  },
-  "options": [
-    "pstricks",
-    "color"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "showgrid",
+      "if": "pstricks"
+    }
+  ],
+  "envs": [
+    {
+      "name": "PCenterExample",
+      "if": "pstricks",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "PCenterExample",
+      "if": "pstricks",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})",
+        "keys": [
+          "\\begin{Example},\\begin{CenterExample},\\begin{SideBySideExample},\\begin{PCenterExample},\\begin{PSideBySideExample}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PSideBySideExample",
+      "if": "pstricks",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "PSideBySideExample",
+      "if": "pstricks",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})",
+        "keys": [
+          "\\begin{Example},\\begin{CenterExample},\\begin{SideBySideExample},\\begin{PCenterExample},\\begin{PSideBySideExample}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Example"
+    },
+    {
+      "name": "Example",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{Example},\\begin{CenterExample},\\begin{SideBySideExample},\\begin{PCenterExample},\\begin{PSideBySideExample}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "CenterExample"
+    },
+    {
+      "name": "CenterExample",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{Example},\\begin{CenterExample},\\begin{SideBySideExample},\\begin{PCenterExample},\\begin{PSideBySideExample}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SideBySideExample"
+    },
+    {
+      "name": "SideBySideExample",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{Example},\\begin{CenterExample},\\begin{SideBySideExample},\\begin{PCenterExample},\\begin{PSideBySideExample}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/fancyvrb-ex#c": [
+      "pstricks",
+      "color"
+    ],
+    "\\begin{Example},\\begin{CenterExample},\\begin{SideBySideExample},\\begin{PCenterExample},\\begin{PSideBySideExample}": [
       "commentchar=${1:single char}",
       "gobble=${1:integer}",
       "formatcom=${1:commands}",
@@ -97,5 +152,8 @@
       "vspace=",
       "listparameters={${1:code}}"
     ]
+  },
+  "args": [
+    "\\usepackage/fancyvrb-ex#c"
   ]
 }

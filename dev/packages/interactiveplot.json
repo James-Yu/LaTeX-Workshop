@@ -1,65 +1,89 @@
 {
-  "includes": {
-    "datetime": [],
-    "xstring": [],
-    "stack": [],
-    "ifthen": [],
-    "forloop": [],
-    "calc": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "iplot{}": {
-      "snippet": "iplot{${1:function}}"
+  "deps": [
+    {
+      "name": "datetime"
     },
-    "iplot[]{}": {
-      "snippet": "iplot[${2:options}]{${1:function}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xstring"
     },
-    "Special{}[]": {
-      "snippet": "Special{${1:arg1}}[${2:arg2}]"
+    {
+      "name": "stack"
     },
-    "border": {},
-    "decimalaux": {},
-    "resolution": {},
-    "simbolaction": {},
-    "theauxverifunari": {},
-    "thect": {},
-    "thelen": {},
-    "val": {},
-    "validateS{}[]": {
-      "snippet": "validateS{${1:arg1}}[${2:arg2}]"
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "forloop"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {
-    "iplotdd": {},
-    "iplotdd[]": {
+  ],
+  "macros": [
+    {
+      "name": "iplot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:function%definition}}"
+      }
+    },
+    {
+      "name": "iplot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:function%definition}}",
+        "keys": [
+          "\\iplot"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "iplotdd"
+    },
+    {
       "name": "iplotdd",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{iplotdd},\\begin{iplotddd}"
+        ],
+        "keyPos": 0
+      }
     },
-    "iplotddd": {},
-    "iplotddd[]": {
+    {
+      "name": "iplotddd"
+    },
+    {
       "name": "iplotddd",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{iplotdd},\\begin{iplotddd}"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\begin{iplotdd},\\begin{iplotddd}": [
+      "width=${1:number}",
+      "height=${1:number}"
+    ],
+    "\\iplot": [
       "var={${1:name,start,end}}",
       "param={${1:name,value,step,start,end}}",
       "frange={${1:name,start,end}}",
       "color=${1|black,white,red,green,blue,cyan,magenta,yellow,dark-gray,gray,light-gray|}",
       "resolution=${1:resolution}"
-    ],
-    [
-      "width=${1:number}",
-      "height=${1:number}"
     ]
-  ]
+  },
+  "args": []
 }

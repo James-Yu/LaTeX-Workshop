@@ -1,23 +1,41 @@
 {
-  "includes": {
-    "class-grant": []
-  },
-  "macros": {
-    "draftstatus": {},
-    "whitepaperstatus": {},
-    "sectioncompactstatus": {},
-    "bibcompactstatus": {}
-  },
-  "envs": {},
-  "options": [
-    "isdraft",
-    "isnotdraft",
-    "iswhitepaper",
-    "isnotwhitepaper",
-    "issectioncompact",
-    "isnotsectioncompact",
-    "isbibcompact",
-    "isnotbibcompact"
+  "deps": [
+    {
+      "name": "class-grant"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "draftstatus",
+      "unusual": true
+    },
+    {
+      "name": "whitepaperstatus",
+      "unusual": true
+    },
+    {
+      "name": "sectioncompactstatus",
+      "unusual": true
+    },
+    {
+      "name": "bibcompactstatus",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/grant-nsf#c": [
+      "isdraft",
+      "isnotdraft",
+      "iswhitepaper",
+      "isnotwhitepaper",
+      "issectioncompact",
+      "isnotsectioncompact",
+      "isbibcompact",
+      "isnotbibcompact"
+    ]
+  },
+  "args": [
+    "\\documentclass/grant-nsf#c"
+  ]
 }

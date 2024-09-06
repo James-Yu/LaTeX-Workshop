@@ -1,26 +1,35 @@
 {
-  "includes": {},
-  "macros": {
-    "DefineIwonaMathVersion{}": {
-      "snippet": "DefineIwonaMathVersion{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [],
+  "macros": [
+    {
+      "name": "DefineIwonaMathVersion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\DefineIwonaMathVersion"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "light",
-    "condensed",
-    "delimitershack",
-    "standardversions"
   ],
-  "keyvals": [
-    [
+  "envs": [],
+  "keys": {
+    "\\usepackage/iwonamath#c": [
+      "scale=${1:factor}",
+      "light",
+      "condensed",
+      "delimitershack",
+      "standardversions"
+    ],
+    "\\DefineIwonaMathVersion": [
       "name=${1:version name}",
       "light",
       "condensed",
       "bold"
     ]
+  },
+  "args": [
+    "\\usepackage/iwonamath#c"
   ]
 }

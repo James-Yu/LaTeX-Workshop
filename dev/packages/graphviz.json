@@ -1,52 +1,105 @@
 {
-  "includes": {
-    "graphicx": [],
-    "psfrag": [
-      "psfrag"
-    ]
-  },
-  "macros": {
-    "digraph{}{}": {
-      "snippet": "digraph{${1:name}}{${2:graph}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "digraph[]{}{}": {
-      "snippet": "digraph[${3:options}]{${1:name}}{${2:graph}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "neatograph{}{}": {
-      "snippet": "neatograph{${1:name}}{${2:graph}}"
-    },
-    "neatograph[]{}{}": {
-      "snippet": "neatograph[${3:options}]{${1:name}}{${2:graph}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "inputdigraph{}{}{}": {
-      "snippet": "inputdigraph{${1:name}}{${2:graph}}{${3:type}}"
-    },
-    "inputdigraph[]{}{}{}": {
-      "snippet": "inputdigraph[${4:options}]{${1:name}}{${2:graph}}{${3:type}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ifsinglefile": {},
-    "singlefiletrue": {},
-    "singlefilefalse": {},
-    "ifpsfrag": {},
-    "psfragtrue": {},
-    "psfragfalse": {}
-  },
-  "envs": {},
-  "options": [
-    "singlefile",
-    "psfrag",
-    "ps",
-    "pdf",
-    "tmpdir"
+    {
+      "name": "psfrag",
+      "if": "psfrag"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "digraph",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:graph}}"
+      }
+    },
+    {
+      "name": "digraph",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:graph}}",
+        "keys": [
+          "\\digraph,\\neatograph,\\inputdigraph"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "neatograph",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:graph}}"
+      }
+    },
+    {
+      "name": "neatograph",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:graph}}",
+        "keys": [
+          "\\digraph,\\neatograph,\\inputdigraph"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inputdigraph",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:graph}}{${3:type}}"
+      }
+    },
+    {
+      "name": "inputdigraph",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:name}}{${2:graph}}{${3:type}}",
+        "keys": [
+          "\\digraph,\\neatograph,\\inputdigraph"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ifsinglefile",
+      "unusual": true
+    },
+    {
+      "name": "singlefiletrue",
+      "unusual": true
+    },
+    {
+      "name": "singlefilefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpsfrag",
+      "unusual": true
+    },
+    {
+      "name": "psfragtrue",
+      "unusual": true
+    },
+    {
+      "name": "psfragfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/graphviz#c": [
+      "singlefile",
+      "psfrag",
+      "ps",
+      "pdf",
+      "tmpdir"
+    ],
+    "\\digraph,\\neatograph,\\inputdigraph": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -77,5 +130,8 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
+  },
+  "args": [
+    "\\usepackage/graphviz#c"
   ]
 }

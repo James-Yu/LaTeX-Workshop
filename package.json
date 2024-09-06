@@ -2003,6 +2003,12 @@
           "default": true,
           "markdownDescription": "Auto-complete commands and environments from used packages."
         },
+        "latex-workshop.intellisense.package.unusual": {
+          "scope": "window",
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Auto-complete less used commands and environments from used packages. This config is only effective when `#latex-workshop.intellisense.package.enabled#` is set to `true`."
+        },
         "latex-workshop.intellisense.package.extra": {
           "scope": "window",
           "type": "array",
@@ -2025,7 +2031,7 @@
           "scope": "window",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "If true, every environment provided by an included package is available by a snippet `\\envname`. Only applies when `#latex-workshop.intellisense.package.enabled#` is true. You can use only 2 placeholders: `%WORKSPACE_FOLDER%`, `%RELATIVE_DIR%`. Please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders for their definitions."
+          "markdownDescription": "If true, every environment provided by an included package is available by a snippet `\\envname`. Only applies when `#latex-workshop.intellisense.package.enabled#` is true."
         },
         "latex-workshop.intellisense.package.dirs": {
           "scope": "window",
@@ -2034,7 +2040,7 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "List of extra directories to look for package completion files in addition to those provided by the extension. Files found in these directories have a higher priority over the default ones. LaTeX-Workshop bundles a limited number of package macro/env suggestions. Additional ones can be downloaded from https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2FJames-Yu%2FLaTeX-Workshop%2Ftree%2Fmaster%2Fdev%2Fpackages . For custom packages, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#commands-starting-with- to learn how to generate these files. This setting is only relevant when `#latex-workshop.intellisense.package.env.enabled#` is true."
+          "markdownDescription": "List of extra directories to look for package completion files in addition to those provided by the extension. Files found in these directories have a higher priority over the default ones. LaTeX-Workshop bundles a limited number of package macro/env suggestions. Additional ones can be downloaded from https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2FJames-Yu%2FLaTeX-Workshop%2Ftree%2Fmaster%2Fdev%2Fpackages . For custom packages, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#commands-starting-with- to learn how to generate these files. This setting is only relevant when `#latex-workshop.intellisense.package.env.enabled#` is true. You can use only 2 placeholders: `%WORKSPACE_FOLDER%`, `%RELATIVE_DIR%`. Please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders for their definitions."
         },
         "latex-workshop.intellisense.includegraphics.preview.enabled": {
           "scope": "window",
@@ -2571,8 +2577,8 @@
     "clean": "rimraf out/ .eslintcache",
     "compile": "tsc -p tsconfig.json && tsc -p viewer/tsconfig.json",
     "coverage": "c8 --check-coverage npm run test --src out/src/",
-    "lint": "eslint --cache --ext .ts,.js .",
-    "lint:fix": "eslint --fix --cache --ext .ts,.js .",
+    "lint": "eslint --cache .",
+    "lint:fix": "eslint --fix --cache .",
     "release": "npm run clean && npm run lint && npm run compile && vsce package",
     "test": "node ./out/test/runTest.js",
     "watch-src": "tsc -watch -p tsconfig.json",
@@ -2581,42 +2587,43 @@
   },
   "dependencies": {
     "cross-spawn": "7.0.3",
-    "glob": "10.3.15",
+    "glob": "11.0.0",
     "iconv-lite": "0.6.3",
     "latex-utensils": "6.2.0",
     "mathjax-full": "3.2.2",
     "micromatch": "4.0.8",
     "pdfjs-dist": "4.3.136",
     "tmp": "0.2.3",
-    "workerpool": "9.1.1",
-    "ws": "8.17.1"
+    "workerpool": "9.1.3",
+    "ws": "8.18.0"
   },
   "devDependencies": {
+    "@stylistic/eslint-plugin": "^2.7.2",
     "@types/cross-spawn": "6.0.6",
     "@types/glob": "8.1.0",
-    "@types/micromatch": "4.0.7",
-    "@types/mocha": "10.0.6",
+    "@types/micromatch": "4.0.9",
+    "@types/mocha": "10.0.7",
     "@types/node": "18.15.3",
     "@types/sinon": "17.0.3",
     "@types/tmp": "0.2.6",
     "@types/vscode": "1.88.0",
-    "@types/ws": "8.5.10",
-    "@typescript-eslint/eslint-plugin": "7.9.0",
-    "@typescript-eslint/parser": "7.9.0",
+    "@types/ws": "8.5.12",
+    "@typescript-eslint/eslint-plugin": "8.4.0",
+    "@typescript-eslint/parser": "8.4.0",
     "@unified-latex/unified-latex-types": "1.7.1",
     "@unified-latex/unified-latex-util-arguments": "1.7.1",
     "@unified-latex/unified-latex-util-parse": "1.7.1",
     "@unified-latex/unified-latex-util-to-string": "1.7.1",
-    "@vscode/test-electron": "2.3.10",
-    "@vscode/vsce": "2.29.0",
-    "c8": "9.1.0",
-    "esbuild": "0.21.2",
-    "eslint": "8.56.0",
-    "mocha": "10.4.0",
-    "rimraf": "5.0.7",
+    "@vscode/test-electron": "2.4.1",
+    "@vscode/vsce": "3.0.0",
+    "c8": "10.1.2",
+    "esbuild": "0.23.1",
+    "eslint": "9.9.1",
+    "mocha": "10.7.3",
+    "rimraf": "6.0.1",
     "sinon": "18.0.0",
     "textmate-bailout": "1.1.0",
-    "typescript": "5.4.5",
+    "typescript": "5.5.4",
     "vscode-extend-language": "0.2.2"
   }
 }

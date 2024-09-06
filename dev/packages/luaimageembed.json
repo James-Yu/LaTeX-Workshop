@@ -1,37 +1,68 @@
 {
-  "includes": {
-    "luacode": []
-  },
-  "macros": {
-    "includegraphicsembedded{}": {
-      "snippet": "includegraphicsembedded{${1:base64-encoded image}}"
-    },
-    "includegraphicsembedded[]{}": {
-      "snippet": "includegraphicsembedded[${2:options}]{${1:base64-encoded image}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pgfdeclareimageembedded{}{}": {
-      "snippet": "pgfdeclareimageembedded{${1:image name}}{${2:base64-encoded image}}"
-    },
-    "pgfdeclareimageembedded[]{}{}": {
-      "snippet": "pgfdeclareimageembedded[${3:options}]{${1:image name}}{${2:base64-encoded image}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "pgfimageembedded{}": {
-      "snippet": "pgfimageembedded{${1:base64-encoded image}}"
-    },
-    "pgfimageembedded[]{}": {
-      "snippet": "pgfimageembedded[${2:options}]{${1:base64-encoded image}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "luacode"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "includegraphicsembedded",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:base64-encoded image}}"
+      }
+    },
+    {
+      "name": "includegraphicsembedded",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:base64-encoded image}}",
+        "keys": [
+          "\\includegraphicsembedded"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pgfdeclareimageembedded",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:image name}}{${2:base64-encoded image}}"
+      }
+    },
+    {
+      "name": "pgfdeclareimageembedded",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:image name}}{${2:base64-encoded image}}",
+        "keys": [
+          "\\pgfdeclareimageembedded,\\pgfimageembedded"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pgfimageembedded",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:base64-encoded image}}"
+      }
+    },
+    {
+      "name": "pgfimageembedded",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:base64-encoded image}}",
+        "keys": [
+          "\\pgfdeclareimageembedded,\\pgfimageembedded"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\includegraphicsembedded": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -62,12 +93,13 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ],
-    [
+    "\\pgfdeclareimageembedded,\\pgfimageembedded": [
       "height=",
       "width=",
       "page=${1:page number}",
       "interpolate",
       "mask=${1:mask name}"
     ]
-  ]
+  },
+  "args": []
 }

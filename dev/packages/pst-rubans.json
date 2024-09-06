@@ -1,43 +1,88 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-solides3d": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "pshelices[]": {
-      "snippet": "pshelices[${1:options}]"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "pshelices[]()": {
-      "snippet": "pshelices[${1:options}](${2:x},${3:y},${4:z})"
+    {
+      "name": "pst-solides3d"
     },
-    "psSpiralRing[]": {
-      "snippet": "psSpiralRing[${1:options}]"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pshelices",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "psSpiralRing[]()": {
-      "snippet": "psSpiralRing[${1:options}](${2:x},${3:y},${4:z})"
+    {
+      "name": "pshelices",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y},${4:z})"
+      }
     },
-    "psSphericalSpiral[]": {
-      "snippet": "psSphericalSpiral[${1:options}]"
+    {
+      "name": "psSpiralRing",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "psSphericalSpiral[]()": {
-      "snippet": "psSphericalSpiral[${1:options}](${2:x},${3:y},${4:z})"
+    {
+      "name": "psSpiralRing",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y},${4:z})"
+      }
     },
-    "psSpiralParaboloid[]": {
-      "snippet": "psSpiralParaboloid[${1:options}]"
+    {
+      "name": "psSphericalSpiral",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "psSpiralParaboloid[]()": {
-      "snippet": "psSpiralParaboloid[${1:options}](${2:x},${3:y},${4:z})"
+    {
+      "name": "psSphericalSpiral",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y},${4:z})"
+      }
     },
-    "psSpiralCone[]": {
-      "snippet": "psSpiralCone[${1:options}]"
+    {
+      "name": "psSpiralParaboloid",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "psSpiralCone[]()": {
-      "snippet": "psSpiralCone[${1:options}](${2:x},${3:y},${4:z})"
+    {
+      "name": "psSpiralParaboloid",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y},${4:z})"
+      }
     },
-    "PSTRubansLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "psSpiralCone",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psSpiralCone",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y},${4:z})"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

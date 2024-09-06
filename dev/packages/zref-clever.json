@@ -1,75 +1,157 @@
 {
-  "includes": {
-    "zref-base": [],
-    "zref-user": [],
-    "zref-abspage": [],
-    "ifdraft": [],
-    "zref-hyperref": []
-  },
-  "macros": {
-    "zcref{}": {
-      "snippet": "zcref{${1:labellist}}"
+  "deps": [
+    {
+      "name": "zref-base"
     },
-    "zcref[]{}": {
-      "snippet": "zcref[${2:options}]{${1:labellist}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "zref-user"
     },
-    "zcref*{}": {
-      "snippet": "zcref*{${1:labellist}}"
+    {
+      "name": "zref-abspage"
     },
-    "zcref*[]{}": {
-      "snippet": "zcref*[${2:options}]{${1:labellist}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifdraft"
     },
-    "zcpageref{}": {
-      "snippet": "zcpageref{${1:labellist}}"
-    },
-    "zcpageref[]{}": {
-      "snippet": "zcpageref[${2:options}]{${1:labellist}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "zcpageref*{}": {
-      "snippet": "zcpageref*{${1:labellist}}"
-    },
-    "zcpageref*[]{}": {
-      "snippet": "zcpageref*[${2:options}]{${1:labellist}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "zcsetup{}": {
-      "snippet": "zcsetup{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "zcRefTypeSetup{}{}": {
-      "snippet": "zcRefTypeSetup{${1:type}}{${2:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 1
-    },
-    "zcDeclareLanguage{}": {
-      "snippet": "zcDeclareLanguage{${1:language}}"
-    },
-    "zcDeclareLanguage[]{}": {
-      "snippet": "zcDeclareLanguage[${2:options}]{${1:language}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "zcDeclareLanguageAlias{}{}": {
-      "snippet": "zcDeclareLanguageAlias{${1:language alias}}{${2:aliased language}}"
-    },
-    "zcLanguageSetup{}{}": {
-      "snippet": "zcLanguageSetup{${1:language}}{${2:options}}",
-      "keyvalindex": 4,
-      "keyvalpos": 1
+    {
+      "name": "zref-hyperref"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "zcref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "zcref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labellist}}",
+        "keys": [
+          "\\zcref,\\zcref*,\\zcpageref,\\zcpageref*,\\zcsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "zcref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "zcref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labellist}}",
+        "keys": [
+          "\\zcref,\\zcref*,\\zcpageref,\\zcpageref*,\\zcsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "zcpageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "zcpageref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labellist}}",
+        "keys": [
+          "\\zcref,\\zcref*,\\zcpageref,\\zcpageref*,\\zcsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "zcpageref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "zcpageref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labellist}}",
+        "keys": [
+          "\\zcref,\\zcref*,\\zcpageref,\\zcpageref*,\\zcsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "zcsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\zcref,\\zcref*,\\zcpageref,\\zcpageref*,\\zcsetup",
+          "\\zcsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "zcRefTypeSetup",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type}}{${2:options%keyvals}}",
+        "keys": [
+          "\\zcRefTypeSetup"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "zcDeclareLanguage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "zcDeclareLanguage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:language}}",
+        "keys": [
+          "\\zcDeclareLanguage"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "zcDeclareLanguageAlias",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language alias}}{${2:aliased language}}"
+      }
+    },
+    {
+      "name": "zcLanguageSetup",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:options%keyvals}}",
+        "keys": [
+          "\\zcLanguageSetup"
+        ],
+        "keyPos": 1
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\zcref,\\zcref*,\\zcpageref,\\zcpageref*,\\zcsetup": [
       "ref=${1|default,page,thecounter,title|}",
       "page",
       "typeset=${1|ref,name,both|}",
@@ -122,62 +204,11 @@
       "namefont=${1:name}",
       "reffont=${1:name}"
     ],
-    [
-      "ref=${1|default,page,thecounter,title|}",
-      "page",
-      "typeset=${1|ref,name,both|}",
-      "noname",
-      "noref",
-      "sort",
-      "nosort",
-      "typesort={${1:type list}}",
-      "notypesort",
-      "comp",
-      "nocomp",
-      "endrange=${1|ref,stripprefix,pagecomp,pagecomp2|}",
-      "range",
-      "rangetopair",
-      "cap",
-      "nocap",
-      "capfirst",
-      "abbrev",
-      "noabbrev",
-      "noabbrevfirst",
-      "S",
-      "hyperref=${1|auto,true,false|}",
-      "nameinlink=${1|true,false,single,tsingle|}",
-      "lang=${1:language}",
-      "d=${1:declension case}",
-      "nudge=${1|true,false,ifdraft,iffinal|}",
-      "nudgeif=${1|multitype,comptosing,gender,all|}",
-      "nonudge",
-      "sg",
-      "g=",
-      "font=${1:font commands}",
-      "note=${1:text}",
-      "check={${1:checks}}",
-      "countertype={${1:<counter>} = ${2:<type> list}}",
-      "reftype=${1:type}",
-      "counterresetters={${1:counter list}}",
-      "counterresetby={${1:<counter=encl counter> list}}",
-      "currentcounter=${1:counter}",
-      "labelhook",
-      "tpairsep={${1:separator}}",
-      "tlistsep={${1:separator}}",
-      "tlastsep={${1:separator}}",
-      "notesep={${1:separator}}",
-      "namesep={${1:separator}}",
-      "pairsep={${1:separator}}",
-      "listsep={${1:separator}}",
-      "lastsep={${1:separator}}",
-      "rangesep={${1:separator}}",
-      "refbounds={${1:preref*,preref,postref,postref*}}",
-      "namefont=${1:name}",
-      "reffont=${1:name}",
+    "\\zcsetup": [
       "nocompat",
       "nocompat={${1:module list}}"
     ],
-    [
+    "\\zcRefTypeSetup": [
       "namesep={${1:separator}}",
       "pairsep={${1:separator}}",
       "listsep={${1:separator}}",
@@ -199,12 +230,12 @@
       "endrange=${1|ref,stripprefix,pagecomp,pagecomp2|}",
       "rangetopair"
     ],
-    [
+    "\\zcDeclareLanguage": [
       "declension={${1:cases list}}",
       "gender={${1:gender list}}",
       "allcaps"
     ],
-    [
+    "\\zcLanguageSetup": [
       "tpairsep={${1:separator}}",
       "tlistsep={${1:separator}}",
       "tlastsep={${1:separator}}",
@@ -233,5 +264,6 @@
       "case=${1|N,A,D,G|}",
       "gender={${1:gender list}}"
     ]
-  ]
+  },
+  "args": []
 }

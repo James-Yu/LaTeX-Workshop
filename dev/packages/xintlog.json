@@ -1,35 +1,102 @@
 {
-  "includes": {
-    "poormanlog": []
-  },
-  "macros": {
-    "XINTinFloatLogTen{}": {
-      "snippet": "XINTinFloatLogTen{${1:float}}"
-    },
-    "XINTinFloatPowTen{}": {
-      "snippet": "XINTinFloatPowTen{${1:float}}"
-    },
-    "XINTinFloatSciPow{}{}": {
-      "snippet": "XINTinFloatSciPow{${1:base}}{${2:exponent}}"
-    },
-    "xintreloadxintlog": {},
-    "poormanlogbaseten{}": {
-      "snippet": "poormanlogbaseten{${1:arg}}"
-    },
-    "poormanpoweroften{}": {
-      "snippet": "poormanpoweroften{${1:arg}}"
-    },
-    "XINTinfloatlogten{}": {
-      "snippet": "XINTinfloatlogten{${1:float}}"
-    },
-    "XINTinfloatpowten{}": {
-      "snippet": "XINTinfloatpowten{${1:float}}"
-    },
-    "XINTinfloatscipow{}{}": {
-      "snippet": "XINTinfloatscipow{${1:base}}{${2:exponent}}"
+  "deps": [
+    {
+      "name": "poormanlog"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "PoorManExp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "PoorManLogBaseTen",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "PoorManLog",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "PoorManPowerOfTen",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatExp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatLog",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatLogTen",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:float}}"
+      }
+    },
+    {
+      "name": "XINTinFloatPowTen",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:float}}"
+      }
+    },
+    {
+      "name": "XINTinFloatSciPow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:base}}{${2:exponent}}"
+      }
+    },
+    {
+      "name": "xintreloadxintlog",
+      "unusual": true
+    },
+    {
+      "name": "XINTinfloatexp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "XINTinfloatlog",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

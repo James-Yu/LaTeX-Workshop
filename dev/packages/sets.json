@@ -1,35 +1,54 @@
 {
-  "includes": {},
-  "macros": {
-    "newset{}{}": {
-      "snippet": "newset{${1:set}}{${2:elmt1|elmt2|...}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "newset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:set%cmd}}{${2:elmt1|${3:elmt2}|...}}"
+      }
     },
-    "newsetsimple{}{}": {
-      "snippet": "newsetsimple{${1:set}}{${2:elmt1|elmt2|...}}"
+    {
+      "name": "newsetsimple",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:set%cmd}}{${2:elmt1|${3:elmt2}|...}}"
+      }
     },
-    "listset{}": {
-      "snippet": "listset{${1:set}}"
+    {
+      "name": "listset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:set}}"
+      }
     },
-    "setseparator": {},
-    "is": {},
-    "iselementofset{}{}": {
-      "snippet": "iselementofset{${1:element}}{${2:set}}"
+    {
+      "name": "setseparator",
+      "unusual": true
     },
-    "to{}": {
-      "snippet": "to{${1:cmd}}"
+    {
+      "name": "iselementofset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:element}}{${2:set}}"
+      }
     },
-    "minus": {
-      "detail": "−",
-      "documentation": "MINUS SIGN"
+    {
+      "name": "sortset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:set1}}{${2:set2%cmd}}"
+      }
     },
-    "sortset{}{}": {
-      "snippet": "sortset{${1:set1}}{${2:set2}}"
-    },
-    "deleteduplicates{}{}": {
-      "snippet": "deleteduplicates{${1:set1}}{${2:set2}}"
+    {
+      "name": "deleteduplicates",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:set1}}{${2:set2%cmd}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,26 +1,43 @@
 {
-  "includes": {
-    "atbegshi": []
-  },
-  "macros": {
-    "absposset{}": {
-      "snippet": "absposset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "absput{}": {
-      "snippet": "absput{${1:contents}}"
-    },
-    "absput[]{}": {
-      "snippet": "absput[${2:options}]{${1:contents}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "atbegshi"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "absposset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\absposset#c,\\absput#c,\\absputcoffin#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "absput",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "absput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:contents%text}}",
+        "keys": [
+          "\\absposset#c,\\absput#c,\\absputcoffin#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\absposset#c,\\absput#c,\\absputcoffin#c": [
       "angle=${1:degrees}",
       "h=${1|l,hc,r|}",
       "pg=${1:page-coffin}",
@@ -32,5 +49,6 @@
       "x=",
       "y="
     ]
-  ]
+  },
+  "args": []
 }

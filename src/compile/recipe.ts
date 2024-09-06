@@ -388,8 +388,8 @@ function isMikTeX(): boolean {
             } else {
                 state.isMikTeX = false
             }
-        } catch (e) {
-            logger.log('Cannot run `pdflatex` to determine if we are using MiKTeX.')
+        } catch (err) {
+            logger.logError('Cannot run `pdflatex` to determine if we are using MiKTeX.', err)
             state.isMikTeX = false
         }
     }

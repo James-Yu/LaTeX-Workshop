@@ -1,150 +1,417 @@
 {
-  "includes": {
-    "ptex": [],
-    "latex-document": [],
-    "latex-dev": []
-  },
-  "macros": {
-    "pfmtname": {},
-    "pfmtversion": {},
-    "plIncludeInRelease{}{}{}": {
-      "snippet": "plIncludeInRelease{${1:date}}{${2:command}}{${3:description}}"
+  "deps": [
+    {
+      "name": "ptex"
     },
-    "plEndIncludeInRelease": {},
-    "Cht": {},
-    "cht": {},
-    "Cdp": {},
-    "cdp": {},
-    "Cwd": {},
-    "cwd": {},
-    "Cvs": {},
-    "cvs": {},
-    "Chs": {},
-    "chs": {},
-    "cHT": {},
-    "afont": {},
-    "tstrutbox": {},
-    "zstrutbox": {},
-    "ystrutbox": {},
-    "tstrut": {},
-    "zstrut": {},
-    "ystrut": {},
-    "DeclareYokoKanjiEncoding{}{}{}": {
-      "snippet": "DeclareYokoKanjiEncoding{${1:encoding}}{${2:text-settings}}{${3:math-settings}}"
+    {
+      "name": "latex-document"
     },
-    "DeclareTateKanjiEncoding{}{}{}": {
-      "snippet": "DeclareTateKanjiEncoding{${1:encoding}}{${2:text-settings}}{${3:math-settings}}"
+    {
+      "name": "latex-dev"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pfmtname",
+      "unusual": true
     },
-    "DeclareKanjiEncodingDefaults{}{}": {
-      "snippet": "DeclareKanjiEncodingDefaults{${1:text-settings}}{${2:math-settings}}"
+    {
+      "name": "pfmtversion",
+      "unusual": true
     },
-    "KanjiEncodingPair{}{}": {
-      "snippet": "KanjiEncodingPair{${1:encoding1}}{${2:encoding2}}"
+    {
+      "name": "plIncludeInRelease",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:date}}{${2:command}}{${3:description}}"
+      }
     },
-    "DeclareKanjiFamily{}{}{}": {
-      "snippet": "DeclareKanjiFamily{${1:encoding}}{${2:family}}{${3:loading-settings}}"
+    {
+      "name": "plEndIncludeInRelease",
+      "unusual": true
     },
-    "DeclareKanjiSubstitution{}{}{}{}": {
-      "snippet": "DeclareKanjiSubstitution{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
+    {
+      "name": "Cht",
+      "unusual": true
     },
-    "DeclareErrorKanjiFont{}{}{}{}{}": {
-      "snippet": "DeclareErrorKanjiFont{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:size}}"
+    {
+      "name": "cht",
+      "unusual": true
     },
-    "reDeclareMathAlphabet{}{}{}": {
-      "snippet": "reDeclareMathAlphabet{${1:math-alph}}{${2:latin-math-alph}}{${3:japanese-math-alph}}"
+    {
+      "name": "Cdp",
+      "unusual": true
     },
-    "DeclareRelationFont{}{}{}{}{}{}{}{}": {
-      "snippet": "DeclareRelationFont{${1:enc1}}{${2:fam1}}{${3:series1}}{${4:shape1}}{${5:enc2}}{${6:fam2}}{${7:series2}}{${8:shape2}}"
+    {
+      "name": "cdp",
+      "unusual": true
     },
-    "SetRelationFont{}{}{}{}{}{}{}{}": {
-      "snippet": "SetRelationFont{${1:enc1}}{${2:fam1}}{${3:series1}}{${4:shape1}}{${5:enc2}}{${6:fam2}}{${7:series2}}{${8:shape2}}"
+    {
+      "name": "Cwd",
+      "unusual": true
     },
-    "userelfont": {},
-    "adjustbaseline": {},
-    "romanencoding{}": {
-      "snippet": "romanencoding{${1:encoding}}"
+    {
+      "name": "cwd",
+      "unusual": true
     },
-    "kanjiencoding{}": {
-      "snippet": "kanjiencoding{${1:encoding}}"
+    {
+      "name": "Cvs",
+      "unusual": true
     },
-    "romanfamily{}": {
-      "snippet": "romanfamily{${1:family}}"
+    {
+      "name": "cvs",
+      "unusual": true
     },
-    "kanjifamily{}": {
-      "snippet": "kanjifamily{${1:family}}"
+    {
+      "name": "Chs",
+      "unusual": true
     },
-    "romanseries{}": {
-      "snippet": "romanseries{${1:series}}"
+    {
+      "name": "chs",
+      "unusual": true
     },
-    "kanjiseries{}": {
-      "snippet": "kanjiseries{${1:series}}"
+    {
+      "name": "cHT",
+      "unusual": true
     },
-    "romanseriesforce{}": {
-      "snippet": "romanseriesforce{${1:series}}"
+    {
+      "name": "afont",
+      "unusual": true
     },
-    "kanjiseriesforce{}": {
-      "snippet": "kanjiseriesforce{${1:series}}"
+    {
+      "name": "tstrutbox",
+      "unusual": true
     },
-    "romanshape{}": {
-      "snippet": "romanshape{${1:shape}}"
+    {
+      "name": "zstrutbox",
+      "unusual": true
     },
-    "kanjishape{}": {
-      "snippet": "kanjishape{${1:shape}}"
+    {
+      "name": "ystrutbox",
+      "unusual": true
     },
-    "romanshapeforce{}": {
-      "snippet": "romanshapeforce{${1:shape}}"
+    {
+      "name": "tstrut",
+      "unusual": true
     },
-    "kanjishapeforce{}": {
-      "snippet": "kanjishapeforce{${1:shape}}"
+    {
+      "name": "zstrut",
+      "unusual": true
     },
-    "usekanji{}{}{}{}": {
-      "snippet": "usekanji{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
+    {
+      "name": "ystrut",
+      "unusual": true
     },
-    "useroman{}{}{}{}": {
-      "snippet": "useroman{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
+    {
+      "name": "DeclareYokoKanjiEncoding",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:encoding}}{${2:text-settings}}{${3:math-settings}}"
+      }
     },
-    "kanjiseriesdefault": {},
-    "mcfamily": {},
-    "gtfamily": {},
-    "mathmc{}": {
-      "snippet": "mathmc{${1:text}}"
+    {
+      "name": "DeclareTateKanjiEncoding",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:encoding}}{${2:text-settings}}{${3:math-settings}}"
+      }
     },
-    "mathgt{}": {
-      "snippet": "mathgt{${1:text}}"
+    {
+      "name": "DeclareKanjiEncodingDefaults",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text-settings}}{${2:math-settings}}"
+      }
     },
-    "textmc{}": {
-      "snippet": "textmc{${1:text}}"
+    {
+      "name": "KanjiEncodingPair",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:encoding1}}{${2:encoding2}}"
+      }
     },
-    "textgt{}": {
-      "snippet": "textgt{${1:text}}"
+    {
+      "name": "DeclareKanjiFamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:loading-settings}}"
+      }
     },
-    "fixcompositeaccent": {},
-    "nofixcompositeaccent": {},
-    "<": {
-      "detail": "<",
-      "documentation": "LESS-THAN SIGN r:"
+    {
+      "name": "DeclareKanjiSubstitution",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
+      }
     },
-    "removejfmglue": {},
-    "iftombow": {},
-    "tombowfalse": {},
-    "tombowtrue": {},
-    "iftombowdate": {},
-    "tombowdatetrue": {},
-    "tombowdatefalse": {},
-    "maketombowbox": {},
-    "printglossary": {},
-    "hour": {},
-    "minute": {},
-    "DeclareKanjiEncoding{}{}{}": {
-      "snippet": "DeclareKanjiEncoding{${1:encoding}}{${2:text-settings}}{${3:math-settings}}"
+    {
+      "name": "DeclareErrorKanjiFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:size}}"
+      }
     },
-    "mcdefault": {},
-    "gtdefault": {},
-    "kanjiencodingdefault": {},
-    "kanjifamilydefault": {},
-    "kanjishapedefault": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "reDeclareMathAlphabet",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:math-alph%cmd}}{${2:latin-math-alph%definition}}{${3:japanese-math-alph%definition}}"
+      }
+    },
+    {
+      "name": "DeclareRelationFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}",
+        "snippet": "{${1:enc1}}{${2:fam1}}{${3:series1}}{${4:shape1}}{${5:enc2}}{${6:fam2}}{${7:series2}}{${8:shape2}}"
+      }
+    },
+    {
+      "name": "SetRelationFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}",
+        "snippet": "{${1:enc1}}{${2:fam1}}{${3:series1}}{${4:shape1}}{${5:enc2}}{${6:fam2}}{${7:series2}}{${8:shape2}}"
+      }
+    },
+    {
+      "name": "userelfont"
+    },
+    {
+      "name": "adjustbaseline"
+    },
+    {
+      "name": "romanencoding",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:encoding}}"
+      }
+    },
+    {
+      "name": "kanjiencoding",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:encoding}}"
+      }
+    },
+    {
+      "name": "romanfamily",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "kanjifamily",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "romanseries",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:series}}"
+      }
+    },
+    {
+      "name": "kanjiseries",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:series}}"
+      }
+    },
+    {
+      "name": "romanseriesforce",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:series}}"
+      }
+    },
+    {
+      "name": "kanjiseriesforce",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:series}}"
+      }
+    },
+    {
+      "name": "romanshape",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "kanjishape",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "romanshapeforce",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "kanjishapeforce",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "usekanji",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
+      }
+    },
+    {
+      "name": "useroman",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
+      }
+    },
+    {
+      "name": "kanjiseriesdefault",
+      "unusual": true
+    },
+    {
+      "name": "mcfamily"
+    },
+    {
+      "name": "gtfamily"
+    },
+    {
+      "name": "mathmc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathgt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "textmc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textgt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "fixcompositeaccent",
+      "unusual": true
+    },
+    {
+      "name": "nofixcompositeaccent",
+      "unusual": true
+    },
+    {
+      "name": "<",
+      "unusual": true
+    },
+    {
+      "name": "removejfmglue",
+      "unusual": true
+    },
+    {
+      "name": "iftombow",
+      "unusual": true
+    },
+    {
+      "name": "tombowfalse",
+      "unusual": true
+    },
+    {
+      "name": "tombowtrue",
+      "unusual": true
+    },
+    {
+      "name": "iftombowdate",
+      "unusual": true
+    },
+    {
+      "name": "tombowdatetrue",
+      "unusual": true
+    },
+    {
+      "name": "tombowdatefalse",
+      "unusual": true
+    },
+    {
+      "name": "maketombowbox",
+      "unusual": true
+    },
+    {
+      "name": "printglossary"
+    },
+    {
+      "name": "hour",
+      "unusual": true
+    },
+    {
+      "name": "minute",
+      "unusual": true
+    },
+    {
+      "name": "mcdefault",
+      "unusual": true
+    },
+    {
+      "name": "gtdefault",
+      "unusual": true
+    },
+    {
+      "name": "kanjiencodingdefault",
+      "unusual": true
+    },
+    {
+      "name": "kanjifamilydefault",
+      "unusual": true
+    },
+    {
+      "name": "kanjiseriesdefault",
+      "unusual": true
+    },
+    {
+      "name": "kanjishapedefault",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

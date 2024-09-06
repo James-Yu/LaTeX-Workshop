@@ -1,60 +1,147 @@
 {
-  "includes": {
-    "calc": [],
-    "ifthen": [],
-    "tikz": []
-  },
-  "macros": {
-    "ladj{}": {
-      "snippet": "ladj{${1:factor}}"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "tige{}{}{}": {
-      "snippet": "tige{${1:nu}}{${2:val}}{${3:un}}"
+    {
+      "name": "ifthen"
     },
-    "tige[]{}{}{}": {
-      "snippet": "tige[${4:st}]{${1:nu}}{${2:val}}{${3:un}}"
-    },
-    "cadre{}": {
-      "snippet": "cadre{${1:nb}}"
-    },
-    "cadre[]{}": {
-      "snippet": "cadre[${2:st}]{${1:nb}}"
-    },
-    "barres{}": {
-      "snippet": "barres{${1:nb}}"
-    },
-    "barres[]{}": {
-      "snippet": "barres[${2:st}]{${1:nb}}"
-    },
-    "binoire{}{}{}": {
-      "snippet": "binoire{${1:nu}}{${2:pos}}{${3:color}}"
-    },
-    "binoire[]{}{}{}": {
-      "snippet": "binoire[${4:st}]{${1:nu}}{${2:pos}}{${3:color}}"
-    },
-    "barbil{}{}": {
-      "snippet": "barbil{${1:nu}}{${2:pos}}"
-    },
-    "barbil[]{}{}": {
-      "snippet": "barbil[${3:st}]{${1:nu}}{${2:pos}}"
-    },
-    "colbil": {},
-    "coltig": {},
-    "thexx": {},
-    "theyy": {},
-    "unba": {},
-    "eplia": {},
-    "eplib": {},
-    "eplic": {},
-    "eplid": {},
-    "bille{}{}": {
-      "snippet": "bille{${1:arg}}{${2:color}}"
-    },
-    "support{}": {
-      "snippet": "support{${1:arg}}"
+    {
+      "name": "tikz"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "ladj",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "tige",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:nu}}{${2:val}}{${3:un}}"
+      }
+    },
+    {
+      "name": "tige",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:st}]{${1:nu}}{${2:val}}{${3:un}}"
+      }
+    },
+    {
+      "name": "cadre",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nb}}"
+      }
+    },
+    {
+      "name": "cadre",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:st}]{${1:nb}}"
+      }
+    },
+    {
+      "name": "barres",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nb}}"
+      }
+    },
+    {
+      "name": "barres",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:st}]{${1:nb}}"
+      }
+    },
+    {
+      "name": "binoire",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:nu}}{${2:pos}}{${3:color}}"
+      }
+    },
+    {
+      "name": "binoire",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:st}]{${1:nu}}{${2:pos}}{${3:color}}"
+      }
+    },
+    {
+      "name": "barbil",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:nu}}{${2:pos}}"
+      }
+    },
+    {
+      "name": "barbil",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:st}]{${1:nu}}{${2:pos}}"
+      }
+    },
+    {
+      "name": "colbil",
+      "unusual": true
+    },
+    {
+      "name": "coltig",
+      "unusual": true
+    },
+    {
+      "name": "thexx",
+      "unusual": true
+    },
+    {
+      "name": "theyy",
+      "unusual": true
+    },
+    {
+      "name": "unba",
+      "unusual": true
+    },
+    {
+      "name": "eplia",
+      "unusual": true
+    },
+    {
+      "name": "eplib",
+      "unusual": true
+    },
+    {
+      "name": "eplic",
+      "unusual": true
+    },
+    {
+      "name": "eplid",
+      "unusual": true
+    },
+    {
+      "name": "bille",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:color}}"
+      }
+    },
+    {
+      "name": "support",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

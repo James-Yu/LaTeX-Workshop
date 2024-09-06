@@ -1,788 +1,1940 @@
 {
-  "includes": {
-    "xpatch": [],
-    "l3keys2e": [],
-    "class-book": [],
-    "standalone": [],
-    "datatool": [],
-    "fontenc": [],
-    "inputenc": [],
-    "kpfonts": [],
-    "titlesec": [],
-    "multicol": [],
-    "graphicx": [],
-    "longtable": [],
-    "adjustbox": [],
-    "mwe": [],
-    "zref-totpages": [],
-    "zref-xr": [],
-    "ragged2e": [],
-    "xspace": [],
-    "textcase": [],
-    "epigraph": [],
-    "csquotes": [],
-    "biblatex": [],
-    "array": [],
-    "booktabs": [],
-    "tabularx": [],
-    "nccparskip": [],
-    "multirow": [],
-    "varioref": [],
-    "mathtools": [],
-    "rsfso": [],
-    "esvect": [],
-    "translator": [],
-    "geometry": [],
-    "babel": [],
-    "eurosym": [],
-    "iflang": [],
-    "etoc": [],
-    "microtype": [],
-    "datetime": [],
-    "enumitem": [],
-    "afterpage": [],
-    "xcolor": [],
-    "tikz": [],
-    "tikzlibrarybabel": [],
-    "tikzlibraryfadings": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibrarycalc": [],
-    "pgfplots": [],
-    "tcolorbox": [],
-    "tcolorboxlibrarybreakable": [],
-    "tcolorboxlibraryskins": [],
-    "tcolorboxlibraryhooks": [],
-    "tcolorboxlibrarytheorems": [],
-    "tcolorboxlibrarylistingsutf8": [],
-    "tikzpagenodes": [],
-    "amsthm": [],
-    "thmtools": [],
-    "placeins": [],
-    "hyperref": [],
-    "bookmark": [],
-    "glossaries": [],
-    "cleveref": [],
-    "titleps": []
-  },
-  "macros": {
-    "title[]{}": {
-      "snippet": "title[${2:option}]{${1:text}}"
-    },
-    "subtitle{}": {
-      "snippet": "subtitle{${1:text}}"
-    },
-    "subtitle[]{}": {
-      "snippet": "subtitle[${2:option}]{${1:text}}"
-    },
-    "author[]{}": {
-      "snippet": "author[${2:options}]{${1:Nom,Prénom}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "acknowledgements{}": {
-      "snippet": "acknowledgements{${1:remerciements}}"
-    },
-    "printauthorsdetails": {},
-    "academicsignature{}": {
-      "snippet": "academicsignature{${1:signature}}"
-    },
-    "question{}": {
-      "snippet": "question{${1:question}}"
-    },
-    "gztlocaltableofcontents": {},
-    "smf": {},
-    "smf*": {},
-    "gzt": {},
-    "gzt*": {},
-    "cad": {},
-    "cad*": {},
-    "Cad": {},
-    "Cad*": {},
-    "surname{}": {
-      "snippet": "surname{${1:nom de famille}}"
-    },
-    "century{}": {
-      "snippet": "century{${1:numéro}}"
-    },
-    "century*{}": {
-      "snippet": "century*{${1:numéro}}"
-    },
-    "aside{}": {
-      "snippet": "aside{${1:text}}"
-    },
-    "N": {
-      "detail": "𝑁",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL N"
-    },
-    "Z": {
-      "detail": "𝑍",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL Z"
-    },
-    "D": {
-      "detail": "𝐷",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL D"
-    },
-    "Q": {
-      "detail": "𝑄",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL Q"
-    },
-    "R": {
-      "detail": "𝑅",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL R"
-    },
-    "C": {
-      "detail": "𝐶",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL C"
-    },
-    "K": {
-      "detail": "𝐾",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL K"
-    },
-    "cotan": {},
-    "arccos": {},
-    "arcsin": {},
-    "arctan": {},
-    "ch": {},
-    "sh": {},
-    "tanh": {},
-    "log": {},
-    "lg": {},
-    "newtheorem[]{}": {
-      "snippet": "newtheorem[${2:options}]{${1:envname}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "gztverb{}": {
-      "snippet": "gztverb{${1:code}}"
-    },
-    "insertbibimage{}": {
-      "snippet": "insertbibimage{${1:imagefile}}"
-    },
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {},
-    "frenchsetup{}": {
-      "snippet": "frenchsetup{${1:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "frenchbsetup{}": {
-      "snippet": "frenchbsetup{${1:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "AddThinSpaceBeforeFootnotes": {},
-    "alsoname": {},
-    "at": {},
-    "bibname": {},
-    "AutoSpaceBeforeFDP": {},
-    "boi": {},
-    "bname{}": {
-      "snippet": "bname{${1:text}}"
-    },
-    "bsc{}": {
-      "snippet": "bsc{${1:text}}"
-    },
-    "CaptionSeparator": {},
-    "captionsfrench": {},
-    "ccname": {},
-    "chaptername": {},
-    "circonflexe": {},
-    "dateacadian": {},
-    "datefrench": {},
-    "DecimalMathComma": {},
-    "degre": {},
-    "degres": {},
-    "descindentFB": {},
-    "dotFFN": {},
-    "enclname": {},
-    "extrasfrench": {},
-    "FBcolonspace": {},
-    "FBdatebox": {},
-    "FBdatespace": {},
-    "FBeverylineguill": {},
-    "FBfigtabshape": {},
-    "FBfnindent": {},
-    "FBFrenchFootnotesfalse": {},
-    "FBFrenchFootnotestrue": {},
-    "FBFrenchSuperscriptstrue": {},
-    "FBGlobalLayoutFrenchtrue": {},
-    "FBgspchar": {},
-    "FBguillopen": {},
-    "FBguillspace": {},
-    "FBInnerGuillSinglefalse": {},
-    "FBInnerGuillSingletrue": {},
-    "FBListItemsAsParfalse": {},
-    "FBListItemsAsPartrue": {},
-    "FBLowercaseSuperscriptstrue": {},
-    "FBmedkern": {},
-    "FBPartNameFulltrue": {},
-    "FBsetspaces[]{}{}{}{}": {
-      "snippet": "FBsetspaces[${5:language}]{${1:type}}{${2:width}}{${3:stretch}}{${4:shrink}}"
-    },
-    "FBsetspaces{}{}{}{}": {
-      "snippet": "FBsetspaces{${1:type}}{${2:width}}{${3:stretch}}{${4:shrink}}"
-    },
-    "FBSmallCapsFigTabCaptionstrue": {},
-    "FBStandardEnumerateEnvtrue": {},
-    "FBStandardItemizeEnvtrue": {},
-    "FBStandardItemLabelstrue": {},
-    "FBStandardLayouttrue": {},
-    "FBStandardListSpacingtrue": {},
-    "FBStandardListstrue": {},
-    "FBsupR": {},
-    "FBsupS": {},
-    "FBtextellipsis": {},
-    "FBthickkern": {},
-    "FBthinspace": {},
-    "FBthousandsep": {},
-    "FBWarning{}": {
-      "snippet": "FBWarning{${1:message}}"
-    },
-    "fg": {},
-    "fgi": {},
-    "fgii": {},
-    "fprimo)": {},
-    "frenchdate{}{}{}": {
-      "snippet": "frenchdate{${1:day}}{${2:month}}{${3:year}}"
-    },
-    "FrenchEnumerate{}": {
-      "snippet": "FrenchEnumerate{${1:arg}}"
-    },
-    "FrenchFootnotes": {},
-    "FrenchLabelItem": {},
-    "frenchpartfirst": {},
-    "frenchpartsecond": {},
-    "FrenchPopularEnumerate{}": {
-      "snippet": "FrenchPopularEnumerate{${1:arg}}"
-    },
-    "frenchtoday": {},
-    "Frlabelitemi": {},
-    "Frlabelitemii": {},
-    "Frlabelitemiii": {},
-    "Frlabelitemiv": {},
-    "frquote{}": {
-      "snippet": "frquote{${1:text}}"
-    },
-    "fup{}": {
-      "snippet": "fup{${1:text}}"
-    },
-    "glossaryname": {},
-    "headtoname": {},
-    "ieme": {},
-    "iemes": {},
-    "ier": {},
-    "iere": {},
-    "ieres": {},
-    "iers": {},
-    "ifFBAutoSpaceFootnotes": {},
-    "ifFBCompactItemize": {},
-    "ifFBCustomiseFigTabCaptions": {},
-    "ifFBfrench": {},
-    "ifFBFrenchFootnotes": {},
-    "ifFBFrenchSuperscripts": {},
-    "ifFBGlobalLayoutFrench": {},
-    "ifFBIndentFirst": {},
-    "ifFBINGuillSpace": {},
-    "ifFBListItemsAsPar": {},
-    "ifFBListOldLayout": {},
-    "ifFBLowercaseSuperscripts": {},
-    "ifFBLuaTeX": {},
-    "ifFBOldFigTabCaptions": {},
-    "ifFBOriginalTypewriter": {},
-    "ifFBPartNameFull": {},
-    "ifFBReduceListSpacing": {},
-    "ifFBShowOptions": {},
-    "ifFBSmallCapsFigTabCaptions": {},
-    "ifFBStandardEnumerateEnv": {},
-    "ifFBStandardItemizeEnv": {},
-    "ifFBStandardItemLabels": {},
-    "ifFBStandardLayout": {},
-    "ifFBStandardLists": {},
-    "ifFBStandardListSpacing": {},
-    "ifFBSuppressWarning": {},
-    "ifFBThinColonSpace": {},
-    "ifFBThinSpaceInFrenchNumbers": {},
-    "ifFBunicode": {},
-    "ifFBXeTeX": {},
-    "ifLaTeXe": {},
-    "kernFFN": {},
-    "labelindentFB": {},
-    "labelwidthFB": {},
-    "leftmarginFB": {},
-    "listfigurename": {},
-    "listindentFB": {},
-    "No": {},
-    "no": {},
-    "NoAutoSpaceBeforeFDP": {},
-    "NoAutoSpacing": {},
-    "NoEveryParQuote": {},
-    "noextrasfrench": {},
-    "nombre{}": {
-      "snippet": "nombre{${1:arg}}"
-    },
-    "nos": {},
-    "Nos": {},
-    "og": {},
-    "ogi": {},
-    "ogii": {},
-    "parindentFFN": {},
-    "partfirst": {},
-    "partnameord": {},
-    "partsecond": {},
-    "prefacename": {},
-    "primo": {},
-    "proofname": {},
-    "quarto": {},
-    "rmfamilyFB": {},
-    "secundo": {},
-    "seename": {},
-    "sffamilyFB": {},
-    "StandardFootnotes": {},
-    "StandardMathComma": {},
-    "tertio": {},
-    "tild": {},
-    "ttfamilyFB": {},
-    "up{}": {
-      "snippet": "up{${1:text}}"
-    },
-    "xspace": {},
-    "captionsenglish": {},
-    "dateenglish": {},
-    "extrasenglish": {},
-    "noextrasenglish": {},
-    "englishhyphenmins": {},
-    "britishhyphenmins": {},
-    "americanhyphenmins": {},
-    "bookadvertisement[]{}": {
-      "snippet": "bookadvertisement[${2:opt}]{${1:bibid}}"
-    },
-    "bookadvertisement{}": {
-      "snippet": "bookadvertisement{${1:bibid}}"
-    },
-    "classdesigner{}{}{}": {
-      "snippet": "classdesigner{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "classdesigner[]{}{}{}": {
-      "snippet": "classdesigner[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "classmaintainer{}{}{}": {
-      "snippet": "classmaintainer{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "classmaintainer[]{}{}{}": {
-      "snippet": "classmaintainer[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "editor{}{}{}": {
-      "snippet": "editor{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "editor[]{}{}{}": {
-      "snippet": "editor[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "editorial": {},
-    "editorial[]": {
-      "snippet": "editorial[${1:opt}]"
-    },
-    "editorinchief{}{}{}": {
-      "snippet": "editorinchief{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "editorinchief[]{}{}{}": {
-      "snippet": "editorinchief[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "email{}": {
-      "snippet": "email{${1:email}}"
-    },
-    "fontdesigner{}{}{}": {
-      "snippet": "fontdesigner{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "fontdesigner[]{}{}{}": {
-      "snippet": "fontdesigner[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "fontdesignertext{}": {
-      "snippet": "fontdesignertext{${1:text}}"
-    },
-    "graphicdesigner{}{}{}": {
-      "snippet": "graphicdesigner{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "graphicdesigner[]{}{}{}": {
-      "snippet": "graphicdesigner[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "gztarticlecl": {},
-    "gztcl": {},
-    "gztfiledate": {},
-    "gztfileversion": {},
-    "interviewee{}": {
-      "snippet": "interviewee{${1:arg}}"
-    },
-    "interviewee[]{}": {
-      "snippet": "interviewee[${2:opt}]{${1:arg}}"
-    },
-    "issuesetup{}": {
-      "snippet": "issuesetup{${1:keyvals}}"
-    },
-    "journalsetup{}": {
-      "snippet": "journalsetup{${1:keyvals}}"
-    },
-    "moralreportsetup{}": {
-      "snippet": "moralreportsetup{${1:keyvals}}"
-    },
-    "president{}{}{}": {
-      "snippet": "president{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "president[]{}{}{}": {
-      "snippet": "president[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "presidentmessage": {},
-    "printertext{}": {
-      "snippet": "printertext{${1:text}}"
-    },
-    "printminibios": {},
-    "printminibios*": {},
-    "secretary{}{}{}": {
-      "snippet": "secretary{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "secretary[]{}{}{}": {
-      "snippet": "secretary[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "specialeditionsetup{}": {
-      "snippet": "specialeditionsetup{${1:keyvals}}"
+  "deps": [
+    {
+      "name": "xpatch"
+    },
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "class-book"
+    },
+    {
+      "name": "standalone"
+    },
+    {
+      "name": "datatool"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "inputenc"
+    },
+    {
+      "name": "kpfonts"
+    },
+    {
+      "name": "titlesec"
+    },
+    {
+      "name": "multicol"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "longtable"
+    },
+    {
+      "name": "adjustbox"
+    },
+    {
+      "name": "mwe"
+    },
+    {
+      "name": "zref-totpages"
+    },
+    {
+      "name": "zref-xr"
+    },
+    {
+      "name": "ragged2e"
+    },
+    {
+      "name": "xspace"
+    },
+    {
+      "name": "textcase"
+    },
+    {
+      "name": "epigraph"
+    },
+    {
+      "name": "csquotes"
+    },
+    {
+      "name": "biblatex"
+    },
+    {
+      "name": "array"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "tabularx"
+    },
+    {
+      "name": "nccparskip"
+    },
+    {
+      "name": "multirow"
+    },
+    {
+      "name": "varioref"
+    },
+    {
+      "name": "mathtools"
+    },
+    {
+      "name": "rsfso"
+    },
+    {
+      "name": "esvect"
+    },
+    {
+      "name": "translator"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "eurosym"
+    },
+    {
+      "name": "iflang"
+    },
+    {
+      "name": "etoc"
+    },
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "datetime"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "afterpage"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibrarybabel"
+    },
+    {
+      "name": "tikzlibraryfadings"
+    },
+    {
+      "name": "tikzlibrarypositioning"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "pgfplots"
+    },
+    {
+      "name": "tcolorbox"
+    },
+    {
+      "name": "tcolorboxlibrarybreakable"
+    },
+    {
+      "name": "tcolorboxlibraryskins"
+    },
+    {
+      "name": "tcolorboxlibraryhooks"
+    },
+    {
+      "name": "tcolorboxlibrarytheorems"
+    },
+    {
+      "name": "tcolorboxlibrarylistingsutf8"
+    },
+    {
+      "name": "tikzpagenodes"
+    },
+    {
+      "name": "amsthm"
+    },
+    {
+      "name": "thmtools"
+    },
+    {
+      "name": "placeins"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "bookmark"
+    },
+    {
+      "name": "glossaries"
+    },
+    {
+      "name": "cleveref"
+    },
+    {
+      "name": "titleps"
     }
-  },
-  "envs": {
-    "gztfigure": {},
-    "gztfigure[]": {
+  ],
+  "macros": [
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:text}}",
+        "keys": [
+          "\\title,\\subtitle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:text}}",
+        "keys": [
+          "\\title,\\subtitle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "author",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:Nom,Prénom}}",
+        "keys": [
+          "\\author"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "acknowledgements",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:remerciements%text}}"
+      }
+    },
+    {
+      "name": "printauthorsdetails"
+    },
+    {
+      "name": "academicsignature",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:signature%text}}"
+      }
+    },
+    {
+      "name": "question",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:question%text}}"
+      },
+      "detail": "?",
+      "doc": "Question mark"
+    },
+    {
+      "name": "gztlocaltableofcontents"
+    },
+    {
+      "name": "smf"
+    },
+    {
+      "name": "smf*"
+    },
+    {
+      "name": "gzt"
+    },
+    {
+      "name": "gzt*"
+    },
+    {
+      "name": "cad"
+    },
+    {
+      "name": "cad*"
+    },
+    {
+      "name": "Cad"
+    },
+    {
+      "name": "Cad*"
+    },
+    {
+      "name": "surname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nom de famille}}"
+      }
+    },
+    {
+      "name": "century",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numéro}}"
+      }
+    },
+    {
+      "name": "century*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numéro}}"
+      }
+    },
+    {
+      "name": "aside",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "N"
+    },
+    {
+      "name": "Z"
+    },
+    {
+      "name": "D"
+    },
+    {
+      "name": "Q"
+    },
+    {
+      "name": "R"
+    },
+    {
+      "name": "C"
+    },
+    {
+      "name": "K"
+    },
+    {
+      "name": "cotan"
+    },
+    {
+      "name": "arccos"
+    },
+    {
+      "name": "arcsin"
+    },
+    {
+      "name": "arctan"
+    },
+    {
+      "name": "ch"
+    },
+    {
+      "name": "sh"
+    },
+    {
+      "name": "tanh"
+    },
+    {
+      "name": "log"
+    },
+    {
+      "name": "lg"
+    },
+    {
+      "name": "newtheorem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:envname}}",
+        "keys": [
+          "\\newtheorem"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gztverb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%definition}}"
+      }
+    },
+    {
+      "name": "insertbibimage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "frenchsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\frenchsetup,\\frenchbsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "AddThinSpaceBeforeFootnotes",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "at"
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "AutoSpaceBeforeFDP",
+      "unusual": true
+    },
+    {
+      "name": "boi"
+    },
+    {
+      "name": "bname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "bsc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "CaptionSeparator",
+      "unusual": true
+    },
+    {
+      "name": "captionsfrench",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "circonflexe"
+    },
+    {
+      "name": "dateacadian",
+      "unusual": true
+    },
+    {
+      "name": "datefrench",
+      "unusual": true
+    },
+    {
+      "name": "DecimalMathComma"
+    },
+    {
+      "name": "degre",
+      "unusual": true
+    },
+    {
+      "name": "degres"
+    },
+    {
+      "name": "descindentFB",
+      "unusual": true
+    },
+    {
+      "name": "dotFFN",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "extrasfrench",
+      "unusual": true
+    },
+    {
+      "name": "FBcolonspace"
+    },
+    {
+      "name": "FBdatebox",
+      "unusual": true
+    },
+    {
+      "name": "FBdatespace",
+      "unusual": true
+    },
+    {
+      "name": "FBeverylineguill",
+      "unusual": true
+    },
+    {
+      "name": "FBfigtabshape",
+      "unusual": true
+    },
+    {
+      "name": "FBfnindent",
+      "unusual": true
+    },
+    {
+      "name": "FBFrenchFootnotesfalse",
+      "unusual": true
+    },
+    {
+      "name": "FBFrenchFootnotestrue",
+      "unusual": true
+    },
+    {
+      "name": "FBFrenchSuperscriptstrue",
+      "unusual": true
+    },
+    {
+      "name": "FBGlobalLayoutFrenchtrue",
+      "unusual": true
+    },
+    {
+      "name": "FBgspchar",
+      "unusual": true
+    },
+    {
+      "name": "FBguillopen",
+      "unusual": true
+    },
+    {
+      "name": "FBguillspace"
+    },
+    {
+      "name": "FBInnerGuillSinglefalse",
+      "unusual": true
+    },
+    {
+      "name": "FBInnerGuillSingletrue",
+      "unusual": true
+    },
+    {
+      "name": "FBListItemsAsParfalse",
+      "unusual": true
+    },
+    {
+      "name": "FBListItemsAsPartrue",
+      "unusual": true
+    },
+    {
+      "name": "FBLowercaseSuperscriptstrue",
+      "unusual": true
+    },
+    {
+      "name": "FBmedkern",
+      "unusual": true
+    },
+    {
+      "name": "FBPartNameFulltrue",
+      "unusual": true
+    },
+    {
+      "name": "FBsetspaces",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:language}]{${1:type}}{${2:width}}{${3:stretch}}{${4:shrink}}"
+      }
+    },
+    {
+      "name": "FBsetspaces",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:type}}{${2:width}}{${3:stretch}}{${4:shrink}}"
+      }
+    },
+    {
+      "name": "FBSmallCapsFigTabCaptionstrue",
+      "unusual": true
+    },
+    {
+      "name": "FBStandardEnumerateEnvtrue",
+      "unusual": true
+    },
+    {
+      "name": "FBStandardItemizeEnvtrue",
+      "unusual": true
+    },
+    {
+      "name": "FBStandardItemLabelstrue",
+      "unusual": true
+    },
+    {
+      "name": "FBStandardLayouttrue",
+      "unusual": true
+    },
+    {
+      "name": "FBStandardListSpacingtrue",
+      "unusual": true
+    },
+    {
+      "name": "FBStandardListstrue",
+      "unusual": true
+    },
+    {
+      "name": "FBsupR",
+      "unusual": true
+    },
+    {
+      "name": "FBsupS",
+      "unusual": true
+    },
+    {
+      "name": "FBtextellipsis",
+      "unusual": true
+    },
+    {
+      "name": "FBthickkern",
+      "unusual": true
+    },
+    {
+      "name": "FBthinspace"
+    },
+    {
+      "name": "FBthousandsep",
+      "unusual": true
+    },
+    {
+      "name": "FBWarning",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:message%text}}"
+      }
+    },
+    {
+      "name": "fg"
+    },
+    {
+      "name": "fgi",
+      "unusual": true
+    },
+    {
+      "name": "fgii",
+      "unusual": true
+    },
+    {
+      "name": "fprimo)"
+    },
+    {
+      "name": "frenchdate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:day}}{${2:month}}{${3:year}}"
+      }
+    },
+    {
+      "name": "FrenchEnumerate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "FrenchFootnotes",
+      "unusual": true
+    },
+    {
+      "name": "FrenchLabelItem",
+      "unusual": true
+    },
+    {
+      "name": "frenchpartfirst",
+      "unusual": true
+    },
+    {
+      "name": "frenchpartsecond",
+      "unusual": true
+    },
+    {
+      "name": "FrenchPopularEnumerate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "frenchtoday"
+    },
+    {
+      "name": "Frlabelitemi",
+      "unusual": true
+    },
+    {
+      "name": "Frlabelitemi",
+      "unusual": true
+    },
+    {
+      "name": "Frlabelitemii",
+      "unusual": true
+    },
+    {
+      "name": "Frlabelitemii",
+      "unusual": true
+    },
+    {
+      "name": "Frlabelitemiii",
+      "unusual": true
+    },
+    {
+      "name": "Frlabelitemiii",
+      "unusual": true
+    },
+    {
+      "name": "Frlabelitemiv",
+      "unusual": true
+    },
+    {
+      "name": "Frlabelitemiv",
+      "unusual": true
+    },
+    {
+      "name": "frquote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "fup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "ieme"
+    },
+    {
+      "name": "iemes"
+    },
+    {
+      "name": "ier"
+    },
+    {
+      "name": "iere"
+    },
+    {
+      "name": "ieres"
+    },
+    {
+      "name": "iers"
+    },
+    {
+      "name": "ifFBAutoSpaceFootnotes",
+      "unusual": true
+    },
+    {
+      "name": "ifFBCompactItemize",
+      "unusual": true
+    },
+    {
+      "name": "ifFBCustomiseFigTabCaptions",
+      "unusual": true
+    },
+    {
+      "name": "ifFBfrench",
+      "unusual": true
+    },
+    {
+      "name": "ifFBFrenchFootnotes",
+      "unusual": true
+    },
+    {
+      "name": "ifFBFrenchSuperscripts",
+      "unusual": true
+    },
+    {
+      "name": "ifFBGlobalLayoutFrench",
+      "unusual": true
+    },
+    {
+      "name": "ifFBIndentFirst",
+      "unusual": true
+    },
+    {
+      "name": "ifFBINGuillSpace",
+      "unusual": true
+    },
+    {
+      "name": "ifFBListItemsAsPar",
+      "unusual": true
+    },
+    {
+      "name": "ifFBListOldLayout",
+      "unusual": true
+    },
+    {
+      "name": "ifFBLowercaseSuperscripts",
+      "unusual": true
+    },
+    {
+      "name": "ifFBLuaTeX",
+      "unusual": true
+    },
+    {
+      "name": "ifFBOldFigTabCaptions",
+      "unusual": true
+    },
+    {
+      "name": "ifFBOriginalTypewriter",
+      "unusual": true
+    },
+    {
+      "name": "ifFBPartNameFull",
+      "unusual": true
+    },
+    {
+      "name": "ifFBReduceListSpacing",
+      "unusual": true
+    },
+    {
+      "name": "ifFBShowOptions",
+      "unusual": true
+    },
+    {
+      "name": "ifFBSmallCapsFigTabCaptions",
+      "unusual": true
+    },
+    {
+      "name": "ifFBStandardEnumerateEnv",
+      "unusual": true
+    },
+    {
+      "name": "ifFBStandardItemizeEnv",
+      "unusual": true
+    },
+    {
+      "name": "ifFBStandardItemLabels",
+      "unusual": true
+    },
+    {
+      "name": "ifFBStandardLayout",
+      "unusual": true
+    },
+    {
+      "name": "ifFBStandardLists",
+      "unusual": true
+    },
+    {
+      "name": "ifFBStandardListSpacing",
+      "unusual": true
+    },
+    {
+      "name": "ifFBSuppressWarning",
+      "unusual": true
+    },
+    {
+      "name": "ifFBThinColonSpace",
+      "unusual": true
+    },
+    {
+      "name": "ifFBThinSpaceInFrenchNumbers",
+      "unusual": true
+    },
+    {
+      "name": "ifFBunicode",
+      "unusual": true
+    },
+    {
+      "name": "ifFBXeTeX",
+      "unusual": true
+    },
+    {
+      "name": "ifLaTeXe",
+      "unusual": true
+    },
+    {
+      "name": "kernFFN",
+      "unusual": true
+    },
+    {
+      "name": "labelindentFB",
+      "unusual": true
+    },
+    {
+      "name": "labelwidthFB",
+      "unusual": true
+    },
+    {
+      "name": "leftmarginFB",
+      "unusual": true
+    },
+    {
+      "name": "listfigurename",
+      "unusual": true
+    },
+    {
+      "name": "listindentFB",
+      "unusual": true
+    },
+    {
+      "name": "No"
+    },
+    {
+      "name": "no"
+    },
+    {
+      "name": "NoAutoSpaceBeforeFDP",
+      "unusual": true
+    },
+    {
+      "name": "NoAutoSpacing"
+    },
+    {
+      "name": "NoEveryParQuote",
+      "unusual": true
+    },
+    {
+      "name": "noextrasfrench",
+      "unusual": true
+    },
+    {
+      "name": "nombre",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "nos"
+    },
+    {
+      "name": "Nos"
+    },
+    {
+      "name": "og"
+    },
+    {
+      "name": "ogi",
+      "unusual": true
+    },
+    {
+      "name": "ogii",
+      "unusual": true
+    },
+    {
+      "name": "parindentFFN",
+      "unusual": true
+    },
+    {
+      "name": "partfirst",
+      "unusual": true
+    },
+    {
+      "name": "partfirst",
+      "unusual": true
+    },
+    {
+      "name": "partnameord",
+      "unusual": true
+    },
+    {
+      "name": "partsecond",
+      "unusual": true
+    },
+    {
+      "name": "partsecond",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "primo"
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "quarto"
+    },
+    {
+      "name": "rmfamilyFB",
+      "unusual": true
+    },
+    {
+      "name": "secundo"
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "sffamilyFB",
+      "unusual": true
+    },
+    {
+      "name": "StandardFootnotes",
+      "unusual": true
+    },
+    {
+      "name": "StandardMathComma"
+    },
+    {
+      "name": "tertio"
+    },
+    {
+      "name": "tild"
+    },
+    {
+      "name": "ttfamilyFB",
+      "unusual": true
+    },
+    {
+      "name": "up",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "xspace"
+    },
+    {
+      "name": "captionsenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateenglish",
+      "unusual": true
+    },
+    {
+      "name": "extrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "bookadvertisement",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opt}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "bookadvertisement",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "classdesigner",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "classdesigner",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "classmaintainer",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "classmaintainer",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "editor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "editor",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "editorial",
+      "unusual": true
+    },
+    {
+      "name": "editorial",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:opt}]"
+      }
+    },
+    {
+      "name": "editorinchief",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "editorinchief",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "email",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "fontdesigner",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "fontdesigner",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "fontdesignertext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "graphicdesigner",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "graphicdesigner",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "gztarticlecl",
+      "unusual": true
+    },
+    {
+      "name": "gztcl",
+      "unusual": true
+    },
+    {
+      "name": "gztfiledate",
+      "unusual": true
+    },
+    {
+      "name": "gztfileversion",
+      "unusual": true
+    },
+    {
+      "name": "interviewee",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "interviewee",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "issuesetup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "journalsetup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "moralreportsetup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "president",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "president",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "presidentmessage",
+      "unusual": true
+    },
+    {
+      "name": "printertext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "printminibios",
+      "unusual": true
+    },
+    {
+      "name": "printminibios*",
+      "unusual": true
+    },
+    {
+      "name": "secretary",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "secretary",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "specialeditionsetup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "gztfigure"
+    },
+    {
       "name": "gztfigure",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{gztfigure},\\begin{gztfigure*},\\begin{gzttable},\\begin{gzttable*},\\begin{gztframe},\\begin{gztframe*}"
+        ],
+        "keyPos": 0
+      }
     },
-    "gztfigure*": {},
-    "gztfigure*[]": {
+    {
+      "name": "gztfigure*"
+    },
+    {
       "name": "gztfigure*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{gztfigure},\\begin{gztfigure*},\\begin{gzttable},\\begin{gzttable*},\\begin{gztframe},\\begin{gztframe*}"
+        ],
+        "keyPos": 0
+      }
     },
-    "gzttable": {},
-    "gzttable[]": {
+    {
+      "name": "gzttable"
+    },
+    {
       "name": "gzttable",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{gztfigure},\\begin{gztfigure*},\\begin{gzttable},\\begin{gzttable*},\\begin{gztframe},\\begin{gztframe*}"
+        ],
+        "keyPos": 0
+      }
     },
-    "gzttable*": {},
-    "gzttable*[]": {
+    {
+      "name": "gzttable*"
+    },
+    {
       "name": "gzttable*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{gztfigure},\\begin{gztfigure*},\\begin{gzttable},\\begin{gzttable*},\\begin{gztframe},\\begin{gztframe*}"
+        ],
+        "keyPos": 0
+      }
     },
-    "gztframe": {},
-    "gztframe[]": {
+    {
+      "name": "gztframe"
+    },
+    {
       "name": "gztframe",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{gztfigure},\\begin{gztfigure*},\\begin{gzttable},\\begin{gzttable*},\\begin{gztframe},\\begin{gztframe*}"
+        ],
+        "keyPos": 0
+      }
     },
-    "gztframe*": {},
-    "gztframe*[]": {
+    {
+      "name": "gztframe*"
+    },
+    {
       "name": "gztframe*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{gztfigure},\\begin{gztfigure*},\\begin{gzttable},\\begin{gzttable*},\\begin{gztframe},\\begin{gztframe*}"
+        ],
+        "keyPos": 0
+      }
     },
-    "theoreme": {},
-    "theoreme[]": {
+    {
+      "name": "theoreme"
+    },
+    {
       "name": "theoreme",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "theoreme*": {},
-    "theoreme*[]": {
+    {
+      "name": "theoreme*"
+    },
+    {
       "name": "theoreme*",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "theorem": {},
-    "theorem[]": {
+    {
+      "name": "theorem"
+    },
+    {
       "name": "theorem",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "theorem*": {},
-    "theorem*[]": {
+    {
+      "name": "theorem*"
+    },
+    {
       "name": "theorem*",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "corollaire": {},
-    "corollaire[]": {
+    {
+      "name": "corollaire"
+    },
+    {
       "name": "corollaire",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "corollaire*": {},
-    "corollaire*[]": {
+    {
+      "name": "corollaire*"
+    },
+    {
       "name": "corollaire*",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "corollary": {},
-    "corollary[]": {
+    {
+      "name": "corollary"
+    },
+    {
       "name": "corollary",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "corollary*": {},
-    "corollary*[]": {
+    {
+      "name": "corollary*"
+    },
+    {
       "name": "corollary*",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "conjecture": {},
-    "conjecture[]": {
+    {
+      "name": "conjecture"
+    },
+    {
       "name": "conjecture",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "conjecture*": {},
-    "conjecture*[]": {
+    {
+      "name": "conjecture*"
+    },
+    {
       "name": "conjecture*",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "proposition": {},
-    "proposition[]": {
+    {
+      "name": "proposition"
+    },
+    {
       "name": "proposition",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "proposition*": {},
-    "proposition*[]": {
+    {
+      "name": "proposition*"
+    },
+    {
       "name": "proposition*",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "lemme": {},
-    "lemme[]": {
+    {
+      "name": "lemme"
+    },
+    {
       "name": "lemme",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "lemme*": {},
-    "lemme*[]": {
+    {
+      "name": "lemme*"
+    },
+    {
       "name": "lemme*",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "lemma": {},
-    "lemma[]": {
+    {
+      "name": "lemma"
+    },
+    {
       "name": "lemma",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "lemma*": {},
-    "lemma*[]": {
+    {
+      "name": "lemma*"
+    },
+    {
       "name": "lemma*",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "axiome": {},
-    "axiome[]": {
+    {
+      "name": "axiome"
+    },
+    {
       "name": "axiome",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "axiome*": {},
-    "axiome*[]": {
+    {
+      "name": "axiome*"
+    },
+    {
       "name": "axiome*",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "axiom": {},
-    "axiom[]": {
+    {
+      "name": "axiom"
+    },
+    {
       "name": "axiom",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "axiom*": {},
-    "axiom*[]": {
+    {
+      "name": "axiom*"
+    },
+    {
       "name": "axiom*",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "definition": {},
-    "definition[]": {
+    {
+      "name": "definition"
+    },
+    {
       "name": "definition",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "definition*": {},
-    "definition*[]": {
+    {
+      "name": "definition*"
+    },
+    {
       "name": "definition*",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "remarque": {},
-    "remarque[]": {
+    {
+      "name": "remarque"
+    },
+    {
       "name": "remarque",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "remarque*": {},
-    "remarque*[]": {
+    {
+      "name": "remarque*"
+    },
+    {
       "name": "remarque*",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "remark": {},
-    "remark[]": {
+    {
+      "name": "remark"
+    },
+    {
       "name": "remark",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "remark*": {},
-    "remark*[]": {
+    {
+      "name": "remark*"
+    },
+    {
       "name": "remark*",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "exemple": {},
-    "exemple[]": {
+    {
+      "name": "exemple"
+    },
+    {
       "name": "exemple",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "exemple*": {},
-    "exemple*[]": {
+    {
+      "name": "exemple*"
+    },
+    {
       "name": "exemple*",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "example": {},
-    "example[]": {
+    {
+      "name": "example"
+    },
+    {
       "name": "example",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "example*": {},
-    "example*[]": {
+    {
+      "name": "example*"
+    },
+    {
       "name": "example*",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "notation": {},
-    "notation[]": {
+    {
+      "name": "notation"
+    },
+    {
       "name": "notation",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "notation*": {},
-    "notation*[]": {
+    {
+      "name": "notation*"
+    },
+    {
       "name": "notation*",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "preuve": {},
-    "preuve[]": {
+    {
+      "name": "preuve"
+    },
+    {
       "name": "preuve",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "proof": {},
-    "proof[]": {
+    {
+      "name": "proof"
+    },
+    {
       "name": "proof",
-      "snippet": "[${1:header}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
     },
-    "gztcode": {},
-    "gztcode[]": {
+    {
+      "name": "gztcode"
+    },
+    {
       "name": "gztcode",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{gztcode}"
+        ],
+        "keyPos": 0
+      }
     },
-    "descriptionFB": {},
-    "enumerateFB": {},
-    "itemizeFB": {},
-    "listFB{}": {
+    {
+      "name": "descriptionFB"
+    },
+    {
+      "name": "enumerateFB"
+    },
+    {
+      "name": "itemizeFB"
+    },
+    {
       "name": "listFB",
-      "snippet": "{${1:symbol}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
     },
-    "listORI{}": {
+    {
       "name": "listORI",
-      "snippet": "{${1:symbol}}"
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
     },
-    "enumerate*": {},
-    "enumerate*[]": {
+    {
+      "name": "enumerate*"
+    },
+    {
       "name": "enumerate*",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "itemize*": {},
-    "itemize*[]": {
+    {
+      "name": "itemize*"
+    },
+    {
       "name": "itemize*",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "description*": {},
-    "description*[]": {
+    {
+      "name": "description*"
+    },
+    {
       "name": "description*",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "authorsinstructions": {},
-    "bookreview[]{}": {
-      "name": "bookreview",
-      "snippet": "[${2:opt}]{${1:keyvals}}"
+    {
+      "name": "authorsinstructions",
+      "unusual": true
     },
-    "bookreview{}": {
+    {
       "name": "bookreview",
-      "snippet": "{${1:keyvals}}"
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opt}]{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "bookreview",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\title,\\subtitle": [
+      "short=${1:(sous-)titre court}"
+    ],
+    "\\author": [
       "affiliation={${1:affiliation(s)}}",
       "photo=${1:imagefile}",
       "email=${1:email}",
       "webpage=${1:URL}",
       "minibio={${1:biographie express}}"
     ],
-    [
-      "frenchtitle=${1:titre récurrent en français}",
-      "englishtitle=${1:titre récurrent en anglais}",
-      "style=${1|theorem,definition,proof|}"
-    ],
-    [
-      "ShowOptions",
-      "StandardLayout",
-      "GlobalLayoutFrench",
-      "IndentFirst",
-      "PartNameFull",
-      "ListItemsAsPar",
-      "StandardListSpacing",
-      "StandardItemizeEnv",
-      "StandardEnumerateEnv",
-      "StandardItemLabels",
-      "ItemLabels=",
-      "ItemLabeli=",
-      "ItemLabelii=",
-      "ItemLabeliii=",
-      "ItemLabeliv=",
-      "StandardLists",
-      "ListOldLayout",
-      "FrenchFootnotes",
-      "AutoSpaceFootnotes",
-      "AutoSpacePunctuation",
-      "ThinColonSpace",
-      "OriginalTypewriter",
-      "UnicodeNoBreakSpaces",
-      "og=",
-      "fg=",
-      "INGuillSpace",
-      "EveryParGuill=${1|open,close,none|}",
-      "EveryLineGuill=${1|open,close,none|}",
-      "InnerGuillSingle",
-      "ThinSpaceInFrenchNumbers",
-      "SmallCapsFigTabCaptions",
-      "CustomiseFigTabCaptions",
-      "OldFigTabCaptions",
-      "FrenchSuperscripts",
-      "LowercaseSuperscripts",
-      "SuppressWarning"
-    ],
-    [
+    "\\begin{gztfigure},\\begin{gztfigure*},\\begin{gzttable},\\begin{gzttable*},\\begin{gztframe},\\begin{gztframe*}": [
       "title=${1:titre}",
       "label=",
       "copyright=${1:titulaire}"
     ],
-    [
+    "\\newtheorem": [
+      "frenchtitle=${1:titre récurrent en français}",
+      "englishtitle=${1:titre récurrent en anglais}",
+      "style=${1|theorem,definition,proof|}"
+    ],
+    "\\begin{gztcode}": [
       "title=${1:text}",
       "notitle",
       "adjusted title=${1:text}",
@@ -1107,6 +2259,7 @@
       "skin first is subskin of={${1:base skin}}{${2:options}}",
       "skin middle is subskin of={${1:base skin}}{${2:options}}",
       "skin last is subskin of={${1:base skin}}{${2:options}}",
+      "",
       "frame style={${1:TikZ options}}",
       "frame style image=${1:file name}",
       "frame style tile={${1:graphics options}}{${2:file}}",
@@ -1340,6 +2493,7 @@
       "beamer hidden/.style={${1:options}}",
       "alert=<${1:overlay spec}>",
       "beamer alerted/.style={${1:options}}",
+      "",
       "separator sign=${1:sign}",
       "separator sign colon",
       "separator sign dash",
@@ -1392,6 +2546,7 @@
       "ams nodisplayskip lower",
       "ams nodisplayskip",
       "theorem style=${1|standard,change standard,plain,break,plain apart,change,change break,change apart,margin,margin break,margin apart|}",
+      "",
       "breakable",
       "breakable=${1|true,false,unlimited|}",
       "unbreakable",
@@ -1436,6 +2591,7 @@
       "extras first and middle={${1:options}}",
       "extras title after break={${1:options}}",
       "no extras title after break",
+      "",
       "before title app={${1:code}}",
       "before title pre={${1:code}}",
       "after title app={${1:code}}",
@@ -1533,7 +2689,9 @@
       "listing options pre={${1:options}}",
       "minted options app={${1:options}}",
       "minted options pre={${1:options}}",
+      "",
       "verbatim",
+      "",
       "listing options={${1:listings options}}",
       "no listing options",
       "listing style=${1:style}",
@@ -1610,6 +2768,45 @@
       "freeze jpg",
       "externalize listing=${1:name}",
       "externalize listing!=${1:name}"
+    ],
+    "\\frenchsetup,\\frenchbsetup": [
+      "ShowOptions",
+      "StandardLayout",
+      "GlobalLayoutFrench",
+      "IndentFirst",
+      "PartNameFull",
+      "ListItemsAsPar",
+      "StandardListSpacing",
+      "StandardItemizeEnv",
+      "StandardEnumerateEnv",
+      "StandardItemLabels",
+      "ItemLabels=",
+      "ItemLabeli=",
+      "ItemLabelii=",
+      "ItemLabeliii=",
+      "ItemLabeliv=",
+      "StandardLists",
+      "ListOldLayout",
+      "FrenchFootnotes",
+      "AutoSpaceFootnotes",
+      "AutoSpacePunctuation",
+      "ThinColonSpace",
+      "OriginalTypewriter",
+      "UnicodeNoBreakSpaces",
+      "og=",
+      "fg=",
+      "INGuillSpace",
+      "EveryParGuill=${1|open,close,none|}",
+      "EveryLineGuill=${1|open,close,none|}",
+      "InnerGuillSingle",
+      "ThinSpaceInFrenchNumbers",
+      "SmallCapsFigTabCaptions",
+      "CustomiseFigTabCaptions",
+      "OldFigTabCaptions",
+      "FrenchSuperscripts",
+      "LowercaseSuperscripts",
+      "SuppressWarning"
     ]
-  ]
+  },
+  "args": []
 }

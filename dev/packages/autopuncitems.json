@@ -1,40 +1,97 @@
 {
-  "includes": {
-    "luacode": [],
-    "etoolbox": [],
-    "enumitem": []
-  },
-  "macros": {
-    "APomit": {},
-    "APpass": {},
-    "setAPeach{}{}{}": {
-      "snippet": "setAPeach{${1:default punct}}{${2:second last punct}}{${3:last punct}}"
+  "deps": [
+    {
+      "name": "luacode"
     },
-    "setAPall{}": {
-      "snippet": "setAPall{${1:punct}}"
+    {
+      "name": "etoolbox"
     },
-    "setAPdef{}": {
-      "snippet": "setAPdef{${1:punct}}"
-    },
-    "setAPseclast{}": {
-      "snippet": "setAPseclast{${1:punct}}"
-    },
-    "setAPlast{}": {
-      "snippet": "setAPlast{${1:punct}}"
-    },
-    "enableAPautopassnest": {},
-    "disableAPautopassnest": {},
-    "enableAPprotectnest": {},
-    "disableAPprotectnest": {}
-  },
-  "envs": {
-    "AutoPuncItems": {},
-    "AutoPuncItemsO": {},
-    "AutoPuncItemsE": {},
-    "AutoPuncTabular": {}
-  },
-  "options": [
-    "noenumitem"
+    {
+      "name": "enumitem"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "APomit"
+    },
+    {
+      "name": "APpass"
+    },
+    {
+      "name": "setAPeach",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:default punct}}{${2:second last punct}}{${3:last punct}}"
+      }
+    },
+    {
+      "name": "setAPall",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:punct}}"
+      }
+    },
+    {
+      "name": "setAPdef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:punct}}"
+      }
+    },
+    {
+      "name": "setAPseclast",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:punct}}"
+      }
+    },
+    {
+      "name": "setAPlast",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:punct}}"
+      }
+    },
+    {
+      "name": "enableAPautopassnest"
+    },
+    {
+      "name": "disableAPautopassnest"
+    },
+    {
+      "name": "enableAPprotectnest"
+    },
+    {
+      "name": "disableAPprotectnest"
+    }
+  ],
+  "envs": [
+    {
+      "name": "AutoPuncItems"
+    },
+    {
+      "name": "AutoPuncItemsO",
+      "unusual": true
+    },
+    {
+      "name": "AutoPuncItemsE",
+      "unusual": true
+    },
+    {
+      "name": "AutoPuncTabular"
+    }
+  ],
+  "keys": {
+    "\\usepackage/autopuncitem#c": [
+      "noenumitem"
+    ],
+    "\\setlist,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c": [
+      "autopunc",
+      "autopuncO",
+      "autopuncE"
+    ]
+  },
+  "args": [
+    "\\usepackage/autopuncitem#c"
+  ]
 }

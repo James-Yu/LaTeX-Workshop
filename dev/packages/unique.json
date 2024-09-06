@@ -1,17 +1,31 @@
 {
-  "includes": {},
-  "macros": {
-    "setuniqmark{}": {
-      "snippet": "setuniqmark{${1:name}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "setuniqmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "ifuniq{}{}{}": {
-      "snippet": "ifuniq{${1:name}}{${2:true}}{${3:false}}"
+    {
+      "name": "ifuniq",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:true}}{${3:false}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "unq",
-    "aux"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/unique#c": [
+      "unq",
+      "aux"
+    ]
+  },
+  "args": [
+    "\\usepackage/unique#c"
+  ]
 }

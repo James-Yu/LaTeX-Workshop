@@ -1,14 +1,22 @@
 {
-  "includes": {
-    "ifpdf": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "setthreadname{}": {
-      "snippet": "setthreadname{${1:name}}"
+  "deps": [
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "setthreadname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,85 +1,224 @@
 {
-  "includes": {
-    "fancybox": [],
-    "ifthen": []
-  },
-  "macros": {
-    "ADO": {},
-    "AND": {},
-    "BEGIN": {},
-    "BREAK": {},
-    "CALL{}{}": {
-      "snippet": "CALL{${1:procedure}}{${2:parameters}}"
+  "deps": [
+    {
+      "name": "fancybox"
     },
-    "CASE": {},
-    "CELSE": {},
-    "COMMENT{}": {
-      "snippet": "COMMENT{${1:text}}"
-    },
-    "CTHEN": {},
-    "DO": {},
-    "DOWNTO": {},
-    "ELSE": {},
-    "ELSEIF": {},
-    "END": {},
-    "ENDCASE": {},
-    "ENDMAIN": {},
-    "ENDPROCEDURE": {},
-    "EXIT": {},
-    "EXTERNAL{}": {
-      "snippet": "EXTERNAL{${1:procedures}}"
-    },
-    "FAIL": {},
-    "FALSE": {},
-    "FOR": {},
-    "FORALL": {},
-    "FOREACH": {},
-    "GETS": {},
-    "GLOBAL{}": {
-      "snippet": "GLOBAL{${1:variables}}"
-    },
-    "GOTO": {},
-    "IF": {},
-    "LET": {},
-    "LOCAL{}": {
-      "snippet": "LOCAL{${1:variables}}"
-    },
-    "MAIN": {},
-    "NOT": {},
-    "OF": {},
-    "OR": {},
-    "OUTPUT{}": {
-      "snippet": "OUTPUT{${1:values}}"
-    },
-    "PROCEDURE{}{}": {
-      "snippet": "PROCEDURE{${1:name}}{${2:parameters}}"
-    },
-    "REPEAT": {},
-    "RETURN{}": {
-      "snippet": "RETURN{${1:values}}"
-    },
-    "STMTNUM{}{}": {
-      "snippet": "STMTNUM{${1:space}}{${2:label}}"
-    },
-    "SUCCESS": {},
-    "THEN": {},
-    "thepseudocode": {},
-    "thepseudonum": {},
-    "TO": {},
-    "TRUE": {},
-    "UNTIL": {},
-    "WHILE": {}
-  },
-  "envs": {
-    "pseudocode{}{}": {
-      "name": "pseudocode",
-      "snippet": "{${1:name}}{${2:parameters}}"
-    },
-    "pseudocode[]{}{}": {
-      "name": "pseudocode",
-      "snippet": "[${3:frame type}]{${1:name}}{${2:parameters}}"
+    {
+      "name": "ifthen"
     }
+  ],
+  "macros": [
+    {
+      "name": "ADO"
+    },
+    {
+      "name": "AND"
+    },
+    {
+      "name": "BEGIN"
+    },
+    {
+      "name": "BREAK"
+    },
+    {
+      "name": "CALL",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:procedure%text}}{${2:parameters}}"
+      }
+    },
+    {
+      "name": "CASE"
+    },
+    {
+      "name": "CELSE"
+    },
+    {
+      "name": "COMMENT",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "CTHEN"
+    },
+    {
+      "name": "DO"
+    },
+    {
+      "name": "DOWNTO"
+    },
+    {
+      "name": "ELSE"
+    },
+    {
+      "name": "ELSEIF"
+    },
+    {
+      "name": "END"
+    },
+    {
+      "name": "ENDCASE"
+    },
+    {
+      "name": "ENDMAIN"
+    },
+    {
+      "name": "ENDPROCEDURE"
+    },
+    {
+      "name": "EXIT"
+    },
+    {
+      "name": "EXTERNAL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:procedures}}"
+      }
+    },
+    {
+      "name": "FAIL"
+    },
+    {
+      "name": "FALSE"
+    },
+    {
+      "name": "FOR"
+    },
+    {
+      "name": "FORALL"
+    },
+    {
+      "name": "FOREACH"
+    },
+    {
+      "name": "GETS"
+    },
+    {
+      "name": "GLOBAL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:variables}}"
+      }
+    },
+    {
+      "name": "GOTO"
+    },
+    {
+      "name": "IF"
+    },
+    {
+      "name": "LET"
+    },
+    {
+      "name": "LOCAL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:variables}}"
+      }
+    },
+    {
+      "name": "MAIN"
+    },
+    {
+      "name": "NOT"
+    },
+    {
+      "name": "OF"
+    },
+    {
+      "name": "OR"
+    },
+    {
+      "name": "OUTPUT",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:values}}"
+      }
+    },
+    {
+      "name": "PROCEDURE",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%text}}{${2:parameters%formula}}"
+      }
+    },
+    {
+      "name": "REPEAT"
+    },
+    {
+      "name": "RETURN",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:values}}"
+      }
+    },
+    {
+      "name": "STMTNUM",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:space%l}}{${2:label}}"
+      }
+    },
+    {
+      "name": "SUCCESS"
+    },
+    {
+      "name": "THEN"
+    },
+    {
+      "name": "thepseudocode",
+      "unusual": true
+    },
+    {
+      "name": "thepseudonum",
+      "unusual": true
+    },
+    {
+      "name": "TO"
+    },
+    {
+      "name": "TRUE"
+    },
+    {
+      "name": "UNTIL"
+    },
+    {
+      "name": "WHILE"
+    }
+  ],
+  "envs": [
+    {
+      "name": "pseudocode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%text}}{${2:parameters%formula}}"
+      }
+    },
+    {
+      "name": "pseudocode",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:frame type%keyvals}]{${1:name%text}}{${2:parameters%formula}}",
+        "keys": [
+          "\\begin{pseudocode}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{pseudocode}": [
+      "display",
+      "doublebox",
+      "framebox",
+      "ovalbox",
+      "Ovalbox",
+      "plain",
+      "ruled",
+      "shadowbox"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,239 +1,592 @@
 {
-  "includes": {
-    "tikz": [],
-    "ifthen": [],
-    "siunitx": [],
-    "xargs": [],
-    "etoolbox": [],
-    "iflang": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibraryfit": [],
-    "tikzlibrarychains": []
-  },
-  "macros": {
-    "drift{}": {
-      "snippet": "drift{${1:length}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "drift{}[]": {
-      "snippet": "drift{${1:length}}[${2:name}]"
+    {
+      "name": "ifthen"
     },
-    "dipole{}{}{}": {
-      "snippet": "dipole{${1:name}}{${2:arc length}}{${3:bending angle}}"
+    {
+      "name": "siunitx"
     },
-    "dipole{}{}{}[]": {
-      "snippet": "dipole{${1:name}}{${2:arc length}}{${3:bending angle}}[${4:type}]"
+    {
+      "name": "xargs"
     },
-    "dipole{}{}{}[][]": {
-      "snippet": "dipole{${1:name}}{${2:arc length}}{${3:bending angle}}[${4:type}][${5:thickness}]"
+    {
+      "name": "etoolbox"
     },
-    "quadrupole{}{}": {
-      "snippet": "quadrupole{${1:name}}{${2:length}}"
+    {
+      "name": "iflang"
     },
-    "quadrupole{}{}[]": {
-      "snippet": "quadrupole{${1:name}}{${2:length}}[${3:thickness}]"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "sextupole{}{}": {
-      "snippet": "sextupole{${1:name}}{${2:length}}"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "sextupole{}{}[]": {
-      "snippet": "sextupole{${1:name}}{${2:length}}[${3:thickness}]"
+    {
+      "name": "tikzlibraryfit"
     },
-    "corrector{}{}": {
-      "snippet": "corrector{${1:name}}{${2:length}}"
-    },
-    "corrector{}{}[]": {
-      "snippet": "corrector{${1:name}}{${2:length}}[${3:thickness}]"
-    },
-    "kicker{}{}": {
-      "snippet": "kicker{${1:name}}{${2:length}}"
-    },
-    "kicker{}{}[]": {
-      "snippet": "kicker{${1:name}}{${2:length}}[${3:thickness}]"
-    },
-    "cavity{}{}": {
-      "snippet": "cavity{${1:name}}{${2:length}}"
-    },
-    "cavity{}{}[]": {
-      "snippet": "cavity{${1:name}}{${2:length}}[${3:thickness}]"
-    },
-    "solenoid{}{}": {
-      "snippet": "solenoid{${1:name}}{${2:length}}"
-    },
-    "solenoid{}{}[]": {
-      "snippet": "solenoid{${1:name}}{${2:length}}[${3:thickness}]"
-    },
-    "beamdump{}{}": {
-      "snippet": "beamdump{${1:name}}{${2:length}}"
-    },
-    "beamdump{}{}[]": {
-      "snippet": "beamdump{${1:name}}{${2:length}}[${3:thickness}]"
-    },
-    "source{}{}": {
-      "snippet": "source{${1:name}}{${2:length}}"
-    },
-    "source{}{}[]": {
-      "snippet": "source{${1:name}}{${2:length}}[${3:thickness}]"
-    },
-    "screen{}": {
-      "snippet": "screen{${1:name}}"
-    },
-    "screen{}[]": {
-      "snippet": "screen{${1:name}}[${2:length}]"
-    },
-    "valve{}": {
-      "snippet": "valve{${1:name}}"
-    },
-    "valve{}[]": {
-      "snippet": "valve{${1:name}}[${2:length}]"
-    },
-    "marker{}": {
-      "snippet": "marker{${1:name}}"
-    },
-    "marker{}[]": {
-      "snippet": "marker{${1:name}}[${2:length}]"
-    },
-    "start{}": {
-      "snippet": "start{${1:coordinate}}"
-    },
-    "rotate{}": {
-      "snippet": "rotate{${1:degrees}}"
-    },
-    "setangle{}": {
-      "snippet": "setangle{${1:degrees}}"
-    },
-    "goto{}": {
-      "snippet": "goto{${1:coordinate}}"
-    },
-    "drawrule{}": {
-      "snippet": "drawrule{${1:coordinate}}"
-    },
-    "drawrule{}[]": {
-      "snippet": "drawrule{${1:coordinate}}[${2:tick distance}]"
-    },
-    "drawrule{}[][]": {
-      "snippet": "drawrule{${1:coordinate}}[${2:tick distance}][${3:scale}]"
-    },
-    "drawrule{}[][][]": {
-      "snippet": "drawrule{${1:coordinate}}[${2:tick distance}][${3:scale}][${4:height}]"
-    },
-    "legend{}": {
-      "snippet": "legend{${1:coordinate}}"
-    },
-    "legend{}[]": {
-      "snippet": "legend{${1:coordinate}}[${2:scale}]"
-    },
-    "completelegend{}": {
-      "snippet": "completelegend{${1:coordinate}}"
-    },
-    "completelegend{}[]": {
-      "snippet": "completelegend{${1:coordinate}}[${2:scale}]"
-    },
-    "setlegendtext{}{}": {
-      "snippet": "setlegendtext{${1:type}}{${2:text}}"
-    },
-    "addlegendentry{}{}": {
-      "snippet": "addlegendentry{${1:text}}{${2:TikZ options}}"
-    },
-    "turnlabels": {},
-    "northlabels": {},
-    "southlabels": {},
-    "rotatelabels{}": {
-      "snippet": "rotatelabels{${1:degrees}}"
-    },
-    "rotatelabels{}[]": {
-      "snippet": "rotatelabels{${1:degrees}}[${2:anchor}]"
-    },
-    "setlabeldistance{}": {
-      "snippet": "setlabeldistance{${1:distance}}"
-    },
-    "resetlabeldistance": {},
-    "setlabelfont{}": {
-      "snippet": "setlabelfont{${1:fontsize cmd}}"
-    },
-    "setlinecolor{}{}": {
-      "snippet": "setlinecolor{${1:type}}{${2:color}}"
-    },
-    "resetlinecolor{}": {
-      "snippet": "resetlinecolor{${1:type}}"
-    },
-    "setelementcolor{}{}": {
-      "snippet": "setelementcolor{${1:type}}{${2:color}}"
-    },
-    "resetelementcolor{}": {
-      "snippet": "resetelementcolor{${1:type}}"
-    },
-    "setlabelcolor{}": {
-      "snippet": "setlabelcolor{${1:color}}"
-    },
-    "savecoordinate{}": {
-      "snippet": "savecoordinate{${1:name}}"
-    },
-    "savecoordinate{}[]": {
-      "snippet": "savecoordinate{${1:name}}[${2:position}]"
-    },
-    "angleinc": {},
-    "corners": {},
-    "declarecoords": {},
-    "dist": {},
-    "elementheight": {},
-    "elementlabel{}": {
-      "snippet": "elementlabel{${1:name}}"
-    },
-    "elementwidth": {},
-    "emptycustomlegendkeys": {},
-    "h": {
-      "detail": "h",
-      "documentation": "LATIN SMALL LETTER H"
-    },
-    "iang": {},
-    "iinc": {},
-    "jinc": {},
-    "labelanchor": {},
-    "labelang": {},
-    "labelcolor": {},
-    "labeldist": {},
-    "labelfont": {},
-    "labelrot": {},
-    "len": {},
-    "markerlen": {},
-    "marklabelang": {},
-    "mylist": {},
-    "points": {},
-    "ra": {},
-    "rectangleelement{}{}{}{}": {
-      "snippet": "rectangleelement{${1:name}}{${2:length}}{${3:thickness}}{${4:type}}"
-    },
-    "ri": {},
-    "saveang": {},
-    "savelabeldist": {},
-    "savescal": {},
-    "scal": {},
-    "straightlength": {},
-    "updatelabelanchor": {},
-    "updatemarkerlabelanchor": {},
-    "winkel": {}
-  },
-  "envs": {
-    "lattice": {},
-    "lattice[]": {
-      "name": "lattice",
-      "snippet": "[${1:scale}]"
-    },
-    "lattice[][]": {
-      "name": "lattice",
-      "snippet": "[${1:scale}][${2:TikZ options}]"
-    },
-    "labeldistance{}": {
-      "name": "labeldistance",
-      "snippet": "{${1:distance}}"
-    },
-    "fade": {},
-    "fade[]": {
-      "name": "fade",
-      "snippet": "[${1:opacity}]"
+    {
+      "name": "tikzlibrarychains"
     }
+  ],
+  "macros": [
+    {
+      "name": "drift",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length%plain}}"
+      }
+    },
+    {
+      "name": "drift",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:length%plain}}[${2:name}]"
+      }
+    },
+    {
+      "name": "dipole",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:arc length}}{${3:bending angle}}"
+      }
+    },
+    {
+      "name": "dipole",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:name}}{${2:arc length}}{${3:bending angle}}[${4:type%keyvals}]",
+        "keys": [
+          "\\dipole"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "dipole",
+      "arg": {
+        "format": "{}{}{}[][]",
+        "snippet": "{${1:name}}{${2:arc length}}{${3:bending angle}}[${4:type%keyvals}][${5:thickness}]",
+        "keys": [
+          "\\dipole"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "quadrupole",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:length%plain}}"
+      }
+    },
+    {
+      "name": "quadrupole",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:name}}{${2:length%plain}}[${3:thickness}]"
+      }
+    },
+    {
+      "name": "sextupole",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:length%plain}}"
+      }
+    },
+    {
+      "name": "sextupole",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:name}}{${2:length%plain}}[${3:thickness}]"
+      }
+    },
+    {
+      "name": "corrector",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:length%plain}}"
+      }
+    },
+    {
+      "name": "corrector",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:name}}{${2:length%plain}}[${3:thickness}]"
+      }
+    },
+    {
+      "name": "kicker",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:length%plain}}"
+      }
+    },
+    {
+      "name": "kicker",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:name}}{${2:length%plain}}[${3:thickness}]"
+      }
+    },
+    {
+      "name": "cavity",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:length%plain}}"
+      }
+    },
+    {
+      "name": "cavity",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:name}}{${2:length%plain}}[${3:thickness}]"
+      }
+    },
+    {
+      "name": "solenoid",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:length%plain}}"
+      }
+    },
+    {
+      "name": "solenoid",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:name}}{${2:length%plain}}[${3:thickness}]"
+      }
+    },
+    {
+      "name": "beamdump",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:length%plain}}"
+      }
+    },
+    {
+      "name": "beamdump",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:name}}{${2:length%plain}}[${3:thickness}]"
+      }
+    },
+    {
+      "name": "source",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:length%plain}}"
+      }
+    },
+    {
+      "name": "source",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:name}}{${2:length%plain}}[${3:thickness}]"
+      }
+    },
+    {
+      "name": "screen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "screen",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name}}[${2:length%plain}]"
+      }
+    },
+    {
+      "name": "valve",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "valve",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name}}[${2:length%plain}]"
+      }
+    },
+    {
+      "name": "marker",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "marker",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name}}[${2:length%plain}]"
+      }
+    },
+    {
+      "name": "start",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:coordinate}}"
+      }
+    },
+    {
+      "name": "rotate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:degrees}}"
+      }
+    },
+    {
+      "name": "setangle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:degrees}}"
+      }
+    },
+    {
+      "name": "goto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:coordinate}}"
+      }
+    },
+    {
+      "name": "drawrule",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:coordinate}}"
+      }
+    },
+    {
+      "name": "drawrule",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:coordinate}}[${2:tick distance}]"
+      }
+    },
+    {
+      "name": "drawrule",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:coordinate}}[${2:tick distance}][${3:scale}]"
+      }
+    },
+    {
+      "name": "drawrule",
+      "arg": {
+        "format": "{}[][][]",
+        "snippet": "{${1:coordinate}}[${2:tick distance}][${3:scale}][${4:height%plain}]"
+      }
+    },
+    {
+      "name": "legend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:coordinate}}"
+      }
+    },
+    {
+      "name": "legend",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:coordinate}}[${2:scale}]"
+      }
+    },
+    {
+      "name": "completelegend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:coordinate}}"
+      }
+    },
+    {
+      "name": "completelegend",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:coordinate}}[${2:scale}]"
+      }
+    },
+    {
+      "name": "setlegendtext",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type%keyvals}}{${2:text}}",
+        "keys": [
+          "\\setlegendtext#c,\\setlinecolor#c,\\resetlinecolor#c,\\setelementcolor#c,\\resetelementcolor#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addlegendentry",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:TikZ options}}"
+      }
+    },
+    {
+      "name": "turnlabels"
+    },
+    {
+      "name": "northlabels"
+    },
+    {
+      "name": "southlabels"
+    },
+    {
+      "name": "rotatelabels",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:degrees}}"
+      }
+    },
+    {
+      "name": "rotatelabels",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:degrees}}[${2:anchor}]"
+      }
+    },
+    {
+      "name": "setlabeldistance",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:distance}}"
+      }
+    },
+    {
+      "name": "resetlabeldistance"
+    },
+    {
+      "name": "setlabelfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:fontsize cmd}}"
+      }
+    },
+    {
+      "name": "setlinecolor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type%keyvals}}{${2:color}}",
+        "keys": [
+          "\\setlegendtext#c,\\setlinecolor#c,\\resetlinecolor#c,\\setelementcolor#c,\\resetelementcolor#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "resetlinecolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type%keyvals}}",
+        "keys": [
+          "\\setlegendtext#c,\\setlinecolor#c,\\resetlinecolor#c,\\setelementcolor#c,\\resetelementcolor#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setelementcolor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type%keyvals}}{${2:color}}",
+        "keys": [
+          "\\setlegendtext#c,\\setlinecolor#c,\\resetlinecolor#c,\\setelementcolor#c,\\resetelementcolor#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "resetelementcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type%keyvals}}",
+        "keys": [
+          "\\setlegendtext#c,\\setlinecolor#c,\\resetlinecolor#c,\\setelementcolor#c,\\resetelementcolor#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setlabelcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "savecoordinate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "savecoordinate",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name}}[${2:position}]"
+      }
+    },
+    {
+      "name": "angleinc",
+      "unusual": true
+    },
+    {
+      "name": "corners",
+      "unusual": true
+    },
+    {
+      "name": "declarecoords",
+      "unusual": true
+    },
+    {
+      "name": "elementheight",
+      "unusual": true
+    },
+    {
+      "name": "elementlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "elementwidth",
+      "unusual": true
+    },
+    {
+      "name": "emptycustomlegendkeys",
+      "unusual": true
+    },
+    {
+      "name": "iinc",
+      "unusual": true
+    },
+    {
+      "name": "jinc",
+      "unusual": true
+    },
+    {
+      "name": "labelanchor",
+      "unusual": true
+    },
+    {
+      "name": "labelang",
+      "unusual": true
+    },
+    {
+      "name": "labelcolor",
+      "unusual": true
+    },
+    {
+      "name": "labeldist",
+      "unusual": true
+    },
+    {
+      "name": "labelfont",
+      "unusual": true
+    },
+    {
+      "name": "labelrot",
+      "unusual": true
+    },
+    {
+      "name": "markerlen",
+      "unusual": true
+    },
+    {
+      "name": "marklabelang",
+      "unusual": true
+    },
+    {
+      "name": "rectangleelement",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:name}}{${2:length%plain}}{${3:thickness}}{${4:type}}"
+      }
+    },
+    {
+      "name": "savelabeldist",
+      "unusual": true
+    },
+    {
+      "name": "scal",
+      "unusual": true
+    },
+    {
+      "name": "updatelabelanchor",
+      "unusual": true
+    },
+    {
+      "name": "updatemarkerlabelanchor",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "lattice"
+    },
+    {
+      "name": "lattice",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:scale}]"
+      }
+    },
+    {
+      "name": "lattice",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:scale}][${2:TikZ options}]"
+      }
+    },
+    {
+      "name": "labeldistance",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:distance}}"
+      }
+    },
+    {
+      "name": "fade"
+    },
+    {
+      "name": "fade",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:opacity}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\dipole": [
+      "s",
+      "r",
+      "br"
+    ],
+    "\\setlegendtext#c,\\setlinecolor#c,\\resetlinecolor#c,\\setelementcolor#c,\\resetelementcolor#c": [
+      "dipole",
+      "quadrupole",
+      "sextupole",
+      "kicker",
+      "corrector",
+      "solenoid",
+      "cavity",
+      "source",
+      "screen",
+      "valve"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

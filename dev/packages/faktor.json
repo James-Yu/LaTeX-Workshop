@@ -1,14 +1,23 @@
 {
-  "includes": {},
-  "macros": {
-    "faktor{}{}": {
-      "snippet": "faktor{${1:left expr}}{${2:right expr}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "faktor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left expr}}{${2:right expr}}"
+      }
     },
-    "faktor[]{}{}": {
-      "snippet": "faktor[${3:stylecmd}]{${1:left expr}}{${2:right expr}}"
+    {
+      "name": "faktor",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:stylecmd}]{${1:left expr}}{${2:right expr}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

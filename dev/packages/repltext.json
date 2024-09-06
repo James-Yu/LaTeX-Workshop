@@ -1,15 +1,25 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "graphicx": []
-  },
-  "macros": {
-    "repltext{}{}": {
-      "snippet": "repltext{${1:replacement text}}{${2:general text}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "prevrepl": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "graphicx"
+    }
+  ],
+  "macros": [
+    {
+      "name": "repltext",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:replacement text%text}}{${2:general text%text}}"
+      }
+    },
+    {
+      "name": "prevrepl"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

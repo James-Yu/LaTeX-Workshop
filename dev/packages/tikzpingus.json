@@ -1,69 +1,103 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "tikz": [],
-    "tikzlibraryintersections": [],
-    "tikzlibraryshadings": [],
-    "tikzlibrarypatterns.meta": [],
-    "tikzlibrarydecorations.pathmorphing": [],
-    "tikzlibraryshapes.symbols": [],
-    "tikzlibraryshapes.geometric": [],
-    "tikzlibraryfadings": [
-      "glows"
-    ]
-  },
-  "macros": {
-    "pingu": {},
-    "pingu[]": {
-      "snippet": "pingu[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "pingudefaults{}": {
-      "snippet": "pingudefaults{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     },
-    "pingudefaultsappend{}": {
-      "snippet": "pingudefaultsappend{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryintersections"
     },
-    "pinguloadlibrary{}": {
-      "snippet": "pinguloadlibrary{${1:library1,${2:library2},...}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryshadings"
     },
-    "pinguloadlibraries{}": {
-      "snippet": "pinguloadlibraries{${1:library1,${2:library2},...}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarypatterns.meta"
     },
-    "basew": {},
-    "basicfeetbend": {},
-    "eyebaseang": {},
-    "pengu[]": {
-      "snippet": "pengu[${1:options}]"
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
     },
-    "pinguanglehl": {},
-    "pinguanglehr": {},
-    "pingulightsaberfactor": {},
-    "pingupathxbowtieknot": {},
-    "pingupathxbowtieleft": {},
-    "pingupathxbowtieright": {},
-    "pingupathxtie": {},
-    "pingupathxtieknot": {},
-    "pingupathwitchhatupper": {},
-    "pingulibpathprefix": {}
-  },
-  "envs": {},
-  "options": [
-    "glows",
-    "manual-layers",
-    "bare"
+    {
+      "name": "tikzlibraryshapes.symbols"
+    },
+    {
+      "name": "tikzlibraryshapes.geometric"
+    },
+    {
+      "name": "tikzlibraryfadings",
+      "if": "glows"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "pingu"
+    },
+    {
+      "name": "pingu",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\pingu#c,\\pingudefaults#c,\\pingudefaultsappend#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pingudefaults",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pingu#c,\\pingudefaults#c,\\pingudefaultsappend#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pingudefaultsappend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pingu#c,\\pingudefaults#c,\\pingudefaultsappend#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pinguloadlibrary",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:library1,library2,...%keyvals}}",
+        "keys": [
+          "\\pinguloadlibrary#c,\\pinguloadlibraries#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pinguloadlibraries",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:library1,library2,...%keyvals}}",
+        "keys": [
+          "\\pinguloadlibrary#c,\\pinguloadlibraries#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tikzpingus#c": [
+      "glows",
+      "manual-layers",
+      "bare"
+    ],
+    "\\pingu#c,\\pingudefaults#c,\\pingudefaultsappend#c": [
       "random from={{${1:keyvals1}}{${2:keyvals2}}${3:...}}",
       "name=${1:text}",
       "scale=${1:factor}",
@@ -878,7 +912,7 @@
       "xshift=",
       "yshift="
     ],
-    [
+    "\\pinguloadlibrary#c,\\pinguloadlibraries#c": [
       "shirts",
       "glasses",
       "medieval",
@@ -899,5 +933,8 @@
       "emotions",
       "horse"
     ]
+  },
+  "args": [
+    "\\usepackage/tikzpingus#c"
   ]
 }

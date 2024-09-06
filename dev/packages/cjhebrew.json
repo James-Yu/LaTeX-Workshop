@@ -1,33 +1,61 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "luabidi": []
-  },
-  "macros": {
-    "<": {
-      "detail": "<",
-      "documentation": "LESS-THAN SIGN r:"
+  "deps": [
+    {
+      "name": "ifluatex"
     },
-    "cjhebfamily": {},
-    "cjLR{}": {
-      "snippet": "cjLR{${1:text}}"
+    {
+      "name": "luabidi"
+    }
+  ],
+  "macros": [
+    {
+      "name": "<",
+      "unusual": true
     },
-    "cjRL{}": {
-      "snippet": "cjRL{${1:text}}"
+    {
+      "name": "cjhebfamily",
+      "unusual": true
     },
-    "dottedcircle": {
+    {
+      "name": "cjLR",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "cjRL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "dottedcircle",
       "detail": "◌",
-      "documentation": "DOTTED CIRCLE"
+      "doc": "Dotted circle"
     },
-    "endofword": {},
-    "textcjheb{}": {
-      "snippet": "textcjheb{${1:text}}"
+    {
+      "name": "endofword",
+      "unusual": true
     },
-    "zeronojoin": {}
-  },
-  "envs": {
-    "cjhebrew": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "textcjheb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zeronojoin",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "cjhebrew"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

@@ -1,109 +1,345 @@
 {
-  "includes": {
-    "amsmath": [],
-    "euscript": [],
-    "graphicx": []
-  },
-  "macros": {
-    "supp": {},
-    "bsup": {},
-    "plainsupp": {},
-    "plainbsup": {},
-    "ssup": {},
-    "sbsup": {},
-    "csup": {
-      "detail": "⫐",
-      "documentation": "CLOSED SUPERSET"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "bcsup": {},
-    "scsup": {},
-    "sbcsup": {},
-    "dsup": {},
-    "bdsup": {},
-    "sdsup": {},
-    "sbdsup": {},
-    "esup": {},
-    "besup": {},
-    "sesup": {},
-    "sbesup": {},
-    "tsup": {},
-    "btsup": {},
-    "stsup": {},
-    "sbtsup": {},
-    "vsup": {},
-    "bvsup": {},
-    "svsup": {},
-    "sbvsup": {},
-    "mathbfcal{}": {
-      "snippet": "mathbfcal{${1:letters}}"
+    {
+      "name": "euscript"
     },
-    "mathdutchcal{}": {
-      "snippet": "mathdutchcal{${1:letters}}"
-    },
-    "mathdutchbfcal{}": {
-      "snippet": "mathdutchbfcal{${1:letters}}"
-    },
-    "itt{}": {
-      "snippet": "itt{${1:letters}}"
-    },
-    "sansserif{}": {
-      "snippet": "sansserif{${1:letters}}"
-    },
-    "bfeuscript{}": {
-      "snippet": "bfeuscript{${1:letters}}"
-    },
-    "bfsansserif{}": {
-      "snippet": "bfsansserif{${1:letters}}"
-    },
-    "bolditt{}": {
-      "snippet": "bolditt{${1:letters}}"
-    },
-    "Swidth": {},
-    "bcshift": {},
-    "bdshift": {},
-    "beshift": {},
-    "boldrulelength": {},
-    "boldrulewidth": {},
-    "bplainshift": {},
-    "bshift": {},
-    "btshift": {},
-    "bvshift": {},
-    "cshift": {},
-    "curboldfont": {},
-    "curfont": {},
-    "dshift": {},
-    "eshift": {},
-    "hardsvshift": {},
-    "hardvshift": {},
-    "plainshift": {},
-    "rulelength": {},
-    "rulewidth": {},
-    "sbcshift": {},
-    "sbdshift": {},
-    "sbeshift": {},
-    "sbshift": {},
-    "sbtshift": {},
-    "sbvshift": {},
-    "scshift": {},
-    "sdshift": {},
-    "seshift": {},
-    "shift": {},
-    "sshift": {},
-    "stshift": {},
-    "svshift": {},
-    "theangle": {},
-    "theslantselected": {},
-    "tshift": {},
-    "vshift": {}
-  },
-  "envs": {},
-  "options": [
-    "mathcal",
-    "dutchcal",
-    "eulerscript",
-    "tt",
-    "sans-serif",
-    "slant"
+    {
+      "name": "graphicx"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "supp"
+    },
+    {
+      "name": "bsup"
+    },
+    {
+      "name": "plainsupp",
+      "unusual": true
+    },
+    {
+      "name": "plainbsup",
+      "unusual": true
+    },
+    {
+      "name": "ssup",
+      "unusual": true
+    },
+    {
+      "name": "sbsup",
+      "unusual": true
+    },
+    {
+      "name": "csup",
+      "unusual": true,
+      "detail": "⫐",
+      "doc": "Closed superset"
+    },
+    {
+      "name": "bcsup",
+      "unusual": true
+    },
+    {
+      "name": "scsup",
+      "unusual": true
+    },
+    {
+      "name": "sbcsup",
+      "unusual": true
+    },
+    {
+      "name": "dsup",
+      "unusual": true
+    },
+    {
+      "name": "bdsup",
+      "unusual": true
+    },
+    {
+      "name": "sdsup",
+      "unusual": true
+    },
+    {
+      "name": "sbdsup",
+      "unusual": true
+    },
+    {
+      "name": "esup",
+      "unusual": true
+    },
+    {
+      "name": "besup",
+      "unusual": true
+    },
+    {
+      "name": "sesup",
+      "unusual": true
+    },
+    {
+      "name": "sbesup",
+      "unusual": true
+    },
+    {
+      "name": "tsup",
+      "unusual": true
+    },
+    {
+      "name": "btsup",
+      "unusual": true
+    },
+    {
+      "name": "stsup",
+      "unusual": true
+    },
+    {
+      "name": "sbtsup",
+      "unusual": true
+    },
+    {
+      "name": "vsup",
+      "unusual": true
+    },
+    {
+      "name": "bvsup",
+      "unusual": true
+    },
+    {
+      "name": "svsup",
+      "unusual": true
+    },
+    {
+      "name": "sbvsup",
+      "unusual": true
+    },
+    {
+      "name": "mathbfcal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letters}}"
+      }
+    },
+    {
+      "name": "mathdutchcal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letters}}"
+      }
+    },
+    {
+      "name": "mathdutchbfcal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letters}}"
+      }
+    },
+    {
+      "name": "itt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letters}}"
+      }
+    },
+    {
+      "name": "sansserif",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letters}}"
+      }
+    },
+    {
+      "name": "bfeuscript",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letters}}"
+      }
+    },
+    {
+      "name": "bfsansserif",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letters}}"
+      }
+    },
+    {
+      "name": "bolditt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letters}}"
+      }
+    },
+    {
+      "name": "Swidth",
+      "unusual": true
+    },
+    {
+      "name": "bcshift",
+      "unusual": true
+    },
+    {
+      "name": "bdshift",
+      "unusual": true
+    },
+    {
+      "name": "beshift",
+      "unusual": true
+    },
+    {
+      "name": "boldrulelength",
+      "unusual": true
+    },
+    {
+      "name": "boldrulewidth",
+      "unusual": true
+    },
+    {
+      "name": "bplainshift",
+      "unusual": true
+    },
+    {
+      "name": "bshift",
+      "unusual": true
+    },
+    {
+      "name": "btshift",
+      "unusual": true
+    },
+    {
+      "name": "bvshift",
+      "unusual": true
+    },
+    {
+      "name": "cshift",
+      "unusual": true
+    },
+    {
+      "name": "curboldfont",
+      "unusual": true
+    },
+    {
+      "name": "curfont",
+      "unusual": true
+    },
+    {
+      "name": "dshift",
+      "unusual": true
+    },
+    {
+      "name": "eshift",
+      "unusual": true
+    },
+    {
+      "name": "hardsvshift",
+      "unusual": true
+    },
+    {
+      "name": "hardvshift",
+      "unusual": true
+    },
+    {
+      "name": "plainshift",
+      "unusual": true
+    },
+    {
+      "name": "rulelength",
+      "unusual": true
+    },
+    {
+      "name": "rulewidth",
+      "unusual": true
+    },
+    {
+      "name": "sbcshift",
+      "unusual": true
+    },
+    {
+      "name": "sbdshift",
+      "unusual": true
+    },
+    {
+      "name": "sbeshift",
+      "unusual": true
+    },
+    {
+      "name": "sbshift",
+      "unusual": true
+    },
+    {
+      "name": "sbtshift",
+      "unusual": true
+    },
+    {
+      "name": "sbvshift",
+      "unusual": true
+    },
+    {
+      "name": "scshift",
+      "unusual": true
+    },
+    {
+      "name": "sdshift",
+      "unusual": true
+    },
+    {
+      "name": "seshift",
+      "unusual": true
+    },
+    {
+      "name": "shift",
+      "unusual": true
+    },
+    {
+      "name": "sshift",
+      "unusual": true
+    },
+    {
+      "name": "stshift",
+      "unusual": true
+    },
+    {
+      "name": "svshift",
+      "unusual": true
+    },
+    {
+      "name": "theangle",
+      "unusual": true
+    },
+    {
+      "name": "theslantselected",
+      "unusual": true
+    },
+    {
+      "name": "tshift",
+      "unusual": true
+    },
+    {
+      "name": "vshift",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/suppose#c": [
+      "mathcal",
+      "dutchcal",
+      "eulerscript",
+      "tt",
+      "sans-serif",
+      "slant"
+    ]
+  },
+  "args": [
+    "\\usepackage/suppose#c"
+  ]
 }

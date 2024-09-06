@@ -1,28 +1,67 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "comment": []
-  },
-  "macros": {
-    "rendition{}": {
-      "snippet": "rendition{${1:number}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "thisrendition": {}
-  },
-  "envs": {
-    "rendition1": {},
-    "rendition2": {},
-    "rendition3": {},
-    "rendition4": {},
-    "rendition5": {},
-    "rendition6": {},
-    "rendition7": {},
-    "rendition8": {},
-    "rendition9": {}
-  },
-  "options": [
-    "max=${1:number}",
-    "rendition=${1:number}"
+    {
+      "name": "comment"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "rendition",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "thisrendition",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "rendition1"
+    },
+    {
+      "name": "rendition2"
+    },
+    {
+      "name": "rendition3"
+    },
+    {
+      "name": "rendition4",
+      "unusual": true
+    },
+    {
+      "name": "rendition5",
+      "unusual": true
+    },
+    {
+      "name": "rendition6",
+      "unusual": true
+    },
+    {
+      "name": "rendition7",
+      "unusual": true
+    },
+    {
+      "name": "rendition8",
+      "unusual": true
+    },
+    {
+      "name": "rendition9",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/renditions#c": [
+      "max=${1:number}",
+      "rendition=${1:number}"
+    ]
+  },
+  "args": [
+    "\\usepackage/renditions#c"
+  ]
 }

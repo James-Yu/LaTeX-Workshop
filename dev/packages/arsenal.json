@@ -1,31 +1,63 @@
 {
-  "includes": {
-    "fontspec": [],
-    "iwonamath": [],
-    "kpfonts-otf": [
-      "math=arsenal+kpsans",
-      "math=kpsans"
+  "deps": [
+    {
+      "name": "fontspec"
+    },
+    {
+      "name": "iwonamath"
+    },
+    {
+      "name": "kpfonts-otf",
+      "if": "math=arsenal+kpsans"
+    },
+    {
+      "name": "kpfonts-otf",
+      "if": "math=kpsans"
+    }
+  ],
+  "macros": [
+    {
+      "name": "arsenalfamily"
+    },
+    {
+      "name": "textarsenal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texthryvnia"
+    },
+    {
+      "name": "texttugrik"
+    },
+    {
+      "name": "texttenge"
+    },
+    {
+      "name": "textruble"
+    },
+    {
+      "name": "textaldine"
+    },
+    {
+      "name": "textsmilewhite"
+    },
+    {
+      "name": "textsmileblack"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/arsenal#c": [
+      "default",
+      "sfdefault",
+      "math=${1|none,arsenal+kpsans,kpsans,iwona|}",
+      "scale=${1:factor}"
     ]
   },
-  "macros": {
-    "arsenalfamily": {},
-    "textarsenal{}": {
-      "snippet": "textarsenal{${1:text}}"
-    },
-    "texthryvnia": {},
-    "texttugrik": {},
-    "texttenge": {},
-    "textruble": {},
-    "textaldine": {},
-    "textsmilewhite": {},
-    "textsmileblack": {}
-  },
-  "envs": {},
-  "options": [
-    "default",
-    "sfdefault",
-    "math=${1|none,arsenal+kpsans,kpsans,iwona|}",
-    "scale=${1:factor}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/arsenal#c"
+  ]
 }

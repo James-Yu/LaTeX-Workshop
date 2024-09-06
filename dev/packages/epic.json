@@ -1,80 +1,137 @@
 {
-  "includes": {},
-  "macros": {
-    "multiputlist()(){}": {
-      "snippet": "multiputlist(${2:x},${3:y})(${4:Δx},${5:Δy}){${1:item1,${6:item2},...}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "multiputlist",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:x},${3:y})(${4:Δx},${5:Δy}){${1:item1,item2,...}}"
+      }
     },
-    "multiputlist()()[]{}": {
-      "snippet": "multiputlist(${3:x},${4:y})(${5:Δx},${6:Δy})[${2:pos}]{${1:item1,${7:item2},...}}"
+    {
+      "name": "multiputlist",
+      "arg": {
+        "format": "()()[]{}",
+        "snippet": "(${3:x},${4:y})(${5:Δx},${6:Δy})[${2:pos}]{${1:item1,item2,...}}"
+      }
     },
-    "to{}": {
-      "snippet": "to{${1:arg}}"
+    {
+      "name": "lopoff",
+      "unusual": true
     },
-    "lopoff": {},
-    "matrixput()(){}(){}{}": {
-      "snippet": "matrixput(${4:x},${5:y})(${6:Δx1},${7:Δy1}){${1:n1}}(${8:Δx2},${9:Δy2}){${2:n2}}{${3:object}}"
+    {
+      "name": "matrixput",
+      "arg": {
+        "format": "()(){}(){}{}",
+        "snippet": "(${4:x},${5:y})(${6:Δx1},${7:Δy1}){${1:n1}}(${8:Δx2},${9:Δy2}){${2:n2}}{${3:object}}"
+      }
     },
-    "grid()()": {
-      "snippet": "grid(${1:width},${2:height})(${3:Δwidth},${4:Δheight})"
+    {
+      "name": "grid",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:width},${2:height})(${3:Δwidth},${4:Δheight})"
+      }
     },
-    "grid()()[]": {
-      "snippet": "grid(${2:width},${3:height})(${4:Δwidth},${5:Δheight})[${1:x0,y0}]"
+    {
+      "name": "grid",
+      "arg": {
+        "format": "()()[]",
+        "snippet": "(${2:width},${3:height})(${4:Δwidth},${5:Δheight})[${1:x0,y0}]"
+      }
     },
-    "dashlinestretch": {},
-    "drawlinestretch": {},
-    "lineslope": {},
-    "jput(){}": {
-      "snippet": "jput(${2:x},${3:y}){${1:object}}"
+    {
+      "name": "dashlinestretch",
+      "unusual": true
     },
-    "picsquare": {},
-    "putfile{}{}": {
-      "snippet": "putfile{${1:file}}{${2:object}}"
+    {
+      "name": "drawlinestretch",
+      "unusual": true
     },
-    "sqrtandstuff{}{}{}": {
-      "snippet": "sqrtandstuff{${1:Δx}}{${2:Δy}}{${3:dotgap}}"
+    {
+      "name": "lineslope",
+      "unusual": true
     },
-    "dashjoin": {},
-    "dottedjoin": {},
-    "drawjoin": {},
-    "enddashjoin": {},
-    "enddottedjoin": {},
-    "enddrawjoin": {},
-    "splittwoargs": {},
-    "iflistnonempty": {},
-    "listnonemptytrue": {},
-    "listnonemptyfalse": {}
-  },
-  "envs": {
-    "dottedjoin{}": {
-      "name": "dottedjoin",
-      "snippet": "{${1:dotgap}}"
+    {
+      "name": "jput",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:object}}"
+      }
     },
-    "dottedjoin[]{}": {
-      "name": "dottedjoin",
-      "snippet": "[${2:character}]{${1:dotgap}}"
+    {
+      "name": "picsquare"
     },
-    "dashjoin{}": {
-      "name": "dashjoin",
-      "snippet": "{${1:dashlength}}"
+    {
+      "name": "putfile",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file}}{${2:object}}"
+      }
     },
-    "dashjoin{}[]": {
-      "name": "dashjoin",
-      "snippet": "{${1:dashlength}}[${2:dashgap}]"
-    },
-    "dashjoin[]{}": {
-      "name": "dashjoin",
-      "snippet": "[${2:stretch}]{${1:dashlength}}"
-    },
-    "dashjoin[]{}[]": {
-      "name": "dashjoin",
-      "snippet": "[${2:stretch}]{${1:dashlength}}[${3:dashgap}]"
-    },
-    "drawjoin": {},
-    "drawjoin[]": {
-      "name": "drawjoin",
-      "snippet": "[${1:stretch}]"
+    {
+      "name": "sqrtandstuff",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:Δx}}{${2:Δy}}{${3:dotgap}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "dottedjoin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dotgap}}"
+      }
+    },
+    {
+      "name": "dottedjoin",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:character}]{${1:dotgap}}"
+      }
+    },
+    {
+      "name": "dashjoin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dashlength}}"
+      }
+    },
+    {
+      "name": "dashjoin",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:dashlength}}[${2:dashgap}]"
+      }
+    },
+    {
+      "name": "dashjoin",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:stretch}]{${1:dashlength}}"
+      }
+    },
+    {
+      "name": "dashjoin",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:stretch}]{${1:dashlength}}[${3:dashgap}]"
+      }
+    },
+    {
+      "name": "drawjoin"
+    },
+    {
+      "name": "drawjoin",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:stretch}]"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

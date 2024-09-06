@@ -1,98 +1,270 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "multicol": [],
-    "keyval": [],
-    "fontenc": [],
-    "ltxdockit": [],
-    "hyperref": [],
-    "hypcap": [],
-    "class-scrartcl": [],
-    "lmodern": [],
-    "helvet": [],
-    "charter": []
-  },
-  "macros": {
-    "fnurl{}": {
-      "snippet": "fnurl{${1:URL}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "fnurl[]{}": {
-      "snippet": "fnurl[${2:prefix}]{${1:URL}}"
+    {
+      "name": "multicol"
     },
-    "email{}": {
-      "snippet": "email{${1:email}}"
+    {
+      "name": "keyval"
     },
-    "titlefont": {},
-    "titlepage{}": {
-      "snippet": "titlepage{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "fontenc"
     },
-    "printtitlepage": {},
-    "rcsfile": {},
-    "rcsrevision": {},
-    "rcsdate": {},
-    "rcstime": {},
-    "rcsstate": {},
-    "rcsauthor": {},
-    "rcslocker": {},
-    "rcstoday": {},
-    "rcsid{}": {
-      "snippet": "rcsid{${1:arg}}"
+    {
+      "name": "ltxdockit"
     },
-    "AtBeginToc": {},
-    "AtEndToc": {},
-    "AtBeginLot": {},
-    "AtEndLot": {},
-    "tex": {},
-    "etex": {},
-    "pdftex": {},
-    "xetex": {},
-    "luatex": {},
-    "latex": {},
-    "pdflatex": {},
-    "xelatex": {},
-    "lualatex": {},
-    "bibtex": {},
-    "lppl": {},
-    "pdf": {},
-    "utf": {},
-    "ie": {},
-    "eg": {},
-    "tablesetup": {},
-    "textln{}": {
-      "snippet": "textln{${1:text}}"
+    {
+      "name": "hyperref"
     },
-    "DH": {},
-    "NG": {},
-    "dj": {},
-    "ng": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
+    {
+      "name": "hypcap"
     },
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textquotedbl": {},
-    "DJ": {},
-    "th": {},
-    "TH": {},
-    "dh": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
+    {
+      "name": "class-scrartcl"
     },
-    "guillemetleft": {},
-    "guillemetright": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "lmodern"
+    },
+    {
+      "name": "helvet"
+    },
+    {
+      "name": "charter"
+    }
+  ],
+  "macros": [
+    {
+      "name": "fnurl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "fnurl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix}]{${1:URL}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "titlefont",
+      "unusual": true
+    },
+    {
+      "name": "titlepage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\titlepage"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "printtitlepage"
+    },
+    {
+      "name": "rcsfile",
+      "unusual": true
+    },
+    {
+      "name": "rcsrevision",
+      "unusual": true
+    },
+    {
+      "name": "rcsdate",
+      "unusual": true
+    },
+    {
+      "name": "rcstime",
+      "unusual": true
+    },
+    {
+      "name": "rcsstate",
+      "unusual": true
+    },
+    {
+      "name": "rcsauthor",
+      "unusual": true
+    },
+    {
+      "name": "rcslocker",
+      "unusual": true
+    },
+    {
+      "name": "rcstoday",
+      "unusual": true
+    },
+    {
+      "name": "rcsid",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "AtBeginToc",
+      "unusual": true
+    },
+    {
+      "name": "AtEndToc",
+      "unusual": true
+    },
+    {
+      "name": "AtBeginLot",
+      "unusual": true
+    },
+    {
+      "name": "AtEndLot",
+      "unusual": true
+    },
+    {
+      "name": "tex"
+    },
+    {
+      "name": "etex"
+    },
+    {
+      "name": "pdftex"
+    },
+    {
+      "name": "xetex"
+    },
+    {
+      "name": "luatex"
+    },
+    {
+      "name": "latex"
+    },
+    {
+      "name": "pdflatex"
+    },
+    {
+      "name": "xelatex"
+    },
+    {
+      "name": "lualatex"
+    },
+    {
+      "name": "bibtex"
+    },
+    {
+      "name": "lppl"
+    },
+    {
+      "name": "pdf"
+    },
+    {
+      "name": "utf"
+    },
+    {
+      "name": "ie"
+    },
+    {
+      "name": "eg"
+    },
+    {
+      "name": "tablesetup"
+    },
+    {
+      "name": "textln",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\titlepage": [
       "title=",
       "subtitle=",
       "url=",
@@ -101,5 +273,6 @@
       "revision=",
       "date="
     ]
-  ]
+  },
+  "args": []
 }

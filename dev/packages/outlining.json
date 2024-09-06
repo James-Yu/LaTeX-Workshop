@@ -1,27 +1,53 @@
 {
-  "includes": {
-    "todonotes": []
-  },
-  "macros": {
-    "outlineTopics": {},
-    "outlineTopicsMajors": {},
-    "outlineTopicsMajorsMinors": {},
-    "topic{}": {
-      "snippet": "topic{${1:text}}"
-    },
-    "major{}": {
-      "snippet": "major{${1:text}}"
-    },
-    "minor{}": {
-      "snippet": "minor{${1:text}}"
-    },
-    "listOutline": {}
-  },
-  "envs": {},
-  "options": [
-    "disable",
-    "outlineatbegin",
-    "outlineatend"
+  "deps": [
+    {
+      "name": "todonotes"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "outlineTopics"
+    },
+    {
+      "name": "outlineTopicsMajors"
+    },
+    {
+      "name": "outlineTopicsMajorsMinors"
+    },
+    {
+      "name": "topic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%todo}}"
+      }
+    },
+    {
+      "name": "major",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%todo}}"
+      }
+    },
+    {
+      "name": "minor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%todo}}"
+      }
+    },
+    {
+      "name": "listOutline"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/outlining#c": [
+      "disable",
+      "outlineatbegin",
+      "outlineatend"
+    ]
+  },
+  "args": [
+    "\\usepackage/outlining#c"
+  ]
 }

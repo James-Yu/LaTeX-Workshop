@@ -1,50 +1,121 @@
 {
-  "includes": {
-    "ifthen": [],
-    "pxfonts": []
-  },
-  "macros": {
-    "scslshape": {},
-    "uishape": {},
-    "textgreek{}": {
-      "snippet": "textgreek{${1:text}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "textui{}": {
-      "snippet": "textui{${1:text}}"
-    },
-    "textscsl{}": {
-      "snippet": "textscsl{${1:text}}"
-    },
-    "tabnums{}": {
-      "snippet": "tabnums{${1:text}}"
-    },
-    "textfrac{}{}": {
-      "snippet": "textfrac{${1:upper}}{${2:lower}}"
-    },
-    "textparagraphalt": {},
-    "careof": {},
-    "numero": {},
-    "estimated": {},
-    "whitebullet": {},
-    "textlozenge": {},
-    "eurocurrency": {},
-    "interrobang": {},
-    "yencurrency": {},
-    "onehalf": {},
-    "onethird": {},
-    "twothirds": {},
-    "lambdadbl": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
+    {
+      "name": "pxfonts"
     }
-  },
-  "envs": {},
-  "options": [
-    "noGFSDidotTS1"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "scslshape"
+    },
+    {
+      "name": "uishape"
+    },
+    {
+      "name": "textgreek",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "textui",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textscsl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tabnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:upper}}{${2:lower}}"
+      }
+    },
+    {
+      "name": "textparagraphalt"
+    },
+    {
+      "name": "careof"
+    },
+    {
+      "name": "numero"
+    },
+    {
+      "name": "estimated"
+    },
+    {
+      "name": "whitebullet"
+    },
+    {
+      "name": "textlozenge"
+    },
+    {
+      "name": "eurocurrency"
+    },
+    {
+      "name": "interrobang"
+    },
+    {
+      "name": "yencurrency"
+    },
+    {
+      "name": "onehalf"
+    },
+    {
+      "name": "onethird"
+    },
+    {
+      "name": "twothirds"
+    },
+    {
+      "name": "lambdadbl",
+      "unusual": true
+    },
+    {
+      "name": "guillemotleft"
+    },
+    {
+      "name": "guillemotright"
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/gfsdidot#c": [
+      "noGFSDidotTS1"
+    ]
+  },
+  "args": [
+    "\\usepackage/gfsdidot#c"
+  ]
 }

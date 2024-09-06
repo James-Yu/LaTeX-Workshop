@@ -1,188 +1,481 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifpdf": [],
-    "amsgen": [],
-    "upref": [],
-    "amscip": [],
-    "graphicx": [],
-    "amsmath": [],
-    "xspace": [],
-    "amsthm": [],
-    "shaderef": [
-      "proofing"
-    ],
-    "mtpro2": [
-      "mathtimes"
-    ],
-    "stix2": [
-      "stix2"
+  "deps": [
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "amsgen"
+    },
+    {
+      "name": "upref"
+    },
+    {
+      "name": "amscip"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "xspace"
+    },
+    {
+      "name": "amsthm"
+    },
+    {
+      "name": "shaderef",
+      "if": "proofing"
+    },
+    {
+      "name": "mtpro2",
+      "if": "mathtimes"
+    },
+    {
+      "name": "stix2",
+      "if": "stix2"
+    }
+  ],
+  "macros": [
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "backmatter"
+    },
+    {
+      "name": "bibintro",
+      "unusual": true
+    },
+    {
+      "name": "bibliofont",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "bysame",
+      "unusual": true
+    },
+    {
+      "name": "calclayout",
+      "unusual": true
+    },
+    {
+      "name": "captionindent",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "chapterrunhead",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:number}}{${3:title}}"
+      }
+    },
+    {
+      "name": "citeform",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "copyrightholder",
+      "unusual": true
+    },
+    {
+      "name": "copyrightinfo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:year}}{${2:holder}}"
+      }
+    },
+    {
+      "name": "copyrightyear",
+      "unusual": true
+    },
+    {
+      "name": "dedicatory",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DOI",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:DOI}}"
+      }
+    },
+    {
+      "name": "evdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
+    },
+    {
+      "name": "forcehyphenbreak",
+      "unusual": true
+    },
+    {
+      "name": "forcelinebreak",
+      "unusual": true
+    },
+    {
+      "name": "frontmatter"
+    },
+    {
+      "name": "fullwidthdisplay",
+      "unusual": true
+    },
+    {
+      "name": "indexchap",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "indexintro",
+      "unusual": true
+    },
+    {
+      "name": "initMAAenummargins",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "keywordsname",
+      "unusual": true
+    },
+    {
+      "name": "larger",
+      "unusual": true
+    },
+    {
+      "name": "larger",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:value}]"
+      }
+    },
+    {
+      "name": "mainmatter"
+    },
+    {
+      "name": "makededication",
+      "unusual": true
+    },
+    {
+      "name": "makehalftitle",
+      "unusual": true
+    },
+    {
+      "name": "markleft",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lefthead%text}}"
+      }
+    },
+    {
+      "name": "maxcaptionwidth",
+      "unusual": true
+    },
+    {
+      "name": "MR",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:MR number}}"
+      }
+    },
+    {
+      "name": "MRhref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "nonbreakingspace",
+      "unusual": true
+    },
+    {
+      "name": "normalparindent",
+      "unusual": true
+    },
+    {
+      "name": "normaltopskip",
+      "unusual": true
+    },
+    {
+      "name": "partrunhead",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:number}}{${3:title}}"
+      }
+    },
+    {
+      "name": "printindex",
+      "unusual": true
+    },
+    {
+      "name": "sectionrunhead",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:number}}{${3:title}}"
+      }
+    },
+    {
+      "name": "see",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:page number}}"
+      }
+    },
+    {
+      "name": "seealso",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:page number}}"
+      }
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "seeonly",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:page number}}"
+      }
+    },
+    {
+      "name": "seeonlyname",
+      "unusual": true
+    },
+    {
+      "name": "seriesinfo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:publkey}}{${2:volumeid}}{${3:volumeno}}"
+      }
+    },
+    {
+      "name": "SMALL",
+      "unusual": true
+    },
+    {
+      "name": "Small",
+      "unusual": true
+    },
+    {
+      "name": "smaller",
+      "unusual": true
+    },
+    {
+      "name": "smaller",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:value}]"
+      }
+    },
+    {
+      "name": "subjclass",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:year}]{${1:text}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subjclassname",
+      "unusual": true
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "thechapter",
+      "unusual": true
+    },
+    {
+      "name": "Tiny",
+      "unusual": true
+    },
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:text}}"
+      }
+    },
+    {
+      "name": "tocappendix",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:epithet}}{${2:number}}{${3:topic}}"
+      }
+    },
+    {
+      "name": "tocchapter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:epithet}}{${2:number}}{${3:topic}}"
+      }
+    },
+    {
+      "name": "tochyphenbreak",
+      "unusual": true
+    },
+    {
+      "name": "toclinebreak",
+      "unusual": true
+    },
+    {
+      "name": "tocparagraph",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:epithet}}{${2:number}}{${3:topic}}"
+      }
+    },
+    {
+      "name": "tocpart",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:epithet}}{${2:number}}{${3:topic}}"
+      }
+    },
+    {
+      "name": "tocsection",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:epithet}}{${2:number}}{${3:topic}}"
+      }
+    },
+    {
+      "name": "tocsubparagraph",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:epithet}}{${2:number}}{${3:topic}}"
+      }
+    },
+    {
+      "name": "tocsubsection",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:epithet}}{${2:number}}{${3:topic}}"
+      }
+    },
+    {
+      "name": "tocsubsubsection",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:epithet}}{${2:number}}{${3:topic}}"
+      }
+    },
+    {
+      "name": "URL",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "URLhref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "xcb"
+    }
+  ],
+  "keys": {
+    "\\documentclass/maabook#c": [
+      "letterpaper",
+      "a4paper",
+      "5.5x8.5",
+      "6x9",
+      "7x10",
+      "draft",
+      "proofing",
+      "final",
+      "openright",
+      "openany",
+      "cmr",
+      "mathtimes",
+      "stix2",
+      "cambria",
+      "brill",
+      "10pt",
+      "11pt"
     ]
   },
-  "macros": {
-    "affiliation{}": {
-      "snippet": "affiliation{${1:arg}}"
-    },
-    "alsoname": {},
-    "backmatter": {},
-    "bibintro": {},
-    "bibliofont": {},
-    "bibname": {},
-    "bysame": {},
-    "calclayout": {},
-    "captionindent": {},
-    "chaptername": {},
-    "chapterrunhead{}{}{}": {
-      "snippet": "chapterrunhead{${1:name}}{${2:number}}{${3:title}}"
-    },
-    "citeform{}": {
-      "snippet": "citeform{${1:text}}"
-    },
-    "copyrightholder": {},
-    "copyrightinfo{}{}": {
-      "snippet": "copyrightinfo{${1:year}}{${2:holder}}"
-    },
-    "copyrightyear": {},
-    "dedicatory{}": {
-      "snippet": "dedicatory{${1:text}}"
-    },
-    "DOI{}": {
-      "snippet": "DOI{${1:DOI}}"
-    },
-    "evdef{}{}": {
-      "snippet": "evdef{${1:cmd}}{${2:def}}"
-    },
-    "forcehyphenbreak": {},
-    "forcelinebreak": {},
-    "frontmatter": {},
-    "fullwidthdisplay": {},
-    "indexchap{}": {
-      "snippet": "indexchap{${1:text}}"
-    },
-    "indexintro": {},
-    "initMAAenummargins{}{}{}{}": {
-      "snippet": "initMAAenummargins{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "keywords{}": {
-      "snippet": "keywords{${1:text}}"
-    },
-    "keywordsname": {},
-    "larger": {},
-    "larger[]": {
-      "snippet": "larger[${1:value}]"
-    },
-    "mainmatter": {},
-    "makededication": {},
-    "makehalftitle": {},
-    "markleft{}": {
-      "snippet": "markleft{${1:lefthead}}"
-    },
-    "maxcaptionwidth": {},
-    "MR{}": {
-      "snippet": "MR{${1:MR number}}"
-    },
-    "MRhref{}": {
-      "snippet": "MRhref{${1:arg}}"
-    },
-    "nonbreakingspace": {},
-    "normalparindent": {},
-    "normaltopskip": {},
-    "partrunhead{}{}{}": {
-      "snippet": "partrunhead{${1:name}}{${2:number}}{${3:title}}"
-    },
-    "printindex": {},
-    "sectionrunhead{}{}{}": {
-      "snippet": "sectionrunhead{${1:name}}{${2:number}}{${3:title}}"
-    },
-    "see{}{}": {
-      "snippet": "see{${1:text}}{${2:page number}}"
-    },
-    "seealso{}{}": {
-      "snippet": "seealso{${1:text}}{${2:page number}}"
-    },
-    "seename": {},
-    "seeonly{}{}": {
-      "snippet": "seeonly{${1:text}}{${2:page number}}"
-    },
-    "seeonlyname": {},
-    "seriesinfo{}{}{}": {
-      "snippet": "seriesinfo{${1:publkey}}{${2:volumeid}}{${3:volumeno}}"
-    },
-    "SMALL": {},
-    "Small": {},
-    "smaller": {},
-    "smaller[]": {
-      "snippet": "smaller[${1:value}]"
-    },
-    "subjclass[]{}": {
-      "snippet": "subjclass[${2:year}]{${1:text}}"
-    },
-    "subjclass{}": {
-      "snippet": "subjclass{${1:text}}"
-    },
-    "subjclassname": {},
-    "subtitle{}": {
-      "snippet": "subtitle{${1:text}}"
-    },
-    "thechapter": {},
-    "Tiny": {},
-    "title[]{}": {
-      "snippet": "title[${2:short title}]{${1:text}}"
-    },
-    "tocappendix{}{}{}": {
-      "snippet": "tocappendix{${1:epithet}}{${2:number}}{${3:topic}}"
-    },
-    "tocchapter{}{}{}": {
-      "snippet": "tocchapter{${1:epithet}}{${2:number}}{${3:topic}}"
-    },
-    "tochyphenbreak": {},
-    "toclinebreak": {},
-    "tocparagraph{}{}{}": {
-      "snippet": "tocparagraph{${1:epithet}}{${2:number}}{${3:topic}}"
-    },
-    "tocpart{}{}{}": {
-      "snippet": "tocpart{${1:epithet}}{${2:number}}{${3:topic}}"
-    },
-    "tocsection{}{}{}": {
-      "snippet": "tocsection{${1:epithet}}{${2:number}}{${3:topic}}"
-    },
-    "tocsubparagraph{}{}{}": {
-      "snippet": "tocsubparagraph{${1:epithet}}{${2:number}}{${3:topic}}"
-    },
-    "tocsubsection{}{}{}": {
-      "snippet": "tocsubsection{${1:epithet}}{${2:number}}{${3:topic}}"
-    },
-    "tocsubsubsection{}{}{}": {
-      "snippet": "tocsubsubsection{${1:epithet}}{${2:number}}{${3:topic}}"
-    },
-    "URL{}": {
-      "snippet": "URL{${1:URL}}"
-    },
-    "URLhref{}": {
-      "snippet": "URLhref{${1:arg}}"
-    }
-  },
-  "envs": {
-    "xcb": {}
-  },
-  "options": [
-    "letterpaper",
-    "a4paper",
-    "5.5x8.5",
-    "6x9",
-    "7x10",
-    "draft",
-    "proofing",
-    "final",
-    "openright",
-    "openany",
-    "cmr",
-    "mathtimes",
-    "stix2",
-    "cambria",
-    "brill",
-    "10pt",
-    "11pt"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/maabook#c"
+  ]
 }

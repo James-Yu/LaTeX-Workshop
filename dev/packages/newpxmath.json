@@ -1,1945 +1,3198 @@
 {
-  "includes": {
-    "amsmath": [],
-    "etoolbox": [],
-    "xkeyval": [],
-    "centernot": [],
-    "amsthm": [
-      "amsthm"
+  "deps": [
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "centernot"
+    },
+    {
+      "name": "amsthm",
+      "if": "amsthm"
+    }
+  ],
+  "macros": [
+    {
+      "name": "checkmark",
+      "detail": "✓ (\"amsfonts\" command)",
+      "doc": "\\ballotcheck (arevmath), tick, check mark"
+    },
+    {
+      "name": "circledR"
+    },
+    {
+      "name": "maltese",
+      "detail": "✠ (\"amsfonts\" command)",
+      "doc": "Maltese cross"
+    },
+    {
+      "name": "mathcent"
+    },
+    {
+      "name": "mathsterling"
+    },
+    {
+      "name": "openbox"
+    },
+    {
+      "name": "textsquare"
+    },
+    {
+      "name": "alphait",
+      "unusual": true
+    },
+    {
+      "name": "alphaup",
+      "unusual": true
+    },
+    {
+      "name": "angle",
+      "detail": "∠",
+      "doc": "Angle"
+    },
+    {
+      "name": "Angstrom",
+      "detail": "Å (\"wrisym\" command)",
+      "doc": "\\mathring{\\mathrm{a}}, ångström capital a with ring"
+    },
+    {
+      "name": "approxeq",
+      "detail": "≊ (\"amssymb\" command)",
+      "doc": "Approximate, equals"
+    },
+    {
+      "name": "backepsilon"
+    },
+    {
+      "name": "backprime",
+      "detail": "‵ (\"amssymb\" command)",
+      "doc": "Reverse prime, not superscripted"
+    },
+    {
+      "name": "backsim",
+      "detail": "∽ (\"amssymb\" command)",
+      "doc": "Reverse similar"
+    },
+    {
+      "name": "backsimeq",
+      "detail": "⋍ (\"amssymb\" command)",
+      "doc": "Reverse similar, equals"
+    },
+    {
+      "name": "barbar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "barhat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "bartilde",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "barwedge",
+      "detail": "⊼ (\"amssymb\" command)",
+      "doc": "Logical nand (bar over wedge)"
+    },
+    {
+      "name": "Bbbk",
+      "detail": "𝕜 (\"bbold fourier\" command)",
+      "doc": "\\bbbk (amssymb), mathematical double-struck small k"
+    },
+    {
+      "name": "because",
+      "detail": "∵ (\"amssymb wrisym\" command)",
+      "doc": "Because"
+    },
+    {
+      "name": "betait",
+      "unusual": true
+    },
+    {
+      "name": "betaup",
+      "unusual": true
+    },
+    {
+      "name": "beth",
+      "detail": "ℶ (\"amssymb wrisym\" command)",
+      "doc": "Beth, hebrew"
+    },
+    {
+      "name": "between",
+      "detail": "≬ (\"amssymb\" command)",
+      "doc": "Between"
+    },
+    {
+      "name": "bigcapop",
+      "unusual": true
+    },
+    {
+      "name": "bigcapplus"
+    },
+    {
+      "name": "bigcapplusop",
+      "unusual": true
+    },
+    {
+      "name": "bigcupdot",
+      "detail": "⨃",
+      "doc": "N-ary union operator with dot"
+    },
+    {
+      "name": "bigcupdotop",
+      "unusual": true
+    },
+    {
+      "name": "bigcupop",
+      "unusual": true
+    },
+    {
+      "name": "bigcupplus"
+    },
+    {
+      "name": "bignplus"
+    },
+    {
+      "name": "bigodotop",
+      "unusual": true
+    },
+    {
+      "name": "bigoplusop",
+      "unusual": true
+    },
+    {
+      "name": "bigotimesop",
+      "unusual": true
+    },
+    {
+      "name": "bigsqcap",
+      "detail": "⨅ (\"txfonts\" command)",
+      "doc": "N-ary square intersection operator"
+    },
+    {
+      "name": "bigsqcapop",
+      "unusual": true
+    },
+    {
+      "name": "bigsqcapplus"
+    },
+    {
+      "name": "bigsqcapplusop",
+      "unusual": true
+    },
+    {
+      "name": "bigsqcupop",
+      "unusual": true
+    },
+    {
+      "name": "bigsqcupplus"
+    },
+    {
+      "name": "bigsqcupplusop",
+      "unusual": true
+    },
+    {
+      "name": "bigstar",
+      "detail": "★ (\"amssymb\" command)",
+      "doc": "Star, filled"
+    },
+    {
+      "name": "bigtimes",
+      "detail": "⨉ (\"txfonts\" command)",
+      "doc": "N-ary times operator"
+    },
+    {
+      "name": "bigtimesop",
+      "unusual": true
+    },
+    {
+      "name": "biguplusop",
+      "unusual": true
+    },
+    {
+      "name": "bigveeop",
+      "unusual": true
+    },
+    {
+      "name": "bigwedgeop",
+      "unusual": true
+    },
+    {
+      "name": "blacklozenge"
+    },
+    {
+      "name": "blacksquare"
+    },
+    {
+      "name": "blacktriangle",
+      "detail": "▴ (\"mathabx\" command)",
+      "doc": "Up triangle, filled"
+    },
+    {
+      "name": "blacktriangledown",
+      "detail": "▾ (\"mathabx\" command)",
+      "doc": "Black down-pointing small triangle"
+    },
+    {
+      "name": "blacktriangleleft",
+      "detail": "◀ (\"wasysym\" command)",
+      "doc": "\\blacktriangleleft (fourier -mathabx), (large) left triangle, filled"
+    },
+    {
+      "name": "blacktriangleright",
+      "detail": "▶ (\"wasysym\" command)",
+      "doc": "\\blacktriangleright (fourier -mathabx), (large) right triangle, filled"
+    },
+    {
+      "name": "Bot"
+    },
+    {
+      "name": "Box"
+    },
+    {
+      "name": "boxast",
+      "detail": "⧆ (\"stmaryrd txfonts\" command)",
+      "doc": "Squared asterisk"
+    },
+    {
+      "name": "boxbar",
+      "detail": "◫ (\"stmaryrd txfonts\" command)",
+      "doc": "Vertical bar in box"
+    },
+    {
+      "name": "boxbslash",
+      "detail": "⧅ (\"stmaryrd txfonts\" command)",
+      "doc": "Squared falling diagonal slash"
+    },
+    {
+      "name": "boxdot",
+      "detail": "⊡ (\"amssymb stmaryrd\" command)",
+      "doc": "/dotsquare /boxdot b: small dot in box"
+    },
+    {
+      "name": "boxdotleft"
+    },
+    {
+      "name": "boxdotLeft"
+    },
+    {
+      "name": "boxdotright"
+    },
+    {
+      "name": "boxdotRight"
+    },
+    {
+      "name": "boxleft"
+    },
+    {
+      "name": "boxLeft"
+    },
+    {
+      "name": "boxminus",
+      "detail": "⊟ (\"amssymb\" command)",
+      "doc": "Minus sign in box"
+    },
+    {
+      "name": "boxplus",
+      "detail": "⊞ (\"amssymb\" command)",
+      "doc": "Plus sign in box"
+    },
+    {
+      "name": "boxright"
+    },
+    {
+      "name": "boxRight"
+    },
+    {
+      "name": "boxslash"
+    },
+    {
+      "name": "boxtimes",
+      "detail": "⊠ (\"amssymb\" command)",
+      "doc": "Multiply sign in box"
+    },
+    {
+      "name": "bulletS"
+    },
+    {
+      "name": "bulletSS"
+    },
+    {
+      "name": "bulletSSS"
+    },
+    {
+      "name": "bumpeq",
+      "detail": "≏ (\"amssymb wrisym\" command)",
+      "doc": "Bumpy equals, equals"
+    },
+    {
+      "name": "Bumpeq",
+      "detail": "≎ (\"amssymb wrisym\" command)",
+      "doc": "Bumpy equals"
+    },
+    {
+      "name": "Cap",
+      "detail": "⋒ (\"amssymb\" command)",
+      "doc": "/cap /doublecap b: double intersection"
+    },
+    {
+      "name": "cdotB"
+    },
+    {
+      "name": "cdotBB"
+    },
+    {
+      "name": "centerdot"
+    },
+    {
+      "name": "chiit",
+      "unusual": true
+    },
+    {
+      "name": "chiup",
+      "unusual": true
+    },
+    {
+      "name": "circeq",
+      "detail": "≗ (\"amssymb\" command)",
+      "doc": "Circle, equals"
+    },
+    {
+      "name": "circlearrowleft"
+    },
+    {
+      "name": "circlearrowright"
+    },
+    {
+      "name": "circledast",
+      "detail": "⊛ (\"amssymb\" command)",
+      "doc": "Asterisk in circle"
+    },
+    {
+      "name": "circledbar"
+    },
+    {
+      "name": "circledbslash"
+    },
+    {
+      "name": "circledcirc",
+      "detail": "⊚ (\"amssymb\" command)",
+      "doc": "Small circle in circle"
+    },
+    {
+      "name": "circleddash",
+      "detail": "⊝ (\"amssymb\" command)",
+      "doc": "Hyphen in circle"
+    },
+    {
+      "name": "circleddot"
+    },
+    {
+      "name": "circleddotleft"
+    },
+    {
+      "name": "circleddotright"
+    },
+    {
+      "name": "circledgtr"
+    },
+    {
+      "name": "circledless"
+    },
+    {
+      "name": "circledminus"
+    },
+    {
+      "name": "circledotleft"
+    },
+    {
+      "name": "circledotright"
+    },
+    {
+      "name": "circledplus"
+    },
+    {
+      "name": "circledS"
+    },
+    {
+      "name": "circledslash"
+    },
+    {
+      "name": "circledtimes"
+    },
+    {
+      "name": "circledvee"
+    },
+    {
+      "name": "circledwedge"
+    },
+    {
+      "name": "circleleft"
+    },
+    {
+      "name": "circleright"
+    },
+    {
+      "name": "circS"
+    },
+    {
+      "name": "colonapprox"
+    },
+    {
+      "name": "Colonapprox"
+    },
+    {
+      "name": "Colondash"
+    },
+    {
+      "name": "colondash"
+    },
+    {
+      "name": "Coloneq",
+      "unusual": true,
+      "detail": "⩴ (\"txfonts\" command)",
+      "doc": "::=, \\coloneq (txfonts), double colon equal"
+    },
+    {
+      "name": "coloneq",
+      "detail": "≔ (\"mathabx -txfonts\" command)",
+      "doc": "\\coloneqq (txfonts), \\setdelayed (wrisym), := colon, equals"
+    },
+    {
+      "name": "coloneqq"
+    },
+    {
+      "name": "Coloneqq",
+      "unusual": true
+    },
+    {
+      "name": "colonsim"
+    },
+    {
+      "name": "Colonsim"
+    },
+    {
+      "name": "complement",
+      "detail": "∁ (\"amssymb fourier\" command)",
+      "doc": "Complement sign"
+    },
+    {
+      "name": "coprodop",
+      "unusual": true
+    },
+    {
+      "name": "Cup",
+      "detail": "⋓ (\"amssymb\" command)",
+      "doc": "/cup /doublecup b: double union"
+    },
+    {
+      "name": "curlyeqprec",
+      "detail": "⋞ (\"amssymb\" command)",
+      "doc": "Curly equals, precedes"
+    },
+    {
+      "name": "curlyeqsucc",
+      "detail": "⋟ (\"amssymb\" command)",
+      "doc": "Curly equals, succeeds"
+    },
+    {
+      "name": "curlyvee",
+      "detail": "⋎ (\"amssymb\" command)",
+      "doc": "Curly logical or"
+    },
+    {
+      "name": "curlywedge",
+      "detail": "⋏ (\"amssymb\" command)",
+      "doc": "Curly logical and"
+    },
+    {
+      "name": "curvearrowleft",
+      "detail": "↶ (\"amssymb fourier\" command)",
+      "doc": "Left curved arrow"
+    },
+    {
+      "name": "curvearrowright",
+      "detail": "↷ (\"amssymb fourier\" command)",
+      "doc": "Right curved arrow"
+    },
+    {
+      "name": "dAlembertian"
+    },
+    {
+      "name": "daleth",
+      "detail": "ℸ (\"amssymb wrisym\" command)",
+      "doc": "Daleth, hebrew"
+    },
+    {
+      "name": "dasharrow"
+    },
+    {
+      "name": "dasharrow"
+    },
+    {
+      "name": "Dashcolon"
+    },
+    {
+      "name": "dashcolon",
+      "detail": "∹ (\"txfonts -mathabx\" command)",
+      "doc": "-:, excess"
+    },
+    {
+      "name": "dashleftarrow"
+    },
+    {
+      "name": "dashleftrightarrow"
+    },
+    {
+      "name": "dashrightarrow"
+    },
+    {
+      "name": "Deltait",
+      "unusual": true
+    },
+    {
+      "name": "deltait",
+      "unusual": true
+    },
+    {
+      "name": "Deltaup",
+      "unusual": true
+    },
+    {
+      "name": "deltaup",
+      "unusual": true
+    },
+    {
+      "name": "diagdown"
+    },
+    {
+      "name": "diagup"
+    },
+    {
+      "name": "Diamond"
+    },
+    {
+      "name": "Diamond"
+    },
+    {
+      "name": "Diamondblack"
+    },
+    {
+      "name": "Diamonddot"
+    },
+    {
+      "name": "Diamonddotleft"
+    },
+    {
+      "name": "DiamonddotLeft"
+    },
+    {
+      "name": "Diamonddotright"
+    },
+    {
+      "name": "DiamonddotRight"
+    },
+    {
+      "name": "Diamondleft"
+    },
+    {
+      "name": "DiamondLeft"
+    },
+    {
+      "name": "Diamondright"
+    },
+    {
+      "name": "DiamondRight"
+    },
+    {
+      "name": "digamma"
+    },
+    {
+      "name": "divideontimes",
+      "detail": "⋇ (\"amssymb\" command)",
+      "doc": "Division on times"
+    },
+    {
+      "name": "dlb"
+    },
+    {
+      "name": "Doteq",
+      "detail": "≑ (\"amssymb\" command)",
+      "doc": "\\doteqdot (amssymb), /doteq r: equals, even dots"
+    },
+    {
+      "name": "Doteq",
+      "detail": "≑ (\"amssymb\" command)",
+      "doc": "\\doteqdot (amssymb), /doteq r: equals, even dots"
+    },
+    {
+      "name": "doteqdot"
+    },
+    {
+      "name": "dotplus",
+      "detail": "∔ (\"amssymb\" command)",
+      "doc": "Plus sign, dot above"
+    },
+    {
+      "name": "doublebarwedge",
+      "detail": "⩞ (\"amssymb\" command)",
+      "doc": "Logical and with double overbar"
+    },
+    {
+      "name": "doublecap"
+    },
+    {
+      "name": "doublecap"
+    },
+    {
+      "name": "doublecup"
+    },
+    {
+      "name": "doublecup"
+    },
+    {
+      "name": "downdownarrows",
+      "detail": "⇊ (\"amssymb\" command)",
+      "doc": "Two down arrows"
+    },
+    {
+      "name": "downharpoonleft",
+      "detail": "⇃ (\"amssymb\" command)",
+      "doc": "\\upharpoonleftdown (wrisym), down harpoon-left"
+    },
+    {
+      "name": "downharpoonright",
+      "detail": "⇂ (\"amssymb\" command)",
+      "doc": "\\upharpoonrightdown (wrisym), down harpoon-right"
+    },
+    {
+      "name": "drb"
+    },
+    {
+      "name": "emptysetAlt"
+    },
+    {
+      "name": "epsilonit",
+      "unusual": true
+    },
+    {
+      "name": "epsilonup",
+      "unusual": true
+    },
+    {
+      "name": "eqcirc",
+      "detail": "≖ (\"amssymb\" command)",
+      "doc": "Circle on equals sign"
+    },
+    {
+      "name": "Eqcolon",
+      "unusual": true
+    },
+    {
+      "name": "eqcolon",
+      "detail": "≕ (\"mathabx -txfonts\" command)",
+      "doc": "\\eqqcolon (txfonts), =:, equals, colon"
+    },
+    {
+      "name": "Eqqcolon",
+      "unusual": true
+    },
+    {
+      "name": "eqqcolon"
+    },
+    {
+      "name": "eqsim",
+      "detail": "≂ (\"amssymb\" command)",
+      "doc": "Equals, similar"
+    },
+    {
+      "name": "eqslantgtr",
+      "detail": "⪖ (\"amssymb\" command)",
+      "doc": "Slanted equal to or greater-than"
+    },
+    {
+      "name": "eqslantless",
+      "detail": "⪕ (\"amssymb\" command)",
+      "doc": "Slanted equal to or less-than"
+    },
+    {
+      "name": "etait",
+      "unusual": true
+    },
+    {
+      "name": "etaup",
+      "unusual": true
+    },
+    {
+      "name": "eth"
+    },
+    {
+      "name": "Euler"
+    },
+    {
+      "name": "existsAlt"
+    },
+    {
+      "name": "fallingdotseq",
+      "detail": "≒ (\"amssymb\" command)",
+      "doc": "Equals, falling dots"
+    },
+    {
+      "name": "fint",
+      "detail": "⨏ (\"esint wrisym\" command)",
+      "doc": "Integral average with slash"
+    },
+    {
+      "name": "fintop",
+      "unusual": true
+    },
+    {
+      "name": "fintsl",
+      "unusual": true
+    },
+    {
+      "name": "fintslop",
+      "unusual": true
+    },
+    {
+      "name": "fintup",
+      "unusual": true
+    },
+    {
+      "name": "fintupop",
+      "unusual": true
+    },
+    {
+      "name": "Finv",
+      "detail": "Ⅎ (\"amssymb\" command)",
+      "doc": "Turned capital f"
+    },
+    {
+      "name": "forallAlt"
+    },
+    {
+      "name": "Game",
+      "detail": "⅁",
+      "doc": "\\game (amssymb), turned sans-serif capital g (amssymb has mirrored g)"
+    },
+    {
+      "name": "Gammait",
+      "unusual": true
+    },
+    {
+      "name": "gammait",
+      "unusual": true
+    },
+    {
+      "name": "Gammaup",
+      "unusual": true
+    },
+    {
+      "name": "gammaup",
+      "unusual": true
+    },
+    {
+      "name": "geqq",
+      "detail": "≧ (\"amssymb\" command)",
+      "doc": "Greater, double equals"
+    },
+    {
+      "name": "geqslant",
+      "detail": "⩾ (\"amssymb fourier\" command)",
+      "doc": "Greater-than or slanted equal to"
+    },
+    {
+      "name": "ggg",
+      "detail": "⋙ (\"amssymb -mathabx\" command)",
+      "doc": "Triple greater-than"
+    },
+    {
+      "name": "gggtr"
+    },
+    {
+      "name": "gggtr"
+    },
+    {
+      "name": "gimel",
+      "detail": "ℷ (\"amssymb wrisym\" command)",
+      "doc": "Gimel, hebrew"
+    },
+    {
+      "name": "gnapprox",
+      "detail": "⪊ (\"amssymb\" command)",
+      "doc": "Greater-than and not approximate"
+    },
+    {
+      "name": "gneq",
+      "detail": "⪈ (\"amssymb\" command)",
+      "doc": "Greater-than and single-line not equal to"
+    },
+    {
+      "name": "gneqq",
+      "detail": "≩ (\"amssymb\" command)",
+      "doc": "Greater, not double equals"
+    },
+    {
+      "name": "gnsim",
+      "detail": "⋧ (\"amssymb\" command)",
+      "doc": "Greater, not similar"
+    },
+    {
+      "name": "groupld",
+      "unusual": true
+    },
+    {
+      "name": "grouplda",
+      "unusual": true
+    },
+    {
+      "name": "grouplu",
+      "unusual": true
+    },
+    {
+      "name": "grouplua",
+      "unusual": true
+    },
+    {
+      "name": "grouprd",
+      "unusual": true
+    },
+    {
+      "name": "grouprda",
+      "unusual": true
+    },
+    {
+      "name": "groupru",
+      "unusual": true
+    },
+    {
+      "name": "grouprua",
+      "unusual": true
+    },
+    {
+      "name": "gtrapprox",
+      "detail": "⪆ (\"amssymb\" command)",
+      "doc": "Greater-than or approximate"
+    },
+    {
+      "name": "gtrdot",
+      "detail": "⋗ (\"amssymb\" command)",
+      "doc": "Greater than, with dot"
+    },
+    {
+      "name": "gtreqless",
+      "detail": "⋛ (\"amssymb\" command)",
+      "doc": "Greater, equals, less"
+    },
+    {
+      "name": "gtreqqless",
+      "detail": "⪌ (\"amssymb\" command)",
+      "doc": "Greater-than above double-line equal above less-than"
+    },
+    {
+      "name": "gtrless",
+      "detail": "≷ (\"amssymb\" command)",
+      "doc": "\\greaterless (wrisym), greater, less"
+    },
+    {
+      "name": "gtrsim",
+      "detail": "≳ (\"amssymb\" command)",
+      "doc": "\\apprge (wasysym), \\greatertilde (wrisym), greater, similar"
+    },
+    {
+      "name": "gvertneqq"
+    },
+    {
+      "name": "harpoonacc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "hatbar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "hathat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "hattilde",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "hbar"
+    },
+    {
+      "name": "hermtransp"
+    },
+    {
+      "name": "hslash",
+      "detail": "ℏ (\"amssymb fourier arevmath\" command)",
+      "doc": "=\\hbar (wrisym), #\\hbar, planck's h over 2pi"
+    },
+    {
+      "name": "htransp"
+    },
+    {
+      "name": "iiiintop",
+      "unusual": true
+    },
+    {
+      "name": "iiiintsl",
+      "unusual": true
+    },
+    {
+      "name": "iiiintslop",
+      "unusual": true
+    },
+    {
+      "name": "iiiintup",
+      "unusual": true
+    },
+    {
+      "name": "iiiintupop",
+      "unusual": true
+    },
+    {
+      "name": "iiintop",
+      "unusual": true
+    },
+    {
+      "name": "iiintsl",
+      "unusual": true
+    },
+    {
+      "name": "iiintslop",
+      "unusual": true
+    },
+    {
+      "name": "iiintup",
+      "unusual": true
+    },
+    {
+      "name": "iiintupop",
+      "unusual": true
+    },
+    {
+      "name": "iintop",
+      "unusual": true
+    },
+    {
+      "name": "iintsl",
+      "unusual": true
+    },
+    {
+      "name": "iintslop",
+      "unusual": true
+    },
+    {
+      "name": "iintup",
+      "unusual": true
+    },
+    {
+      "name": "iintupop",
+      "unusual": true
+    },
+    {
+      "name": "imathbb"
+    },
+    {
+      "name": "imathfrak"
+    },
+    {
+      "name": "imathscr"
+    },
+    {
+      "name": "imathup",
+      "unusual": true
+    },
+    {
+      "name": "intercal",
+      "detail": "⊺ (\"amssymb fourier\" command)",
+      "doc": "Intercal"
+    },
+    {
+      "name": "intop",
+      "unusual": true
+    },
+    {
+      "name": "intsl",
+      "unusual": true
+    },
+    {
+      "name": "intslop",
+      "unusual": true
+    },
+    {
+      "name": "intup",
+      "unusual": true
+    },
+    {
+      "name": "intupop",
+      "unusual": true
+    },
+    {
+      "name": "invamp"
+    },
+    {
+      "name": "iotait",
+      "unusual": true
+    },
+    {
+      "name": "iotaup",
+      "unusual": true
+    },
+    {
+      "name": "jmathbb"
+    },
+    {
+      "name": "jmathfrak"
+    },
+    {
+      "name": "jmathscr"
+    },
+    {
+      "name": "jmathup",
+      "unusual": true
+    },
+    {
+      "name": "Join",
+      "detail": "⨝ (\"amssymb\" command)",
+      "doc": "Join"
+    },
+    {
+      "name": "kappait",
+      "unusual": true
+    },
+    {
+      "name": "kappaup",
+      "unusual": true
+    },
+    {
+      "name": "lambdabar"
+    },
+    {
+      "name": "Lambdait",
+      "unusual": true
+    },
+    {
+      "name": "lambdait",
+      "unusual": true
+    },
+    {
+      "name": "lambdaslash"
+    },
+    {
+      "name": "Lambdaup",
+      "unusual": true
+    },
+    {
+      "name": "lambdaup",
+      "unusual": true
+    },
+    {
+      "name": "laplac",
+      "detail": "⧠",
+      "doc": "Square with contoured outline"
+    },
+    {
+      "name": "laplace"
+    },
+    {
+      "name": "lbag",
+      "detail": "⟅ (\"stmaryrd txfonts\" command)",
+      "doc": "\\lbag (stmaryrd -oz), left s-shaped bag delimiter"
+    },
+    {
+      "name": "Lbag"
+    },
+    {
+      "name": "lBrack",
+      "detail": "⟦ (\"stmaryrd wrisym kpfonts fourier\" command)",
+      "doc": "\\lbrack (mathbbol), \\lbag (oz -stmaryrd), mathematical left white square bracket"
+    },
+    {
+      "name": "leadsto"
+    },
+    {
+      "name": "leadsto"
+    },
+    {
+      "name": "leadstoext"
+    },
+    {
+      "name": "leftarrowtail",
+      "detail": "↢ (\"amssymb\" command)",
+      "doc": "Left arrow-tailed"
+    },
+    {
+      "name": "leftleftarrows",
+      "detail": "⇇ (\"amssymb fourier\" command)",
+      "doc": "Two left arrows"
+    },
+    {
+      "name": "leftrightarrows",
+      "detail": "⇆ (\"amssymb\" command)",
+      "doc": "\\leftrightarrow (wrisym), left arrow over right arrow"
+    },
+    {
+      "name": "leftrightharpoons",
+      "detail": "⇋ (\"amssymb\" command)",
+      "doc": "\\revequilibrium (wrisym), left harpoon over right"
+    },
+    {
+      "name": "leftrightsquigarrow",
+      "detail": "↭ (\"amssymb\" command)",
+      "doc": "Left and right arr-wavy"
+    },
+    {
+      "name": "leftsquigarrow",
+      "detail": "⇜ (\"mathabx txfonts\" command)",
+      "doc": "Leftwards squiggle arrow"
+    },
+    {
+      "name": "leftthreetimes",
+      "detail": "⋋ (\"amssymb\" command)",
+      "doc": "Left semidirect product"
+    },
+    {
+      "name": "leqq",
+      "detail": "≦ (\"amssymb\" command)",
+      "doc": "Less, double equals"
+    },
+    {
+      "name": "leqslant",
+      "detail": "⩽ (\"amssymb fourier\" command)",
+      "doc": "Less-than or slanted equal to"
+    },
+    {
+      "name": "lessapprox",
+      "detail": "⪅ (\"amssymb\" command)",
+      "doc": "Less-than or approximate"
+    },
+    {
+      "name": "lessdot",
+      "detail": "⋖ (\"amssymb\" command)",
+      "doc": "Less than, with dot"
+    },
+    {
+      "name": "lesseqgtr",
+      "detail": "⋚ (\"amssymb\" command)",
+      "doc": "Less, equals, greater"
+    },
+    {
+      "name": "lesseqqgtr",
+      "detail": "⪋ (\"amssymb\" command)",
+      "doc": "Less-than above double-line equal above greater-than"
+    },
+    {
+      "name": "lessgtr",
+      "detail": "≶ (\"amssymb\" command)",
+      "doc": "Less, greater"
+    },
+    {
+      "name": "lesssim",
+      "detail": "≲ (\"amssymb\" command)",
+      "doc": "\\apprle (wasysym), \\lesstilde (wrisym), less, similar"
+    },
+    {
+      "name": "lharpoonacc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "lhd"
+    },
+    {
+      "name": "lJoin"
+    },
+    {
+      "name": "llbracket"
+    },
+    {
+      "name": "llcorner",
+      "detail": "⌞ (\"amsfonts\" command)",
+      "doc": "Lower left corner"
+    },
+    {
+      "name": "Lleftarrow",
+      "detail": "⇚ (\"amssymb\" command)",
+      "doc": "Left triple arrow"
+    },
+    {
+      "name": "lll",
+      "detail": "⋘ (\"amssymb -mathabx\" command)",
+      "doc": "Triple less-than"
+    },
+    {
+      "name": "llless"
+    },
+    {
+      "name": "llless"
+    },
+    {
+      "name": "lnapprox",
+      "detail": "⪉ (\"amssymb\" command)",
+      "doc": "Less-than and not approximate"
+    },
+    {
+      "name": "lneq",
+      "detail": "⪇ (\"amssymb\" command)",
+      "doc": "Less-than and single-line not equal to"
+    },
+    {
+      "name": "lneqq",
+      "detail": "≨ (\"amssymb\" command)",
+      "doc": "Less, not double equals"
+    },
+    {
+      "name": "lnsim",
+      "detail": "⋦ (\"amssymb\" command)",
+      "doc": "Less, not similar"
+    },
+    {
+      "name": "Longmappedfrom"
+    },
+    {
+      "name": "longmappedfrom"
+    },
+    {
+      "name": "Longmapsto",
+      "detail": "⟾ (\"stmaryrd\" command)",
+      "doc": "Long rightwards double arrow from bar"
+    },
+    {
+      "name": "Longmmappedfrom"
+    },
+    {
+      "name": "longmmappedfrom"
+    },
+    {
+      "name": "Longmmapsto"
+    },
+    {
+      "name": "longmmapsto"
+    },
+    {
+      "name": "looparrowleft",
+      "detail": "↫ (\"amssymb\" command)",
+      "doc": "Left arrow-looped"
+    },
+    {
+      "name": "looparrowright",
+      "detail": "↬ (\"amssymb\" command)",
+      "doc": "Right arrow-looped"
+    },
+    {
+      "name": "lozenge"
+    },
+    {
+      "name": "lrcorner",
+      "detail": "⌟ (\"amsfonts\" command)",
+      "doc": "Lower right corner"
+    },
+    {
+      "name": "lrharpoonacc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "lrJoin"
+    },
+    {
+      "name": "lrtimes"
+    },
+    {
+      "name": "lrvec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Lsh",
+      "detail": "↰ (\"amssymb\" command)",
+      "doc": "A: upwards arrow with tip leftwards"
+    },
+    {
+      "name": "ltimes",
+      "detail": "⋉ (\"amssymb\" command)",
+      "doc": "Times sign, left closed"
+    },
+    {
+      "name": "lvertneqq"
+    },
+    {
+      "name": "Mappedfrom"
+    },
+    {
+      "name": "mappedfrom"
+    },
+    {
+      "name": "Mapsfrom",
+      "detail": "⤆ (\"stmaryrd\" command)",
+      "doc": "\\mappedfrom (kpfonts), leftwards double arrow from bar"
+    },
+    {
+      "name": "mapsfrom",
+      "detail": "↤ (\"stmaryrd\" command)",
+      "doc": "\\mappedfrom (kpfonts), maps to, leftward"
+    },
+    {
+      "name": "Mapsto",
+      "detail": "⤇ (\"stmaryrd\" command)",
+      "doc": "Rightwards double arrow from bar"
+    },
+    {
+      "name": "mathfrak",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathslscr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathuscr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "measuredangle",
+      "detail": "∡ (\"amssymb wrisym\" command)",
+      "doc": "Measured angle"
+    },
+    {
+      "name": "medbullet"
+    },
+    {
+      "name": "medcirc"
+    },
+    {
+      "name": "mho",
+      "detail": "℧ (\"amsfonts arevmath\" command)",
+      "doc": "\\mho (wrisym), t \\agemo (wasysym), conductance"
+    },
+    {
+      "name": "Mmappedfrom"
+    },
+    {
+      "name": "mmappedfrom"
+    },
+    {
+      "name": "Mmapsto"
+    },
+    {
+      "name": "mmapsto"
+    },
+    {
+      "name": "muit",
+      "unusual": true
+    },
+    {
+      "name": "multimap",
+      "detail": "⊸ (\"amssymb\" command)",
+      "doc": "/multimap a:"
+    },
+    {
+      "name": "multimapboth"
+    },
+    {
+      "name": "multimapbothvert"
+    },
+    {
+      "name": "multimapbothvert"
+    },
+    {
+      "name": "multimapdot"
+    },
+    {
+      "name": "multimapdotboth"
+    },
+    {
+      "name": "multimapdotbothA"
+    },
+    {
+      "name": "multimapdotbothAvert"
+    },
+    {
+      "name": "multimapdotbothB"
+    },
+    {
+      "name": "multimapdotbothBvert"
+    },
+    {
+      "name": "multimapdotbothvert"
+    },
+    {
+      "name": "multimapdotinv"
+    },
+    {
+      "name": "multimapinv",
+      "detail": "⟜ (\"txfonts\" command)",
+      "doc": "Left multimap"
+    },
+    {
+      "name": "muup",
+      "unusual": true
+    },
+    {
+      "name": "napprox",
+      "detail": "≉ (\"wrisym\" command)",
+      "doc": "Not approximate"
+    },
+    {
+      "name": "napproxeq"
+    },
+    {
+      "name": "nasymp",
+      "detail": "≭ (\"mathabx\" command)",
+      "doc": "\\nasymp (wrisym), not asymptotically equal to"
+    },
+    {
+      "name": "nbacksim"
+    },
+    {
+      "name": "nbacksimeq"
+    },
+    {
+      "name": "nBumpeq"
+    },
+    {
+      "name": "nbumpeq"
+    },
+    {
+      "name": "ncong",
+      "detail": "≇ (\"amssymb wrisym\" command)",
+      "doc": "Not congruent with"
+    },
+    {
+      "name": "Nearrow",
+      "detail": "⇗ (\"txfonts\" command)",
+      "doc": "Ne pointing double arrow"
+    },
+    {
+      "name": "nequiv",
+      "detail": "≢ (\"wrisym\" command)",
+      "doc": "Not identical with"
+    },
+    {
+      "name": "nexists",
+      "detail": "∄ (\"amssymb fourier\" command)",
+      "doc": "\\nexi (oz), negated exists"
+    },
+    {
+      "name": "nexistsAlt"
+    },
+    {
+      "name": "ngeq",
+      "detail": "≱ (\"amssymb wrisym\" command)",
+      "doc": "\\ngeqslant (fourier), not greater-than-or-equal"
+    },
+    {
+      "name": "ngeqq"
+    },
+    {
+      "name": "ngeqslant"
+    },
+    {
+      "name": "ngg"
+    },
+    {
+      "name": "ngtr",
+      "detail": "≯ (\"amssymb\" command)",
+      "doc": "Not greater-than"
+    },
+    {
+      "name": "ngtrapprox"
+    },
+    {
+      "name": "ngtrless",
+      "detail": "≹ (\"wrisym\" command)",
+      "doc": "Not greater, less"
+    },
+    {
+      "name": "ngtrsim",
+      "detail": "≵ (\"wrisym\" command)",
+      "doc": "Not greater, similar"
+    },
+    {
+      "name": "nleftarrow",
+      "detail": "↚ (\"amssymb\" command)",
+      "doc": "Not left arrow"
+    },
+    {
+      "name": "nLeftarrow",
+      "detail": "⇍ (\"amssymb\" command)",
+      "doc": "Not implied by"
+    },
+    {
+      "name": "nleftrightarrow",
+      "detail": "↮ (\"amssymb\" command)",
+      "doc": "Not left and right arrow"
+    },
+    {
+      "name": "nLeftrightarrow",
+      "detail": "⇎ (\"amssymb\" command)",
+      "doc": "Not left and right double arrows"
+    },
+    {
+      "name": "nleq",
+      "detail": "≰ (\"amssymb wrisym\" command)",
+      "doc": "\\nleqslant (fourier), not less-than-or-equal"
+    },
+    {
+      "name": "nleqq"
+    },
+    {
+      "name": "nleqslant"
+    },
+    {
+      "name": "nless",
+      "detail": "≮ (\"amssymb\" command)",
+      "doc": "Not less-than"
+    },
+    {
+      "name": "nlessapprox"
+    },
+    {
+      "name": "nlessgtr",
+      "detail": "≸ (\"wrisym\" command)",
+      "doc": "Not less, greater"
+    },
+    {
+      "name": "nlesssim",
+      "detail": "≴ (\"wrisym\" command)",
+      "doc": "Not less, similar"
+    },
+    {
+      "name": "nll"
+    },
+    {
+      "name": "nmid",
+      "detail": "∤ (\"amssymb\" command)",
+      "doc": "Negated mid, does not divide"
+    },
+    {
+      "name": "notni"
+    },
+    {
+      "name": "notowns"
+    },
+    {
+      "name": "nparallel",
+      "detail": "∦ (\"amssymb fourier\" command)",
+      "doc": "Not parallel"
+    },
+    {
+      "name": "nPerp"
+    },
+    {
+      "name": "nplus"
+    },
+    {
+      "name": "nprec",
+      "detail": "⊀ (\"amssymb wrisym\" command)",
+      "doc": "Not precedes"
+    },
+    {
+      "name": "nprecapprox"
+    },
+    {
+      "name": "npreccurlyeq",
+      "detail": "⋠ (\"amssymb wrisym\" command)",
+      "doc": "Does not precede or equal"
+    },
+    {
+      "name": "npreceq"
+    },
+    {
+      "name": "npreceqq"
+    },
+    {
+      "name": "nprecsim"
+    },
+    {
+      "name": "nrightarrow",
+      "detail": "↛ (\"amssymb\" command)",
+      "doc": "Not right arrow"
+    },
+    {
+      "name": "nRightarrow",
+      "detail": "⇏ (\"amssymb\" command)",
+      "doc": "Not implies"
+    },
+    {
+      "name": "nshortmid"
+    },
+    {
+      "name": "nshortparallel"
+    },
+    {
+      "name": "nsim",
+      "detail": "≁ (\"amssymb wrisym\" command)",
+      "doc": "Not similar"
+    },
+    {
+      "name": "nsimeq"
+    },
+    {
+      "name": "nsqsubset"
+    },
+    {
+      "name": "nsqsubseteq",
+      "detail": "⋢ (\"wrisym\" command)",
+      "doc": "Not, square subset, equals"
+    },
+    {
+      "name": "nsqsupset"
+    },
+    {
+      "name": "nsqsupseteq",
+      "detail": "⋣ (\"wrisym\" command)",
+      "doc": "Not, square superset, equals"
+    },
+    {
+      "name": "nsubset",
+      "detail": "⊄ (\"wrisym\" command)",
+      "doc": "Not subset, variant [slash negation]"
+    },
+    {
+      "name": "nSubset"
+    },
+    {
+      "name": "nsubseteq",
+      "detail": "⊈ (\"amssymb wrisym\" command)",
+      "doc": "Not subset, equals"
+    },
+    {
+      "name": "nsubseteqq"
+    },
+    {
+      "name": "nsucc",
+      "detail": "⊁ (\"amssymb wrisym\" command)",
+      "doc": "Not succeeds"
+    },
+    {
+      "name": "nsuccapprox"
+    },
+    {
+      "name": "nsucccurlyeq",
+      "detail": "⋡ (\"amssymb wrisym\" command)",
+      "doc": "Not succeeds, curly equals"
+    },
+    {
+      "name": "nsucceq"
+    },
+    {
+      "name": "nsucceqq"
+    },
+    {
+      "name": "nsuccsim"
+    },
+    {
+      "name": "nsupset",
+      "detail": "⊅ (\"wrisym\" command)",
+      "doc": "Not superset, variant [slash negation]"
+    },
+    {
+      "name": "nSupset"
+    },
+    {
+      "name": "nsupseteq",
+      "detail": "⊉ (\"amssymb wrisym\" command)",
+      "doc": "Not superset, equals"
+    },
+    {
+      "name": "nsupseteqq"
+    },
+    {
+      "name": "nthickapprox"
+    },
+    {
+      "name": "ntriangleleft",
+      "detail": "⋪ (\"amssymb\" command)",
+      "doc": "\\notlefttriangle (wrisym), not left triangle"
+    },
+    {
+      "name": "ntrianglelefteq",
+      "detail": "⋬ (\"amssymb\" command)",
+      "doc": "\\nunlhd (wrisym), not left triangle, equals"
+    },
+    {
+      "name": "ntriangleright",
+      "detail": "⋫ (\"amssymb\" command)",
+      "doc": "\\notrighttriangle (wrisym), not right triangle"
+    },
+    {
+      "name": "ntrianglerighteq",
+      "detail": "⋭ (\"amssymb\" command)",
+      "doc": "\\nunrhd (wrisym), not right triangle, equals"
+    },
+    {
+      "name": "ntwoheadleftarrow"
+    },
+    {
+      "name": "ntwoheadrightarrow"
+    },
+    {
+      "name": "nuit",
+      "unusual": true
+    },
+    {
+      "name": "nuup",
+      "unusual": true
+    },
+    {
+      "name": "nvarparallel"
+    },
+    {
+      "name": "nvarparallelinv"
+    },
+    {
+      "name": "nvdash",
+      "detail": "⊬ (\"amssymb\" command)",
+      "doc": "Not vertical, dash"
+    },
+    {
+      "name": "nvDash",
+      "detail": "⊭ (\"amssymb fourier\" command)",
+      "doc": "Not vertical, double dash"
+    },
+    {
+      "name": "nVdash",
+      "detail": "⊮ (\"amssymb\" command)",
+      "doc": "Not double vertical, dash"
+    },
+    {
+      "name": "nVDash",
+      "detail": "⊯ (\"amssymb\" command)",
+      "doc": "Not double vert, double dash"
+    },
+    {
+      "name": "Nwarrow",
+      "detail": "⇖ (\"txfonts\" command)",
+      "doc": "Nw pointing double arrow"
+    },
+    {
+      "name": "oiiint",
+      "detail": "∰ (\"txfonts fourier\" command)",
+      "doc": "Triple contour integral operator"
+    },
+    {
+      "name": "oiiintop",
+      "unusual": true
+    },
+    {
+      "name": "oiiintsl",
+      "unusual": true
+    },
+    {
+      "name": "oiiintslop",
+      "unusual": true
+    },
+    {
+      "name": "oiiintup",
+      "unusual": true
+    },
+    {
+      "name": "oiiintupop",
+      "unusual": true
+    },
+    {
+      "name": "oiint",
+      "detail": "∯ (\"esint wasysym fourier\" command)",
+      "doc": "\\dbloint (wrisym), double contour integral operator"
+    },
+    {
+      "name": "oiintop",
+      "unusual": true
+    },
+    {
+      "name": "oiintsl",
+      "unusual": true
+    },
+    {
+      "name": "oiintslop",
+      "unusual": true
+    },
+    {
+      "name": "oiintup",
+      "unusual": true
+    },
+    {
+      "name": "oiintupop",
+      "unusual": true
+    },
+    {
+      "name": "ointctrclockwise",
+      "detail": "∳ (\"esint\" command)",
+      "doc": "\\cntclockoint (wrisym), contour integral, anticlockwise"
+    },
+    {
+      "name": "ointctrclockwiseop",
+      "unusual": true
+    },
+    {
+      "name": "ointctrclockwisesl",
+      "unusual": true
+    },
+    {
+      "name": "ointctrclockwiseslop",
+      "unusual": true
+    },
+    {
+      "name": "ointctrclockwiseup",
+      "unusual": true
+    },
+    {
+      "name": "ointctrclockwiseupop",
+      "unusual": true
+    },
+    {
+      "name": "ointop",
+      "unusual": true
+    },
+    {
+      "name": "ointsl",
+      "unusual": true
+    },
+    {
+      "name": "ointslop",
+      "unusual": true
+    },
+    {
+      "name": "ointup",
+      "unusual": true
+    },
+    {
+      "name": "ointupop",
+      "unusual": true
+    },
+    {
+      "name": "Omegait",
+      "unusual": true
+    },
+    {
+      "name": "omegait",
+      "unusual": true
+    },
+    {
+      "name": "Omegaup",
+      "unusual": true
+    },
+    {
+      "name": "omegaup",
+      "unusual": true
+    },
+    {
+      "name": "openJoin"
+    },
+    {
+      "name": "openJoin"
+    },
+    {
+      "name": "opentimes"
+    },
+    {
+      "name": "overgroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overgroupla",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overgroupra",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Perp"
+    },
+    {
+      "name": "Phiit",
+      "unusual": true
+    },
+    {
+      "name": "phiit",
+      "unusual": true
+    },
+    {
+      "name": "Phiup",
+      "unusual": true
+    },
+    {
+      "name": "phiup",
+      "unusual": true
+    },
+    {
+      "name": "Piit",
+      "unusual": true
+    },
+    {
+      "name": "piit",
+      "unusual": true
+    },
+    {
+      "name": "pitchfork",
+      "detail": "⋔ (\"amssymb\" command)",
+      "doc": "Pitchfork"
+    },
+    {
+      "name": "Piup",
+      "unusual": true
+    },
+    {
+      "name": "piup",
+      "unusual": true
+    },
+    {
+      "name": "precapprox",
+      "detail": "⪷ (\"amssymb\" command)",
+      "doc": "Precedes above almost equal to"
+    },
+    {
+      "name": "preccurlyeq",
+      "detail": "≼ (\"amssymb\" command)",
+      "doc": "\\precedesslantequal (wrisym), precedes, curly equals"
+    },
+    {
+      "name": "preceqq",
+      "detail": "⪳ (\"txfonts\" command)",
+      "doc": "Precedes above equals sign"
+    },
+    {
+      "name": "precnapprox",
+      "detail": "⪹ (\"amssymb\" command)",
+      "doc": "Precedes above not almost equal to"
+    },
+    {
+      "name": "precneqq",
+      "detail": "⪵ (\"amssymb\" command)",
+      "doc": "Precedes above not equal to"
+    },
+    {
+      "name": "precnsim",
+      "detail": "⋨ (\"amssymb\" command)",
+      "doc": "Precedes, not similar"
+    },
+    {
+      "name": "precsim",
+      "detail": "≾ (\"amssymb\" command)",
+      "doc": "\\precedestilde (wrisym), precedes, similar"
+    },
+    {
+      "name": "primeS"
+    },
+    {
+      "name": "prodop",
+      "unusual": true
+    },
+    {
+      "name": "Psiit",
+      "unusual": true
+    },
+    {
+      "name": "psiit",
+      "unusual": true
+    },
+    {
+      "name": "Psiup",
+      "unusual": true
+    },
+    {
+      "name": "psiup",
+      "unusual": true
+    },
+    {
+      "name": "rbag",
+      "detail": "⟆ (\"stmaryrd txfonts\" command)",
+      "doc": "\\rbag (stmaryrd -oz), right s-shaped bag delimiter"
+    },
+    {
+      "name": "Rbag"
+    },
+    {
+      "name": "rBrack",
+      "detail": "⟧ (\"stmaryrd wrisym kpfonts fourier\" command)",
+      "doc": "\\rbrack (mathbbol), \\rbag (oz -stmaryrd), mathematical right white square bracket"
+    },
+    {
+      "name": "restriction"
+    },
+    {
+      "name": "restriction"
+    },
+    {
+      "name": "rhd"
+    },
+    {
+      "name": "rhoit",
+      "unusual": true
+    },
+    {
+      "name": "rhoup",
+      "unusual": true
+    },
+    {
+      "name": "rightarrowtail",
+      "detail": "↣ (\"amssymb\" command)",
+      "doc": "\\tinj (oz), \\inj (oz), right arrow-tailed, total injection"
+    },
+    {
+      "name": "rightleftarrows",
+      "detail": "⇄ (\"amssymb\" command)",
+      "doc": "\\rightleftarrow (wrisym), right arrow over left arrow"
+    },
+    {
+      "name": "rightleftharpoons",
+      "detail": "⇌",
+      "doc": "\\equilibrium (wrisym), right harpoon over left"
+    },
+    {
+      "name": "rightrightarrows",
+      "detail": "⇉ (\"amssymb fourier\" command)",
+      "doc": "Two right arrows"
+    },
+    {
+      "name": "rightsquigarrow",
+      "detail": "⇝ (\"amssymb\" command)",
+      "doc": "Rightwards squiggle arrow"
+    },
+    {
+      "name": "rightthreetimes",
+      "detail": "⋌ (\"amssymb\" command)",
+      "doc": "Right semidirect product"
+    },
+    {
+      "name": "risingdotseq",
+      "detail": "≓ (\"amssymb\" command)",
+      "doc": "Equals, rising dots"
+    },
+    {
+      "name": "rJoin"
+    },
+    {
+      "name": "rrbracket"
+    },
+    {
+      "name": "Rrightarrow",
+      "detail": "⇛ (\"amssymb\" command)",
+      "doc": "Right triple arrow"
+    },
+    {
+      "name": "Rsh",
+      "detail": "↱ (\"amssymb\" command)",
+      "doc": "A: upwards arrow with tip rightwards"
+    },
+    {
+      "name": "rtimes",
+      "detail": "⋊ (\"amssymb\" command)",
+      "doc": "Times sign, right closed"
+    },
+    {
+      "name": "Searrow",
+      "detail": "⇘ (\"txfonts\" command)",
+      "doc": "Se pointing double arrow"
+    },
+    {
+      "name": "shortmid"
+    },
+    {
+      "name": "shortparallel"
+    },
+    {
+      "name": "Sigmait",
+      "unusual": true
+    },
+    {
+      "name": "sigmait",
+      "unusual": true
+    },
+    {
+      "name": "Sigmaup",
+      "unusual": true
+    },
+    {
+      "name": "sigmaup",
+      "unusual": true
+    },
+    {
+      "name": "smallcoprod"
+    },
+    {
+      "name": "smallfint"
+    },
+    {
+      "name": "smallfintsl",
+      "unusual": true
+    },
+    {
+      "name": "smallfintup",
+      "unusual": true
+    },
+    {
+      "name": "smallfrown"
+    },
+    {
+      "name": "smalliiiint"
+    },
+    {
+      "name": "smalliiiintsl",
+      "unusual": true
+    },
+    {
+      "name": "smalliiiintup",
+      "unusual": true
+    },
+    {
+      "name": "smalliiint"
+    },
+    {
+      "name": "smalliiintsl",
+      "unusual": true
+    },
+    {
+      "name": "smalliiintup",
+      "unusual": true
+    },
+    {
+      "name": "smalliint"
+    },
+    {
+      "name": "smalliintsl",
+      "unusual": true
+    },
+    {
+      "name": "smalliintup",
+      "unusual": true
+    },
+    {
+      "name": "smallintsl",
+      "unusual": true
+    },
+    {
+      "name": "smallintup",
+      "unusual": true
+    },
+    {
+      "name": "smalloiiint"
+    },
+    {
+      "name": "smalloiiintsl",
+      "unusual": true
+    },
+    {
+      "name": "smalloiiintup",
+      "unusual": true
+    },
+    {
+      "name": "smalloiint"
+    },
+    {
+      "name": "smalloiintsl",
+      "unusual": true
+    },
+    {
+      "name": "smalloiintup",
+      "unusual": true
+    },
+    {
+      "name": "smalloint"
+    },
+    {
+      "name": "smallointctrclockwise"
+    },
+    {
+      "name": "smallointctrclockwisesl",
+      "unusual": true
+    },
+    {
+      "name": "smallointctrclockwiseup",
+      "unusual": true
+    },
+    {
+      "name": "smallointsl",
+      "unusual": true
+    },
+    {
+      "name": "smallointup",
+      "unusual": true
+    },
+    {
+      "name": "smallprod"
+    },
+    {
+      "name": "smallsetminus",
+      "detail": "∖ (\"amssymb fourier\" command)",
+      "doc": "Small set minus (cf. reverse solidus)"
+    },
+    {
+      "name": "smallsmile"
+    },
+    {
+      "name": "smallsqint"
+    },
+    {
+      "name": "smallsqintsl",
+      "unusual": true
+    },
+    {
+      "name": "smallsqintup",
+      "unusual": true
+    },
+    {
+      "name": "smallsum"
+    },
+    {
+      "name": "smallsumint"
+    },
+    {
+      "name": "smallsumintsl",
+      "unusual": true
+    },
+    {
+      "name": "smallsumintup",
+      "unusual": true
+    },
+    {
+      "name": "smallvarointclockwise"
+    },
+    {
+      "name": "smallvarointclockwisesl",
+      "unusual": true
+    },
+    {
+      "name": "smallvarointclockwiseup",
+      "unusual": true
+    },
+    {
+      "name": "smlbrace"
+    },
+    {
+      "name": "smrbrace"
+    },
+    {
+      "name": "sphericalangle",
+      "detail": "∢ (\"amssymb wrisym\" command)",
+      "doc": "Spherical angle"
+    },
+    {
+      "name": "sqcapplus"
+    },
+    {
+      "name": "sqcupplus"
+    },
+    {
+      "name": "sqint",
+      "detail": "⨖ (\"esint\" command)",
+      "doc": "\\sqrint (wrisym), quaternion integral operator"
+    },
+    {
+      "name": "sqintop",
+      "unusual": true
+    },
+    {
+      "name": "sqintsl",
+      "unusual": true
+    },
+    {
+      "name": "sqintslop",
+      "unusual": true
+    },
+    {
+      "name": "sqintup",
+      "unusual": true
+    },
+    {
+      "name": "sqintupop",
+      "unusual": true
+    },
+    {
+      "name": "sqsubset",
+      "detail": "⊏ (\"amsfonts\" command)",
+      "doc": "Square subset"
+    },
+    {
+      "name": "sqsupset",
+      "detail": "⊐ (\"amsfonts\" command)",
+      "doc": "Square superset"
+    },
+    {
+      "name": "square"
+    },
+    {
+      "name": "strictfi"
+    },
+    {
+      "name": "strictif"
+    },
+    {
+      "name": "strictiff"
+    },
+    {
+      "name": "Subset",
+      "detail": "⋐ (\"amssymb\" command)",
+      "doc": "Double subset"
+    },
+    {
+      "name": "subseteqq",
+      "detail": "⫅ (\"amssymb\" command)",
+      "doc": "Subset of above equals sign"
+    },
+    {
+      "name": "subsetneq",
+      "detail": "⊊ (\"amssymb\" command)",
+      "doc": "\\varsubsetneq (fourier), subset, not equals"
+    },
+    {
+      "name": "subsetneqq",
+      "detail": "⫋ (\"amssymb\" command)",
+      "doc": "Subset of above not equal to"
+    },
+    {
+      "name": "succapprox",
+      "detail": "⪸ (\"amssymb\" command)",
+      "doc": "Succeeds above almost equal to"
+    },
+    {
+      "name": "succcurlyeq",
+      "detail": "≽ (\"amssymb\" command)",
+      "doc": "\\succeedsslantequal (wrisym), succeeds, curly equals"
+    },
+    {
+      "name": "succeqq",
+      "detail": "⪴ (\"txfonts\" command)",
+      "doc": "Succeeds above equals sign"
+    },
+    {
+      "name": "succnapprox",
+      "detail": "⪺ (\"amssymb\" command)",
+      "doc": "Succeeds above not almost equal to"
+    },
+    {
+      "name": "succneqq",
+      "detail": "⪶ (\"amssymb\" command)",
+      "doc": "Succeeds above not equal to"
+    },
+    {
+      "name": "succnsim",
+      "detail": "⋩ (\"amssymb\" command)",
+      "doc": "Succeeds, not similar"
+    },
+    {
+      "name": "succsim",
+      "detail": "≿ (\"amssymb\" command)",
+      "doc": "\\succeedstilde (wrisym), succeeds, similar"
+    },
+    {
+      "name": "sumint",
+      "detail": "⨋",
+      "doc": "Summation with integral"
+    },
+    {
+      "name": "sumintop",
+      "unusual": true
+    },
+    {
+      "name": "sumintsl",
+      "unusual": true
+    },
+    {
+      "name": "sumintslop",
+      "unusual": true
+    },
+    {
+      "name": "sumintup",
+      "unusual": true
+    },
+    {
+      "name": "sumintupop",
+      "unusual": true
+    },
+    {
+      "name": "sumop",
+      "unusual": true
+    },
+    {
+      "name": "Supset",
+      "detail": "⋑ (\"amssymb\" command)",
+      "doc": "Double superset"
+    },
+    {
+      "name": "supseteqq",
+      "detail": "⫆ (\"amssymb\" command)",
+      "doc": "Superset of above equals sign"
+    },
+    {
+      "name": "supsetneq",
+      "detail": "⊋ (\"amssymb\" command)",
+      "doc": "Superset, not equals"
+    },
+    {
+      "name": "supsetneqq",
+      "detail": "⫌ (\"amssymb\" command)",
+      "doc": "Superset of above not equal to"
+    },
+    {
+      "name": "Swarrow",
+      "detail": "⇙ (\"txfonts\" command)",
+      "doc": "Sw pointing double arrow"
+    },
+    {
+      "name": "tauit",
+      "unusual": true
+    },
+    {
+      "name": "tauup",
+      "unusual": true
+    },
+    {
+      "name": "therefore",
+      "detail": "∴ (\"amssymb wrisym\" command)",
+      "doc": "\\wasytherefore (wasysym), therefore"
+    },
+    {
+      "name": "Thetait",
+      "unusual": true
+    },
+    {
+      "name": "thetait",
+      "unusual": true
+    },
+    {
+      "name": "Thetaup",
+      "unusual": true
+    },
+    {
+      "name": "thetaup",
+      "unusual": true
+    },
+    {
+      "name": "thickapprox"
+    },
+    {
+      "name": "thicksim"
+    },
+    {
+      "name": "tildebar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "tildehat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "tildetilde",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Top"
+    },
+    {
+      "name": "transp"
+    },
+    {
+      "name": "triangledown",
+      "detail": "▿ (\"mathabx\" command)",
+      "doc": "\\triangledown (amssymb), white down-pointing small triangle"
+    },
+    {
+      "name": "trianglelefteq",
+      "detail": "⊴ (\"amssymb\" command)",
+      "doc": "\\unlhd (wrisym), left triangle, equals"
+    },
+    {
+      "name": "triangleq",
+      "detail": "≜ (\"amssymb\" command)",
+      "doc": "\\varsdef (oz), triangle, equals"
+    },
+    {
+      "name": "trianglerighteq",
+      "detail": "⊵ (\"amssymb\" command)",
+      "doc": "\\unrhd (wrisym), right triangle, equals"
+    },
+    {
+      "name": "twoheadleftarrow",
+      "detail": "↞ (\"amssymb\" command)",
+      "doc": "Left two-headed arrow"
+    },
+    {
+      "name": "twoheadrightarrow",
+      "detail": "↠ (\"amssymb\" command)",
+      "doc": "\\tsur (oz), \\surj (oz), right two-headed arrow, total surjection"
+    },
+    {
+      "name": "ulcorner",
+      "detail": "⌜ (\"amsfonts\" command)",
+      "doc": "Upper left corner"
+    },
+    {
+      "name": "undergroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "undergroupla",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "undergroupra",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "unlhd"
+    },
+    {
+      "name": "unrhd"
+    },
+    {
+      "name": "upalpha",
+      "detail": "α",
+      "doc": "\\mathrm{\\alpha} (omlmathrm), \\alphaup (kpfonts mathdesign), \\upalpha (upgreek), alpha, greek"
+    },
+    {
+      "name": "upbeta",
+      "detail": "β",
+      "doc": "\\mathrm{\\beta} (omlmathrm), \\betaup (kpfonts mathdesign), \\upbeta (upgreek), beta, greek"
+    },
+    {
+      "name": "upchi",
+      "detail": "χ",
+      "doc": "\\mathrm{\\chi} (omlmathrm), \\chiup (kpfonts mathdesign), \\upchi (upgreek), chi, greek"
+    },
+    {
+      "name": "upDelta",
+      "detail": "Δ",
+      "doc": "\\delta (-slantedgreek), \\mathrm{\\delta}, capital delta, greek"
+    },
+    {
+      "name": "updelta",
+      "detail": "δ",
+      "doc": "\\mathrm{\\delta} (omlmathrm), \\deltaup (kpfonts mathdesign), \\updelta (upgreek), delta, greek"
+    },
+    {
+      "name": "upepsilon",
+      "detail": "ε",
+      "doc": "\\mathrm{\\varepsilon} (omlmathrm), \\varepsilonup (kpfonts mathdesign), \\upepsilon (upgreek), rounded epsilon, greek"
+    },
+    {
+      "name": "upeta",
+      "detail": "η",
+      "doc": "\\mathrm{\\eta} (omlmathrm), \\etaup (kpfonts mathdesign), \\upeta (upgreek), eta, greek"
+    },
+    {
+      "name": "upGamma",
+      "detail": "Γ",
+      "doc": "\\gamma (-slantedgreek), \\mathrm{\\gamma}, capital gamma, greek"
+    },
+    {
+      "name": "upgamma",
+      "detail": "γ",
+      "doc": "\\mathrm{\\gamma} (omlmathrm), \\gammaup (kpfonts mathdesign), \\upgamma (upgreek), gamma, greek"
+    },
+    {
+      "name": "upharpoonleft",
+      "detail": "↿ (\"amssymb\" command)",
+      "doc": "\\upharpoonleftup (wrisym), up harpoon-left"
+    },
+    {
+      "name": "upharpoonright",
+      "detail": "↾ (\"amssymb\" command)",
+      "doc": "\\restriction (amssymb), \\upharpoonrightup (wrisym), a: up harpoon-right"
+    },
+    {
+      "name": "upiota",
+      "detail": "ι",
+      "doc": "\\mathrm{\\iota} (omlmathrm), \\iotaup (kpfonts mathdesign), \\upiota (upgreek), iota, greek"
+    },
+    {
+      "name": "upkappa",
+      "detail": "κ",
+      "doc": "\\mathrm{\\kappa} (omlmathrm), \\kappaup (kpfonts mathdesign), \\upkappa (upgreek), kappa, greek"
+    },
+    {
+      "name": "upLambda",
+      "detail": "Λ",
+      "doc": "\\lambda (-slantedgreek), \\mathrm{\\lambda}, capital lambda, greek"
+    },
+    {
+      "name": "uplambda",
+      "detail": "λ",
+      "doc": "\\mathrm{\\lambda} (omlmathrm), \\lambdaup (kpfonts mathdesign), \\uplambda (upgreek), lambda, greek"
+    },
+    {
+      "name": "upmu",
+      "detail": "μ",
+      "doc": "\\mathrm{\\mu} (omlmathrm), \\muup (kpfonts mathdesign), \\upmu (upgreek), mu, greek"
+    },
+    {
+      "name": "upnu",
+      "detail": "ν",
+      "doc": "\\mathrm{\\nu} (omlmathrm), \\nuup (kpfonts mathdesign), \\upnu (upgreek), nu, greek"
+    },
+    {
+      "name": "upOmega",
+      "detail": "Ω",
+      "doc": "\\omega (-slantedgreek), \\mathrm{\\omega}, capital omega, greek"
+    },
+    {
+      "name": "upomega",
+      "detail": "ω",
+      "doc": "\\mathrm{\\omega} (omlmathrm), \\omegaup (kpfonts mathdesign), \\upomega (upgreek), omega, greek"
+    },
+    {
+      "name": "uppartial"
+    },
+    {
+      "name": "upPhi",
+      "detail": "Φ",
+      "doc": "\\phi (-slantedgreek), \\mathrm{\\phi}, capital phi, greek"
+    },
+    {
+      "name": "upphi",
+      "detail": "ϕ",
+      "doc": "\\mathrm{\\phi} (omlmathrm), \\phiup (kpfonts mathdesign), greek phi symbol (straight)"
+    },
+    {
+      "name": "upPi",
+      "detail": "Π",
+      "doc": "\\pi (-slantedgreek), \\mathrm{\\pi}, capital pi, greek"
+    },
+    {
+      "name": "uppi",
+      "detail": "π",
+      "doc": "\\mathrm{\\pi} (omlmathrm), \\piup (kpfonts mathdesign), \\uppi (upgreek), pi, greek"
+    },
+    {
+      "name": "upPsi",
+      "detail": "Ψ",
+      "doc": "\\psi (-slantedgreek), \\mathrm{\\psi}, capital psi, greek"
+    },
+    {
+      "name": "uppsi",
+      "detail": "ψ",
+      "doc": "\\mathrm{\\psi} (omlmathrm), \\psiup (kpfonts mathdesign), \\uppsi (upgreek), psi, greek"
+    },
+    {
+      "name": "uprho",
+      "detail": "ρ",
+      "doc": "\\mathrm{\\rho} (omlmathrm), \\rhoup (kpfonts mathdesign), \\uprho (upgreek), rho, greek"
+    },
+    {
+      "name": "upSigma",
+      "detail": "Σ",
+      "doc": "\\sigma (-slantedgreek), \\mathrm{\\sigma}, capital sigma, greek"
+    },
+    {
+      "name": "upsigma",
+      "detail": "σ",
+      "doc": "\\mathrm{\\sigma} (omlmathrm), \\sigmaup (kpfonts mathdesign), \\upsigma (upgreek), sigma, greek"
+    },
+    {
+      "name": "Upsilonit",
+      "unusual": true
+    },
+    {
+      "name": "upsilonit",
+      "unusual": true
+    },
+    {
+      "name": "Upsilonup",
+      "unusual": true
+    },
+    {
+      "name": "upsilonup",
+      "unusual": true
+    },
+    {
+      "name": "uptau",
+      "detail": "τ",
+      "doc": "\\mathrm{\\tau} (omlmathrm), \\tauup (kpfonts mathdesign), \\uptau (upgreek), tau, greek"
+    },
+    {
+      "name": "upTheta",
+      "detail": "Θ",
+      "doc": "\\theta (-slantedgreek), \\mathrm{\\theta}, capital theta, greek"
+    },
+    {
+      "name": "uptheta",
+      "detail": "θ",
+      "doc": "\\mathrm{\\theta} (omlmathrm), \\thetaup (kpfonts mathdesign), straight theta, \\uptheta (upgreek), theta, greek"
+    },
+    {
+      "name": "upuparrows",
+      "detail": "⇈ (\"amssymb\" command)",
+      "doc": "Two up arrows"
+    },
+    {
+      "name": "upUpsilon",
+      "detail": "ϒ",
+      "doc": "\\mathrm{\\upsilon}, greek upsilon with hook symbol"
+    },
+    {
+      "name": "upupsilon",
+      "detail": "υ",
+      "doc": "\\mathrm{\\upsilon} (omlmathrm), \\upsilonup (kpfonts mathdesign), \\upupsilon (upgreek), upsilon, greek"
+    },
+    {
+      "name": "upvarepsilon",
+      "detail": "ϵ",
+      "doc": "\\mathrm{\\epsilon} (omlmathrm), \\epsilonup (kpfonts mathdesign), greek lunate epsilon symbol"
+    },
+    {
+      "name": "upvarkappa",
+      "detail": "ϰ (\"amssymb\" command)",
+      "doc": "Greek kappa symbol (round)"
+    },
+    {
+      "name": "upvarphi",
+      "detail": "φ",
+      "doc": "\\mathrm{\\varphi} (omlmathrm), \\varphiup (kpfonts mathdesign), \\upvarphi (upgreek), curly or open phi, greek"
+    },
+    {
+      "name": "upvarpi",
+      "detail": "ϖ",
+      "doc": "\\mathrm{\\varpi} (omlmathrm), \\varpiup (kpfonts mathdesign), greek pi symbol (pomega)"
+    },
+    {
+      "name": "upvarrho",
+      "detail": "ϱ",
+      "doc": "\\mathrm{\\varrho} (omlmathrm), \\varrhoup (kpfonts mathdesign), greek rho symbol (round)"
+    },
+    {
+      "name": "upvarsigma",
+      "detail": "ς",
+      "doc": "\\mathrm{\\varsigma} (omlmathrm), \\varsigmaup (kpfonts mathdesign), \\upvarsigma (upgreek), terminal sigma, greek"
+    },
+    {
+      "name": "upvartheta",
+      "detail": "ϑ",
+      "doc": "\\mathrm{\\vartheta} (omlmathrm), \\varthetaup (kpfonts mathdesign), curly or open theta"
+    },
+    {
+      "name": "upXi",
+      "detail": "Ξ",
+      "doc": "\\xi (-slantedgreek), \\mathrm{\\xi}, capital xi, greek"
+    },
+    {
+      "name": "upxi",
+      "detail": "ξ",
+      "doc": "\\mathrm{\\xi} (omlmathrm), \\xiup (kpfonts mathdesign), \\upxi (upgreek), xi, greek"
+    },
+    {
+      "name": "upzeta",
+      "detail": "ζ",
+      "doc": "\\mathrm{\\zeta} (omlmathrm), \\zetaup (kpfonts mathdesign), \\upzeta (upgreek), zeta, greek"
+    },
+    {
+      "name": "urcorner",
+      "detail": "⌝ (\"amsfonts\" command)",
+      "doc": "Upper right corner"
+    },
+    {
+      "name": "varclubsuit",
+      "detail": "♧ (\"txfonts\" command)",
+      "doc": "\\varclub (arevmath), club, white (card suit)"
+    },
+    {
+      "name": "vardiamondsuit",
+      "detail": "♦ (\"txfonts\" command)",
+      "doc": "\\vardiamond (arevmath), filled diamond (card suit)"
+    },
+    {
+      "name": "varepsilonit",
+      "unusual": true
+    },
+    {
+      "name": "varepsilonup",
+      "unusual": true
+    },
+    {
+      "name": "varheartsuit",
+      "detail": "♥ (\"txfonts\" command)",
+      "doc": "\\varheart (arevmath), filled heart (card suit)"
+    },
+    {
+      "name": "varkappa"
+    },
+    {
+      "name": "varkappait",
+      "unusual": true
+    },
+    {
+      "name": "varkappaup",
+      "unusual": true
+    },
+    {
+      "name": "varmathbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "varnothing",
+      "detail": "∅ (\"amssymb\" command)",
+      "doc": "Circle, slash"
+    },
+    {
+      "name": "varointclockwise",
+      "detail": "∲ (\"esint\" command)",
+      "doc": "\\clockoint (wrisym), contour integral, clockwise"
+    },
+    {
+      "name": "varointclockwiseop",
+      "unusual": true
+    },
+    {
+      "name": "varointclockwisesl",
+      "unusual": true
+    },
+    {
+      "name": "varointclockwiseslop",
+      "unusual": true
+    },
+    {
+      "name": "varointclockwiseup",
+      "unusual": true
+    },
+    {
+      "name": "varointclockwiseupop",
+      "unusual": true
+    },
+    {
+      "name": "varparallel"
+    },
+    {
+      "name": "varparallelinv"
+    },
+    {
+      "name": "varphiit",
+      "unusual": true
+    },
+    {
+      "name": "varphiup",
+      "unusual": true
+    },
+    {
+      "name": "varpiit",
+      "unusual": true
+    },
+    {
+      "name": "varpiup",
+      "unusual": true
+    },
+    {
+      "name": "varprod"
+    },
+    {
+      "name": "varpropto"
+    },
+    {
+      "name": "varrhoit",
+      "unusual": true
+    },
+    {
+      "name": "varrhoup",
+      "unusual": true
+    },
+    {
+      "name": "varsigmait",
+      "unusual": true
+    },
+    {
+      "name": "varsigmaup",
+      "unusual": true
+    },
+    {
+      "name": "varspadesuit",
+      "detail": "♤ (\"txfonts\" command)",
+      "doc": "\\varspade (arevmath), spade, white (card suit)"
+    },
+    {
+      "name": "varsubsetneq"
+    },
+    {
+      "name": "varsubsetneqq"
+    },
+    {
+      "name": "varsupsetneq"
+    },
+    {
+      "name": "varsupsetneqq"
+    },
+    {
+      "name": "varthetait",
+      "unusual": true
+    },
+    {
+      "name": "varthetaup",
+      "unusual": true
+    },
+    {
+      "name": "vartriangle",
+      "detail": "▵ (\"mathabx\" command)",
+      "doc": "\\vartriangle (amssymb), small up triangle, open"
+    },
+    {
+      "name": "vartriangleleft",
+      "detail": "⊲ (\"amssymb\" command)",
+      "doc": "Left triangle, open, variant"
+    },
+    {
+      "name": "vartriangleright",
+      "detail": "⊳ (\"amssymb\" command)",
+      "doc": "Right triangle, open, variant"
+    },
+    {
+      "name": "VDash",
+      "detail": "⊫ (\"mathabx txfonts\" command)",
+      "doc": "Double vert, double dash"
+    },
+    {
+      "name": "vDash",
+      "detail": "⊨ (\"amssymb fourier\" command)",
+      "doc": "True (vertical, double dash)"
+    },
+    {
+      "name": "Vdash",
+      "detail": "⊩ (\"amssymb\" command)",
+      "doc": "Double vertical, dash"
+    },
+    {
+      "name": "veebar",
+      "detail": "⊻ (\"amssymb\" command)",
+      "doc": "Logical or, bar below (large vee); exclusive disjunction"
+    },
+    {
+      "name": "vmathbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "vv*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "vv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "VvDash"
+    },
+    {
+      "name": "Vvdash",
+      "detail": "⊪ (\"amssymb\" command)",
+      "doc": "Triple vertical, dash"
+    },
+    {
+      "name": "vvmathbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "widearc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "wideOarc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "widering",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Wr"
+    },
+    {
+      "name": "Xiit",
+      "unusual": true
+    },
+    {
+      "name": "xiit",
+      "unusual": true
+    },
+    {
+      "name": "Xiup",
+      "unusual": true
+    },
+    {
+      "name": "xiup",
+      "unusual": true
+    },
+    {
+      "name": "Zbar",
+      "detail": "Ƶ",
+      "doc": "Impedance"
+    },
+    {
+      "name": "zetait",
+      "unusual": true
+    },
+    {
+      "name": "zetaup",
+      "unusual": true
+    },
+    {
+      "name": "ShowMathFonts",
+      "unusual": true
+    },
+    {
+      "name": "setSYdimens",
+      "unusual": true
+    },
+    {
+      "name": "setEXdimens",
+      "unusual": true
+    },
+    {
+      "name": "ifiscseq",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "loadsubfile",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "readsufile",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "DeclareMathSymbolCtr",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:cmd}}{${2:type}}{${3:sym-font}}{${4:slot}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/newpxmath#c": [
+      "varg",
+      "subscriptcorrectionfile=${1:file}",
+      "nosubscriptcorrection",
+      "subscriptcorrection",
+      "bigdelims",
+      "varbb",
+      "vvarbb",
+      "nosymbolsc",
+      "cmintegrals",
+      "cmbraces",
+      "noamssymbols",
+      "amssymbols",
+      "uprightscript",
+      "uprightGreek",
+      "slantedGreek",
+      "frenchmath",
+      "upint",
+      "smallerops",
+      "noOT1",
+      "amsthm",
+      "fracspacing",
+      "curlybraces"
     ]
   },
-  "macros": {
-    "checkmark": {
-      "detail": "✓",
-      "documentation": "CHECK MARK"
-    },
-    "circledR": {
-      "detail": "®",
-      "documentation": "REGISTERED SIGN"
-    },
-    "maltese": {
-      "detail": "✠",
-      "documentation": "MALTESE CROSS"
-    },
-    "mathcent": {
-      "detail": "¢",
-      "documentation": "cent"
-    },
-    "mathsterling": {
-      "detail": "£",
-      "documentation": "POUND SIGN, fourier prints a dollar sign"
-    },
-    "openbox": {},
-    "textsquare": {},
-    "alphait": {},
-    "alphaup": {
-      "detail": "α",
-      "documentation": "alpha, greek"
-    },
-    "angle": {
-      "detail": "∠",
-      "documentation": "ANGLE"
-    },
-    "Angstrom": {
-      "detail": "Å",
-      "documentation": "Ångström capital A with ring"
-    },
-    "approxeq": {
-      "detail": "≊",
-      "documentation": "appro equals"
-    },
-    "backepsilon": {
-      "detail": "϶",
-      "documentation": "GREEK REVERSED LUNATE EPSILON SYMBOL"
-    },
-    "backprime": {
-      "detail": "‵",
-      "documentation": "reverse prime, not superscripted"
-    },
-    "backsim": {
-      "detail": "∽",
-      "documentation": "reverse similar"
-    },
-    "backsimeq": {
-      "detail": "⋍",
-      "documentation": "reverse similar, equals"
-    },
-    "barbar{}": {
-      "snippet": "barbar{${1:arg}}"
-    },
-    "barhat{}": {
-      "snippet": "barhat{${1:arg}}"
-    },
-    "bartilde{}": {
-      "snippet": "bartilde{${1:arg}}"
-    },
-    "barwedge": {
-      "detail": "⊼",
-      "documentation": "logical NAND (bar over wedge)"
-    },
-    "Bbbk": {
-      "detail": "𝕜",
-      "documentation": "MATHEMATICAL DOUBLE-STRUCK SMALL K"
-    },
-    "because": {
-      "detail": "∵",
-      "documentation": "BECAUSE"
-    },
-    "betait": {},
-    "betaup": {
-      "detail": "β",
-      "documentation": "be greek"
-    },
-    "beth": {
-      "detail": "ℶ",
-      "documentation": "be hebrew"
-    },
-    "between": {
-      "detail": "≬",
-      "documentation": "BETWEEN"
-    },
-    "bigcapop": {},
-    "bigcapplus": {},
-    "bigcapplusop": {},
-    "bigcupdot": {
-      "detail": "⨃",
-      "documentation": "N-ARY UNION OPERATOR WITH DOT"
-    },
-    "bigcupdotop": {},
-    "bigcupop": {},
-    "bigcupplus": {},
-    "bignplus": {},
-    "bigodotop": {},
-    "bigoplusop": {},
-    "bigotimesop": {},
-    "bigsqcap": {
-      "detail": "⨅",
-      "documentation": "N-ARY SQUARE INTERSECTION OPERATOR"
-    },
-    "bigsqcapop": {},
-    "bigsqcapplus": {},
-    "bigsqcapplusop": {},
-    "bigsqcupop": {},
-    "bigsqcupplus": {},
-    "bigsqcupplusop": {},
-    "bigstar": {
-      "detail": "★",
-      "documentation": "s filled"
-    },
-    "bigtimes": {
-      "detail": "⨉",
-      "documentation": "N-ARY TIMES OPERATOR"
-    },
-    "bigtimesop": {},
-    "biguplusop": {},
-    "bigveeop": {},
-    "bigwedgeop": {},
-    "blacklozenge": {
-      "detail": "⧫",
-      "documentation": "BLACK LOZENGE"
-    },
-    "blacksquare": {
-      "detail": "⬛",
-      "documentation": "BLACK LARGE SQUARE"
-    },
-    "blacktriangle": {
-      "detail": "▴",
-      "documentation": "up filled"
-    },
-    "blacktriangledown": {
-      "detail": "▾",
-      "documentation": "BLACK DOWN-POINTING SMALL TRIANGLE"
-    },
-    "blacktriangleleft": {
-      "detail": "◂",
-      "documentation": "lef filled"
-    },
-    "blacktriangleright": {
-      "detail": "▸",
-      "documentation": "righ filled"
-    },
-    "Bot": {
-      "detail": "⫫",
-      "documentation": "DOUBLE UP TACK"
-    },
-    "Box": {},
-    "boxast": {
-      "detail": "⧆",
-      "documentation": "SQUARED ASTERISK"
-    },
-    "boxbar": {
-      "detail": "◫",
-      "documentation": "vertical bar in box"
-    },
-    "boxbslash": {
-      "detail": "⧅",
-      "documentation": "SQUARED FALLING DIAGONAL SLASH"
-    },
-    "boxdot": {
-      "detail": "⊡",
-      "documentation": "/dotsquare /boxdot b: small dot in box"
-    },
-    "boxdotleft": {},
-    "boxdotLeft": {},
-    "boxdotright": {},
-    "boxdotRight": {},
-    "boxleft": {},
-    "boxLeft": {},
-    "boxminus": {
-      "detail": "⊟",
-      "documentation": "minus sign in box"
-    },
-    "boxplus": {
-      "detail": "⊞",
-      "documentation": "plus sign in box"
-    },
-    "boxright": {},
-    "boxRight": {},
-    "boxslash": {
-      "detail": "⧄",
-      "documentation": "SQUARED RISING DIAGONAL SLASH"
-    },
-    "boxtimes": {
-      "detail": "⊠",
-      "documentation": "multiply sign in box"
-    },
-    "bulletS": {},
-    "bulletSS": {},
-    "bulletSSS": {},
-    "bumpeq": {
-      "detail": "≏",
-      "documentation": "bumpy equals, equals"
-    },
-    "Bumpeq": {
-      "detail": "≎",
-      "documentation": "bumpy equals"
-    },
-    "Cap": {
-      "detail": "⋒",
-      "documentation": "/cap /doublecap b: DOUBLE INTERSECTION"
-    },
-    "cdotB": {},
-    "cdotBB": {},
-    "centerdot": {},
-    "chiit": {},
-    "chiup": {
-      "detail": "χ",
-      "documentation": "chi, greek"
-    },
-    "circeq": {
-      "detail": "≗",
-      "documentation": "circle, equals"
-    },
-    "circlearrowleft": {
-      "detail": "↺",
-      "documentation": "ANTICLOCKWISE OPEN CIRCLE ARROW"
-    },
-    "circlearrowright": {
-      "detail": "↻",
-      "documentation": "CLOCKWISE OPEN CIRCLE ARROW"
-    },
-    "circledast": {
-      "detail": "⊛",
-      "documentation": "asterisk in circle"
-    },
-    "circledbar": {},
-    "circledbslash": {
-      "detail": "⦸",
-      "documentation": "CIRCLED REVERSE SOLIDUS"
-    },
-    "circledcirc": {
-      "detail": "⊚",
-      "documentation": "small circle in circle"
-    },
-    "circleddash": {
-      "detail": "⊝",
-      "documentation": "hyphen in circle"
-    },
-    "circleddot": {},
-    "circleddotleft": {},
-    "circleddotright": {},
-    "circledgtr": {
-      "detail": "⧁",
-      "documentation": "CIRCLED GREATER-THAN"
-    },
-    "circledless": {
-      "detail": "⧀",
-      "documentation": "CIRCLED LESS-THAN"
-    },
-    "circledminus": {},
-    "circledotleft": {},
-    "circledotright": {},
-    "circledplus": {},
-    "circledS": {},
-    "circledslash": {},
-    "circledtimes": {},
-    "circledvee": {},
-    "circledwedge": {},
-    "circleleft": {},
-    "circleright": {},
-    "circS": {},
-    "colonapprox": {},
-    "Colonapprox": {},
-    "Colondash": {},
-    "colondash": {},
-    "Coloneq": {
-      "detail": "⩴",
-      "documentation": "DOUBLE COLON EQUAL"
-    },
-    "coloneq": {
-      "detail": "≔",
-      "documentation": "# : equals"
-    },
-    "coloneqq": {
-      "detail": "≔",
-      "documentation": "# : equals"
-    },
-    "Coloneqq": {
-      "detail": "⩴",
-      "documentation": "DOUBLE COLON EQUAL"
-    },
-    "colonsim": {},
-    "Colonsim": {},
-    "complement": {
-      "detail": "∁",
-      "documentation": "COMPLEMENT sign"
-    },
-    "coprodop": {},
-    "Cup": {
-      "detail": "⋓",
-      "documentation": "/cup /doublecup b: DOUBLE UNION"
-    },
-    "curlyeqprec": {
-      "detail": "⋞",
-      "documentation": "curly equals, precedes"
-    },
-    "curlyeqsucc": {
-      "detail": "⋟",
-      "documentation": "curly equals, succeeds"
-    },
-    "curlyvee": {
-      "detail": "⋎",
-      "documentation": "CURLY LOGICAL OR"
-    },
-    "curlywedge": {
-      "detail": "⋏",
-      "documentation": "CURLY LOGICAL AND"
-    },
-    "curvearrowleft": {
-      "detail": "↶",
-      "documentation": "left curved arrow"
-    },
-    "curvearrowright": {
-      "detail": "↷",
-      "documentation": "right curved arrow"
-    },
-    "dAlembertian": {},
-    "daleth": {
-      "detail": "ℸ",
-      "documentation": "dale hebrew"
-    },
-    "dasharrow": {
-      "detail": "⇢",
-      "documentation": "RIGHTWARDS DASHED ARROW"
-    },
-    "Dashcolon": {},
-    "dashcolon": {
-      "detail": "∹",
-      "documentation": "EXCESS"
-    },
-    "dashleftarrow": {
-      "detail": "⇠",
-      "documentation": "LEFTWARDS DASHED ARROW"
-    },
-    "dashleftrightarrow": {},
-    "dashrightarrow": {
-      "detail": "⇢",
-      "documentation": "RIGHTWARDS DASHED ARROW"
-    },
-    "Deltait": {},
-    "deltait": {},
-    "Deltaup": {},
-    "deltaup": {
-      "detail": "δ",
-      "documentation": "del greek"
-    },
-    "diagdown": {},
-    "diagup": {},
-    "Diamond": {
-      "detail": "◇",
-      "documentation": "WHITE DIAMOND; diamond, open"
-    },
-    "Diamondblack": {
-      "detail": "◆",
-      "documentation": "BLACK DIAMOND"
-    },
-    "Diamonddot": {
-      "detail": "⟐",
-      "documentation": "WHITE DIAMOND WITH CENTRED DOT"
-    },
-    "Diamonddotleft": {},
-    "DiamonddotLeft": {},
-    "Diamonddotright": {},
-    "DiamonddotRight": {},
-    "Diamondleft": {},
-    "DiamondLeft": {},
-    "Diamondright": {},
-    "DiamondRight": {},
-    "digamma": {
-      "detail": "ϝ",
-      "documentation": "GREEK SMALL LETTER DIGAMMA"
-    },
-    "divideontimes": {
-      "detail": "⋇",
-      "documentation": "division on times"
-    },
-    "dlb": {},
-    "Doteq": {
-      "detail": "≑",
-      "documentation": "/doteq r: equals, even dots"
-    },
-    "doteqdot": {
-      "detail": "≑",
-      "documentation": "/doteq r: equals, even dots"
-    },
-    "dotplus": {
-      "detail": "∔",
-      "documentation": "plus sign, dot above"
-    },
-    "doublebarwedge": {
-      "detail": "⩞",
-      "documentation": "LOGICAL AND WITH DOUBLE OVERBAR"
-    },
-    "doublecap": {},
-    "doublecup": {},
-    "downdownarrows": {
-      "detail": "⇊",
-      "documentation": "two down arrows"
-    },
-    "downharpoonleft": {
-      "detail": "⇃",
-      "documentation": "down harpoon-left"
-    },
-    "downharpoonright": {
-      "detail": "⇂",
-      "documentation": "down harpoon-right"
-    },
-    "drb": {},
-    "emptysetAlt": {},
-    "epsilonit": {},
-    "epsilonup": {
-      "detail": "ϵ",
-      "documentation": "GREEK LUNATE EPSILON SYMBOL"
-    },
-    "eqcirc": {
-      "detail": "≖",
-      "documentation": "circle on equals sign"
-    },
-    "Eqcolon": {},
-    "eqcolon": {
-      "detail": "≕",
-      "documentation": "equals, colon"
-    },
-    "Eqqcolon": {},
-    "eqqcolon": {
-      "detail": "≕",
-      "documentation": "equals, colon"
-    },
-    "eqsim": {
-      "detail": "≂",
-      "documentation": "equals, similar"
-    },
-    "eqslantgtr": {
-      "detail": "⪖",
-      "documentation": "SLANTED EQUAL TO OR GREATER-THAN"
-    },
-    "eqslantless": {
-      "detail": "⪕",
-      "documentation": "SLANTED EQUAL TO OR LESS-THAN"
-    },
-    "etait": {},
-    "etaup": {
-      "detail": "η",
-      "documentation": "e greek"
-    },
-    "eth": {
-      "detail": "ð",
-      "documentation": "eth"
-    },
-    "Euler": {
-      "detail": "ℇ",
-      "documentation": "EULER CONSTANT"
-    },
-    "existsAlt": {},
-    "fallingdotseq": {
-      "detail": "≒",
-      "documentation": "equals, falling dots"
-    },
-    "fint": {
-      "detail": "⨏",
-      "documentation": "INTEGRAL AVERAGE WITH SLASH"
-    },
-    "fintop": {},
-    "fintsl": {},
-    "fintslop": {},
-    "fintup": {},
-    "fintupop": {},
-    "Finv": {
-      "detail": "Ⅎ",
-      "documentation": "TURNED CAPITAL F"
-    },
-    "forallAlt": {},
-    "Game": {
-      "detail": "⅁",
-      "documentation": "TURNED SANS-SERIF CAPITAL G (amssymb has mirrored G)"
-    },
-    "Gammait": {},
-    "gammait": {},
-    "Gammaup": {},
-    "gammaup": {
-      "detail": "γ",
-      "documentation": "gamma, greek"
-    },
-    "geqq": {
-      "detail": "≧",
-      "documentation": "grea double equals"
-    },
-    "geqslant": {
-      "detail": "⩾",
-      "documentation": "GREATER-THAN OR SLANTED EQUAL TO"
-    },
-    "ggg": {
-      "detail": "⪢",
-      "documentation": "DOUBLE NESTED GREATER-THAN"
-    },
-    "gggtr": {},
-    "gimel": {
-      "detail": "ℷ",
-      "documentation": "gimel, hebrew"
-    },
-    "gnapprox": {
-      "detail": "⪊",
-      "documentation": "GREATER-THAN AND NOT APPROXIMATE"
-    },
-    "gneq": {
-      "detail": "⪈",
-      "documentation": "GREATER-THAN AND SINGLE-LINE NOT EQUAL TO"
-    },
-    "gneqq": {
-      "detail": "≩",
-      "documentation": "grea not double equals"
-    },
-    "gnsim": {
-      "detail": "⋧",
-      "documentation": "grea not similar"
-    },
-    "groupld": {},
-    "grouplda": {},
-    "grouplu": {},
-    "grouplua": {},
-    "grouprd": {},
-    "grouprda": {},
-    "groupru": {},
-    "grouprua": {},
-    "gtrapprox": {
-      "detail": "⪆",
-      "documentation": "GREATER-THAN OR APPROXIMATE"
-    },
-    "gtrdot": {
-      "detail": "⋗",
-      "documentation": "greater with dot"
-    },
-    "gtreqless": {
-      "detail": "⋛",
-      "documentation": "grea equals, less"
-    },
-    "gtreqqless": {
-      "detail": "⪌",
-      "documentation": "GREATER-THAN ABOVE DOUBLE-LINE EQUAL ABOVE LESS-THAN"
-    },
-    "gtrless": {
-      "detail": "≷",
-      "documentation": "grea less"
-    },
-    "gtrsim": {
-      "detail": "≳",
-      "documentation": "grea similar"
-    },
-    "gvertneqq": {},
-    "harpoonacc{}": {
-      "snippet": "harpoonacc{${1:arg}}"
-    },
-    "hatbar{}": {
-      "snippet": "hatbar{${1:arg}}"
-    },
-    "hathat{}": {
-      "snippet": "hathat{${1:arg}}"
-    },
-    "hattilde{}": {
-      "snippet": "hattilde{${1:arg}}"
-    },
-    "hbar": {},
-    "hermtransp": {},
-    "hslash": {
-      "detail": "ℏ",
-      "documentation": "Planck's h over 2pi"
-    },
-    "htransp": {},
-    "iiiintop": {},
-    "iiiintsl": {},
-    "iiiintslop": {},
-    "iiiintup": {},
-    "iiiintupop": {},
-    "iiintop": {},
-    "iiintsl": {},
-    "iiintslop": {},
-    "iiintup": {},
-    "iiintupop": {},
-    "iintop": {},
-    "iintsl": {},
-    "iintslop": {},
-    "iintup": {},
-    "iintupop": {},
-    "imathbb": {},
-    "imathfrak": {},
-    "imathscr": {},
-    "imathup": {},
-    "intercal": {
-      "detail": "⊺",
-      "documentation": "intercal"
-    },
-    "intop": {},
-    "intsl": {},
-    "intslop": {},
-    "intup": {},
-    "intupop": {},
-    "invamp": {
-      "detail": "⅋",
-      "documentation": "TURNED AMPERSAND"
-    },
-    "iotait": {},
-    "iotaup": {
-      "detail": "ι",
-      "documentation": "io greek"
-    },
-    "jmathbb": {},
-    "jmathfrak": {},
-    "jmathscr": {},
-    "jmathup": {},
-    "Join": {
-      "detail": "⨝",
-      "documentation": "JOIN"
-    },
-    "kappait": {},
-    "kappaup": {
-      "detail": "κ",
-      "documentation": "kappa, greek"
-    },
-    "lambdabar": {},
-    "Lambdait": {},
-    "lambdait": {},
-    "lambdaslash": {},
-    "Lambdaup": {},
-    "lambdaup": {
-      "detail": "λ",
-      "documentation": "lambda, greek"
-    },
-    "laplac": {
-      "detail": "⧠",
-      "documentation": "SQUARE WITH CONTOURED OUTLINE"
-    },
-    "laplace": {},
-    "lbag": {
-      "detail": "⟦",
-      "documentation": "MATHEMATICAL LEFT WHITE SQUARE BRACKET"
-    },
-    "Lbag": {
-      "detail": "⟅",
-      "documentation": "LEFT S-SHAPED BAG DELIMITER"
-    },
-    "lBrack": {
-      "detail": "⟦",
-      "documentation": "MATHEMATICAL LEFT WHITE SQUARE BRACKET"
-    },
-    "leadsto": {
-      "detail": "⤳",
-      "documentation": "WAVE ARROW POINTING DIRECTLY RIGHT"
-    },
-    "leadstoext": {},
-    "leftarrowtail": {
-      "detail": "↢",
-      "documentation": "left arrow-tailed"
-    },
-    "leftleftarrows": {
-      "detail": "⇇",
-      "documentation": "two left arrows"
-    },
-    "leftrightarrows": {
-      "detail": "⇆",
-      "documentation": "left arrow over right arrow"
-    },
-    "leftrightharpoons": {
-      "detail": "⇋",
-      "documentation": "left harpoon over right"
-    },
-    "leftrightsquigarrow": {
-      "detail": "↭",
-      "documentation": "left and right arr-wavy"
-    },
-    "leftsquigarrow": {
-      "detail": "⇜",
-      "documentation": "LEFTWARDS SQUIGGLE ARROW"
-    },
-    "leftthreetimes": {
-      "detail": "⋋",
-      "documentation": "LEFT SEMIDIRECT PRODUCT"
-    },
-    "leqq": {
-      "detail": "≦",
-      "documentation": "less, double equals"
-    },
-    "leqslant": {
-      "detail": "⩽",
-      "documentation": "LESS-THAN OR SLANTED EQUAL TO"
-    },
-    "lessapprox": {
-      "detail": "⪅",
-      "documentation": "LESS-THAN OR APPROXIMATE"
-    },
-    "lessdot": {
-      "detail": "⋖",
-      "documentation": "less with dot"
-    },
-    "lesseqgtr": {
-      "detail": "⋚",
-      "documentation": "less, equals, greater"
-    },
-    "lesseqqgtr": {
-      "detail": "⪋",
-      "documentation": "LESS-THAN ABOVE DOUBLE-LINE EQUAL ABOVE GREATER-THAN"
-    },
-    "lessgtr": {
-      "detail": "≶",
-      "documentation": "less, greater"
-    },
-    "lesssim": {
-      "detail": "≲",
-      "documentation": "less, similar"
-    },
-    "lharpoonacc{}": {
-      "snippet": "lharpoonacc{${1:arg}}"
-    },
-    "lhd": {
-      "detail": "◁",
-      "documentation": "(large) lef open; z notation domain restriction"
-    },
-    "lJoin": {},
-    "llbracket": {
-      "detail": "⟦",
-      "documentation": "MATHEMATICAL LEFT WHITE SQUARE BRACKET"
-    },
-    "llcorner": {
-      "detail": "⌞",
-      "documentation": "lower left corner"
-    },
-    "Lleftarrow": {
-      "detail": "⇚",
-      "documentation": "left triple arrow"
-    },
-    "lll": {
-      "detail": "⪡",
-      "documentation": "DOUBLE NESTED LESS-THAN"
-    },
-    "llless": {},
-    "lnapprox": {
-      "detail": "⪉",
-      "documentation": "LESS-THAN AND NOT APPROXIMATE"
-    },
-    "lneq": {
-      "detail": "⪇",
-      "documentation": "LESS-THAN AND SINGLE-LINE NOT EQUAL TO"
-    },
-    "lneqq": {
-      "detail": "≨",
-      "documentation": "less, not double equals"
-    },
-    "lnsim": {
-      "detail": "⋦",
-      "documentation": "less, not similar"
-    },
-    "Longmappedfrom": {
-      "detail": "⟽",
-      "documentation": "LONG LEFTWARDS DOUBLE ARROW FROM BAR"
-    },
-    "longmappedfrom": {
-      "detail": "⟻",
-      "documentation": "LONG LEFTWARDS ARROW FROM BAR"
-    },
-    "Longmapsto": {
-      "detail": "⟾",
-      "documentation": "LONG RIGHTWARDS DOUBLE ARROW FROM BAR"
-    },
-    "Longmmappedfrom": {},
-    "longmmappedfrom": {},
-    "Longmmapsto": {},
-    "longmmapsto": {},
-    "looparrowleft": {
-      "detail": "↫",
-      "documentation": "left arrow-looped"
-    },
-    "looparrowright": {
-      "detail": "↬",
-      "documentation": "right arrow-looped"
-    },
-    "lozenge": {
-      "detail": "◊",
-      "documentation": "LOZENGE or total mark"
-    },
-    "lrcorner": {
-      "detail": "⌟",
-      "documentation": "lower right corner"
-    },
-    "lrharpoonacc{}": {
-      "snippet": "lrharpoonacc{${1:arg}}"
-    },
-    "lrJoin": {},
-    "lrtimes": {
-      "detail": "⋈",
-      "documentation": "BOWTIE"
-    },
-    "lrvec{}": {
-      "snippet": "lrvec{${1:arg}}"
-    },
-    "Lsh": {
-      "detail": "↰",
-      "documentation": "a: UPWARDS ARROW WITH TIP LEFTWARDS"
-    },
-    "ltimes": {
-      "detail": "⋉",
-      "documentation": "times sign, left closed"
-    },
-    "lvertneqq": {},
-    "Mappedfrom": {
-      "detail": "⤆",
-      "documentation": "LEFTWARDS DOUBLE ARROW FROM BAR"
-    },
-    "mappedfrom": {
-      "detail": "↤",
-      "documentation": "maps leftward"
-    },
-    "Mapsfrom": {
-      "detail": "⤆",
-      "documentation": "LEFTWARDS DOUBLE ARROW FROM BAR"
-    },
-    "mapsfrom": {
-      "detail": "↤",
-      "documentation": "maps leftward"
-    },
-    "Mapsto": {
-      "detail": "⤇",
-      "documentation": "RIGHTWARDS DOUBLE ARROW FROM BAR"
-    },
-    "mathfrak{}": {
-      "snippet": "mathfrak{${1:text}}"
-    },
-    "mathslscr{}": {
-      "snippet": "mathslscr{${1:text}}"
-    },
-    "mathuscr{}": {
-      "snippet": "mathuscr{${1:text}}"
-    },
-    "measuredangle": {
-      "detail": "∡",
-      "documentation": "MEASURED ANGLE"
-    },
-    "medbullet": {
-      "detail": "⚫",
-      "documentation": "MEDIUM BLACK CIRCLE"
-    },
-    "medcirc": {
-      "detail": "⚪",
-      "documentation": "MEDIUM WHITE CIRCLE"
-    },
-    "mho": {
-      "detail": "℧",
-      "documentation": "conductance"
-    },
-    "Mmappedfrom": {},
-    "mmappedfrom": {},
-    "Mmapsto": {},
-    "mmapsto": {},
-    "muit": {},
-    "multimap": {
-      "detail": "⊸",
-      "documentation": "/MULTIMAP a:"
-    },
-    "multimapboth": {
-      "detail": "⧟",
-      "documentation": "DOUBLE-ENDED MULTIMAP"
-    },
-    "multimapbothvert": {},
-    "multimapdot": {},
-    "multimapdotboth": {},
-    "multimapdotbothA": {
-      "detail": "⊶",
-      "documentation": "ORIGINAL OF"
-    },
-    "multimapdotbothAvert": {},
-    "multimapdotbothB": {
-      "detail": "⊷",
-      "documentation": "IMAGE OF"
-    },
-    "multimapdotbothBvert": {},
-    "multimapdotbothvert": {},
-    "multimapdotinv": {},
-    "multimapinv": {
-      "detail": "⟜",
-      "documentation": "LEFT MULTIMAP"
-    },
-    "muup": {
-      "detail": "μ",
-      "documentation": "mu, greek"
-    },
-    "napprox": {
-      "detail": "≉",
-      "documentation": "not approximate"
-    },
-    "napproxeq": {},
-    "nasymp": {
-      "detail": "≭",
-      "documentation": "not asymptotically equal to"
-    },
-    "nbacksim": {},
-    "nbacksimeq": {},
-    "nBumpeq": {},
-    "nbumpeq": {},
-    "ncong": {
-      "detail": "≇",
-      "documentation": "not congruent with"
-    },
-    "Nearrow": {
-      "detail": "⇗",
-      "documentation": "ne pointing double arrow"
-    },
-    "nequiv": {
-      "detail": "≢",
-      "documentation": "not identical with"
-    },
-    "nexists": {
-      "detail": "∄",
-      "documentation": "negated exists"
-    },
-    "nexistsAlt": {},
-    "ngeq": {
-      "detail": "≱",
-      "documentation": "not greater-than-or-equal"
-    },
-    "ngeqq": {},
-    "ngeqslant": {
-      "detail": "≱",
-      "documentation": "not greater-than-or-equal"
-    },
-    "ngg": {},
-    "ngtr": {
-      "detail": "≯",
-      "documentation": "NOT GREATER-THAN"
-    },
-    "ngtrapprox": {},
-    "ngtrless": {
-      "detail": "≹",
-      "documentation": "no less"
-    },
-    "ngtrsim": {
-      "detail": "≵",
-      "documentation": "no similar"
-    },
-    "nleftarrow": {
-      "detail": "↚",
-      "documentation": "not left arrow"
-    },
-    "nLeftarrow": {
-      "detail": "⇍",
-      "documentation": "not implied by"
-    },
-    "nleftrightarrow": {
-      "detail": "↮",
-      "documentation": "not left and right arrow"
-    },
-    "nLeftrightarrow": {
-      "detail": "⇎",
-      "documentation": "not left and right double arrows"
-    },
-    "nleq": {
-      "detail": "≰",
-      "documentation": "not less-than-or-equal"
-    },
-    "nleqq": {},
-    "nleqslant": {
-      "detail": "≰",
-      "documentation": "not less-than-or-equal"
-    },
-    "nless": {
-      "detail": "≮",
-      "documentation": "NOT LESS-THAN"
-    },
-    "nlessapprox": {},
-    "nlessgtr": {
-      "detail": "≸",
-      "documentation": "no greater"
-    },
-    "nlesssim": {
-      "detail": "≴",
-      "documentation": "no similar"
-    },
-    "nll": {},
-    "nmid": {
-      "detail": "∤",
-      "documentation": "negated mid, DOES NOT DIVIDE"
-    },
-    "notni": {
-      "detail": "∌",
-      "documentation": "negated con variant"
-    },
-    "notowns": {
-      "detail": "∌",
-      "documentation": "negated con variant"
-    },
-    "nparallel": {
-      "detail": "∦",
-      "documentation": "not parallel"
-    },
-    "nPerp": {},
-    "nplus": {},
-    "nprec": {
-      "detail": "⊀",
-      "documentation": "not precedes"
-    },
-    "nprecapprox": {},
-    "npreccurlyeq": {
-      "detail": "⋠",
-      "documentation": "DOES NOT PRECEDE OR EQUAL"
-    },
-    "npreceq": {
-      "detail": "⋠",
-      "documentation": "DOES NOT PRECEDE OR EQUAL"
-    },
-    "npreceqq": {},
-    "nprecsim": {},
-    "nrightarrow": {
-      "detail": "↛",
-      "documentation": "not right arrow"
-    },
-    "nRightarrow": {
-      "detail": "⇏",
-      "documentation": "not implies"
-    },
-    "nshortmid": {},
-    "nshortparallel": {},
-    "nsim": {
-      "detail": "≁",
-      "documentation": "not similar"
-    },
-    "nsimeq": {
-      "detail": "≄",
-      "documentation": "no equals"
-    },
-    "nsqsubset": {},
-    "nsqsubseteq": {
-      "detail": "⋢",
-      "documentation": "not, square subset, equals"
-    },
-    "nsqsupset": {},
-    "nsqsupseteq": {
-      "detail": "⋣",
-      "documentation": "not, square superset, equals"
-    },
-    "nsubset": {
-      "detail": "⊄",
-      "documentation": "no variant [slash negation]"
-    },
-    "nSubset": {},
-    "nsubseteq": {
-      "detail": "⊈",
-      "documentation": "no equals"
-    },
-    "nsubseteqq": {},
-    "nsucc": {
-      "detail": "⊁",
-      "documentation": "not succeeds"
-    },
-    "nsuccapprox": {},
-    "nsucccurlyeq": {
-      "detail": "⋡",
-      "documentation": "no curly equals"
-    },
-    "nsucceq": {
-      "detail": "⋡",
-      "documentation": "no curly equals"
-    },
-    "nsucceqq": {},
-    "nsuccsim": {},
-    "nsupset": {
-      "detail": "⊅",
-      "documentation": "no variant [slash negation]"
-    },
-    "nSupset": {},
-    "nsupseteq": {
-      "detail": "⊉",
-      "documentation": "no equals"
-    },
-    "nsupseteqq": {},
-    "nthickapprox": {},
-    "ntriangleleft": {
-      "detail": "⋪",
-      "documentation": "not left triangle"
-    },
-    "ntrianglelefteq": {
-      "detail": "⋬",
-      "documentation": "not lef equals"
-    },
-    "ntriangleright": {
-      "detail": "⋫",
-      "documentation": "not right triangle"
-    },
-    "ntrianglerighteq": {
-      "detail": "⋭",
-      "documentation": "not righ equals"
-    },
-    "ntwoheadleftarrow": {},
-    "ntwoheadrightarrow": {},
-    "nuit": {},
-    "nuup": {
-      "detail": "ν",
-      "documentation": "nu, greek"
-    },
-    "nvarparallel": {},
-    "nvarparallelinv": {},
-    "nvdash": {
-      "detail": "⊬",
-      "documentation": "no dash"
-    },
-    "nvDash": {
-      "detail": "⊭",
-      "documentation": "no double dash"
-    },
-    "nVdash": {
-      "detail": "⊮",
-      "documentation": "not double ver dash"
-    },
-    "nVDash": {
-      "detail": "⊯",
-      "documentation": "not double vert, double dash"
-    },
-    "Nwarrow": {
-      "detail": "⇖",
-      "documentation": "nw pointing double arrow"
-    },
-    "oiiint": {
-      "detail": "∰",
-      "documentation": "triple contour integral operator"
-    },
-    "oiiintop": {},
-    "oiiintsl": {},
-    "oiiintslop": {},
-    "oiiintup": {},
-    "oiiintupop": {},
-    "oiint": {
-      "detail": "∯",
-      "documentation": "double contour integral operator"
-    },
-    "oiintop": {},
-    "oiintsl": {},
-    "oiintslop": {},
-    "oiintup": {},
-    "oiintupop": {},
-    "ointctrclockwise": {
-      "detail": "∳",
-      "documentation": "contour in anticlockwise"
-    },
-    "ointctrclockwiseop": {},
-    "ointctrclockwisesl": {},
-    "ointctrclockwiseslop": {},
-    "ointctrclockwiseup": {},
-    "ointctrclockwiseupop": {},
-    "ointop": {},
-    "ointsl": {},
-    "ointslop": {},
-    "ointup": {},
-    "ointupop": {},
-    "Omegait": {},
-    "omegait": {},
-    "Omegaup": {},
-    "omegaup": {
-      "detail": "ω",
-      "documentation": "omega, greek"
-    },
-    "openJoin": {},
-    "opentimes": {},
-    "overgroup{}": {
-      "snippet": "overgroup{${1:arg}}"
-    },
-    "overgroupla{}": {
-      "snippet": "overgroupla{${1:arg}}"
-    },
-    "overgroupra{}": {
-      "snippet": "overgroupra{${1:arg}}"
-    },
-    "Perp": {
-      "detail": "⫫",
-      "documentation": "DOUBLE UP TACK"
-    },
-    "Phiit": {},
-    "phiit": {},
-    "Phiup": {},
-    "phiup": {
-      "detail": "ϕ",
-      "documentation": "GREEK PHI SYMBOL (straight)"
-    },
-    "Piit": {},
-    "piit": {},
-    "pitchfork": {
-      "detail": "⋔",
-      "documentation": "PITCHFORK"
-    },
-    "Piup": {},
-    "piup": {
-      "detail": "π",
-      "documentation": "pi, greek"
-    },
-    "precapprox": {
-      "detail": "⪷",
-      "documentation": "PRECEDES ABOVE ALMOST EQUAL TO"
-    },
-    "preccurlyeq": {
-      "detail": "≼",
-      "documentation": "precedes, curly equals"
-    },
-    "preceqq": {
-      "detail": "⪳",
-      "documentation": "PRECEDES ABOVE EQUALS SIGN"
-    },
-    "precnapprox": {
-      "detail": "⪹",
-      "documentation": "PRECEDES ABOVE NOT ALMOST EQUAL TO"
-    },
-    "precneqq": {
-      "detail": "⪵",
-      "documentation": "PRECEDES ABOVE NOT EQUAL TO"
-    },
-    "precnsim": {
-      "detail": "⋨",
-      "documentation": "precedes, not similar"
-    },
-    "precsim": {
-      "detail": "≾",
-      "documentation": "precedes, similar"
-    },
-    "primeS": {},
-    "prodop": {},
-    "Psiit": {},
-    "psiit": {},
-    "Psiup": {},
-    "psiup": {
-      "detail": "ψ",
-      "documentation": "psi, greek"
-    },
-    "rbag": {
-      "detail": "⟧",
-      "documentation": "MATHEMATICAL RIGHT WHITE SQUARE BRACKET"
-    },
-    "Rbag": {
-      "detail": "⟆",
-      "documentation": "RIGHT S-SHAPED BAG DELIMITER"
-    },
-    "rBrack": {
-      "detail": "⟧",
-      "documentation": "MATHEMATICAL RIGHT WHITE SQUARE BRACKET"
-    },
-    "restriction": {
-      "detail": "↾",
-      "documentation": "a: up harpoon-right"
-    },
-    "rhd": {
-      "detail": "▷",
-      "documentation": "(large) righ open; z notation range restriction"
-    },
-    "rhoit": {},
-    "rhoup": {
-      "detail": "ρ",
-      "documentation": "rho, greek"
-    },
-    "rightarrowtail": {
-      "detail": "↣",
-      "documentation": "righ z notation total injection"
-    },
-    "rightleftarrows": {
-      "detail": "⇄",
-      "documentation": "right arrow over left arrow"
-    },
-    "rightleftharpoons": {
-      "detail": "⇌",
-      "documentation": "right harpoon over left"
-    },
-    "rightrightarrows": {
-      "detail": "⇉",
-      "documentation": "two right arrows"
-    },
-    "rightsquigarrow": {
-      "detail": "⇝",
-      "documentation": "RIGHTWARDS SQUIGGLE ARROW"
-    },
-    "rightthreetimes": {
-      "detail": "⋌",
-      "documentation": "RIGHT SEMIDIRECT PRODUCT"
-    },
-    "risingdotseq": {
-      "detail": "≓",
-      "documentation": "equals, rising dots"
-    },
-    "rJoin": {},
-    "rrbracket": {
-      "detail": "⟧",
-      "documentation": "MATHEMATICAL RIGHT WHITE SQUARE BRACKET"
-    },
-    "Rrightarrow": {
-      "detail": "⇛",
-      "documentation": "right triple arrow"
-    },
-    "Rsh": {
-      "detail": "↱",
-      "documentation": "a: UPWARDS ARROW WITH TIP RIGHTWARDS"
-    },
-    "rtimes": {
-      "detail": "⋊",
-      "documentation": "times sign, right closed"
-    },
-    "Searrow": {
-      "detail": "⇘",
-      "documentation": "se pointing double arrow"
-    },
-    "shortmid": {},
-    "shortparallel": {},
-    "Sigmait": {},
-    "sigmait": {},
-    "Sigmaup": {},
-    "sigmaup": {
-      "detail": "σ",
-      "documentation": "sigma, greek"
-    },
-    "smallcoprod": {},
-    "smallfint": {},
-    "smallfintsl": {},
-    "smallfintup": {},
-    "smallfrown": {},
-    "smalliiiint": {},
-    "smalliiiintsl": {},
-    "smalliiiintup": {},
-    "smalliiint": {},
-    "smalliiintsl": {},
-    "smalliiintup": {},
-    "smalliint": {},
-    "smalliintsl": {},
-    "smalliintup": {},
-    "smallintsl": {},
-    "smallintup": {},
-    "smalloiiint": {},
-    "smalloiiintsl": {},
-    "smalloiiintup": {},
-    "smalloiint": {},
-    "smalloiintsl": {},
-    "smalloiintup": {},
-    "smalloint": {},
-    "smallointctrclockwise": {},
-    "smallointctrclockwisesl": {},
-    "smallointctrclockwiseup": {},
-    "smallointsl": {},
-    "smallointup": {},
-    "smallprod": {},
-    "smallsetminus": {
-      "detail": "∖",
-      "documentation": "small SET MINUS (cf. reverse solidus)"
-    },
-    "smallsmile": {},
-    "smallsqint": {},
-    "smallsqintsl": {},
-    "smallsqintup": {},
-    "smallsum": {},
-    "smallsumint": {},
-    "smallsumintsl": {},
-    "smallsumintup": {},
-    "smallvarointclockwise": {},
-    "smallvarointclockwisesl": {},
-    "smallvarointclockwiseup": {},
-    "smlbrace": {},
-    "smrbrace": {},
-    "sphericalangle": {
-      "detail": "∢",
-      "documentation": "SPHERICAL ANGLE"
-    },
-    "sqcapplus": {},
-    "sqcupplus": {},
-    "sqint": {
-      "detail": "⨖",
-      "documentation": "QUATERNION INTEGRAL OPERATOR"
-    },
-    "sqintop": {},
-    "sqintsl": {},
-    "sqintslop": {},
-    "sqintup": {},
-    "sqintupop": {},
-    "sqsubset": {
-      "detail": "⊏",
-      "documentation": "square subset"
-    },
-    "sqsupset": {
-      "detail": "⊐",
-      "documentation": "square superset"
-    },
-    "square": {
-      "detail": "⬜",
-      "documentation": "WHITE LARGE SQUARE"
-    },
-    "strictfi": {
-      "detail": "⥼",
-      "documentation": "LEFT FISH TAIL"
-    },
-    "strictif": {
-      "detail": "⥽",
-      "documentation": "RIGHT FISH TAIL"
-    },
-    "strictiff": {},
-    "Subset": {
-      "detail": "⋐",
-      "documentation": "DOUBLE SUBSET"
-    },
-    "subseteqq": {
-      "detail": "⫅",
-      "documentation": "SUBSET OF ABOVE EQUALS SIGN"
-    },
-    "subsetneq": {
-      "detail": "⊊",
-      "documentation": "subset, not equals"
-    },
-    "subsetneqq": {
-      "detail": "⫋",
-      "documentation": "SUBSET OF ABOVE NOT EQUAL TO"
-    },
-    "succapprox": {
-      "detail": "⪸",
-      "documentation": "SUCCEEDS ABOVE ALMOST EQUAL TO"
-    },
-    "succcurlyeq": {
-      "detail": "≽",
-      "documentation": "succeeds, curly equals"
-    },
-    "succeqq": {
-      "detail": "⪴",
-      "documentation": "SUCCEEDS ABOVE EQUALS SIGN"
-    },
-    "succnapprox": {
-      "detail": "⪺",
-      "documentation": "SUCCEEDS ABOVE NOT ALMOST EQUAL TO"
-    },
-    "succneqq": {
-      "detail": "⪶",
-      "documentation": "SUCCEEDS ABOVE NOT EQUAL TO"
-    },
-    "succnsim": {
-      "detail": "⋩",
-      "documentation": "succeeds, not similar"
-    },
-    "succsim": {
-      "detail": "≿",
-      "documentation": "succeeds, similar"
-    },
-    "sumint": {
-      "detail": "⨋",
-      "documentation": "SUMMATION WITH INTEGRAL"
-    },
-    "sumintop": {},
-    "sumintsl": {},
-    "sumintslop": {},
-    "sumintup": {},
-    "sumintupop": {},
-    "sumop": {},
-    "Supset": {
-      "detail": "⋑",
-      "documentation": "DOUBLE SUPERSET"
-    },
-    "supseteqq": {
-      "detail": "⫆",
-      "documentation": "SUPERSET OF ABOVE EQUALS SIGN"
-    },
-    "supsetneq": {
-      "detail": "⊋",
-      "documentation": "superset, not equals"
-    },
-    "supsetneqq": {
-      "detail": "⫌",
-      "documentation": "SUPERSET OF ABOVE NOT EQUAL TO"
-    },
-    "Swarrow": {
-      "detail": "⇙",
-      "documentation": "sw pointing double arrow"
-    },
-    "tauit": {},
-    "tauup": {
-      "detail": "τ",
-      "documentation": "greek"
-    },
-    "therefore": {
-      "detail": "∴",
-      "documentation": "THEREFORE"
-    },
-    "Thetait": {},
-    "thetait": {},
-    "Thetaup": {},
-    "thetaup": {
-      "detail": "θ",
-      "documentation": "straigh greek"
-    },
-    "thickapprox": {},
-    "thicksim": {},
-    "tildebar{}": {
-      "snippet": "tildebar{${1:arg}}"
-    },
-    "tildehat{}": {
-      "snippet": "tildehat{${1:arg}}"
-    },
-    "tildetilde{}": {
-      "snippet": "tildetilde{${1:arg}}"
-    },
-    "Top": {
-      "detail": "⫪",
-      "documentation": "DOUBLE DOWN TACK"
-    },
-    "transp": {},
-    "triangledown": {
-      "detail": "▿",
-      "documentation": "WHITE DOWN-POINTING SMALL TRIANGLE"
-    },
-    "trianglelefteq": {
-      "detail": "⊴",
-      "documentation": "lef equals"
-    },
-    "triangleq": {
-      "detail": "≜",
-      "documentation": "equals"
-    },
-    "trianglerighteq": {
-      "detail": "⊵",
-      "documentation": "righ equals"
-    },
-    "twoheadleftarrow": {
-      "detail": "↞",
-      "documentation": "left two-headed arrow"
-    },
-    "twoheadrightarrow": {
-      "detail": "↠",
-      "documentation": "right two-headed arrow, z notation total surjection"
-    },
-    "ulcorner": {
-      "detail": "⌜",
-      "documentation": "upper left corner"
-    },
-    "undergroup{}": {
-      "snippet": "undergroup{${1:arg}}"
-    },
-    "undergroupla{}": {
-      "snippet": "undergroupla{${1:arg}}"
-    },
-    "undergroupra{}": {
-      "snippet": "undergroupra{${1:arg}}"
-    },
-    "unlhd": {
-      "detail": "⊴",
-      "documentation": "lef equals"
-    },
-    "unrhd": {
-      "detail": "⊵",
-      "documentation": "righ equals"
-    },
-    "upalpha": {
-      "detail": "α",
-      "documentation": "alpha, greek"
-    },
-    "upbeta": {
-      "detail": "β",
-      "documentation": "be greek"
-    },
-    "upchi": {
-      "detail": "χ",
-      "documentation": "chi, greek"
-    },
-    "upDelta": {
-      "detail": "Δ",
-      "documentation": "capital del greek"
-    },
-    "updelta": {
-      "detail": "δ",
-      "documentation": "del greek"
-    },
-    "upepsilon": {
-      "detail": "ε",
-      "documentation": "rounded epsilon, greek"
-    },
-    "upeta": {
-      "detail": "η",
-      "documentation": "e greek"
-    },
-    "upGamma": {
-      "detail": "Γ",
-      "documentation": "capital gamma, greek"
-    },
-    "upgamma": {
-      "detail": "γ",
-      "documentation": "gamma, greek"
-    },
-    "upharpoonleft": {
-      "detail": "↿",
-      "documentation": "up harpoon-left"
-    },
-    "upharpoonright": {
-      "detail": "↾",
-      "documentation": "a: up harpoon-right"
-    },
-    "upiota": {
-      "detail": "ι",
-      "documentation": "io greek"
-    },
-    "upkappa": {
-      "detail": "κ",
-      "documentation": "kappa, greek"
-    },
-    "upLambda": {
-      "detail": "Λ",
-      "documentation": "capital lambda, greek"
-    },
-    "uplambda": {
-      "detail": "λ",
-      "documentation": "lambda, greek"
-    },
-    "upmu": {
-      "detail": "μ",
-      "documentation": "mu, greek"
-    },
-    "upnu": {
-      "detail": "ν",
-      "documentation": "nu, greek"
-    },
-    "upOmega": {
-      "detail": "Ω",
-      "documentation": "capital omega, greek"
-    },
-    "upomega": {
-      "detail": "ω",
-      "documentation": "omega, greek"
-    },
-    "uppartial": {},
-    "upPhi": {
-      "detail": "Φ",
-      "documentation": "capital phi, greek"
-    },
-    "upphi": {
-      "detail": "ϕ",
-      "documentation": "GREEK PHI SYMBOL (straight)"
-    },
-    "upPi": {
-      "detail": "Π",
-      "documentation": "capital pi, greek"
-    },
-    "uppi": {
-      "detail": "π",
-      "documentation": "pi, greek"
-    },
-    "upPsi": {
-      "detail": "Ψ",
-      "documentation": "capital psi, greek"
-    },
-    "uppsi": {
-      "detail": "ψ",
-      "documentation": "psi, greek"
-    },
-    "uprho": {
-      "detail": "ρ",
-      "documentation": "rho, greek"
-    },
-    "upSigma": {
-      "detail": "Σ",
-      "documentation": "capital sigma, greek"
-    },
-    "upsigma": {
-      "detail": "σ",
-      "documentation": "sigma, greek"
-    },
-    "Upsilonit": {},
-    "upsilonit": {},
-    "Upsilonup": {},
-    "upsilonup": {
-      "detail": "υ",
-      "documentation": "upsilon, greek"
-    },
-    "uptau": {
-      "detail": "τ",
-      "documentation": "greek"
-    },
-    "upTheta": {
-      "detail": "Θ",
-      "documentation": "capital greek"
-    },
-    "uptheta": {
-      "detail": "θ",
-      "documentation": "straigh greek"
-    },
-    "upuparrows": {
-      "detail": "⇈",
-      "documentation": "two up arrows"
-    },
-    "upUpsilon": {
-      "detail": "ϒ",
-      "documentation": "GREEK UPSILON WITH HOOK SYMBOL"
-    },
-    "upupsilon": {
-      "detail": "υ",
-      "documentation": "upsilon, greek"
-    },
-    "upvarepsilon": {
-      "detail": "ϵ",
-      "documentation": "GREEK LUNATE EPSILON SYMBOL"
-    },
-    "upvarkappa": {
-      "detail": "ϰ",
-      "documentation": "GREEK KAPPA SYMBOL (round)"
-    },
-    "upvarphi": {
-      "detail": "φ",
-      "documentation": "curly or open phi, greek"
-    },
-    "upvarpi": {
-      "detail": "ϖ",
-      "documentation": "GREEK PI SYMBOL (pomega)"
-    },
-    "upvarrho": {
-      "detail": "ϱ",
-      "documentation": "GREEK RHO SYMBOL (round)"
-    },
-    "upvarsigma": {
-      "detail": "ς",
-      "documentation": "terminal sigma, greek"
-    },
-    "upvartheta": {
-      "detail": "ϑ",
-      "documentation": "curly or open theta"
-    },
-    "upXi": {
-      "detail": "Ξ",
-      "documentation": "capital greek"
-    },
-    "upxi": {
-      "detail": "ξ",
-      "documentation": "greek"
-    },
-    "upzeta": {
-      "detail": "ζ",
-      "documentation": "ze greek"
-    },
-    "urcorner": {
-      "detail": "⌝",
-      "documentation": "upper right corner"
-    },
-    "varclubsuit": {
-      "detail": "♧",
-      "documentation": "club, white (card suit)"
-    },
-    "vardiamondsuit": {
-      "detail": "♦",
-      "documentation": "filled diamond (card suit)"
-    },
-    "varepsilonit": {},
-    "varepsilonup": {
-      "detail": "ε",
-      "documentation": "rounded epsilon, greek"
-    },
-    "varheartsuit": {
-      "detail": "♥",
-      "documentation": "filled heart (card suit)"
-    },
-    "varkappa": {
-      "detail": "𝜘",
-      "documentation": "MATHEMATICAL ITALIC KAPPA SYMBOL"
-    },
-    "varkappait": {},
-    "varkappaup": {},
-    "varmathbb{}": {
-      "snippet": "varmathbb{${1:text}}"
-    },
-    "varnothing": {
-      "detail": "∅",
-      "documentation": "circle, slash"
-    },
-    "varointclockwise": {
-      "detail": "∲",
-      "documentation": "contour in clockwise"
-    },
-    "varointclockwiseop": {},
-    "varointclockwisesl": {},
-    "varointclockwiseslop": {},
-    "varointclockwiseup": {},
-    "varointclockwiseupop": {},
-    "varparallel": {},
-    "varparallelinv": {},
-    "varphiit": {},
-    "varphiup": {
-      "detail": "φ",
-      "documentation": "curly or open phi, greek"
-    },
-    "varpiit": {},
-    "varpiup": {
-      "detail": "ϖ",
-      "documentation": "GREEK PI SYMBOL (pomega)"
-    },
-    "varprod": {
-      "detail": "⨉",
-      "documentation": "N-ARY TIMES OPERATOR"
-    },
-    "varpropto": {},
-    "varrhoit": {},
-    "varrhoup": {
-      "detail": "ϱ",
-      "documentation": "GREEK RHO SYMBOL (round)"
-    },
-    "varsigmait": {},
-    "varsigmaup": {
-      "detail": "ς",
-      "documentation": "terminal sigma, greek"
-    },
-    "varspadesuit": {
-      "detail": "♤",
-      "documentation": "spade, white (card suit)"
-    },
-    "varsubsetneq": {
-      "detail": "⊊",
-      "documentation": "subset, not equals"
-    },
-    "varsubsetneqq": {},
-    "varsupsetneq": {},
-    "varsupsetneqq": {},
-    "varthetait": {},
-    "varthetaup": {
-      "detail": "ϑ",
-      "documentation": "curly or open theta"
-    },
-    "vartriangle": {
-      "detail": "▵",
-      "documentation": "small up open"
-    },
-    "vartriangleleft": {
-      "detail": "⊲",
-      "documentation": "lef open, variant"
-    },
-    "vartriangleright": {
-      "detail": "⊳",
-      "documentation": "righ open, variant"
-    },
-    "VDash": {
-      "detail": "⊫",
-      "documentation": "double vert, double dash"
-    },
-    "vDash": {
-      "detail": "⊨",
-      "documentation": "TRUE (ver double dash)"
-    },
-    "Vdash": {
-      "detail": "⊩",
-      "documentation": "double ver dash"
-    },
-    "veebar": {
-      "detail": "⊻",
-      "documentation": "logical or, bar below (large vee); exclusive disjunction"
-    },
-    "vmathbb{}": {
-      "snippet": "vmathbb{${1:text}}"
-    },
-    "vv*{}{}": {
-      "snippet": "vv*{${1:arg1}}{${2:arg2}}"
-    },
-    "vv{}": {
-      "snippet": "vv{${1:arg}}"
-    },
-    "VvDash": {},
-    "Vvdash": {
-      "detail": "⊪",
-      "documentation": "triple ver dash"
-    },
-    "vvmathbb{}": {
-      "snippet": "vvmathbb{${1:text}}"
-    },
-    "widearc{}": {
-      "snippet": "widearc{${1:arg}}"
-    },
-    "wideOarc{}": {
-      "snippet": "wideOarc{${1:arg}}"
-    },
-    "widering{}": {
-      "snippet": "widering{${1:arg}}"
-    },
-    "Wr": {},
-    "Xiit": {},
-    "xiit": {},
-    "Xiup": {},
-    "xiup": {
-      "detail": "ξ",
-      "documentation": "greek"
-    },
-    "Zbar": {
-      "detail": "Ƶ",
-      "documentation": "impedance"
-    },
-    "zetait": {},
-    "zetaup": {
-      "detail": "ζ",
-      "documentation": "ze greek"
-    },
-    "ShowMathFonts": {},
-    "setSYdimens": {},
-    "setEXdimens": {},
-    "ifiscseq{}{}{}": {
-      "snippet": "ifiscseq{${1:arg}}{${2:true}}{${3:false}}"
-    },
-    "loadsubfile{}": {
-      "snippet": "loadsubfile{${1:file}}"
-    },
-    "readsufile{}": {
-      "snippet": "readsufile{${1:file}}"
-    },
-    "DeclareMathSymbolCtr{}{}{}{}": {
-      "snippet": "DeclareMathSymbolCtr{${1:cmd}}{${2:type}}{${3:sym-font}}{${4:slot}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "varg",
-    "subscriptcorrectionfile=${1:file}",
-    "nosubscriptcorrection",
-    "subscriptcorrection",
-    "bigdelims",
-    "varbb",
-    "vvarbb",
-    "nosymbolsc",
-    "cmintegrals",
-    "cmbraces",
-    "noamssymbols",
-    "amssymbols",
-    "uprightscript",
-    "uprightGreek",
-    "slantedGreek",
-    "frenchmath",
-    "upint",
-    "smallerops",
-    "noOT1",
-    "amsthm",
-    "fracspacing",
-    "curlybraces"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/newpxmath#c"
+  ]
 }

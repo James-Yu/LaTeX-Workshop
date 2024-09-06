@@ -327,6 +327,8 @@ async function findInWorkspace(): Promise<string | undefined> {
             logger.log(`Found files that might be root, choose the first one: ${candidates} .`)
             return candidates[0]
         }
-    } catch (e) {}
+    } catch (err) {
+        logger.logError('Error finding root file in workspace', err)
+    }
     return
 }

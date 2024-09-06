@@ -1,38 +1,92 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "collectionnew{}": {
-      "snippet": "collectionnew{${1:name}}"
-    },
-    "collectionadd{}{}": {
-      "snippet": "collectionadd{${1:name}}{${2:item to add}}"
-    },
-    "collectionadd[]{}{}": {
-      "snippet": "collectionadd[${3:key}]{${1:name}}{${2:item to add}}"
-    },
-    "collectioncount{}": {
-      "snippet": "collectioncount{${1:name}}"
-    },
-    "collectiongetitem{}{}": {
-      "snippet": "collectiongetitem{${1:name}}{${2:element id}}"
-    },
-    "collectiongetkey{}{}": {
-      "snippet": "collectiongetkey{${1:name}}{${2:element id}}"
-    },
-    "collectionloopbreak": {},
-    "collectionloop{}{}": {
-      "snippet": "collectionloop{${1:name}}{${2:operation sequence}}"
-    },
-    "collectionloopid": {},
-    "collectionloopitem": {},
-    "collectionloopkey": {},
-    "collectionfindbykey{}{}": {
-      "snippet": "collectionfindbykey{${1:name}}{${2:key}}"
+  "deps": [
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "collectionnew",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "collectionadd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:item to add}}"
+      }
+    },
+    {
+      "name": "collectionadd",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:key%plain}]{${1:name}}{${2:item to add}}"
+      }
+    },
+    {
+      "name": "collectioncount",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "collectiongetitem",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:element id}}"
+      }
+    },
+    {
+      "name": "collectiongetkey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:element id}}"
+      }
+    },
+    {
+      "name": "collectionloopbreak",
+      "unusual": true
+    },
+    {
+      "name": "collectionloop",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:operation sequence}}"
+      }
+    },
+    {
+      "name": "collectionloopid",
+      "unusual": true
+    },
+    {
+      "name": "collectionloopitem",
+      "unusual": true
+    },
+    {
+      "name": "collectionloopkey",
+      "unusual": true
+    },
+    {
+      "name": "collectionfindbykey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:key%plain}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,29 +1,54 @@
 {
-  "includes": {
-    "tikz": [],
-    "ifthen": []
-  },
-  "macros": {
-    "twemoji{}": {
-      "snippet": "twemoji{${1:emoji name}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "twemoji[]{}": {
-      "snippet": "twemoji[${2:options}]{${1:emoji name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "texttwemoji{}": {
-      "snippet": "texttwemoji{${1:emoji name}}"
-    },
-    "twemojiDefaultHeight": {},
-    "defineTwemoji{}{}": {
-      "snippet": "defineTwemoji{${1:number}}{${2:name}}"
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "twemoji",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:emoji name}}"
+      }
+    },
+    {
+      "name": "twemoji",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:emoji name}}",
+        "keys": [
+          "\\twemoji"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "texttwemoji",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:emoji name}}"
+      }
+    },
+    {
+      "name": "twemojiDefaultHeight",
+      "unusual": true
+    },
+    {
+      "name": "defineTwemoji",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:number}}{${2:name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\twemoji": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -54,5 +79,6 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
-  ]
+  },
+  "args": []
 }

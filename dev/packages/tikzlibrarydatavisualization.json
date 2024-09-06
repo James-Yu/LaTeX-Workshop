@@ -1,82 +1,180 @@
 {
-  "includes": {
-    "tikzlibrarybackgrounds": [],
-    "tikzlibraryfpu": []
-  },
-  "macros": {
-    "tikzdatavisualizationset{}": {
-      "snippet": "tikzdatavisualizationset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikzlibrarybackgrounds"
     },
-    "tikzdvdeclarestylesheetcolorseries{}{}{}{}": {
-      "snippet": "tikzdvdeclarestylesheetcolorseries{${1:name}}{${2:color model}}{${3:init color}}{${4:step}}"
-    },
-    "tikzpointandanchordirection{}{}": {
-      "snippet": "tikzpointandanchordirection{${1:code1}}{${2:code2}}"
-    },
-    "tikzdvvisualizercounter": {},
-    "pgfdatapoint": {},
-    "pgfdata": {},
-    "pgfdata{}": {
-      "snippet": "pgfdata{${1:inline data}}"
-    },
-    "pgfdata[]": {
-      "snippet": "pgfdata[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "pgfdata[]{}": {
-      "snippet": "pgfdata[${2:options}]{${1:inline data}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "pgfdeclaredataformat{}{}{}{}{}{}{}": {
-      "snippet": "pgfdeclaredataformat{${1:name}}{${2:catcode code}}{${3:start code}}{${4:line args}}{${5:line code}}{${6:emptyline code}}{${7:end code}}"
-    },
-    "pgfdvdeclarestylesheet{}{}": {
-      "snippet": "pgfdvdeclarestylesheet{${1:name}}{${2:keyvals}}"
-    },
-    "pgfooclass{}{}": {
-      "snippet": "pgfooclass{${1:class name}}{${2:body}}"
-    },
-    "pgfooclass(){}{}": {
-      "snippet": "pgfooclass(${3:list of superclasses}){${1:class name}}{${2:body}}"
-    },
-    "pgfoonew{}": {
-      "snippet": "pgfoonew{${1:cmd}}"
-    },
-    "pgfoogc": {},
-    "pgfoothis": {},
-    "pgfooset{}{}": {
-      "snippet": "pgfooset{${1:attribute}}{${2:value}}"
-    },
-    "pgfooeset{}{}": {
-      "snippet": "pgfooeset{${1:attribute}}{${2:value}}"
-    },
-    "pgfooappend{}{}": {
-      "snippet": "pgfooappend{${1:attribute}}{${2:value}}"
-    },
-    "pgfooprefix{}{}": {
-      "snippet": "pgfooprefix{${1:attribute}}{${2:value}}"
-    },
-    "pgfoolet{}{}": {
-      "snippet": "pgfoolet{${1:attribute}}{${2:macro}}"
-    },
-    "pgfoovalueof{}": {
-      "snippet": "pgfoovalueof{${1:attribute}}"
-    },
-    "pgfooget{}{}": {
-      "snippet": "pgfooget{${1:attribute}}{${2:macro}}"
-    },
-    "pgfooobj{}": {
-      "snippet": "pgfooobj{${1:id}}"
+    {
+      "name": "tikzlibraryfpu"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "tikzdatavisualizationset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\datavisualization#c,\\tikzdatavisualizationset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tikzdvdeclarestylesheetcolorseries",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:name}}{${2:color model}}{${3:init color}}{${4:step}}"
+      }
+    },
+    {
+      "name": "pgfdatapoint",
+      "unusual": true
+    },
+    {
+      "name": "pgfdata",
+      "unusual": true
+    },
+    {
+      "name": "pgfdata",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:inline data}}"
+      }
+    },
+    {
+      "name": "pgfdata",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\pgfdata#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pgfdata",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:inline data}}",
+        "keys": [
+          "\\pgfdata#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pgfdeclaredataformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "{${1:name}}{${2:catcode code}}{${3:start code}}{${4:line args}}{${5:line code}}{${6:emptyline code}}{${7:end code}}"
+      }
+    },
+    {
+      "name": "pgfdvdeclarestylesheet",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "pgfooclass",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:class name}}{${2:body}}"
+      }
+    },
+    {
+      "name": "pgfooclass",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "(${3:list of superclasses}){${1:class name}}{${2:body}}"
+      }
+    },
+    {
+      "name": "pgfoogc",
+      "unusual": true
+    },
+    {
+      "name": "pgfoothis",
+      "unusual": true
+    },
+    {
+      "name": "pgfooset",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:attribute}}{${2:value}}"
+      }
+    },
+    {
+      "name": "pgfooeset",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:attribute}}{${2:value}}"
+      }
+    },
+    {
+      "name": "pgfooappend",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:attribute}}{${2:value}}"
+      }
+    },
+    {
+      "name": "pgfooprefix",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:attribute}}{${2:value}}"
+      }
+    },
+    {
+      "name": "pgfoolet",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:attribute}}{${2:macro%cmd}}"
+      }
+    },
+    {
+      "name": "pgfoovalueof",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:attribute}}"
+      }
+    },
+    {
+      "name": "pgfooget",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:attribute}}{${2:macro%cmd}}"
+      }
+    },
+    {
+      "name": "pgfooobj",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\datavisualization#c,\\tikzdatavisualizationset#c": [
       "data point={${1:options}}",
       "before survey=${1:code}",
       "at start survey=${1:code}",
@@ -219,7 +317,10 @@
       "every label in legend/.style={${1:options}}",
       "new legend entry={${1:options}}"
     ],
-    [
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "every data/.style={${1:options}}"
+    ],
+    "\\pgfdata#c": [
       "read from file=${1:file name}",
       "inline",
       "format=${1|TeX code,named,table|}",
@@ -228,5 +329,6 @@
       "store in set=${1:name}",
       "use set=${1:name}"
     ]
-  ]
+  },
+  "args": []
 }

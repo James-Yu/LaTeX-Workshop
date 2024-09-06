@@ -1,18 +1,42 @@
 {
-  "includes": {
-    "tikz": [],
-    "ifthen": [],
-    "tikzlibrarypositioning": []
-  },
-  "macros": {
-    "copyrightbox{}{}": {
-      "snippet": "copyrightbox{${1:content}}{${2:text}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "copyrightbox[]{}{}": {
-      "snippet": "copyrightbox[${3:placement}]{${1:content}}{${2:text}}"
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "tikzlibrarypositioning"
     }
+  ],
+  "macros": [
+    {
+      "name": "copyrightbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:content}}{${2:text}}"
+      }
+    },
+    {
+      "name": "copyrightbox",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:placement%keyvals}]{${1:content}}{${2:text}}",
+        "keys": [
+          "\\copyrightbox"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\copyrightbox": [
+      "l",
+      "r",
+      "b"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,30 +1,24 @@
 {
-  "includes": {},
-  "macros": {
-    "ifpgfplotspointisinsmithchartCS": {},
-    "pgfplotspointisinsmithchartCStrue": {},
-    "pgfplotspointisinsmithchartCSfalse": {},
-    "pgfplotscoordmathcomplexdivision{}{}{}{}": {
-      "snippet": "pgfplotscoordmathcomplexdivision{${1:Re1}}{${2:Im1}}{${3:Re2}}{${4:Im2}}"
+  "deps": [],
+  "macros": [],
+  "envs": [
+    {
+      "name": "smithchart"
     },
-    "pgfmathresultim": {},
-    "smithchart": {},
-    "endsmithchart": {},
-    "smithchartaxis": {},
-    "endsmithchartaxis": {}
-  },
-  "envs": {
-    "smithchart": {},
-    "smithchart[]": {
+    {
       "name": "smithchart",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{axis}#c,\\begin{loglogaxis}#c,\\begin{semilogxaxis}#c,\\begin{semilogyaxis}#c,\\addplot#c,\\addplot3#c,\\addplot+#c,\\pgfplotsset#c,\\begin{groupplot}#c,\\nextgroupplot#c,\\begin{smithchart}#c"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\begin{axis}#c,\\begin{loglogaxis}#c,\\begin{semilogxaxis}#c,\\begin{semilogyaxis}#c,\\addplot#c,\\addplot3#c,\\addplot+#c,\\pgfplotsset#c,\\begin{groupplot}#c,\\nextgroupplot#c,\\begin{smithchart}#c": [
       "few smithchart ticks/.style={${1:TikZ keys}}",
       "many smithchart ticks/.style={${1:TikZ keys}}",
       "many smithchart ticks*/.style={${1:TikZ keys}}",
@@ -43,5 +37,6 @@
       "xgrid stop at y={${1:list of stop entries}}",
       "ygrid stop at x={${1:list of stop entries}}"
     ]
-  ]
+  },
+  "args": []
 }

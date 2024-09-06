@@ -1,243 +1,385 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "xspace": [],
-    "datetime": [],
-    "amsmath": [],
-    "caption": [],
-    "tocloft": [],
-    "cite": [],
-    "collref": [],
-    "color": [],
-    "microtype": [],
-    "manyfoot": [],
-    "footmisc": [],
-    "filecontents": [],
-    "geometry": [],
-    "hyperref": []
-  },
-  "macros": {
-    "draftmode": {},
-    "titlemath{}": {
-      "snippet": "titlemath{${1:math}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "email{}": {
-      "snippet": "email{${1:email}}"
+    {
+      "name": "xspace"
     },
-    "emailV{}": {
-      "snippet": "emailV{${1:email}}"
+    {
+      "name": "datetime"
     },
-    "emails{}": {
-      "snippet": "emails{${1:emails}}"
+    {
+      "name": "amsmath"
     },
-    "newsec{}": {
-      "snippet": "newsec{${1:title}}"
+    {
+      "name": "caption"
     },
-    "newsec{}[]": {
-      "snippet": "newsec{${1:title}}[${2:label}]"
+    {
+      "name": "tocloft"
     },
-    "subsec{}": {
-      "snippet": "subsec{${1:title}}"
+    {
+      "name": "cite"
     },
-    "subsec{}[]": {
-      "snippet": "subsec{${1:title}}[${2:label}]"
+    {
+      "name": "collref"
     },
-    "subsubsec{}": {
-      "snippet": "subsubsec{${1:title}}"
+    {
+      "name": "color"
     },
-    "subsubsec{}[]": {
-      "snippet": "subsubsec{${1:title}}[${2:label}]"
+    {
+      "name": "microtype"
     },
-    "eqn{}": {
-      "snippet": "eqn{${1:math}}"
+    {
+      "name": "manyfoot"
     },
-    "eqn{}[]": {
-      "snippet": "eqn{${1:math}}[${2:label}]"
+    {
+      "name": "footmisc"
     },
-    "eqna{}": {
-      "snippet": "eqna{${1:math}}"
+    {
+      "name": "filecontents"
     },
-    "eqna{}[]": {
-      "snippet": "eqna{${1:math}}[${2:label}]"
+    {
+      "name": "geometry"
     },
-    "twoseqn{}{}": {
-      "snippet": "twoseqn{${1:math1}}{${2:math2}}"
-    },
-    "twoseqn{}{}[]": {
-      "snippet": "twoseqn{${1:math1}}{${2:math2}}[${3:label2}]"
-    },
-    "twoseqn{}{}[][]": {
-      "snippet": "twoseqn{${1:math1}}{${2:math2}}[${3:label2}][${4:overall-label}]"
-    },
-    "twoseqn{}[]{}": {
-      "snippet": "twoseqn{${1:math1}}[${2:label1}]{${3:math2}}"
-    },
-    "twoseqn{}[]{}[]": {
-      "snippet": "twoseqn{${1:math1}}[${2:label1}]{${3:math2}}[${4:label2}]"
-    },
-    "twoseqn{}[]{}[][]": {
-      "snippet": "twoseqn{${1:math1}}[${2:label1}]{${3:math2}}[${4:label2}][${5:overall-label}]"
-    },
-    "threeseqn{}{}{}": {
-      "snippet": "threeseqn{${1:math1}}{${2:math2}}{${3:math3}}"
-    },
-    "threeseqn{}{}{}[]": {
-      "snippet": "threeseqn{${1:math1}}{${2:math2}}{${3:math3}}[${4:label3}]"
-    },
-    "threeseqn{}{}[]{}": {
-      "snippet": "threeseqn{${1:math1}}{${2:math2}}[${3:label2}]{${4:math3}}"
-    },
-    "threeseqn{}[]{}{}": {
-      "snippet": "threeseqn{${1:math1}}[${2:label1}]{${3:math2}}{${4:math3}}"
-    },
-    "threeseqn{}[]{}[]{}[]": {
-      "snippet": "threeseqn{${1:math1}}[${2:label1}]{${3:math2}}[${4:label2}]{${5:math3}}[${6:label3}]"
-    },
-    "threeseqn{}[]{}[]{}[][]": {
-      "snippet": "threeseqn{${1:math1}}[${2:label1}]{${3:math2}}[${4:label2}]{${5:math3}}[${6:label3}][${7:overall-label}]"
-    },
-    "fourseqn{}{}{}{}": {
-      "snippet": "fourseqn{${1:math1}}{${2:math2}}{${3:math3}}{${4:math4}}"
-    },
-    "fourseqn{}{}{}{}[]": {
-      "snippet": "fourseqn{${1:math1}}{${2:math2}}{${3:math3}}{${4:math4}}[${5:label4}]"
-    },
-    "fourseqn{}{}{}[]{}": {
-      "snippet": "fourseqn{${1:math1}}{${2:math2}}{${3:math3}}[${4:label3}]{${5:math4}}"
-    },
-    "fourseqn{}{}[]{}{}": {
-      "snippet": "fourseqn{${1:math1}}{${2:math2}}[${3:label2}]{${4:math3}}{${5:math4}}"
-    },
-    "fourseqn{}[]{}{}{}": {
-      "snippet": "fourseqn{${1:math1}}[${2:label1}]{${3:math2}}{${4:math3}}{${5:math4}}"
-    },
-    "fourseqn{}[]{}[]{}[]{}[]": {
-      "snippet": "fourseqn{${1:math1}}[${2:label1}]{${3:math2}}[${4:label2}]{${5:math3}}[${6:label3}]{${7:math4}}[${8:label4}]"
-    },
-    "fourseqn{}[]{}[]{}[]{}[][]": {
-      "snippet": "fourseqn{${1:math1}}[${2:label1}]{${3:math2}}[${4:label2}]{${5:math3}}[${6:label3}]{${7:math4}}[${8:label4}][${9:overall-label}]"
-    },
-    "rcite{}": {
-      "snippet": "rcite{${1:bibid}}"
-    },
-    "rcite[]{}": {
-      "snippet": "rcite[${2:add. text}]{${1:bibid}}"
-    },
-    "toc": {},
-    "foot{}": {
-      "snippet": "foot{${1:text}}"
-    },
-    "foot[]{}": {
-      "snippet": "foot[${2:number}]{${1:text}}"
-    },
-    "ack{}": {
-      "snippet": "ack{${1:acknowledgments}}"
-    },
-    "appendices": {},
-    "preprint{}": {
-      "snippet": "preprint{${1:preprint}}"
-    },
-    "affiliation{}": {
-      "snippet": "affiliation{${1:affiliation}}"
-    },
-    "abstract{}": {
-      "snippet": "abstract{${1:text}}"
-    },
-    "mytitlefont": {},
-    "rcitedraft{}": {
-      "snippet": "rcitedraft{${1:bibid}}"
-    },
-    "showkeyslabelformat{}": {
-      "snippet": "showkeyslabelformat{${1:text}}"
-    },
-    "footinsE": {},
-    "thefootnoteE": {},
-    "FootnoteE{}{}": {
-      "snippet": "FootnoteE{${1:marker}}{${2:text}}"
-    },
-    "FootnotemarkE{}": {
-      "snippet": "FootnotemarkE{${1:marker}}"
-    },
-    "FootnotetextE{}{}": {
-      "snippet": "FootnotetextE{${1:marker}}{${2:text}}"
-    },
-    "footnoteE{}": {
-      "snippet": "footnoteE{${1:text}}"
-    },
-    "footnoteE[]{}": {
-      "snippet": "footnoteE[${2:number}]{${1:text}}"
-    },
-    "footnotemarkE": {},
-    "footnotemarkE[]": {
-      "snippet": "footnotemarkE[${1:number}]"
-    },
-    "footnotetextE{}": {
-      "snippet": "footnotetextE{${1:text}}"
-    },
-    "footnotetextE[]{}": {
-      "snippet": "footnotetextE[${2:number}]{${1:text}}"
-    },
-    "footinsEE": {},
-    "thefootnoteEE": {},
-    "FootnoteEE{}{}": {
-      "snippet": "FootnoteEE{${1:marker}}{${2:text}}"
-    },
-    "FootnotemarkEE{}": {
-      "snippet": "FootnotemarkEE{${1:marker}}"
-    },
-    "FootnotetextEE{}{}": {
-      "snippet": "FootnotetextEE{${1:marker}}{${2:text}}"
-    },
-    "footnoteEE{}": {
-      "snippet": "footnoteEE{${1:text}}"
-    },
-    "footnoteEE[]{}": {
-      "snippet": "footnoteEE[${2:number}]{${1:text}}"
-    },
-    "footnotemarkEE": {},
-    "footnotemarkEE[]": {
-      "snippet": "footnotemarkEE[${1:number}]"
-    },
-    "footnotetextEE{}": {
-      "snippet": "footnotetextEE{${1:text}}"
-    },
-    "footnotetextEE[]{}": {
-      "snippet": "footnotetextEE[${2:number}]{${1:text}}"
-    },
-    "footinsEEE": {},
-    "thefootnoteEEE": {},
-    "FootnoteEEE{}{}": {
-      "snippet": "FootnoteEEE{${1:marker}}{${2:text}}"
-    },
-    "FootnotemarkEEE{}": {
-      "snippet": "FootnotemarkEEE{${1:marker}}"
-    },
-    "FootnotetextEEE{}{}": {
-      "snippet": "FootnotetextEEE{${1:marker}}{${2:text}}"
-    },
-    "footnoteEEE{}": {
-      "snippet": "footnoteEEE{${1:text}}"
-    },
-    "footnoteEEE[]{}": {
-      "snippet": "footnoteEEE[${2:number}]{${1:text}}"
-    },
-    "footnotemarkEEE": {},
-    "footnotemarkEEE[]": {
-      "snippet": "footnotemarkEEE[${1:number}]"
-    },
-    "footnotetextEEE{}": {
-      "snippet": "footnotetextEEE{${1:text}}"
-    },
-    "footnotetextEEE[]{}": {
-      "snippet": "footnotetextEEE[${2:number}]{${1:text}}"
+    {
+      "name": "hyperref"
     }
-  },
-  "envs": {
-    "acknowledgments": {},
-    "appendices": {}
-  },
-  "options": [
-    "macrosonly"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "draftmode"
+    },
+    {
+      "name": "titlemath",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "emailV",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "emails",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:emails%URL}}"
+      }
+    },
+    {
+      "name": "newsec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "newsec",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:title}}[${2:label}]"
+      }
+    },
+    {
+      "name": "subsec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "subsec",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:title}}[${2:label}]"
+      }
+    },
+    {
+      "name": "subsubsec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "subsubsec",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:title}}[${2:label}]"
+      }
+    },
+    {
+      "name": "eqn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math%formula}}"
+      }
+    },
+    {
+      "name": "eqn",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:math%formula}}[${2:label}]"
+      }
+    },
+    {
+      "name": "eqna",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math%formula}}"
+      }
+    },
+    {
+      "name": "eqna",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:math%formula}}[${2:label}]"
+      }
+    },
+    {
+      "name": "twoseqn",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:math1%formula}}{${2:math2%formula}}"
+      }
+    },
+    {
+      "name": "twoseqn",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:math1%formula}}{${2:math2%formula}}[${3:label2%labeldef}]"
+      }
+    },
+    {
+      "name": "twoseqn",
+      "arg": {
+        "format": "{}{}[][]",
+        "snippet": "{${1:math1%formula}}{${2:math2%formula}}[${3:label2%labeldef}][${4:overall-label%labeldef}]"
+      }
+    },
+    {
+      "name": "twoseqn",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:math1%formula}}[${3:label1%labeldef}]{${2:math2%formula}}"
+      }
+    },
+    {
+      "name": "twoseqn",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "{${1:math1%formula}}[${3:label1%labeldef}]{${2:math2%formula}}[${4:label2%labeldef}]"
+      }
+    },
+    {
+      "name": "twoseqn",
+      "arg": {
+        "format": "{}[]{}[][]",
+        "snippet": "{${1:math1%formula}}[${3:label1%labeldef}]{${2:math2%formula}}[${4:label2%labeldef}][${5:overall-label%labeldef}]"
+      }
+    },
+    {
+      "name": "threeseqn",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:math1%formula}}{${2:math2%formula}}{${3:math3%formula}}"
+      }
+    },
+    {
+      "name": "threeseqn",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:math1%formula}}{${2:math2%formula}}{${3:math3%formula}}[${4:label3%labeldef}]"
+      }
+    },
+    {
+      "name": "threeseqn",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:math1%formula}}{${2:math2%formula}}[${4:label2%labeldef}]{${3:math3%formula}}"
+      }
+    },
+    {
+      "name": "threeseqn",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "{${1:math1%formula}}[${4:label1%labeldef}]{${2:math2%formula}}{${3:math3%formula}}"
+      }
+    },
+    {
+      "name": "threeseqn",
+      "arg": {
+        "format": "{}[]{}[]{}[]",
+        "snippet": "{${1:math1%formula}}[${4:label1%labeldef}]{${2:math2%formula}}[${5:label2%labeldef}]{${3:math3%formula}}[${6:label3%labeldef}]"
+      }
+    },
+    {
+      "name": "threeseqn",
+      "arg": {
+        "format": "{}[]{}[]{}[][]",
+        "snippet": "{${1:math1%formula}}[${4:label1%labeldef}]{${2:math2%formula}}[${5:label2%labeldef}]{${3:math3%formula}}[${6:label3%labeldef}][${7:overall-label%labeldef}]"
+      }
+    },
+    {
+      "name": "fourseqn",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:math1%formula}}{${2:math2%formula}}{${3:math3%formula}}{${4:math4%formula}}"
+      }
+    },
+    {
+      "name": "fourseqn",
+      "arg": {
+        "format": "{}{}{}{}[]",
+        "snippet": "{${1:math1%formula}}{${2:math2%formula}}{${3:math3%formula}}{${4:math4%formula}}[${5:label4%labeldef}]"
+      }
+    },
+    {
+      "name": "fourseqn",
+      "arg": {
+        "format": "{}{}{}[]{}",
+        "snippet": "{${1:math1%formula}}{${2:math2%formula}}{${3:math3%formula}}[${5:label3%labeldef}]{${4:math4%formula}}"
+      }
+    },
+    {
+      "name": "fourseqn",
+      "arg": {
+        "format": "{}{}[]{}{}",
+        "snippet": "{${1:math1%formula}}{${2:math2%formula}}[${5:label2%labeldef}]{${3:math3%formula}}{${4:math4%formula}}"
+      }
+    },
+    {
+      "name": "fourseqn",
+      "arg": {
+        "format": "{}[]{}{}{}",
+        "snippet": "{${1:math1%formula}}[${5:label1%labeldef}]{${2:math2%formula}}{${3:math3%formula}}{${4:math4%formula}}"
+      }
+    },
+    {
+      "name": "fourseqn",
+      "arg": {
+        "format": "{}[]{}[]{}[]{}[]",
+        "snippet": "{${1:math1%formula}}[${5:label1%labeldef}]{${2:math2%formula}}[${6:label2%labeldef}]{${3:math3%formula}}[${7:label3%labeldef}]{${4:math4%formula}}[${8:label4%labeldef}]"
+      }
+    },
+    {
+      "name": "fourseqn",
+      "arg": {
+        "format": "{}[]{}[]{}[]{}[][]",
+        "snippet": "{${1:math1%formula}}[${5:label1%labeldef}]{${2:math2%formula}}[${6:label2%labeldef}]{${3:math3%formula}}[${7:label3%labeldef}]{${4:math4%formula}}[${8:label4%labeldef}][${9:overall-label%labeldef}]"
+      }
+    },
+    {
+      "name": "rcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "rcite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:add. text}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "toc"
+    },
+    {
+      "name": "foot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "foot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "ack",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:acknowledgments%text}}"
+      }
+    },
+    {
+      "name": "appendices",
+      "unusual": true
+    },
+    {
+      "name": "preprint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preprint}}"
+      }
+    },
+    {
+      "name": "affiliation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:affiliation%text}}"
+      }
+    },
+    {
+      "name": "abstract",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "mytitlefont",
+      "unusual": true
+    },
+    {
+      "name": "rcitedraft",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "showkeyslabelformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "acknowledgments",
+      "unusual": true
+    },
+    {
+      "name": "appendices"
+    }
+  ],
+  "keys": {
+    "\\usepackage/chet#c": [
+      "macrosonly"
+    ]
+  },
+  "args": [
+    "\\usepackage/chet#c"
+  ]
 }

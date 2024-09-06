@@ -1,44 +1,107 @@
 {
-  "includes": {
-    "ltxcmds": [],
-    "infwarerr": []
-  },
-  "macros": {
-    "setcounterref{}{}": {
-      "snippet": "setcounterref{${1:counter}}{${2:label}}"
+  "deps": [
+    {
+      "name": "ltxcmds"
     },
-    "addtocounterref{}{}": {
-      "snippet": "addtocounterref{${1:counter}}{${2:label}}"
-    },
-    "setcounterpageref{}{}": {
-      "snippet": "setcounterpageref{${1:counter}}{${2:label}}"
-    },
-    "addtocounterpageref{}{}": {
-      "snippet": "addtocounterpageref{${1:counter}}{${2:label}}"
-    },
-    "getrefnumber{}": {
-      "snippet": "getrefnumber{${1:label}}"
-    },
-    "getpagerefnumber{}": {
-      "snippet": "getpagerefnumber{${1:label}}"
-    },
-    "setrefcountdefault{}": {
-      "snippet": "setrefcountdefault{${1:value}}"
-    },
-    "getrefbykeydefault{}{}{}": {
-      "snippet": "getrefbykeydefault{${1:label}}{${2:key}}{${3:default}}"
-    },
-    "refused{}": {
-      "snippet": "refused{${1:label}}"
-    },
-    "IfRefUndefinedExpandable{}{}{}": {
-      "snippet": "IfRefUndefinedExpandable{${1:label}}{${2:then}}{${3:else}}"
-    },
-    "IfRefUndefinedBabel{}{}{}": {
-      "snippet": "IfRefUndefinedBabel{${1:label}}{${2:then}}{${3:else}}"
+    {
+      "name": "infwarerr"
     }
+  ],
+  "macros": [
+    {
+      "name": "setcounterref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:counter}}{${2:label}}"
+      }
+    },
+    {
+      "name": "addtocounterref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:counter}}{${2:label}}"
+      }
+    },
+    {
+      "name": "setcounterpageref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:counter}}{${2:label}}"
+      }
+    },
+    {
+      "name": "addtocounterpageref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:counter}}{${2:label}}"
+      }
+    },
+    {
+      "name": "getrefnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "getpagerefnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "setrefcountdefault",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "getrefbykeydefault",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label}}{${2:key%keyvals}}{${3:default}}",
+        "keys": [
+          "\\getrefbykeydefault"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "refused",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "IfRefUndefinedExpandable",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label}}{${2:then}}{${3:else}}"
+      }
+    },
+    {
+      "name": "IfRefUndefinedBabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label}}{${2:then}}{${3:else}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\getrefbykeydefault": [
+      "page",
+      "title",
+      "name",
+      "anchor",
+      "url"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,152 +1,324 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "calc": [],
-    "xcolor": [],
-    "ifxetex": [],
-    "tikz": [],
-    "pgf": [],
-    "ifthen": [],
-    "fontenc": [],
-    "geometry": [],
-    "pgfpages": [],
-    "tikzlibrarydecorations": [],
-    "tikzlibraryfadings": [],
-    "tikzlibrarycalc": [],
-    "colortbl": [
-      "table"
-    ]
-  },
-  "macros": {
-    "background{}": {
-      "snippet": "background{${1:graphics code}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "boxheight": {},
-    "boxstartx": {},
-    "boxstarty": {},
-    "boxwidth": {},
-    "colheight": {},
-    "colwidth": {},
-    "gridpos": {},
-    "headerbox{}{}{}": {
-      "snippet": "headerbox{${1:title}}{${2:options}}{${3:content}}"
+    {
+      "name": "calc"
     },
-    "headerheight": {},
-    "xebaposterBoxDrawBackground{}{}": {
-      "snippet": "xebaposterBoxDrawBackground{${1:color}}{${2:color}}"
+    {
+      "name": "xcolor"
     },
-    "xebaposterBoxDrawBorder{}": {
-      "snippet": "xebaposterBoxDrawBorder{${1:color}}"
+    {
+      "name": "ifxetex"
     },
-    "xebaposterBoxGetShape": {},
-    "xebaposterHeaderDrawBackground{}{}{}": {
-      "snippet": "xebaposterHeaderDrawBackground{${1:color}}{${2:color}}{${3:color}}"
+    {
+      "name": "tikz"
     },
-    "xebaposterHeaderDrawBorder{}": {
-      "snippet": "xebaposterHeaderDrawBorder{${1:color}}"
+    {
+      "name": "pgf"
     },
-    "xebaposterHeaderDrawText{}": {
-      "snippet": "xebaposterHeaderDrawText{${1:color}}"
+    {
+      "name": "ifthen"
     },
-    "xebaposterHeaderGetShape": {},
-    "xebaposterHeaderSetShade{}{}{}": {
-      "snippet": "xebaposterHeaderSetShade{${1:color}}{${2:color}}{${3:color}}"
+    {
+      "name": "fontenc"
     },
-    "xebaposterPosterDrawBackground{}{}": {
-      "snippet": "xebaposterPosterDrawBackground{${1:color}}{${2:color}}"
+    {
+      "name": "geometry"
     },
-    "debug{}": {
-      "snippet": "debug{${1:text}}"
+    {
+      "name": "pgfpages"
     },
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
+    {
+      "name": "tikzlibrarydecorations"
     },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
+    {
+      "name": "tikzlibraryfadings"
     },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {}
-  },
-  "envs": {
-    "poster{}{}{}{}{}": {
-      "name": "poster",
-      "snippet": "{${1:settings}}{${2:eyecatcher}}{${3:title}}{${4:author}}{${5:logo}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "posterbox{}": {
-      "name": "posterbox",
-      "snippet": "{${1:title}}"
-    },
-    "posterbox[]{}": {
-      "name": "posterbox",
-      "snippet": "[${2:options}]{${1:title}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "colortbl",
+      "if": "table"
     }
-  },
-  "options": [
-    "landscape",
-    "portrait",
-    "paperwidth=",
-    "paperheight=",
-    "archA",
-    "archB",
-    "archC",
-    "archD",
-    "archE",
-    "archE1",
-    "archE2",
-    "archE3",
-    "a0paper",
-    "a1paper",
-    "a2paper",
-    "a3paper",
-    "a4paper",
-    "a5paper",
-    "a6paper",
-    "b0paper",
-    "b1paper",
-    "b2paper",
-    "b3paper",
-    "b4paper",
-    "b5paper",
-    "b6paper",
-    "ansiapaper",
-    "ansibpaper",
-    "ansicpaper",
-    "ansidpaper",
-    "ansiepaper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "screen",
-    "fontscale=${1:factor}",
-    "margin=",
-    "movebody=",
-    "debug",
-    "table",
-    "showframe",
-    "persian",
-    "latin"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "background",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "boxheight",
+      "unusual": true
+    },
+    {
+      "name": "boxstartx",
+      "unusual": true
+    },
+    {
+      "name": "boxstarty",
+      "unusual": true
+    },
+    {
+      "name": "boxwidth",
+      "unusual": true
+    },
+    {
+      "name": "colheight",
+      "unusual": true
+    },
+    {
+      "name": "colwidth",
+      "unusual": true
+    },
+    {
+      "name": "gridpos",
+      "unusual": true
+    },
+    {
+      "name": "headerbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:options%keyvals}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "headerheight",
+      "unusual": true
+    },
+    {
+      "name": "xebaposterBoxDrawBackground",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:color}}"
+      }
+    },
+    {
+      "name": "xebaposterBoxDrawBorder",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "xebaposterBoxGetShape",
+      "unusual": true
+    },
+    {
+      "name": "xebaposterHeaderDrawBackground",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:color}}{${2:color}}{${3:color}}"
+      }
+    },
+    {
+      "name": "xebaposterHeaderDrawBorder",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "xebaposterHeaderDrawText",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "xebaposterHeaderGetShape",
+      "unusual": true
+    },
+    {
+      "name": "xebaposterHeaderSetShade",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:color}}{${2:color}}{${3:color}}"
+      }
+    },
+    {
+      "name": "xebaposterPosterDrawBackground",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:color}}"
+      }
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [
+    {
+      "name": "poster",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:settings%keyvals}}{${2:eyecatcher}}{${3:title%text}}{${4:author}}{${5:logo}}",
+        "keys": [
+          "\\begin{poster}",
+          "\\begin{poster},\\begin{posterbox},\\headerbox"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "posterbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "posterbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title}}",
+        "keys": [
+          "\\begin{poster},\\begin{posterbox},\\headerbox"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/xebaposter#c": [
+      "landscape",
+      "portrait",
+      "paperwidth=",
+      "paperheight=",
+      "archA",
+      "archB",
+      "archC",
+      "archD",
+      "archE",
+      "archE1",
+      "archE2",
+      "archE3",
+      "a0paper",
+      "a1paper",
+      "a2paper",
+      "a3paper",
+      "a4paper",
+      "a5paper",
+      "a6paper",
+      "b0paper",
+      "b1paper",
+      "b2paper",
+      "b3paper",
+      "b4paper",
+      "b5paper",
+      "b6paper",
+      "ansiapaper",
+      "ansibpaper",
+      "ansicpaper",
+      "ansidpaper",
+      "ansiepaper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "screen",
+      "fontscale=${1:factor}",
+      "margin=",
+      "movebody=",
+      "debug",
+      "table",
+      "showframe",
+      "persian",
+      "latin"
+    ],
+    "\\begin{poster}": [
+      "grid",
+      "eyecatcher",
+      "headerheight=",
+      "columns=${1:number}",
+      "colspacing=",
+      "bgColorOne=",
+      "bgColorTwo=",
+      "background=${1|shadeLR,shadeTB,plain,user,none|}"
+    ],
+    "\\begin{poster},\\begin{posterbox},\\headerbox": [
       "cornerradius=",
       "boxheaderheight=",
       "boxpadding=",
@@ -174,5 +346,8 @@
       "height=",
       "name=${1:name}"
     ]
+  },
+  "args": [
+    "\\documentclass/xebaposter#c"
   ]
 }

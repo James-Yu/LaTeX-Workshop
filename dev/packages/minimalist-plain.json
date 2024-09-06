@@ -1,82 +1,204 @@
 {
-  "includes": {
-    "relsize": [],
-    "anyfontsize": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryshadings": [],
-    "tikzpagenodes": [],
-    "geometry": [],
-    "fancyhdr": [],
-    "extramarks": [],
-    "titlesec": [],
-    "ulem": [],
-    "titletoc": [],
-    "enumitem": [],
-    "imakeidx": [],
-    "silence": [],
-    "projlib-draft": [],
-    "mathtools": [],
-    "amsthm": [],
-    "bookmark": [],
-    "hyperref": [],
-    "projlib-theorem": [],
-    "projlib-author": [],
-    "projlib-titlepage": [],
-    "tcolorbox": [],
-    "tcolorboxlibrarymany": [],
-    "projlib-language": [],
-    "scontents": []
-  },
-  "macros": {
-    "LocallyStopLineNumbers": {},
-    "ResumeLineNumbers": {},
-    "parttext{}": {
-      "snippet": "parttext{${1:text}}"
+  "deps": [
+    {
+      "name": "relsize"
     },
-    "ifLNturnsON": {},
-    "keywordname": {},
-    "LNturnsONfalse": {},
-    "LNturnsONtrue": {},
-    "partstring": {},
-    "customqedsymbol": {},
-    "IndexDotfill": {},
-    "IndexLinebreak": {},
-    "IndexHeading{}": {
-      "snippet": "IndexHeading{${1:text}}"
+    {
+      "name": "anyfontsize"
     },
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}"
+    {
+      "name": "tikz"
     },
-    "dedicatory{}": {
-      "snippet": "dedicatory{${1:text}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "subjclass{}": {
-      "snippet": "subjclass{${1:classification}}"
+    {
+      "name": "tikzlibraryshadings"
     },
-    "subjclass[]{}": {
-      "snippet": "subjclass[${2:year}]{${1:classification}}"
+    {
+      "name": "tikzpagenodes"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "extramarks"
+    },
+    {
+      "name": "titlesec"
+    },
+    {
+      "name": "ulem"
+    },
+    {
+      "name": "titletoc"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "imakeidx"
+    },
+    {
+      "name": "silence"
+    },
+    {
+      "name": "projlib-draft"
+    },
+    {
+      "name": "mathtools"
+    },
+    {
+      "name": "amsthm"
+    },
+    {
+      "name": "bookmark"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "projlib-theorem"
+    },
+    {
+      "name": "projlib-author"
+    },
+    {
+      "name": "projlib-titlepage"
+    },
+    {
+      "name": "tcolorbox"
+    },
+    {
+      "name": "tcolorboxlibrarymany"
+    },
+    {
+      "name": "projlib-language"
+    },
+    {
+      "name": "scontents"
     }
-  },
-  "envs": {
-    "keyword": {},
-    "emphasis": {},
-    "enumerate*": {},
-    "enumerate*[]": {
+  ],
+  "macros": [
+    {
+      "name": "LocallyStopLineNumbers"
+    },
+    {
+      "name": "ResumeLineNumbers"
+    },
+    {
+      "name": "parttext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifLNturnsON",
+      "unusual": true
+    },
+    {
+      "name": "keywordname",
+      "unusual": true
+    },
+    {
+      "name": "LNturnsONfalse",
+      "unusual": true
+    },
+    {
+      "name": "LNturnsONtrue",
+      "unusual": true
+    },
+    {
+      "name": "partstring",
+      "unusual": true
+    },
+    {
+      "name": "IndexDotfill",
+      "unusual": true
+    },
+    {
+      "name": "IndexLinebreak",
+      "unusual": true
+    },
+    {
+      "name": "IndexHeading",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "dedicatory",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:classification}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:year}]{${1:classification}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "keyword"
+    },
+    {
+      "name": "emphasis"
+    },
+    {
+      "name": "enumerate*"
+    },
+    {
       "name": "enumerate*",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "itemize*": {},
-    "itemize*[]": {
+    {
+      "name": "itemize*"
+    },
+    {
       "name": "itemize*",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "description*": {},
-    "description*[]": {
+    {
+      "name": "description*"
+    },
+    {
       "name": "description*",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

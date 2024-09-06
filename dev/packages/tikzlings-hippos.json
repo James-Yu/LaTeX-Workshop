@@ -1,28 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "hippo": {},
-    "hippo[]": {
-      "snippet": "hippo[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "hippohookbackground": {},
-    "hippohookbelly": {},
-    "hippohookbody": {},
-    "hippohookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "hippo"
+    },
+    {
+      "name": "hippo",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\hippo#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hippohookbackground",
+      "unusual": true
+    },
+    {
+      "name": "hippohookbelly",
+      "unusual": true
+    },
+    {
+      "name": "hippohookbody",
+      "unusual": true
+    },
+    {
+      "name": "hippohookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\hippo#c": [
       "body=",
       "eye=",
       "pupil=",
@@ -146,5 +181,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

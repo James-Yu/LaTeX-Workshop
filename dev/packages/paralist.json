@@ -1,87 +1,168 @@
 {
-  "includes": {},
-  "macros": {
-    "setdefaultitem{}{}{}{}": {
-      "snippet": "setdefaultitem{${1:label1}}{${2:label2}}{${3:label3}}{${4:label4}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "setdefaultitem",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:label1}}{${2:label2}}{${3:label3}}{${4:label4}}"
+      }
     },
-    "setdefaultenum{}{}{}{}": {
-      "snippet": "setdefaultenum{${1:label1}}{${2:label2}}{${3:label3}}{${4:label4}}"
+    {
+      "name": "setdefaultenum",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:label1}}{${2:label2}}{${3:label3}}{${4:label4}}"
+      }
     },
-    "setdefaultleftmargin{}{}{}{}{}{}": {
-      "snippet": "setdefaultleftmargin{${1:length1}}{${2:length2}}{${3:length3}}{${4:length4}}{${5:length5}}{${6:length6}}"
+    {
+      "name": "setdefaultleftmargin",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:length1}}{${2:length2}}{${3:length3}}{${4:length4}}{${5:length5}}{${6:length6}}"
+      }
     },
-    "pointedenum": {},
-    "pointlessenum": {},
-    "paradescriptionlabel": {},
-    "pltopsep": {},
-    "plpartopsep": {},
-    "plitemsep": {},
-    "plparsep": {}
-  },
-  "envs": {
-    "itemize[]": {
-      "name": "itemize",
-      "snippet": "[${1:label}]"
+    {
+      "name": "pointedenum",
+      "unusual": true
     },
-    "enumerate[]": {
-      "name": "enumerate",
-      "snippet": "[${1:label}]"
+    {
+      "name": "pointlessenum",
+      "unusual": true
     },
-    "asparaenum": {},
-    "asparaenum[]": {
-      "name": "asparaenum",
-      "snippet": "[${1:label}]"
+    {
+      "name": "paradescriptionlabel",
+      "unusual": true
     },
-    "inparaenum": {},
-    "inparaenum[]": {
-      "name": "inparaenum",
-      "snippet": "[${1:label}]"
+    {
+      "name": "pltopsep",
+      "unusual": true
     },
-    "compactenum": {},
-    "compactenum[]": {
-      "name": "compactenum",
-      "snippet": "[${1:label}]"
+    {
+      "name": "plpartopsep",
+      "unusual": true
     },
-    "asparaitem": {},
-    "asparaitem[]": {
-      "name": "asparaitem",
-      "snippet": "[${1:label}]"
+    {
+      "name": "plitemsep",
+      "unusual": true
     },
-    "inparaitem": {},
-    "inparaitem[]": {
-      "name": "inparaitem",
-      "snippet": "[${1:label}]"
-    },
-    "compactitem": {},
-    "compactitem[]": {
-      "name": "compactitem",
-      "snippet": "[${1:label}]"
-    },
-    "asparadesc": {},
-    "inparadesc": {},
-    "compactdesc": {},
-    "asparablank": {
-      "option": "defblank"
-    },
-    "inparablank": {
-      "option": "defblank"
+    {
+      "name": "plparsep",
+      "unusual": true
     }
-  },
-  "options": [
-    "newitem",
-    "olditem",
-    "newenum",
-    "oldenum",
-    "alwaysadjust",
-    "neveradjust",
-    "neverdecrease",
-    "defblank",
-    "pointlessenum",
-    "pointedenum",
-    "flushright",
-    "flushleft",
-    "cfg",
-    "nocfg"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "itemize",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label}]"
+      }
+    },
+    {
+      "name": "enumerate",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label}]"
+      }
+    },
+    {
+      "name": "asparaenum"
+    },
+    {
+      "name": "asparaenum",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label}]"
+      }
+    },
+    {
+      "name": "inparaenum"
+    },
+    {
+      "name": "inparaenum",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label}]"
+      }
+    },
+    {
+      "name": "compactenum"
+    },
+    {
+      "name": "compactenum",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label}]"
+      }
+    },
+    {
+      "name": "asparaitem"
+    },
+    {
+      "name": "asparaitem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label}]"
+      }
+    },
+    {
+      "name": "inparaitem"
+    },
+    {
+      "name": "inparaitem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label}]"
+      }
+    },
+    {
+      "name": "compactitem"
+    },
+    {
+      "name": "compactitem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label}]"
+      }
+    },
+    {
+      "name": "asparadesc"
+    },
+    {
+      "name": "inparadesc"
+    },
+    {
+      "name": "compactdesc"
+    },
+    {
+      "name": "asparablank",
+      "if": "defblank"
+    },
+    {
+      "name": "inparablank",
+      "if": "defblank"
+    }
+  ],
+  "keys": {
+    "\\usepackage/paralist#c": [
+      "newitem",
+      "olditem",
+      "newenum",
+      "oldenum",
+      "alwaysadjust",
+      "neveradjust",
+      "neverdecrease",
+      "defblank",
+      "pointlessenum",
+      "pointedenum",
+      "flushright",
+      "flushleft",
+      "cfg",
+      "nocfg"
+    ]
+  },
+  "args": [
+    "\\usepackage/paralist#c"
+  ]
 }

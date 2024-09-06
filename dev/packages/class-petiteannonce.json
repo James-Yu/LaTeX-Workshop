@@ -1,33 +1,55 @@
 {
-  "includes": {
-    "graphicx": [],
-    "keyval": []
-  },
-  "macros": {
-    "petiteannonce{}{}": {
-      "snippet": "petiteannonce{${1:phone number}}{${2:text}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "petiteannonce[]{}{}": {
-      "snippet": "petiteannonce[${3:options}]{${1:phone number}}{${2:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "petiteannoncewidth{}": {
-      "snippet": "petiteannoncewidth{${1:factor}}"
-    },
-    "petiteannonceaddtowidth{}": {
-      "snippet": "petiteannonceaddtowidth{${1:dimen}}"
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "10pt",
-    "11pt",
-    "12pt",
-    "margin="
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "petiteannonce",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:phone number}}{${2:text}}"
+      }
+    },
+    {
+      "name": "petiteannonce",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:phone number}}{${2:text}}",
+        "keys": [
+          "\\petiteannonce"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "petiteannoncewidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "petiteannonceaddtowidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen%l}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/petiteannonce#c": [
+      "10pt",
+      "11pt",
+      "12pt",
+      "margin="
+    ],
+    "\\petiteannonce": [
       "cols=${1:integer}",
       "count=${1:integer}",
       "cutvspace=",
@@ -39,5 +61,8 @@
       "texthspace=",
       "width="
     ]
+  },
+  "args": [
+    "\\documentclass/petiteannonce#c"
   ]
 }

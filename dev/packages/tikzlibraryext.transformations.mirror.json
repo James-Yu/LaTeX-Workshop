@@ -1,32 +1,93 @@
 {
-  "includes": {},
-  "macros": {
-    "pgftransformxmirror{}": {
-      "snippet": "pgftransformxmirror{${1:value}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "pgftransformxmirror",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
     },
-    "pgftransformymirror{}": {
-      "snippet": "pgftransformymirror{${1:value}}"
+    {
+      "name": "pgftransformymirror",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
     },
-    "pgftransformmirror{}{}": {
-      "snippet": "pgftransformmirror{${1:pointA}}{${2:pointB}}"
+    {
+      "name": "pgftransformmirror",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pointA}}{${2:pointB}}"
+      }
     },
-    "pgfqtransformmirror{}": {
-      "snippet": "pgfqtransformmirror{${1:point}}"
+    {
+      "name": "pgfqtransformmirror",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:point}}"
+      }
     },
-    "pgftransformxMirror{}": {
-      "snippet": "pgftransformxMirror{${1:value}}"
+    {
+      "name": "pgftransformxMirror",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
     },
-    "pgftransformyMirror{}": {
-      "snippet": "pgftransformyMirror{${1:value}}"
+    {
+      "name": "pgftransformyMirror",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
     },
-    "pgftransformMirror{}{}": {
-      "snippet": "pgftransformMirror{${1:pointA}}{${2:pointB}}"
+    {
+      "name": "pgftransformMirror",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pointA}}{${2:pointB}}"
+      }
     },
-    "pgfqtransformMirror{}": {
-      "snippet": "pgfqtransformMirror{${1:point}}"
+    {
+      "name": "pgfqtransformMirror",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:point}}"
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\path#c,\\draw#c,\\fill#c,\\filldraw#c,\\pattern#c,\\shade#c,\\shadedraw#c,\\clip#c,\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c,\\matrix#c,\\calendar#c,\\chainin#c,\\arrow#c,\\arrowreversed#c": [
+      "xmirror",
+      "xmirror=${1:val or coord}",
+      "ymirror",
+      "ymirror=${1:val or coord}",
+      "mirror x",
+      "mirror x=${1:coord}",
+      "mirror y",
+      "mirror y=${1:coord}",
+      "mirror=${1:⟨pointA⟩}--${2:⟨pointB⟩}",
+      "xMirror",
+      "xMirror=${1:val or coord}",
+      "yMirror",
+      "yMirror=${1:val or coord}",
+      "Mirror x",
+      "Mirror x=${1:coord}",
+      "Mirror y",
+      "Mirror y=${1:coord}",
+      "Mirror=${1:⟨pointA⟩}--${2:⟨pointB⟩}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

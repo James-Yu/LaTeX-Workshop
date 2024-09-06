@@ -1,34 +1,51 @@
 {
-  "includes": {
-    "keyval": [],
-    "tabularht": []
-  },
-  "macros": {},
-  "envs": {
-    "tabularkv{}": {
-      "name": "tabularkv",
-      "snippet": "{${1:preamble}}"
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "tabularkv[]{}": {
-      "name": "tabularkv",
-      "snippet": "[${2:options}]{${1:preamble}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "tabularkv[][]{}": {
-      "name": "tabularkv",
-      "snippet": "[${2:options}][${3:pos}]{${1:preamble}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tabularht"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [],
+  "envs": [
+    {
+      "name": "tabularkv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preamble}}"
+      }
+    },
+    {
+      "name": "tabularkv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:preamble}}",
+        "keys": [
+          "\\begin{tabularkv}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tabularkv",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:options%keyvals}][${3:pos}]{${1:preamble}}",
+        "keys": [
+          "\\begin{tabularkv}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{tabularkv}": [
       "width=",
       "x=",
       "height=",
       "valign=${1|top,bottom,center|}"
     ]
-  ]
+  },
+  "args": []
 }

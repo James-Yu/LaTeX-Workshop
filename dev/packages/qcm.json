@@ -1,58 +1,124 @@
 {
-  "includes": {
-    "ifthen": [],
-    "calc": [],
-    "verbatim": [],
-    "tabularx": []
-  },
-  "macros": {
-    "headerfont{}": {
-      "snippet": "headerfont{${1:font commands}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "X{}": {
-      "snippet": "X{${1:symbol}}"
+    {
+      "name": "calc"
     },
-    "pbs{}": {
-      "snippet": "pbs{${1:arg}}"
+    {
+      "name": "verbatim"
     },
-    "questionspace": {},
-    "answerstitle{}": {
-      "snippet": "answerstitle{${1:text}}"
-    },
-    "answerstitlefont{}": {
-      "snippet": "answerstitlefont{${1:font commands}}"
-    },
-    "answernumberfont{}": {
-      "snippet": "answernumberfont{${1:font commands}}"
-    },
-    "thequestion": {},
-    "truesymbol{}": {
-      "snippet": "truesymbol{${1:symbol}}"
-    },
-    "falsesymbol{}": {
-      "snippet": "falsesymbol{${1:symbol}}"
-    },
-    "true": {},
-    "false": {},
-    "correctionstyle{}": {
-      "snippet": "correctionstyle{${1:font commands}}"
-    },
-    "makeform": {},
-    "makemask": {}
-  },
-  "envs": {
-    "question{}": {
-      "name": "question",
-      "snippet": "{${1:question text}}"
-    },
-    "correction": {}
-  },
-  "options": [
-    "english",
-    "french",
-    "francais",
-    "nocorrection",
-    "correction"
+    {
+      "name": "tabularx"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "headerfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "X",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "pbs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "questionspace"
+    },
+    {
+      "name": "answerstitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "answerstitlefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "answernumberfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "thequestion"
+    },
+    {
+      "name": "truesymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "falsesymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "true"
+    },
+    {
+      "name": "false"
+    },
+    {
+      "name": "correctionstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "makeform"
+    },
+    {
+      "name": "makemask"
+    }
+  ],
+  "envs": [
+    {
+      "name": "question",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:question text%text}}"
+      }
+    },
+    {
+      "name": "correction"
+    }
+  ],
+  "keys": {
+    "\\usepackage/qcm#c": [
+      "english",
+      "french",
+      "francais",
+      "nocorrection",
+      "correction"
+    ]
+  },
+  "args": [
+    "\\usepackage/qcm#c"
+  ]
 }

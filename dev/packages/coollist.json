@@ -1,41 +1,87 @@
 {
-  "includes": {
-    "ifthen": [],
-    "amsmath": [],
-    "amssymb": [],
-    "coolstr": [],
-    "forloop": []
-  },
-  "macros": {
-    "setlistStop{}": {
-      "snippet": "setlistStop{${1:string}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "setlistEnd{}": {
-      "snippet": "setlistEnd{${1:string}}"
+    {
+      "name": "amsmath"
     },
-    "listval{}{}": {
-      "snippet": "listval{${1:list}}{${2:index}}"
+    {
+      "name": "amssymb"
     },
-    "liststore{}{}": {
-      "snippet": "liststore{${1:list}}{${2:macro base name}}"
+    {
+      "name": "coolstr"
     },
-    "listlen{}": {
-      "snippet": "listlen{${1:list}}"
-    },
-    "listlenstore{}{}": {
-      "snippet": "listlenstore{${1:counter}}{${2:list}}"
-    },
-    "listcopy{}{}": {
-      "snippet": "listcopy{${1:list1}}{${2:list2}}"
-    },
-    "listsum{}{}": {
-      "snippet": "listsum{${1:list}}{${2:macro}}"
-    },
-    "listsum[]{}{}": {
-      "snippet": "listsum[${3:stored list}]{${1:list}}{${2:macro}}"
+    {
+      "name": "forloop"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "setlistStop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
+    },
+    {
+      "name": "setlistEnd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
+    },
+    {
+      "name": "listval",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list}}{${2:index}}"
+      }
+    },
+    {
+      "name": "liststore",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list}}{${2:macro base name}}"
+      }
+    },
+    {
+      "name": "listlen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "listlenstore",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:counter}}{${2:list}}"
+      }
+    },
+    {
+      "name": "listcopy",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list1}}{${2:list2}}"
+      }
+    },
+    {
+      "name": "listsum",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list}}{${2:macro%cmd}}"
+      }
+    },
+    {
+      "name": "listsum",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:stored list}]{${1:list}}{${2:macro%cmd}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

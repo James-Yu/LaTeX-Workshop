@@ -1,383 +1,1115 @@
 {
-  "includes": {
-    "modroman": [],
-    "amsmath": [],
-    "gmp": [],
-    "ifpdf": []
-  },
-  "macros": {
-    "ifnodefault": {},
-    "nodefaulttrue": {},
-    "nodefaultfalse": {},
-    "ifnodefaultmath": {},
-    "nodefaultmathtrue": {},
-    "nodefaultmathfalse": {},
-    "ifnodefaulttext": {},
-    "nodefaulttexttrue": {},
-    "nodefaulttextfalse": {},
-    "ifsymbolsonly": {},
-    "symbolsonlytrue": {},
-    "symbolsonlyfalse": {},
-    "iftypeone": {},
-    "typeonetrue": {},
-    "typeonefalse": {},
-    "drmshortq": {},
-    "tcshape": {},
-    "texttc{}": {
-      "snippet": "texttc{${1:text}}"
+  "deps": [
+    {
+      "name": "modroman"
     },
-    "ittcshape": {},
-    "textittc{}": {
-      "snippet": "textittc{${1:text}}"
+    {
+      "name": "amsmath"
     },
-    "itscshape": {},
-    "textitsc{}": {
-      "snippet": "textitsc{${1:text}}"
+    {
+      "name": "gmp"
     },
-    "uishape": {},
-    "textui{}": {
-      "snippet": "textui{${1:text}}"
-    },
-    "grktext": {},
-    "textgrk{}": {
-      "snippet": "textgrk{${1:text}}"
-    },
-    "drmsupfigs": {},
-    "textdrmsupfigs{}": {
-      "snippet": "textdrmsupfigs{${1:text}}"
-    },
-    "drminffigs": {},
-    "textdrminffigs{}": {
-      "snippet": "textdrminffigs{${1:text}}"
-    },
-    "lseries": {},
-    "textl{}": {
-      "snippet": "textl{${1:text}}"
-    },
-    "bseries": {},
-    "textb{}": {
-      "snippet": "textb{${1:text}}"
-    },
-    "loosen": {},
-    "excelsior": {},
-    "minikin": {},
-    "brilliant": {},
-    "diamondsize": {},
-    "pearl": {},
-    "agate": {},
-    "ruby": {},
-    "nonpareille": {},
-    "minionette": {},
-    "emerald": {},
-    "minion": {},
-    "brevier": {},
-    "petit": {},
-    "smalltext": {},
-    "bourgeois": {},
-    "galliard": {},
-    "longprimer": {},
-    "corpus": {},
-    "garamond": {},
-    "smallpica": {},
-    "philosophy": {},
-    "pica": {},
-    "english": {},
-    "mittel": {},
-    "augustin": {},
-    "columbian": {},
-    "twolinebrevier": {},
-    "greatprimer": {},
-    "paragon": {},
-    "doublesmallpica": {},
-    "doublesmallpicaus": {},
-    "doublepicabrit": {},
-    "doublepica": {},
-    "twolinepica": {},
-    "doubleenglish": {},
-    "twolineenglish": {},
-    "fivelinenonpareil": {},
-    "fourlinebrevier": {},
-    "doublegreatprimer": {},
-    "twolinegreatprimer": {},
-    "meridian": {},
-    "twolinedoublepica": {},
-    "trafalgar": {},
-    "canon": {},
-    "fourline": {},
-    "fivelinepica": {},
-    "inch": {},
-    "drmmathlets{}": {
-      "snippet": "drmmathlets{${1:text}}"
-    },
-    "bigd{}": {
-      "snippet": "bigd{${1:number}}"
-    },
-    "drmsym{}": {
-      "snippet": "drmsym{${1:slot}}"
-    },
-    "drmsymbolredef": {},
-    "textsoundrecording": {},
-    "textmale": {},
-    "textfemale": {},
-    "textcrusadecross": {},
-    "textcrusadecrossoutline": {},
-    "textlatincross": {},
-    "textlatincrossoutline": {},
-    "textgreekcross": {},
-    "textgreekcrossoutline": {},
-    "textsaltirecross": {},
-    "textsaltirecrossoutline": {},
-    "texteucharist": {},
-    "textstardavid": {},
-    "textstardavidsolid": {},
-    "textstardavidoutline": {},
-    "textsun": {},
-    "textsunvar": {},
-    "textwaxcrescent": {},
-    "textfullmoon": {},
-    "textwanecrescent": {},
-    "textnewmoon": {},
-    "textmercury": {},
-    "textearth": {},
-    "textterra": {},
-    "textearthvar": {},
-    "textterravar": {},
-    "textmars": {},
-    "textvenus": {},
-    "textjupiter": {},
-    "textsaturn": {},
-    "texturanus": {},
-    "texturanusvar": {},
-    "textneptune": {},
-    "textceres": {},
-    "textpallas": {},
-    "textjuno": {},
-    "textjunovar": {},
-    "textvesta": {},
-    "textvestavar": {},
-    "textastraea": {},
-    "textastraeavar": {},
-    "texthebe": {},
-    "textiris": {},
-    "textaries": {},
-    "textari": {},
-    "texttaurus": {},
-    "texttau": {},
-    "textgemini": {},
-    "textgem": {},
-    "textcancer": {},
-    "textcnc": {},
-    "textleo": {},
-    "textvirgo": {},
-    "textvir": {},
-    "textlibra": {},
-    "textlib": {},
-    "textscorpius": {},
-    "textsco": {},
-    "textsagittarius": {},
-    "textsgr": {},
-    "textcapricorn": {},
-    "textcap": {},
-    "textaquarius": {},
-    "textaqr": {},
-    "textpisces": {},
-    "textpsc": {},
-    "textpluto": {},
-    "textplutovar": {},
-    "textstar": {},
-    "textcomet": {},
-    "textquadrature": {},
-    "textopposition": {},
-    "textconjunction": {},
-    "textascendingnode": {},
-    "textdescendingnode": {},
-    "textdollarsign": {},
-    "textolddollarsign": {},
-    "textcentsign": {},
-    "textoldcentsign": {},
-    "textpoundsterling": {},
-    "textoldpoundsterling": {},
-    "textcolon": {},
-    "textruble": {},
-    "romone": {},
-    "romfive": {},
-    "romten": {},
-    "romfifty": {},
-    "romhundred": {},
-    "romfivehundred": {},
-    "romthousand": {},
-    "liningzero": {},
-    "liningone": {},
-    "liningtwo": {},
-    "liningthree": {},
-    "liningfour": {},
-    "liningfive": {},
-    "liningsix": {},
-    "liningseven": {},
-    "liningeight": {},
-    "liningnine": {},
-    "textrefmark": {},
-    "textasterism": {},
-    "textfeminineordinal": {},
-    "textmasculineordinal": {},
-    "textsupone": {},
-    "textsuptwo": {},
-    "textsupthree": {},
-    "textpilcrowsolid": {},
-    "textpilcrowoutline": {},
-    "textdag": {},
-    "textdbldagger": {},
-    "textdbldag": {},
-    "dbldag": {},
-    "textpipe": {},
-    "textbrokenpipe": {},
-    "textprime": {},
-    "textdoubleprime": {},
-    "texttripleprime": {},
-    "textsqrt": {},
-    "textquarter": {},
-    "texthalf": {},
-    "textthird": {},
-    "texttwothirds": {},
-    "textpermille": {},
-    "textperbiqua": {},
-    "textpertenmille": {},
-    "textpertriqua": {},
-    "textequals": {},
-    "textslash": {},
-    "textradiation": {},
-    "textradiationnocircle": {},
-    "textbiohazard": {},
-    "textbiohazardnocircle": {},
-    "texthighvoltage": {},
-    "texthighvoltagenotriangle": {},
-    "textgeneralwarning": {},
-    "textintbang": {},
-    "textopenintbang": {},
-    "textheart": {},
-    "textopenheart": {},
-    "texteighthnote": {},
-    "textdiamond": {},
-    "textopendiamond": {},
-    "textlozenge": {},
-    "texttilde": {},
-    "tilde": {
-      "detail": " ̃",
-      "documentation": "tilde"
-    },
-    "textdegreec": {},
-    "textrightupfleuron": {},
-    "textrightdownfleuron": {},
-    "textleftupfleuron": {},
-    "textleftdownfleuron": {},
-    "textupleftfleuron": {},
-    "textuprightfleuron": {},
-    "textdownrightfleuron": {},
-    "textdownleftfleuron": {},
-    "textsquaretulip": {},
-    "textsquaretulipside": {},
-    "textupdoubletulip": {},
-    "textdowndoubletulip": {},
-    "textrightdoubletulip": {},
-    "textleftdoubletulip": {},
-    "textupleftcornertulip": {},
-    "textuprightcornertulip": {},
-    "textlowleftcornertulip": {},
-    "textlowrightcornertulip": {},
-    "textupsingletuliplong": {},
-    "textdownsingletuliplong": {},
-    "textleftsingletuliplong": {},
-    "textrightsingletuliplong": {},
-    "textupsingletulip": {},
-    "textdownsingletulip": {},
-    "textleftsingletulip": {},
-    "textrightsingletulip": {},
-    "spearright": {},
-    "spearleft": {},
-    "horizspearext": {},
-    "spearup": {},
-    "speardown": {},
-    "vertspearext": {},
-    "fleurdelis": {},
-    "fleurdelys": {},
-    "fleurdelisdown": {},
-    "fleurdelysdown": {},
-    "fleurdelisleft": {},
-    "fleurdelysleft": {},
-    "fleurdelisright": {},
-    "fleurdelysright": {},
-    "woundcordleftext": {},
-    "woundcordrightext": {},
-    "woundcordleftend": {},
-    "woundcordrightend": {},
-    "woundcordleftendinv": {},
-    "woundcordrightendinv": {},
-    "romanize{}": {
-      "snippet": "romanize{${1:number}}"
-    },
-    "liningnums{}": {
-      "snippet": "liningnums{${1:slot}}"
-    },
-    "tulipframe{}": {
-      "snippet": "tulipframe{${1:content}}"
-    },
-    "counterA": {},
-    "counterB": {},
-    "iter": {},
-    "extcharwid": {},
-    "leftcharwid": {},
-    "rightcharwid": {},
-    "greaterwid": {},
-    "extrule{}{}{}{}{}": {
-      "snippet": "extrule{${1:orient}}{${2:length}}{${3:start}}{${4:end}}{${5:ext}}"
-    },
-    "drmelipgap": {},
-    "drmelipbef": {},
-    "drmelipaft": {},
-    "drmelipchar": {},
-    "drmelip": {},
-    "drmfelipbef": {},
-    "drmfelipaft": {},
-    "drmfelipwid": {},
-    "drmfelip": {},
-    "drmdecinitfontdefault": {},
-    "drmdecinitfont": {},
-    "drmdecinit{}{}{}{}{}": {
-      "snippet": "drmdecinit{${1:width}}{${2:height}}{${3:bgcolor}}{${4:fgcolor}}{${5:fgchar}}"
-    },
-    "DH": {},
-    "NG": {},
-    "dj": {},
-    "ng": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textquotedbl": {},
-    "DJ": {},
-    "th": {},
-    "TH": {},
-    "dh": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "guillemetleft": {},
-    "guillemetright": {}
-  },
-  "envs": {},
-  "options": [
-    "nodefault",
-    "nodefaultmath",
-    "nodefaulttext",
-    "symbolsonly",
-    "typeone"
+    {
+      "name": "ifpdf"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ifnodefault",
+      "unusual": true
+    },
+    {
+      "name": "nodefaulttrue",
+      "unusual": true
+    },
+    {
+      "name": "nodefaultfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifnodefaultmath",
+      "unusual": true
+    },
+    {
+      "name": "nodefaultmathtrue",
+      "unusual": true
+    },
+    {
+      "name": "nodefaultmathfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifnodefaulttext",
+      "unusual": true
+    },
+    {
+      "name": "nodefaulttexttrue",
+      "unusual": true
+    },
+    {
+      "name": "nodefaulttextfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsymbolsonly",
+      "unusual": true
+    },
+    {
+      "name": "symbolsonlytrue",
+      "unusual": true
+    },
+    {
+      "name": "symbolsonlyfalse",
+      "unusual": true
+    },
+    {
+      "name": "iftypeone",
+      "unusual": true
+    },
+    {
+      "name": "typeonetrue",
+      "unusual": true
+    },
+    {
+      "name": "typeonefalse",
+      "unusual": true
+    },
+    {
+      "name": "drmshortq"
+    },
+    {
+      "name": "tcshape"
+    },
+    {
+      "name": "texttc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ittcshape"
+    },
+    {
+      "name": "textittc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "itscshape"
+    },
+    {
+      "name": "textitsc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "uishape"
+    },
+    {
+      "name": "textui",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "grktext"
+    },
+    {
+      "name": "textgrk",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "drmsupfigs"
+    },
+    {
+      "name": "textdrmsupfigs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "drminffigs"
+    },
+    {
+      "name": "textdrminffigs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "lseries"
+    },
+    {
+      "name": "textl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "bseries"
+    },
+    {
+      "name": "textb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "loosen"
+    },
+    {
+      "name": "excelsior"
+    },
+    {
+      "name": "minikin"
+    },
+    {
+      "name": "brilliant"
+    },
+    {
+      "name": "diamondsize"
+    },
+    {
+      "name": "pearl"
+    },
+    {
+      "name": "agate"
+    },
+    {
+      "name": "ruby"
+    },
+    {
+      "name": "nonpareille"
+    },
+    {
+      "name": "minionette"
+    },
+    {
+      "name": "emerald"
+    },
+    {
+      "name": "minion"
+    },
+    {
+      "name": "brevier"
+    },
+    {
+      "name": "petit"
+    },
+    {
+      "name": "smalltext"
+    },
+    {
+      "name": "bourgeois"
+    },
+    {
+      "name": "galliard"
+    },
+    {
+      "name": "longprimer"
+    },
+    {
+      "name": "corpus"
+    },
+    {
+      "name": "garamond"
+    },
+    {
+      "name": "smallpica"
+    },
+    {
+      "name": "philosophy"
+    },
+    {
+      "name": "pica"
+    },
+    {
+      "name": "english"
+    },
+    {
+      "name": "mittel"
+    },
+    {
+      "name": "augustin"
+    },
+    {
+      "name": "columbian"
+    },
+    {
+      "name": "twolinebrevier"
+    },
+    {
+      "name": "greatprimer"
+    },
+    {
+      "name": "paragon"
+    },
+    {
+      "name": "doublesmallpica"
+    },
+    {
+      "name": "doublesmallpicaus"
+    },
+    {
+      "name": "doublepicabrit"
+    },
+    {
+      "name": "doublepica"
+    },
+    {
+      "name": "twolinepica"
+    },
+    {
+      "name": "doubleenglish"
+    },
+    {
+      "name": "twolineenglish"
+    },
+    {
+      "name": "fivelinenonpareil"
+    },
+    {
+      "name": "fourlinebrevier"
+    },
+    {
+      "name": "doublegreatprimer"
+    },
+    {
+      "name": "twolinegreatprimer"
+    },
+    {
+      "name": "meridian"
+    },
+    {
+      "name": "twolinedoublepica"
+    },
+    {
+      "name": "trafalgar"
+    },
+    {
+      "name": "canon"
+    },
+    {
+      "name": "fourline"
+    },
+    {
+      "name": "fivelinepica"
+    },
+    {
+      "name": "inch"
+    },
+    {
+      "name": "drmmathlets",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "bigd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "drmsym",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:slot}}"
+      }
+    },
+    {
+      "name": "drmsymbolredef",
+      "unusual": true
+    },
+    {
+      "name": "textsoundrecording"
+    },
+    {
+      "name": "textmale"
+    },
+    {
+      "name": "textfemale"
+    },
+    {
+      "name": "textcrusadecross"
+    },
+    {
+      "name": "textcrusadecrossoutline"
+    },
+    {
+      "name": "textlatincross"
+    },
+    {
+      "name": "textlatincrossoutline"
+    },
+    {
+      "name": "textgreekcross"
+    },
+    {
+      "name": "textgreekcrossoutline"
+    },
+    {
+      "name": "textsaltirecross"
+    },
+    {
+      "name": "textsaltirecrossoutline"
+    },
+    {
+      "name": "texteucharist"
+    },
+    {
+      "name": "textstardavid"
+    },
+    {
+      "name": "textstardavidsolid"
+    },
+    {
+      "name": "textstardavidoutline"
+    },
+    {
+      "name": "textsun"
+    },
+    {
+      "name": "textsunvar"
+    },
+    {
+      "name": "textwaxcrescent"
+    },
+    {
+      "name": "textfullmoon"
+    },
+    {
+      "name": "textwanecrescent"
+    },
+    {
+      "name": "textnewmoon"
+    },
+    {
+      "name": "textmercury"
+    },
+    {
+      "name": "textearth"
+    },
+    {
+      "name": "textterra"
+    },
+    {
+      "name": "textearthvar"
+    },
+    {
+      "name": "textterravar"
+    },
+    {
+      "name": "textmars"
+    },
+    {
+      "name": "textvenus"
+    },
+    {
+      "name": "textjupiter"
+    },
+    {
+      "name": "textsaturn"
+    },
+    {
+      "name": "texturanus"
+    },
+    {
+      "name": "texturanusvar"
+    },
+    {
+      "name": "textneptune"
+    },
+    {
+      "name": "textceres"
+    },
+    {
+      "name": "textpallas"
+    },
+    {
+      "name": "textjuno"
+    },
+    {
+      "name": "textjunovar"
+    },
+    {
+      "name": "textvesta"
+    },
+    {
+      "name": "textvestavar"
+    },
+    {
+      "name": "textastraea"
+    },
+    {
+      "name": "textastraeavar"
+    },
+    {
+      "name": "texthebe"
+    },
+    {
+      "name": "textiris"
+    },
+    {
+      "name": "textaries"
+    },
+    {
+      "name": "textari"
+    },
+    {
+      "name": "texttaurus"
+    },
+    {
+      "name": "texttau"
+    },
+    {
+      "name": "textgemini"
+    },
+    {
+      "name": "textgem"
+    },
+    {
+      "name": "textcancer"
+    },
+    {
+      "name": "textcnc"
+    },
+    {
+      "name": "textleo"
+    },
+    {
+      "name": "textvirgo"
+    },
+    {
+      "name": "textvir"
+    },
+    {
+      "name": "textlibra"
+    },
+    {
+      "name": "textlib"
+    },
+    {
+      "name": "textscorpius"
+    },
+    {
+      "name": "textsco"
+    },
+    {
+      "name": "textsagittarius"
+    },
+    {
+      "name": "textsgr"
+    },
+    {
+      "name": "textcapricorn"
+    },
+    {
+      "name": "textcap"
+    },
+    {
+      "name": "textaquarius"
+    },
+    {
+      "name": "textaqr"
+    },
+    {
+      "name": "textpisces"
+    },
+    {
+      "name": "textpsc"
+    },
+    {
+      "name": "textpluto"
+    },
+    {
+      "name": "textplutovar"
+    },
+    {
+      "name": "textstar"
+    },
+    {
+      "name": "textcomet"
+    },
+    {
+      "name": "textquadrature"
+    },
+    {
+      "name": "textopposition"
+    },
+    {
+      "name": "textconjunction"
+    },
+    {
+      "name": "textascendingnode"
+    },
+    {
+      "name": "textdescendingnode"
+    },
+    {
+      "name": "textdollarsign"
+    },
+    {
+      "name": "textolddollarsign"
+    },
+    {
+      "name": "textcentsign"
+    },
+    {
+      "name": "textoldcentsign"
+    },
+    {
+      "name": "textpoundsterling"
+    },
+    {
+      "name": "textoldpoundsterling"
+    },
+    {
+      "name": "textcolon"
+    },
+    {
+      "name": "textruble"
+    },
+    {
+      "name": "romone"
+    },
+    {
+      "name": "romfive"
+    },
+    {
+      "name": "romten"
+    },
+    {
+      "name": "romfifty"
+    },
+    {
+      "name": "romhundred"
+    },
+    {
+      "name": "romfivehundred"
+    },
+    {
+      "name": "romthousand"
+    },
+    {
+      "name": "liningzero"
+    },
+    {
+      "name": "liningone"
+    },
+    {
+      "name": "liningtwo"
+    },
+    {
+      "name": "liningthree"
+    },
+    {
+      "name": "liningfour"
+    },
+    {
+      "name": "liningfive"
+    },
+    {
+      "name": "liningsix"
+    },
+    {
+      "name": "liningseven"
+    },
+    {
+      "name": "liningeight"
+    },
+    {
+      "name": "liningnine"
+    },
+    {
+      "name": "textrefmark"
+    },
+    {
+      "name": "textasterism"
+    },
+    {
+      "name": "textfeminineordinal"
+    },
+    {
+      "name": "textmasculineordinal"
+    },
+    {
+      "name": "textsupone"
+    },
+    {
+      "name": "textsuptwo"
+    },
+    {
+      "name": "textsupthree"
+    },
+    {
+      "name": "textpilcrowsolid"
+    },
+    {
+      "name": "textpilcrowoutline"
+    },
+    {
+      "name": "textdag"
+    },
+    {
+      "name": "textdbldagger"
+    },
+    {
+      "name": "textdbldag"
+    },
+    {
+      "name": "dbldag"
+    },
+    {
+      "name": "textpipe"
+    },
+    {
+      "name": "textbrokenpipe"
+    },
+    {
+      "name": "textprime"
+    },
+    {
+      "name": "textdoubleprime"
+    },
+    {
+      "name": "texttripleprime"
+    },
+    {
+      "name": "textsqrt"
+    },
+    {
+      "name": "textquarter"
+    },
+    {
+      "name": "texthalf"
+    },
+    {
+      "name": "textthird"
+    },
+    {
+      "name": "texttwothirds"
+    },
+    {
+      "name": "textpermille"
+    },
+    {
+      "name": "textperbiqua"
+    },
+    {
+      "name": "textpertenmille"
+    },
+    {
+      "name": "textpertriqua"
+    },
+    {
+      "name": "textequals"
+    },
+    {
+      "name": "textslash"
+    },
+    {
+      "name": "textradiation"
+    },
+    {
+      "name": "textradiationnocircle"
+    },
+    {
+      "name": "textbiohazard"
+    },
+    {
+      "name": "textbiohazardnocircle"
+    },
+    {
+      "name": "texthighvoltage"
+    },
+    {
+      "name": "texthighvoltagenotriangle"
+    },
+    {
+      "name": "textgeneralwarning"
+    },
+    {
+      "name": "textintbang"
+    },
+    {
+      "name": "textopenintbang"
+    },
+    {
+      "name": "textheart"
+    },
+    {
+      "name": "textopenheart"
+    },
+    {
+      "name": "texteighthnote"
+    },
+    {
+      "name": "textdiamond"
+    },
+    {
+      "name": "textopendiamond"
+    },
+    {
+      "name": "textlozenge"
+    },
+    {
+      "name": "texttilde"
+    },
+    {
+      "name": "tilde"
+    },
+    {
+      "name": "textdegreec"
+    },
+    {
+      "name": "textrightupfleuron"
+    },
+    {
+      "name": "textrightdownfleuron"
+    },
+    {
+      "name": "textleftupfleuron"
+    },
+    {
+      "name": "textleftdownfleuron"
+    },
+    {
+      "name": "textupleftfleuron"
+    },
+    {
+      "name": "textuprightfleuron"
+    },
+    {
+      "name": "textdownrightfleuron"
+    },
+    {
+      "name": "textdownleftfleuron"
+    },
+    {
+      "name": "textsquaretulip"
+    },
+    {
+      "name": "textsquaretulipside"
+    },
+    {
+      "name": "textupdoubletulip"
+    },
+    {
+      "name": "textdowndoubletulip"
+    },
+    {
+      "name": "textrightdoubletulip"
+    },
+    {
+      "name": "textleftdoubletulip"
+    },
+    {
+      "name": "textupleftcornertulip"
+    },
+    {
+      "name": "textuprightcornertulip"
+    },
+    {
+      "name": "textlowleftcornertulip"
+    },
+    {
+      "name": "textlowrightcornertulip"
+    },
+    {
+      "name": "textupsingletuliplong"
+    },
+    {
+      "name": "textdownsingletuliplong"
+    },
+    {
+      "name": "textleftsingletuliplong"
+    },
+    {
+      "name": "textrightsingletuliplong"
+    },
+    {
+      "name": "textupsingletulip"
+    },
+    {
+      "name": "textdownsingletulip"
+    },
+    {
+      "name": "textleftsingletulip"
+    },
+    {
+      "name": "textrightsingletulip"
+    },
+    {
+      "name": "spearright"
+    },
+    {
+      "name": "spearleft"
+    },
+    {
+      "name": "horizspearext"
+    },
+    {
+      "name": "spearup"
+    },
+    {
+      "name": "speardown"
+    },
+    {
+      "name": "vertspearext"
+    },
+    {
+      "name": "fleurdelis"
+    },
+    {
+      "name": "fleurdelys"
+    },
+    {
+      "name": "fleurdelisdown"
+    },
+    {
+      "name": "fleurdelysdown"
+    },
+    {
+      "name": "fleurdelisleft"
+    },
+    {
+      "name": "fleurdelysleft"
+    },
+    {
+      "name": "fleurdelisright"
+    },
+    {
+      "name": "fleurdelysright"
+    },
+    {
+      "name": "woundcordleftext"
+    },
+    {
+      "name": "woundcordrightext"
+    },
+    {
+      "name": "woundcordleftend"
+    },
+    {
+      "name": "woundcordrightend"
+    },
+    {
+      "name": "woundcordleftendinv"
+    },
+    {
+      "name": "woundcordrightendinv"
+    },
+    {
+      "name": "romanize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "liningnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:slot}}"
+      }
+    },
+    {
+      "name": "tulipframe",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "counterA",
+      "unusual": true
+    },
+    {
+      "name": "counterB",
+      "unusual": true
+    },
+    {
+      "name": "iter",
+      "unusual": true
+    },
+    {
+      "name": "extcharwid",
+      "unusual": true
+    },
+    {
+      "name": "leftcharwid",
+      "unusual": true
+    },
+    {
+      "name": "rightcharwid",
+      "unusual": true
+    },
+    {
+      "name": "greaterwid",
+      "unusual": true
+    },
+    {
+      "name": "extrule",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:orient}}{${2:length}}{${3:start}}{${4:end}}{${5:ext}}"
+      }
+    },
+    {
+      "name": "drmelipgap",
+      "unusual": true
+    },
+    {
+      "name": "drmelipbef",
+      "unusual": true
+    },
+    {
+      "name": "drmelipaft",
+      "unusual": true
+    },
+    {
+      "name": "drmelipchar",
+      "unusual": true
+    },
+    {
+      "name": "drmelip"
+    },
+    {
+      "name": "drmfelipbef",
+      "unusual": true
+    },
+    {
+      "name": "drmfelipaft",
+      "unusual": true
+    },
+    {
+      "name": "drmfelipwid",
+      "unusual": true
+    },
+    {
+      "name": "drmfelip"
+    },
+    {
+      "name": "drmdecinitfontdefault",
+      "unusual": true
+    },
+    {
+      "name": "drmdecinitfont",
+      "unusual": true
+    },
+    {
+      "name": "drmdecinit",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:width}}{${2:height}}{${3:bgcolor}}{${4:fgcolor}}{${5:fgchar}}"
+      }
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/drm#c": [
+      "nodefault",
+      "nodefaultmath",
+      "nodefaulttext",
+      "symbolsonly",
+      "typeone"
+    ]
+  },
+  "args": [
+    "\\usepackage/drm#c"
+  ]
 }

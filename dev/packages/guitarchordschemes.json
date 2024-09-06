@@ -1,70 +1,85 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibraryshapes.misc": [],
-    "tikzlibrarycalc": [],
-    "cnltx-base": []
-  },
-  "macros": {
-    "chordscheme": {},
-    "chordscheme[]": {
-      "snippet": "chordscheme[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "scales": {},
-    "scales[]": {
-      "snippet": "scales[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryshapes.misc"
     },
-    "setfingering{}{}{}": {
-      "snippet": "setfingering{${1:name}}{${2:fingers}}{${3:roots}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "setchordscheme{}": {
-      "snippet": "setchordscheme{${1:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "rootsymbol": {},
-    "showrootsymbol": {},
-    "ringingstring": {},
-    "mutedstring": {}
-  },
-  "envs": {},
-  "options": [
-    "x-unit=",
-    "y-unit=",
-    "rotate=${1:angle}",
-    "finger-format={${1:TeX code}}",
-    "finger-format+={${1:TeX code}}",
-    "position-format={${1:TeX code}}",
-    "position-format+={${1:TeX code}}",
-    "name-format={${1:TeX code}}",
-    "name-format+={${1:TeX code}}",
-    "name-below",
-    "name-distance=",
-    "chord-name-cs=${1:cs}",
-    "scales-name-cs=${1:cs}",
-    "string-name-format={${1:TeX code}}",
-    "string-name-format+={${1:TeX code}}",
-    "strings=${1:number}",
-    "chord-frets=${1:number}",
-    "scales-frets=${1:number}",
-    "line-width=",
-    "finger-radius=${1:number}",
-    "finger-x-offset=${1:number}",
-    "finger-y-offset=${1:number}",
-    "finger-style={${1:TikZ style}}",
-    "root-style={${1:TikZ style}}",
-    "show-root-style={${1:TikZ style}}",
-    "ringing-style={${1:TikZ style}}",
-    "muted-style={${1:TikZ style}}",
-    "tuning={${1:strings}}",
-    "restrict-bounding-box"
+    {
+      "name": "cnltx-base"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "chordscheme"
+    },
+    {
+      "name": "chordscheme",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\chordscheme"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "scales"
+    },
+    {
+      "name": "scales",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\scales#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setfingering",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:fingers}}{${3:roots}}"
+      }
+    },
+    {
+      "name": "setchordscheme",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\setchordscheme,\\usepackage/guitarchordschemes#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rootsymbol",
+      "unusual": true
+    },
+    {
+      "name": "showrootsymbol",
+      "unusual": true
+    },
+    {
+      "name": "ringingstring",
+      "unusual": true
+    },
+    {
+      "name": "mutedstring",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\chordscheme": [
       "fret-number=${1:number}",
       "name=${1:chord symbol}",
       "position=${1:position}",
@@ -75,7 +90,7 @@
       "ring={${1:strings}}",
       "mute={${1:strings}}"
     ],
-    [
+    "\\scales#c": [
       "fret-number=${1:number}",
       "name=${1:title}",
       "position=${1:position}",
@@ -85,7 +100,7 @@
       "fingering*=${1|type 1,type 1A,type 2,type 3,type 4|}",
       "fingering?=${1|type 1,type 1A,type 2,type 3,type 4|}"
     ],
-    [
+    "\\setchordscheme,\\usepackage/guitarchordschemes#c": [
       "x-unit=",
       "y-unit=",
       "rotate=${1:angle}",
@@ -116,5 +131,8 @@
       "tuning={${1:strings}}",
       "restrict-bounding-box"
     ]
+  },
+  "args": [
+    "\\setchordscheme,\\usepackage/guitarchordschemes#c"
   ]
 }

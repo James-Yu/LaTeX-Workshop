@@ -1,58 +1,188 @@
 {
-  "includes": {
-    "pgffor": []
-  },
-  "macros": {
-    "macronewlist{}": {
-      "snippet": "macronewlist{${1:listname}}"
-    },
-    "macrolistexists{}{}{}": {
-      "snippet": "macrolistexists{${1:listname}}{${2:true}}{${3:false}}"
-    },
-    "macrolistelement{}{}": {
-      "snippet": "macrolistelement{${1:listname}}{${2:position}}"
-    },
-    "macrolistindexof{}{}": {
-      "snippet": "macrolistindexof{${1:listname}}{${2:element}}"
-    },
-    "macrolistcontains{}{}{}{}": {
-      "snippet": "macrolistcontains{${1:listname}}{${2:element}}{${3:true}}{${4:false}}"
-    },
-    "macrolistadd{}{}": {
-      "snippet": "macrolistadd{${1:listname}}{${2:element}}"
-    },
-    "macrolistadd{}[]{}": {
-      "snippet": "macrolistadd{${1:listname}}[${2:position}]{${3:element}}"
-    },
-    "macrolisteadd{}{}": {
-      "snippet": "macrolisteadd{${1:listname}}{${2:element}}"
-    },
-    "macrolisteadd{}[]{}": {
-      "snippet": "macrolisteadd{${1:listname}}[${2:position}]{${3:element}}"
-    },
-    "macrolistremove{}{}": {
-      "snippet": "macrolistremove{${1:listname}}{${2:position}}"
-    },
-    "macrolistremovelast{}": {
-      "snippet": "macrolistremovelast{${1:listname}}"
-    },
-    "macrolistclear{}": {
-      "snippet": "macrolistclear{${1:listname}}"
-    },
-    "macrolistsize{}": {
-      "snippet": "macrolistsize{${1:listname}}"
-    },
-    "macrolistforeach{}{}{}": {
-      "snippet": "macrolistforeach{${1:listname}}{${2:cmd}}{${3:action}}"
-    },
-    "macrolistforeach{}{}[][]{}": {
-      "snippet": "macrolistforeach{${1:listname}}{${2:cmd}}[${3:begin}][${4:end}]{${5:action}}"
-    },
-    "macrolistjoin{}{}": {
-      "snippet": "macrolistjoin{${1:listname}}{${2:joiner}}"
+  "deps": [
+    {
+      "name": "pgffor"
     }
+  ],
+  "macros": [
+    {
+      "name": "macronewlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:listname%specialDef}}"
+      }
+    },
+    {
+      "name": "macrolistexists",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:listname%keyvals}}{${2:true}}{${3:false}}",
+        "keys": [
+          "\\macrolistexists#c,\\macrolistelement#c,\\macrolistindexof#c,\\macrolistcontains#c,\\macrolistadd#c,\\macrolisteadd#c,\\macrolistremove#c,\\macrolistremovelast#c,\\macrolistclear#c,\\macrolistsize#c,\\macrolistforeach#c,\\macrolistjoin#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macrolistelement",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:listname%keyvals}}{${2:position}}",
+        "keys": [
+          "\\macrolistexists#c,\\macrolistelement#c,\\macrolistindexof#c,\\macrolistcontains#c,\\macrolistadd#c,\\macrolisteadd#c,\\macrolistremove#c,\\macrolistremovelast#c,\\macrolistclear#c,\\macrolistsize#c,\\macrolistforeach#c,\\macrolistjoin#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macrolistindexof",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:listname%keyvals}}{${2:element}}",
+        "keys": [
+          "\\macrolistexists#c,\\macrolistelement#c,\\macrolistindexof#c,\\macrolistcontains#c,\\macrolistadd#c,\\macrolisteadd#c,\\macrolistremove#c,\\macrolistremovelast#c,\\macrolistclear#c,\\macrolistsize#c,\\macrolistforeach#c,\\macrolistjoin#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macrolistcontains",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:listname%keyvals}}{${2:element}}{${3:true}}{${4:false}}",
+        "keys": [
+          "\\macrolistexists#c,\\macrolistelement#c,\\macrolistindexof#c,\\macrolistcontains#c,\\macrolistadd#c,\\macrolisteadd#c,\\macrolistremove#c,\\macrolistremovelast#c,\\macrolistclear#c,\\macrolistsize#c,\\macrolistforeach#c,\\macrolistjoin#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macrolistadd",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:listname%keyvals}}{${2:element}}",
+        "keys": [
+          "\\macrolistexists#c,\\macrolistelement#c,\\macrolistindexof#c,\\macrolistcontains#c,\\macrolistadd#c,\\macrolisteadd#c,\\macrolistremove#c,\\macrolistremovelast#c,\\macrolistclear#c,\\macrolistsize#c,\\macrolistforeach#c,\\macrolistjoin#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macrolistadd",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:listname%keyvals}}[${3:position}]{${2:element}}",
+        "keys": [
+          "\\macrolistexists#c,\\macrolistelement#c,\\macrolistindexof#c,\\macrolistcontains#c,\\macrolistadd#c,\\macrolisteadd#c,\\macrolistremove#c,\\macrolistremovelast#c,\\macrolistclear#c,\\macrolistsize#c,\\macrolistforeach#c,\\macrolistjoin#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macrolisteadd",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:listname%keyvals}}{${2:element}}",
+        "keys": [
+          "\\macrolistexists#c,\\macrolistelement#c,\\macrolistindexof#c,\\macrolistcontains#c,\\macrolistadd#c,\\macrolisteadd#c,\\macrolistremove#c,\\macrolistremovelast#c,\\macrolistclear#c,\\macrolistsize#c,\\macrolistforeach#c,\\macrolistjoin#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macrolisteadd",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:listname%keyvals}}[${3:position}]{${2:element}}",
+        "keys": [
+          "\\macrolistexists#c,\\macrolistelement#c,\\macrolistindexof#c,\\macrolistcontains#c,\\macrolistadd#c,\\macrolisteadd#c,\\macrolistremove#c,\\macrolistremovelast#c,\\macrolistclear#c,\\macrolistsize#c,\\macrolistforeach#c,\\macrolistjoin#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macrolistremove",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:listname%keyvals}}{${2:position}}",
+        "keys": [
+          "\\macrolistexists#c,\\macrolistelement#c,\\macrolistindexof#c,\\macrolistcontains#c,\\macrolistadd#c,\\macrolisteadd#c,\\macrolistremove#c,\\macrolistremovelast#c,\\macrolistclear#c,\\macrolistsize#c,\\macrolistforeach#c,\\macrolistjoin#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macrolistremovelast",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:listname%keyvals}}",
+        "keys": [
+          "\\macrolistexists#c,\\macrolistelement#c,\\macrolistindexof#c,\\macrolistcontains#c,\\macrolistadd#c,\\macrolisteadd#c,\\macrolistremove#c,\\macrolistremovelast#c,\\macrolistclear#c,\\macrolistsize#c,\\macrolistforeach#c,\\macrolistjoin#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macrolistclear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:listname%keyvals}}",
+        "keys": [
+          "\\macrolistexists#c,\\macrolistelement#c,\\macrolistindexof#c,\\macrolistcontains#c,\\macrolistadd#c,\\macrolisteadd#c,\\macrolistremove#c,\\macrolistremovelast#c,\\macrolistclear#c,\\macrolistsize#c,\\macrolistforeach#c,\\macrolistjoin#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macrolistsize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:listname%keyvals}}",
+        "keys": [
+          "\\macrolistexists#c,\\macrolistelement#c,\\macrolistindexof#c,\\macrolistcontains#c,\\macrolistadd#c,\\macrolisteadd#c,\\macrolistremove#c,\\macrolistremovelast#c,\\macrolistclear#c,\\macrolistsize#c,\\macrolistforeach#c,\\macrolistjoin#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macrolistforeach",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:listname%keyvals}}{${2:cmd}}{${3:action}}",
+        "keys": [
+          "\\macrolistexists#c,\\macrolistelement#c,\\macrolistindexof#c,\\macrolistcontains#c,\\macrolistadd#c,\\macrolisteadd#c,\\macrolistremove#c,\\macrolistremovelast#c,\\macrolistclear#c,\\macrolistsize#c,\\macrolistforeach#c,\\macrolistjoin#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macrolistforeach",
+      "arg": {
+        "format": "{}{}[][]{}",
+        "snippet": "{${1:listname%keyvals}}{${2:cmd}}[${4:begin}][${5:end}]{${3:action}}",
+        "keys": [
+          "\\macrolistexists#c,\\macrolistelement#c,\\macrolistindexof#c,\\macrolistcontains#c,\\macrolistadd#c,\\macrolisteadd#c,\\macrolistremove#c,\\macrolistremovelast#c,\\macrolistclear#c,\\macrolistsize#c,\\macrolistforeach#c,\\macrolistjoin#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macrolistjoin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:listname%keyvals}}{${2:joiner}}",
+        "keys": [
+          "\\macrolistexists#c,\\macrolistelement#c,\\macrolistindexof#c,\\macrolistcontains#c,\\macrolistadd#c,\\macrolisteadd#c,\\macrolistremove#c,\\macrolistremovelast#c,\\macrolistclear#c,\\macrolistsize#c,\\macrolistforeach#c,\\macrolistjoin#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\macrolistexists#c,\\macrolistelement#c,\\macrolistindexof#c,\\macrolistcontains#c,\\macrolistadd#c,\\macrolisteadd#c,\\macrolistremove#c,\\macrolistremovelast#c,\\macrolistclear#c,\\macrolistsize#c,\\macrolistforeach#c,\\macrolistjoin#c": [
+      "%macrolist"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

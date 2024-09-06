@@ -1,96 +1,279 @@
 {
-  "includes": {
-    "physunits": []
-  },
-  "macros": {
-    "kMassElectron": {},
-    "keVMassElectron": {},
-    "kMassElectronNumeric": {},
-    "keVMassElectronNumeric": {},
-    "kMassProton": {},
-    "keVMassProton": {},
-    "kMassProtonNumeric": {},
-    "keVMassProtonNumeric": {},
-    "kMassHydrogen": {},
-    "keVMassHydrogen": {},
-    "kMassHydrogenNumeric": {},
-    "keVMassHydrogenNumeric": {},
-    "kMassSun": {},
-    "kMassSunNumeric": {},
-    "kMassEarth": {},
-    "kMassEarthNumeric": {},
-    "kMassJupiter": {},
-    "kMassJupiterNumeric": {},
-    "kMassAMU": {},
-    "keVMassAMU": {},
-    "kMassAMUNumeric": {},
-    "keVMassAMUNumeric": {},
-    "kChargeFundamental": {},
-    "kChargeFundamentalNumeric": {},
-    "kChargeElectron": {},
-    "kChargeElectronNumeric": {},
-    "kChargeProton": {},
-    "kChargeProtonNumeric": {},
-    "kRadiusBohr": {},
-    "kRadiusBohrNumeric": {},
-    "kAstronomicalUnit": {},
-    "kAstronomicalUnitNumeric": {},
-    "kParsec": {},
-    "kParsecNumeric": {},
-    "kRadiusSun": {},
-    "kRadiusSunNumeric": {},
-    "kRadiusEarth": {},
-    "kRadiusEarthNumeric": {},
-    "kRadiusJupiter": {},
-    "kRadiusJupiterNumeric": {},
-    "kRydberg": {},
-    "keVRydberg": {},
-    "kRydbergNumeric": {},
-    "keVRydbergNumeric": {},
-    "kLuminositySun": {},
-    "kLuminositySunNumeric": {},
-    "kPressureAtmosphere": {},
-    "kPressureAtmosphereNumeric": {},
-    "kPressureStandard": {},
-    "kPressureStandardNumeric": {},
-    "kSpeedLight": {},
-    "kSpeedLightNumeric": {},
-    "kAccelGravity": {},
-    "kAccelGravityNumeric": {},
-    "kCoulomb": {},
-    "kCoulombNumeric": {},
-    "kVacuumPermittivity": {},
-    "kVacuumPermittivityNumeric": {},
-    "kVacuumPermeability": {},
-    "kVacuumPermeabilityNumeric": {},
-    "kVacuumImpedance": {},
-    "kVacuumImpedanceNumeric": {},
-    "kBoltzmann": {},
-    "keVBoltzmann": {},
-    "kBoltzmannNumeric": {},
-    "keVBoltzmannNumeric": {},
-    "kPlanck": {},
-    "keVPlanck": {},
-    "kPlanckNumeric": {},
-    "keVPlanckNumeric": {},
-    "kPlanckReduced": {},
-    "keVPlanckReduced": {},
-    "kPlanckReducedNumeric": {},
-    "keVPlanckReducedNumeric": {},
-    "kGravity": {},
-    "kGravityNumeric": {},
-    "kStefanBoltzmann": {},
-    "kStefanBoltzmannNumeric": {},
-    "kRadiation": {},
-    "kRadiationNumeric": {},
-    "kFineStructure": {},
-    "kFineStructureNumeric": {},
-    "kFineStructureReciprocal": {},
-    "kFineStructureReciprocalNumeric": {},
-    "kAvogadro": {},
-    "kAvogadroNumeric": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "deps": [
+    {
+      "name": "physunits"
+    }
+  ],
+  "macros": [
+    {
+      "name": "kMassElectron"
+    },
+    {
+      "name": "keVMassElectron"
+    },
+    {
+      "name": "kMassElectronNumeric"
+    },
+    {
+      "name": "keVMassElectronNumeric"
+    },
+    {
+      "name": "kMassProton"
+    },
+    {
+      "name": "keVMassProton"
+    },
+    {
+      "name": "kMassProtonNumeric"
+    },
+    {
+      "name": "keVMassProtonNumeric"
+    },
+    {
+      "name": "kMassHydrogen"
+    },
+    {
+      "name": "keVMassHydrogen"
+    },
+    {
+      "name": "kMassHydrogenNumeric"
+    },
+    {
+      "name": "keVMassHydrogenNumeric"
+    },
+    {
+      "name": "kMassSun"
+    },
+    {
+      "name": "kMassSunNumeric"
+    },
+    {
+      "name": "kMassEarth"
+    },
+    {
+      "name": "kMassEarthNumeric"
+    },
+    {
+      "name": "kMassJupiter"
+    },
+    {
+      "name": "kMassJupiterNumeric"
+    },
+    {
+      "name": "kMassAMU"
+    },
+    {
+      "name": "keVMassAMU"
+    },
+    {
+      "name": "kMassAMUNumeric"
+    },
+    {
+      "name": "keVMassAMUNumeric"
+    },
+    {
+      "name": "kChargeFundamental"
+    },
+    {
+      "name": "kChargeFundamentalNumeric"
+    },
+    {
+      "name": "kChargeElectron"
+    },
+    {
+      "name": "kChargeElectronNumeric"
+    },
+    {
+      "name": "kChargeProton"
+    },
+    {
+      "name": "kChargeProtonNumeric"
+    },
+    {
+      "name": "kRadiusBohr"
+    },
+    {
+      "name": "kRadiusBohrNumeric"
+    },
+    {
+      "name": "kAstronomicalUnit"
+    },
+    {
+      "name": "kAstronomicalUnitNumeric"
+    },
+    {
+      "name": "kParsec"
+    },
+    {
+      "name": "kParsec"
+    },
+    {
+      "name": "kParsecNumeric"
+    },
+    {
+      "name": "kParsecNumeric"
+    },
+    {
+      "name": "kRadiusSun"
+    },
+    {
+      "name": "kRadiusSunNumeric"
+    },
+    {
+      "name": "kRadiusEarth"
+    },
+    {
+      "name": "kRadiusEarthNumeric"
+    },
+    {
+      "name": "kRadiusJupiter"
+    },
+    {
+      "name": "kRadiusJupiterNumeric"
+    },
+    {
+      "name": "kRydberg"
+    },
+    {
+      "name": "keVRydberg"
+    },
+    {
+      "name": "kRydbergNumeric"
+    },
+    {
+      "name": "keVRydbergNumeric"
+    },
+    {
+      "name": "kLuminositySun"
+    },
+    {
+      "name": "kLuminositySunNumeric"
+    },
+    {
+      "name": "kPressureAtmosphere"
+    },
+    {
+      "name": "kPressureAtmosphereNumeric"
+    },
+    {
+      "name": "kPressureStandard"
+    },
+    {
+      "name": "kPressureStandardNumeric"
+    },
+    {
+      "name": "kSpeedLight"
+    },
+    {
+      "name": "kSpeedLightNumeric"
+    },
+    {
+      "name": "kAccelGravity"
+    },
+    {
+      "name": "kAccelGravityNumeric"
+    },
+    {
+      "name": "kCoulomb"
+    },
+    {
+      "name": "kCoulombNumeric"
+    },
+    {
+      "name": "kCoulombNumeric"
+    },
+    {
+      "name": "kVacuumPermittivity"
+    },
+    {
+      "name": "kVacuumPermittivityNumeric"
+    },
+    {
+      "name": "kVacuumPermeability"
+    },
+    {
+      "name": "kVacuumPermeabilityNumeric"
+    },
+    {
+      "name": "kVacuumImpedance"
+    },
+    {
+      "name": "kVacuumImpedanceNumeric"
+    },
+    {
+      "name": "kBoltzmann"
+    },
+    {
+      "name": "keVBoltzmann"
+    },
+    {
+      "name": "kBoltzmannNumeric"
+    },
+    {
+      "name": "keVBoltzmannNumeric"
+    },
+    {
+      "name": "kPlanck"
+    },
+    {
+      "name": "keVPlanck"
+    },
+    {
+      "name": "kPlanckNumeric"
+    },
+    {
+      "name": "keVPlanckNumeric"
+    },
+    {
+      "name": "kPlanckReduced"
+    },
+    {
+      "name": "keVPlanckReduced"
+    },
+    {
+      "name": "kPlanckReducedNumeric"
+    },
+    {
+      "name": "keVPlanckReducedNumeric"
+    },
+    {
+      "name": "kGravity"
+    },
+    {
+      "name": "kGravityNumeric"
+    },
+    {
+      "name": "kStefanBoltzmann"
+    },
+    {
+      "name": "kStefanBoltzmannNumeric"
+    },
+    {
+      "name": "kRadiation"
+    },
+    {
+      "name": "kRadiationNumeric"
+    },
+    {
+      "name": "kFineStructure"
+    },
+    {
+      "name": "kFineStructureNumeric"
+    },
+    {
+      "name": "kFineStructureReciprocal"
+    },
+    {
+      "name": "kFineStructureReciprocalNumeric"
+    },
+    {
+      "name": "kAvogadro"
+    },
+    {
+      "name": "kAvogadroNumeric"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

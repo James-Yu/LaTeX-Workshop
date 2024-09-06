@@ -1,41 +1,90 @@
 {
-  "includes": {},
-  "macros": {
-    "usefastocksize{}": {
-      "snippet": "usefastocksize{${1:width,height}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "usefastocksize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width,height}}"
+      }
     },
-    "usefapapersize{}": {
-      "snippet": "usefapapersize{${1:width,${2:height},${3:lmargin},${4:rmargin},${5:tmargin},bmargin}}"
+    {
+      "name": "usefapapersize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width,height,lmargin,rmargin,tmargin,bmargin}}"
+      }
     },
-    "definefageometry{}{}": {
-      "snippet": "definefageometry{${1:name}}{${2:layout}}"
+    {
+      "name": "definefageometry",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:layout}}"
+      }
     },
-    "definefageometry{}{}[]": {
-      "snippet": "definefageometry{${1:name}}{${2:layout}}[${3:after}]"
+    {
+      "name": "definefageometry",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:name}}{${2:layout}}[${3:after}]"
+      }
     },
-    "definefageometry{}[]{}": {
-      "snippet": "definefageometry{${1:name}}[${2:before}]{${3:layout}}"
+    {
+      "name": "definefageometry",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:before}]{${2:layout}}"
+      }
     },
-    "definefageometry{}[]{}[]": {
-      "snippet": "definefageometry{${1:name}}[${2:before}]{${3:layout}}[${4:after}]"
+    {
+      "name": "definefageometry",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "{${1:name}}[${3:before}]{${2:layout}}[${4:after}]"
+      }
     },
-    "selectfageometry{}": {
-      "snippet": "selectfageometry{${1:name}}"
+    {
+      "name": "selectfageometry",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}",
+        "keys": [
+          "\\selectfageometry#c,\\selectfageometry*#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "selectfageometry*{}": {
-      "snippet": "selectfageometry*{${1:name}}"
+    {
+      "name": "selectfageometry*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}",
+        "keys": [
+          "\\selectfageometry#c,\\selectfageometry*#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "evenmarginsameasodd": {}
-  },
-  "envs": {},
-  "options": [
-    "dbl4x6",
-    "mum",
-    "newmum",
-    "1in",
-    "a4",
-    "stock",
-    "showtrims"
+    {
+      "name": "evenmarginsameasodd"
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/fapapersize#c": [
+      "dbl4x6",
+      "mum",
+      "newmum",
+      "1in",
+      "a4",
+      "stock",
+      "showtrims"
+    ],
+    "\\selectfageometry#c,\\selectfageometry*#c": [
+      "%fageometry"
+    ]
+  },
+  "args": [
+    "\\usepackage/fapapersize#c"
+  ]
 }

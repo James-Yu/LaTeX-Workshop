@@ -1,68 +1,165 @@
 {
-  "includes": {},
-  "macros": {
-    "PackageInfoNoLine{}{}": {
-      "snippet": "PackageInfoNoLine{${1:package name}}{${2:info text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "PackageInfoNoLine",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:package name}}{${2:info text%text}}"
+      }
     },
-    "ObsoleteCS{}{}": {
-      "snippet": "ObsoleteCS{${1:csname}}{${2:suggestions}}"
+    {
+      "name": "ObsoleteCS",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:suggestions%text}}"
+      }
     },
-    "ObsoleteCS[]{}{}": {
-      "snippet": "ObsoleteCS[${3:reason}]{${1:csname}}{${2:suggestions}}"
+    {
+      "name": "ObsoleteCS",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:reason%text}]{${1:csname}}{${2:suggestions%text}}"
+      }
     },
-    "ObsoleteEnv{}{}": {
-      "snippet": "ObsoleteEnv{${1:envname}}{${2:suggestions}}"
+    {
+      "name": "ObsoleteEnv",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:suggestions%text}}"
+      }
     },
-    "ObsoleteEnv[]{}{}": {
-      "snippet": "ObsoleteEnv[${3:reason}]{${1:envname}}{${2:suggestions}}"
+    {
+      "name": "ObsoleteEnv",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:reason%text}]{${1:envname}}{${2:suggestions%text}}"
+      }
     },
-    "ObsoletePackage{}{}": {
-      "snippet": "ObsoletePackage{${1:package name}}{${2:alternative}}"
+    {
+      "name": "ObsoletePackage",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:package name}}{${2:alternative%text}}"
+      }
     },
-    "ObsoletePackage[]{}{}": {
-      "snippet": "ObsoletePackage[${3:reason}]{${1:package name}}{${2:alternative}}"
+    {
+      "name": "ObsoletePackage",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:reason%text}]{${1:package name}}{${2:alternative%text}}"
+      }
     },
-    "SuggestedPackage{}": {
-      "snippet": "SuggestedPackage{${1:package name}}"
+    {
+      "name": "SuggestedPackage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package name}}"
+      }
     },
-    "SuggestedPackage[]{}": {
-      "snippet": "SuggestedPackage[${2:reason}]{${1:package name}}"
+    {
+      "name": "SuggestedPackage",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:reason%text}]{${1:package name}}"
+      }
     },
-    "IncompatiblePackages{}{}{}": {
-      "snippet": "IncompatiblePackages{${1:package1}}{${2:package2}}{${3:hint}}"
+    {
+      "name": "IncompatiblePackages",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:package1}}{${2:package2}}{${3:hint%text}}"
+      }
     },
-    "IncompatiblePackages[]{}{}{}": {
-      "snippet": "IncompatiblePackages[${4:reason}]{${1:package name}}{${2:package2}}{${3:hint}}"
+    {
+      "name": "IncompatiblePackages",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:reason%text}]{${1:package name}}{${2:package2}}{${3:hint%text}}"
+      }
     },
-    "ObsoleteClass{}{}": {
-      "snippet": "ObsoleteClass{${1:class name}}{${2:alternative}}"
+    {
+      "name": "ObsoleteClass",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:class name}}{${2:alternative%text}}"
+      }
     },
-    "ObsoleteClass[]{}{}": {
-      "snippet": "ObsoleteClass[${3:reason}]{${1:class name}}{${2:alternative}}"
+    {
+      "name": "ObsoleteClass",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:reason%text}]{${1:class name}}{${2:alternative%text}}"
+      }
     },
-    "BadFileLoadOrder{}{}": {
-      "snippet": "BadFileLoadOrder{${1:file1}}{${2:file2}}"
+    {
+      "name": "BadFileLoadOrder",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file1}}{${2:file2}}"
+      }
     },
-    "BadFileLoadOrder[]{}{}": {
-      "snippet": "BadFileLoadOrder[${3:reason}]{${1:file1}}{${2:file2}}"
+    {
+      "name": "BadFileLoadOrder",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:reason%text}]{${1:file1}}{${2:file2}}"
+      }
     },
-    "NotAnEnvironment{}": {
-      "snippet": "NotAnEnvironment{${1:command}}"
+    {
+      "name": "NotAnEnvironment",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
     },
-    "NotASwitch{}": {
-      "snippet": "NotASwitch{${1:command}}"
+    {
+      "name": "NotASwitch",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
     },
-    "FBsuboheight": {},
-    "NagDeclareFloat{}": {
-      "snippet": "NagDeclareFloat{${1:float name}}"
+    {
+      "name": "FBsuboheight",
+      "unusual": true
+    },
+    {
+      "name": "NagDeclareFloat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:float name}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "abort",
-    "experimental",
-    "l2tabu",
-    "orthodox"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/nag#c": [
+      "abort",
+      "experimental",
+      "l2tabu",
+      "orthodox"
+    ]
+  },
+  "args": [
+    "\\usepackage/nag#c"
+  ]
 }

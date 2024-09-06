@@ -1,97 +1,131 @@
 {
-  "includes": {
-    "tikz": [],
-    "pgf": [],
-    "pgffor": [],
-    "xstring": [],
-    "simplekv": [],
-    "settobox": [],
-    "fontawesome5": [],
-    "varwidth": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibraryshapes.geometric": [],
-    "tikzlibrarybabel": [],
-    "tikzlibraryfadings": []
+  "deps": [
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "pgf"
+    },
+    {
+      "name": "pgffor"
+    },
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "simplekv"
+    },
+    {
+      "name": "settobox"
+    },
+    {
+      "name": "fontawesome5"
+    },
+    {
+      "name": "varwidth"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tikzlibrarypositioning"
+    },
+    {
+      "name": "tikzlibraryshapes.geometric"
+    },
+    {
+      "name": "tikzlibrarybabel"
+    },
+    {
+      "name": "tikzlibraryfadings"
+    }
+  ],
+  "macros": [
+    {
+      "name": "QuizzMillions",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:question%text}}{${2:réponse1%text}}{${3:réponse2%text}}{${4:réponse3%text}}{${5:réponse4%text}}"
+      }
+    },
+    {
+      "name": "QuizzMillions",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:clés%keyvals}]{${1:question%text}}{${2:réponse1%text}}{${3:réponse2%text}}{${4:réponse3%text}}{${5:réponse4%text}}",
+        "keys": [
+          "\\QuizzMillions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "QuizzPrendrePlace",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:question%text}}{${2:réponse1%text}}{${3:réponse2%text}}{${4:réponse3%text}}{${5:réponse4%text}}"
+      }
+    },
+    {
+      "name": "QuizzPrendrePlace",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:clés%keyvals}]{${1:question%text}}{${2:réponse1%text}}{${3:réponse2%text}}{${4:réponse3%text}}{${5:réponse4%text}}",
+        "keys": [
+          "\\QuizzPrendrePlace"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\QuizzMillions": [
+      "Largeur=",
+      "Marge=",
+      "Hauteurs=",
+      "Couleur=",
+      "CouleurFond=",
+      "CouleurLettre=",
+      "CouleurTexte=",
+      "Bonne=${1|A,B,C,D|}",
+      "Mauvaise=${1|A,B,C,D|}",
+      "Choix=${1|A,B,C,D|}",
+      "CoulBonne=",
+      "CoulChoix=",
+      "CoulMauvaise=",
+      "Affichage=${1|Choix,Sol,PropSol|}",
+      "EspacementV=",
+      "OffsetV=",
+      "Decorations",
+      "AffChoix=",
+      "Jokers",
+      "AffJokers=",
+      "CodeAvant=${1:code}",
+      "Effet"
+    ],
+    "\\QuizzPrendrePlace": [
+      "Largeur=",
+      "MargeMilieu=",
+      "Hauteurs=",
+      "Couleur=",
+      "CouleurFond=",
+      "CouleurTexte=",
+      "Bonne=${1|A,B,C,D|}",
+      "Mauvaise=${1|A,B,C,D|}",
+      "Choix=${1|A,B,C,D|}",
+      "CoulBonne=",
+      "CoulChoix=",
+      "CoulMauvaise=",
+      "Affichage=${1|Choix,Sol,PropSol|}",
+      "EspacementV=",
+      "Cadre",
+      "Offset=",
+      "CodeAvant=${1:code}",
+      "Theme=${1:texte}",
+      "Type=${1|Duo,Carre,Cash|}",
+      "Effet"
+    ]
   },
-  "macros": {
-    "QuizzMillions{}{}{}{}{}": {
-      "snippet": "QuizzMillions{${1:question}}{${2:réponse1}}{${3:réponse2}}{${4:réponse3}}{${5:réponse4}}"
-    },
-    "QuizzMillions[]{}{}{}{}{}": {
-      "snippet": "QuizzMillions[${6:clés}]{${1:question}}{${2:réponse1}}{${3:réponse2}}{${4:réponse3}}{${5:réponse4}}"
-    },
-    "QuizzPrendrePlace{}{}{}{}{}": {
-      "snippet": "QuizzPrendrePlace{${1:question}}{${2:réponse1}}{${3:réponse2}}{${4:réponse3}}{${5:réponse4}}"
-    },
-    "QuizzPrendrePlace[]{}{}{}{}{}": {
-      "snippet": "QuizzPrendrePlace[${6:clés}]{${1:question}}{${2:réponse1}}{${3:réponse2}}{${4:réponse3}}{${5:réponse4}}"
-    },
-    "AffChoixWWTBAM": {},
-    "AffJokersWWTBAM": {},
-    "boitequestiontlmvpsp": {},
-    "boitequestionwwtbam": {},
-    "boitereponseatlmvpsp": {},
-    "boitereponseawwtbam": {},
-    "boitereponsebtlmvpsp": {},
-    "boitereponsebwwtbam": {},
-    "boitereponsectlmvpsp": {},
-    "boitereponsecwwtbam": {},
-    "boitereponsedtlmvpsp": {},
-    "boitereponsedwwtbam": {},
-    "boitethemetlmvpsp": {},
-    "BonneTLMVPSP": {},
-    "BonneWWTBAM": {},
-    "ChoixTLMVPSP": {},
-    "ChoixWWTBAM": {},
-    "CodeAvantTLMVPSP": {},
-    "CodeAvantWWTBAM": {},
-    "CouleurBonneTLMVPSP": {},
-    "CouleurBonneWWTBAM": {},
-    "CouleurChoixTLMVPSP": {},
-    "CouleurChoixWWTBAM": {},
-    "CouleurFondTLMVPSP": {},
-    "CouleurFondWWTBAM": {},
-    "CouleurLettreWWTBAM": {},
-    "CouleurTexteTLMVPSP": {},
-    "CouleurTexteWWTBAM": {},
-    "CouleurTLMVPSP": {},
-    "CouleurWWTBAM": {},
-    "CoulMauvaiseTLMVPSP": {},
-    "CoulMauvaiseWWTBAM": {},
-    "EspacVertTLMVPSP": {},
-    "EspacVertWWTBAM": {},
-    "hauteurboitequestiontlmvpsp": {},
-    "hauteurboitequestionwwtbam": {},
-    "hauteurboitereponseatlmvpsp": {},
-    "hauteurboitereponseawwtbam": {},
-    "hauteurboitereponsebtlmvpsp": {},
-    "hauteurboitereponsebwwtbam": {},
-    "hauteurboitereponsectlmvpsp": {},
-    "hauteurboitereponsecwwtbam": {},
-    "hauteurboitereponsedtlmvpsp": {},
-    "hauteurboitereponsedwwtbam": {},
-    "hauteurboitethemetlmvpsp": {},
-    "hauteurmaxboitereponse": {},
-    "hauteurnonautoquestion": {},
-    "hauteurnonautoreponses": {},
-    "HauteursTLMVPSP": {},
-    "HauteursWWTBAM": {},
-    "largeurboitethemetlmvpsp": {},
-    "LargeurTLMVPSP": {},
-    "LargeurWWTBAM": {},
-    "MargesWWTBAM": {},
-    "MargeTLMVPSP": {},
-    "MauvaiseTLMVPSP": {},
-    "MauvaiseWWTBAM": {},
-    "OffsetVertTLMVPSP": {},
-    "OffsetVertWWTBAM": {},
-    "ThemeTLMVPSP": {},
-    "TypeAffichageTLMVPSP": {},
-    "TypeAffichageWWTBAM": {},
-    "TypeTLMVPSP": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

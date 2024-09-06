@@ -1,78 +1,194 @@
 {
-  "includes": {
-    "class-revtex4-2": [],
-    "geometry": [],
-    "kvoptions": [],
-    "phfnote": [],
-    "phfthm": [],
-    "float": [],
-    "verbdef": [],
-    "csquotes": [],
-    "dsfont": [],
-    "bbm": [],
-    "mathtools": []
-  },
-  "macros": {
-    "section<>{}": {
-      "snippet": "section<${2:decoration}>{${1:title}}"
+  "deps": [
+    {
+      "name": "class-revtex4-2"
     },
-    "section<>[]{}": {
-      "snippet": "section<${3:decoration}>[${2:short title}]{${1:title}}"
+    {
+      "name": "geometry"
     },
-    "paragraph<>{}": {
-      "snippet": "paragraph<${2:decoration}>{${1:title}}"
+    {
+      "name": "kvoptions"
     },
-    "paragraph<>[]{}": {
-      "snippet": "paragraph<${3:decoration}>[${2:short title}]{${1:title}}"
+    {
+      "name": "phfnote"
     },
-    "phfeaSectionDecoration{}": {
-      "snippet": "phfeaSectionDecoration{${1:symbol}}"
+    {
+      "name": "phfthm"
     },
-    "phfeaParagraphDecoration{}": {
-      "snippet": "phfeaParagraphDecoration{${1:symbol}}"
+    {
+      "name": "float"
     },
-    "phfeaSectionDecorationSymbol": {},
-    "phfeaParagraphDecorationSymbol": {},
-    "phfeaSectionBeforeSkip": {},
-    "phfeaSectionAfterHSkip": {},
-    "phfeaParagraphBeforeSkip": {},
-    "phfeaParagraphAfterHSkip": {},
-    "phfeaSectionStyle": {},
-    "phfeaParagraphStyle": {},
-    "phfeaSectionFormatHeading{}": {
-      "snippet": "phfeaSectionFormatHeading{${1:text}}"
+    {
+      "name": "verbdef"
     },
-    "phfeaParagraphFormatHeading{}": {
-      "snippet": "phfeaParagraphFormatHeading{${1:text}}"
+    {
+      "name": "csquotes"
     },
-    "phfeaVerticalSpacingCompressionFactor": {},
-    "phfeaDefineTheoremStyle": {},
-    "phfeaDisplayVerticalSpacingFactorWeight": {},
-    "phfeaParskipVerticalSpacingFactorWeight": {},
-    "phfeaListsVerticalSkip": {},
-    "phfeaListsItemSep": {},
-    "phfeaListsParSep": {},
-    "phfeaHeadingStyle": {},
-    "phfeaTitleStyle": {}
-  },
-  "envs": {
-    "enumerate*": {},
-    "enumerate*[]": {
-      "name": "enumerate*",
-      "snippet": "[${1:options}]"
+    {
+      "name": "dsfont"
+    },
+    {
+      "name": "bbm"
+    },
+    {
+      "name": "mathtools"
     }
-  },
-  "options": [
-    "papertype=${1:type}",
-    "ptsize=${1|10pt,11pt,12pt|}",
-    "sectiondecorations",
-    "paragraphdecorations",
-    "noheadingdecorations",
-    "compressverticalspacing=${1:factor}",
-    "loadtheorems",
-    "sansstyle",
-    "usehyperref",
-    "pkgset=${1|none,minimal,rich,extended|}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "section<decoration>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "section<decoration>",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "paragraph<decoration>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "paragraph<decoration>",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "phfeaSectionDecoration",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "phfeaParagraphDecoration",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "phfeaSectionDecorationSymbol",
+      "unusual": true
+    },
+    {
+      "name": "phfeaParagraphDecorationSymbol",
+      "unusual": true
+    },
+    {
+      "name": "phfeaSectionBeforeSkip",
+      "unusual": true
+    },
+    {
+      "name": "phfeaSectionAfterHSkip",
+      "unusual": true
+    },
+    {
+      "name": "phfeaParagraphBeforeSkip",
+      "unusual": true
+    },
+    {
+      "name": "phfeaParagraphAfterHSkip",
+      "unusual": true
+    },
+    {
+      "name": "phfeaSectionStyle",
+      "unusual": true
+    },
+    {
+      "name": "phfeaParagraphStyle",
+      "unusual": true
+    },
+    {
+      "name": "phfeaSectionFormatHeading",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "phfeaParagraphFormatHeading",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "phfeaVerticalSpacingCompressionFactor",
+      "unusual": true
+    },
+    {
+      "name": "phfeaDefineTheoremStyle",
+      "unusual": true
+    },
+    {
+      "name": "phfeaDisplayVerticalSpacingFactorWeight",
+      "unusual": true
+    },
+    {
+      "name": "phfeaParskipVerticalSpacingFactorWeight",
+      "unusual": true
+    },
+    {
+      "name": "phfeaListsVerticalSkip",
+      "unusual": true
+    },
+    {
+      "name": "phfeaListsItemSep",
+      "unusual": true
+    },
+    {
+      "name": "phfeaListsParSep",
+      "unusual": true
+    },
+    {
+      "name": "phfeaHeadingStyle",
+      "unusual": true
+    },
+    {
+      "name": "phfeaTitleStyle",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "enumerate*"
+    },
+    {
+      "name": "enumerate*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/phfextendedabstract#c": [
+      "papertype=${1:type}",
+      "ptsize=${1|10pt,11pt,12pt|}",
+      "sectiondecorations",
+      "paragraphdecorations",
+      "noheadingdecorations",
+      "compressverticalspacing=${1:factor}",
+      "loadtheorems",
+      "sansstyle",
+      "usehyperref",
+      "pkgset=${1|none,minimal,rich,extended|}"
+    ]
+  },
+  "args": [
+    "\\documentclass/phfextendedabstract#c"
+  ]
 }

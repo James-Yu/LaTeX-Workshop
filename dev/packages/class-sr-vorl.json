@@ -1,193 +1,563 @@
 {
-  "includes": {
-    "class-scrbook": [],
-    "xkeyval": [],
-    "etoolbox": [],
-    "xstring": [],
-    "babel": [],
-    "geometry": [],
-    "scrlayer-scrpage": [],
-    "caption": [],
-    "ragged2e": [],
-    "enumitem": [],
-    "chngcntr": [],
-    "varwidth": [],
-    "onlyamsmath": [],
-    "microtype": [],
-    "mathptmx": [
-      "format=autouni"
+  "deps": [
+    {
+      "name": "class-scrbook"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "scrlayer-scrpage"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "ragged2e"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "chngcntr"
+    },
+    {
+      "name": "varwidth"
+    },
+    {
+      "name": "onlyamsmath"
+    },
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "mathptmx",
+      "if": "format=autouni"
+    }
+  ],
+  "macros": [
+    {
+      "name": "captionsngerman",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "datengerman",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "extrasngerman",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "noextrasngerman",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "dq",
+      "if": "deutsch"
+    },
+    {
+      "name": "ntosstrue",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "ntossfalse",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "mdqon",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "mdqoff",
+      "if": "deutsch",
+      "unusual": true
+    },
+    {
+      "name": "captionsgerman",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "dategerman",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "extrasgerman",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "noextrasgerman",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "dq",
+      "if": "deutsch-ar"
+    },
+    {
+      "name": "tosstrue",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "tossfalse",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "mdqon",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "mdqoff",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "ck",
+      "if": "deutsch-ar",
+      "unusual": true
+    },
+    {
+      "name": "captionsngerman",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "datengerman",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "extrasngerman",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "noextrasngerman",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "dq",
+      "if": "englisch"
+    },
+    {
+      "name": "ntosstrue",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "ntossfalse",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "mdqon",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "mdqoff",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "captionsbritish",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "datebritish",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "extrasbritish",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "noextrasbritish",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "if": "englisch",
+      "unusual": true
+    },
+    {
+      "name": "AutorinTOCFormatierung",
+      "unusual": true
+    },
+    {
+      "name": "chaptermituntertitel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:Titel%text}}{${2:Untertitel%text}}"
+      }
+    },
+    {
+      "name": "chaptermituntertitel",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:Kurztitel%text}]{${1:Titel%text}}{${2:Untertitel%text}}"
+      }
+    },
+    {
+      "name": "geleitwort"
+    },
+    {
+      "name": "GeleitwortTitel",
+      "unusual": true
+    },
+    {
+      "name": "kapitel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:Titel%text}}{${2:Autor}}"
+      }
+    },
+    {
+      "name": "kapitel",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:Kurztitel%text}]{${1:Titel%text}}{${2:Autor}}"
+      }
+    },
+    {
+      "name": "KapitelAutor",
+      "unusual": true
+    },
+    {
+      "name": "KapitelAutor",
+      "unusual": true
+    },
+    {
+      "name": "KapitelimTOC",
+      "unusual": true
+    },
+    {
+      "name": "KapitelKurztitel",
+      "unusual": true
+    },
+    {
+      "name": "kapitelmituntertitel",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:Titel%text}}{${2:Untertitel%text}}{${3:Autor}}"
+      }
+    },
+    {
+      "name": "kapitelmituntertitel",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:Kurztitel%text}]{${1:Titel%text}}{${2:Untertitel%text}}{${3:Autor}}"
+      }
+    },
+    {
+      "name": "KapitelTitel",
+      "unusual": true
+    },
+    {
+      "name": "KapitelUntertitel",
+      "unusual": true
+    },
+    {
+      "name": "verfasser",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:Ortbreite,Namebreite}]{${1:Ort%text}}{${2:Name}}"
+      }
+    },
+    {
+      "name": "verfasser",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:Ort%text}}{${2:Name}}"
+      }
+    },
+    {
+      "name": "vorwort"
+    },
+    {
+      "name": "VorwortTitel",
+      "unusual": true
+    },
+    {
+      "name": "ifMicrotype",
+      "unusual": true
+    },
+    {
+      "name": "Microtypetrue",
+      "unusual": true
+    },
+    {
+      "name": "Microtypefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifAMS",
+      "unusual": true
+    },
+    {
+      "name": "AMStrue",
+      "unusual": true
+    },
+    {
+      "name": "AMSfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifautorintoc",
+      "unusual": true
+    },
+    {
+      "name": "autorintoctrue",
+      "unusual": true
+    },
+    {
+      "name": "autorintocfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifGermanshorthands",
+      "unusual": true
+    },
+    {
+      "name": "Germanshorthandstrue",
+      "unusual": true
+    },
+    {
+      "name": "Germanshorthandsfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "widmung"
+    },
+    {
+      "name": "widmung",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Überschrift%text}]"
+      }
+    },
+    {
+      "name": "zusammenfassung"
+    },
+    {
+      "name": "zusammenfassung",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Überschrift%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/sr-vorl#c": [
+      "no-shorthands",
+      "test",
+      "deutsch",
+      "deutsch-ar",
+      "englisch",
+      "no-microtype",
+      "non-ams",
+      "autor-in-toc",
+      "schriftgroesse=${1:Wert}",
+      "format=${1|a5-monografie,handbuch-monografie,a5-mehrautorenbuch,vs,autouni|}"
+    ],
+    "\\pagestyle#c,\\thispagestyle#c": [
+      "sr-frontmatter",
+      "sr-standard"
     ]
   },
-  "macros": {
-    "captionsngerman": {
-      "option": "englisch"
-    },
-    "datengerman": {
-      "option": "englisch"
-    },
-    "extrasngerman": {
-      "option": "englisch"
-    },
-    "noextrasngerman": {
-      "option": "englisch"
-    },
-    "dq": {
-      "option": "englisch"
-    },
-    "ntosstrue": {
-      "option": "englisch"
-    },
-    "ntossfalse": {
-      "option": "englisch"
-    },
-    "prefacename": {
-      "option": "englisch"
-    },
-    "bibname": {
-      "option": "englisch"
-    },
-    "chaptername": {
-      "option": "englisch"
-    },
-    "enclname": {
-      "option": "englisch"
-    },
-    "ccname": {
-      "option": "englisch"
-    },
-    "headtoname": {
-      "option": "englisch"
-    },
-    "seename": {
-      "option": "englisch"
-    },
-    "alsoname": {
-      "option": "englisch"
-    },
-    "proofname": {
-      "option": "englisch"
-    },
-    "glossaryname": {
-      "option": "englisch"
-    },
-    "mdqon": {
-      "option": "englisch"
-    },
-    "mdqoff": {
-      "option": "englisch"
-    },
-    "captionsgerman": {
-      "option": "deutsch-ar"
-    },
-    "dategerman": {
-      "option": "deutsch-ar"
-    },
-    "extrasgerman": {
-      "option": "deutsch-ar"
-    },
-    "noextrasgerman": {
-      "option": "deutsch-ar"
-    },
-    "tosstrue": {
-      "option": "deutsch-ar"
-    },
-    "tossfalse": {
-      "option": "deutsch-ar"
-    },
-    "ck": {
-      "option": "deutsch-ar"
-    },
-    "captionsbritish": {
-      "option": "englisch"
-    },
-    "datebritish": {
-      "option": "englisch"
-    },
-    "extrasbritish": {
-      "option": "englisch"
-    },
-    "noextrasbritish": {
-      "option": "englisch"
-    },
-    "englishhyphenmins": {
-      "option": "englisch"
-    },
-    "britishhyphenmins": {
-      "option": "englisch"
-    },
-    "americanhyphenmins": {
-      "option": "englisch"
-    },
-    "AutorinTOCFormatierung": {},
-    "chaptermituntertitel{}{}": {
-      "snippet": "chaptermituntertitel{${1:title}}{${2:Untertitel}}"
-    },
-    "chaptermituntertitel[]{}{}": {
-      "snippet": "chaptermituntertitel[${3:short title}]{${1:title}}{${2:Untertitel}}"
-    },
-    "geleitwort": {},
-    "GeleitwortTitel": {},
-    "kapitel{}{}": {
-      "snippet": "kapitel{${1:title}}{${2:Autor}}"
-    },
-    "kapitel[]{}{}": {
-      "snippet": "kapitel[${3:short title}]{${1:title}}{${2:Autor}}"
-    },
-    "KapitelAutor": {},
-    "KapitelimTOC": {},
-    "KapitelKurztitel": {},
-    "kapitelmituntertitel{}{}{}": {
-      "snippet": "kapitelmituntertitel{${1:title}}{${2:Untertitel}}{${3:Autor}}"
-    },
-    "kapitelmituntertitel[]{}{}{}": {
-      "snippet": "kapitelmituntertitel[${4:short title}]{${1:title}}{${2:Untertitel}}{${3:Autor}}"
-    },
-    "KapitelTitel": {},
-    "KapitelUntertitel": {},
-    "verfasser[]{}{}": {
-      "snippet": "verfasser[${3:Ortbreite,Namebreite}]{${1:Ort}}{${2:Name}}"
-    },
-    "verfasser{}{}": {
-      "snippet": "verfasser{${1:Ort}}{${2:Name}}"
-    },
-    "vorwort": {},
-    "VorwortTitel": {},
-    "ifMicrotype": {},
-    "Microtypetrue": {},
-    "Microtypefalse": {},
-    "ifAMS": {},
-    "AMStrue": {},
-    "AMSfalse": {},
-    "ifautorintoc": {},
-    "autorintoctrue": {},
-    "autorintocfalse": {},
-    "ifGermanshorthands": {},
-    "Germanshorthandstrue": {},
-    "Germanshorthandsfalse": {}
-  },
-  "envs": {
-    "widmung": {},
-    "widmung[]": {
-      "name": "widmung",
-      "snippet": "[${1:Überschrift}]"
-    },
-    "zusammenfassung": {},
-    "zusammenfassung[]": {
-      "name": "zusammenfassung",
-      "snippet": "[${1:Überschrift}]"
-    }
-  },
-  "options": [
-    "no-shorthands",
-    "test",
-    "deutsch",
-    "deutsch-ar",
-    "englisch",
-    "no-microtype",
-    "non-ams",
-    "autor-in-toc",
-    "schriftgroesse=${1:Wert}",
-    "format=${1|a5-monografie,handbuch-monografie,a5-mehrautorenbuch,vs,autouni|}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/sr-vorl#c"
+  ]
 }

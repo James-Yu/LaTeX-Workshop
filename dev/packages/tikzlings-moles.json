@@ -1,28 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "moles": {},
-    "moles[]": {
-      "snippet": "moles[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "moleshookbackground": {},
-    "moleshookbelly": {},
-    "moleshookbody": {},
-    "moleshookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "moles"
+    },
+    {
+      "name": "moles",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\moles#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "moleshookbackground",
+      "unusual": true
+    },
+    {
+      "name": "moleshookbelly",
+      "unusual": true
+    },
+    {
+      "name": "moleshookbody",
+      "unusual": true
+    },
+    {
+      "name": "moleshookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\moles#c": [
       "body=",
       "eye=",
       "muzzle=",
@@ -147,5 +182,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,58 +1,91 @@
 {
-  "includes": {
-    "ucs": [
-      "utf8x"
+  "deps": [
+    {
+      "name": "ucs",
+      "if": "utf8x"
+    }
+  ],
+  "macros": [
+    {
+      "name": "DeclareInputMath",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slot}}{${2:text}}"
+      }
+    },
+    {
+      "name": "DeclareInputText",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slot}}{${2:math}}"
+      }
+    },
+    {
+      "name": "DeclareUnicodeCharacter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:slot}}{${2:text}}"
+      }
+    },
+    {
+      "name": "inputencodingname",
+      "unusual": true
+    },
+    {
+      "name": "inputencoding",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:encoding name%keyvals}}",
+        "keys": [
+          "\\usepackage/inputenc#c,\\inputencoding#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "definearmew",
+      "if": "armscii8",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/inputenc#c,\\inputencoding#c": [
+      "ascii",
+      "latin1",
+      "latin2",
+      "latin3",
+      "latin4",
+      "latin5",
+      "latin9",
+      "latin10",
+      "decmulti",
+      "cp850",
+      "cp852",
+      "cp858",
+      "cp437",
+      "cp437de",
+      "cp865",
+      "applemac",
+      "macce",
+      "next",
+      "cp1250",
+      "cp1252",
+      "cp1257",
+      "ansinew",
+      "utf8",
+      "utf8x",
+      "armscii8"
     ]
   },
-  "macros": {
-    "DeclareInputMath{}{}": {
-      "snippet": "DeclareInputMath{${1:slot}}{${2:text}}"
-    },
-    "DeclareInputText{}{}": {
-      "snippet": "DeclareInputText{${1:slot}}{${2:math}}"
-    },
-    "DeclareUnicodeCharacter{}{}": {
-      "snippet": "DeclareUnicodeCharacter{${1:slot}}{${2:text}}"
-    },
-    "inputencodingname": {},
-    "inputencoding{}": {
-      "snippet": "inputencoding{${1:encoding name}}"
-    },
-    "IeC{}": {
-      "snippet": "IeC{${1:arg}}"
-    },
-    "definearmew{}": {
-      "snippet": "definearmew{${1:character}}",
-      "option": "armscii8"
-    }
-  },
-  "envs": {},
-  "options": [
-    "ascii",
-    "latin1",
-    "latin2",
-    "latin3",
-    "latin4",
-    "latin5",
-    "latin9",
-    "latin10",
-    "decmulti",
-    "cp850",
-    "cp852",
-    "cp858",
-    "cp437",
-    "cp437de",
-    "cp865",
-    "applemac",
-    "macce",
-    "next",
-    "cp1250",
-    "cp1252",
-    "cp1257",
-    "ansinew",
-    "utf8",
-    "utf8x",
-    "armscii8"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/inputenc#c,\\inputencoding#c"
+  ]
 }

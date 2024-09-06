@@ -1,86 +1,184 @@
 {
-  "includes": {},
-  "macros": {
-    "JSONParse{}{}": {
-      "snippet": "JSONParse{${1:token variable}}{${2:JSON string}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "JSONParse",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:token variable%cmd}}{${2:JSON string}}"
+      }
     },
-    "JSONParse[]{}{}": {
-      "snippet": "JSONParse[${3:options}]{${1:token variable}}{${2:JSON string}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "JSONParse",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:token variable%cmd}}{${2:JSON string}}",
+        "keys": [
+          "\\usepackage/jsonparse#c,\\JSONParseSet,\\JSONParse,\\JSONParseFromFile",
+          "\\JSONParseSet,\\JSONParse,\\JSONParseFromFile"
+        ],
+        "keyPos": 0
+      }
     },
-    "JSONParseFromFile{}{}": {
-      "snippet": "JSONParseFromFile{${1:token variable}}{${2:JSON file}}"
+    {
+      "name": "JSONParseFromFile",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:token variable%cmd}}{${2:JSON file%file}}"
+      }
     },
-    "JSONParseFromFile[]{}{}": {
-      "snippet": "JSONParseFromFile[${3:options}]{${1:token variable}}{${2:JSON file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "JSONParseFromFile",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:token variable%cmd}}{${2:JSON file%file}}",
+        "keys": [
+          "\\usepackage/jsonparse#c,\\JSONParseSet,\\JSONParse,\\JSONParseFromFile",
+          "\\JSONParseSet,\\JSONParse,\\JSONParseFromFile"
+        ],
+        "keyPos": 0
+      }
     },
-    "JSONParseKeys{}{}": {
-      "snippet": "JSONParseKeys{${1:token variable}}{${2:token variable}}"
+    {
+      "name": "JSONParseKeys",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:token variable}}{${2:token variable%cmd}}"
+      }
     },
-    "JSONParseValue{}{}": {
-      "snippet": "JSONParseValue{${1:token variable}}{${2:key}}"
+    {
+      "name": "JSONParseValue",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:token variable}}{${2:key%plain}}"
+      }
     },
-    "JSONParseValue[]{}{}": {
-      "snippet": "JSONParseValue[${3:options}]{${1:token variable}}{${2:key}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "JSONParseValue",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:token variable}}{${2:key%plain}}",
+        "keys": [
+          "\\JSONParseSet,\\JSONParseValue,\\JSONParseArrayValues,\\JSONParseArrayValuesMap"
+        ],
+        "keyPos": 0
+      }
     },
-    "JSONParseExpandableValue{}{}": {
-      "snippet": "JSONParseExpandableValue{${1:token variable}}{${2:key}}"
+    {
+      "name": "JSONParseExpandableValue",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:token variable}}{${2:key%plain}}"
+      }
     },
-    "JSONParseArrayValues{}{}{}": {
-      "snippet": "JSONParseArrayValues{${1:token variable}}{${2:key}}{${3:string}}"
+    {
+      "name": "JSONParseArrayValues",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:token variable}}{${2:key%plain}}{${3:string}}"
+      }
     },
-    "JSONParseArrayValues{}{}[]{}": {
-      "snippet": "JSONParseArrayValues{${1:token variable}}{${2:key}}[${3:subkey}]{${4:string}}"
+    {
+      "name": "JSONParseArrayValues",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:token variable}}{${2:key%plain}}[${4:subkey}]{${3:string}}"
+      }
     },
-    "JSONParseArrayValues[]{}{}{}": {
-      "snippet": "JSONParseArrayValues[${4:options}]{${1:token variable}}{${2:key}}{${3:string}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "JSONParseArrayValues",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:token variable}}{${2:key%plain}}{${3:string}}",
+        "keys": [
+          "\\JSONParseSet,\\JSONParseValue,\\JSONParseArrayValues,\\JSONParseArrayValuesMap"
+        ],
+        "keyPos": 0
+      }
     },
-    "JSONParseArrayValues[]{}{}[]{}": {
-      "snippet": "JSONParseArrayValues[${4:options}]{${1:token variable}}{${2:key}}[${5:subkey}]{${3:string}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "JSONParseArrayValues",
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "[${4:options%keyvals}]{${1:token variable}}{${2:key%plain}}[${5:subkey}]{${3:string}}",
+        "keys": [
+          "\\JSONParseSet,\\JSONParseValue,\\JSONParseArrayValues,\\JSONParseArrayValuesMap"
+        ],
+        "keyPos": 0
+      }
     },
-    "JSONParseArrayValuesMap{}{}{}": {
-      "snippet": "JSONParseArrayValuesMap{${1:token variable}}{${2:key}}{${3:command name}}"
+    {
+      "name": "JSONParseArrayValuesMap",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:token variable}}{${2:key%plain}}{${3:command name}}"
+      }
     },
-    "JSONParseArrayValuesMap{}{}[]{}": {
-      "snippet": "JSONParseArrayValuesMap{${1:token variable}}{${2:key}}[${3:subkey}]{${4:command name}}"
+    {
+      "name": "JSONParseArrayValuesMap",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:token variable}}{${2:key%plain}}[${4:subkey}]{${3:command name}}"
+      }
     },
-    "JSONParseArrayValuesMap[]{}{}{}": {
-      "snippet": "JSONParseArrayValuesMap[${4:options}]{${1:token variable}}{${2:key}}{${3:command name}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "JSONParseArrayValuesMap",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:token variable}}{${2:key%plain}}{${3:command name}}",
+        "keys": [
+          "\\JSONParseSet,\\JSONParseValue,\\JSONParseArrayValues,\\JSONParseArrayValuesMap"
+        ],
+        "keyPos": 0
+      }
     },
-    "JSONParseArrayValuesMap[]{}{}[]{}": {
-      "snippet": "JSONParseArrayValuesMap[${4:options}]{${1:token variable}}{${2:key}}[${5:subkey}]{${3:command name}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "JSONParseArrayValuesMap",
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "[${4:options%keyvals}]{${1:token variable}}{${2:key%plain}}[${5:subkey}]{${3:command name}}",
+        "keys": [
+          "\\JSONParseSet,\\JSONParseValue,\\JSONParseArrayValues,\\JSONParseArrayValuesMap"
+        ],
+        "keyPos": 0
+      }
     },
-    "JSONParseArrayIndex": {},
-    "JSONParseArrayKey": {},
-    "JSONParseArrayValue": {},
-    "JSONParseArrayCount{}{}": {
-      "snippet": "JSONParseArrayCount{${1:token variable}}{${2:key}}"
+    {
+      "name": "JSONParseArrayIndex"
     },
-    "JSONParseSet{}": {
-      "snippet": "JSONParseSet{${1:keyvals}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "JSONParseArrayKey"
+    },
+    {
+      "name": "JSONParseArrayValue"
+    },
+    {
+      "name": "JSONParseArrayCount",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:token variable}}{${2:key%plain}}"
+      }
+    },
+    {
+      "name": "JSONParseSet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\usepackage/jsonparse#c,\\JSONParseSet,\\JSONParse,\\JSONParseFromFile",
+          "\\JSONParseSet,\\JSONParse,\\JSONParseFromFile",
+          "\\JSONParseSet,\\JSONParseValue,\\JSONParseArrayValues,\\JSONParseArrayValuesMap"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "debug"
   ],
-  "keyvals": [
-    [
+  "envs": [],
+  "keys": {
+    "\\usepackage/jsonparse#c,\\JSONParseSet,\\JSONParse,\\JSONParseFromFile": [
+      "debug"
+    ],
+    "\\JSONParseSet,\\JSONParse,\\JSONParseFromFile": [
       "externalize",
       "externalize prefix=${1:string}",
       "externalize file name=${1:file name}",
@@ -92,26 +190,7 @@
       "replace/false=${1:string}",
       "replace/null=${1:string}"
     ],
-    [
-      "replace/backspace=${1:string}",
-      "replace/formfeed=${1:string}",
-      "replace/linefeed=${1:string}",
-      "replace/carriage return=${1:string}",
-      "replace/horizontal tab=${1:string}",
-      "escape={${1:list}}",
-      "rescan"
-    ],
-    [
-      "externalize",
-      "externalize prefix=${1:string}",
-      "externalize file name=${1:file name}",
-      "separator/child=${1:string}",
-      "separator/array left=${1:string}",
-      "separator/array right=${1:string}",
-      "zero-based",
-      "replace/true=${1:string}",
-      "replace/false=${1:string}",
-      "replace/null=${1:string}",
+    "\\JSONParseSet,\\JSONParseValue,\\JSONParseArrayValues,\\JSONParseArrayValuesMap": [
       "replace/backspace=${1:string}",
       "replace/formfeed=${1:string}",
       "replace/linefeed=${1:string}",
@@ -120,5 +199,8 @@
       "escape={${1:list}}",
       "rescan"
     ]
+  },
+  "args": [
+    "\\usepackage/jsonparse#c,\\JSONParseSet,\\JSONParse,\\JSONParseFromFile"
   ]
 }

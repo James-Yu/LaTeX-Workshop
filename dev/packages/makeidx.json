@@ -1,17 +1,33 @@
 {
-  "includes": {},
-  "macros": {
-    "see{}{}": {
-      "snippet": "see{${1:text}}{${2:page number}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "see",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:page number}}"
+      }
     },
-    "seealso{}{}": {
-      "snippet": "seealso{${1:text}}{${2:page number}}"
+    {
+      "name": "seealso",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:page number}}"
+      }
     },
-    "seename": {},
-    "alsoname": {},
-    "printindex": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "printindex"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

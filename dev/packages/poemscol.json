@@ -1,1879 +1,5646 @@
 {
-  "includes": {},
-  "macros": {
-    "ifnormaltitleindentation": {},
-    "normaltitleindentationtrue": {},
-    "normaltitleindentationfalse": {},
-    "normaltitleindentationscheme": {},
-    "iftitlesatleftversemargin": {},
-    "titlesatleftversemargintrue": {},
-    "titlesatleftversemarginfalse": {},
-    "titlesatleftversemarginscheme": {},
-    "iftitlescenteredonleftverseblock": {},
-    "titlescenteredonleftverseblocktrue": {},
-    "titlescenteredonleftverseblockfalse": {},
-    "titlescenteredonleftverseblockscheme": {},
-    "iftitlesatleftmarginofcenteredblock": {},
-    "titlesatleftmarginofcenteredblocktrue": {},
-    "titlesatleftmarginofcenteredblockfalse": {},
-    "titlesatleftmarginofcenteredblockscheme": {},
-    "ifcentertitleson": {},
-    "centertitlesontrue": {},
-    "centertitlesonfalse": {},
-    "centertitlesscheme": {},
-    "poemtitlewidth": {},
-    "ifleftalignepigraphs": {},
-    "leftalignepigraphstrue": {},
-    "leftalignepigraphsfalse": {},
-    "poemtitlefont": {},
-    "contentspoemtitlefont": {},
-    "afterpoemtitleskip": {},
-    "afterpoemskip": {},
-    "poemtitlepenalty": {},
-    "titleindent": {},
-    "versewidth": {},
-    "iflinenumberscenteredwithverse": {},
-    "linenumberscenteredwithversetrue": {},
-    "linenumberscenteredwithversefalse": {},
-    "ifcenterepigraphson": {},
-    "centerepigraphsontrue": {},
-    "centerepigraphsonfalse": {},
-    "iftextcenteringturnedon": {},
-    "textcenteringturnedontrue": {},
-    "textcenteringturnedonfalse": {},
-    "versemarginadjust": {},
-    "startparalleltexts": {},
-    "stanzaatbottom{}": {
-      "snippet": "stanzaatbottom{${1:mark}}"
-    },
-    "nostanzaatbottom{}": {
-      "snippet": "nostanzaatbottom{${1:mark}}"
-    },
-    "verseline": {},
-    "setverselinemodulo{}": {
-      "snippet": "setverselinemodulo{${1:integer}}"
-    },
-    "makeverselinenumbers": {},
-    "ifverselinenumbers": {},
-    "verselinenumberstrue": {},
-    "verselinenumbersfalse": {},
-    "verselinenumberstoright": {},
-    "verselinenumberstoleft": {},
-    "verselinenumbersouter": {},
-    "verselinenumbersgutter": {},
-    "headoffsetlength": {},
-    "marginparsepmin": {},
-    "pmclsideparvshift": {},
-    "verseindent": {},
-    "verseindent[]": {
-      "snippet": "verseindent[${1:levels}]"
-    },
-    "verseindentamount": {},
-    "indentedstanzaamount": {},
-    "linebend": {},
-    "runoverindent{}": {
-      "snippet": "runoverindent{${1:length}}"
-    },
-    "brokenline": {},
-    "versephantom{}": {
-      "snippet": "versephantom{${1:argument}}"
-    },
-    "stanzalinestraddle": {},
-    "tweakbrokenline": {},
-    "brokenlineatbeginning": {},
-    "startverseline": {},
-    "tweakstartverseline": {},
-    "rightversebegin": {},
-    "poemlinelabel{}": {
-      "snippet": "poemlinelabel{${1:label}}"
-    },
-    "makepoemcontents": {},
-    "makepoemcontents[]": {
-      "snippet": "makepoemcontents[${1:page number}]"
-    },
-    "putpoemcontents": {},
-    "resetpagestyle": {},
-    "puttextnotes": {},
-    "putemendations": {},
-    "putexplanatory": {},
-    "putpoemindex": {},
-    "putmultiplepoemindex{}{}{}{}": {
-      "snippet": "putmultiplepoemindex{${1:shortcut}}{${2:title}}{${3:header}}{${4:name}}"
-    },
-    "setcontentsleaders{}": {
-      "snippet": "setcontentsleaders{${1:code}}"
-    },
-    "contentsleaders": {},
-    "poemdotfill": {},
-    "contentsindentoneamount": {},
-    "pmclcontentsentry{}{}{}": {
-      "snippet": "pmclcontentsentry{${1:title}}{${2:indent cmd}}{${3:page number}}"
-    },
-    "contentsindentone": {},
-    "contentsindenttwo": {},
-    "contentsindentthree": {},
-    "ifputpagenumbersincontents": {},
-    "putpagenumbersincontentstrue": {},
-    "putpagenumbersincontentsfalse": {},
-    "pmclecontentsentrydefaults{}{}{}{}": {
-      "snippet": "pmclecontentsentrydefaults{${1:title}}{${2:indent cmd}}{${3:fontsize cmd}}{${4:page number}}"
-    },
-    "ifindexingon": {},
-    "indexingontrue": {},
-    "indexingonfalse": {},
-    "wholebooktitle{}": {
-      "snippet": "wholebooktitle{${1:text}}"
-    },
-    "volumetitle{}": {
-      "snippet": "volumetitle{${1:text}}"
-    },
-    "volumetitlefirstline{}": {
-      "snippet": "volumetitlefirstline{${1:text}}"
-    },
-    "volumetitlemiddleline{}": {
-      "snippet": "volumetitlemiddleline{${1:text}}"
-    },
-    "volumetitlelastline{}": {
-      "snippet": "volumetitlelastline{${1:text}}"
-    },
-    "volumesubtitle{}": {
-      "snippet": "volumesubtitle{${1:text}}"
-    },
-    "volumesectiontitle{}": {
-      "snippet": "volumesectiontitle{${1:text}}"
-    },
-    "volumededication{}": {
-      "snippet": "volumededication{${1:text}}"
-    },
-    "volumeepigraph{}": {
-      "snippet": "volumeepigraph{${1:text}}"
-    },
-    "volumeattribution{}": {
-      "snippet": "volumeattribution{${1:text}}"
-    },
-    "volumeheader{}": {
-      "snippet": "volumeheader{${1:text}}"
-    },
-    "leftheader{}": {
-      "snippet": "leftheader{${1:text}}"
-    },
-    "rightheader{}": {
-      "snippet": "rightheader{${1:text}}"
-    },
-    "maketextnotes": {},
-    "makeemendations": {},
-    "makeexplanatorynotes": {},
-    "iftextnotessinglepar": {},
-    "textnotessinglepartrue": {},
-    "textnotessingleparfalse": {},
-    "ifemendationssinglepar": {},
-    "emendationssinglepartrue": {},
-    "emendationssingleparfalse": {},
-    "ifexplanationssinglepar": {},
-    "explanationssinglepartrue": {},
-    "explanationssingleparfalse": {},
-    "noteindentation": {},
-    "noteparbreak": {},
-    "iftextnotestwocol": {},
-    "textnotestwocoltrue": {},
-    "textnotestwocolfalse": {},
-    "ifemendationstwocol": {},
-    "emendationstwocoltrue": {},
-    "emendationstwocolfalse": {},
-    "ifexplanationstwocol": {},
-    "explanationstwocoltrue": {},
-    "explanationstwocolfalse": {},
-    "ifputpagenumberinnotes": {},
-    "putpagenumberinnotestrue": {},
-    "putpagenumberinnotesfalse": {},
-    "ifputtitleinnotes": {},
-    "puttitleinnotestrue": {},
-    "puttitleinnotesfalse": {},
-    "contentsendnotesindent": {},
-    "contentsendnotesfont": {},
-    "sources{}": {
-      "snippet": "sources{${1:text}}"
-    },
-    "literaltextnote{}": {
-      "snippet": "literaltextnote{${1:text}}"
-    },
-    "literalemend{}": {
-      "snippet": "literalemend{${1:text}}"
-    },
-    "literalexplain{}": {
-      "snippet": "literalexplain{${1:text}}"
-    },
-    "literalcontents{}": {
-      "snippet": "literalcontents{${1:text}}"
-    },
-    "textnote{}": {
-      "snippet": "textnote{${1:text}}"
-    },
-    "textnote[]{}": {
-      "snippet": "textnote[${2:label}]{${1:text}}"
-    },
-    "emendation{}": {
-      "snippet": "emendation{${1:text}}"
-    },
-    "emendation[]{}": {
-      "snippet": "emendation[${2:label}]{${1:text}}"
-    },
-    "explanatory{}": {
-      "snippet": "explanatory{${1:text}}"
-    },
-    "explanatory[]{}": {
-      "snippet": "explanatory[${2:label}]{${1:text}}"
-    },
-    "sameword": {},
-    "missingpunct": {},
-    "accidental{}": {
-      "snippet": "accidental{${1:text}}"
-    },
-    "ifincludeaccidentals": {},
-    "includeaccidentalstrue": {},
-    "includeaccidentalsfalse": {},
-    "tsvariant{}": {
-      "snippet": "tsvariant{${1:text}}"
-    },
-    "tsvariant[]{}": {
-      "snippet": "tsvariant[${2:label}]{${1:text}}"
-    },
-    "tsentry{}": {
-      "snippet": "tsentry{${1:text}}"
-    },
-    "ifincludetypescripts": {},
-    "includetypescriptstrue": {},
-    "includetypescriptsfalse": {},
-    "margreftextnote": {},
-    "margrefexplanatory": {},
-    "margrefemendation": {},
-    "JHmarksleft": {},
-    "JHmarksright": {},
-    "JHmarksouter": {},
-    "JHmarksgutter": {},
-    "quotedversecorrectiontextnote": {},
-    "quotedversecorrectiontextnote[]": {
-      "snippet": "quotedversecorrectiontextnote[${1:length}]"
-    },
-    "quotedversecorrectionexplanatory": {},
-    "quotedversecorrectionexplanatory[]": {
-      "snippet": "quotedversecorrectionexplanatory[${1:length}]"
-    },
-    "quotedversecorrectionemendation": {},
-    "quotedversecorrectionemendation[]": {
-      "snippet": "quotedversecorrectionemendation[${1:length}]"
-    },
-    "definenewnotetype{}{}{}{}{}": {
-      "snippet": "definenewnotetype{${1:name}}{${2:output name}}{${3:literal name}}{${4:put name}}{${5:margref name}}"
-    },
-    "textnotesatfoot": {},
-    "emendationsatfoot": {},
-    "explanationsatfoot": {},
-    "iftextfootnotespara": {},
-    "textfootnotesparatrue": {},
-    "textfootnotesparafalse": {},
-    "ifsourcesfootnotespara": {},
-    "sourcesfootnotesparatrue": {},
-    "sourcesfootnotesparafalse": {},
-    "ifemendationfootnotespara": {},
-    "emendationfootnotesparatrue": {},
-    "emendationfootnotesparafalse": {},
-    "ifexplanfootnotespara": {},
-    "explanfootnotesparatrue": {},
-    "explanfootnotesparafalse": {},
-    "poemendnote{}": {
-      "snippet": "poemendnote{${1:text}}"
-    },
-    "poemendnote[]{}": {
-      "snippet": "poemendnote[${2:label}]{${1:text}}"
-    },
-    "makepoemendnotes": {},
-    "putpoemendnotes": {},
-    "ifpoemendnotessinglepar": {},
-    "poemendnotessinglepartrue": {},
-    "poemendnotessingleparfalse": {},
-    "poemendemendationnote{}": {
-      "snippet": "poemendemendationnote{${1:text}}"
-    },
-    "poemendemendationnote[]{}": {
-      "snippet": "poemendemendationnote[${2:label}]{${1:text}}"
-    },
-    "makepoemendemendationnotes": {},
-    "putpoemendemendationnotes": {},
-    "poemendexplanatorynote{}": {
-      "snippet": "poemendexplanatorynote{${1:text}}"
-    },
-    "poemendexplanatorynote[]{}": {
-      "snippet": "poemendexplanatorynote[${2:label}]{${1:text}}"
-    },
-    "makepoemendexplanatorynotes": {},
-    "putpoemendexplanatorynotes": {},
-    "poemendtextnote{}": {
-      "snippet": "poemendtextnote{${1:text}}"
-    },
-    "poemendtextnote[]{}": {
-      "snippet": "poemendtextnote[${2:label}]{${1:text}}"
-    },
-    "makepoemendtextnotes": {},
-    "putpoemendtextnotes": {},
-    "ifpoemendtextnotessinglepar": {},
-    "poemendtextnotessinglepartrue": {},
-    "poemendtextnotessingleparfalse": {},
-    "testforauxonfirstrun": {},
-    "makeappendix{}": {
-      "snippet": "makeappendix{${1:title}}"
-    },
-    "appendixtitle{}": {
-      "snippet": "appendixtitle{${1:text}}"
-    },
-    "makesubappendix{}": {
-      "snippet": "makesubappendix{${1:title}}"
-    },
-    "subappendixtitle{}": {
-      "snippet": "subappendixtitle{${1:text}}"
-    },
-    "ifappendixincontents": {},
-    "appendixincontentstrue": {},
-    "appendixincontentsfalse": {},
-    "makeforeword{}": {
-      "snippet": "makeforeword{${1:title}}"
-    },
-    "forewordtitle{}": {
-      "snippet": "forewordtitle{${1:text}}"
-    },
-    "epigraph{}": {
-      "snippet": "epigraph{${1:text}}"
-    },
-    "headnote{}": {
-      "snippet": "headnote{${1:text}}"
-    },
-    "attribution{}": {
-      "snippet": "attribution{${1:text}}"
-    },
-    "dedication{}": {
-      "snippet": "dedication{${1:text}}"
-    },
-    "poemdedication{}": {
-      "snippet": "poemdedication{${1:text}}"
-    },
-    "shortpoemepigraph{}": {
-      "snippet": "shortpoemepigraph{${1:text}}"
-    },
-    "shortpoemdedication{}": {
-      "snippet": "shortpoemdedication{${1:text}}"
-    },
-    "shortpoemattribution{}": {
-      "snippet": "shortpoemattribution{${1:text}}"
-    },
-    "JHshortepigraph{}{}": {
-      "snippet": "JHshortepigraph{${1:text}}{${2:label}}"
-    },
-    "JHshortdedication{}{}": {
-      "snippet": "JHshortdedication{${1:text}}{${2:label}}"
-    },
-    "poemdate{}": {
-      "snippet": "poemdate{${1:date}}"
-    },
-    "dateindent": {},
-    "saveverselinenumber": {},
-    "restoreverselinenumber": {},
-    "poemtitle{}": {
-      "snippet": "poemtitle{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "ifnormaltitleindentation",
+      "unusual": true
     },
-    "poemtitlefirstline{}": {
-      "snippet": "poemtitlefirstline{${1:text}}"
+    {
+      "name": "normaltitleindentationtrue"
     },
-    "poemtitlemiddleline{}": {
-      "snippet": "poemtitlemiddleline{${1:text}}"
+    {
+      "name": "normaltitleindentationfalse"
     },
-    "poemtitlelastline{}": {
-      "snippet": "poemtitlelastline{${1:text}}"
+    {
+      "name": "normaltitleindentationscheme"
     },
-    "poemsubtitle{}": {
-      "snippet": "poemsubtitle{${1:text}}"
+    {
+      "name": "iftitlesatleftversemargin",
+      "unusual": true
     },
-    "poemtitlenotitle{}": {
-      "snippet": "poemtitlenotitle{${1:text}}"
+    {
+      "name": "titlesatleftversemargintrue"
     },
-    "poemtitlenocontents{}": {
-      "snippet": "poemtitlenocontents{${1:text}}"
+    {
+      "name": "titlesatleftversemarginfalse"
     },
-    "poemtitlebaretitle{}": {
-      "snippet": "poemtitlebaretitle{${1:text}}"
+    {
+      "name": "titlesatleftversemarginscheme"
     },
-    "poemtitleonlycontents{}": {
-      "snippet": "poemtitleonlycontents{${1:text}}"
+    {
+      "name": "iftitlescenteredonleftverseblock",
+      "unusual": true
     },
-    "poemtitleonlynotes{}": {
-      "snippet": "poemtitleonlynotes{${1:text}}"
+    {
+      "name": "titlescenteredonleftverseblocktrue"
     },
-    "poemsectiontitle{}": {
-      "snippet": "poemsectiontitle{${1:text}}"
+    {
+      "name": "titlescenteredonleftverseblockfalse"
     },
-    "poemsectiontitlefirstline{}": {
-      "snippet": "poemsectiontitlefirstline{${1:text}}"
+    {
+      "name": "titlescenteredonleftverseblockscheme"
     },
-    "poemsectiontitlemiddleline{}": {
-      "snippet": "poemsectiontitlemiddleline{${1:text}}"
+    {
+      "name": "iftitlesatleftmarginofcenteredblock",
+      "unusual": true
     },
-    "poemsectiontitlelastline{}": {
-      "snippet": "poemsectiontitlelastline{${1:text}}"
+    {
+      "name": "titlesatleftmarginofcenteredblocktrue"
     },
-    "poemsectiontitlenocontents{}": {
-      "snippet": "poemsectiontitlenocontents{${1:text}}"
+    {
+      "name": "titlesatleftmarginofcenteredblockfalse"
     },
-    "poemsectiontitlebaretitle{}": {
-      "snippet": "poemsectiontitlebaretitle{${1:text}}"
+    {
+      "name": "titlesatleftmarginofcenteredblockscheme"
     },
-    "poemfirstsectiontitle{}": {
-      "snippet": "poemfirstsectiontitle{${1:text}}"
+    {
+      "name": "ifcentertitleson",
+      "unusual": true
     },
-    "poemfirstsectiontitlebaretitle{}": {
-      "snippet": "poemfirstsectiontitlebaretitle{${1:text}}"
+    {
+      "name": "centertitlesontrue"
     },
-    "poemsubsectiontitle{}": {
-      "snippet": "poemsubsectiontitle{${1:text}}"
+    {
+      "name": "centertitlesonfalse"
     },
-    "sequencetitle{}": {
-      "snippet": "sequencetitle{${1:text}}"
+    {
+      "name": "centertitlesscheme"
     },
-    "sequencetitlefirstline{}": {
-      "snippet": "sequencetitlefirstline{${1:text}}"
+    {
+      "name": "titlesatleftmarginofcenteredblockscheme"
     },
-    "sequencetitlemiddleline{}": {
-      "snippet": "sequencetitlemiddleline{${1:text}}"
+    {
+      "name": "poemtitlewidth",
+      "unusual": true
     },
-    "sequencetitlelastline{}": {
-      "snippet": "sequencetitlelastline{${1:text}}"
+    {
+      "name": "ifleftalignepigraphs",
+      "unusual": true
     },
-    "sequencetitlenonotes{}": {
-      "snippet": "sequencetitlenonotes{${1:text}}"
+    {
+      "name": "leftalignepigraphstrue"
     },
-    "sequencesubtitle{}": {
-      "snippet": "sequencesubtitle{${1:text}}"
+    {
+      "name": "leftalignepigraphsfalse"
     },
-    "sequencesubtitlefirstline{}": {
-      "snippet": "sequencesubtitlefirstline{${1:text}}"
+    {
+      "name": "poemtitlefont",
+      "unusual": true
     },
-    "sequencesubtitlemiddleline{}": {
-      "snippet": "sequencesubtitlemiddleline{${1:text}}"
+    {
+      "name": "contentspoemtitlefont",
+      "unusual": true
     },
-    "sequencesubtitlelastline{}": {
-      "snippet": "sequencesubtitlelastline{${1:text}}"
+    {
+      "name": "afterpoemtitleskip",
+      "unusual": true
     },
-    "sequencesectiontitle{}": {
-      "snippet": "sequencesectiontitle{${1:text}}"
+    {
+      "name": "afterpoemskip",
+      "unusual": true
     },
-    "sequencesectiontitlenocontents{}": {
-      "snippet": "sequencesectiontitlenocontents{${1:text}}"
+    {
+      "name": "poemtitlepenalty",
+      "unusual": true
     },
-    "sequencesectiontitlenonotes{}": {
-      "snippet": "sequencesectiontitlenonotes{${1:text}}"
+    {
+      "name": "titleindent",
+      "unusual": true
     },
-    "sequencesectiontitlebaretitle{}": {
-      "snippet": "sequencesectiontitlebaretitle{${1:text}}"
+    {
+      "name": "versewidth",
+      "unusual": true
     },
-    "sequencesectiontitlefirstline{}": {
-      "snippet": "sequencesectiontitlefirstline{${1:text}}"
+    {
+      "name": "iflinenumberscenteredwithverse",
+      "unusual": true
     },
-    "sequencesectiontitlemiddleline{}": {
-      "snippet": "sequencesectiontitlemiddleline{${1:text}}"
+    {
+      "name": "linenumberscenteredwithversetrue"
     },
-    "sequencesectiontitlelastline{}": {
-      "snippet": "sequencesectiontitlelastline{${1:text}}"
+    {
+      "name": "linenumberscenteredwithversefalse"
     },
-    "sequencefirstsectiontitle{}": {
-      "snippet": "sequencefirstsectiontitle{${1:text}}"
+    {
+      "name": "ifcenterepigraphson",
+      "unusual": true
     },
-    "sequencefirstsectiontitlenocontents{}": {
-      "snippet": "sequencefirstsectiontitlenocontents{${1:text}}"
+    {
+      "name": "centerepigraphsontrue"
     },
-    "sequencefirstsectiontitlenonotes{}": {
-      "snippet": "sequencefirstsectiontitlenonotes{${1:text}}"
+    {
+      "name": "centerepigraphsonfalse"
     },
-    "sequencefirstsectiontitlefirstline{}": {
-      "snippet": "sequencefirstsectiontitlefirstline{${1:text}}"
+    {
+      "name": "iftextcenteringturnedon",
+      "unusual": true
     },
-    "sequencefirstsectiontitlemiddleline{}": {
-      "snippet": "sequencefirstsectiontitlemiddleline{${1:text}}"
+    {
+      "name": "textcenteringturnedontrue"
     },
-    "sequencefirstsectiontitlelastline{}": {
-      "snippet": "sequencefirstsectiontitlelastline{${1:text}}"
+    {
+      "name": "textcenteringturnedonfalse"
     },
-    "sequencesectionsubtitle{}": {
-      "snippet": "sequencesectionsubtitle{${1:text}}"
+    {
+      "name": "versemarginadjust",
+      "unusual": true
+    },
+    {
+      "name": "startparalleltexts"
     },
-    "sequencesectionsubtitlefirstline{}": {
-      "snippet": "sequencesectionsubtitlefirstline{${1:text}}"
+    {
+      "name": "stanzaatbottom",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:mark}}"
+      }
     },
-    "sequencesectionsubtitlemiddleline{}": {
-      "snippet": "sequencesectionsubtitlemiddleline{${1:text}}"
+    {
+      "name": "nostanzaatbottom",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:mark}}"
+      }
     },
-    "sequencesectionsubtitlelastline{}": {
-      "snippet": "sequencesectionsubtitlelastline{${1:text}}"
+    {
+      "name": "verseline"
     },
-    "sequencesubsectiontitle{}": {
-      "snippet": "sequencesubsectiontitle{${1:text}}"
+    {
+      "name": "setverselinemodulo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
     },
-    "sequencesubsectiontitlenocontents{}": {
-      "snippet": "sequencesubsectiontitlenocontents{${1:text}}"
+    {
+      "name": "makeverselinenumbers"
     },
-    "sequencefirstsubsectiontitle{}": {
-      "snippet": "sequencefirstsubsectiontitle{${1:text}}"
+    {
+      "name": "ifverselinenumbers",
+      "unusual": true
     },
-    "sequencefirstsubsectiontitlenocontents{}": {
-      "snippet": "sequencefirstsubsectiontitlenocontents{${1:text}}"
+    {
+      "name": "verselinenumberstrue"
+    },
+    {
+      "name": "verselinenumbersfalse"
+    },
+    {
+      "name": "verselinenumberstoright"
     },
-    "sequencesubsectiontitlefirstline{}": {
-      "snippet": "sequencesubsectiontitlefirstline{${1:text}}"
+    {
+      "name": "verselinenumberstoleft"
     },
-    "sequencesubsectiontitlemiddleline{}": {
-      "snippet": "sequencesubsectiontitlemiddleline{${1:text}}"
+    {
+      "name": "verselinenumbersouter"
     },
-    "sequencesubsectiontitlelastline{}": {
-      "snippet": "sequencesubsectiontitlelastline{${1:text}}"
+    {
+      "name": "verselinenumbersgutter"
     },
-    "sequencefirstsubsectiontitlefirstline{}": {
-      "snippet": "sequencefirstsubsectiontitlefirstline{${1:text}}"
+    {
+      "name": "headoffsetlength",
+      "unusual": true
     },
-    "sequencefirstsubsectiontitlemiddleline{}": {
-      "snippet": "sequencefirstsubsectiontitlemiddleline{${1:text}}"
+    {
+      "name": "marginparsepmin",
+      "unusual": true
     },
-    "sequencefirstsubsectiontitlelastline{}": {
-      "snippet": "sequencefirstsubsectiontitlelastline{${1:text}}"
+    {
+      "name": "pmclsideparvshift",
+      "unusual": true
     },
-    "sequencesubsubsectiontitle{}": {
-      "snippet": "sequencesubsubsectiontitle{${1:text}}"
+    {
+      "name": "verseindent"
     },
-    "sequencesubsubsectiontitlenocontents{}": {
-      "snippet": "sequencesubsubsectiontitlenocontents{${1:text}}"
+    {
+      "name": "verseindent",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:levels}]"
+      }
     },
-    "sequencefirstsubsubsectiontitlenocontents{}": {
-      "snippet": "sequencefirstsubsubsectiontitlenocontents{${1:text}}"
+    {
+      "name": "verseindentamount",
+      "unusual": true
     },
-    "JHpoemtitle{}{}": {
-      "snippet": "JHpoemtitle{${1:text}}{${2:label}}"
+    {
+      "name": "indentedstanzaamount",
+      "unusual": true
     },
-    "JHsequencetitle{}{}": {
-      "snippet": "JHsequencetitle{${1:text}}{${2:label}}"
-    },
-    "JHsequencefirstsectiontitle{}{}": {
-      "snippet": "JHsequencefirstsectiontitle{${1:text}}{${2:label}}"
-    },
-    "JHsequencesectiontitle{}{}": {
-      "snippet": "JHsequencesectiontitle{${1:text}}{${2:label}}"
-    },
-    "JHsequencesubsectiontitle{}{}": {
-      "snippet": "JHsequencesubsectiontitle{${1:text}}{${2:label}}"
-    },
-    "JHpoemsectiontitle{}{}": {
-      "snippet": "JHpoemsectiontitle{${1:text}}{${2:label}}"
-    },
-    "JHpoemfirstsectiontitle{}{}": {
-      "snippet": "JHpoemfirstsectiontitle{${1:text}}{${2:label}}"
-    },
-    "JHpoemsubtitle{}{}": {
-      "snippet": "JHpoemsubtitle{${1:text}}{${2:label}}"
-    },
-    "JHepigraph{}{}": {
-      "snippet": "JHepigraph{${1:text}}{${2:label}}"
-    },
-    "JHprosesectiontitle{}{}": {
-      "snippet": "JHprosesectiontitle{${1:text}}{${2:label}}"
-    },
-    "JHdedication{}{}": {
-      "snippet": "JHdedication{${1:text}}{${2:label}}"
-    },
-    "setmargpoemtitle{}{}": {
-      "snippet": "setmargpoemtitle{${1:text}}{${2:commands}}"
-    },
-    "setmargrefmarker{}": {
-      "snippet": "setmargrefmarker{${1:symbol}}"
-    },
-    "settitlemargrefmarker{}": {
-      "snippet": "settitlemargrefmarker{${1:symbol}}"
-    },
-    "footnotepoemtitle{}{}": {
-      "snippet": "footnotepoemtitle{${1:title}}{${2:text}}"
-    },
-    "footnotepoemtitlefirstline{}{}": {
-      "snippet": "footnotepoemtitlefirstline{${1:title}}{${2:text}}"
-    },
-    "footnotepoemtitlemiddleline{}{}": {
-      "snippet": "footnotepoemtitlemiddleline{${1:title}}{${2:text}}"
-    },
-    "footnotepoemtitlelastline{}{}": {
-      "snippet": "footnotepoemtitlelastline{${1:title}}{${2:text}}"
-    },
-    "footnotesplitpoemtitle{}{}{}": {
-      "snippet": "footnotesplitpoemtitle{${1:begin title}}{${2:text}}{${3:end title}}"
+    {
+      "name": "linebend"
     },
-    "maketitlefootnoteslayered": {},
-    "maketitlefootnotesatpoemend": {},
-    "maketitlefootnotesplain": {},
-    "poemtitlenonotes{}": {
-      "snippet": "poemtitlenonotes{${1:text}}"
-    },
-    "firstlinesettings": {},
-    "middlelinesettings": {},
-    "lastlinesettings": {},
-    "restoresinglelinesettings": {},
-    "volumetitleindentamount": {},
-    "volumetitlesecondlineindentamount": {},
-    "volumesubtitleindentamount": {},
-    "volumesubtitlesecondlineindentamount": {},
-    "volumesectiontitleindentamount": {},
-    "volumesectiontitlesecondlineindentamount": {},
-    "poemtitleindentamount": {},
-    "poemtitlesecondlineindentamount": {},
-    "poemsubtitleindentamount": {},
-    "poemsectiontitleindentamount": {},
-    "poemsectiontitlesecondlineindentamount": {},
-    "poemsubsectiontitleindentamount": {},
-    "sequencetitleindentamount": {},
-    "sequencetitlesecondlineindentamount": {},
-    "sequencesubtitleindent": {},
-    "sequencesubtitlesecondlineindentamount": {},
-    "sequencesectiontitleindentamount": {},
-    "sequencesectiontitlesecondlineindentamount": {},
-    "sequencesectionsubtitleindentamount": {},
-    "sequencesectionsubtitlesecondlineindentamount": {},
-    "sequencesubsectiontitleindentamount": {},
-    "sequencesubsubsectiontitleindentamount": {},
-    "appendixtitleindentamount": {},
-    "subappendixtitleindentamount": {},
-    "forewordtitleindentamount": {},
-    "notestitleindentamount": {},
-    "titleindentamount": {},
-    "titleindenttwoamount": {},
-    "titleindentthreeamount": {},
-    "longpage": {},
-    "shortpage": {},
-    "contentsvolumetitleindentamount": {},
-    "contentsvolumetitlesecondlineindentamount": {},
-    "contentsvolumesubtitleindentamount": {},
-    "contentsvolumesubtitlesecondlineindentamount": {},
-    "contentsvolumesectiontitleindentamount": {},
-    "contentsvolumesectiontitlesecondlineindentamount": {},
-    "contentspoemtitleindentamount": {},
-    "contentspoemtitlesecondlineindentamount": {},
-    "contentspoemsectiontitleindentamount": {},
-    "contentssequencetitleindentamount": {},
-    "contentssequencetitlesecondlineindentamount": {},
-    "contentssequencesectiontitleindentamount": {},
-    "contentssequencesectiontitlesecondlineindentamount": {},
-    "contentssequencesubsectiontitleindentamount": {},
-    "contentsappendixtitleindentamount": {},
-    "contentsnotestitleindentamount": {},
-    "contentsindenttwoamount": {},
-    "contentsindentthreeamount": {},
-    "prosesectiontitle{}": {
-      "snippet": "prosesectiontitle{${1:text}}"
-    },
-    "prosesectiontitlenotitle{}": {
-      "snippet": "prosesectiontitlenotitle{${1:text}}"
-    },
-    "setprosemodulo{}": {
-      "snippet": "setprosemodulo{${1:integer}}"
-    },
-    "proselinelabel{}": {
-      "snippet": "proselinelabel{${1:label}}"
-    },
-    "prosetextnote{}{}": {
-      "snippet": "prosetextnote{${1:labeldef}}{${2:text}}"
-    },
-    "prosetextnote[]{}{}": {
-      "snippet": "prosetextnote[${3:label}]{${1:labeldef}}{${2:text}}"
-    },
-    "proseemendation{}{}": {
-      "snippet": "proseemendation{${1:labeldef}}{${2:text}}"
-    },
-    "proseemendation[]{}{}": {
-      "snippet": "proseemendation[${3:label}]{${1:labeldef}}{${2:text}}"
-    },
-    "proseexplanatory{}{}": {
-      "snippet": "proseexplanatory{${1:labeldef}}{${2:text}}"
-    },
-    "proseexplanatory[]{}{}": {
-      "snippet": "proseexplanatory[${3:label}]{${1:labeldef}}{${2:text}}"
-    },
-    "prosetsvariant{}{}": {
-      "snippet": "prosetsvariant{${1:labeldef}}{${2:text}}"
-    },
-    "prosetsvariant[]{}{}": {
-      "snippet": "prosetsvariant[${3:label}]{${1:labeldef}}{${2:text}}"
-    },
-    "proseaccidental{}{}": {
-      "snippet": "proseaccidental{${1:label}}{${2:text}}"
-    },
-    "prosetsaccidental{}{}": {
-      "snippet": "prosetsaccidental{${1:label}}{${2:text}}"
-    },
-    "setprosebysentence": {},
-    "verselinenumbersswitch": {},
-    "pmsentence": {},
-    "ifrunningsentencenumbers": {},
-    "runningsentencenumberstrue": {},
-    "runningsentencenumbersfalse": {},
-    "ifmarginsentencenumbers": {},
-    "marginsentencenumberstrue": {},
-    "marginsentencenumbersfalse": {},
-    "setpmmodulo{}": {
-      "snippet": "setpmmodulo{${1:integer}}"
-    },
-    "pmsentencetwo": {},
-    "pmsentencethree": {},
-    "pmsentencefour": {},
-    "pmnumberstoright": {},
-    "pmnumberstoleft": {},
-    "pmnumbersgutter": {},
-    "pmnumbersouter": {},
-    "runningsentencenumberformat{}": {
-      "snippet": "runningsentencenumberformat{${1:text}}"
-    },
-    "marginsentencenumberformat{}": {
-      "snippet": "marginsentencenumberformat{${1:text}}"
-    },
-    "pmpara": {},
-    "ifpmparas": {},
-    "pmparastrue": {},
-    "pmparasfalse": {},
-    "ifpmsentencebypara": {},
-    "pmsentencebyparatrue": {},
-    "pmsentencebyparafalse": {},
-    "ifpmparainmar": {},
-    "pmparainmartrue": {},
-    "pmparainmarfalse": {},
-    "ifpmpararunning": {},
-    "pmpararunningtrue": {},
-    "pmpararunningfalse": {},
-    "pmpararunningformat{}": {
-      "snippet": "pmpararunningformat{${1:text}}"
-    },
-    "pmparmarformat{}": {
-      "snippet": "pmparmarformat{${1:text}}"
-    },
-    "ifsuppressfirstpara": {},
-    "suppressfirstparatrue": {},
-    "suppressfirstparafalse": {},
-    "ifsuppressfirstsentence": {},
-    "suppressfirstsentencetrue": {},
-    "suppressfirstsentencefalse": {},
-    "sentencelabel{}": {
-      "snippet": "sentencelabel{${1:label}}"
-    },
-    "pmtextnote{}": {
-      "snippet": "pmtextnote{${1:text}}"
-    },
-    "pmtextnote[]{}": {
-      "snippet": "pmtextnote[${2:label}]{${1:text}}"
-    },
-    "pmexplanatory{}": {
-      "snippet": "pmexplanatory{${1:text}}"
-    },
-    "pmexplanatory[]{}": {
-      "snippet": "pmexplanatory[${2:label}]{${1:text}}"
-    },
-    "pmemendation{}": {
-      "snippet": "pmemendation{${1:text}}"
-    },
-    "pmemendation[]{}": {
-      "snippet": "pmemendation[${2:label}]{${1:text}}"
+    {
+      "name": "runoverindent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "brokenline"
     },
-    "pmaccidental{}": {
-      "snippet": "pmaccidental{${1:text}}"
+    {
+      "name": "versephantom",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:argument}}"
+      }
     },
-    "pmtsvariant{}": {
-      "snippet": "pmtsvariant{${1:text}}"
+    {
+      "name": "stanzalinestraddle"
     },
-    "pmtsvariant[]{}": {
-      "snippet": "pmtsvariant[${2:label}]{${1:text}}"
-    },
-    "pmtsaccidental{}": {
-      "snippet": "pmtsaccidental{${1:text}}"
-    },
-    "biblechapter": {},
-    "bibleverse": {},
-    "finishparalleltexts": {},
-    "startrectopage": {},
-    "finishrectopage": {},
-    "startversopage": {},
-    "finishversopage": {},
-    "versopoemtitle{}": {
-      "snippet": "versopoemtitle{${1:text}}"
+    {
+      "name": "tweakbrokenline"
     },
-    "rectopoemtitle{}": {
-      "snippet": "rectopoemtitle{${1:text}}"
+    {
+      "name": "brokenlineatbeginning"
     },
-    "versopoemtitlenocontents{}": {
-      "snippet": "versopoemtitlenocontents{${1:text}}"
+    {
+      "name": "startverseline"
     },
-    "rectopoemtitlenocontents{}": {
-      "snippet": "rectopoemtitlenocontents{${1:text}}"
+    {
+      "name": "tweakstartverseline"
+    },
+    {
+      "name": "rightversebegin"
+    },
+    {
+      "name": "poemlinelabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "rectotextnote{}": {
-      "snippet": "rectotextnote{${1:text}}"
-    },
-    "rectotextnote[]{}": {
-      "snippet": "rectotextnote[${2:label}]{${1:text}}"
-    },
-    "rectoemendation{}": {
-      "snippet": "rectoemendation{${1:text}}"
-    },
-    "rectoemendation[]{}": {
-      "snippet": "rectoemendation[${2:label}]{${1:text}}"
-    },
-    "rectoexplanatory{}": {
-      "snippet": "rectoexplanatory{${1:text}}"
-    },
-    "rectoexplanatory[]{}": {
-      "snippet": "rectoexplanatory[${2:label}]{${1:text}}"
-    },
-    "versotextnote{}": {
-      "snippet": "versotextnote{${1:text}}"
-    },
-    "versotextnote[]{}": {
-      "snippet": "versotextnote[${2:label}]{${1:text}}"
-    },
-    "versoemendation{}": {
-      "snippet": "versoemendation{${1:text}}"
-    },
-    "versoemendation[]{}": {
-      "snippet": "versoemendation[${2:label}]{${1:text}}"
-    },
-    "versoexplanatory{}": {
-      "snippet": "versoexplanatory{${1:text}}"
-    },
-    "versoexplanatory[]{}": {
-      "snippet": "versoexplanatory[${2:label}]{${1:text}}"
-    },
-    "versoprosetextnote{}{}": {
-      "snippet": "versoprosetextnote{${1:labeldef}}{${2:text}}"
-    },
-    "versoprosetextnote[]{}{}": {
-      "snippet": "versoprosetextnote[${3:label}]{${1:labeldef}}{${2:text}}"
-    },
-    "versoproseemendation{}{}": {
-      "snippet": "versoproseemendation{${1:labeldef}}{${2:text}}"
-    },
-    "versoproseemendation[]{}{}": {
-      "snippet": "versoproseemendation[${3:label}]{${1:labeldef}}{${2:text}}"
-    },
-    "versoproseexplanatory{}{}": {
-      "snippet": "versoproseexplanatory{${1:labeldef}}{${2:text}}"
-    },
-    "versoproseexplanatory[]{}{}": {
-      "snippet": "versoproseexplanatory[${3:label}]{${1:labeldef}}{${2:text}}"
-    },
-    "rectoprosetextnote{}{}": {
-      "snippet": "rectoprosetextnote{${1:labeldef}}{${2:text}}"
-    },
-    "rectoprosetextnote[]{}{}": {
-      "snippet": "rectoprosetextnote[${3:label}]{${1:labeldef}}{${2:text}}"
-    },
-    "rectoproseemendation{}{}": {
-      "snippet": "rectoproseemendation{${1:labeldef}}{${2:text}}"
-    },
-    "rectoproseemendation[]{}{}": {
-      "snippet": "rectoproseemendation[${3:label}]{${1:labeldef}}{${2:text}}"
-    },
-    "rectoproseexplanatory{}{}": {
-      "snippet": "rectoproseexplanatory{${1:labeldef}}{${2:text}}"
-    },
-    "rectoproseexplanatory[]{}{}": {
-      "snippet": "rectoproseexplanatory[${3:label}]{${1:labeldef}}{${2:text}}"
-    },
-    "makerectotextnotes": {},
-    "makerectoemendations": {},
-    "makerectoexplanatorynotes": {},
-    "makeversotextnotes": {},
-    "makeversoemendations": {},
-    "makeversoexplanatorynotes": {},
-    "changerectotextnotesname{}": {
-      "snippet": "changerectotextnotesname{${1:text}}"
-    },
-    "changerectotextnotesheader{}": {
-      "snippet": "changerectotextnotesheader{${1:text}}"
-    },
-    "changerectotextnotescontentsname{}": {
-      "snippet": "changerectotextnotescontentsname{${1:text}}"
-    },
-    "changeversotextnotesname{}": {
-      "snippet": "changeversotextnotesname{${1:text}}"
-    },
-    "changeversotextnotesheader{}": {
-      "snippet": "changeversotextnotesheader{${1:text}}"
-    },
-    "changeversotextnotescontentsname{}": {
-      "snippet": "changeversotextnotescontentsname{${1:text}}"
-    },
-    "ifrectotextnotessinglepar": {},
-    "rectotextnotessinglepartrue": {},
-    "rectotextnotessingleparfalse": {},
-    "ifrectotextnotestwocol": {},
-    "rectotextnotestwocoltrue": {},
-    "rectotextnotestwocolfalse": {},
-    "ifversotextnotestwocol": {},
-    "versotextnotestwocoltrue": {},
-    "versotextnotestwocolfalse": {},
-    "versotextnotes": {},
-    "ifversotextnotessinglepar": {},
-    "versotextnotessinglepartrue": {},
-    "versotextnotessingleparfalse": {},
-    "putrectotextnotes": {},
-    "putversotextnotes": {},
-    "putversoemendations": {},
-    "putrectoemendations": {},
-    "putversoexplanatorynotes": {},
-    "putrectoexplanatorynotes": {},
-    "synchrolabel{}": {
-      "snippet": "synchrolabel{${1:label}}"
-    },
-    "synchroref{}": {
-      "snippet": "synchroref{${1:label}}"
-    },
-    "setsynchroflag{}": {
-      "snippet": "setsynchroflag{${1:flag}}"
-    },
-    "startparalleltextprose": {},
-    "finishparalleltextprose": {},
-    "startversoprosepage": {},
-    "finishversoprosepage": {},
-    "startrectoprosepage": {},
-    "finishrectoprosepage": {},
-    "parastart": {},
-    "paraend": {},
-    "changecontentsname{}": {
-      "snippet": "changecontentsname{${1:text}}"
-    },
-    "changecontentsheader{}": {
-      "snippet": "changecontentsheader{${1:text}}"
-    },
-    "changenotesname{}": {
-      "snippet": "changenotesname{${1:text}}"
-    },
-    "changenotesheader{}": {
-      "snippet": "changenotesheader{${1:text}}"
-    },
-    "changetextnotescontentsname{}": {
-      "snippet": "changetextnotescontentsname{${1:text}}"
-    },
-    "changesinglepageabbrev{}": {
-      "snippet": "changesinglepageabbrev{${1:abbrev}}"
-    },
-    "changemultiplepageabbrev{}": {
-      "snippet": "changemultiplepageabbrev{${1:abbrev}}"
-    },
-    "changesinglelineabbrev{}": {
-      "snippet": "changesinglelineabbrev{${1:abbrev}}"
-    },
-    "changemultiplelineabbrev{}": {
-      "snippet": "changemultiplelineabbrev{${1:abbrev}}"
-    },
-    "changeemendationsname{}": {
-      "snippet": "changeemendationsname{${1:text}}"
-    },
-    "changeemendationsheader{}": {
-      "snippet": "changeemendationsheader{${1:text}}"
-    },
-    "changeemendationscontentsname{}": {
-      "snippet": "changeemendationscontentsname{${1:text}}"
-    },
-    "changeexplanationsname{}": {
-      "snippet": "changeexplanationsname{${1:text}}"
-    },
-    "changeexplanationsheader{}": {
-      "snippet": "changeexplanationsheader{${1:text}}"
-    },
-    "changeexplanationscontentsname{}": {
-      "snippet": "changeexplanationscontentsname{${1:text}}"
-    },
-    "changepoemindexname{}": {
-      "snippet": "changepoemindexname{${1:text}}"
-    },
-    "changepoemindexheader{}": {
-      "snippet": "changepoemindexheader{${1:text}}"
-    },
-    "changepoemindexcontentsname{}": {
-      "snippet": "changepoemindexcontentsname{${1:text}}"
-    },
-    "tightgeometry": {},
-    "tightleading": {},
-    "volumetitlefont": {},
-    "volumesubtitlefont": {},
-    "sequencetitlefont": {},
-    "subsectiontitlefont": {},
-    "backmatterheaderfont": {},
-    "volumetitlesink": {},
-    "backmattersink": {},
-    "backmatterafterheadersink": {},
-    "backmattertextfont": {},
-    "backmatterintrofont": {},
-    "backmattervolumefont": {},
-    "backmattervolumesubtitlefont": {},
-    "contentsvolumefont": {},
-    "contentsvolumesubtitlefont": {},
-    "contentssequencetitlefont": {},
-    "notespoemclubpenalty": {},
-    "notessequenceclubpenalty": {},
-    "notesvolumetitlepenalty": {},
-    "repeatedindent{}": {
-      "snippet": "repeatedindent{${1:integer}}"
-    },
-    "variablestanzaamount": {},
-    "ifinindentedverse": {},
-    "inindentedversetrue": {},
-    "inindentedversefalse": {},
-    "runoverindentvalue": {},
-    "volumetitleindent": {},
-    "volumetitlesecondlineindent": {},
-    "volumesubtitleindent": {},
-    "volumesubtitlesecondlineindent": {},
-    "volumesectiontitleindent": {},
-    "volumesectiontitlesecondlineindent": {},
-    "poemtitleindent": {},
-    "poemtitlesecondlineindent": {},
-    "poemsubtitleindent": {},
-    "poemsectiontitleindent": {},
-    "poemsectiontitlesecondlineindent": {},
-    "poemsubsectiontitleindent": {},
-    "sequencetitleindent": {},
-    "sequencetitlesecondlineindent": {},
-    "sequencesubtitleindentamount": {},
-    "sequencesubtitlesecondlineindent": {},
-    "sequencesectiontitleindent": {},
-    "sequencesectiontitlesecondlineindent": {},
-    "sequencesectionsubtitleindent": {},
-    "sequencesectionsubtitlesecondlineindent": {},
-    "sequencesubsectiontitleindent": {},
-    "sequencesubsubsectiontitleindent": {},
-    "appendixtitleindent": {},
-    "subappendixtitleindent": {},
-    "forewordtitleindent": {},
-    "notestitleindent": {},
-    "volumetitleshiftamount": {},
-    "volumetitleshift": {},
-    "voladditionalamount": {},
-    "contentsindentfouramount": {},
-    "contentsindentfour": {},
-    "contentsindentfiveamount": {},
-    "contentsindentfive": {},
-    "contentsvolumetitleindent": {},
-    "contentsvolumetitlesecondlineindent": {},
-    "contentsvolumesubtitleindent": {},
-    "contentsvolumesubtitlesecondlineindent": {},
-    "contentsvolumesectiontitleindent": {},
-    "contentsvolumesectiontitlesecondlineindent": {},
-    "contentspoemtitleindent": {},
-    "contentspoemtitlesecondlineindent": {},
-    "contentspoemsubtitleindentamount": {},
-    "contentspoemsubtitleindent": {},
-    "contentspoemsectiontitleindent": {},
-    "contentspoemsectiontitlesecondlineindentamount": {},
-    "contentspoemsectiontitlesecondlineindent": {},
-    "contentspoemsubsectiontitleindentamount": {},
-    "contentspoemsubsectiontitleindent": {},
-    "contentssequencetitleindent": {},
-    "contentssequencetitlesecondlineindent": {},
-    "contentssequencesubtitleindentamount": {},
-    "contentssequencesubtitleindent": {},
-    "contentssequencesubtitlesecondlineindentamount": {},
-    "contentssequencesubtitlesecondlineindent": {},
-    "contentssequencesectiontitleindent": {},
-    "contentssequencesectiontitlesecondlineindent": {},
-    "contentssequencesectionsubtitleindentamount": {},
-    "contentssequencesectionsubtitleindent": {},
-    "contentssequencesectionsubtitlesecondlineindentamount": {},
-    "contentssequencesectionsubtitlesecondlineindent": {},
-    "contentssequencesubsectiontitleindent": {},
-    "contentssequencesubsubsectiontitleindentamount": {},
-    "contentssequencesubsubsectiontitleindent": {},
-    "aftersequencetitleskip": {},
-    "stanzaskip": {},
-    "multilinetitlepenalty": {},
-    "sequencetitlepenalty": {},
-    "multilinesequencepenalty": {},
-    "lefttitleaddition": {},
-    "iflastpoemcentered": {},
-    "lastpoemcenteredtrue": {},
-    "lastpoemcenteredfalse": {},
-    "ifinquotedverse": {},
-    "inquotedversetrue": {},
-    "inquotedversefalse": {},
-    "fulltitleholder": {},
-    "titlesofar": {},
-    "titleincrement": {},
-    "ifinstanza": {},
-    "instanzatrue": {},
-    "instanzafalse": {},
-    "ifinpoem": {},
-    "inpoemtrue": {},
-    "inpoemfalse": {},
-    "ifpoemcontentson": {},
-    "poemcontentsontrue": {},
-    "poemcontentsonfalse": {},
-    "iftextnoteson": {},
-    "textnotesontrue": {},
-    "textnotesonfalse": {},
-    "ifexplanon": {},
-    "explanontrue": {},
-    "explanonfalse": {},
-    "ifemendationson": {},
-    "emendationsontrue": {},
-    "emendationsonfalse": {},
-    "ifredundantemendations": {},
-    "redundantemendationstrue": {},
-    "redundantemendationsfalse": {},
-    "ifnoemendyet": {},
-    "noemendyettrue": {},
-    "noemendyetfalse": {},
-    "ifnoexplainyet": {},
-    "noexplainyettrue": {},
-    "noexplainyetfalse": {},
-    "ifmiddlecontentsline": {},
-    "middlecontentslinetrue": {},
-    "middlecontentslinefalse": {},
-    "iflastcontentsline": {},
-    "lastcontentslinetrue": {},
-    "lastcontentslinefalse": {},
-    "ifputpagenumberincontents": {},
-    "putpagenumberincontentstrue": {},
-    "putpagenumberincontentsfalse": {},
-    "ifsinglelinetitle": {},
-    "singlelinetitletrue": {},
-    "singlelinetitlefalse": {},
-    "iftitlefirstline": {},
-    "titlefirstlinetrue": {},
-    "titlefirstlinefalse": {},
-    "titleconcat": {},
-    "iftitlemiddleline": {},
-    "titlemiddlelinetrue": {},
-    "titlemiddlelinefalse": {},
-    "iftitlelastline": {},
-    "titlelastlinetrue": {},
-    "titlelastlinefalse": {},
-    "ifverserightflush": {},
-    "verserightflushtrue": {},
-    "verserightflushfalse": {},
-    "ifrangelemma": {},
-    "rangelemmatrue": {},
-    "rangelemmafalse": {},
-    "iftextnotesatend": {},
-    "textnotesatendtrue": {},
-    "textnotesatendfalse": {},
-    "ifemendationsatend": {},
-    "emendationsatendtrue": {},
-    "emendationsatendfalse": {},
-    "ifexplanatend": {},
-    "explanatendtrue": {},
-    "explanatendfalse": {},
-    "volumeheadervalue": {},
-    "leftheadervalue": {},
-    "singlelineabbrev": {},
-    "multiplelineabbrev": {},
-    "myversemarks": {},
-    "clearemptydoublepage": {},
-    "singlepageabbrev": {},
-    "multiplepageabbrev": {},
-    "mymarks": {},
-    "contentsentryoverrun": {},
-    "titleentryoverrun": {},
-    "oldleftskip": {},
-    "ifnumbersswitch": {},
-    "numbersswitchtrue": {},
-    "numbersswitchfalse": {},
-    "ifnumbersright": {},
-    "numbersrighttrue": {},
-    "numbersrightfalse": {},
-    "pmclsidepar{}": {
-      "snippet": "pmclsidepar{${1:text}}"
-    },
-    "pmemlabel{}": {
-      "snippet": "pmemlabel{${1:label}}"
-    },
-    "newpmemlabel{}{}": {
-      "snippet": "newpmemlabel{${1:label}}{${2:value}}"
-    },
-    "pmemlabelref{}": {
-      "snippet": "pmemlabelref{${1:label}}"
-    },
-    "checkoddpage": {},
-    "ifpmclreversesidepar": {},
-    "pmclreversesidepartrue": {},
-    "pmclreversesideparfalse": {},
-    "ifpmclsideparswitch": {},
-    "pmclsideparswitchtrue": {},
-    "pmclsideparswitchfalse": {},
-    "ifoddpage": {},
-    "oddpagetrue": {},
-    "oddpagefalse": {},
-    "ifstrictpagecheck": {},
-    "strictpagechecktrue": {},
-    "strictpagecheckfalse": {},
-    "cplabel": {},
-    "ifnumbersgutter": {},
-    "numbersguttertrue": {},
-    "numbersgutterfalse": {},
-    "putverselinenumber": {},
-    "ifspeciallinelock": {},
-    "speciallinelocktrue": {},
-    "speciallinelockfalse": {},
-    "incrementverselinenumber": {},
-    "hour{}": {
-      "snippet": "hour{${1:hour}}"
-    },
-    "pmclcontentsname": {},
-    "pmclcontentsheader": {},
-    "poemcontents": {},
-    "setendnotessectiontitledefaults{}{}{}{}{}{}": {
-      "snippet": "setendnotessectiontitledefaults{${1:title}}{${2:before code}}{${3:fontsize cmd}}{${4:indent cmd}}{${5:after code}}{${6:label}}"
-    },
-    "setendnotessectiontitle{}{}": {
-      "snippet": "setendnotessectiontitle{${1:title}}{${2:label}}"
-    },
-    "contentsendnotesdefaults{}{}{}{}": {
-      "snippet": "contentsendnotesdefaults{${1:title}}{${2:indent cmd}}{${3:fontsize cmd}}{${4:number}}"
-    },
-    "contentsendnotestitle{}{}": {
-      "snippet": "contentsendnotestitle{${1:title}}{${2:label}}"
-    },
-    "pmclnotesname": {},
-    "notesheadername": {},
-    "textnotescontentsname": {},
-    "textnotes": {},
-    "emendationsname": {},
-    "emendationsheadername": {},
-    "emendationscontentsname": {},
-    "emendations": {},
-    "explanationsname": {},
-    "explanationsheadername": {},
-    "explanationscontentsname": {},
-    "explanations": {},
-    "ifforewordincontents": {},
-    "forewordincontentstrue": {},
-    "forewordincontentsfalse": {},
-    "appendixdividerpage{}": {
-      "snippet": "appendixdividerpage{${1:text}}"
-    },
-    "contentsendnotessubtitle{}{}": {
-      "snippet": "contentsendnotessubtitle{${1:title}}{${2:number}}"
-    },
-    "foreworddividerpage{}": {
-      "snippet": "foreworddividerpage{${1:text}}"
-    },
-    "pmclcontentsentrydefaults{}{}{}{}": {
-      "snippet": "pmclcontentsentrydefaults{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "booksection{}": {
-      "snippet": "booksection{${1:text}}"
-    },
-    "volumesubtitlefirstline{}": {
-      "snippet": "volumesubtitlefirstline{${1:text}}"
-    },
-    "volumesubtitlemiddleline{}": {
-      "snippet": "volumesubtitlemiddleline{${1:text}}"
-    },
-    "volumesubtitlelastline{}": {
-      "snippet": "volumesubtitlelastline{${1:text}}"
-    },
-    "volumesectiontitlefirstline{}": {
-      "snippet": "volumesectiontitlefirstline{${1:text}}"
-    },
-    "volumesectiontitlemiddleline{}": {
-      "snippet": "volumesectiontitlemiddleline{${1:text}}"
-    },
-    "volumesectiontitlelastline{}": {
-      "snippet": "volumesectiontitlelastline{${1:text}}"
-    },
-    "makepoemlabel{}": {
-      "snippet": "makepoemlabel{${1:label}}"
-    },
-    "argpageref{}": {
-      "snippet": "argpageref{${1:label}}"
-    },
-    "lefttitlemargin": {},
-    "leftaligntitlespace": {},
-    "ifleftaligntitles": {},
-    "leftaligntitlestrue": {},
-    "leftaligntitlesfalse": {},
-    "interjectiontitlefirstline{}": {
-      "snippet": "interjectiontitlefirstline{${1:text}}"
-    },
-    "interjectiontitlemiddleline{}": {
-      "snippet": "interjectiontitlemiddleline{${1:text}}"
-    },
-    "interjectiontitlelastline{}": {
-      "snippet": "interjectiontitlelastline{${1:text}}"
-    },
-    "JHtextwidth": {},
-    "JHmarginparsep": {},
-    "JHmarginparvshift": {},
-    "JHmarginparwidth": {},
-    "JHmarginparsepmin": {},
-    "JHtitlemarginparsep": {},
-    "ifJHmarkstoleft": {},
-    "JHmarkstolefttrue": {},
-    "JHmarkstoleftfalse": {},
-    "ifJHmarkstoright": {},
-    "JHmarkstorighttrue": {},
-    "JHmarkstorightfalse": {},
-    "ifJHmarkstoouter": {},
-    "JHmarkstooutertrue": {},
-    "JHmarkstoouterfalse": {},
-    "ifJHmarkstogutter": {},
-    "JHmarkstoguttertrue": {},
-    "JHmarkstogutterfalse": {},
-    "ifJHmarginparswitch": {},
-    "JHmarginparswitchtrue": {},
-    "JHmarginparswitchfalse": {},
-    "ifJHreversemarginpar": {},
-    "JHreversemarginpartrue": {},
-    "JHreversemarginparfalse": {},
-    "JHrightmarginpar{}": {
-      "snippet": "JHrightmarginpar{${1:text}}"
-    },
-    "JHleftmarginpar{}": {
-      "snippet": "JHleftmarginpar{${1:text}}"
-    },
-    "JHoutermarginpar": {},
-    "JHswitchmarginpar": {},
-    "JHguttermarginpar": {},
-    "JHrighttitlemarginpar{}": {
-      "snippet": "JHrighttitlemarginpar{${1:text}}"
-    },
-    "JHlefttitlemarginpar{}": {
-      "snippet": "JHlefttitlemarginpar{${1:text}}"
-    },
-    "JHswitchtitlemarginpar": {},
-    "JHlabel{}": {
-      "snippet": "JHlabel{${1:label}}"
-    },
-    "JHsequencesectionsubtitle{}{}": {
-      "snippet": "JHsequencesectionsubtitle{${1:text}}{${2:label}}"
-    },
-    "backmattersectiontitle{}": {
-      "snippet": "backmattersectiontitle{${1:text}}"
-    },
-    "margrefmarker": {},
-    "titlemargrefmarker": {},
-    "makemargreflabel": {},
-    "ifmargrefstomargin": {},
-    "margrefstomargintrue": {},
-    "margrefstomarginfalse": {},
-    "setmargref": {},
-    "margrefspecial{}": {
-      "snippet": "margrefspecial{${1:label}}"
-    },
-    "iftitlefootnotesatpoemend": {},
-    "titlefootnotesatpoemendtrue": {},
-    "titlefootnotesatpoemendfalse": {},
-    "iftitlefootnotesplain": {},
-    "titlefootnotesplaintrue": {},
-    "titlefootnotesplainfalse": {},
-    "iftitlefootnoteslayered": {},
-    "titlefootnoteslayeredtrue": {},
-    "titlefootnoteslayeredfalse": {},
-    "placetitlefootnote{}": {
-      "snippet": "placetitlefootnote{${1:text}}"
-    },
-    "poemendnotes": {},
-    "centerepigraphindentation": {},
-    "normalepigraphindentation": {},
-    "centerepigraphquote": {},
-    "normalepigraphquote": {},
-    "testforcenterepigraph": {},
-    "variabledateindent": {},
-    "poemattributionindent": {},
-    "variablepoemattributionindent": {},
-    "poemattribution{}": {
-      "snippet": "poemattribution{${1:text}}"
-    },
-    "strip": {},
-    "literaltextnoteshort{}": {
-      "snippet": "literaltextnoteshort{${1:text}}"
-    },
-    "literalemendshort{}": {
-      "snippet": "literalemendshort{${1:text}}"
-    },
-    "literalexplainshort{}": {
-      "snippet": "literalexplainshort{${1:text}}"
-    },
-    "literalcontentsshort{}": {
-      "snippet": "literalcontentsshort{${1:text}}"
-    },
-    "pmccheckifinteger{}": {
-      "snippet": "pmccheckifinteger{${1:number}}"
-    },
-    "ifinteger": {},
-    "integertrue": {},
-    "integerfalse": {},
-    "pmcgobm{}": {
-      "snippet": "pmcgobm{${1:arg}}"
-    },
-    "setlemmarange{}": {
-      "snippet": "setlemmarange{${1:value}}"
-    },
-    "citerange": {},
-    "resetlemmacounters": {},
-    "checknoteheaders": {},
-    "tsaccidental{}": {
-      "snippet": "tsaccidental{${1:text}}"
-    },
-    "titletoothernotes": {},
-    "firstemendation": {},
-    "firstexplanatory": {},
-    "appendtomacro{}{}": {
-      "snippet": "appendtomacro{${1:arg1}}{${2:arg2}}"
-    },
-    "ifinprosesection": {},
-    "inprosesectiontrue": {},
-    "inprosesectionfalse": {},
-    "linenumberfont": {},
-    "ifrefundefined{}": {
-      "snippet": "ifrefundefined{${1:label}}"
-    },
-    "setcounterfromref{}{}": {
-      "snippet": "setcounterfromref{${1:counter}}{${2:label}}"
-    },
-    "setcounterfrompageref{}{}": {
-      "snippet": "setcounterfrompageref{${1:counter}}{${2:label}}"
-    },
-    "setproselemmastart{}": {
-      "snippet": "setproselemmastart{${1:label}}"
-    },
-    "setproselemmarange{}{}": {
-      "snippet": "setproselemmarange{${1:label}}{${2:number}}"
-    },
-    "proseciterange": {},
-    "checkprosenoteheaders": {},
-    "ifprosebysentence": {},
-    "prosebysentencetrue": {},
-    "prosebysentencefalse": {},
-    "pmnoteheader": {},
-    "pmnumbersswitch": {},
-    "putpmsentencenumber": {},
-    "putpmmarginnumber{}{}": {
-      "snippet": "putpmmarginnumber{${1:number}}{${2:font cmds}}"
-    },
-    "noteheaderconcat": {},
-    "putpmsentencenumbertwo": {},
-    "putpmsentencenumberthree": {},
-    "putpmsentencenumberfour": {},
-    "putpmmarparanumber": {},
-    "pmrangeend": {},
-    "setpmlemmarange{}": {
-      "snippet": "setpmlemmarange{${1:number}}"
-    },
-    "pmciterange": {},
-    "pmchecknoteheaders": {},
-    "pmresetlemmacounters": {},
-    "footnoteH{}": {
-      "snippet": "footnoteH{${1:text}}"
-    },
-    "FootnotetextA{}": {
-      "snippet": "FootnotetextA{${1:text}}"
-    },
-    "FootnotetextB{}": {
-      "snippet": "FootnotetextB{${1:text}}"
-    },
-    "FootnotetextC{}": {
-      "snippet": "FootnotetextC{${1:text}}"
-    },
-    "FootnotetextD{}": {
-      "snippet": "FootnotetextD{${1:text}}"
-    },
-    "ifpoemendnoteson": {},
-    "poemendnotesontrue": {},
-    "poemendnotesonfalse": {},
-    "literalpoemendnote{}": {
-      "snippet": "literalpoemendnote{${1:text}}"
-    },
-    "ifpoemendemendationnoteson": {},
-    "poemendemendationnotesontrue": {},
-    "poemendemendationnotesonfalse": {},
-    "ifpoemendemendationnotessinglepar": {},
-    "poemendemendationnotessinglepartrue": {},
-    "poemendemendationnotessingleparfalse": {},
-    "poemendemendationnotes": {},
-    "literalpoemendemendationnote{}": {
-      "snippet": "literalpoemendemendationnote{${1:text}}"
-    },
-    "ifpoemendexplanatorynoteson": {},
-    "poemendexplanatorynotesontrue": {},
-    "poemendexplanatorynotesonfalse": {},
-    "ifpoemendexplanatorynotessinglepar": {},
-    "poemendexplanatorynotessinglepartrue": {},
-    "poemendexplanatorynotessingleparfalse": {},
-    "poemendexplanatorynotes": {},
-    "literalpoemendexplanatorynote{}": {
-      "snippet": "literalpoemendexplanatorynote{${1:text}}"
-    },
-    "ifpoemendtextnoteson": {},
-    "poemendtextnotesontrue": {},
-    "poemendtextnotesonfalse": {},
-    "poemendtextnotes": {},
-    "literalpoemendtextnote{}": {
-      "snippet": "literalpoemendtextnote{${1:text}}"
-    },
-    "stanzaatbottomvalue": {},
-    "nostanzaatbottomvalue": {},
-    "cleartorecto": {},
-    "cleartoverso": {},
-    "ifenv{}": {
-      "snippet": "ifenv{${1:envname}}"
-    },
-    "pmclsavsk": {},
-    "pmclsavsf": {},
-    "pmclbsphack": {},
-    "pmclesphack": {},
-    "pmclleftsidepar{}": {
-      "snippet": "pmclleftsidepar{${1:text}}"
-    },
-    "pmclrightsidepar{}": {
-      "snippet": "pmclrightsidepar{${1:text}}"
-    },
-    "ifparalleltexts": {},
-    "paralleltextstrue": {},
-    "paralleltextsfalse": {},
-    "ifrecto": {},
-    "rectotrue": {},
-    "rectofalse": {},
-    "ifverso": {},
-    "versotrue": {},
-    "versofalse": {},
-    "ifrectopoempending": {},
-    "rectopoempendingtrue": {},
-    "rectopoempendingfalse": {},
-    "ifversopoempending": {},
-    "versopoempendingtrue": {},
-    "versopoempendingfalse": {},
-    "ifrectostanzapending": {},
-    "rectostanzapendingtrue": {},
-    "rectostanzapendingfalse": {},
-    "ifversostanzapending": {},
-    "versostanzapendingtrue": {},
-    "versostanzapendingfalse": {},
-    "ifrectostanzastillopen": {},
-    "rectostanzastillopentrue": {},
-    "rectostanzastillopenfalse": {},
-    "ifversostanzastillopen": {},
-    "versostanzastillopentrue": {},
-    "versostanzastillopenfalse": {},
-    "ifrectopoemstillopen": {},
-    "rectopoemstillopentrue": {},
-    "rectopoemstillopenfalse": {},
-    "ifversopoemstillopen": {},
-    "versopoemstillopentrue": {},
-    "versopoemstillopenfalse": {},
-    "ifrectoprosesectionpending": {},
-    "rectoprosesectionpendingtrue": {},
-    "rectoprosesectionpendingfalse": {},
-    "ifversoprosesectionpending": {},
-    "versoprosesectionpendingtrue": {},
-    "versoprosesectionpendingfalse": {},
-    "ifrectoprosesectionstillopen": {},
-    "rectoprosesectionstillopentrue": {},
-    "rectoprosesectionstillopenfalse": {},
-    "ifversoprosesectionstillopen": {},
-    "versoprosesectionstillopentrue": {},
-    "versoprosesectionstillopenfalse": {},
-    "ifrectoquotedversepending": {},
-    "rectoquotedversependingtrue": {},
-    "rectoquotedversependingfalse": {},
-    "ifversoquotedversepending": {},
-    "versoquotedversependingtrue": {},
-    "versoquotedversependingfalse": {},
-    "ifrectoquotedversestillopen": {},
-    "rectoquotedversestillopentrue": {},
-    "rectoquotedversestillopenfalse": {},
-    "ifversoquotedversestillopen": {},
-    "versoquotedversestillopentrue": {},
-    "versoquotedversestillopenfalse": {},
-    "ifrectoemendationspending": {},
-    "rectoemendationspendingtrue": {},
-    "rectoemendationspendingfalse": {},
-    "ifversoemendationspending": {},
-    "versoemendationspendingtrue": {},
-    "versoemendationspendingfalse": {},
-    "ifrectoexplanationspending": {},
-    "rectoexplanationspendingtrue": {},
-    "rectoexplanationspendingfalse": {},
-    "ifversoexplanationspending": {},
-    "versoexplanationspendingtrue": {},
-    "versoexplanationspendingfalse": {},
-    "versotitleholder": {},
-    "rectotitleholder": {},
-    "makeversotitleholder{}": {
-      "snippet": "makeversotitleholder{${1:text}}"
-    },
-    "makerectotitleholder{}": {
-      "snippet": "makerectotitleholder{${1:text}}"
-    },
-    "versotitletoothernotes": {},
-    "versotitleinnotescheck": {},
-    "rectotitletoothernotes": {},
-    "rectotitleinnotescheck": {},
-    "saveversoline": {},
-    "restoreversoline": {},
-    "saverectoline": {},
-    "restorerectoline": {},
-    "synchroflag": {},
-    "hfilll": {},
-    "versotextnotesname": {},
-    "versotextnotesheadername": {},
-    "versotextnotescontentsname": {},
-    "ifnoversotextnoteyet": {},
-    "noversotextnoteyettrue": {},
-    "noversotextnoteyetfalse": {},
-    "literalversotextnote{}": {
-      "snippet": "literalversotextnote{${1:text}}"
-    },
-    "firstversotextnote": {},
-    "rectotextnotesname": {},
-    "rectotextnotesheadername": {},
-    "rectotextnotescontentsname": {},
-    "rectotextnotes": {},
-    "ifnorectotextnoteyet": {},
-    "norectotextnoteyettrue": {},
-    "norectotextnoteyetfalse": {},
-    "literalrectotextnote{}": {
-      "snippet": "literalrectotextnote{${1:text}}"
-    },
-    "firstrectotextnote": {},
-    "versoemendationsname": {},
-    "changeversoemendationsname{}": {
-      "snippet": "changeversoemendationsname{${1:text}}"
-    },
-    "versoemendationsheadername": {},
-    "changeversoemendationsheader{}": {
-      "snippet": "changeversoemendationsheader{${1:text}}"
-    },
-    "versoemendationscontentsname": {},
-    "changeversoemendationscontentsname{}": {
-      "snippet": "changeversoemendationscontentsname{${1:text}}"
-    },
-    "ifversoemendationstwocol": {},
-    "versoemendationstwocoltrue": {},
-    "versoemendationstwocolfalse": {},
-    "versoemendations": {},
-    "ifversoemendationssinglepar": {},
-    "versoemendationssinglepartrue": {},
-    "versoemendationssingleparfalse": {},
-    "ifnoversoemendationyet": {},
-    "noversoemendationyettrue": {},
-    "noversoemendationyetfalse": {},
-    "literalversoemendation{}": {
-      "snippet": "literalversoemendation{${1:text}}"
-    },
-    "firstversoemendation": {},
-    "rectoemendationsname": {},
-    "changerectoemendationsname{}": {
-      "snippet": "changerectoemendationsname{${1:text}}"
-    },
-    "rectoemendationsheadername": {},
-    "changerectoemendationsheader{}": {
-      "snippet": "changerectoemendationsheader{${1:text}}"
-    },
-    "rectoemendationscontentsname": {},
-    "changerectoemendationscontentsname{}": {
-      "snippet": "changerectoemendationscontentsname{${1:text}}"
-    },
-    "ifrectoemendationstwocol": {},
-    "rectoemendationstwocoltrue": {},
-    "rectoemendationstwocolfalse": {},
-    "rectoemendations": {},
-    "ifrectoemendationssinglepar": {},
-    "rectoemendationssinglepartrue": {},
-    "rectoemendationssingleparfalse": {},
-    "ifnorectoemendationyet": {},
-    "norectoemendationyettrue": {},
-    "norectoemendationyetfalse": {},
-    "literalrectoemendation{}": {
-      "snippet": "literalrectoemendation{${1:text}}"
-    },
-    "firstrectoemendation": {},
-    "versoexplanationsname": {},
-    "changeversoexplanationsname{}": {
-      "snippet": "changeversoexplanationsname{${1:text}}"
-    },
-    "versoexplanationsheadername": {},
-    "changeversoexplanationsheader{}": {
-      "snippet": "changeversoexplanationsheader{${1:text}}"
-    },
-    "versoexplanationscontentsname": {},
-    "changeversoexplanationscontentsname{}": {
-      "snippet": "changeversoexplanationscontentsname{${1:text}}"
-    },
-    "ifversoexplanationstwocol": {},
-    "versoexplanationstwocoltrue": {},
-    "versoexplanationstwocolfalse": {},
-    "versoexplanations": {},
-    "literalversoexplain{}": {
-      "snippet": "literalversoexplain{${1:text}}"
-    },
-    "ifversoexplanationssinglepar": {},
-    "versoexplanationssinglepartrue": {},
-    "versoexplanationssingleparfalse": {},
-    "firstversoexplanatory": {},
-    "ifnoversoexplainyet": {},
-    "noversoexplainyettrue": {},
-    "noversoexplainyetfalse": {},
-    "rectoexplanationsname": {},
-    "changerectoexplanationsname{}": {
-      "snippet": "changerectoexplanationsname{${1:text}}"
-    },
-    "rectoexplanationsheadername": {},
-    "changerectoexplanationsheader{}": {
-      "snippet": "changerectoexplanationsheader{${1:text}}"
-    },
-    "rectoexplanationscontentsname": {},
-    "changerectoexplanationscontentsname{}": {
-      "snippet": "changerectoexplanationscontentsname{${1:text}}"
-    },
-    "ifrectoexplanationstwocol": {},
-    "rectoexplanationstwocoltrue": {},
-    "rectoexplanationstwocolfalse": {},
-    "rectoexplanations": {},
-    "literalrectoexplain{}": {
-      "snippet": "literalrectoexplain{${1:text}}"
-    },
-    "ifrectoexplanationssinglepar": {},
-    "rectoexplanationssinglepartrue": {},
-    "rectoexplanationssingleparfalse": {},
-    "firstrectoexplanatory": {},
-    "ifnorectoexplainyet": {},
-    "norectoexplainyettrue": {},
-    "norectoexplainyetfalse": {},
-    "pmclresetsettitleinnotes": {},
-    "pmclversoresetsettitleinnotes": {},
-    "pmclrectoresetsettitleinnotes": {},
-    "literalexplanatory{}": {
-      "snippet": "literalexplanatory{${1:text}}"
-    },
-    "literalversoexplanatory{}": {
-      "snippet": "literalversoexplanatory{${1:text}}"
-    },
-    "literalrectoexplanatory{}": {
-      "snippet": "literalrectoexplanatory{${1:text}}"
-    },
-    "ifversopassagestillopen": {},
-    "versopassagestillopentrue": {},
-    "versopassagestillopenfalse": {},
-    "ifrectopassagestillopen": {},
-    "rectopassagestillopentrue": {},
-    "rectopassagestillopenfalse": {},
-    "ifinpara": {},
-    "inparatrue": {},
-    "inparafalse": {},
-    "ifrectoparapending": {},
-    "rectoparapendingtrue": {},
-    "rectoparapendingfalse": {},
-    "ifrectoparaopen": {},
-    "rectoparaopentrue": {},
-    "rectoparaopenfalse": {},
-    "ifversoparapending": {},
-    "versoparapendingtrue": {},
-    "versoparapendingfalse": {},
-    "ifversoparaopen": {},
-    "versoparaopentrue": {},
-    "versoparaopenfalse": {},
-    "makeprosepagelabel": {},
-    "saveversoproseline": {},
-    "restoreversoproseline": {},
-    "saverectoproseline": {},
-    "restorerectoproseline": {},
-    "startparalleltextsprose": {},
-    "finishparalleltextsprose": {},
-    "hyphenationforsmall": {},
-    "poemindexname": {},
-    "poemindexheadername": {},
-    "poemindexcontentsname": {},
-    "noteaboutstanzamarkpage": {},
-    "poemindexlabelname": {},
-    "changepoemindexlabelname{}": {
-      "snippet": "changepoemindexlabelname{${1:text}}"
-    },
-    "pmclidxitem": {},
-    "epigraphquoteleftmargin": {},
-    "epigraphquoterightmargin": {},
-    "thelemmaend": {},
-    "thelemmalines": {},
-    "thelineindexrepeat": {},
-    "themargrefnumber": {},
-    "thenotepageholdernote": {},
-    "thenotepageholdertitle": {},
-    "thepmindexcount": {},
-    "thepmmodulo": {},
-    "thepmparagraph": {},
-    "thepmsentencenumber": {},
-    "thepoemnumber": {},
-    "theprintlineindex": {},
-    "theprintlineindexscratch": {},
-    "theproselinenumber": {},
-    "theprosemodulo": {},
-    "theprosepage": {},
-    "therectoindexscratch": {},
-    "therectolinecounter": {},
-    "therectoproselinecounter": {},
-    "theverselinenumber": {},
-    "theverselinenumberscratch": {},
-    "theversoindexscratch": {},
-    "theversolinecounter": {},
-    "theversoproselinecounter": {},
-    "centertitles": {},
-    "finish": {},
-    "poemtitleitalic{}{}": {
-      "snippet": "poemtitleitalic{${1:arg1}}{${2:arg2}}"
-    },
-    "poemtitlenotitleitalic{}{}": {
-      "snippet": "poemtitlenotitleitalic{${1:arg1}}{${2:arg2}}"
-    },
-    "makelinenumbers": {},
-    "sequencesectiontitleitalicnonotes{}{}": {
-      "snippet": "sequencesectiontitleitalicnonotes{${1:text}}{${2:arg}}"
-    },
-    "sequencesectiontitleitalic{}{}": {
-      "snippet": "sequencesectiontitleitalic{${1:text}}{${2:arg}}"
-    },
-    "sequencesectiontitlefirstlineitalic{}{}": {
-      "snippet": "sequencesectiontitlefirstlineitalic{${1:text}}{${2:arg}}"
+    {
+      "name": "makepoemcontents"
+    },
+    {
+      "name": "makepoemcontents",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:page number}]"
+      }
+    },
+    {
+      "name": "putpoemcontents"
+    },
+    {
+      "name": "resetpagestyle"
+    },
+    {
+      "name": "puttextnotes"
+    },
+    {
+      "name": "putemendations"
+    },
+    {
+      "name": "putexplanatory"
+    },
+    {
+      "name": "putpoemindex"
+    },
+    {
+      "name": "putmultiplepoemindex",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:shortcut}}{${2:title%text}}{${3:header%text}}{${4:name%text}}"
+      }
+    },
+    {
+      "name": "setcontentsleaders",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "contentsleaders",
+      "unusual": true
+    },
+    {
+      "name": "poemdotfill"
+    },
+    {
+      "name": "contentspoemtitlefont",
+      "unusual": true
+    },
+    {
+      "name": "contentsindentoneamount",
+      "unusual": true
+    },
+    {
+      "name": "pmclcontentsentry",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title%text}}{${2:indent cmd}}{${3:page number}}"
+      }
+    },
+    {
+      "name": "contentsindentone"
+    },
+    {
+      "name": "contentsindenttwo"
+    },
+    {
+      "name": "contentsindentthree"
+    },
+    {
+      "name": "ifputpagenumbersincontents",
+      "unusual": true
+    },
+    {
+      "name": "putpagenumbersincontentstrue"
+    },
+    {
+      "name": "putpagenumbersincontentsfalse"
+    },
+    {
+      "name": "pmclecontentsentrydefaults",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:title%text}}{${2:indent cmd}}{${3:fontsize cmd}}{${4:page number}}"
+      }
+    },
+    {
+      "name": "ifindexingon",
+      "unusual": true
+    },
+    {
+      "name": "indexingontrue"
+    },
+    {
+      "name": "indexingonfalse"
+    },
+    {
+      "name": "wholebooktitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "volumetitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "volumetitlefirstline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "volumetitlemiddleline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "volumetitlelastline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "volumesubtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "volumesectiontitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "volumededication",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "volumeepigraph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "volumeattribution",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "volumeheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "leftheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rightheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "maketextnotes"
+    },
+    {
+      "name": "makeemendations"
+    },
+    {
+      "name": "makeexplanatorynotes"
+    },
+    {
+      "name": "iftextnotessinglepar",
+      "unusual": true
+    },
+    {
+      "name": "textnotessinglepartrue"
+    },
+    {
+      "name": "textnotessingleparfalse"
+    },
+    {
+      "name": "ifemendationssinglepar",
+      "unusual": true
+    },
+    {
+      "name": "emendationssinglepartrue"
+    },
+    {
+      "name": "emendationssingleparfalse"
+    },
+    {
+      "name": "ifexplanationssinglepar",
+      "unusual": true
+    },
+    {
+      "name": "explanationssinglepartrue"
+    },
+    {
+      "name": "explanationssingleparfalse"
+    },
+    {
+      "name": "noteindentation",
+      "unusual": true
+    },
+    {
+      "name": "noteparbreak"
+    },
+    {
+      "name": "iftextnotestwocol",
+      "unusual": true
+    },
+    {
+      "name": "textnotestwocoltrue"
+    },
+    {
+      "name": "textnotestwocolfalse"
+    },
+    {
+      "name": "ifemendationstwocol",
+      "unusual": true
+    },
+    {
+      "name": "emendationstwocoltrue"
+    },
+    {
+      "name": "emendationstwocolfalse"
+    },
+    {
+      "name": "ifexplanationstwocol",
+      "unusual": true
+    },
+    {
+      "name": "explanationstwocoltrue"
+    },
+    {
+      "name": "explanationstwocolfalse"
+    },
+    {
+      "name": "ifputpagenumberinnotes",
+      "unusual": true
+    },
+    {
+      "name": "putpagenumberinnotestrue"
+    },
+    {
+      "name": "putpagenumberinnotesfalse"
+    },
+    {
+      "name": "ifputtitleinnotes",
+      "unusual": true
+    },
+    {
+      "name": "puttitleinnotestrue"
+    },
+    {
+      "name": "puttitleinnotesfalse"
+    },
+    {
+      "name": "contentsendnotesindent",
+      "unusual": true
+    },
+    {
+      "name": "contentsendnotesfont",
+      "unusual": true
+    },
+    {
+      "name": "sources",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "literaltextnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "literalemend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "literalexplain",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "literalcontents",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "emendation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "emendation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "explanatory",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "explanatory",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sameword"
+    },
+    {
+      "name": "missingpunct"
+    },
+    {
+      "name": "accidental",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifincludeaccidentals",
+      "unusual": true
+    },
+    {
+      "name": "includeaccidentalstrue"
+    },
+    {
+      "name": "includeaccidentalsfalse"
+    },
+    {
+      "name": "tsvariant",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tsvariant",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "tsentry",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifincludetypescripts",
+      "unusual": true
+    },
+    {
+      "name": "includetypescriptstrue"
+    },
+    {
+      "name": "includetypescriptsfalse"
+    },
+    {
+      "name": "margreftextnote"
+    },
+    {
+      "name": "margrefexplanatory"
+    },
+    {
+      "name": "margrefemendation"
+    },
+    {
+      "name": "JHmarksleft"
+    },
+    {
+      "name": "JHmarksright"
+    },
+    {
+      "name": "JHmarksouter"
+    },
+    {
+      "name": "JHmarksgutter"
+    },
+    {
+      "name": "quotedversecorrectiontextnote"
+    },
+    {
+      "name": "quotedversecorrectiontextnote",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:length}]"
+      }
+    },
+    {
+      "name": "quotedversecorrectionexplanatory"
+    },
+    {
+      "name": "quotedversecorrectionexplanatory",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:length}]"
+      }
+    },
+    {
+      "name": "quotedversecorrectionemendation"
+    },
+    {
+      "name": "quotedversecorrectionemendation",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:length}]"
+      }
+    },
+    {
+      "name": "definenewnotetype",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:name}}{${2:output name}}{${3:literal name}}{${4:put name}}{${5:margref name}}"
+      }
+    },
+    {
+      "name": "textnotesatfoot"
+    },
+    {
+      "name": "emendationsatfoot"
+    },
+    {
+      "name": "explanationsatfoot"
+    },
+    {
+      "name": "iftextfootnotespara",
+      "unusual": true
+    },
+    {
+      "name": "textfootnotesparatrue"
+    },
+    {
+      "name": "textfootnotesparafalse"
+    },
+    {
+      "name": "ifsourcesfootnotespara",
+      "unusual": true
+    },
+    {
+      "name": "sourcesfootnotesparatrue"
+    },
+    {
+      "name": "sourcesfootnotesparafalse"
+    },
+    {
+      "name": "ifemendationfootnotespara",
+      "unusual": true
+    },
+    {
+      "name": "emendationfootnotesparatrue"
+    },
+    {
+      "name": "emendationfootnotesparafalse"
+    },
+    {
+      "name": "ifexplanfootnotespara",
+      "unusual": true
+    },
+    {
+      "name": "explanfootnotesparatrue"
+    },
+    {
+      "name": "explanfootnotesparafalse"
+    },
+    {
+      "name": "poemendnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemendnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "makepoemendnotes"
+    },
+    {
+      "name": "putpoemendnotes"
+    },
+    {
+      "name": "ifpoemendnotessinglepar",
+      "unusual": true
+    },
+    {
+      "name": "poemendnotessinglepartrue"
+    },
+    {
+      "name": "poemendnotessingleparfalse"
+    },
+    {
+      "name": "poemendemendationnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemendemendationnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "makepoemendemendationnotes"
+    },
+    {
+      "name": "putpoemendemendationnotes"
+    },
+    {
+      "name": "poemendexplanatorynote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemendexplanatorynote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "makepoemendexplanatorynotes"
+    },
+    {
+      "name": "putpoemendexplanatorynotes"
+    },
+    {
+      "name": "poemendtextnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemendtextnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "makepoemendtextnotes"
+    },
+    {
+      "name": "putpoemendtextnotes"
+    },
+    {
+      "name": "ifpoemendtextnotessinglepar",
+      "unusual": true
+    },
+    {
+      "name": "poemendtextnotessinglepartrue"
+    },
+    {
+      "name": "poemendtextnotessingleparfalse"
+    },
+    {
+      "name": "testforauxonfirstrun"
+    },
+    {
+      "name": "makeappendix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "appendixtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "makesubappendix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "subappendixtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifappendixincontents",
+      "unusual": true
+    },
+    {
+      "name": "appendixincontentstrue"
+    },
+    {
+      "name": "appendixincontentsfalse"
+    },
+    {
+      "name": "makeforeword",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "forewordtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "epigraph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "headnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "attribution",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "dedication",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemdedication",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "volumeepigraph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "shortpoemepigraph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "shortpoemdedication",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "shortpoemattribution",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "JHshortepigraph",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "JHshortdedication",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "poemdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "dateindent",
+      "unusual": true
+    },
+    {
+      "name": "saveverselinenumber"
+    },
+    {
+      "name": "restoreverselinenumber"
+    },
+    {
+      "name": "poemtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemtitlefirstline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemtitlemiddleline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemtitlelastline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemsubtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemtitlenotitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemtitlenocontents",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemtitlebaretitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemtitleonlycontents",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemtitleonlynotes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemsectiontitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemsectiontitlefirstline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemsectiontitlemiddleline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemsectiontitlelastline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemsectiontitlenocontents",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemsectiontitlebaretitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemfirstsectiontitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemfirstsectiontitlebaretitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemsubsectiontitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencetitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencetitlefirstline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencetitlemiddleline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencetitlelastline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencetitlenonotes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesubtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesubtitlefirstline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesubtitlemiddleline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesubtitlelastline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesectiontitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesectiontitlenocontents",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesectiontitlenonotes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesectiontitlebaretitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesectiontitlefirstline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesectiontitlemiddleline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesectiontitlelastline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencefirstsectiontitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencefirstsectiontitlenocontents",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencefirstsectiontitlenonotes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencefirstsectiontitlefirstline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencefirstsectiontitlemiddleline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencefirstsectiontitlelastline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesectionsubtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesectionsubtitlefirstline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesectionsubtitlemiddleline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesectionsubtitlelastline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesubsectiontitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesubsectiontitlenocontents",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencefirstsubsectiontitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencefirstsubsectiontitlenocontents",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesubsectiontitlefirstline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesubsectiontitlemiddleline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesubsectiontitlelastline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencefirstsubsectiontitlefirstline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencefirstsubsectiontitlemiddleline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencefirstsubsectiontitlelastline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesubsubsectiontitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencesubsubsectiontitlenocontents",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sequencefirstsubsubsectiontitlenocontents",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "JHpoemtitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "JHsequencetitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "JHsequencefirstsectiontitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "JHsequencesectiontitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "JHsequencesubsectiontitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "JHpoemsectiontitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "JHpoemfirstsectiontitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "JHpoemsubtitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "JHepigraph",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "JHprosesectiontitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "JHdedication",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "setmargpoemtitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:commands}}"
+      }
+    },
+    {
+      "name": "setmargrefmarker",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "settitlemargrefmarker",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "footnotepoemtitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:text}}"
+      }
+    },
+    {
+      "name": "footnotepoemtitlefirstline",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:text}}"
+      }
+    },
+    {
+      "name": "footnotepoemtitlemiddleline",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:text}}"
+      }
+    },
+    {
+      "name": "footnotepoemtitlelastline",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:text}}"
+      }
+    },
+    {
+      "name": "footnotesplitpoemtitle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:begin title%text}}{${2:text}}{${3:end title%text}}"
+      }
+    },
+    {
+      "name": "maketitlefootnoteslayered"
+    },
+    {
+      "name": "maketitlefootnotesatpoemend"
+    },
+    {
+      "name": "maketitlefootnotesplain"
+    },
+    {
+      "name": "poemtitlenonotes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "firstlinesettings",
+      "unusual": true
+    },
+    {
+      "name": "middlelinesettings",
+      "unusual": true
+    },
+    {
+      "name": "lastlinesettings",
+      "unusual": true
+    },
+    {
+      "name": "restoresinglelinesettings",
+      "unusual": true
+    },
+    {
+      "name": "volumetitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "volumetitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "volumesubtitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "volumesubtitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "volumesectiontitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "volumesectiontitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "poemtitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "poemtitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "poemsubtitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "poemsectiontitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "poemsectiontitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "poemsubsectiontitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "sequencetitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "sequencetitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "sequencesubtitleindent",
+      "unusual": true
+    },
+    {
+      "name": "sequencesubtitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "sequencesectiontitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "sequencesectiontitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "sequencesectionsubtitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "sequencesectionsubtitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "sequencesubsectiontitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "sequencesubsubsectiontitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "appendixtitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "subappendixtitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "forewordtitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "notestitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "titleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "titleindenttwoamount",
+      "unusual": true
+    },
+    {
+      "name": "titleindentthreeamount",
+      "unusual": true
+    },
+    {
+      "name": "longpage"
+    },
+    {
+      "name": "shortpage"
+    },
+    {
+      "name": "contentsvolumetitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentsvolumetitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentsvolumesubtitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentsvolumesubtitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentsvolumesectiontitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentsvolumesectiontitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentspoemtitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentspoemtitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentspoemsectiontitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencetitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencetitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencesectiontitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencesectiontitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencesubsectiontitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentsappendixtitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentsnotestitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentsindenttwoamount",
+      "unusual": true
+    },
+    {
+      "name": "contentsindentthreeamount",
+      "unusual": true
+    },
+    {
+      "name": "prosesectiontitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "prosesectiontitlenotitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setprosemodulo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "proselinelabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "prosetextnote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "prosetextnote",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:label}]{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "proseemendation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "proseemendation",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:label}]{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "proseexplanatory",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "proseexplanatory",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:label}]{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "prosetsvariant",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "prosetsvariant",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:label}]{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "proseaccidental",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:text}}"
+      }
+    },
+    {
+      "name": "prosetsaccidental",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:text}}"
+      }
+    },
+    {
+      "name": "setprosebysentence"
+    },
+    {
+      "name": "verselinenumbersswitch"
+    },
+    {
+      "name": "pmsentence"
+    },
+    {
+      "name": "ifrunningsentencenumbers",
+      "unusual": true
+    },
+    {
+      "name": "runningsentencenumberstrue"
+    },
+    {
+      "name": "runningsentencenumbersfalse"
+    },
+    {
+      "name": "ifmarginsentencenumbers",
+      "unusual": true
+    },
+    {
+      "name": "marginsentencenumberstrue"
+    },
+    {
+      "name": "marginsentencenumbersfalse"
+    },
+    {
+      "name": "setpmmodulo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "pmsentencetwo"
+    },
+    {
+      "name": "pmsentencethree"
+    },
+    {
+      "name": "pmsentencefour"
+    },
+    {
+      "name": "pmnumberstoright"
+    },
+    {
+      "name": "pmnumberstoleft"
+    },
+    {
+      "name": "pmnumbersgutter"
+    },
+    {
+      "name": "pmnumbersouter"
+    },
+    {
+      "name": "runningsentencenumberformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "marginsentencenumberformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pmpara"
+    },
+    {
+      "name": "ifpmparas",
+      "unusual": true
+    },
+    {
+      "name": "pmparastrue"
+    },
+    {
+      "name": "pmparasfalse"
+    },
+    {
+      "name": "ifpmsentencebypara",
+      "unusual": true
+    },
+    {
+      "name": "pmsentencebyparatrue"
+    },
+    {
+      "name": "pmsentencebyparafalse"
+    },
+    {
+      "name": "ifpmparainmar",
+      "unusual": true
+    },
+    {
+      "name": "pmparainmartrue"
+    },
+    {
+      "name": "pmparainmarfalse"
+    },
+    {
+      "name": "ifpmpararunning",
+      "unusual": true
+    },
+    {
+      "name": "pmpararunningtrue"
+    },
+    {
+      "name": "pmpararunningfalse"
+    },
+    {
+      "name": "pmpararunningformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pmparmarformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifsuppressfirstpara",
+      "unusual": true
+    },
+    {
+      "name": "suppressfirstparatrue"
+    },
+    {
+      "name": "suppressfirstparafalse"
+    },
+    {
+      "name": "ifsuppressfirstsentence",
+      "unusual": true
+    },
+    {
+      "name": "suppressfirstsentencetrue"
+    },
+    {
+      "name": "suppressfirstsentencefalse"
+    },
+    {
+      "name": "sentencelabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "pmtextnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pmtextnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "pmexplanatory",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pmexplanatory",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "pmemendation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pmemendation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "pmaccidental",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pmtsvariant",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pmtsvariant",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "pmtsaccidental",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "biblechapter"
+    },
+    {
+      "name": "bibleverse"
+    },
+    {
+      "name": "finishparalleltexts"
+    },
+    {
+      "name": "startrectopage"
+    },
+    {
+      "name": "finishrectopage"
+    },
+    {
+      "name": "startversopage"
+    },
+    {
+      "name": "finishversopage"
+    },
+    {
+      "name": "versopoemtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rectopoemtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "versopoemtitlenocontents",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rectopoemtitlenocontents",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rectotextnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rectotextnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "rectoemendation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rectoemendation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "rectoexplanatory",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rectoexplanatory",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "versotextnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "versotextnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "versoemendation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "versoemendation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "versoexplanatory",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "versoexplanatory",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "versoprosetextnote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "versoprosetextnote",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:label}]{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "versoproseemendation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "versoproseemendation",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:label}]{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "versoproseexplanatory",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "versoproseexplanatory",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:label}]{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "rectoprosetextnote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "rectoprosetextnote",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:label}]{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "rectoproseemendation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "rectoproseemendation",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:label}]{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "rectoproseexplanatory",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "rectoproseexplanatory",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:label}]{${1:labeldef}}{${2:text}}"
+      }
+    },
+    {
+      "name": "makerectotextnotes"
+    },
+    {
+      "name": "makerectoemendations"
+    },
+    {
+      "name": "makerectoexplanatorynotes"
+    },
+    {
+      "name": "makeversotextnotes"
+    },
+    {
+      "name": "makeversoemendations"
+    },
+    {
+      "name": "makeversoexplanatorynotes"
+    },
+    {
+      "name": "changerectotextnotesname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changerectotextnotesheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changerectotextnotescontentsname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changeversotextnotesname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changeversotextnotesheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changeversotextnotescontentsname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifrectotextnotessinglepar",
+      "unusual": true
+    },
+    {
+      "name": "rectotextnotessinglepartrue"
+    },
+    {
+      "name": "rectotextnotessingleparfalse"
+    },
+    {
+      "name": "ifrectotextnotestwocol",
+      "unusual": true
+    },
+    {
+      "name": "rectotextnotestwocoltrue"
+    },
+    {
+      "name": "rectotextnotestwocolfalse"
+    },
+    {
+      "name": "ifversotextnotestwocol",
+      "unusual": true
+    },
+    {
+      "name": "versotextnotestwocoltrue"
+    },
+    {
+      "name": "versotextnotestwocolfalse"
+    },
+    {
+      "name": "versotextnotes"
+    },
+    {
+      "name": "ifversotextnotessinglepar",
+      "unusual": true
+    },
+    {
+      "name": "versotextnotessinglepartrue"
+    },
+    {
+      "name": "versotextnotessingleparfalse"
+    },
+    {
+      "name": "putrectotextnotes"
+    },
+    {
+      "name": "putversotextnotes"
+    },
+    {
+      "name": "putversoemendations"
+    },
+    {
+      "name": "putrectoemendations"
+    },
+    {
+      "name": "putversoexplanatorynotes"
+    },
+    {
+      "name": "putrectoexplanatorynotes"
+    },
+    {
+      "name": "synchrolabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "synchroref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "setsynchroflag",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:flag}}"
+      }
+    },
+    {
+      "name": "startparalleltextprose"
+    },
+    {
+      "name": "finishparalleltextprose"
+    },
+    {
+      "name": "startversoprosepage"
+    },
+    {
+      "name": "finishversoprosepage"
+    },
+    {
+      "name": "startrectoprosepage"
+    },
+    {
+      "name": "finishrectoprosepage"
+    },
+    {
+      "name": "parastart"
+    },
+    {
+      "name": "paraend"
+    },
+    {
+      "name": "changecontentsname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changecontentsheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changenotesname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changenotesheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changetextnotescontentsname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changesinglepageabbrev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:abbrev}}"
+      }
+    },
+    {
+      "name": "changemultiplepageabbrev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:abbrev}}"
+      }
+    },
+    {
+      "name": "changesinglelineabbrev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:abbrev}}"
+      }
+    },
+    {
+      "name": "changemultiplelineabbrev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:abbrev}}"
+      }
+    },
+    {
+      "name": "changeemendationsname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changeemendationsheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changeemendationscontentsname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changeexplanationsname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changeexplanationsheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changeexplanationscontentsname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changepoemindexname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changepoemindexheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "changepoemindexcontentsname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tightgeometry"
+    },
+    {
+      "name": "tightleading"
+    },
+    {
+      "name": "volumetitlefont",
+      "unusual": true
+    },
+    {
+      "name": "volumesubtitlefont",
+      "unusual": true
+    },
+    {
+      "name": "sequencetitlefont",
+      "unusual": true
+    },
+    {
+      "name": "subsectiontitlefont",
+      "unusual": true
+    },
+    {
+      "name": "backmatterheaderfont",
+      "unusual": true
+    },
+    {
+      "name": "volumetitlesink",
+      "unusual": true
+    },
+    {
+      "name": "backmattersink",
+      "unusual": true
+    },
+    {
+      "name": "backmatterafterheadersink",
+      "unusual": true
+    },
+    {
+      "name": "backmattertextfont",
+      "unusual": true
+    },
+    {
+      "name": "backmatterintrofont",
+      "unusual": true
+    },
+    {
+      "name": "backmattervolumefont",
+      "unusual": true
+    },
+    {
+      "name": "backmattervolumesubtitlefont",
+      "unusual": true
+    },
+    {
+      "name": "contentsvolumefont",
+      "unusual": true
+    },
+    {
+      "name": "contentsvolumesubtitlefont",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencetitlefont",
+      "unusual": true
+    },
+    {
+      "name": "notespoemclubpenalty",
+      "unusual": true
+    },
+    {
+      "name": "notessequenceclubpenalty",
+      "unusual": true
+    },
+    {
+      "name": "notesvolumetitlepenalty",
+      "unusual": true
+    },
+    {
+      "name": "repeatedindent",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "variablestanzaamount",
+      "unusual": true
+    },
+    {
+      "name": "ifinindentedverse",
+      "unusual": true
+    },
+    {
+      "name": "inindentedversetrue",
+      "unusual": true
+    },
+    {
+      "name": "inindentedversefalse",
+      "unusual": true
+    },
+    {
+      "name": "runoverindentvalue",
+      "unusual": true
+    },
+    {
+      "name": "volumetitleindent",
+      "unusual": true
+    },
+    {
+      "name": "volumetitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "volumesubtitleindent",
+      "unusual": true
+    },
+    {
+      "name": "volumesubtitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "volumesectiontitleindent",
+      "unusual": true
+    },
+    {
+      "name": "volumesectiontitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "poemtitleindent",
+      "unusual": true
+    },
+    {
+      "name": "poemtitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "poemsubtitleindent",
+      "unusual": true
+    },
+    {
+      "name": "poemsectiontitleindent",
+      "unusual": true
+    },
+    {
+      "name": "poemsectiontitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "poemsubsectiontitleindent",
+      "unusual": true
+    },
+    {
+      "name": "sequencetitleindent",
+      "unusual": true
+    },
+    {
+      "name": "sequencetitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "sequencesubtitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "sequencesubtitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "sequencesectiontitleindent",
+      "unusual": true
+    },
+    {
+      "name": "sequencesectiontitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "sequencesectionsubtitleindent",
+      "unusual": true
+    },
+    {
+      "name": "sequencesectionsubtitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "sequencesubsectiontitleindent",
+      "unusual": true
+    },
+    {
+      "name": "sequencesubsubsectiontitleindent",
+      "unusual": true
+    },
+    {
+      "name": "appendixtitleindent",
+      "unusual": true
+    },
+    {
+      "name": "subappendixtitleindent",
+      "unusual": true
+    },
+    {
+      "name": "forewordtitleindent",
+      "unusual": true
+    },
+    {
+      "name": "notestitleindent",
+      "unusual": true
+    },
+    {
+      "name": "volumetitleshiftamount",
+      "unusual": true
+    },
+    {
+      "name": "volumetitleshift",
+      "unusual": true
+    },
+    {
+      "name": "voladditionalamount",
+      "unusual": true
+    },
+    {
+      "name": "contentsindentfouramount",
+      "unusual": true
+    },
+    {
+      "name": "contentsindentfour",
+      "unusual": true
+    },
+    {
+      "name": "contentsindentfiveamount",
+      "unusual": true
+    },
+    {
+      "name": "contentsindentfive",
+      "unusual": true
+    },
+    {
+      "name": "contentsvolumetitleindent",
+      "unusual": true
+    },
+    {
+      "name": "contentsvolumetitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "contentsvolumesubtitleindent",
+      "unusual": true
+    },
+    {
+      "name": "contentsvolumesubtitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "contentsvolumesectiontitleindent",
+      "unusual": true
+    },
+    {
+      "name": "contentsvolumesectiontitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "contentspoemtitleindent",
+      "unusual": true
+    },
+    {
+      "name": "contentspoemtitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "contentspoemsubtitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentspoemsubtitleindent",
+      "unusual": true
+    },
+    {
+      "name": "contentspoemsectiontitleindent",
+      "unusual": true
+    },
+    {
+      "name": "contentspoemsectiontitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentspoemsectiontitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "contentspoemsubsectiontitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentspoemsubsectiontitleindent",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencetitleindent",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencetitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencesubtitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencesubtitleindent",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencesubtitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencesubtitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencesectiontitleindent",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencesectiontitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencesectionsubtitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencesectionsubtitleindent",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencesectionsubtitlesecondlineindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencesectionsubtitlesecondlineindent",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencesubsectiontitleindent",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencesubsubsectiontitleindentamount",
+      "unusual": true
+    },
+    {
+      "name": "contentssequencesubsubsectiontitleindent",
+      "unusual": true
+    },
+    {
+      "name": "aftersequencetitleskip",
+      "unusual": true
+    },
+    {
+      "name": "stanzaskip",
+      "unusual": true
+    },
+    {
+      "name": "multilinetitlepenalty",
+      "unusual": true
+    },
+    {
+      "name": "sequencetitlepenalty",
+      "unusual": true
+    },
+    {
+      "name": "multilinesequencepenalty",
+      "unusual": true
+    },
+    {
+      "name": "lefttitleaddition",
+      "unusual": true
+    },
+    {
+      "name": "iflastpoemcentered",
+      "unusual": true
+    },
+    {
+      "name": "lastpoemcenteredtrue",
+      "unusual": true
+    },
+    {
+      "name": "lastpoemcenteredfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifinquotedverse",
+      "unusual": true
+    },
+    {
+      "name": "inquotedversetrue",
+      "unusual": true
+    },
+    {
+      "name": "inquotedversefalse",
+      "unusual": true
+    },
+    {
+      "name": "fulltitleholder",
+      "unusual": true
+    },
+    {
+      "name": "titlesofar",
+      "unusual": true
+    },
+    {
+      "name": "titleincrement",
+      "unusual": true
+    },
+    {
+      "name": "ifinstanza",
+      "unusual": true
+    },
+    {
+      "name": "instanzatrue",
+      "unusual": true
+    },
+    {
+      "name": "instanzafalse",
+      "unusual": true
+    },
+    {
+      "name": "ifinpoem",
+      "unusual": true
+    },
+    {
+      "name": "inpoemtrue",
+      "unusual": true
+    },
+    {
+      "name": "inpoemfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpoemcontentson",
+      "unusual": true
+    },
+    {
+      "name": "poemcontentsontrue",
+      "unusual": true
+    },
+    {
+      "name": "poemcontentsonfalse",
+      "unusual": true
+    },
+    {
+      "name": "iftextnoteson",
+      "unusual": true
+    },
+    {
+      "name": "textnotesontrue",
+      "unusual": true
+    },
+    {
+      "name": "textnotesonfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifexplanon",
+      "unusual": true
+    },
+    {
+      "name": "explanontrue",
+      "unusual": true
+    },
+    {
+      "name": "explanonfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifemendationson",
+      "unusual": true
+    },
+    {
+      "name": "emendationsontrue",
+      "unusual": true
+    },
+    {
+      "name": "emendationsonfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifredundantemendations",
+      "unusual": true
+    },
+    {
+      "name": "redundantemendationstrue",
+      "unusual": true
+    },
+    {
+      "name": "redundantemendationsfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifnoemendyet",
+      "unusual": true
+    },
+    {
+      "name": "noemendyettrue",
+      "unusual": true
+    },
+    {
+      "name": "noemendyetfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifnoexplainyet",
+      "unusual": true
+    },
+    {
+      "name": "noexplainyettrue",
+      "unusual": true
+    },
+    {
+      "name": "noexplainyetfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifmiddlecontentsline",
+      "unusual": true
+    },
+    {
+      "name": "middlecontentslinetrue",
+      "unusual": true
+    },
+    {
+      "name": "middlecontentslinefalse",
+      "unusual": true
+    },
+    {
+      "name": "iflastcontentsline",
+      "unusual": true
+    },
+    {
+      "name": "lastcontentslinetrue",
+      "unusual": true
+    },
+    {
+      "name": "lastcontentslinefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifputpagenumberincontents",
+      "unusual": true
+    },
+    {
+      "name": "putpagenumberincontentstrue",
+      "unusual": true
+    },
+    {
+      "name": "putpagenumberincontentsfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinglelinetitle",
+      "unusual": true
+    },
+    {
+      "name": "singlelinetitletrue",
+      "unusual": true
+    },
+    {
+      "name": "singlelinetitlefalse",
+      "unusual": true
+    },
+    {
+      "name": "iftitlefirstline",
+      "unusual": true
+    },
+    {
+      "name": "titlefirstlinetrue",
+      "unusual": true
+    },
+    {
+      "name": "titlefirstlinefalse",
+      "unusual": true
+    },
+    {
+      "name": "titleconcat",
+      "unusual": true
+    },
+    {
+      "name": "iftitlemiddleline",
+      "unusual": true
+    },
+    {
+      "name": "titlemiddlelinetrue",
+      "unusual": true
+    },
+    {
+      "name": "titlemiddlelinefalse",
+      "unusual": true
+    },
+    {
+      "name": "iftitlelastline",
+      "unusual": true
+    },
+    {
+      "name": "titlelastlinetrue",
+      "unusual": true
+    },
+    {
+      "name": "titlelastlinefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifverserightflush",
+      "unusual": true
+    },
+    {
+      "name": "verserightflushtrue",
+      "unusual": true
+    },
+    {
+      "name": "verserightflushfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifrangelemma",
+      "unusual": true
+    },
+    {
+      "name": "rangelemmatrue",
+      "unusual": true
+    },
+    {
+      "name": "rangelemmafalse",
+      "unusual": true
+    },
+    {
+      "name": "iftextnotesatend",
+      "unusual": true
+    },
+    {
+      "name": "textnotesatendtrue",
+      "unusual": true
+    },
+    {
+      "name": "textnotesatendfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifemendationsatend",
+      "unusual": true
+    },
+    {
+      "name": "emendationsatendtrue",
+      "unusual": true
+    },
+    {
+      "name": "emendationsatendfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifexplanatend",
+      "unusual": true
+    },
+    {
+      "name": "explanatendtrue",
+      "unusual": true
+    },
+    {
+      "name": "explanatendfalse",
+      "unusual": true
+    },
+    {
+      "name": "volumeheadervalue",
+      "unusual": true
+    },
+    {
+      "name": "leftheadervalue",
+      "unusual": true
+    },
+    {
+      "name": "singlelineabbrev",
+      "unusual": true
+    },
+    {
+      "name": "multiplelineabbrev",
+      "unusual": true
+    },
+    {
+      "name": "myversemarks",
+      "unusual": true
+    },
+    {
+      "name": "clearemptydoublepage",
+      "unusual": true
+    },
+    {
+      "name": "singlepageabbrev",
+      "unusual": true
+    },
+    {
+      "name": "multiplepageabbrev",
+      "unusual": true
+    },
+    {
+      "name": "mymarks",
+      "unusual": true
+    },
+    {
+      "name": "contentsentryoverrun",
+      "unusual": true
+    },
+    {
+      "name": "titleentryoverrun",
+      "unusual": true
+    },
+    {
+      "name": "ifnumbersswitch",
+      "unusual": true
+    },
+    {
+      "name": "numbersswitchtrue",
+      "unusual": true
+    },
+    {
+      "name": "numbersswitchfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifnumbersright",
+      "unusual": true
+    },
+    {
+      "name": "numbersrighttrue",
+      "unusual": true
+    },
+    {
+      "name": "numbersrightfalse",
+      "unusual": true
+    },
+    {
+      "name": "pmclsidepar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pmemlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "newpmemlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:value}}"
+      }
+    },
+    {
+      "name": "pmemlabelref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "checkoddpage",
+      "unusual": true
+    },
+    {
+      "name": "ifpmclreversesidepar",
+      "unusual": true
+    },
+    {
+      "name": "pmclreversesidepartrue",
+      "unusual": true
+    },
+    {
+      "name": "pmclreversesideparfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpmclsideparswitch",
+      "unusual": true
+    },
+    {
+      "name": "pmclsideparswitchtrue",
+      "unusual": true
+    },
+    {
+      "name": "pmclsideparswitchfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifoddpage",
+      "unusual": true
+    },
+    {
+      "name": "oddpagetrue",
+      "unusual": true
+    },
+    {
+      "name": "oddpagefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifstrictpagecheck",
+      "unusual": true
+    },
+    {
+      "name": "strictpagechecktrue",
+      "unusual": true
+    },
+    {
+      "name": "strictpagecheckfalse",
+      "unusual": true
+    },
+    {
+      "name": "cplabel",
+      "unusual": true
+    },
+    {
+      "name": "ifnumbersgutter",
+      "unusual": true
+    },
+    {
+      "name": "numbersguttertrue",
+      "unusual": true
+    },
+    {
+      "name": "numbersgutterfalse",
+      "unusual": true
+    },
+    {
+      "name": "putverselinenumber",
+      "unusual": true
+    },
+    {
+      "name": "ifspeciallinelock",
+      "unusual": true
+    },
+    {
+      "name": "speciallinelocktrue",
+      "unusual": true
+    },
+    {
+      "name": "speciallinelockfalse",
+      "unusual": true
+    },
+    {
+      "name": "incrementverselinenumber",
+      "unusual": true
+    },
+    {
+      "name": "hour",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hour}}"
+      }
+    },
+    {
+      "name": "pmclcontentsname",
+      "unusual": true
+    },
+    {
+      "name": "pmclcontentsheader",
+      "unusual": true
+    },
+    {
+      "name": "poemcontents",
+      "unusual": true
+    },
+    {
+      "name": "setendnotessectiontitledefaults",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:title%text}}{${2:before code}}{${3:fontsize cmd}}{${4:indent cmd}}{${5:after code}}{${6:label}}"
+      }
+    },
+    {
+      "name": "setendnotessectiontitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "contentsendnotesdefaults",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:title%text}}{${2:indent cmd}}{${3:fontsize cmd}}{${4:number}}"
+      }
+    },
+    {
+      "name": "contentsendnotestitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "pmclnotesname",
+      "unusual": true
+    },
+    {
+      "name": "notesheadername",
+      "unusual": true
+    },
+    {
+      "name": "textnotescontentsname",
+      "unusual": true
+    },
+    {
+      "name": "textnotes",
+      "unusual": true
+    },
+    {
+      "name": "emendationsname",
+      "unusual": true
+    },
+    {
+      "name": "emendationsheadername",
+      "unusual": true
+    },
+    {
+      "name": "emendationscontentsname",
+      "unusual": true
+    },
+    {
+      "name": "emendations",
+      "unusual": true
+    },
+    {
+      "name": "explanationsname",
+      "unusual": true
+    },
+    {
+      "name": "explanationsheadername",
+      "unusual": true
+    },
+    {
+      "name": "explanationscontentsname",
+      "unusual": true
+    },
+    {
+      "name": "explanations",
+      "unusual": true
+    },
+    {
+      "name": "ifforewordincontents",
+      "unusual": true
+    },
+    {
+      "name": "forewordincontentstrue",
+      "unusual": true
+    },
+    {
+      "name": "forewordincontentsfalse",
+      "unusual": true
+    },
+    {
+      "name": "appendixdividerpage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "contentsendnotessubtitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:number}}"
+      }
+    },
+    {
+      "name": "foreworddividerpage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pmclcontentsentrydefaults",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "volumesubtitlefirstline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "volumesubtitlemiddleline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "volumesubtitlelastline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "volumesectiontitlefirstline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "volumesectiontitlemiddleline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "volumesectiontitlelastline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "makepoemlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "argpageref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "lefttitlemargin",
+      "unusual": true
+    },
+    {
+      "name": "leftaligntitlespace",
+      "unusual": true
+    },
+    {
+      "name": "ifleftaligntitles",
+      "unusual": true
+    },
+    {
+      "name": "leftaligntitlestrue",
+      "unusual": true
+    },
+    {
+      "name": "leftaligntitlesfalse",
+      "unusual": true
+    },
+    {
+      "name": "interjectiontitlefirstline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "interjectiontitlemiddleline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "interjectiontitlelastline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "JHtextwidth",
+      "unusual": true
+    },
+    {
+      "name": "JHmarginparsep",
+      "unusual": true
+    },
+    {
+      "name": "JHmarginparvshift",
+      "unusual": true
+    },
+    {
+      "name": "JHmarginparwidth",
+      "unusual": true
+    },
+    {
+      "name": "JHmarginparsepmin",
+      "unusual": true
+    },
+    {
+      "name": "JHtitlemarginparsep",
+      "unusual": true
+    },
+    {
+      "name": "ifJHmarkstoleft",
+      "unusual": true
+    },
+    {
+      "name": "JHmarkstolefttrue",
+      "unusual": true
+    },
+    {
+      "name": "JHmarkstoleftfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifJHmarkstoright",
+      "unusual": true
+    },
+    {
+      "name": "JHmarkstorighttrue",
+      "unusual": true
+    },
+    {
+      "name": "JHmarkstorightfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifJHmarkstoouter",
+      "unusual": true
+    },
+    {
+      "name": "JHmarkstooutertrue",
+      "unusual": true
+    },
+    {
+      "name": "JHmarkstoouterfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifJHmarkstogutter",
+      "unusual": true
+    },
+    {
+      "name": "JHmarkstoguttertrue",
+      "unusual": true
+    },
+    {
+      "name": "JHmarkstogutterfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifJHmarginparswitch",
+      "unusual": true
+    },
+    {
+      "name": "JHmarginparswitchtrue",
+      "unusual": true
+    },
+    {
+      "name": "JHmarginparswitchfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifJHreversemarginpar",
+      "unusual": true
+    },
+    {
+      "name": "JHreversemarginpartrue",
+      "unusual": true
+    },
+    {
+      "name": "JHreversemarginparfalse",
+      "unusual": true
+    },
+    {
+      "name": "JHrightmarginpar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "JHleftmarginpar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "JHoutermarginpar",
+      "unusual": true
+    },
+    {
+      "name": "JHswitchmarginpar",
+      "unusual": true
+    },
+    {
+      "name": "JHguttermarginpar",
+      "unusual": true
+    },
+    {
+      "name": "JHrighttitlemarginpar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "JHlefttitlemarginpar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "JHswitchtitlemarginpar",
+      "unusual": true
+    },
+    {
+      "name": "JHlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "JHsequencesectionsubtitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "backmattersectiontitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "margrefmarker",
+      "unusual": true
+    },
+    {
+      "name": "titlemargrefmarker",
+      "unusual": true
+    },
+    {
+      "name": "makemargreflabel",
+      "unusual": true
+    },
+    {
+      "name": "ifmargrefstomargin",
+      "unusual": true
+    },
+    {
+      "name": "margrefstomargintrue",
+      "unusual": true
+    },
+    {
+      "name": "margrefstomarginfalse",
+      "unusual": true
+    },
+    {
+      "name": "setmargref",
+      "unusual": true
+    },
+    {
+      "name": "margrefspecial",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "iftitlefootnotesatpoemend",
+      "unusual": true
+    },
+    {
+      "name": "titlefootnotesatpoemendtrue",
+      "unusual": true
+    },
+    {
+      "name": "titlefootnotesatpoemendfalse",
+      "unusual": true
+    },
+    {
+      "name": "iftitlefootnotesplain",
+      "unusual": true
+    },
+    {
+      "name": "titlefootnotesplaintrue",
+      "unusual": true
+    },
+    {
+      "name": "titlefootnotesplainfalse",
+      "unusual": true
+    },
+    {
+      "name": "iftitlefootnoteslayered",
+      "unusual": true
+    },
+    {
+      "name": "titlefootnoteslayeredtrue",
+      "unusual": true
+    },
+    {
+      "name": "titlefootnoteslayeredfalse",
+      "unusual": true
+    },
+    {
+      "name": "placetitlefootnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "poemendnotes",
+      "unusual": true
+    },
+    {
+      "name": "centerepigraphindentation",
+      "unusual": true
+    },
+    {
+      "name": "normalepigraphindentation",
+      "unusual": true
+    },
+    {
+      "name": "centerepigraphquote",
+      "unusual": true
+    },
+    {
+      "name": "normalepigraphquote",
+      "unusual": true
+    },
+    {
+      "name": "testforcenterepigraph",
+      "unusual": true
+    },
+    {
+      "name": "variabledateindent",
+      "unusual": true
+    },
+    {
+      "name": "poemattributionindent",
+      "unusual": true
+    },
+    {
+      "name": "variablepoemattributionindent",
+      "unusual": true
+    },
+    {
+      "name": "poemattribution",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "literaltextnoteshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "literalemendshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "literalexplainshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "literalcontentsshort",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pmccheckifinteger",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "ifinteger",
+      "unusual": true
+    },
+    {
+      "name": "integertrue",
+      "unusual": true
+    },
+    {
+      "name": "integerfalse",
+      "unusual": true
+    },
+    {
+      "name": "pmcgobm",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "setlemmarange",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "citerange",
+      "unusual": true
+    },
+    {
+      "name": "resetlemmacounters",
+      "unusual": true
+    },
+    {
+      "name": "checknoteheaders",
+      "unusual": true
+    },
+    {
+      "name": "tsaccidental",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "titletoothernotes",
+      "unusual": true
+    },
+    {
+      "name": "firstemendation",
+      "unusual": true
+    },
+    {
+      "name": "firstexplanatory",
+      "unusual": true
+    },
+    {
+      "name": "appendtomacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ifinprosesection",
+      "unusual": true
+    },
+    {
+      "name": "inprosesectiontrue",
+      "unusual": true
+    },
+    {
+      "name": "inprosesectionfalse",
+      "unusual": true
+    },
+    {
+      "name": "linenumberfont",
+      "unusual": true
+    },
+    {
+      "name": "ifrefundefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "setcounterfromref",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:counter}}{${2:label}}"
+      }
+    },
+    {
+      "name": "setcounterfrompageref",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:counter}}{${2:label}}"
+      }
+    },
+    {
+      "name": "setproselemmastart",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "setproselemmarange",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:number}}"
+      }
+    },
+    {
+      "name": "proseciterange",
+      "unusual": true
+    },
+    {
+      "name": "checkprosenoteheaders",
+      "unusual": true
+    },
+    {
+      "name": "ifprosebysentence",
+      "unusual": true
+    },
+    {
+      "name": "prosebysentencetrue",
+      "unusual": true
+    },
+    {
+      "name": "prosebysentencefalse",
+      "unusual": true
+    },
+    {
+      "name": "pmnoteheader",
+      "unusual": true
+    },
+    {
+      "name": "pmnumbersswitch",
+      "unusual": true
+    },
+    {
+      "name": "putpmsentencenumber",
+      "unusual": true
+    },
+    {
+      "name": "putpmmarginnumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:number}}{${2:font cmds}}"
+      }
+    },
+    {
+      "name": "noteheaderconcat",
+      "unusual": true
+    },
+    {
+      "name": "putpmsentencenumbertwo",
+      "unusual": true
+    },
+    {
+      "name": "putpmsentencenumberthree",
+      "unusual": true
+    },
+    {
+      "name": "putpmsentencenumberfour",
+      "unusual": true
+    },
+    {
+      "name": "putpmmarparanumber",
+      "unusual": true
+    },
+    {
+      "name": "pmrangeend",
+      "unusual": true
+    },
+    {
+      "name": "setpmlemmarange",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "pmciterange",
+      "unusual": true
+    },
+    {
+      "name": "pmchecknoteheaders",
+      "unusual": true
+    },
+    {
+      "name": "pmresetlemmacounters",
+      "unusual": true
+    },
+    {
+      "name": "ifpoemendnoteson",
+      "unusual": true
+    },
+    {
+      "name": "poemendnotesontrue",
+      "unusual": true
+    },
+    {
+      "name": "poemendnotesonfalse",
+      "unusual": true
+    },
+    {
+      "name": "literalpoemendnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifpoemendemendationnoteson",
+      "unusual": true
+    },
+    {
+      "name": "poemendemendationnotesontrue",
+      "unusual": true
+    },
+    {
+      "name": "poemendemendationnotesonfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpoemendemendationnotessinglepar",
+      "unusual": true
+    },
+    {
+      "name": "poemendemendationnotessinglepartrue",
+      "unusual": true
+    },
+    {
+      "name": "poemendemendationnotessingleparfalse",
+      "unusual": true
+    },
+    {
+      "name": "poemendemendationnotes",
+      "unusual": true
+    },
+    {
+      "name": "literalpoemendemendationnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifpoemendexplanatorynoteson",
+      "unusual": true
+    },
+    {
+      "name": "poemendexplanatorynotesontrue",
+      "unusual": true
+    },
+    {
+      "name": "poemendexplanatorynotesonfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpoemendexplanatorynotessinglepar",
+      "unusual": true
+    },
+    {
+      "name": "poemendexplanatorynotessinglepartrue",
+      "unusual": true
+    },
+    {
+      "name": "poemendexplanatorynotessingleparfalse",
+      "unusual": true
+    },
+    {
+      "name": "poemendexplanatorynotes",
+      "unusual": true
+    },
+    {
+      "name": "literalpoemendexplanatorynote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifpoemendtextnoteson",
+      "unusual": true
+    },
+    {
+      "name": "poemendtextnotesontrue",
+      "unusual": true
+    },
+    {
+      "name": "poemendtextnotesonfalse",
+      "unusual": true
+    },
+    {
+      "name": "poemendtextnotes",
+      "unusual": true
+    },
+    {
+      "name": "literalpoemendtextnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "stanzaatbottomvalue",
+      "unusual": true
+    },
+    {
+      "name": "nostanzaatbottomvalue",
+      "unusual": true
+    },
+    {
+      "name": "cleartorecto",
+      "unusual": true
+    },
+    {
+      "name": "cleartoverso",
+      "unusual": true
+    },
+    {
+      "name": "ifenv",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "pmclsavsk",
+      "unusual": true
+    },
+    {
+      "name": "pmclsavsf",
+      "unusual": true
+    },
+    {
+      "name": "pmclbsphack",
+      "unusual": true
+    },
+    {
+      "name": "pmclesphack",
+      "unusual": true
+    },
+    {
+      "name": "pmclleftsidepar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pmclrightsidepar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifparalleltexts",
+      "unusual": true
+    },
+    {
+      "name": "paralleltextstrue",
+      "unusual": true
+    },
+    {
+      "name": "paralleltextsfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifrecto",
+      "unusual": true
+    },
+    {
+      "name": "rectotrue",
+      "unusual": true
+    },
+    {
+      "name": "rectofalse",
+      "unusual": true
+    },
+    {
+      "name": "ifverso",
+      "unusual": true
+    },
+    {
+      "name": "versotrue",
+      "unusual": true
+    },
+    {
+      "name": "versofalse",
+      "unusual": true
+    },
+    {
+      "name": "ifrectopoempending",
+      "unusual": true
+    },
+    {
+      "name": "rectopoempendingtrue",
+      "unusual": true
+    },
+    {
+      "name": "rectopoempendingfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifversopoempending",
+      "unusual": true
+    },
+    {
+      "name": "versopoempendingtrue",
+      "unusual": true
+    },
+    {
+      "name": "versopoempendingfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifrectostanzapending",
+      "unusual": true
+    },
+    {
+      "name": "rectostanzapendingtrue",
+      "unusual": true
+    },
+    {
+      "name": "rectostanzapendingfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifversostanzapending",
+      "unusual": true
+    },
+    {
+      "name": "versostanzapendingtrue",
+      "unusual": true
+    },
+    {
+      "name": "versostanzapendingfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifrectostanzastillopen",
+      "unusual": true
+    },
+    {
+      "name": "rectostanzastillopentrue",
+      "unusual": true
+    },
+    {
+      "name": "rectostanzastillopenfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifversostanzastillopen",
+      "unusual": true
+    },
+    {
+      "name": "versostanzastillopentrue",
+      "unusual": true
+    },
+    {
+      "name": "versostanzastillopenfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifrectopoemstillopen",
+      "unusual": true
+    },
+    {
+      "name": "rectopoemstillopentrue",
+      "unusual": true
+    },
+    {
+      "name": "rectopoemstillopenfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifversopoemstillopen",
+      "unusual": true
+    },
+    {
+      "name": "versopoemstillopentrue",
+      "unusual": true
+    },
+    {
+      "name": "versopoemstillopenfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifrectoprosesectionpending",
+      "unusual": true
+    },
+    {
+      "name": "rectoprosesectionpendingtrue",
+      "unusual": true
+    },
+    {
+      "name": "rectoprosesectionpendingfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifversoprosesectionpending",
+      "unusual": true
+    },
+    {
+      "name": "versoprosesectionpendingtrue",
+      "unusual": true
+    },
+    {
+      "name": "versoprosesectionpendingfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifrectoprosesectionstillopen",
+      "unusual": true
+    },
+    {
+      "name": "rectoprosesectionstillopentrue",
+      "unusual": true
+    },
+    {
+      "name": "rectoprosesectionstillopenfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifversoprosesectionstillopen",
+      "unusual": true
+    },
+    {
+      "name": "versoprosesectionstillopentrue",
+      "unusual": true
+    },
+    {
+      "name": "versoprosesectionstillopenfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifrectoquotedversepending",
+      "unusual": true
+    },
+    {
+      "name": "rectoquotedversependingtrue",
+      "unusual": true
+    },
+    {
+      "name": "rectoquotedversependingfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifversoquotedversepending",
+      "unusual": true
+    },
+    {
+      "name": "versoquotedversependingtrue",
+      "unusual": true
+    },
+    {
+      "name": "versoquotedversependingfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifrectoquotedversestillopen",
+      "unusual": true
+    },
+    {
+      "name": "rectoquotedversestillopentrue",
+      "unusual": true
+    },
+    {
+      "name": "rectoquotedversestillopenfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifversoquotedversestillopen",
+      "unusual": true
+    },
+    {
+      "name": "versoquotedversestillopentrue",
+      "unusual": true
+    },
+    {
+      "name": "versoquotedversestillopenfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifrectoemendationspending",
+      "unusual": true
+    },
+    {
+      "name": "rectoemendationspendingtrue",
+      "unusual": true
+    },
+    {
+      "name": "rectoemendationspendingfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifversoemendationspending",
+      "unusual": true
+    },
+    {
+      "name": "versoemendationspendingtrue",
+      "unusual": true
+    },
+    {
+      "name": "versoemendationspendingfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifrectoexplanationspending",
+      "unusual": true
+    },
+    {
+      "name": "rectoexplanationspendingtrue",
+      "unusual": true
+    },
+    {
+      "name": "rectoexplanationspendingfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifversoexplanationspending",
+      "unusual": true
+    },
+    {
+      "name": "versoexplanationspendingtrue",
+      "unusual": true
+    },
+    {
+      "name": "versoexplanationspendingfalse",
+      "unusual": true
+    },
+    {
+      "name": "versotitleholder",
+      "unusual": true
+    },
+    {
+      "name": "rectotitleholder",
+      "unusual": true
+    },
+    {
+      "name": "makeversotitleholder",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "makerectotitleholder",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "versotitletoothernotes",
+      "unusual": true
+    },
+    {
+      "name": "versotitleinnotescheck",
+      "unusual": true
+    },
+    {
+      "name": "rectotitletoothernotes",
+      "unusual": true
+    },
+    {
+      "name": "rectotitleinnotescheck",
+      "unusual": true
+    },
+    {
+      "name": "saveversoline",
+      "unusual": true
+    },
+    {
+      "name": "restoreversoline",
+      "unusual": true
+    },
+    {
+      "name": "saverectoline",
+      "unusual": true
+    },
+    {
+      "name": "restorerectoline",
+      "unusual": true
+    },
+    {
+      "name": "synchroflag",
+      "unusual": true
+    },
+    {
+      "name": "hfilll",
+      "unusual": true
+    },
+    {
+      "name": "versotextnotesname",
+      "unusual": true
+    },
+    {
+      "name": "versotextnotesheadername",
+      "unusual": true
+    },
+    {
+      "name": "versotextnotescontentsname",
+      "unusual": true
+    },
+    {
+      "name": "ifnoversotextnoteyet",
+      "unusual": true
+    },
+    {
+      "name": "noversotextnoteyettrue",
+      "unusual": true
+    },
+    {
+      "name": "noversotextnoteyetfalse",
+      "unusual": true
+    },
+    {
+      "name": "literalversotextnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "firstversotextnote",
+      "unusual": true
+    },
+    {
+      "name": "rectotextnotesname",
+      "unusual": true
+    },
+    {
+      "name": "rectotextnotesheadername",
+      "unusual": true
+    },
+    {
+      "name": "rectotextnotescontentsname",
+      "unusual": true
+    },
+    {
+      "name": "rectotextnotes",
+      "unusual": true
+    },
+    {
+      "name": "ifnorectotextnoteyet",
+      "unusual": true
+    },
+    {
+      "name": "norectotextnoteyettrue",
+      "unusual": true
+    },
+    {
+      "name": "norectotextnoteyetfalse",
+      "unusual": true
+    },
+    {
+      "name": "literalrectotextnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "firstrectotextnote",
+      "unusual": true
+    },
+    {
+      "name": "versoemendationsname",
+      "unusual": true
+    },
+    {
+      "name": "changeversoemendationsname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "versoemendationsheadername",
+      "unusual": true
+    },
+    {
+      "name": "changeversoemendationsheader",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "versoemendationscontentsname",
+      "unusual": true
+    },
+    {
+      "name": "changeversoemendationscontentsname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifversoemendationstwocol",
+      "unusual": true
+    },
+    {
+      "name": "versoemendationstwocoltrue",
+      "unusual": true
+    },
+    {
+      "name": "versoemendationstwocolfalse",
+      "unusual": true
+    },
+    {
+      "name": "versoemendations",
+      "unusual": true
+    },
+    {
+      "name": "ifversoemendationssinglepar",
+      "unusual": true
+    },
+    {
+      "name": "versoemendationssinglepartrue",
+      "unusual": true
+    },
+    {
+      "name": "versoemendationssingleparfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifnoversoemendationyet",
+      "unusual": true
+    },
+    {
+      "name": "noversoemendationyettrue",
+      "unusual": true
+    },
+    {
+      "name": "noversoemendationyetfalse",
+      "unusual": true
+    },
+    {
+      "name": "literalversoemendation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "firstversoemendation",
+      "unusual": true
+    },
+    {
+      "name": "rectoemendationsname",
+      "unusual": true
+    },
+    {
+      "name": "changerectoemendationsname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rectoemendationsheadername",
+      "unusual": true
+    },
+    {
+      "name": "changerectoemendationsheader",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rectoemendationscontentsname",
+      "unusual": true
+    },
+    {
+      "name": "changerectoemendationscontentsname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifrectoemendationstwocol",
+      "unusual": true
+    },
+    {
+      "name": "rectoemendationstwocoltrue",
+      "unusual": true
+    },
+    {
+      "name": "rectoemendationstwocolfalse",
+      "unusual": true
+    },
+    {
+      "name": "rectoemendations",
+      "unusual": true
+    },
+    {
+      "name": "ifrectoemendationssinglepar",
+      "unusual": true
+    },
+    {
+      "name": "rectoemendationssinglepartrue",
+      "unusual": true
+    },
+    {
+      "name": "rectoemendationssingleparfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifnorectoemendationyet",
+      "unusual": true
+    },
+    {
+      "name": "norectoemendationyettrue",
+      "unusual": true
+    },
+    {
+      "name": "norectoemendationyetfalse",
+      "unusual": true
+    },
+    {
+      "name": "literalrectoemendation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "firstrectoemendation",
+      "unusual": true
+    },
+    {
+      "name": "versoexplanationsname",
+      "unusual": true
+    },
+    {
+      "name": "changeversoexplanationsname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "versoexplanationsheadername",
+      "unusual": true
+    },
+    {
+      "name": "changeversoexplanationsheader",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "versoexplanationscontentsname",
+      "unusual": true
+    },
+    {
+      "name": "changeversoexplanationscontentsname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifversoexplanationstwocol",
+      "unusual": true
+    },
+    {
+      "name": "versoexplanationstwocoltrue",
+      "unusual": true
+    },
+    {
+      "name": "versoexplanationstwocolfalse",
+      "unusual": true
+    },
+    {
+      "name": "versoexplanations",
+      "unusual": true
+    },
+    {
+      "name": "literalversoexplain",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifversoexplanationssinglepar",
+      "unusual": true
+    },
+    {
+      "name": "versoexplanationssinglepartrue",
+      "unusual": true
+    },
+    {
+      "name": "versoexplanationssingleparfalse",
+      "unusual": true
+    },
+    {
+      "name": "firstversoexplanatory",
+      "unusual": true
+    },
+    {
+      "name": "ifnoversoexplainyet",
+      "unusual": true
+    },
+    {
+      "name": "noversoexplainyettrue",
+      "unusual": true
+    },
+    {
+      "name": "noversoexplainyetfalse",
+      "unusual": true
+    },
+    {
+      "name": "rectoexplanationsname",
+      "unusual": true
+    },
+    {
+      "name": "changerectoexplanationsname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rectoexplanationsheadername",
+      "unusual": true
+    },
+    {
+      "name": "changerectoexplanationsheader",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rectoexplanationscontentsname",
+      "unusual": true
+    },
+    {
+      "name": "changerectoexplanationscontentsname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifrectoexplanationstwocol",
+      "unusual": true
+    },
+    {
+      "name": "rectoexplanationstwocoltrue",
+      "unusual": true
+    },
+    {
+      "name": "rectoexplanationstwocolfalse",
+      "unusual": true
+    },
+    {
+      "name": "rectoexplanations",
+      "unusual": true
+    },
+    {
+      "name": "literalrectoexplain",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifrectoexplanationssinglepar",
+      "unusual": true
+    },
+    {
+      "name": "rectoexplanationssinglepartrue",
+      "unusual": true
+    },
+    {
+      "name": "rectoexplanationssingleparfalse",
+      "unusual": true
+    },
+    {
+      "name": "firstrectoexplanatory",
+      "unusual": true
+    },
+    {
+      "name": "ifnorectoexplainyet",
+      "unusual": true
+    },
+    {
+      "name": "norectoexplainyettrue",
+      "unusual": true
+    },
+    {
+      "name": "norectoexplainyetfalse",
+      "unusual": true
+    },
+    {
+      "name": "pmclresetsettitleinnotes",
+      "unusual": true
+    },
+    {
+      "name": "pmclversoresetsettitleinnotes",
+      "unusual": true
+    },
+    {
+      "name": "pmclrectoresetsettitleinnotes",
+      "unusual": true
+    },
+    {
+      "name": "literalexplanatory",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "literalversoexplanatory",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "literalrectoexplanatory",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifversopassagestillopen",
+      "unusual": true
+    },
+    {
+      "name": "versopassagestillopentrue",
+      "unusual": true
+    },
+    {
+      "name": "versopassagestillopenfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifrectopassagestillopen",
+      "unusual": true
+    },
+    {
+      "name": "rectopassagestillopentrue",
+      "unusual": true
+    },
+    {
+      "name": "rectopassagestillopenfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifinpara",
+      "unusual": true
+    },
+    {
+      "name": "inparatrue",
+      "unusual": true
+    },
+    {
+      "name": "inparafalse",
+      "unusual": true
+    },
+    {
+      "name": "ifrectoparapending",
+      "unusual": true
+    },
+    {
+      "name": "rectoparapendingtrue",
+      "unusual": true
+    },
+    {
+      "name": "rectoparapendingfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifrectoparaopen",
+      "unusual": true
+    },
+    {
+      "name": "rectoparaopentrue",
+      "unusual": true
+    },
+    {
+      "name": "rectoparaopenfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifversoparapending",
+      "unusual": true
+    },
+    {
+      "name": "versoparapendingtrue",
+      "unusual": true
+    },
+    {
+      "name": "versoparapendingfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifversoparaopen",
+      "unusual": true
+    },
+    {
+      "name": "versoparaopentrue",
+      "unusual": true
+    },
+    {
+      "name": "versoparaopenfalse",
+      "unusual": true
+    },
+    {
+      "name": "makeprosepagelabel",
+      "unusual": true
+    },
+    {
+      "name": "saveversoproseline",
+      "unusual": true
+    },
+    {
+      "name": "restoreversoproseline",
+      "unusual": true
+    },
+    {
+      "name": "saverectoproseline",
+      "unusual": true
+    },
+    {
+      "name": "restorerectoproseline",
+      "unusual": true
+    },
+    {
+      "name": "startparalleltextsprose",
+      "unusual": true
+    },
+    {
+      "name": "finishparalleltextsprose",
+      "unusual": true
+    },
+    {
+      "name": "hyphenationforsmall",
+      "unusual": true
+    },
+    {
+      "name": "poemindexname",
+      "unusual": true
+    },
+    {
+      "name": "poemindexheadername",
+      "unusual": true
+    },
+    {
+      "name": "poemindexcontentsname",
+      "unusual": true
+    },
+    {
+      "name": "noteaboutstanzamarkpage",
+      "unusual": true
+    },
+    {
+      "name": "poemindexlabelname",
+      "unusual": true
+    },
+    {
+      "name": "changepoemindexlabelname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pmclidxitem",
+      "unusual": true
+    },
+    {
+      "name": "epigraphquoteleftmargin",
+      "unusual": true
+    },
+    {
+      "name": "epigraphquoterightmargin",
+      "unusual": true
+    },
+    {
+      "name": "thelemmaend",
+      "unusual": true
+    },
+    {
+      "name": "thelemmalines",
+      "unusual": true
+    },
+    {
+      "name": "thelineindexrepeat",
+      "unusual": true
+    },
+    {
+      "name": "themargrefnumber",
+      "unusual": true
+    },
+    {
+      "name": "thenotepageholdernote",
+      "unusual": true
+    },
+    {
+      "name": "thenotepageholdertitle",
+      "unusual": true
+    },
+    {
+      "name": "thepmindexcount",
+      "unusual": true
+    },
+    {
+      "name": "thepmmodulo",
+      "unusual": true
+    },
+    {
+      "name": "thepmparagraph",
+      "unusual": true
+    },
+    {
+      "name": "thepmsentencenumber",
+      "unusual": true
+    },
+    {
+      "name": "thepoemnumber",
+      "unusual": true
+    },
+    {
+      "name": "theprintlineindex",
+      "unusual": true
+    },
+    {
+      "name": "theprintlineindexscratch",
+      "unusual": true
+    },
+    {
+      "name": "theproselinenumber",
+      "unusual": true
+    },
+    {
+      "name": "theprosemodulo",
+      "unusual": true
+    },
+    {
+      "name": "theprosepage",
+      "unusual": true
+    },
+    {
+      "name": "therectoindexscratch",
+      "unusual": true
+    },
+    {
+      "name": "therectolinecounter",
+      "unusual": true
+    },
+    {
+      "name": "therectoproselinecounter",
+      "unusual": true
+    },
+    {
+      "name": "theverselinenumber",
+      "unusual": true
+    },
+    {
+      "name": "theverselinenumberscratch",
+      "unusual": true
+    },
+    {
+      "name": "theversoindexscratch",
+      "unusual": true
+    },
+    {
+      "name": "theversolinecounter",
+      "unusual": true
+    },
+    {
+      "name": "theversoproselinecounter",
+      "unusual": true
     }
-  },
-  "envs": {
-    "poem": {},
-    "poem[]": {
+  ],
+  "envs": [
+    {
+      "name": "poem"
+    },
+    {
       "name": "poem",
-      "snippet": "[${1:width}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width%l}]"
+      }
     },
-    "pmclverse": {},
-    "pmclverse[]": {
+    {
       "name": "pmclverse",
-      "snippet": "[${1:width}]"
+      "unusual": true
     },
-    "stanza": {},
-    "indentedverse": {},
-    "indentedverse[]": {
+    {
+      "name": "pmclverse",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
+    },
+    {
+      "name": "stanza"
+    },
+    {
+      "name": "indentedverse"
+    },
+    {
       "name": "indentedverse",
-      "snippet": "[${1:integer}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:integer}]"
+      }
     },
-    "rightflushverse": {},
-    "volumetitlepage": {},
-    "maintitlepage": {},
-    "quotedverse": {},
-    "prosesection": {},
-    "prosesectionnoreset": {},
-    "pmsection": {},
-    "parallelverse": {},
-    "parallelprose": {},
-    "marginenvironment": {},
-    "contentsentryenvironment": {},
-    "titleentryenvironment": {},
-    "booksectionpage": {},
-    "epigraphenvironment": {},
-    "cjquotation": {},
-    "epigraphquote": {},
-    "volumetitlepagequote": {}
+    {
+      "name": "rightflushverse"
+    },
+    {
+      "name": "volumetitlepage"
+    },
+    {
+      "name": "maintitlepage"
+    },
+    {
+      "name": "quotedverse"
+    },
+    {
+      "name": "prosesection"
+    },
+    {
+      "name": "prosesectionnoreset"
+    },
+    {
+      "name": "pmsection"
+    },
+    {
+      "name": "parallelverse"
+    },
+    {
+      "name": "parallelprose"
+    },
+    {
+      "name": "marginenvironment",
+      "unusual": true
+    },
+    {
+      "name": "contentsentryenvironment",
+      "unusual": true
+    },
+    {
+      "name": "titleentryenvironment",
+      "unusual": true
+    },
+    {
+      "name": "booksectionpage",
+      "unusual": true
+    },
+    {
+      "name": "epigraphenvironment",
+      "unusual": true
+    },
+    {
+      "name": "cjquotation",
+      "unusual": true
+    },
+    {
+      "name": "epigraphquote",
+      "unusual": true
+    },
+    {
+      "name": "volumetitlepagequote",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\pagestyle#c,\\thispagestyle#c": [
+      "longpoem",
+      "main",
+      "volumefirststyle",
+      "volumetitlestyle"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

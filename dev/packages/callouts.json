@@ -1,42 +1,90 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "xifthen": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "helpgrid": {},
-    "helpgrid[]": {
-      "snippet": "helpgrid[${1:color}]"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "callout{}{}{}": {
-      "snippet": "callout{${1:center-coords}}{${2:note}}{${3:tip-coords}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "note{}{}": {
-      "snippet": "note{${1:coords}}{${2:note}}"
+    {
+      "name": "xifthen"
     },
-    "arrow{}{}": {
-      "snippet": "arrow{${1:center-coords}}{${2:tip-coords}}"
-    },
-    "focol": {},
-    "bgcol": {},
-    "arcol": {},
-    "xtic": {},
-    "ytic": {}
-  },
-  "envs": {
-    "annotate{}{}": {
-      "name": "annotate",
-      "snippet": "{${1:object}}{${2:width-factor}}"
+    {
+      "name": "kvoptions"
     }
-  },
-  "options": [
-    "bwr",
-    "wby",
-    "bww",
-    "background=",
-    "arrow="
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "helpgrid"
+    },
+    {
+      "name": "helpgrid",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:color}]"
+      }
+    },
+    {
+      "name": "callout",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:center-coords}}{${2:note%text}}{${3:tip-coords}}"
+      }
+    },
+    {
+      "name": "note",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:coords}}{${2:note%text}}"
+      }
+    },
+    {
+      "name": "arrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:center-coords}}{${2:tip-coords}}"
+      }
+    },
+    {
+      "name": "focol",
+      "unusual": true
+    },
+    {
+      "name": "bgcol",
+      "unusual": true
+    },
+    {
+      "name": "arcol",
+      "unusual": true
+    },
+    {
+      "name": "xtic",
+      "unusual": true
+    },
+    {
+      "name": "ytic",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "annotate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:object}}{${2:width-factor}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/callouts#c": [
+      "bwr",
+      "wby",
+      "bww",
+      "background=",
+      "arrow="
+    ]
+  },
+  "args": [
+    "\\usepackage/callouts#c"
+  ]
 }

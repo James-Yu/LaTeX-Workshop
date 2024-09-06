@@ -1,32 +1,60 @@
 {
-  "includes": {
-    "amsmath": [],
-    "tikz": [],
-    "tikzlibraryshapes.geometric": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "pascal{}": {
-      "snippet": "pascal{${1:order}}"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "pascal[]{}": {
-      "snippet": "pascal[${2:options}]{${1:order}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     },
-    "pascalset{}": {
-      "snippet": "pascalset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryshapes.geometric"
     },
-    "binomc{}{}": {
-      "snippet": "binomc{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "pascal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:order}}"
+      }
+    },
+    {
+      "name": "pascal",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:order}}",
+        "keys": [
+          "\\pascal,\\pascalset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pascalset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pascal,\\pascalset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "binomc",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pascal,\\pascalset": [
       "shape=${1|iso,rt|}",
       "radius=",
       "fontsize=${1:fontsize command}",
@@ -35,5 +63,6 @@
       "fillr=${1:integer}",
       "fillc=${1:integer}"
     ]
-  ]
+  },
+  "args": []
 }

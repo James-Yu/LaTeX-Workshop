@@ -1,61 +1,126 @@
 {
-  "includes": {},
-  "macros": {
-    "MyLogo{}": {
-      "snippet": "MyLogo{${1:logo text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "MyLogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:logo text%text}}"
+      }
     },
-    "LogoOn": {},
-    "LogoOff": {},
-    "foilhead[]{}": {
-      "snippet": "foilhead[${2:dimension}]{${1:title}}"
+    {
+      "name": "LogoOn"
     },
-    "foilhead{}": {
-      "snippet": "foilhead{${1:title}}"
+    {
+      "name": "LogoOff"
     },
-    "rotatefoilhead[]{}": {
-      "snippet": "rotatefoilhead[${2:dimension}]{${1:title}}"
+    {
+      "name": "foilhead",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:dimension%l}]{${1:title}}"
+      }
     },
-    "rotatefoilhead{}": {
-      "snippet": "rotatefoilhead{${1:title}}"
+    {
+      "name": "foilhead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "endfoil": {},
-    "FoilTeX": {},
-    "bm{}": {
-      "snippet": "bm{${1:text}}"
+    {
+      "name": "rotatefoilhead",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:dimension%l}]{${1:title}}"
+      }
     },
-    "bmstyle{}{}": {
-      "snippet": "bmstyle{${1:text}}{${2:more text}}"
+    {
+      "name": "rotatefoilhead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "endfoil"
+    },
+    {
+      "name": "FoilTeX"
+    },
+    {
+      "name": "bm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "bmstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text%formula}}{${2:more text%formula}}"
+      }
     }
-  },
-  "envs": {
-    "boldequation": {},
-    "boldequation*": {},
-    "Theorem*": {},
-    "Theorem*[]": {
+  ],
+  "envs": [
+    {
+      "name": "boldequation"
+    },
+    {
+      "name": "boldequation*"
+    },
+    {
+      "name": "Theorem*"
+    },
+    {
       "name": "Theorem*",
-      "snippet": "[${1:heading}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
     },
-    "Lemma*": {},
-    "Lemma*[]": {
+    {
+      "name": "Lemma*"
+    },
+    {
       "name": "Lemma*",
-      "snippet": "[${1:heading}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
     },
-    "Corollary*": {},
-    "Corollary*[]": {
+    {
+      "name": "Corollary*"
+    },
+    {
       "name": "Corollary*",
-      "snippet": "[${1:heading}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
     },
-    "Proposition*": {},
-    "Proposition*[]": {
+    {
+      "name": "Proposition*"
+    },
+    {
       "name": "Proposition*",
-      "snippet": "[${1:heading}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
     },
-    "Definition*": {},
-    "Definition*[]": {
+    {
+      "name": "Definition*"
+    },
+    {
       "name": "Definition*",
-      "snippet": "[${1:heading}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

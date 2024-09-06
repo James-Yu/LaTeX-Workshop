@@ -1,189 +1,481 @@
 {
-  "includes": {},
-  "macros": {
-    "address{}": {
-      "snippet": "address{${1:address}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "address",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address}}"
+      }
     },
-    "afsluiting{}": {
-      "snippet": "afsluiting{${1:text}}"
+    {
+      "name": "afsluiting",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "antwoordadres{}": {
-      "snippet": "antwoordadres{${1:return address}}"
+    {
+      "name": "antwoordadres",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:return address}}"
+      }
     },
-    "betreft{}": {
-      "snippet": "betreft{${1:subject}}"
+    {
+      "name": "betreft",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subject%text}}"
+      }
     },
-    "bijlagen{}": {
-      "snippet": "bijlagen{${1:text}}"
+    {
+      "name": "bijlagen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "cc{}": {
-      "snippet": "cc{${1:text}}"
+    {
+      "name": "cc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "datum{}": {
-      "snippet": "datum{${1:date}}"
+    {
+      "name": "datum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
     },
-    "en": {},
-    "location{}": {
-      "snippet": "location{${1:location}}"
+    {
+      "name": "en"
     },
-    "maakbriefhoofd*{}{}": {
-      "snippet": "maakbriefhoofd*{${1:header}}{${2:address}}"
+    {
+      "name": "location",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:location}}"
+      }
     },
-    "maakbriefhoofd{}{}": {
-      "snippet": "maakbriefhoofd{${1:header}}{${2:address}}"
+    {
+      "name": "maakbriefhoofd*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:header%text}}{${2:address}}"
+      }
     },
-    "makelabels": {},
-    "name{}": {
-      "snippet": "name{${1:name}}"
+    {
+      "name": "maakbriefhoofd",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:header%text}}{${2:address}}"
+      }
     },
-    "ondertekening{}": {
-      "snippet": "ondertekening{${1:signature}}"
+    {
+      "name": "makelabels"
     },
-    "onskenmerk{}": {
-      "snippet": "onskenmerk{${1:text}}"
+    {
+      "name": "name",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "opening{}": {
-      "snippet": "opening{${1:text}}"
+    {
+      "name": "ondertekening",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:signature}}"
+      }
     },
-    "ps{}": {
-      "snippet": "ps{${1:text}}"
+    {
+      "name": "onskenmerk",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "telephone{}": {
-      "snippet": "telephone{${1:phone number}}"
+    {
+      "name": "opening",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "uwbriefvan{}": {
-      "snippet": "uwbriefvan{${1:date}}"
+    {
+      "name": "ps",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "uwkenmerk{}": {
-      "snippet": "uwkenmerk{${1:reference}}"
+    {
+      "name": "telephone",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:phone number}}"
+      }
     },
-    "vandaag": {},
-    "voetitem{}{}": {
-      "snippet": "voetitem{${1:label}}{${2:text}}"
+    {
+      "name": "uwbriefvan",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
     },
-    "adresveld": {},
-    "adresveldbreedte": {},
-    "americanbrief": {},
-    "betrefttekst": {},
-    "bijlage{}": {
-      "snippet": "bijlage{${1:arg1}}"
+    {
+      "name": "uwkenmerk",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:reference}}"
+      }
     },
-    "bijlagentekst": {},
-    "bijlagetekst": {},
-    "bladnummertekst": {},
-    "briefhoofd": {},
-    "ccname": {},
-    "closing{}": {
-      "snippet": "closing{${1:text}}"
+    {
+      "name": "vandaag"
     },
-    "datumtekst": {},
-    "dutchbrief": {},
-    "encl{}": {
-      "snippet": "encl{${1:text}}"
+    {
+      "name": "voetitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label%text}}{${2:text}}"
+      }
     },
-    "englishbrief": {},
-    "footitem{}{}": {
-      "snippet": "footitem{${1:label}}{${2:text}}"
+    {
+      "name": "adresveld",
+      "unusual": true
     },
-    "footsep": {},
-    "frenchbrief": {},
-    "fromlocation": {},
-    "fromname": {},
-    "fromsig": {},
-    "geadresseerdetekst": {},
-    "germanbrief": {},
-    "kleinvet": {},
-    "labelcount": {},
-    "makeheader*{}{}": {
-      "snippet": "makeheader*{${1:header}}{${2:address}}"
+    {
+      "name": "adresveldbreedte",
+      "unusual": true
     },
-    "makeheader{}{}": {
-      "snippet": "makeheader{${1:header}}{${2:address}}"
+    {
+      "name": "americanbrief",
+      "unusual": true
     },
-    "mlabel{}{}": {
-      "snippet": "mlabel{${1:return address}}{${2:to address}}"
+    {
+      "name": "betrefttekst"
     },
-    "onderwerp{}": {
-      "snippet": "onderwerp{${1:subject}}"
+    {
+      "name": "bijlage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
     },
-    "onskenmerktekst": {},
-    "perfstreepje": {},
-    "re{}": {
-      "snippet": "re{${1:subject}}"
+    {
+      "name": "bijlagentekst"
     },
-    "referentieregel": {},
-    "refkopfont": {},
-    "refveldbreedte": {},
-    "replyaddress{}": {
-      "snippet": "replyaddress{${1:return address}}"
+    {
+      "name": "bijlagetekst"
     },
-    "returnaddress": {},
-    "signature{}": {
-      "snippet": "signature{${1:signature}}"
+    {
+      "name": "bladnummertekst",
+      "unusual": true
     },
-    "startbreaks": {},
-    "startlabels": {},
-    "stopbreaks": {},
-    "stopletter": {},
-    "streepje": {},
-    "streepjes{}": {
-      "snippet": "streepjes{${1:height}}"
+    {
+      "name": "briefhoofd",
+      "unusual": true
     },
-    "subject{}": {
-      "snippet": "subject{${1:subject}}"
+    {
+      "name": "ccname",
+      "unusual": true
     },
-    "telefoontekst": {},
-    "telephonenum": {},
-    "toaddress": {},
-    "toname": {},
-    "uwbrieftekst": {},
-    "uwkenmerktekst": {},
-    "vensterskip": {},
-    "vervolghoofd": {},
-    "vervolgreferentieregel": {},
-    "voetregel": {},
-    "vouwstreepjes": {},
-    "yourletterof{}": {
-      "snippet": "yourletterof{${1:date}}"
+    {
+      "name": "closing",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "yourreference{}": {
-      "snippet": "yourreference{${1:reference}}"
+    {
+      "name": "datumtekst",
+      "unusual": true
+    },
+    {
+      "name": "dutchbrief",
+      "unusual": true
+    },
+    {
+      "name": "encl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "englishbrief",
+      "unusual": true
+    },
+    {
+      "name": "footitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label%text}}{${2:text}}"
+      }
+    },
+    {
+      "name": "footsep",
+      "unusual": true
+    },
+    {
+      "name": "frenchbrief",
+      "unusual": true
+    },
+    {
+      "name": "fromlocation",
+      "unusual": true
+    },
+    {
+      "name": "fromname",
+      "unusual": true
+    },
+    {
+      "name": "fromsig",
+      "unusual": true
+    },
+    {
+      "name": "geadresseerdetekst",
+      "unusual": true
+    },
+    {
+      "name": "germanbrief",
+      "unusual": true
+    },
+    {
+      "name": "kleinvet",
+      "unusual": true
+    },
+    {
+      "name": "labelcount",
+      "unusual": true
+    },
+    {
+      "name": "makeheader*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:header%text}}{${2:address}}"
+      }
+    },
+    {
+      "name": "makeheader",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:header%text}}{${2:address}}"
+      }
+    },
+    {
+      "name": "mlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:return address}}{${2:to address}}"
+      }
+    },
+    {
+      "name": "onderwerp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subject%text}}"
+      }
+    },
+    {
+      "name": "onskenmerktekst",
+      "unusual": true
+    },
+    {
+      "name": "perfstreepje",
+      "unusual": true
+    },
+    {
+      "name": "re",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subject%text}}"
+      }
+    },
+    {
+      "name": "referentieregel",
+      "unusual": true
+    },
+    {
+      "name": "refkopfont",
+      "unusual": true
+    },
+    {
+      "name": "refveldbreedte",
+      "unusual": true
+    },
+    {
+      "name": "replyaddress",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:return address}}"
+      }
+    },
+    {
+      "name": "returnaddress",
+      "unusual": true
+    },
+    {
+      "name": "signature",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:signature}}"
+      }
+    },
+    {
+      "name": "startbreaks",
+      "unusual": true
+    },
+    {
+      "name": "startlabels",
+      "unusual": true
+    },
+    {
+      "name": "stopbreaks",
+      "unusual": true
+    },
+    {
+      "name": "stopletter",
+      "unusual": true
+    },
+    {
+      "name": "streepje",
+      "unusual": true
+    },
+    {
+      "name": "streepjes",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:height}}"
+      }
+    },
+    {
+      "name": "subject",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subject%text}}"
+      }
+    },
+    {
+      "name": "telefoontekst",
+      "unusual": true
+    },
+    {
+      "name": "telephonenum",
+      "unusual": true
+    },
+    {
+      "name": "toaddress",
+      "unusual": true
+    },
+    {
+      "name": "toname",
+      "unusual": true
+    },
+    {
+      "name": "uwbrieftekst",
+      "unusual": true
+    },
+    {
+      "name": "uwkenmerktekst",
+      "unusual": true
+    },
+    {
+      "name": "vensterskip",
+      "unusual": true
+    },
+    {
+      "name": "vervolghoofd",
+      "unusual": true
+    },
+    {
+      "name": "vervolgreferentieregel",
+      "unusual": true
+    },
+    {
+      "name": "voetregel",
+      "unusual": true
+    },
+    {
+      "name": "vouwstreepjes",
+      "unusual": true
+    },
+    {
+      "name": "yourletterof",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "yourreference",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:reference}}"
+      }
     }
-  },
-  "envs": {
-    "brief{}": {
-      "name": "brief",
-      "snippet": "{${1:name}}"
-    },
-    "letter{}": {
-      "name": "letter",
-      "snippet": "{${1:name}}"
-    }
-  },
-  "options": [
-    "a4paper",
-    "letterpaper",
-    "USletter",
-    "10pt",
-    "11pt",
-    "12pt",
-    "twoside",
-    "oneside",
-    "draft",
-    "final",
-    "leqno",
-    "fleqn",
-    "typhulp",
-    "geentyphulp",
-    "streepjes",
-    "geenstreepjes",
-    "adreslinks",
-    "adresrechts",
-    "dutch",
-    "english",
-    "american",
-    "german",
-    "french"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "brief",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "letter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/brief#c": [
+      "a4paper",
+      "letterpaper",
+      "USletter",
+      "10pt",
+      "11pt",
+      "12pt",
+      "twoside",
+      "oneside",
+      "draft",
+      "final",
+      "leqno",
+      "fleqn",
+      "typhulp",
+      "geentyphulp",
+      "streepjes",
+      "geenstreepjes",
+      "adreslinks",
+      "adresrechts",
+      "dutch",
+      "english",
+      "american",
+      "german",
+      "french"
+    ]
+  },
+  "args": [
+    "\\documentclass/brief#c"
+  ]
 }

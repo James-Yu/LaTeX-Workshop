@@ -1,734 +1,2360 @@
 {
-  "includes": {
-    "xetex": [],
-    "fontspec": [],
-    "xunicode": [],
-    "xltxtra": [],
-    "perltex": []
+  "deps": [
+    {
+      "name": "xetex"
+    },
+    {
+      "name": "fontspec"
+    },
+    {
+      "name": "xunicode"
+    },
+    {
+      "name": "xltxtra"
+    },
+    {
+      "name": "perltex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "setfontwrapdefaultfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setunicodegroupfont",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:group%keyvals}}{${2:font}}",
+        "keys": [
+          "\\setunicodegroupfont#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setunicodeblockfont",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:block%keyvals}}{${2:font}}",
+        "keys": [
+          "\\setunicodeblockfont#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fontwrap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setfontwrapallowedmacros",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname1,csname2,...}}"
+      }
+    },
+    {
+      "name": "setfontwrapallowedenvironments",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname1,envname2,...}}"
+      }
+    },
+    {
+      "name": "autfontunicodedata",
+      "unusual": true
+    },
+    {
+      "name": "fontwrapallowedenvironments",
+      "unusual": true
+    },
+    {
+      "name": "fontwrapallowedmacros",
+      "unusual": true
+    },
+    {
+      "name": "fontwrapdefaultCJKfont",
+      "unusual": true
+    },
+    {
+      "name": "fontwrapdefaultfont",
+      "unusual": true
+    },
+    {
+      "name": "perlfontwrap",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:text}}{${2:data}}{${3:allowed macros}}{${4:allowed envs}}"
+      }
+    },
+    {
+      "name": "setunicodegroupArabicFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setunicodegroupCJKFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setunicodegroupChineseFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setunicodegroupCyrillicFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setunicodegroupDiacriticsFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setunicodegroupGreekFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setunicodegroupJapaneseFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setunicodegroupKoreanFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setunicodegroupLatinFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setunicodegroupMathematicsFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setunicodegroupOtherFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setunicodegroupPhoneticsFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setunicodegroupPunctuationFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setunicodegroupSymbolsFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "setunicodegroupYiFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "unicodeblockAegeanNumbersFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockAegeanNumbers",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockAlphabeticPresentationFormsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockAlphabeticPresentationForms",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockAncientGreekMusicalNotationFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockAncientGreekMusicalNotation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockAncientGreekNumbersFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockAncientGreekNumbers",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockArabicFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockArabicPresentationFormsAFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockArabicPresentationFormsA",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockArabicPresentationFormsBFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockArabicPresentationFormsB",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockArabicSupplementFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockArabicSupplement",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockArabic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockArmenianFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockArmenian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockArrowsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockArrows",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockBalineseFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockBalinese",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockBasicLatinFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockBasicLatin",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockBengaliFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockBengali",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockBlockElementsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockBlockElements",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockBopomofoExtendedFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockBopomofoExtended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockBopomofoFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockBopomofo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockBoxDrawingFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockBoxDrawing",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockBraillePatternsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockBraillePatterns",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockBugineseFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockBuginese",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockBuhidFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockBuhid",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockByzantineMusicalSymbolsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockByzantineMusicalSymbols",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCJKCompatibilityFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCJKCompatibilityFormsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCJKCompatibilityForms",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCJKCompatibilityIdeographsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCJKCompatibilityIdeographsSupplementFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCJKCompatibilityIdeographsSupplement",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCJKCompatibilityIdeographs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCJKCompatibility",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCJKRadicalsSupplementFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCJKRadicalsSupplement",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCJKStrokesFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCJKStrokes",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCJKSymbolsandPunctuationFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCJKSymbolsandPunctuation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCJKUnifiedIdeographsExtensionAFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCJKUnifiedIdeographsExtensionA",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCJKUnifiedIdeographsExtensionBFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCJKUnifiedIdeographsExtensionB",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCJKUnifiedIdeographsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCJKUnifiedIdeographs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCherokeeFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCherokee",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCombiningDiacriticalMarksFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCombiningDiacriticalMarksSupplementFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCombiningDiacriticalMarksSupplement",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCombiningDiacriticalMarksforSymbolsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCombiningDiacriticalMarksforSymbols",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCombiningDiacriticalMarks",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCombiningHalfMarksFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCombiningHalfMarks",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockControlPicturesFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockControlPictures",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCopticFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCoptic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCountingRodNumeralsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCountingRodNumerals",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCuneiformFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCuneiformNumbersandPunctuationFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCuneiformNumbersandPunctuation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCuneiform",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCurrencySymbolsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCurrencySymbols",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCypriotSyllabaryFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCypriotSyllabary",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCyrillicExtendedAFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCyrillicExtendedA",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCyrillicExtendedBFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCyrillicExtendedB",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCyrillicFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCyrillicSupplementFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockCyrillicSupplement",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockCyrillic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockDeseretFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockDeseret",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockDevanagariFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockDevanagari",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockDingbatsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockDingbats",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockDominoTilesFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockDominoTiles",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockEnclosedAlphanumericsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockEnclosedAlphanumerics",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockEnclosedCJKLettersandMonthsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockEnclosedCJKLettersandMonths",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockEthiopicExtendedFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockEthiopicExtended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockEthiopicFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockEthiopicSupplementFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockEthiopicSupplement",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockEthiopic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockGeneralPunctuationFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockGeneralPunctuation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockGeometricShapesFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockGeometricShapes",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockGeorgianFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockGeorgianSupplementFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockGeorgianSupplement",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockGeorgian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockGlagoliticFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockGlagolitic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockGothicFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockGothic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockGreekExtendedFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockGreekExtended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockGreekandCopticFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockGreekandCoptic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockGujaratiFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockGujarati",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockGurmukhiFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockGurmukhi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockHalfwidthandFullwidthFormsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockHalfwidthandFullwidthForms",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockHangulCompatibilityJamoFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockHangulCompatibilityJamo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockHangulJamoFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockHangulJamo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockHangulSyllablesFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockHangulSyllables",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockHanunooFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockHanunoo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockHebrewFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockHebrew",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockHighPrivateUseSurrogatesFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockHighPrivateUseSurrogates",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockHighSurrogatesFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockHighSurrogates",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockHiraganaFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockHiragana",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockIPAExtensionsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockIPAExtensions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockIdeographicDescriptionCharactersFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockIdeographicDescriptionCharacters",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockKanbunFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockKanbun",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockKangxiRadicalsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockKangxiRadicals",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockKannadaFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockKannada",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockKatakanaFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockKatakanaPhoneticExtensionsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockKatakanaPhoneticExtensions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockKatakana",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockKharoshthiFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockKharoshthi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockKhmerFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockKhmerSymbolsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockKhmerSymbols",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockKhmer",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockLaoFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockLao",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockLatinExtendedAFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockLatinExtendedAdditionalFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockLatinExtendedAdditional",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockLatinExtendedA",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockLatinExtendedBFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockLatinExtendedB",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockLatinExtendedCFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockLatinExtendedC",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockLatinExtendedDFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockLatinExtendedD",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockLatinSupplementFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockLatinSupplement",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockLetterlikeSymbolsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockLetterlikeSymbols",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockLimbuFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockLimbu",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockLinearBIdeogramsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockLinearBIdeograms",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockLinearBSyllabaryFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockLinearBSyllabary",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockLowSurrogatesFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockLowSurrogates",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockMahjongTilesFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockMahjongTiles",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockMalayalamFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockMalayalam",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockMathematicalAlphanumericSymbolsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockMathematicalAlphanumericSymbols",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockMathematicalOperatorsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockMathematicalOperators",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockMiscellaneousMathematicalSymbolsAFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockMiscellaneousMathematicalSymbolsA",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockMiscellaneousMathematicalSymbolsBFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockMiscellaneousMathematicalSymbolsB",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockMiscellaneousSymbolsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockMiscellaneousSymbolsandArrowsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockMiscellaneousSymbolsandArrows",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockMiscellaneousSymbols",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockMiscellaneousTechnicalFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockMiscellaneousTechnical",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockModifierToneLettersFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockModifierToneLetters",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockMongolianFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockMongolian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockMusicalSymbolsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockMusicalSymbols",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockMyanmarFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockMyanmar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockNKoFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockNKo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockNewTaiLueFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockNewTaiLue",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockNumberFormsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockNumberForms",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockOghamFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockOgham",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockOldItalicFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockOldItalic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockOldPersianFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockOldPersian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockOpticalCharacterRecognitionFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockOpticalCharacterRecognition",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockOriyaFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockOriya",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockOsmanyaFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockOsmanya",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockPhagsPaFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockPhagsPa",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockPhoenicianFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockPhoenician",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockPhoneticExtensionsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockPhoneticExtensionsSupplementFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockPhoneticExtensionsSupplement",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockPhoneticExtensions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockPrivateUseAreaFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockPrivateUseArea",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockRunicFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockRunic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockShavianFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockShavian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockSinhalaFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockSinhala",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockSmallFormVariantsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockSmallFormVariants",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockSpacingModifierLettersFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockSpacingModifierLetters",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockSpecialsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockSpecials",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockSuperscriptsandSubscriptsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockSuperscriptsandSubscripts",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockSupplementalArrowsAFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockSupplementalArrowsA",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockSupplementalArrowsBFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockSupplementalArrowsB",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockSupplementalMathematicalOperatorsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockSupplementalMathematicalOperators",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockSupplementalPunctuationFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockSupplementalPunctuation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockSupplementaryPrivateUseAreaAFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockSupplementaryPrivateUseAreaA",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockSupplementaryPrivateUseAreaBFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockSupplementaryPrivateUseAreaB",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockSylotiNagriFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockSylotiNagri",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockSyriacFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockSyriac",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockTagalogFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockTagalog",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockTagbanwaFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockTagbanwa",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockTagsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockTags",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockTaiLeFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockTaiLe",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockTaiXuanJingSymbolsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockTaiXuanJingSymbols",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockTamilFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockTamil",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockTeluguFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockTelugu",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockThaanaFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockThaana",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockThaiFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockThai",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockTibetanFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockTibetan",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockTifinaghFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockTifinagh",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockUgariticFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockUgaritic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockUnifiedCanadianAboriginalSyllabicsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockUnifiedCanadianAboriginalSyllabics",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockVariationSelectorsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockVariationSelectorsSupplementFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockVariationSelectorsSupplement",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockVariationSelectors",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockVerticalFormsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockVerticalForms",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockYiRadicalsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockYiRadicals",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockYiSyllablesFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockYiSyllables",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodeblockYijingHexagramSymbolsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodeblockYijingHexagramSymbols",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font macro}}"
+      }
+    },
+    {
+      "name": "unicodegroupArabicFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodegroupCJKFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodegroupChineseFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodegroupCyrillicFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodegroupDiacriticsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodegroupGreekFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodegroupJapaneseFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodegroupKoreanFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodegroupLatinFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodegroupMathematicsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodegroupOtherFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodegroupPhoneticsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodegroupPunctuationFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodegroupSymbolsFont",
+      "unusual": true
+    },
+    {
+      "name": "unicodegroupYiFont",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "verbatimfontwrap"
+    }
+  ],
+  "keys": {
+    "\\setunicodegroupfont#c": [
+      "Arabic",
+      "Chinese",
+      "CJK",
+      "Cyrillic",
+      "Diacritics",
+      "Greek",
+      "Korean",
+      "Japanese",
+      "Latin",
+      "Mathematics",
+      "Phonetics",
+      "Punctuation",
+      "Symbols",
+      "Yi",
+      "Other"
+    ],
+    "\\setunicodeblockfont#c": [
+      "AegeanNumbers",
+      "AlphabeticPresentationForms",
+      "AncientGreekMusicalNotation",
+      "AncientGreekNumbers",
+      "ArabicPresentationFormsA",
+      "ArabicPresentationFormsB",
+      "ArabicSupplement",
+      "Arabic",
+      "Armenian",
+      "Arrows",
+      "Balinese",
+      "BasicLatin",
+      "Bengali",
+      "BlockElements",
+      "BopomofoExtended",
+      "Bopomofo",
+      "BoxDrawing",
+      "BraillePatterns",
+      "Buginese",
+      "Buhid",
+      "ByzantineMusicalSymbols",
+      "CJKCompatibilityForms",
+      "CJKCompatibilityIdeographsSupplement",
+      "CJKCompatibilityIdeographs",
+      "CJKCompatibility",
+      "CJKRadicalsSupplement",
+      "CJKStrokes",
+      "CJKSymbolsandPunctuation",
+      "CJKUnifiedIdeographsExtensionA",
+      "CJKUnifiedIdeographsExtensionB",
+      "CJKUnifiedIdeographs",
+      "Cherokee",
+      "CombiningDiacriticalMarksSupplement",
+      "CombiningDiacriticalMarksforSymbols",
+      "CombiningDiacriticalMarks",
+      "CombiningHalfMarks",
+      "ControlPictures",
+      "Coptic",
+      "CountingRodNumerals",
+      "CuneiformNumbersandPunctuation",
+      "Cuneiform",
+      "CurrencySymbols",
+      "CypriotSyllabary",
+      "CyrillicExtendedA",
+      "CyrillicExtendedB",
+      "CyrillicSupplement",
+      "Cyrillic",
+      "Deseret",
+      "Devanagari",
+      "Dingbats",
+      "DominoTiles",
+      "EnclosedAlphanumerics",
+      "EnclosedCJKLettersandMonths",
+      "EthiopicExtended",
+      "EthiopicSupplement",
+      "Ethiopic",
+      "GeneralPunctuation",
+      "GeometricShapes",
+      "GeorgianSupplement",
+      "Georgian",
+      "Glagolitic",
+      "Gothic",
+      "GreekExtended",
+      "GreekandCoptic",
+      "Gujarati",
+      "Gurmukhi",
+      "HalfwidthandFullwidthForms",
+      "HangulCompatibilityJamo",
+      "HangulJamo",
+      "HangulSyllables",
+      "Hanunoo",
+      "Hebrew",
+      "HighPrivateUseSurrogates",
+      "HighSurrogates",
+      "Hiragana",
+      "IPAExtensions",
+      "IdeographicDescriptionCharacters",
+      "Kanbun",
+      "KangxiRadicals",
+      "Kannada",
+      "KatakanaPhoneticExtensions",
+      "Katakana",
+      "Kharoshthi",
+      "KhmerSymbols",
+      "Khmer",
+      "Lao",
+      "LatinExtendedAdditional",
+      "LatinExtendedA",
+      "LatinExtendedB",
+      "LatinExtendedC",
+      "LatinExtendedD",
+      "LatinSupplement",
+      "LetterlikeSymbols",
+      "Limbu",
+      "LinearBIdeograms",
+      "LinearBSyllabary",
+      "LowSurrogates",
+      "MahjongTiles",
+      "Malayalam",
+      "MathematicalAlphanumericSymbols",
+      "MathematicalOperators",
+      "MiscellaneousMathematicalSymbolsA",
+      "MiscellaneousMathematicalSymbolsB",
+      "MiscellaneousSymbolsandArrows",
+      "MiscellaneousSymbols",
+      "MiscellaneousTechnical",
+      "ModifierToneLetters",
+      "Mongolian",
+      "MusicalSymbols",
+      "Myanmar",
+      "NKo",
+      "NewTaiLue",
+      "NumberForms",
+      "Ogham",
+      "OldItalic",
+      "OldPersian",
+      "OpticalCharacterRecognition",
+      "Oriya",
+      "Osmanya",
+      "PhagsPa",
+      "Phoenician",
+      "PhoneticExtensionsSupplement",
+      "PhoneticExtensions",
+      "PrivateUseArea",
+      "Runic",
+      "Shavian",
+      "Sinhala",
+      "SmallFormVariants",
+      "SpacingModifierLetters",
+      "Specials",
+      "SuperscriptsandSubscripts",
+      "SupplementalArrowsA",
+      "SupplementalArrowsB",
+      "SupplementalMathematicalOperators",
+      "SupplementalPunctuation",
+      "SupplementaryPrivateUseAreaA",
+      "SupplementaryPrivateUseAreaB",
+      "SylotiNagri",
+      "Syriac",
+      "Tagalog",
+      "Tagbanwa",
+      "Tags",
+      "TaiLe",
+      "TaiXuanJingSymbols",
+      "Tamil",
+      "Telugu",
+      "Thaana",
+      "Thai",
+      "Tibetan",
+      "Tifinagh",
+      "Ugaritic",
+      "UnifiedCanadianAboriginalSyllabics",
+      "VariationSelectorsSupplement",
+      "VariationSelectors",
+      "VerticalForms",
+      "YiRadicals",
+      "YiSyllables",
+      "YijingHexagramSymbols"
+    ]
   },
-  "macros": {
-    "setfontwrapdefaultfont{}": {
-      "snippet": "setfontwrapdefaultfont{${1:font}}"
-    },
-    "setunicodegroupfont{}{}": {
-      "snippet": "setunicodegroupfont{${1:group}}{${2:font}}"
-    },
-    "setunicodeblockfont{}{}": {
-      "snippet": "setunicodeblockfont{${1:block}}{${2:font}}"
-    },
-    "fontwrap{}": {
-      "snippet": "fontwrap{${1:text}}"
-    },
-    "setfontwrapallowedmacros{}": {
-      "snippet": "setfontwrapallowedmacros{${1:csname1,${2:csname2},...}}"
-    },
-    "setfontwrapallowedenvironments{}": {
-      "snippet": "setfontwrapallowedenvironments{${1:envname1,${2:envname2},...}}"
-    },
-    "autfontunicodedata": {},
-    "fontwrapallowedenvironments": {},
-    "fontwrapallowedmacros": {},
-    "fontwrapdefaultCJKfont": {},
-    "fontwrapdefaultfont": {},
-    "perlfontwrap{}{}{}{}": {
-      "snippet": "perlfontwrap{${1:text}}{${2:data}}{${3:allowed macros}}{${4:allowed envs}}"
-    },
-    "setunicodegroupArabicFont{}": {
-      "snippet": "setunicodegroupArabicFont{${1:font}}"
-    },
-    "setunicodegroupCJKFont{}": {
-      "snippet": "setunicodegroupCJKFont{${1:font}}"
-    },
-    "setunicodegroupChineseFont{}": {
-      "snippet": "setunicodegroupChineseFont{${1:font}}"
-    },
-    "setunicodegroupCyrillicFont{}": {
-      "snippet": "setunicodegroupCyrillicFont{${1:font}}"
-    },
-    "setunicodegroupDiacriticsFont{}": {
-      "snippet": "setunicodegroupDiacriticsFont{${1:font}}"
-    },
-    "setunicodegroupGreekFont{}": {
-      "snippet": "setunicodegroupGreekFont{${1:font}}"
-    },
-    "setunicodegroupJapaneseFont{}": {
-      "snippet": "setunicodegroupJapaneseFont{${1:font}}"
-    },
-    "setunicodegroupKoreanFont{}": {
-      "snippet": "setunicodegroupKoreanFont{${1:font}}"
-    },
-    "setunicodegroupLatinFont{}": {
-      "snippet": "setunicodegroupLatinFont{${1:font}}"
-    },
-    "setunicodegroupMathematicsFont{}": {
-      "snippet": "setunicodegroupMathematicsFont{${1:font}}"
-    },
-    "setunicodegroupOtherFont{}": {
-      "snippet": "setunicodegroupOtherFont{${1:font}}"
-    },
-    "setunicodegroupPhoneticsFont{}": {
-      "snippet": "setunicodegroupPhoneticsFont{${1:font}}"
-    },
-    "setunicodegroupPunctuationFont{}": {
-      "snippet": "setunicodegroupPunctuationFont{${1:font}}"
-    },
-    "setunicodegroupSymbolsFont{}": {
-      "snippet": "setunicodegroupSymbolsFont{${1:font}}"
-    },
-    "setunicodegroupYiFont{}": {
-      "snippet": "setunicodegroupYiFont{${1:font}}"
-    },
-    "unicodeblockAegeanNumbersFont": {},
-    "unicodeblockAegeanNumbers{}": {
-      "snippet": "unicodeblockAegeanNumbers{${1:font macro}}"
-    },
-    "unicodeblockAlphabeticPresentationFormsFont": {},
-    "unicodeblockAlphabeticPresentationForms{}": {
-      "snippet": "unicodeblockAlphabeticPresentationForms{${1:font macro}}"
-    },
-    "unicodeblockAncientGreekMusicalNotationFont": {},
-    "unicodeblockAncientGreekMusicalNotation{}": {
-      "snippet": "unicodeblockAncientGreekMusicalNotation{${1:font macro}}"
-    },
-    "unicodeblockAncientGreekNumbersFont": {},
-    "unicodeblockAncientGreekNumbers{}": {
-      "snippet": "unicodeblockAncientGreekNumbers{${1:font macro}}"
-    },
-    "unicodeblockArabicFont": {},
-    "unicodeblockArabicPresentationFormsAFont": {},
-    "unicodeblockArabicPresentationFormsA{}": {
-      "snippet": "unicodeblockArabicPresentationFormsA{${1:font macro}}"
-    },
-    "unicodeblockArabicPresentationFormsBFont": {},
-    "unicodeblockArabicPresentationFormsB{}": {
-      "snippet": "unicodeblockArabicPresentationFormsB{${1:font macro}}"
-    },
-    "unicodeblockArabicSupplementFont": {},
-    "unicodeblockArabicSupplement{}": {
-      "snippet": "unicodeblockArabicSupplement{${1:font macro}}"
-    },
-    "unicodeblockArabic{}": {
-      "snippet": "unicodeblockArabic{${1:font macro}}"
-    },
-    "unicodeblockArmenianFont": {},
-    "unicodeblockArmenian{}": {
-      "snippet": "unicodeblockArmenian{${1:font macro}}"
-    },
-    "unicodeblockArrowsFont": {},
-    "unicodeblockArrows{}": {
-      "snippet": "unicodeblockArrows{${1:font macro}}"
-    },
-    "unicodeblockBalineseFont": {},
-    "unicodeblockBalinese{}": {
-      "snippet": "unicodeblockBalinese{${1:font macro}}"
-    },
-    "unicodeblockBasicLatinFont": {},
-    "unicodeblockBasicLatin{}": {
-      "snippet": "unicodeblockBasicLatin{${1:font macro}}"
-    },
-    "unicodeblockBengaliFont": {},
-    "unicodeblockBengali{}": {
-      "snippet": "unicodeblockBengali{${1:font macro}}"
-    },
-    "unicodeblockBlockElementsFont": {},
-    "unicodeblockBlockElements{}": {
-      "snippet": "unicodeblockBlockElements{${1:font macro}}"
-    },
-    "unicodeblockBopomofoExtendedFont": {},
-    "unicodeblockBopomofoExtended{}": {
-      "snippet": "unicodeblockBopomofoExtended{${1:font macro}}"
-    },
-    "unicodeblockBopomofoFont": {},
-    "unicodeblockBopomofo{}": {
-      "snippet": "unicodeblockBopomofo{${1:font macro}}"
-    },
-    "unicodeblockBoxDrawingFont": {},
-    "unicodeblockBoxDrawing{}": {
-      "snippet": "unicodeblockBoxDrawing{${1:font macro}}"
-    },
-    "unicodeblockBraillePatternsFont": {},
-    "unicodeblockBraillePatterns{}": {
-      "snippet": "unicodeblockBraillePatterns{${1:font macro}}"
-    },
-    "unicodeblockBugineseFont": {},
-    "unicodeblockBuginese{}": {
-      "snippet": "unicodeblockBuginese{${1:font macro}}"
-    },
-    "unicodeblockBuhidFont": {},
-    "unicodeblockBuhid{}": {
-      "snippet": "unicodeblockBuhid{${1:font macro}}"
-    },
-    "unicodeblockByzantineMusicalSymbolsFont": {},
-    "unicodeblockByzantineMusicalSymbols{}": {
-      "snippet": "unicodeblockByzantineMusicalSymbols{${1:font macro}}"
-    },
-    "unicodeblockCJKCompatibilityFont": {},
-    "unicodeblockCJKCompatibilityFormsFont": {},
-    "unicodeblockCJKCompatibilityForms{}": {
-      "snippet": "unicodeblockCJKCompatibilityForms{${1:font macro}}"
-    },
-    "unicodeblockCJKCompatibilityIdeographsFont": {},
-    "unicodeblockCJKCompatibilityIdeographsSupplementFont": {},
-    "unicodeblockCJKCompatibilityIdeographsSupplement{}": {
-      "snippet": "unicodeblockCJKCompatibilityIdeographsSupplement{${1:font macro}}"
-    },
-    "unicodeblockCJKCompatibilityIdeographs{}": {
-      "snippet": "unicodeblockCJKCompatibilityIdeographs{${1:font macro}}"
-    },
-    "unicodeblockCJKCompatibility{}": {
-      "snippet": "unicodeblockCJKCompatibility{${1:font macro}}"
-    },
-    "unicodeblockCJKRadicalsSupplementFont": {},
-    "unicodeblockCJKRadicalsSupplement{}": {
-      "snippet": "unicodeblockCJKRadicalsSupplement{${1:font macro}}"
-    },
-    "unicodeblockCJKStrokesFont": {},
-    "unicodeblockCJKStrokes{}": {
-      "snippet": "unicodeblockCJKStrokes{${1:font macro}}"
-    },
-    "unicodeblockCJKSymbolsandPunctuationFont": {},
-    "unicodeblockCJKSymbolsandPunctuation{}": {
-      "snippet": "unicodeblockCJKSymbolsandPunctuation{${1:font macro}}"
-    },
-    "unicodeblockCJKUnifiedIdeographsExtensionAFont": {},
-    "unicodeblockCJKUnifiedIdeographsExtensionA{}": {
-      "snippet": "unicodeblockCJKUnifiedIdeographsExtensionA{${1:font macro}}"
-    },
-    "unicodeblockCJKUnifiedIdeographsExtensionBFont": {},
-    "unicodeblockCJKUnifiedIdeographsExtensionB{}": {
-      "snippet": "unicodeblockCJKUnifiedIdeographsExtensionB{${1:font macro}}"
-    },
-    "unicodeblockCJKUnifiedIdeographsFont": {},
-    "unicodeblockCJKUnifiedIdeographs{}": {
-      "snippet": "unicodeblockCJKUnifiedIdeographs{${1:font macro}}"
-    },
-    "unicodeblockCherokeeFont": {},
-    "unicodeblockCherokee{}": {
-      "snippet": "unicodeblockCherokee{${1:font macro}}"
-    },
-    "unicodeblockCombiningDiacriticalMarksFont": {},
-    "unicodeblockCombiningDiacriticalMarksSupplementFont": {},
-    "unicodeblockCombiningDiacriticalMarksSupplement{}": {
-      "snippet": "unicodeblockCombiningDiacriticalMarksSupplement{${1:font macro}}"
-    },
-    "unicodeblockCombiningDiacriticalMarksforSymbolsFont": {},
-    "unicodeblockCombiningDiacriticalMarksforSymbols{}": {
-      "snippet": "unicodeblockCombiningDiacriticalMarksforSymbols{${1:font macro}}"
-    },
-    "unicodeblockCombiningDiacriticalMarks{}": {
-      "snippet": "unicodeblockCombiningDiacriticalMarks{${1:font macro}}"
-    },
-    "unicodeblockCombiningHalfMarksFont": {},
-    "unicodeblockCombiningHalfMarks{}": {
-      "snippet": "unicodeblockCombiningHalfMarks{${1:font macro}}"
-    },
-    "unicodeblockControlPicturesFont": {},
-    "unicodeblockControlPictures{}": {
-      "snippet": "unicodeblockControlPictures{${1:font macro}}"
-    },
-    "unicodeblockCopticFont": {},
-    "unicodeblockCoptic{}": {
-      "snippet": "unicodeblockCoptic{${1:font macro}}"
-    },
-    "unicodeblockCountingRodNumeralsFont": {},
-    "unicodeblockCountingRodNumerals{}": {
-      "snippet": "unicodeblockCountingRodNumerals{${1:font macro}}"
-    },
-    "unicodeblockCuneiformFont": {},
-    "unicodeblockCuneiformNumbersandPunctuationFont": {},
-    "unicodeblockCuneiformNumbersandPunctuation{}": {
-      "snippet": "unicodeblockCuneiformNumbersandPunctuation{${1:font macro}}"
-    },
-    "unicodeblockCuneiform{}": {
-      "snippet": "unicodeblockCuneiform{${1:font macro}}"
-    },
-    "unicodeblockCurrencySymbolsFont": {},
-    "unicodeblockCurrencySymbols{}": {
-      "snippet": "unicodeblockCurrencySymbols{${1:font macro}}"
-    },
-    "unicodeblockCypriotSyllabaryFont": {},
-    "unicodeblockCypriotSyllabary{}": {
-      "snippet": "unicodeblockCypriotSyllabary{${1:font macro}}"
-    },
-    "unicodeblockCyrillicExtendedAFont": {},
-    "unicodeblockCyrillicExtendedA{}": {
-      "snippet": "unicodeblockCyrillicExtendedA{${1:font macro}}"
-    },
-    "unicodeblockCyrillicExtendedBFont": {},
-    "unicodeblockCyrillicExtendedB{}": {
-      "snippet": "unicodeblockCyrillicExtendedB{${1:font macro}}"
-    },
-    "unicodeblockCyrillicFont": {},
-    "unicodeblockCyrillicSupplementFont": {},
-    "unicodeblockCyrillicSupplement{}": {
-      "snippet": "unicodeblockCyrillicSupplement{${1:font macro}}"
-    },
-    "unicodeblockCyrillic{}": {
-      "snippet": "unicodeblockCyrillic{${1:font macro}}"
-    },
-    "unicodeblockDeseretFont": {},
-    "unicodeblockDeseret{}": {
-      "snippet": "unicodeblockDeseret{${1:font macro}}"
-    },
-    "unicodeblockDevanagariFont": {},
-    "unicodeblockDevanagari{}": {
-      "snippet": "unicodeblockDevanagari{${1:font macro}}"
-    },
-    "unicodeblockDingbatsFont": {},
-    "unicodeblockDingbats{}": {
-      "snippet": "unicodeblockDingbats{${1:font macro}}"
-    },
-    "unicodeblockDominoTilesFont": {},
-    "unicodeblockDominoTiles{}": {
-      "snippet": "unicodeblockDominoTiles{${1:font macro}}"
-    },
-    "unicodeblockEnclosedAlphanumericsFont": {},
-    "unicodeblockEnclosedAlphanumerics{}": {
-      "snippet": "unicodeblockEnclosedAlphanumerics{${1:font macro}}"
-    },
-    "unicodeblockEnclosedCJKLettersandMonthsFont": {},
-    "unicodeblockEnclosedCJKLettersandMonths{}": {
-      "snippet": "unicodeblockEnclosedCJKLettersandMonths{${1:font macro}}"
-    },
-    "unicodeblockEthiopicExtendedFont": {},
-    "unicodeblockEthiopicExtended{}": {
-      "snippet": "unicodeblockEthiopicExtended{${1:font macro}}"
-    },
-    "unicodeblockEthiopicFont": {},
-    "unicodeblockEthiopicSupplementFont": {},
-    "unicodeblockEthiopicSupplement{}": {
-      "snippet": "unicodeblockEthiopicSupplement{${1:font macro}}"
-    },
-    "unicodeblockEthiopic{}": {
-      "snippet": "unicodeblockEthiopic{${1:font macro}}"
-    },
-    "unicodeblockGeneralPunctuationFont": {},
-    "unicodeblockGeneralPunctuation{}": {
-      "snippet": "unicodeblockGeneralPunctuation{${1:font macro}}"
-    },
-    "unicodeblockGeometricShapesFont": {},
-    "unicodeblockGeometricShapes{}": {
-      "snippet": "unicodeblockGeometricShapes{${1:font macro}}"
-    },
-    "unicodeblockGeorgianFont": {},
-    "unicodeblockGeorgianSupplementFont": {},
-    "unicodeblockGeorgianSupplement{}": {
-      "snippet": "unicodeblockGeorgianSupplement{${1:font macro}}"
-    },
-    "unicodeblockGeorgian{}": {
-      "snippet": "unicodeblockGeorgian{${1:font macro}}"
-    },
-    "unicodeblockGlagoliticFont": {},
-    "unicodeblockGlagolitic{}": {
-      "snippet": "unicodeblockGlagolitic{${1:font macro}}"
-    },
-    "unicodeblockGothicFont": {},
-    "unicodeblockGothic{}": {
-      "snippet": "unicodeblockGothic{${1:font macro}}"
-    },
-    "unicodeblockGreekExtendedFont": {},
-    "unicodeblockGreekExtended{}": {
-      "snippet": "unicodeblockGreekExtended{${1:font macro}}"
-    },
-    "unicodeblockGreekandCopticFont": {},
-    "unicodeblockGreekandCoptic{}": {
-      "snippet": "unicodeblockGreekandCoptic{${1:font macro}}"
-    },
-    "unicodeblockGujaratiFont": {},
-    "unicodeblockGujarati{}": {
-      "snippet": "unicodeblockGujarati{${1:font macro}}"
-    },
-    "unicodeblockGurmukhiFont": {},
-    "unicodeblockGurmukhi{}": {
-      "snippet": "unicodeblockGurmukhi{${1:font macro}}"
-    },
-    "unicodeblockHalfwidthandFullwidthFormsFont": {},
-    "unicodeblockHalfwidthandFullwidthForms{}": {
-      "snippet": "unicodeblockHalfwidthandFullwidthForms{${1:font macro}}"
-    },
-    "unicodeblockHangulCompatibilityJamoFont": {},
-    "unicodeblockHangulCompatibilityJamo{}": {
-      "snippet": "unicodeblockHangulCompatibilityJamo{${1:font macro}}"
-    },
-    "unicodeblockHangulJamoFont": {},
-    "unicodeblockHangulJamo{}": {
-      "snippet": "unicodeblockHangulJamo{${1:font macro}}"
-    },
-    "unicodeblockHangulSyllablesFont": {},
-    "unicodeblockHangulSyllables{}": {
-      "snippet": "unicodeblockHangulSyllables{${1:font macro}}"
-    },
-    "unicodeblockHanunooFont": {},
-    "unicodeblockHanunoo{}": {
-      "snippet": "unicodeblockHanunoo{${1:font macro}}"
-    },
-    "unicodeblockHebrewFont": {},
-    "unicodeblockHebrew{}": {
-      "snippet": "unicodeblockHebrew{${1:font macro}}"
-    },
-    "unicodeblockHighPrivateUseSurrogatesFont": {},
-    "unicodeblockHighPrivateUseSurrogates{}": {
-      "snippet": "unicodeblockHighPrivateUseSurrogates{${1:font macro}}"
-    },
-    "unicodeblockHighSurrogatesFont": {},
-    "unicodeblockHighSurrogates{}": {
-      "snippet": "unicodeblockHighSurrogates{${1:font macro}}"
-    },
-    "unicodeblockHiraganaFont": {},
-    "unicodeblockHiragana{}": {
-      "snippet": "unicodeblockHiragana{${1:font macro}}"
-    },
-    "unicodeblockIPAExtensionsFont": {},
-    "unicodeblockIPAExtensions{}": {
-      "snippet": "unicodeblockIPAExtensions{${1:font macro}}"
-    },
-    "unicodeblockIdeographicDescriptionCharactersFont": {},
-    "unicodeblockIdeographicDescriptionCharacters{}": {
-      "snippet": "unicodeblockIdeographicDescriptionCharacters{${1:font macro}}"
-    },
-    "unicodeblockKanbunFont": {},
-    "unicodeblockKanbun{}": {
-      "snippet": "unicodeblockKanbun{${1:font macro}}"
-    },
-    "unicodeblockKangxiRadicalsFont": {},
-    "unicodeblockKangxiRadicals{}": {
-      "snippet": "unicodeblockKangxiRadicals{${1:font macro}}"
-    },
-    "unicodeblockKannadaFont": {},
-    "unicodeblockKannada{}": {
-      "snippet": "unicodeblockKannada{${1:font macro}}"
-    },
-    "unicodeblockKatakanaFont": {},
-    "unicodeblockKatakanaPhoneticExtensionsFont": {},
-    "unicodeblockKatakanaPhoneticExtensions{}": {
-      "snippet": "unicodeblockKatakanaPhoneticExtensions{${1:font macro}}"
-    },
-    "unicodeblockKatakana{}": {
-      "snippet": "unicodeblockKatakana{${1:font macro}}"
-    },
-    "unicodeblockKharoshthiFont": {},
-    "unicodeblockKharoshthi{}": {
-      "snippet": "unicodeblockKharoshthi{${1:font macro}}"
-    },
-    "unicodeblockKhmerFont": {},
-    "unicodeblockKhmerSymbolsFont": {},
-    "unicodeblockKhmerSymbols{}": {
-      "snippet": "unicodeblockKhmerSymbols{${1:font macro}}"
-    },
-    "unicodeblockKhmer{}": {
-      "snippet": "unicodeblockKhmer{${1:font macro}}"
-    },
-    "unicodeblockLaoFont": {},
-    "unicodeblockLao{}": {
-      "snippet": "unicodeblockLao{${1:font macro}}"
-    },
-    "unicodeblockLatinExtendedAFont": {},
-    "unicodeblockLatinExtendedAdditionalFont": {},
-    "unicodeblockLatinExtendedAdditional{}": {
-      "snippet": "unicodeblockLatinExtendedAdditional{${1:font macro}}"
-    },
-    "unicodeblockLatinExtendedA{}": {
-      "snippet": "unicodeblockLatinExtendedA{${1:font macro}}"
-    },
-    "unicodeblockLatinExtendedBFont": {},
-    "unicodeblockLatinExtendedB{}": {
-      "snippet": "unicodeblockLatinExtendedB{${1:font macro}}"
-    },
-    "unicodeblockLatinExtendedCFont": {},
-    "unicodeblockLatinExtendedC{}": {
-      "snippet": "unicodeblockLatinExtendedC{${1:font macro}}"
-    },
-    "unicodeblockLatinExtendedDFont": {},
-    "unicodeblockLatinExtendedD{}": {
-      "snippet": "unicodeblockLatinExtendedD{${1:font macro}}"
-    },
-    "unicodeblockLatinSupplementFont": {},
-    "unicodeblockLatinSupplement{}": {
-      "snippet": "unicodeblockLatinSupplement{${1:font macro}}"
-    },
-    "unicodeblockLetterlikeSymbolsFont": {},
-    "unicodeblockLetterlikeSymbols{}": {
-      "snippet": "unicodeblockLetterlikeSymbols{${1:font macro}}"
-    },
-    "unicodeblockLimbuFont": {},
-    "unicodeblockLimbu{}": {
-      "snippet": "unicodeblockLimbu{${1:font macro}}"
-    },
-    "unicodeblockLinearBIdeogramsFont": {},
-    "unicodeblockLinearBIdeograms{}": {
-      "snippet": "unicodeblockLinearBIdeograms{${1:font macro}}"
-    },
-    "unicodeblockLinearBSyllabaryFont": {},
-    "unicodeblockLinearBSyllabary{}": {
-      "snippet": "unicodeblockLinearBSyllabary{${1:font macro}}"
-    },
-    "unicodeblockLowSurrogatesFont": {},
-    "unicodeblockLowSurrogates{}": {
-      "snippet": "unicodeblockLowSurrogates{${1:font macro}}"
-    },
-    "unicodeblockMahjongTilesFont": {},
-    "unicodeblockMahjongTiles{}": {
-      "snippet": "unicodeblockMahjongTiles{${1:font macro}}"
-    },
-    "unicodeblockMalayalamFont": {},
-    "unicodeblockMalayalam{}": {
-      "snippet": "unicodeblockMalayalam{${1:font macro}}"
-    },
-    "unicodeblockMathematicalAlphanumericSymbolsFont": {},
-    "unicodeblockMathematicalAlphanumericSymbols{}": {
-      "snippet": "unicodeblockMathematicalAlphanumericSymbols{${1:font macro}}"
-    },
-    "unicodeblockMathematicalOperatorsFont": {},
-    "unicodeblockMathematicalOperators{}": {
-      "snippet": "unicodeblockMathematicalOperators{${1:font macro}}"
-    },
-    "unicodeblockMiscellaneousMathematicalSymbolsAFont": {},
-    "unicodeblockMiscellaneousMathematicalSymbolsA{}": {
-      "snippet": "unicodeblockMiscellaneousMathematicalSymbolsA{${1:font macro}}"
-    },
-    "unicodeblockMiscellaneousMathematicalSymbolsBFont": {},
-    "unicodeblockMiscellaneousMathematicalSymbolsB{}": {
-      "snippet": "unicodeblockMiscellaneousMathematicalSymbolsB{${1:font macro}}"
-    },
-    "unicodeblockMiscellaneousSymbolsFont": {},
-    "unicodeblockMiscellaneousSymbolsandArrowsFont": {},
-    "unicodeblockMiscellaneousSymbolsandArrows{}": {
-      "snippet": "unicodeblockMiscellaneousSymbolsandArrows{${1:font macro}}"
-    },
-    "unicodeblockMiscellaneousSymbols{}": {
-      "snippet": "unicodeblockMiscellaneousSymbols{${1:font macro}}"
-    },
-    "unicodeblockMiscellaneousTechnicalFont": {},
-    "unicodeblockMiscellaneousTechnical{}": {
-      "snippet": "unicodeblockMiscellaneousTechnical{${1:font macro}}"
-    },
-    "unicodeblockModifierToneLettersFont": {},
-    "unicodeblockModifierToneLetters{}": {
-      "snippet": "unicodeblockModifierToneLetters{${1:font macro}}"
-    },
-    "unicodeblockMongolianFont": {},
-    "unicodeblockMongolian{}": {
-      "snippet": "unicodeblockMongolian{${1:font macro}}"
-    },
-    "unicodeblockMusicalSymbolsFont": {},
-    "unicodeblockMusicalSymbols{}": {
-      "snippet": "unicodeblockMusicalSymbols{${1:font macro}}"
-    },
-    "unicodeblockMyanmarFont": {},
-    "unicodeblockMyanmar{}": {
-      "snippet": "unicodeblockMyanmar{${1:font macro}}"
-    },
-    "unicodeblockNKoFont": {},
-    "unicodeblockNKo{}": {
-      "snippet": "unicodeblockNKo{${1:font macro}}"
-    },
-    "unicodeblockNewTaiLueFont": {},
-    "unicodeblockNewTaiLue{}": {
-      "snippet": "unicodeblockNewTaiLue{${1:font macro}}"
-    },
-    "unicodeblockNumberFormsFont": {},
-    "unicodeblockNumberForms{}": {
-      "snippet": "unicodeblockNumberForms{${1:font macro}}"
-    },
-    "unicodeblockOghamFont": {},
-    "unicodeblockOgham{}": {
-      "snippet": "unicodeblockOgham{${1:font macro}}"
-    },
-    "unicodeblockOldItalicFont": {},
-    "unicodeblockOldItalic{}": {
-      "snippet": "unicodeblockOldItalic{${1:font macro}}"
-    },
-    "unicodeblockOldPersianFont": {},
-    "unicodeblockOldPersian{}": {
-      "snippet": "unicodeblockOldPersian{${1:font macro}}"
-    },
-    "unicodeblockOpticalCharacterRecognitionFont": {},
-    "unicodeblockOpticalCharacterRecognition{}": {
-      "snippet": "unicodeblockOpticalCharacterRecognition{${1:font macro}}"
-    },
-    "unicodeblockOriyaFont": {},
-    "unicodeblockOriya{}": {
-      "snippet": "unicodeblockOriya{${1:font macro}}"
-    },
-    "unicodeblockOsmanyaFont": {},
-    "unicodeblockOsmanya{}": {
-      "snippet": "unicodeblockOsmanya{${1:font macro}}"
-    },
-    "unicodeblockPhagsPaFont": {},
-    "unicodeblockPhagsPa{}": {
-      "snippet": "unicodeblockPhagsPa{${1:font macro}}"
-    },
-    "unicodeblockPhoenicianFont": {},
-    "unicodeblockPhoenician{}": {
-      "snippet": "unicodeblockPhoenician{${1:font macro}}"
-    },
-    "unicodeblockPhoneticExtensionsFont": {},
-    "unicodeblockPhoneticExtensionsSupplementFont": {},
-    "unicodeblockPhoneticExtensionsSupplement{}": {
-      "snippet": "unicodeblockPhoneticExtensionsSupplement{${1:font macro}}"
-    },
-    "unicodeblockPhoneticExtensions{}": {
-      "snippet": "unicodeblockPhoneticExtensions{${1:font macro}}"
-    },
-    "unicodeblockPrivateUseAreaFont": {},
-    "unicodeblockPrivateUseArea{}": {
-      "snippet": "unicodeblockPrivateUseArea{${1:font macro}}"
-    },
-    "unicodeblockRunicFont": {},
-    "unicodeblockRunic{}": {
-      "snippet": "unicodeblockRunic{${1:font macro}}"
-    },
-    "unicodeblockShavianFont": {},
-    "unicodeblockShavian{}": {
-      "snippet": "unicodeblockShavian{${1:font macro}}"
-    },
-    "unicodeblockSinhalaFont": {},
-    "unicodeblockSinhala{}": {
-      "snippet": "unicodeblockSinhala{${1:font macro}}"
-    },
-    "unicodeblockSmallFormVariantsFont": {},
-    "unicodeblockSmallFormVariants{}": {
-      "snippet": "unicodeblockSmallFormVariants{${1:font macro}}"
-    },
-    "unicodeblockSpacingModifierLettersFont": {},
-    "unicodeblockSpacingModifierLetters{}": {
-      "snippet": "unicodeblockSpacingModifierLetters{${1:font macro}}"
-    },
-    "unicodeblockSpecialsFont": {},
-    "unicodeblockSpecials{}": {
-      "snippet": "unicodeblockSpecials{${1:font macro}}"
-    },
-    "unicodeblockSuperscriptsandSubscriptsFont": {},
-    "unicodeblockSuperscriptsandSubscripts{}": {
-      "snippet": "unicodeblockSuperscriptsandSubscripts{${1:font macro}}"
-    },
-    "unicodeblockSupplementalArrowsAFont": {},
-    "unicodeblockSupplementalArrowsA{}": {
-      "snippet": "unicodeblockSupplementalArrowsA{${1:font macro}}"
-    },
-    "unicodeblockSupplementalArrowsBFont": {},
-    "unicodeblockSupplementalArrowsB{}": {
-      "snippet": "unicodeblockSupplementalArrowsB{${1:font macro}}"
-    },
-    "unicodeblockSupplementalMathematicalOperatorsFont": {},
-    "unicodeblockSupplementalMathematicalOperators{}": {
-      "snippet": "unicodeblockSupplementalMathematicalOperators{${1:font macro}}"
-    },
-    "unicodeblockSupplementalPunctuationFont": {},
-    "unicodeblockSupplementalPunctuation{}": {
-      "snippet": "unicodeblockSupplementalPunctuation{${1:font macro}}"
-    },
-    "unicodeblockSupplementaryPrivateUseAreaAFont": {},
-    "unicodeblockSupplementaryPrivateUseAreaA{}": {
-      "snippet": "unicodeblockSupplementaryPrivateUseAreaA{${1:font macro}}"
-    },
-    "unicodeblockSupplementaryPrivateUseAreaBFont": {},
-    "unicodeblockSupplementaryPrivateUseAreaB{}": {
-      "snippet": "unicodeblockSupplementaryPrivateUseAreaB{${1:font macro}}"
-    },
-    "unicodeblockSylotiNagriFont": {},
-    "unicodeblockSylotiNagri{}": {
-      "snippet": "unicodeblockSylotiNagri{${1:font macro}}"
-    },
-    "unicodeblockSyriacFont": {},
-    "unicodeblockSyriac{}": {
-      "snippet": "unicodeblockSyriac{${1:font macro}}"
-    },
-    "unicodeblockTagalogFont": {},
-    "unicodeblockTagalog{}": {
-      "snippet": "unicodeblockTagalog{${1:font macro}}"
-    },
-    "unicodeblockTagbanwaFont": {},
-    "unicodeblockTagbanwa{}": {
-      "snippet": "unicodeblockTagbanwa{${1:font macro}}"
-    },
-    "unicodeblockTagsFont": {},
-    "unicodeblockTags{}": {
-      "snippet": "unicodeblockTags{${1:font macro}}"
-    },
-    "unicodeblockTaiLeFont": {},
-    "unicodeblockTaiLe{}": {
-      "snippet": "unicodeblockTaiLe{${1:font macro}}"
-    },
-    "unicodeblockTaiXuanJingSymbolsFont": {},
-    "unicodeblockTaiXuanJingSymbols{}": {
-      "snippet": "unicodeblockTaiXuanJingSymbols{${1:font macro}}"
-    },
-    "unicodeblockTamilFont": {},
-    "unicodeblockTamil{}": {
-      "snippet": "unicodeblockTamil{${1:font macro}}"
-    },
-    "unicodeblockTeluguFont": {},
-    "unicodeblockTelugu{}": {
-      "snippet": "unicodeblockTelugu{${1:font macro}}"
-    },
-    "unicodeblockThaanaFont": {},
-    "unicodeblockThaana{}": {
-      "snippet": "unicodeblockThaana{${1:font macro}}"
-    },
-    "unicodeblockThaiFont": {},
-    "unicodeblockThai{}": {
-      "snippet": "unicodeblockThai{${1:font macro}}"
-    },
-    "unicodeblockTibetanFont": {},
-    "unicodeblockTibetan{}": {
-      "snippet": "unicodeblockTibetan{${1:font macro}}"
-    },
-    "unicodeblockTifinaghFont": {},
-    "unicodeblockTifinagh{}": {
-      "snippet": "unicodeblockTifinagh{${1:font macro}}"
-    },
-    "unicodeblockUgariticFont": {},
-    "unicodeblockUgaritic{}": {
-      "snippet": "unicodeblockUgaritic{${1:font macro}}"
-    },
-    "unicodeblockUnifiedCanadianAboriginalSyllabicsFont": {},
-    "unicodeblockUnifiedCanadianAboriginalSyllabics{}": {
-      "snippet": "unicodeblockUnifiedCanadianAboriginalSyllabics{${1:font macro}}"
-    },
-    "unicodeblockVariationSelectorsFont": {},
-    "unicodeblockVariationSelectorsSupplementFont": {},
-    "unicodeblockVariationSelectorsSupplement{}": {
-      "snippet": "unicodeblockVariationSelectorsSupplement{${1:font macro}}"
-    },
-    "unicodeblockVariationSelectors{}": {
-      "snippet": "unicodeblockVariationSelectors{${1:font macro}}"
-    },
-    "unicodeblockVerticalFormsFont": {},
-    "unicodeblockVerticalForms{}": {
-      "snippet": "unicodeblockVerticalForms{${1:font macro}}"
-    },
-    "unicodeblockYiRadicalsFont": {},
-    "unicodeblockYiRadicals{}": {
-      "snippet": "unicodeblockYiRadicals{${1:font macro}}"
-    },
-    "unicodeblockYiSyllablesFont": {},
-    "unicodeblockYiSyllables{}": {
-      "snippet": "unicodeblockYiSyllables{${1:font macro}}"
-    },
-    "unicodeblockYijingHexagramSymbolsFont": {},
-    "unicodeblockYijingHexagramSymbols{}": {
-      "snippet": "unicodeblockYijingHexagramSymbols{${1:font macro}}"
-    },
-    "unicodegroupArabicFont": {},
-    "unicodegroupCJKFont": {},
-    "unicodegroupChineseFont": {},
-    "unicodegroupCyrillicFont": {},
-    "unicodegroupDiacriticsFont": {},
-    "unicodegroupGreekFont": {},
-    "unicodegroupJapaneseFont": {},
-    "unicodegroupKoreanFont": {},
-    "unicodegroupLatinFont": {},
-    "unicodegroupMathematicsFont": {},
-    "unicodegroupOtherFont": {},
-    "unicodegroupPhoneticsFont": {},
-    "unicodegroupPunctuationFont": {},
-    "unicodegroupSymbolsFont": {},
-    "unicodegroupYiFont": {}
-  },
-  "envs": {
-    "verbatimfontwrap": {}
-  },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,18 +1,26 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "stex": []
-  },
-  "macros": {},
-  "envs": {},
-  "options": [
-    "lang=${1:language}",
-    "mathhub=${1:directory}",
-    "writesms",
-    "usems",
-    "image",
-    "debug=${1:log-prefix}",
-    "checkterms"
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "stex"
+    }
   ],
-  "keyvals": []
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\documentclass/stex#c": [
+      "lang=${1:language}",
+      "mathhub=${1:directory}",
+      "writesms",
+      "usems",
+      "image",
+      "debug=${1:log-prefix}",
+      "checkterms"
+    ]
+  },
+  "args": [
+    "\\documentclass/stex#c"
+  ]
 }

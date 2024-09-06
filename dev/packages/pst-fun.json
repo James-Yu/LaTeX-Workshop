@@ -1,58 +1,133 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-grad": [],
-    "pst-slpe": [],
-    "multido": [],
-    "pst-node": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psParrot{}": {
-      "snippet": "psParrot{${1:scale}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psBill": {},
-    "psFish": {},
-    "psFish[]": {
-      "snippet": "psFish[${1:options}]"
+    {
+      "name": "pst-grad"
     },
-    "psLouisXIII": {},
-    "psLouisXIII[]": {
-      "snippet": "psLouisXIII[${1:options}]"
+    {
+      "name": "pst-slpe"
     },
-    "psPulpo": {},
-    "psPulpo[]": {
-      "snippet": "psPulpo[${1:options}]"
+    {
+      "name": "multido"
     },
-    "Datas": {},
-    "psBranch": {},
-    "psBird": {},
-    "psBird[]": {
-      "snippet": "psBird[${1:options}]"
+    {
+      "name": "pst-node"
     },
-    "psLuke": {},
-    "psLuke[]": {
-      "snippet": "psLuke[${1:options}]"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psParrot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:scale}}"
+      }
     },
-    "psAnt": {},
-    "psAnt[]": {
-      "snippet": "psAnt[${1:options}]"
+    {
+      "name": "psBill"
     },
-    "psKangaroo{}": {
-      "snippet": "psKangaroo{${1:scale}}"
+    {
+      "name": "psFish"
     },
-    "psKangaroo[]{}": {
-      "snippet": "psKangaroo[${2:options}]{${1:scale}}"
+    {
+      "name": "psFish",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "psPig()": {
-      "snippet": "psPig(${1:x},${2:y})"
+    {
+      "name": "psLouisXIII"
     },
-    "psPig[]()": {
-      "snippet": "psPig[${1:options}](${2:x},${3:y})"
+    {
+      "name": "psLouisXIII",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "PSTfunLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "psPulpo"
+    },
+    {
+      "name": "psPulpo",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "Datas",
+      "unusual": true
+    },
+    {
+      "name": "psBranch",
+      "unusual": true
+    },
+    {
+      "name": "psBird"
+    },
+    {
+      "name": "psBird",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psLuke"
+    },
+    {
+      "name": "psLuke",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psAnt"
+    },
+    {
+      "name": "psAnt",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psKangaroo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:scale}}"
+      }
+    },
+    {
+      "name": "psKangaroo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:scale}}"
+      }
+    },
+    {
+      "name": "psPig",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "psPig",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

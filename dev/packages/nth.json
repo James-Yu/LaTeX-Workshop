@@ -1,27 +1,57 @@
 {
-  "includes": {},
-  "macros": {
-    "nth{}": {
-      "snippet": "nth{${1:number}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "nth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "ordinal{}": {
-      "snippet": "ordinal{${1:counter}}"
+    {
+      "name": "ordinal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
     },
-    "nthM{}": {
-      "snippet": "nthM{${1:arg}}"
+    {
+      "name": "nthM",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "nthSuff{}{}{}": {
-      "snippet": "nthSuff{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "nthSuff",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
     },
-    "nthscript{}": {
-      "snippet": "nthscript{${1:arg}}"
+    {
+      "name": "nthscript",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "nthtest": {}
-  },
-  "envs": {},
-  "options": [
-    "super",
-    "negative"
+    {
+      "name": "nthtest",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/nth#c": [
+      "super",
+      "negative"
+    ]
+  },
+  "args": [
+    "\\usepackage/nth#c"
+  ]
 }

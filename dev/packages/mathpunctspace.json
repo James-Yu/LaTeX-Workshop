@@ -1,19 +1,34 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "normalcolon": {},
-    "normalcomma": {},
-    "normalsemicolon": {}
-  },
-  "envs": {},
-  "options": [
-    "comma=${1|natural,skip|}",
-    "colon=${1|natural,skip|}",
-    "semicolon=${1|natural,skip|}",
-    "unit=${1:unit}",
-    "latexorg"
+  "deps": [
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "normalcolon",
+      "unusual": true
+    },
+    {
+      "name": "normalcomma",
+      "unusual": true
+    },
+    {
+      "name": "normalsemicolon",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/mathpunctspace#c": [
+      "comma=${1|natural,skip|}",
+      "colon=${1|natural,skip|}",
+      "semicolon=${1|natural,skip|}",
+      "unit=${1:unit}",
+      "latexorg"
+    ]
+  },
+  "args": [
+    "\\usepackage/mathpunctspace#c"
+  ]
 }

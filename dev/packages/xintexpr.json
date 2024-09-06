@@ -1,178 +1,440 @@
 {
-  "includes": {
-    "xintfrac": [],
-    "xinttools": [],
-    "xinttrig": [],
-    "xintlog": []
-  },
-  "macros": {
-    "xintthe": {},
-    "xintthealign": {},
-    "xintexprSafeCatcodes": {},
-    "xintexprRestoreCatcodes": {},
-    "xintexpro": {},
-    "xintiexpro": {},
-    "xintfloatexpro": {},
-    "xintiiexpro": {},
-    "xintDigits*": {},
-    "xintSetDigits*{}": {
-      "snippet": "xintSetDigits*{${1:expr}}"
+  "deps": [
+    {
+      "name": "xintfrac"
     },
-    "xintfracSetDigits{}": {
-      "snippet": "xintfracSetDigits{${1:expr}}"
+    {
+      "name": "xinttools"
     },
-    "xinteval{}": {
-      "snippet": "xinteval{${1:expr}}"
+    {
+      "name": "xinttrig"
     },
-    "xintieval{}": {
-      "snippet": "xintieval{${1:expr}}"
+    {
+      "name": "xintlog"
+    }
+  ],
+  "macros": [
+    {
+      "name": "xintthe"
     },
-    "xintieval[]{}": {
-      "snippet": "xintieval[${2:digits}]{${1:expr}}"
+    {
+      "name": "xintthealign"
     },
-    "xintiieval{}": {
-      "snippet": "xintiieval{${1:expr}}"
+    {
+      "name": "xintexprSafeCatcodes",
+      "unusual": true
     },
-    "xintfloateval{}": {
-      "snippet": "xintfloateval{${1:expr}}"
+    {
+      "name": "xintexprRestoreCatcodes",
+      "unusual": true
     },
-    "xintfloateval[]{}": {
-      "snippet": "xintfloateval[${2:digits}]{${1:expr}}"
+    {
+      "name": "xintexpro",
+      "unusual": true
     },
-    "xintthecoords": {},
-    "xintthespaceseparated": {},
-    "xintifboolexpr{}{}{}": {
-      "snippet": "xintifboolexpr{${1:expr}}{${2:yes-code}}{${3:no-code}}"
+    {
+      "name": "xintiexpro",
+      "unusual": true
     },
-    "xintifboolfloatexpr{}{}{}": {
-      "snippet": "xintifboolfloatexpr{${1:expr}}{${2:yes-code}}{${3:no-code}}"
+    {
+      "name": "xintfloatexpro",
+      "unusual": true
     },
-    "xintifbooliiexpr{}{}{}": {
-      "snippet": "xintifbooliiexpr{${1:expr}}{${2:yes-code}}{${3:no-code}}"
+    {
+      "name": "xintiiexpro",
+      "unusual": true
     },
-    "xintifsgnexpr{}{}{}{}": {
-      "snippet": "xintifsgnexpr{${1:expr}}{${2:less-code}}{${3:zero-code}}{${4:greater-code}}"
+    {
+      "name": "xintDigits*"
     },
-    "xintifsgnfloatexpr{}{}{}{}": {
-      "snippet": "xintifsgnfloatexpr{${1:expr}}{${2:less-code}}{${3:zero-code}}{${4:greater-code}}"
+    {
+      "name": "xintSetDigits*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr}}"
+      }
     },
-    "xintifsgniiexpr{}{}{}{}": {
-      "snippet": "xintifsgniiexpr{${1:expr}}{${2:less-code}}{${3:zero-code}}{${4:greater-code}}"
+    {
+      "name": "xintfracSetDigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr}}"
+      }
     },
-    "xintNewExpr{}{}": {
-      "snippet": "xintNewExpr{${1:cmd}}{${2:definition}}"
+    {
+      "name": "xinteval",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr}}"
+      }
     },
-    "xintNewExpr{}[]{}": {
-      "snippet": "xintNewExpr{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "xintieval",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr}}"
+      }
     },
-    "xintNewIIExpr{}{}": {
-      "snippet": "xintNewIIExpr{${1:cmd}}{${2:definition}}"
+    {
+      "name": "xintieval",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:expr}}"
+      }
     },
-    "xintNewIIExpr{}[]{}": {
-      "snippet": "xintNewIIExpr{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "xintiieval",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr}}"
+      }
     },
-    "xintNewFloatExpr{}{}": {
-      "snippet": "xintNewFloatExpr{${1:cmd}}{${2:definition}}"
+    {
+      "name": "xintfloateval",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr}}"
+      }
     },
-    "xintNewFloatExpr{}[]{}": {
-      "snippet": "xintNewFloatExpr{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "xintfloateval",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:expr}}"
+      }
     },
-    "xintNewIExpr{}{}": {
-      "snippet": "xintNewIExpr{${1:cmd}}{${2:definition}}"
+    {
+      "name": "xintthecoords"
     },
-    "xintNewIExpr{}[]{}": {
-      "snippet": "xintNewIExpr{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "xintthespaceseparated"
     },
-    "xintNewBoolExpr{}{}": {
-      "snippet": "xintNewBoolExpr{${1:cmd}}{${2:definition}}"
+    {
+      "name": "xintifboolexpr",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:expr}}{${2:yes-code}}{${3:no-code}}"
+      }
     },
-    "xintNewBoolExpr{}[]{}": {
-      "snippet": "xintNewBoolExpr{${1:cmd}}[${2:args}]{${3:definition}}"
+    {
+      "name": "xintifboolfloatexpr",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:expr}}{${2:yes-code}}{${3:no-code}}"
+      }
     },
-    "xintunassignvar{}": {
-      "snippet": "xintunassignvar{${1:variable}}"
+    {
+      "name": "xintifbooliiexpr",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:expr}}{${2:yes-code}}{${3:no-code}}"
+      }
     },
-    "xintnewdummy{}": {
-      "snippet": "xintnewdummy{${1:character}}"
+    {
+      "name": "xintifsgnexpr",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:expr}}{${2:less-code}}{${3:zero-code}}{${4:greater-code}}"
+      }
     },
-    "xintensuredummy{}": {
-      "snippet": "xintensuredummy{${1:character}}"
+    {
+      "name": "xintifsgnfloatexpr",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:expr}}{${2:less-code}}{${3:zero-code}}{${4:greater-code}}"
+      }
     },
-    "xintrestorevariable{}": {
-      "snippet": "xintrestorevariable{${1:character}}"
+    {
+      "name": "xintifsgniiexpr",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:expr}}{${2:less-code}}{${3:zero-code}}{${4:greater-code}}"
+      }
     },
-    "xintrestorevariablesilently{}": {
-      "snippet": "xintrestorevariablesilently{${1:character}}"
+    {
+      "name": "xintNewExpr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "xintunassignexprfunc{}": {
-      "snippet": "xintunassignexprfunc{${1:name}}"
+    {
+      "name": "xintNewExpr",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "xintunassigniiexprfunc{}": {
-      "snippet": "xintunassigniiexprfunc{${1:name}}"
+    {
+      "name": "xintNewIIExpr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "xintunassignfloatexprfunc{}": {
-      "snippet": "xintunassignfloatexprfunc{${1:name}}"
+    {
+      "name": "xintNewIIExpr",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "xintNewFunction{}{}": {
-      "snippet": "xintNewFunction{${1:name}}{${2:definition}}"
+    {
+      "name": "xintNewFloatExpr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "xintNewFunction{}[]{}": {
-      "snippet": "xintNewFunction{${1:name}}[${2:args}]{${3:definition}}"
+    {
+      "name": "xintNewFloatExpr",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "XINTfstop": {},
-    "xintreloadscilibs": {},
-    "XINTdigitsormax": {},
-    "xintexpralignbegin": {},
-    "xintexpralignend": {},
-    "xintexpralignlinesep": {},
-    "xintexpralignleftbracket": {},
-    "xintexpralignrightbracket": {},
-    "xintexpralignleftsep": {},
-    "xintexpralignrightsep": {},
-    "xintexpraligninnersep": {},
-    "XINTexprprint": {},
-    "XINTiexprprint": {},
-    "XINTiiexprprint": {},
-    "XINTflexprprint": {},
-    "xintbareeval": {},
-    "xintbarefloateval": {},
-    "xintbareiieval": {},
-    "xintthebareeval{}": {
-      "snippet": "xintthebareeval{${1:expr}}"
+    {
+      "name": "xintNewIExpr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "xintthebarefloateval{}": {
-      "snippet": "xintthebarefloateval{${1:expr}}"
+    {
+      "name": "xintNewIExpr",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "xintthebareiieval{}": {
-      "snippet": "xintthebareiieval{${1:expr}}"
+    {
+      "name": "xintNewBoolExpr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
     },
-    "xintthebareroundedfloateval{}": {
-      "snippet": "xintthebareroundedfloateval{${1:expr}}"
+    {
+      "name": "xintNewBoolExpr",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "XINTusenoargfunc{}": {
-      "snippet": "XINTusenoargfunc{${1:func}}"
+    {
+      "name": "xintunassignvar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:variable}}"
+      }
     },
-    "XINTusefunc{}": {
-      "snippet": "XINTusefunc{${1:func}}"
+    {
+      "name": "xintnewdummy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
     },
-    "XINTuseufunc{}": {
-      "snippet": "XINTuseufunc{${1:func}}"
+    {
+      "name": "xintensuredummy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
     },
-    "XINTusemacrofunc{}{}{}": {
-      "snippet": "XINTusemacrofunc{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "xintrestorevariable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
     },
-    "xintNEprinthook": {},
-    "xintexprPrintOne": {},
-    "xintiexprPrintOne": {},
-    "xintiiexprPrintOne": {},
-    "xintfloatexprPrintOne": {},
-    "xintboolexprPrintOne": {},
-    "xintexprEmptyItem": {},
-    "xintSeqA": {},
-    "xintiiSeqA": {},
-    "xintSeqB": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "xintrestorevariablesilently",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
+    },
+    {
+      "name": "xintunassignexprfunc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "xintunassigniiexprfunc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "xintunassignfloatexprfunc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "xintNewFunction",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "xintNewFunction",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:args}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "XINTfstop",
+      "unusual": true
+    },
+    {
+      "name": "xintreloadscilibs",
+      "unusual": true
+    },
+    {
+      "name": "XINTdigitsormax",
+      "unusual": true
+    },
+    {
+      "name": "xintexpralignbegin",
+      "unusual": true
+    },
+    {
+      "name": "xintexpralignend",
+      "unusual": true
+    },
+    {
+      "name": "xintexpralignlinesep",
+      "unusual": true
+    },
+    {
+      "name": "xintexpralignleftbracket",
+      "unusual": true
+    },
+    {
+      "name": "xintexpralignrightbracket",
+      "unusual": true
+    },
+    {
+      "name": "xintexpralignleftsep",
+      "unusual": true
+    },
+    {
+      "name": "xintexpralignrightsep",
+      "unusual": true
+    },
+    {
+      "name": "xintexpraligninnersep",
+      "unusual": true
+    },
+    {
+      "name": "XINTexprprint",
+      "unusual": true
+    },
+    {
+      "name": "XINTiexprprint",
+      "unusual": true
+    },
+    {
+      "name": "XINTiiexprprint",
+      "unusual": true
+    },
+    {
+      "name": "XINTflexprprint",
+      "unusual": true
+    },
+    {
+      "name": "xintbareeval",
+      "unusual": true
+    },
+    {
+      "name": "xintbarefloateval",
+      "unusual": true
+    },
+    {
+      "name": "xintbareiieval",
+      "unusual": true
+    },
+    {
+      "name": "xintthebareeval",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr}}"
+      }
+    },
+    {
+      "name": "xintthebarefloateval",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr}}"
+      }
+    },
+    {
+      "name": "xintthebareiieval",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr}}"
+      }
+    },
+    {
+      "name": "xintthebareroundedfloateval",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr}}"
+      }
+    },
+    {
+      "name": "XINTusenoargfunc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:func}}"
+      }
+    },
+    {
+      "name": "XINTusefunc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:func}}"
+      }
+    },
+    {
+      "name": "XINTuseufunc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:func}}"
+      }
+    },
+    {
+      "name": "XINTusemacrofunc",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "xintNEprinthook",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

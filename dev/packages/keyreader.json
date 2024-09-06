@@ -1,206 +1,271 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "pdftexcmds": []
-  },
-  "macros": {
-    "krddefinekeys{}{}": {
-      "snippet": "krddefinekeys{${1:kfamily}}{${2:keylist}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "krddefinekeys{}[]{}": {
-      "snippet": "krddefinekeys{${1:kfamily}}[${2:mprefix}]{${3:keylist}}"
+    {
+      "name": "pdftexcmds"
+    }
+  ],
+  "macros": [
+    {
+      "name": "krddefinekeys",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:kfamily}}{${2:keylist%plain}}"
+      }
     },
-    "krddefinekeys[]{}{}": {
-      "snippet": "krddefinekeys[${3:kprefix}]{${1:kfamily}}{${2:keylist}}"
+    {
+      "name": "krddefinekeys",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:kfamily}}[${3:mprefix}]{${2:keylist%plain}}"
+      }
     },
-    "krddefinekeys[]{}[]{}": {
-      "snippet": "krddefinekeys[${3:kprefix}]{${1:kfamily}}[${4:mprefix}]{${2:keylist}}"
+    {
+      "name": "krddefinekeys",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:kprefix}]{${1:kfamily}}{${2:keylist%plain}}"
+      }
     },
-    "krddefinekeys*{}{}": {
-      "snippet": "krddefinekeys*{${1:kfamily}}{${2:keylist}}"
+    {
+      "name": "krddefinekeys",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:kprefix}]{${1:kfamily}}[${4:mprefix}]{${2:keylist%plain}}"
+      }
     },
-    "krddefinekeys*{}[]{}": {
-      "snippet": "krddefinekeys*{${1:kfamily}}[${2:mprefix}]{${3:keylist}}"
+    {
+      "name": "krddefinekeys*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:kfamily}}{${2:keylist%plain}}"
+      }
     },
-    "krddefinekeys*[]{}{}": {
-      "snippet": "krddefinekeys*[${3:kprefix}]{${1:kfamily}}{${2:keylist}}"
+    {
+      "name": "krddefinekeys*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:kfamily}}[${3:mprefix}]{${2:keylist%plain}}"
+      }
     },
-    "krddefinekeys*[]{}[]{}": {
-      "snippet": "krddefinekeys*[${3:kprefix}]{${1:kfamily}}[${4:mprefix}]{${2:keylist}}"
+    {
+      "name": "krddefinekeys*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:kprefix}]{${1:kfamily}}{${2:keylist%plain}}"
+      }
     },
-    "krdsetkeys{}{}": {
-      "snippet": "krdsetkeys{${1:families}}{${2:keyvals}}"
+    {
+      "name": "krddefinekeys*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:kprefix}]{${1:kfamily}}[${4:mprefix}]{${2:keylist%plain}}"
+      }
     },
-    "krdsetkeys[]{}[]{}": {
-      "snippet": "krdsetkeys[${3:kprefix}]{${1:families}}[${4:ignored keys}]{${2:keyvals}}"
+    {
+      "name": "krdsetkeys",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:families}}{${2:keyvals}}"
+      }
     },
-    "krdsetkeys*{}{}": {
-      "snippet": "krdsetkeys*{${1:families}}{${2:keyvals}}"
+    {
+      "name": "krdsetkeys",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:kprefix}]{${1:families}}[${4:ignored keys}]{${2:keyvals}}"
+      }
     },
-    "krdsetkeys*[]{}[]{}": {
-      "snippet": "krdsetkeys*[${3:kprefix}]{${1:families}}[${4:ignored keys}]{${2:keyvals}}"
+    {
+      "name": "krdsetkeys*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:families}}{${2:keyvals}}"
+      }
     },
-    "krdsetrmkeys{}": {
-      "snippet": "krdsetrmkeys{${1:families}}"
+    {
+      "name": "krdsetkeys*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:kprefix}]{${1:families}}[${4:ignored keys}]{${2:keyvals}}"
+      }
     },
-    "krdsetrmkeys[]{}[]": {
-      "snippet": "krdsetrmkeys[${2:prefix}]{${1:families}}[${3:ignored keys}]"
+    {
+      "name": "krdsetrmkeys",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:families}}"
+      }
     },
-    "krdsetrmkeys*{}": {
-      "snippet": "krdsetrmkeys*{${1:families}}"
+    {
+      "name": "krdsetrmkeys",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:prefix}]{${1:families}}[${3:ignored keys}]"
+      }
     },
-    "krdsetrmkeys*[]{}[]": {
-      "snippet": "krdsetrmkeys*[${2:prefix}]{${1:families}}[${3:ignored keys}]"
+    {
+      "name": "krdsetrmkeys*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:families}}"
+      }
     },
-    "krdpresetkeys{}{}": {
-      "snippet": "krdpresetkeys{${1:family}}{${2:head keys}}"
+    {
+      "name": "krdsetrmkeys*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:prefix}]{${1:families}}[${3:ignored keys}]"
+      }
     },
-    "krdpresetkeys[]{}{}": {
-      "snippet": "krdpresetkeys[${3:prefix}]{${1:family}}{${2:head keys}}"
+    {
+      "name": "krdpresetkeys",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:family}}{${2:head keys}}"
+      }
     },
-    "krdpostsetkeys{}{}": {
-      "snippet": "krdpostsetkeys{${1:family}}{${2:tail keys}}"
+    {
+      "name": "krdpresetkeys",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:prefix}]{${1:family}}{${2:head keys}}"
+      }
     },
-    "krdpostsetkeys[]{}{}": {
-      "snippet": "krdpostsetkeys[${3:prefix}]{${1:family}}{${2:tail keys}}"
+    {
+      "name": "krdpostsetkeys",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:family}}{${2:tail keys}}"
+      }
     },
-    "krddisablekeys{}{}": {
-      "snippet": "krddisablekeys{${1:family}}{${2:keys}}"
+    {
+      "name": "krdpostsetkeys",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:prefix}]{${1:family}}{${2:tail keys}}"
+      }
     },
-    "krddisablekeys[]{}{}": {
-      "snippet": "krddisablekeys[${3:prefix}]{${1:family}}{${2:keys}}"
+    {
+      "name": "krddisablekeys",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:family}}{${2:keys}}"
+      }
     },
-    "krdDeclareOption{}{}": {
-      "snippet": "krdDeclareOption{${1:key}}{${2:function}}"
+    {
+      "name": "krddisablekeys",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:prefix}]{${1:family}}{${2:keys}}"
+      }
     },
-    "krdDeclareOption[]<>{}[]{}": {
-      "snippet": "krdDeclareOption[${3:prefix}]<${5:family}>{${1:key}}[${4:default}]{${2:function}}"
+    {
+      "name": "krdDeclareOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:function}}"
+      }
     },
-    "krdDeclareOption*{}": {
-      "snippet": "krdDeclareOption*{${1:function}}"
+    {
+      "name": "krdDeclareOption",
+      "unusual": true,
+      "arg": {
+        "format": "[]<>{}[]{}",
+        "snippet": "[${3:prefix}]<${5:family}>{${1:key%plain}}[${4:default}]{${2:function}}"
+      }
     },
-    "krdExecuteOptions{}": {
-      "snippet": "krdExecuteOptions{${1:keyvals}}"
+    {
+      "name": "krdDeclareOption*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:function}}"
+      }
     },
-    "krdExecuteOptions[]<>[]{}": {
-      "snippet": "krdExecuteOptions[${2:prefix}]<${4:families}>[${3:ignored keys}]{${1:keyvals}}"
+    {
+      "name": "krdExecuteOptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
     },
-    "krdProcessOptions": {},
-    "krdProcessOptions[]<>[]": {
-      "snippet": "krdProcessOptions[${1:prefix}]<${3:families}>[${2:ignored keys}]"
+    {
+      "name": "krdExecuteOptions",
+      "unusual": true,
+      "arg": {
+        "format": "[]<>[]{}",
+        "snippet": "[${2:prefix}]<${4:families}>[${3:ignored keys}]{${1:keyvals}}"
+      }
     },
-    "krdProcessOptions*": {},
-    "krdProcessOptions*[]<>[]": {
-      "snippet": "krdProcessOptions*[${1:prefix}]<${3:families}>[${2:ignored keys}]"
+    {
+      "name": "krdProcessOptions",
+      "unusual": true
     },
-    "savevaluekeys{}{}": {
-      "snippet": "savevaluekeys{${1:family}}{${2:keyvals}}"
+    {
+      "name": "krdProcessOptions",
+      "unusual": true,
+      "arg": {
+        "format": "[]<>[]",
+        "snippet": "[${1:prefix}]<${3:families}>[${2:ignored keys}]"
+      }
     },
-    "savevaluekeys[]{}{}": {
-      "snippet": "savevaluekeys[${3:prefix}]{${1:family}}{${2:keyvals}}"
+    {
+      "name": "krdProcessOptions*",
+      "unusual": true
     },
-    "ifkrdindef": {},
-    "krdaddtolist": {},
-    "krdAfterEndPackage{}": {
-      "snippet": "krdAfterEndPackage{${1:code}}"
+    {
+      "name": "krdProcessOptions*",
+      "unusual": true,
+      "arg": {
+        "format": "[]<>[]",
+        "snippet": "[${1:prefix}]<${3:families}>[${2:ignored keys}]"
+      }
     },
-    "krdaftergr{}": {
-      "snippet": "krdaftergr{${1:arg1}}"
+    {
+      "name": "savevaluekeys",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:family}}{${2:keyvals}}"
+      }
     },
-    "krdcommaloop": {},
-    "krdcsvnormalize": {},
-    "krdecommaloop": {},
-    "krdexpandarg{}{}": {
-      "snippet": "krdexpandarg{${1:arg1}}{${2:arg2}}"
-    },
-    "krdexpandargonce{}{}": {
-      "snippet": "krdexpandargonce{${1:arg1}}{${2:arg2}}"
-    },
-    "krdexpanded{}": {
-      "snippet": "krdexpanded{${1:arg1}}"
-    },
-    "krdexpandonce{}": {
-      "snippet": "krdexpandonce{${1:arg1}}"
-    },
-    "krdexpandsecond{}{}": {
-      "snippet": "krdexpandsecond{${1:arg1}}{${2:arg2}}"
-    },
-    "krdexpandsecondonce{}{}": {
-      "snippet": "krdexpandsecondonce{${1:arg1}}{${2:arg2}}"
-    },
-    "krdfor{}": {
-      "snippet": "krdfor{${1:arg1}}"
-    },
-    "krdforeach": {},
-    "krdgaddtolist": {},
-    "krdifblank{}": {
-      "snippet": "krdifblank{${1:arg1}}"
-    },
-    "krdifbool{}": {
-      "snippet": "krdifbool{${1:arg1}}"
-    },
-    "krdifbraced{}": {
-      "snippet": "krdifbraced{${1:arg1}}"
-    },
-    "krdifcond{}": {
-      "snippet": "krdifcond{${1:arg1}}"
-    },
-    "krdifcsdef{}": {
-      "snippet": "krdifcsdef{${1:arg1}}"
-    },
-    "krdifdef{}": {
-      "snippet": "krdifdef{${1:arg1}}"
-    },
-    "krdifescaped{}": {
-      "snippet": "krdifescaped{${1:arg1}}"
-    },
-    "krdifledbyspace{}": {
-      "snippet": "krdifledbyspace{${1:arg1}}"
-    },
-    "krdifstrcmp{}{}": {
-      "snippet": "krdifstrcmp{${1:arg1}}{${2:arg2}}"
-    },
-    "krdifswitch{}": {
-      "snippet": "krdifswitch{${1:arg1}}"
-    },
-    "krdifx{}{}": {
-      "snippet": "krdifx{${1:arg1}}{${2:arg2}}"
-    },
-    "krdindeffalse": {},
-    "krdindeftrue": {},
-    "krdkvnormalize{}": {
-      "snippet": "krdkvnormalize{${1:arg1}}"
-    },
-    "krdncsname": {},
-    "krdnewlet{}": {
-      "snippet": "krdnewlet{${1:cmd}}"
-    },
-    "krdnoexpandcs{}": {
-      "snippet": "krdnoexpandcs{${1:arg1}}"
-    },
-    "krdorder": {},
-    "krdoxdetok{}": {
-      "snippet": "krdoxdetok{${1:arg1}}"
-    },
-    "krdstripouterbraces{}{}": {
-      "snippet": "krdstripouterbraces{${1:arg1}}{${2:arg2}}"
-    },
-    "krdswap{}{}": {
-      "snippet": "krdswap{${1:arg1}}{${2:arg2}}"
-    },
-    "krdtrimspace{}": {
-      "snippet": "krdtrimspace{${1:arg1}}"
-    },
-    "krdusearg{}{}": {
-      "snippet": "krdusearg{${1:arg1}}{${2:arg2}}"
-    },
-    "krduserinput": {},
-    "krdzapspace{}": {
-      "snippet": "krdzapspace{${1:arg1}}"
-    },
-    "stopforeach": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "savevaluekeys",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:prefix}]{${1:family}}{${2:keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

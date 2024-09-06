@@ -1,26 +1,44 @@
 {
-  "includes": {
-    "kvoptions": []
-  },
-  "macros": {
-    "sectionbreak": {},
-    "sectionbreak[]": {
-      "snippet": "sectionbreak[${1:mark}]"
-    },
-    "sectionbreakmark{}": {
-      "snippet": "sectionbreakmark{${1:mark}}"
-    },
-    "asterism": {}
-  },
-  "envs": {},
-  "options": [
-    "preskip=",
-    "postskip=",
-    "skip=",
-    "style=${1:font commands}",
-    "mark=${1:chars}",
-    "asterism",
-    "disable"
+  "deps": [
+    {
+      "name": "kvoptions"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "sectionbreak"
+    },
+    {
+      "name": "sectionbreak",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:mark}]"
+      }
+    },
+    {
+      "name": "sectionbreakmark",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:mark}}"
+      }
+    },
+    {
+      "name": "asterism"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/sectionbreak#c": [
+      "preskip=",
+      "postskip=",
+      "skip=",
+      "style=${1:font commands}",
+      "mark=${1:chars}",
+      "asterism",
+      "disable"
+    ]
+  },
+  "args": [
+    "\\usepackage/sectionbreak#c"
+  ]
 }

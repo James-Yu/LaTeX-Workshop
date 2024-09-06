@@ -1,18 +1,31 @@
 {
-  "includes": {
-    "biblatex": [],
-    "kvoptions": [],
-    "hyperref": []
-  },
-  "macros": {
-    "biblicenseintrotext": {}
-  },
-  "envs": {},
-  "options": [
-    "license=${1|short,full,off|}",
-    "url",
-    "link",
-    "introtext={${1:text}}"
+  "deps": [
+    {
+      "name": "biblatex"
+    },
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "hyperref"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "biblicenseintrotext",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/biblatex-license#c": [
+      "license=${1|short,full,off|}",
+      "url",
+      "link",
+      "introtext={${1:text}}"
+    ]
+  },
+  "args": [
+    "\\usepackage/biblatex-license#c"
+  ]
 }

@@ -1,89 +1,238 @@
 {
-  "includes": {
-    "iftex": [],
-    "kvoptions": [],
-    "glossaries": [],
-    "tabularx": [],
-    "etoolbox": [],
-    "marginnote": []
-  },
-  "macros": {
-    "skilldef{}{}{}": {
-      "snippet": "skilldef{${1:label}}{${2:reference}}{${3:description}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "skillquestion": {},
-    "skillquestion[]": {
-      "snippet": "skillquestion[${1:labellist}]"
+    {
+      "name": "kvoptions"
     },
-    "skillquestion[][]": {
-      "snippet": "skillquestion[${1:labellist}][${2:points}]"
+    {
+      "name": "glossaries"
     },
-    "skills{}": {
-      "snippet": "skills{${1:labellist}}"
+    {
+      "name": "tabularx"
     },
-    "globalskills{}": {
-      "snippet": "globalskills{${1:labellist}}"
+    {
+      "name": "etoolbox"
     },
-    "skillstable": {},
-    "skillstable[]": {
-      "snippet": "skillstable[${1:sort type}]"
-    },
-    "putglobalskills": {},
-    "skillssep": {},
-    "skillsinmargin": {},
-    "skillsinleftmargin": {},
-    "skillsinrightmargin": {},
-    "noskillsinmargin": {},
-    "noskillsinrightmargin": {},
-    "skillsinmarginvadjust{}": {
-      "snippet": "skillsinmarginvadjust{${1:length}}"
-    },
-    "bracketedskills": {},
-    "nobracketedskills": {},
-    "boxedskills": {},
-    "noboxedskills": {},
-    "onlyskills": {},
-    "notonlyskills": {},
-    "skillsenclosement{}{}": {
-      "snippet": "skillsenclosement{${1:opening}}{${2:closing}}"
-    },
-    "skilllevelname": {},
-    "FrenchLocalization": {},
-    "PrintingSkillsConfiguration": {},
-    "defaultskillsclosing": {},
-    "defaultskillsenclosement": {},
-    "defaultskillsopening": {},
-    "globalskill{}": {
-      "snippet": "globalskill{${1:arg}}"
-    },
-    "globalskill[]{}": {
-      "snippet": "globalskill[${2:opt}]{${1:arg}}"
-    },
-    "glsgobblenumber{}": {
-      "snippet": "glsgobblenumber{${1:arg}}"
-    },
-    "multiskills{}": {
-      "snippet": "multiskills{${1:arg1}}"
-    },
-    "nextitem": {},
-    "skillcounter": {},
-    "skillsclosing": {},
-    "skillsopening": {},
-    "skill{}": {
-      "snippet": "skill{${1:label}}"
+    {
+      "name": "marginnote"
     }
-  },
-  "envs": {
-    "skillquestions": {},
-    "skillquestions[]": {
-      "name": "skillquestions",
-      "snippet": "[${1:labellist}]"
-    }
-  },
-  "options": [
-    "makenoidxglossaries",
-    "donotmakenoidxglossaries",
-    "counter=${1:counter}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "skilldef",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label}}{${2:reference}}{${3:description%text}}"
+      }
+    },
+    {
+      "name": "skillquestion"
+    },
+    {
+      "name": "skillquestion",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:skill1,skill2,...}]"
+      }
+    },
+    {
+      "name": "skillquestion",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:skill1,skill2,...}][${2:points}]"
+      }
+    },
+    {
+      "name": "skills",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:skill1,skill2,...}}"
+      }
+    },
+    {
+      "name": "globalskills",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:skill1,skill2,...}}"
+      }
+    },
+    {
+      "name": "skillstable"
+    },
+    {
+      "name": "skillstable",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:sort type%keyvals}]",
+        "keys": [
+          "\\skillstable"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "putglobalskills",
+      "unusual": true
+    },
+    {
+      "name": "skillssep",
+      "unusual": true
+    },
+    {
+      "name": "skillsinmargin"
+    },
+    {
+      "name": "skillsinleftmargin"
+    },
+    {
+      "name": "skillsinrightmargin"
+    },
+    {
+      "name": "noskillsinmargin"
+    },
+    {
+      "name": "noskillsinrightmargin"
+    },
+    {
+      "name": "skillsinmarginvadjust",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "bracketedskills"
+    },
+    {
+      "name": "nobracketedskills"
+    },
+    {
+      "name": "boxedskills"
+    },
+    {
+      "name": "noboxedskills"
+    },
+    {
+      "name": "onlyskills"
+    },
+    {
+      "name": "notonlyskills"
+    },
+    {
+      "name": "skillsenclosement",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:opening}}{${2:closing}}"
+      }
+    },
+    {
+      "name": "skilllevelname",
+      "unusual": true
+    },
+    {
+      "name": "FrenchLocalization",
+      "unusual": true
+    },
+    {
+      "name": "PrintingSkillsConfiguration",
+      "unusual": true
+    },
+    {
+      "name": "defaultskillsclosing",
+      "unusual": true
+    },
+    {
+      "name": "defaultskillsenclosement",
+      "unusual": true
+    },
+    {
+      "name": "defaultskillsopening",
+      "unusual": true
+    },
+    {
+      "name": "globalskill",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "globalskill",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "glsgobblenumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "multiskills",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "skillcounter",
+      "unusual": true
+    },
+    {
+      "name": "skillsclosing",
+      "unusual": true
+    },
+    {
+      "name": "skillsopening",
+      "unusual": true
+    },
+    {
+      "name": "skill",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "skillquestions"
+    },
+    {
+      "name": "skillquestions",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:skill1,skill2,...}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/skills#c": [
+      "makenoidxglossaries",
+      "donotmakenoidxglossaries",
+      "counter=${1:counter}"
+    ],
+    "\\skillstable": [
+      "word",
+      "letter",
+      "standard",
+      "use",
+      "def",
+      "nocase",
+      "case"
+    ]
+  },
+  "args": [
+    "\\usepackage/skills#c"
+  ]
 }

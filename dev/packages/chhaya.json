@@ -1,19 +1,37 @@
 {
-  "includes": {
-    "marathi": [],
-    "glossaries": [],
-    "xkeyval": [],
-    "iftex": []
-  },
-  "macros": {
-    "printacronyms": {},
-    "printacronyms[]": {
-      "snippet": "printacronyms[${1:options}]"
+  "deps": [
+    {
+      "name": "marathi"
+    },
+    {
+      "name": "glossaries"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "iftex"
     }
-  },
-  "envs": {},
-  "options": [
-    "समरेखा=${1:font name}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "printacronyms"
+    },
+    {
+      "name": "printacronyms",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/chhaya#c": [
+      "समरेखा=${1:font name}"
+    ]
+  },
+  "args": [
+    "\\usepackage/chhaya#c"
+  ]
 }

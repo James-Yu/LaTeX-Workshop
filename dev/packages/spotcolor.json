@@ -1,43 +1,90 @@
 {
-  "includes": {
-    "graphics": []
-  },
-  "macros": {
-    "NewSpotColorSpace{}": {
-      "snippet": "NewSpotColorSpace{${1:name}}"
-    },
-    "AddSpotColor{}{}{}{}": {
-      "snippet": "AddSpotColor{${1:colorspace}}{${2:color}}{${3:pdf name}}{${4:specification}}"
-    },
-    "SpotSpace": {},
-    "SetPageColorSpace{}": {
-      "snippet": "SetPageColorSpace{${1:colorspace}}"
-    },
-    "SpotColor{}{}": {
-      "snippet": "SpotColor{${1:color}}{${2:number}}"
-    },
-    "SetPageColorResource{}": {
-      "snippet": "SetPageColorResource{${1:resource}}"
-    },
-    "thecolorprofile": {},
-    "thecolor": {},
-    "act": {},
-    "csgrab{}{}": {
-      "snippet": "csgrab{${1:arg1}}{${2:arg2}}"
-    },
-    "obj": {},
-    "tempcs": {},
-    "ifhks": {},
-    "hkstrue": {},
-    "hksfalse": {},
-    "ifpantone": {},
-    "pantonetrue": {},
-    "pantonefalse": {}
-  },
-  "envs": {},
-  "options": [
-    "hks",
-    "pantone"
+  "deps": [
+    {
+      "name": "graphics"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "NewSpotColorSpace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "AddSpotColor",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:colorspace}}{${2:color}}{${3:pdf name}}{${4:specification}}"
+      }
+    },
+    {
+      "name": "SpotSpace"
+    },
+    {
+      "name": "SetPageColorSpace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:colorspace}}"
+      }
+    },
+    {
+      "name": "SpotColor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:number}}"
+      }
+    },
+    {
+      "name": "SetPageColorResource",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:resource}}"
+      }
+    },
+    {
+      "name": "thecolorprofile",
+      "unusual": true
+    },
+    {
+      "name": "thecolor",
+      "unusual": true
+    },
+    {
+      "name": "ifhks",
+      "unusual": true
+    },
+    {
+      "name": "hkstrue",
+      "unusual": true
+    },
+    {
+      "name": "hksfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpantone",
+      "unusual": true
+    },
+    {
+      "name": "pantonetrue",
+      "unusual": true
+    },
+    {
+      "name": "pantonefalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/spotcolor#c": [
+      "hks",
+      "pantone"
+    ]
+  },
+  "args": [
+    "\\usepackage/spotcolor#c"
+  ]
 }

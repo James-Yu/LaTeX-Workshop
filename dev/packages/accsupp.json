@@ -1,36 +1,65 @@
 {
-  "includes": {
-    "pdfescape": [],
-    "iftex": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "BeginAccSupp{}": {
-      "snippet": "BeginAccSupp{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pdfescape"
     },
-    "AccSuppSetup{}": {
-      "snippet": "AccSuppSetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "iftex"
     },
-    "EndAccSupp{}": {
-      "snippet": "EndAccSupp{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "ActualTextDriverDefault": {}
-  },
-  "envs": {},
-  "options": [
-    "pdftex",
-    "luatex",
-    "dvips",
-    "dvipdfm"
+    {
+      "name": "kvoptions"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "BeginAccSupp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\BeginAccSupp,\\AccSuppSetup",
+          "\\BeginAccSupp,\\AccSuppSetup,\\EndAccSupp"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "AccSuppSetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\BeginAccSupp,\\AccSuppSetup",
+          "\\BeginAccSupp,\\AccSuppSetup,\\EndAccSupp"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "EndAccSupp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\BeginAccSupp,\\AccSuppSetup,\\EndAccSupp"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ActualTextDriverDefault",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/accsupp#c": [
+      "pdftex",
+      "luatex",
+      "dvips",
+      "dvipdfm"
+    ],
+    "\\BeginAccSupp,\\AccSuppSetup": [
       "ActualText=${1:text}",
       "Alt=${1:text}",
       "E=${1:text}",
@@ -39,11 +68,13 @@
       "unicode",
       "space",
       "spacefont=${1:font name}",
-      "spacechar=${1:slot}",
-      "pdfliteral=${1:keyword}"
+      "spacechar=${1:slot}"
     ],
-    [
+    "\\BeginAccSupp,\\AccSuppSetup,\\EndAccSupp": [
       "pdfliteral=${1:keyword}"
     ]
+  },
+  "args": [
+    "\\usepackage/accsupp#c"
   ]
 }

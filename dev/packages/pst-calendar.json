@@ -1,72 +1,59 @@
 {
-  "includes": {
-    "fp": [],
-    "pstricks": [],
-    "pst-3d": [],
-    "multido": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psCalendar": {},
-    "psCalendar[]": {
-      "snippet": "psCalendar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "fp"
     },
-    "psCalDodecaeder": {},
-    "psCalDodecaeder[]": {
-      "snippet": "psCalDodecaeder[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pstricks"
     },
-    "RA": {},
-    "rb": {},
-    "ra": {},
-    "rc": {},
-    "rd": {},
-    "faceA": {},
-    "faceB": {},
-    "faceC": {},
-    "faceD": {},
-    "Test": {},
-    "colonne": {},
-    "ligne": {},
-    "Year": {},
-    "GY": {},
-    "Cent": {},
-    "Iter": {},
-    "Iterdiv": {},
-    "Hepact": {},
-    "Inbre": {},
-    "Jnbreinter": {},
-    "Jnbre": {},
-    "Lnbre": {},
-    "Month": {},
-    "Day": {},
-    "DayAscension": {},
-    "MonthAscension": {},
-    "TestJourPentecote": {},
-    "DayPentecote": {},
-    "MonthPentecote": {},
-    "TestSiJourAvril": {},
-    "YearBissextil": {},
-    "adddays": {},
-    "NbreJours": {},
-    "NbYearBissextil": {},
-    "Name": {},
-    "NbDays": {},
-    "Frac": {},
-    "Quotient": {},
-    "firstDay": {}
-  },
-  "envs": {},
-  "options": [
-    "english",
-    "french",
-    "ngerman"
+    {
+      "name": "pst-3d"
+    },
+    {
+      "name": "multido"
+    },
+    {
+      "name": "pst-xkey"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "psCalendar"
+    },
+    {
+      "name": "psCalendar",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\psCalendar,\\psCalDodecaeder"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psCalDodecaeder"
+    },
+    {
+      "name": "psCalDodecaeder",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\psCalendar,\\psCalDodecaeder"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pst-calendar#c": [
+      "english",
+      "french",
+      "ngerman"
+    ],
+    "\\psCalendar,\\psCalDodecaeder": [
       "Year=${1:integer}",
       "Month=${1:integer}",
       "MonthUse=${1:integer}",
@@ -84,5 +71,8 @@
       "Vy=${1:integer}",
       "Vz=${1:integer}"
     ]
+  },
+  "args": [
+    "\\usepackage/pst-calendar#c"
   ]
 }

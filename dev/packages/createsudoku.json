@@ -1,67 +1,156 @@
 {
-  "includes": {
-    "solvesudoku": []
-  },
-  "macros": {
-    "generategrid": {},
-    "generategrid[]": {
-      "snippet": "generategrid[${1:file}]"
+  "deps": [
+    {
+      "name": "solvesudoku"
+    }
+  ],
+  "macros": [
+    {
+      "name": "generategrid"
     },
-    "genfile": {},
-    "prevfile": {},
-    "currfile": {},
-    "setsudrandom{}": {
-      "snippet": "setsudrandom{${1:number}}"
+    {
+      "name": "generategrid",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:file}]"
+      }
     },
-    "initialelimination": {},
-    "elimseventeen": {},
-    "elimnum{}": {
-      "snippet": "elimnum{${1:number}}"
+    {
+      "name": "genfile"
     },
-    "elimcross": {},
-    "elimex": {},
-    "elimcrossandnines": {},
-    "elimcrossandex": {},
-    "elimcrossandexandnines": {},
-    "acluenotdeletedfalse": {},
-    "acluenotdeletedtrue": {},
-    "deleteaclue": {},
-    "elimclues": {},
-    "elimcluesonebyone": {},
-    "gencommentary{}": {
-      "snippet": "gencommentary{${1:text}}"
+    {
+      "name": "prevfile"
     },
-    "ifacluenotdeleted": {},
-    "oldcommentary{}": {
-      "snippet": "oldcommentary{${1:text}}"
+    {
+      "name": "currfile"
     },
-    "printsudresults": {},
-    "swapcolpair{}{}": {
-      "snippet": "swapcolpair{${1:colstartcell1}}{${2:colstartcell2}}"
+    {
+      "name": "setsudrandom",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "swaprowpair{}{}": {
-      "snippet": "swaprowpair{${1:rowstartcell1}}{${2:rowstartcell2}}"
+    {
+      "name": "initialelimination"
     },
-    "swaps": {},
-    "toomanyloops": {},
-    "trysolution": {},
-    "writestartgrid": {},
-    "writestate{}": {
-      "snippet": "writestate{${1:file}}"
+    {
+      "name": "elimseventeen"
     },
-    "randomi": {},
-    "nextrandom": {},
-    "setrannum{}{}{}": {
-      "snippet": "setrannum{${1:count register}}{${2:min}}{${3:max}}"
+    {
+      "name": "elimnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "setrandim{}{}{}": {
-      "snippet": "setrandim{${1:dimen register}}{${2:min}}{${3:max}}"
+    {
+      "name": "elimcross"
     },
-    "pointless": {},
-    "PoinTless": {},
-    "ranval": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "elimex"
+    },
+    {
+      "name": "elimcrossandnines"
+    },
+    {
+      "name": "elimcrossandex"
+    },
+    {
+      "name": "elimcrossandexandnines"
+    },
+    {
+      "name": "deleteaclue",
+      "unusual": true
+    },
+    {
+      "name": "elimclues",
+      "unusual": true
+    },
+    {
+      "name": "elimcluesonebyone",
+      "unusual": true
+    },
+    {
+      "name": "gencommentary",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "printsudresults",
+      "unusual": true
+    },
+    {
+      "name": "swapcolpair",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:colstartcell1}}{${2:colstartcell2}}"
+      }
+    },
+    {
+      "name": "swaprowpair",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:rowstartcell1}}{${2:rowstartcell2}}"
+      }
+    },
+    {
+      "name": "swaps",
+      "unusual": true
+    },
+    {
+      "name": "trysolution",
+      "unusual": true
+    },
+    {
+      "name": "writestartgrid",
+      "unusual": true
+    },
+    {
+      "name": "writestate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "randomi",
+      "unusual": true
+    },
+    {
+      "name": "nextrandom",
+      "unusual": true
+    },
+    {
+      "name": "setrannum",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:count register}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "setrandim",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:dimen register}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "pointless",
+      "unusual": true
+    },
+    {
+      "name": "ranval",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

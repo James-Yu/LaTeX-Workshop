@@ -1,17 +1,48 @@
 {
-  "includes": {},
-  "macros": {
-    "floatpagestyle{}": {
-      "snippet": "floatpagestyle{${1:pagestyle}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "floatpagestyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pagestyle%keyvals}}",
+        "keys": [
+          "\\floatpagestyle#c,\\rotfloatpagestyle#c,\\thisfloatpagestyle#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "rotfloatpagestyle{}": {
-      "snippet": "rotfloatpagestyle{${1:pagestyle}}"
+    {
+      "name": "rotfloatpagestyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pagestyle%keyvals}}",
+        "keys": [
+          "\\floatpagestyle#c,\\rotfloatpagestyle#c,\\thisfloatpagestyle#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "thisfloatpagestyle{}": {
-      "snippet": "thisfloatpagestyle{${1:pagestyle}}"
+    {
+      "name": "thisfloatpagestyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pagestyle%keyvals}}",
+        "keys": [
+          "\\floatpagestyle#c,\\rotfloatpagestyle#c,\\thisfloatpagestyle#c"
+        ],
+        "keyPos": 0
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\floatpagestyle#c,\\rotfloatpagestyle#c,\\thisfloatpagestyle#c": [
+      "plain",
+      "empty",
+      "headings",
+      "myheadings"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

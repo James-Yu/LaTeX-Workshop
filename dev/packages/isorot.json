@@ -1,75 +1,146 @@
 {
-  "includes": {
-    "graphicx": [],
-    "lscape": []
-  },
-  "macros": {
-    "rotdriver{}": {
-      "snippet": "rotdriver{${1:driver}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "clockwise": {},
-    "counterclockwise": {},
-    "figuresright": {},
-    "figuresleft": {},
-    "rotcaption": {},
-    "controtcaption": {},
-    "rotcapfont": {},
-    "rotatedirection{}": {
-      "snippet": "rotatedirection{${1:direction}}"
-    },
-    "turnbox{}{}": {
-      "snippet": "turnbox{${1:angle}}{${2:content}}"
-    },
-    "therpage": {}
-  },
-  "envs": {
-    "sideways": {},
-    "turn{}": {
-      "name": "turn",
-      "snippet": "{${1:angle}}"
-    },
-    "rotate{}": {
-      "name": "rotate",
-      "snippet": "{${1:angle}}"
-    },
-    "sidewaystable": {},
-    "sidewaystable*": {},
-    "sidewaysfigure": {},
-    "sidewaysfigure*": {}
-  },
-  "options": [
-    "errorshow",
-    "debugshow",
-    "draft",
-    "final",
-    "hiresbb",
-    "demo",
-    "setpagesize",
-    "nosetpagesize",
-    "dvips",
-    "xdvi",
-    "dvipdf",
-    "dvipdfm",
-    "dvipdfmx",
-    "xetex",
-    "pdftex",
-    "luatex",
-    "dvisvgm",
-    "dvipsone",
-    "dviwindo",
-    "emtex",
-    "dviwin",
-    "oztex",
-    "textures",
-    "pctexps",
-    "pctexwin",
-    "pctexhp",
-    "pctex32",
-    "truetex",
-    "tcidvi",
-    "vtex",
-    "hiderotate",
-    "hidescale"
+    {
+      "name": "lscape"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "rotdriver",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:driver%keyvals}}",
+        "keys": [
+          "\\rotdriver#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "clockwise"
+    },
+    {
+      "name": "counterclockwise"
+    },
+    {
+      "name": "figuresright"
+    },
+    {
+      "name": "figuresleft"
+    },
+    {
+      "name": "rotcaption"
+    },
+    {
+      "name": "controtcaption"
+    },
+    {
+      "name": "rotcapfont",
+      "unusual": true
+    },
+    {
+      "name": "rotatedirection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:direction}}"
+      }
+    },
+    {
+      "name": "turnbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:angle}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "therpage",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "sideways"
+    },
+    {
+      "name": "turn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:angle}}"
+      }
+    },
+    {
+      "name": "rotate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:angle}}"
+      }
+    },
+    {
+      "name": "sidewaystable"
+    },
+    {
+      "name": "sidewaystable*"
+    },
+    {
+      "name": "sidewaysfigure"
+    },
+    {
+      "name": "sidewaysfigure*"
+    }
+  ],
+  "keys": {
+    "\\usepackage/isorot#c": [
+      "errorshow",
+      "debugshow",
+      "draft",
+      "final",
+      "hiresbb",
+      "demo",
+      "setpagesize",
+      "nosetpagesize",
+      "dvips",
+      "xdvi",
+      "dvipdf",
+      "dvipdfm",
+      "dvipdfmx",
+      "xetex",
+      "pdftex",
+      "luatex",
+      "dvisvgm",
+      "dvipsone",
+      "dviwindo",
+      "emtex",
+      "dviwin",
+      "oztex",
+      "textures",
+      "pctexps",
+      "pctexwin",
+      "pctexhp",
+      "pctex32",
+      "truetex",
+      "tcidvi",
+      "vtex",
+      "hiderotate",
+      "hidescale"
+    ],
+    "\\rotdriver#c": [
+      "dvipdf",
+      "dvips",
+      "dvipsone",
+      "dvitops",
+      "dviwindo",
+      "pctex32",
+      "pctexps",
+      "pubps",
+      "textures"
+    ]
+  },
+  "args": [
+    "\\usepackage/isorot#c"
+  ]
 }

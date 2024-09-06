@@ -1,94 +1,149 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "polyset{}": {
-      "snippet": "polyset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "keyval"
+    }
+  ],
+  "macros": [
+    {
+      "name": "polyset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\polyset,\\polylongdiv",
+          "\\polyset,\\polyhornerscheme#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "polylongdiv{}{}": {
-      "snippet": "polylongdiv{${1:polynom1}}{${2:polynom2}}"
+    {
+      "name": "polylongdiv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:polynom1%formula}}{${2:polynom2%formula}}"
+      }
     },
-    "polylongdiv[]{}{}": {
-      "snippet": "polylongdiv[${3:options}]{${1:polynom1}}{${2:polynom2}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "polylongdiv",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:polynom1%formula}}{${2:polynom2%formula}}",
+        "keys": [
+          "\\polyset,\\polylongdiv"
+        ],
+        "keyPos": 0
+      }
     },
-    "polyhornerscheme{}": {
-      "snippet": "polyhornerscheme{${1:polynom}}"
+    {
+      "name": "polyhornerscheme",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:polynom%formula}}"
+      }
     },
-    "polyhornerscheme[]{}": {
-      "snippet": "polyhornerscheme[${2:options}]{${1:polynom}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "polyhornerscheme",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:polynom%formula}}",
+        "keys": [
+          "\\polyset,\\polyhornerscheme#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "polylonggcd{}{}": {
-      "snippet": "polylonggcd{${1:polynom1}}{${2:polynom2}}"
+    {
+      "name": "polylonggcd",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:polynom1%formula}}{${2:polynom2%formula}}"
+      }
     },
-    "polylonggcd[]{}{}": {
-      "snippet": "polylonggcd[${3:options}]{${1:polynom1}}{${2:polynom2}}"
+    {
+      "name": "polylonggcd",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:polynom1%formula}}{${2:polynom2%formula}}"
+      }
     },
-    "polyfactorize{}": {
-      "snippet": "polyfactorize{${1:polynom}}"
+    {
+      "name": "polyfactorize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:polynom%formula}}"
+      }
     },
-    "polyfactorize[]{}": {
-      "snippet": "polyfactorize[${2:options}]{${1:polynom}}"
+    {
+      "name": "polyfactorize",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:polynom%formula}}"
+      }
     },
-    "polyadd{}{}{}": {
-      "snippet": "polyadd{${1:cmd}}{${2:polynom1}}{${3:polynom2}}"
+    {
+      "name": "polyadd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:polynom1%formula}}{${3:polynom2%formula}}"
+      }
     },
-    "polysub{}{}{}": {
-      "snippet": "polysub{${1:cmd}}{${2:polynom1}}{${3:polynom2}}"
+    {
+      "name": "polysub",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:polynom1%formula}}{${3:polynom2%formula}}"
+      }
     },
-    "polymul{}{}{}": {
-      "snippet": "polymul{${1:cmd}}{${2:polynom1}}{${3:polynom2}}"
+    {
+      "name": "polymul",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:polynom1%formula}}{${3:polynom2%formula}}"
+      }
     },
-    "polydiv{}{}{}": {
-      "snippet": "polydiv{${1:cmd}}{${2:polynom1}}{${3:polynom2}}"
+    {
+      "name": "polydiv",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:polynom1%formula}}{${3:polynom2%formula}}"
+      }
     },
-    "polygcd{}{}{}": {
-      "snippet": "polygcd{${1:cmd}}{${2:polynom1}}{${3:polynom2}}"
+    {
+      "name": "polygcd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:polynom1%formula}}{${3:polynom2%formula}}"
+      }
     },
-    "polyprint{}": {
-      "snippet": "polyprint{${1:cmd}}"
+    {
+      "name": "polyprint",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
     },
-    "polyremainder": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "vars=${1:token string}",
-      "delims=",
-      "stage=${1:number}",
-      "style=",
-      "div=${1:token}",
-      "stage=${1:number}",
-      "tutor",
-      "tutorlimit=${1:number}",
-      "tutorstyle=${1:font selection}",
-      "resultstyle=${1:font selection}",
-      "resultleftrule",
-      "resultrightrule",
-      "resultbottomrule",
-      "showbase=${1|false,top,middle,bottom|}",
-      "showvar",
-      "showbasesep",
-      "equalcolwidths",
-      "arraycolsep=${1:dimension}",
-      "arrayrowsep=${1:dimension}",
-      "showmiddlerow"
-    ],
-    [
+    {
+      "name": "polyremainder",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\polyset,\\polylongdiv": [
       "vars=${1:token string}",
       "delims=",
       "stage=${1:number}",
       "style=",
       "div=${1:token}"
     ],
-    [
+    "\\polyset,\\polyhornerscheme#c": [
       "stage=${1:number}",
       "tutor",
       "tutorlimit=${1:number}",
@@ -105,5 +160,6 @@
       "arrayrowsep=${1:dimension}",
       "showmiddlerow"
     ]
-  ]
+  },
+  "args": []
 }

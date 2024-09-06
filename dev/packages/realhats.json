@@ -1,49 +1,97 @@
 {
-  "includes": {
-    "amsmath": [],
-    "calc": [],
-    "graphicx": [],
-    "ifthen": [],
-    "lcg": [],
-    "stackengine": []
-  },
-  "macros": {
-    "hat[]{}": {
-      "snippet": "hat[${2:type}]{${1:arg}}"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "myhat": {},
-    "hatwidth": {},
-    "hshif": {},
-    "vshif": {},
-    "hatused": {},
-    "gethat": {},
-    "hatn{}{}": {
-      "snippet": "hatn{${1:arg}}{${2:type}}"
+    {
+      "name": "calc"
     },
-    "hatnoptions{}{}{}{}": {
-      "snippet": "hatnoptions{${1:arg}}{${2:type}}{${3:hshift}}{${4:vshift}}"
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "lcg"
+    },
+    {
+      "name": "stackengine"
     }
-  },
-  "envs": {},
-  "options": [
-    "beret",
-    "santa",
-    "sombrero",
-    "witch",
-    "tophat",
-    "ash",
-    "fez",
-    "cowboy",
-    "crown",
-    "dunce",
-    "policeman",
-    "scottish",
-    "birthday",
-    "mortarboard",
-    "tile-white",
-    "tile-gray",
-    "tile-light-blue",
-    "tile-blue"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "hat",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:type%keyvals}]{${1:arg}}",
+        "keys": [
+          "\\hat,\\usepackage/realhats#c,\\hatn,\\hatnoptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hatwidth",
+      "unusual": true
+    },
+    {
+      "name": "hshif",
+      "unusual": true
+    },
+    {
+      "name": "vshif",
+      "unusual": true
+    },
+    {
+      "name": "hatused",
+      "unusual": true
+    },
+    {
+      "name": "gethat",
+      "unusual": true
+    },
+    {
+      "name": "hatn",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:type%keyvals}}"
+      }
+    },
+    {
+      "name": "hatnoptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg}}{${2:type%keyvals}}{${3:hshift%l}}{${4:vshift%l}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\hat,\\usepackage/realhats#c,\\hatn,\\hatnoptions": [
+      "beret",
+      "santa",
+      "sombrero",
+      "witch",
+      "tophat",
+      "ash",
+      "fez",
+      "cowboy",
+      "crown",
+      "dunce",
+      "policeman",
+      "scottish",
+      "birthday",
+      "mortarboard",
+      "tile-white",
+      "tile-gray",
+      "tile-light-blue",
+      "tile-blue"
+    ]
+  },
+  "args": [
+    "\\hat,\\usepackage/realhats#c,\\hatn,\\hatnoptions"
+  ]
 }

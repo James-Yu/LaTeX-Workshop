@@ -1,47 +1,81 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": [],
-    "mweights": []
-  },
-  "macros": {
-    "sufigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "notocondensedmono": {},
-    "notocondensedmonosemicondensed": {},
-    "notocondensedmonoextracondensed": {},
-    "notomonocondensedlgr": {},
-    "notocondensedmonofamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "scaled=${1:factor}",
-    "type1",
-    "lining",
-    "lf",
-    "tabular",
-    "tf",
-    "proportional",
-    "pf",
-    "oldstyle",
-    "osf",
-    "thin",
-    "extralight",
-    "light",
-    "regular",
-    "medium",
-    "semibold",
-    "extrabold",
-    "black",
-    "bold",
-    "semicondensed",
-    "extracondensed"
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "mweights"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "notocondensedmono"
+    },
+    {
+      "name": "notocondensedmonosemicondensed"
+    },
+    {
+      "name": "notocondensedmonoextracondensed"
+    },
+    {
+      "name": "notomonocondensedlgr",
+      "unusual": true
+    },
+    {
+      "name": "notocondensedmonofamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/notocondensed-mono#c": [
+      "scale=${1:factor}",
+      "scaled=${1:factor}",
+      "type1",
+      "lining",
+      "lf",
+      "tabular",
+      "tf",
+      "proportional",
+      "pf",
+      "oldstyle",
+      "osf",
+      "thin",
+      "extralight",
+      "light",
+      "regular",
+      "medium",
+      "semibold",
+      "extrabold",
+      "black",
+      "bold",
+      "semicondensed",
+      "extracondensed"
+    ]
+  },
+  "args": [
+    "\\usepackage/notocondensed-mono#c"
+  ]
 }

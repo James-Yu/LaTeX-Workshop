@@ -1,106 +1,171 @@
 {
-  "includes": {},
-  "macros": {
-    "XINTrestorecatcodes": {},
-    "XINTrestorecatcodesendinput": {},
-    "XINTsetcatcodes": {},
-    "XINTsetupcatcodes": {},
-    "xintdothis": {},
-    "xintorthat": {},
-    "xintodef": {},
-    "xintodef{}": {
-      "snippet": "xintodef{${1:cmd}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "XINTrestorecatcodes",
+      "unusual": true
     },
-    "xintoodef": {},
-    "xintoodef{}": {
-      "snippet": "xintoodef{${1:cmd}}"
+    {
+      "name": "XINTrestorecatcodesendinput",
+      "unusual": true
     },
-    "xintfdef": {},
-    "xintfdef{}": {
-      "snippet": "xintfdef{${1:cmd}}"
+    {
+      "name": "XINTsetcatcodes",
+      "unusual": true
     },
-    "odef": {},
-    "odef{}": {
-      "snippet": "odef{${1:cmd}}"
+    {
+      "name": "XINTsetupcatcodes",
+      "unusual": true
     },
-    "oodef": {},
-    "oodef{}": {
-      "snippet": "oodef{${1:cmd}}"
+    {
+      "name": "xintdothis",
+      "unusual": true
     },
-    "fdef": {},
-    "fdef{}": {
-      "snippet": "fdef{${1:cmd}}"
+    {
+      "name": "xintorthat",
+      "unusual": true
     },
-    "xintReverseOrder{}": {
-      "snippet": "xintReverseOrder{${1:list}}"
+    {
+      "name": "xintodef",
+      "unusual": true
     },
-    "xintreverseorder{}": {
-      "snippet": "xintreverseorder{${1:list}}"
+    {
+      "name": "xintoodef",
+      "unusual": true
     },
-    "xintLength{}": {
-      "snippet": "xintLength{${1:list}}"
+    {
+      "name": "xintfdef",
+      "unusual": true
     },
-    "xintlength{}": {
-      "snippet": "xintlength{${1:list}}"
+    {
+      "name": "odef"
     },
-    "xintFirstItem{}": {
-      "snippet": "xintFirstItem{${1:list}}"
+    {
+      "name": "oodef"
     },
-    "xintfirstitem{}": {
-      "snippet": "xintfirstitem{${1:list}}"
+    {
+      "name": "fdef"
     },
-    "xintLastItem{}": {
-      "snippet": "xintLastItem{${1:list}}"
+    {
+      "name": "xintReverseOrder",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
     },
-    "xintlastitem{}": {
-      "snippet": "xintlastitem{${1:list}}"
+    {
+      "name": "xintLength",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
     },
-    "xintFirstOne{}": {
-      "snippet": "xintFirstOne{${1:list}}"
+    {
+      "name": "xintFirstItem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
     },
-    "xintfirstone{}": {
-      "snippet": "xintfirstone{${1:list}}"
+    {
+      "name": "xintLastItem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
     },
-    "xintLastOne{}": {
-      "snippet": "xintLastOne{${1:list}}"
+    {
+      "name": "xintFirstOne",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
     },
-    "xintlastone{}": {
-      "snippet": "xintlastone{${1:list}}"
+    {
+      "name": "xintLastOne",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
     },
-    "xintLengthUpTo{}{}": {
-      "snippet": "xintLengthUpTo{${1:integer}}{${2:list}}"
+    {
+      "name": "xintLengthUpTo",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:integer}}{${2:list}}"
+      }
     },
-    "xintlengthupto{}{}": {
-      "snippet": "xintlengthupto{${1:integer}}{${2:list}}"
+    {
+      "name": "xintReplicate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:integer}}{${2:content}}"
+      }
     },
-    "xintReplicate{}{}": {
-      "snippet": "xintReplicate{${1:integer}}{${2:content}}"
+    {
+      "name": "xintreplicate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
     },
-    "xintreplicate{}": {
-      "snippet": "xintreplicate{${1:integer}}"
+    {
+      "name": "xintGobble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
     },
-    "xintGobble{}": {
-      "snippet": "xintGobble{${1:integer}}"
+    {
+      "name": "xintgobble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
     },
-    "xintgobble{}": {
-      "snippet": "xintgobble{${1:integer}}"
+    {
+      "name": "xintUniformDeviate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
     },
-    "xintUniformDeviate{}": {
-      "snippet": "xintUniformDeviate{${1:integer}}"
+    {
+      "name": "xintMessage",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:package}}{${2:label%plain}}{${3:message%text}}"
+      }
     },
-    "xintMessage{}{}{}": {
-      "snippet": "xintMessage{${1:package}}{${2:label}}{${3:message}}"
+    {
+      "name": "ifxintverbose",
+      "unusual": true
     },
-    "ifxintverbose": {},
-    "xintverbosetrue": {},
-    "xintverbosefalse": {},
-    "ifxintglobaldefs": {},
-    "xintglobaldefstrue": {},
-    "xintglobaldefsfalse": {},
-    "xint": {},
-    "XINT": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "xintverbosetrue",
+      "unusual": true
+    },
+    {
+      "name": "xintverbosefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifxintglobaldefs",
+      "unusual": true
+    },
+    {
+      "name": "xintglobaldefstrue",
+      "unusual": true
+    },
+    {
+      "name": "xintglobaldefsfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

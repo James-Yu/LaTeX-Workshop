@@ -1,56 +1,111 @@
 {
-  "includes": {
-    "pdfmanagement-testphase": []
-  },
-  "macros": {
-    "tagpdfsetup{}": {
-      "snippet": "tagpdfsetup{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "tagtool{}": {
-      "snippet": "tagtool{${1:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "tagmcbegin{}": {
-      "snippet": "tagmcbegin{${1:keyvals}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "tagmcend": {},
-    "tagmcuse": {},
-    "tagmcifinTF{}{}": {
-      "snippet": "tagmcifinTF{${1:true code}}{${2:false code}}"
-    },
-    "tagstructbegin{}": {
-      "snippet": "tagstructbegin{${1:keyvals}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "tagstructend": {},
-    "tagstructuse{}": {
-      "snippet": "tagstructuse{${1:label}}"
-    },
-    "tagstop": {},
-    "tagstart": {},
-    "ShowTagging{}": {
-      "snippet": "ShowTagging{${1:keyvals}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "tagpdfsuppressmarks{}": {
-      "snippet": "tagpdfsuppressmarks{${1:arg}}"
+  "deps": [
+    {
+      "name": "pdfmanagement-testphase"
     }
-  },
-  "envs": {},
-  "options": [
-    "luamode",
-    "genericmode",
-    "disabledelayedshipout"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "tagpdfsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\tagpdfsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tagtool",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\tagtool"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tagmcbegin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\tagmcbegin"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tagmcend"
+    },
+    {
+      "name": "tagmcuse"
+    },
+    {
+      "name": "tagmcifinTF",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true code}}{${2:false code}}"
+      }
+    },
+    {
+      "name": "tagstructbegin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\tagstructbegin"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tagstructend"
+    },
+    {
+      "name": "tagstructuse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "tagstop"
+    },
+    {
+      "name": "tagstart"
+    },
+    {
+      "name": "ShowTagging",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\ShowTagging"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tagpdfsuppressmarks",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tagpdf#c": [
+      "luamode",
+      "genericmode",
+      "disabledelayedshipout"
+    ],
+    "\\tagpdfsetup": [
       "activate=${1:tag}",
       "activate/all",
       "activate/mc",
@@ -85,13 +140,13 @@
       "table/header-rows=${1:comma list}",
       "text/lang=${1:lang}"
     ],
-    [
+    "\\tagtool": [
       "para/tagging",
       "para/maintag=${1:tag}",
       "para/tag=${1:tag}",
       "para/flattened"
     ],
-    [
+    "\\tagmcbegin": [
       "tag=${1:tag}",
       "artifact=${1|pagination,pagination/header,pagination/footer,layout,page,background,notype|}",
       "stash",
@@ -100,7 +155,7 @@
       "actualtext=${1:text}",
       "raw=${1:PDF code}"
     ],
-    [
+    "\\tagstructbegin": [
       "tag=${1:tag}",
       "stash",
       "label=${1:name}",
@@ -120,11 +175,14 @@
       "ref=${1:label1,label2,...}}",
       "E=${1:text}"
     ],
-    [
+    "\\ShowTagging": [
       "mc-data=${1:integer}",
       "mc-current",
       "struct-stack=${1|log,show|}",
       "debug/structures"
     ]
+  },
+  "args": [
+    "\\usepackage/tagpdf#c"
   ]
 }

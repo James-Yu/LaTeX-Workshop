@@ -1,371 +1,836 @@
 {
-  "includes": {
-    "l3draw": [],
-    "tikz": [
-      "pgf"
-    ]
-  },
-  "macros": {
-    "die{}{}": {
-      "snippet": "die{${1:shape}}{${2:integer}}"
-    },
-    "die{}[]{}": {
-      "snippet": "die{${1:shape}}[${2:options}]{${3:integer}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "die[]{}{}": {
-      "snippet": "die[${3:style}]{${1:shape}}{${2:integer}}"
-    },
-    "die[]{}[]{}": {
-      "snippet": "die[${3:style}]{${1:shape}}[${4:options}]{${2:integer}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "ability{}": {
-      "snippet": "ability{${1:shape}}"
-    },
-    "ability{}[]": {
-      "snippet": "ability{${1:shape}}[${2:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "ability[]{}": {
-      "snippet": "ability[${2:style}]{${1:shape}}"
-    },
-    "ability[]{}[]": {
-      "snippet": "ability[${2:style}]{${1:shape}}[${3:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "saving{}": {
-      "snippet": "saving{${1:shape}}"
-    },
-    "saving{}[]": {
-      "snippet": "saving{${1:shape}}[${2:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "saving[]{}": {
-      "snippet": "saving[${2:style}]{${1:shape}}"
-    },
-    "saving[]{}[]": {
-      "snippet": "saving[${2:style}]{${1:shape}}[${3:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "spell{}": {
-      "snippet": "spell{${1:shape}}"
-    },
-    "spell{}[]": {
-      "snippet": "spell{${1:shape}}[${2:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "spellschool{}": {
-      "snippet": "spellschool{${1:shape}}"
-    },
-    "spellschool{}[]": {
-      "snippet": "spellschool{${1:shape}}[${2:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "spellschool[]{}": {
-      "snippet": "spellschool[${2:style}]{${1:shape}}"
-    },
-    "spellschool[]{}[]": {
-      "snippet": "spellschool[${2:style}]{${1:shape}}[${3:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "damage{}": {
-      "snippet": "damage{${1:shape}}"
-    },
-    "damage{}[]": {
-      "snippet": "damage{${1:shape}}[${2:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "attack{}": {
-      "snippet": "attack{${1:shape}}"
-    },
-    "attack{}[]": {
-      "snippet": "attack{${1:shape}}[${2:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "condition{}": {
-      "snippet": "condition{${1:shape}}"
-    },
-    "condition{}[]": {
-      "snippet": "condition{${1:shape}}[${2:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "RPGIconsUseIcon{}": {
-      "snippet": "RPGIconsUseIcon{${1:shape}}"
-    },
-    "RPGIconsUseIcon[]{}": {
-      "snippet": "RPGIconsUseIcon[${2:options}]{${1:shape}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "RPGIconsUseIcon[][]{}": {
-      "snippet": "RPGIconsUseIcon[${2:options}][${3:integer}]{${1:shape}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "RPGIconsUseIcon*{}": {
-      "snippet": "RPGIconsUseIcon*{${1:shape}}"
-    },
-    "RPGIconsUseIcon*[]{}": {
-      "snippet": "RPGIconsUseIcon*[${2:options}]{${1:shape}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "RPGIconsUseIcon*[][]{}": {
-      "snippet": "RPGIconsUseIcon*[${2:options}][${3:integer}]{${1:shape}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "RPGIconsDie{}{}": {
-      "snippet": "RPGIconsDie{${1:shape}}{${2:integer}}"
-    },
-    "RPGIconsDie{}[]{}": {
-      "snippet": "RPGIconsDie{${1:shape}}[${2:options}]{${3:integer}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "RPGIconsDie[]{}{}": {
-      "snippet": "RPGIconsDie[${3:style}]{${1:shape}}{${2:integer}}"
-    },
-    "RPGIconsDie[]{}[]{}": {
-      "snippet": "RPGIconsDie[${3:style}]{${1:shape}}[${4:options}]{${2:integer}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "RPGIconsAbility{}": {
-      "snippet": "RPGIconsAbility{${1:shape}}"
-    },
-    "RPGIconsAbility{}[]": {
-      "snippet": "RPGIconsAbility{${1:shape}}[${2:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "RPGIconsAbility[]{}": {
-      "snippet": "RPGIconsAbility[${2:style}]{${1:shape}}"
-    },
-    "RPGIconsAbility[]{}[]": {
-      "snippet": "RPGIconsAbility[${2:style}]{${1:shape}}[${3:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "RPGIconsSaving{}": {
-      "snippet": "RPGIconsSaving{${1:shape}}"
-    },
-    "RPGIconsSaving{}[]": {
-      "snippet": "RPGIconsSaving{${1:shape}}[${2:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "RPGIconsSaving[]{}": {
-      "snippet": "RPGIconsSaving[${2:style}]{${1:shape}}"
-    },
-    "RPGIconsSaving[]{}[]": {
-      "snippet": "RPGIconsSaving[${2:style}]{${1:shape}}[${3:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "RPGIconsSpell{}": {
-      "snippet": "RPGIconsSpell{${1:shape}}"
-    },
-    "RPGIconsSpell{}[]": {
-      "snippet": "RPGIconsSpell{${1:shape}}[${2:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "RPGIconsSpellschool{}": {
-      "snippet": "RPGIconsSpellschool{${1:shape}}"
-    },
-    "RPGIconsSpellschool{}[]": {
-      "snippet": "RPGIconsSpellschool{${1:shape}}[${2:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "RPGIconsSpellschool[]{}": {
-      "snippet": "RPGIconsSpellschool[${2:style}]{${1:shape}}"
-    },
-    "RPGIconsSpellschool[]{}[]": {
-      "snippet": "RPGIconsSpellschool[${2:style}]{${1:shape}}[${3:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "RPGIconsDamage{}": {
-      "snippet": "RPGIconsDamage{${1:shape}}"
-    },
-    "RPGIconsDamage{}[]": {
-      "snippet": "RPGIconsDamage{${1:shape}}[${2:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "RPGIconsAttack{}": {
-      "snippet": "RPGIconsAttack{${1:shape}}"
-    },
-    "RPGIconsAttack{}[]": {
-      "snippet": "RPGIconsAttack{${1:shape}}[${2:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "RPGIconsCondition{}": {
-      "snippet": "RPGIconsCondition{${1:shape}}"
-    },
-    "RPGIconsCondition{}[]": {
-      "snippet": "RPGIconsCondition{${1:shape}}[${2:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "rpgiconsset{}": {
-      "snippet": "rpgiconsset{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "roll{}": {
-      "snippet": "roll{${1:roll syntax}}"
-    },
-    "RPGIconsRoll{}": {
-      "snippet": "RPGIconsRoll{${1:roll syntax}}"
-    },
-    "rpgiconsdie{}{}": {
-      "snippet": "rpgiconsdie{${1:shape}}{${2:integer}}",
-      "option": "pgf"
-    },
-    "rpgiconsdie{}[]{}": {
-      "snippet": "rpgiconsdie{${1:shape}}[${2:options}]{${3:integer}}",
-      "option": "pgf"
-    },
-    "rpgiconsdie[]{}{}": {
-      "snippet": "rpgiconsdie[${3:style}]{${1:shape}}{${2:integer}}",
-      "option": "pgf"
-    },
-    "rpgiconsdie[]{}[]{}": {
-      "snippet": "rpgiconsdie[${3:style}]{${1:shape}}[${4:options}]{${2:integer}}",
-      "option": "pgf"
-    },
-    "rpgiconsability{}": {
-      "snippet": "rpgiconsability{${1:shape}}",
-      "option": "pgf"
-    },
-    "rpgiconsability{}[]": {
-      "snippet": "rpgiconsability{${1:shape}}[${2:options}]",
-      "option": "pgf"
-    },
-    "rpgiconsability[]{}": {
-      "snippet": "rpgiconsability[${2:style}]{${1:shape}}",
-      "option": "pgf"
-    },
-    "rpgiconsability[]{}[]": {
-      "snippet": "rpgiconsability[${2:style}]{${1:shape}}[${3:options}]",
-      "option": "pgf"
-    },
-    "rpgiconssaving{}": {
-      "snippet": "rpgiconssaving{${1:shape}}",
-      "option": "pgf"
-    },
-    "rpgiconssaving{}[]": {
-      "snippet": "rpgiconssaving{${1:shape}}[${2:options}]",
-      "option": "pgf"
-    },
-    "rpgiconssaving[]{}": {
-      "snippet": "rpgiconssaving[${2:style}]{${1:shape}}",
-      "option": "pgf"
-    },
-    "rpgiconssaving[]{}[]": {
-      "snippet": "rpgiconssaving[${2:style}]{${1:shape}}[${3:options}]",
-      "option": "pgf"
-    },
-    "rpgiconsspell{}": {
-      "snippet": "rpgiconsspell{${1:shape}}",
-      "option": "pgf"
-    },
-    "rpgiconsspell{}[]": {
-      "snippet": "rpgiconsspell{${1:shape}}[${2:options}]",
-      "option": "pgf"
-    },
-    "rpgiconsspellschool{}": {
-      "snippet": "rpgiconsspellschool{${1:shape}}",
-      "option": "pgf"
-    },
-    "rpgiconsspellschool{}[]": {
-      "snippet": "rpgiconsspellschool{${1:shape}}[${2:options}]",
-      "option": "pgf"
-    },
-    "rpgiconsspellschool[]{}": {
-      "snippet": "rpgiconsspellschool[${2:style}]{${1:shape}}",
-      "option": "pgf"
-    },
-    "rpgiconsspellschool[]{}[]": {
-      "snippet": "rpgiconsspellschool[${2:style}]{${1:shape}}[${3:options}]",
-      "option": "pgf"
-    },
-    "rpgiconsdamage{}": {
-      "snippet": "rpgiconsdamage{${1:shape}}",
-      "option": "pgf"
-    },
-    "rpgiconsdamage{}[]": {
-      "snippet": "rpgiconsdamage{${1:shape}}[${2:options}]",
-      "option": "pgf"
-    },
-    "rpgiconsattack{}": {
-      "snippet": "rpgiconsattack{${1:shape}}",
-      "option": "pgf"
-    },
-    "rpgiconsattack{}[]": {
-      "snippet": "rpgiconsattack{${1:shape}}[${2:options}]",
-      "option": "pgf"
-    },
-    "rpgiconscondition{}": {
-      "snippet": "rpgiconscondition{${1:shape}}",
-      "option": "pgf"
-    },
-    "rpgiconscondition{}[]": {
-      "snippet": "rpgiconscondition{${1:shape}}[${2:options}]",
-      "option": "pgf"
-    },
-    "provideprotectedrpgicon{}{}{}": {
-      "snippet": "provideprotectedrpgicon{${1:command}}{${2:shape}}{${3:box name}}",
-      "option": "pgf"
-    },
-    "provideprotectedrpgicon{}{}[]{}": {
-      "snippet": "provideprotectedrpgicon{${1:command}}{${2:shape}}[${3:options}]{${4:box name}}",
-      "option": "pgf"
-    },
-    "provideprotectedrpgicon{}[]{}{}": {
-      "snippet": "provideprotectedrpgicon{${1:command}}[${2:style}]{${3:shape}}{${4:box name}}",
-      "option": "pgf"
-    },
-    "provideprotectedrpgicon{}[]{}[]{}": {
-      "snippet": "provideprotectedrpgicon{${1:command}}[${2:style}]{${3:shape}}[${4:options}]{${5:box name}}",
-      "option": "pgf"
-    },
-    "useprotectedrpgicon{}": {
-      "snippet": "useprotectedrpgicon{${1:box name}}",
-      "option": "pgf"
-    },
-    "rpgiconsroll{}": {
-      "snippet": "rpgiconsroll{${1:roll syntax}}",
-      "option": "pgf"
+  "deps": [
+    {
+      "name": "l3draw"
+    },
+    {
+      "name": "tikz",
+      "if": "pgf"
     }
-  },
-  "envs": {},
-  "options": [
-    "l3",
-    "pgf",
-    "compat",
-    "opacity",
-    "pics"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "die",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:shape}}{${2:integer}}"
+      }
+    },
+    {
+      "name": "die",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:shape}}[${3:options%keyvals}]{${2:integer}}",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "die",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:style}]{${1:shape}}{${2:integer}}"
+      }
+    },
+    {
+      "name": "die",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:style}]{${1:shape}}[${4:options%keyvals}]{${2:integer}}",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "ability",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "ability",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "ability",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style}]{${1:shape}}"
+      }
+    },
+    {
+      "name": "ability",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:style}]{${1:shape}}[${3:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "saving",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "saving",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "saving",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style}]{${1:shape}}"
+      }
+    },
+    {
+      "name": "saving",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:style}]{${1:shape}}[${3:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "spell",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "spell",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "spellschool",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "spellschool",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "spellschool",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style}]{${1:shape}}"
+      }
+    },
+    {
+      "name": "spellschool",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:style}]{${1:shape}}[${3:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "damage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "damage",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "attack",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "attack",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "condition",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "condition",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "RPGIconsUseIcon",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "RPGIconsUseIcon",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:shape}}",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "RPGIconsUseIcon",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:options%keyvals}][${3:integer}]{${1:shape}}",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "RPGIconsUseIcon*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "RPGIconsUseIcon*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:shape}}",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "RPGIconsUseIcon*",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:options%keyvals}][${3:integer}]{${1:shape}}",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "RPGIconsDie",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:shape}}{${2:integer}}"
+      }
+    },
+    {
+      "name": "RPGIconsDie",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:shape}}[${3:options%keyvals}]{${2:integer}}",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "RPGIconsDie",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:style}]{${1:shape}}{${2:integer}}"
+      }
+    },
+    {
+      "name": "RPGIconsDie",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:style}]{${1:shape}}[${4:options%keyvals}]{${2:integer}}",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "RPGIconsAbility",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "RPGIconsAbility",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "RPGIconsAbility",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style}]{${1:shape}}"
+      }
+    },
+    {
+      "name": "RPGIconsAbility",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:style}]{${1:shape}}[${3:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "RPGIconsSaving",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "RPGIconsSaving",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "RPGIconsSaving",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style}]{${1:shape}}"
+      }
+    },
+    {
+      "name": "RPGIconsSaving",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:style}]{${1:shape}}[${3:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "RPGIconsSpell",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "RPGIconsSpell",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "RPGIconsSpellschool",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "RPGIconsSpellschool",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "RPGIconsSpellschool",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style}]{${1:shape}}"
+      }
+    },
+    {
+      "name": "RPGIconsSpellschool",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:style}]{${1:shape}}[${3:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "RPGIconsDamage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "RPGIconsDamage",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "RPGIconsAttack",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "RPGIconsAttack",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "RPGIconsCondition",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "RPGIconsCondition",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "rpgiconsset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c",
+          "\\rpgiconsset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "roll",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:roll syntax}}"
+      }
+    },
+    {
+      "name": "RPGIconsRoll",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:roll syntax}}"
+      }
+    },
+    {
+      "name": "rpgiconsdie",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:shape}}{${2:integer}}"
+      }
+    },
+    {
+      "name": "rpgiconsdie",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:shape}}[${3:options%keyvals}]{${2:integer}}"
+      }
+    },
+    {
+      "name": "rpgiconsdie",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:style}]{${1:shape}}{${2:integer}}"
+      }
+    },
+    {
+      "name": "rpgiconsdie",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:style}]{${1:shape}}[${4:options%keyvals}]{${2:integer}}"
+      }
+    },
+    {
+      "name": "rpgiconsability",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "rpgiconsability",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]"
+      }
+    },
+    {
+      "name": "rpgiconsability",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style}]{${1:shape}}"
+      }
+    },
+    {
+      "name": "rpgiconsability",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:style}]{${1:shape}}[${3:options%keyvals}]"
+      }
+    },
+    {
+      "name": "rpgiconssaving",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "rpgiconssaving",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]"
+      }
+    },
+    {
+      "name": "rpgiconssaving",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style}]{${1:shape}}"
+      }
+    },
+    {
+      "name": "rpgiconssaving",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:style}]{${1:shape}}[${3:options%keyvals}]"
+      }
+    },
+    {
+      "name": "rpgiconsspell",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "rpgiconsspell",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]"
+      }
+    },
+    {
+      "name": "rpgiconsspellschool",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "rpgiconsspellschool",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]"
+      }
+    },
+    {
+      "name": "rpgiconsspellschool",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style}]{${1:shape}}"
+      }
+    },
+    {
+      "name": "rpgiconsspellschool",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:style}]{${1:shape}}[${3:options%keyvals}]"
+      }
+    },
+    {
+      "name": "rpgiconsdamage",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "rpgiconsdamage",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]"
+      }
+    },
+    {
+      "name": "rpgiconsattack",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "rpgiconsattack",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]"
+      }
+    },
+    {
+      "name": "rpgiconscondition",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "rpgiconscondition",
+      "if": "pgf",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:shape}}[${2:options%keyvals}]"
+      }
+    },
+    {
+      "name": "provideprotectedrpgicon",
+      "if": "pgf",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:command}}{${2:shape}}{${3:box name}}"
+      }
+    },
+    {
+      "name": "provideprotectedrpgicon",
+      "if": "pgf",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:command}}{${2:shape}}[${4:options}]{${3:box name}}"
+      }
+    },
+    {
+      "name": "provideprotectedrpgicon",
+      "if": "pgf",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "{${1:command}}[${4:style}]{${2:shape}}{${3:box name}}"
+      }
+    },
+    {
+      "name": "provideprotectedrpgicon",
+      "if": "pgf",
+      "arg": {
+        "format": "{}[]{}[]{}",
+        "snippet": "{${1:command}}[${4:style}]{${2:shape}}[${5:options}]{${3:box name}}"
+      }
+    },
+    {
+      "name": "useprotectedrpgicon",
+      "if": "pgf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:box name}}"
+      }
+    },
+    {
+      "name": "rpgiconsroll",
+      "if": "pgf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:roll syntax}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/rpgicons#c": [
+      "l3",
+      "pgf",
+      "compat",
+      "opacity",
+      "pics"
+    ],
+    "\\die#c,\\ability#c,\\saving#c,\\spell#c,\\spellschool#c,\\damage#c,\\attack#c,\\condition#c,\\RPGIconsUseIcon#c,\\RPGIconsUseIcon*#c,\\RPGIconsDie#c,\\RPGIconsAbility#c,\\RPGIconsSaving#c,\\RPGIconsSpell#c,\\RPGIconsSpellschool#c,\\RPGIconsDamage#c,\\RPGIconsAttack#c,\\RPGIconsCondition#c,\\rpgiconsset#c": [
       "frame=${1|ability,damage,saving,spellschool|}",
       "stroke=",
       "fill=",
@@ -396,37 +861,11 @@
       "after sep=",
       "baseline="
     ],
-    [
-      "frame=${1|ability,damage,saving,spellschool|}",
-      "stroke=",
-      "fill=",
-      "text=",
-      "color=",
-      "background=",
-      "stroke opacity=${1:factor}",
-      "fill opacity=${1:factor}",
-      "text opacity=${1:factor}",
-      "opacity=${1:factor}",
-      "background opacity=${1:factor}",
-      "line width=",
-      "scale=${1:factor}",
-      "scale inner=${1:factor}",
-      "rotate=${1:degrees}",
-      "accessible",
-      "accessible=${1|basic,full,false|}",
-      "every die={${1:options}}",
-      "every ability={${1:options}}",
-      "every saving={${1:options}}",
-      "every spell={${1:options}}",
-      "every spellschool={${1:options}}",
-      "every damage={${1:options}}",
-      "every attack={${1:options}}",
-      "every condition={${1:options}}",
-      "every ${1:shape}={${2:options}}",
-      "before sep=",
-      "after sep=",
-      "baseline=",
+    "\\rpgiconsset#c": [
       "roll syntax={${1:syntax}}"
     ]
+  },
+  "args": [
+    "\\usepackage/rpgicons#c"
   ]
 }

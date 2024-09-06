@@ -1,69 +1,149 @@
 {
-  "includes": {
-    "lazylist": [],
-    "array": []
-  },
-  "macros": {
-    "nodefaultcolumn": {},
-    "defaultcolumn{}": {
-      "snippet": "defaultcolumn{${1:colspec}}"
+  "deps": [
+    {
+      "name": "lazylist"
     },
-    "column{}{}": {
-      "snippet": "column{${1:column id}}{${2:spec}}"
-    },
-    "column[]{}{}": {
-      "snippet": "column[${3:dimen}]{${1:column id}}{${2:spec}}"
-    },
-    ">": {
-      "detail": ">",
-      "documentation": "GREATER-THAN SIGN r:"
-    },
-    ">[]": {
-      "snippet": ">[${1:from id}]"
-    },
-    ">[][]": {
-      "snippet": ">[${1:from id}][${2:spec}]"
-    },
-    "<": {
-      "detail": "<",
-      "documentation": "LESS-THAN SIGN r:"
-    },
-    "<[]": {
-      "snippet": "<[${1:from id}]"
-    },
-    "fromto{}{}{}": {
-      "snippet": "fromto{${1:from id}}{${2:to id}}{${3:text}}"
-    },
-    "savecolumns": {},
-    "savecolumns[]": {
-      "snippet": "savecolumns[${1:set id}]"
-    },
-    "restorecolumns": {},
-    "restorecolumns[]": {
-      "snippet": "restorecolumns[${1:set id}]"
-    },
-    "beginpolytable": {},
-    "disktables": {},
-    "maxcolumn": {},
-    "memorytables": {},
-    "nextline": {},
-    "nextline[]": {
-      "snippet": "nextline[${1:dimen}]"
+    {
+      "name": "array"
     }
-  },
-  "envs": {
-    "pboxed": {},
-    "ptboxed": {},
-    "pmboxed": {},
-    "ptabular": {},
-    "parray": {}
-  },
-  "options": [
-    "debug",
-    "info",
-    "silent",
-    "defaultcolumns",
-    "memory"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "nodefaultcolumn"
+    },
+    {
+      "name": "defaultcolumn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:colspec}}"
+      }
+    },
+    {
+      "name": "column",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:column id}}{${2:spec}}"
+      }
+    },
+    {
+      "name": "column",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:dimen%l}]{${1:column id}}{${2:spec}}"
+      }
+    },
+    {
+      "name": ">"
+    },
+    {
+      "name": ">",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:from id}]"
+      }
+    },
+    {
+      "name": ">",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:from id}][${2:spec}]"
+      }
+    },
+    {
+      "name": "<"
+    },
+    {
+      "name": "<",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:from id}]"
+      }
+    },
+    {
+      "name": "fromto",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:from id}}{${2:to id}}{${3:text}}"
+      }
+    },
+    {
+      "name": "savecolumns"
+    },
+    {
+      "name": "savecolumns",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:set id}]"
+      }
+    },
+    {
+      "name": "restorecolumns"
+    },
+    {
+      "name": "restorecolumns",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:set id}]"
+      }
+    },
+    {
+      "name": "beginpolytable",
+      "unusual": true
+    },
+    {
+      "name": "disktables",
+      "unusual": true
+    },
+    {
+      "name": "maxcolumn",
+      "unusual": true
+    },
+    {
+      "name": "memorytables",
+      "unusual": true
+    },
+    {
+      "name": "nextline",
+      "unusual": true
+    },
+    {
+      "name": "nextline",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:dimen%l}]"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "pboxed"
+    },
+    {
+      "name": "ptboxed"
+    },
+    {
+      "name": "pmboxed"
+    },
+    {
+      "name": "ptabular",
+      "unusual": true
+    },
+    {
+      "name": "parray",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/polytable#c": [
+      "debug",
+      "info",
+      "silent",
+      "defaultcolumns",
+      "memory"
+    ]
+  },
+  "args": [
+    "\\usepackage/polytable#c"
+  ]
 }

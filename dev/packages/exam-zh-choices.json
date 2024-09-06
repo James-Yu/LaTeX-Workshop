@@ -1,20 +1,71 @@
 {
-  "includes": {},
-  "macros": {
-    "setchoices{}": {
-      "snippet": "setchoices{${1:键值列表}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "setchoices",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:键值列表%keyvals}}",
+        "keys": [
+          "\\begin{choices},\\setchoices"
+        ],
+        "keyPos": 0
+      }
     },
-    "AddChoicesCounter{}{}": {
-      "snippet": "AddChoicesCounter{${1:LaTeX command}}{${2:internal command}}"
+    {
+      "name": "AddChoicesCounter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:LaTeX command%cmd}}{${2:internal command%definition}}"
+      }
     }
-  },
-  "envs": {
-    "choices": {},
-    "choices[]": {
+  ],
+  "envs": [
+    {
+      "name": "choices"
+    },
+    {
       "name": "choices",
-      "snippet": "[${1:键值列表}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:键值列表%keyvals}]",
+        "keys": [
+          "\\begin{choices},\\setchoices"
+        ],
+        "keyPos": 0
+      }
     }
+  ],
+  "keys": {
+    "\\examsetup,\\ExamPrintAnswerSet": [
+      "choices={${1:键值列表}}",
+      "choices/index=${1:integer}",
+      "choices/column-sep=",
+      "choices/columns=${1:integer}",
+      "choices/label=${1:label}",
+      "choices/label-pos=${1|auto,top-left,left,bottom|}",
+      "choices/label-align=${1|left,center,right|}",
+      "choices/label-sep=",
+      "choices/label-width=",
+      "choices/max-columns=${1:integer}",
+      "choices/top-sep=",
+      "choices/bottom-sep=",
+      "choices/linesep="
+    ],
+    "\\begin{choices},\\setchoices": [
+      "index=${1:integer}",
+      "column-sep=",
+      "columns=${1:integer}",
+      "label=${1:label}",
+      "label-pos=${1|auto,top-left,left,bottom|}",
+      "label-align=${1|left,center,right|}",
+      "label-sep=",
+      "label-width=",
+      "max-columns=${1:integer}",
+      "top-sep=",
+      "bottom-sep=",
+      "linesep="
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

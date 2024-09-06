@@ -1,21 +1,31 @@
 {
-  "includes": {
-    "color": [
-      "color"
+  "deps": [
+    {
+      "name": "color",
+      "if": "color"
+    }
+  ],
+  "macros": [
+    {
+      "name": "showkeyslabelformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/showkeys#c": [
+      "notref",
+      "notcite",
+      "color",
+      "final",
+      "draft"
     ]
   },
-  "macros": {
-    "showkeyslabelformat{}": {
-      "snippet": "showkeyslabelformat{${1:text}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "notref",
-    "notcite",
-    "color",
-    "final",
-    "draft"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/showkeys#c"
+  ]
 }

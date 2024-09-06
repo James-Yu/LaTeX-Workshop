@@ -1,27 +1,48 @@
 {
-  "includes": {
-    "eso-pic": [],
-    "zref-savepos": [],
-    "zref-abspage": []
-  },
-  "macros": {
-    "returntogrid": {},
-    "returntogrid[]": {
-      "snippet": "returntogrid[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "eso-pic"
     },
-    "showdebugpagegrid": {},
-    "returntogridsetup{}": {
-      "snippet": "returntogridsetup{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "zref-savepos"
+    },
+    {
+      "name": "zref-abspage"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "returntogrid"
+    },
+    {
+      "name": "returntogrid",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\returntogrid"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "showdebugpagegrid"
+    },
+    {
+      "name": "returntogridsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\returntogridsetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\returntogrid": [
       "save=${1:name}",
       "use=${1:name}",
       "label=${1:name}",
@@ -30,7 +51,7 @@
       "tab",
       "tab=${1:name}"
     ],
-    [
+    "\\returntogridsetup": [
       "active",
       "step=",
       "reference=${1:point name}",
@@ -41,5 +62,6 @@
       "twoside",
       "debug-tab"
     ]
-  ]
+  },
+  "args": []
 }

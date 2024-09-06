@@ -1,23 +1,40 @@
 {
-  "includes": {
-    "tikzlibraryintersections": [],
-    "tikzlibraryspath3": []
-  },
-  "macros": {
-    "flipcrossings{}": {
-      "snippet": "flipcrossings{${1:list of crossings}}"
+  "deps": [
+    {
+      "name": "tikzlibraryintersections"
     },
-    "redraw{}{}": {
-      "snippet": "redraw{${1:strand number}}{${2:point}}"
+    {
+      "name": "tikzlibraryspath3"
     }
-  },
-  "envs": {
-    "knot": {},
-    "knot[]": {
+  ],
+  "macros": [
+    {
+      "name": "flipcrossings",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list of crossings}}"
+      }
+    },
+    {
+      "name": "redraw",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:strand number}}{${2:point}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "knot"
+    },
+    {
       "name": "knot",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

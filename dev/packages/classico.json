@@ -1,20 +1,39 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "classico": {},
-    "classicofamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}",
-    "sfdefault",
-    "type1"
+  "deps": [
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "classico"
+    },
+    {
+      "name": "classicofamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/classico#c": [
+      "scaled=${1:factor}",
+      "sfdefault",
+      "type1"
+    ]
+  },
+  "args": [
+    "\\usepackage/classico#c"
+  ]
 }

@@ -1,16 +1,46 @@
 {
-  "includes": {
-    "tilings": []
-  },
-  "macros": {
-    "DefinePolykiteTile{}{}{}": {
-      "snippet": "DefinePolykiteTile{${1:name}}{${2:a}}{${3:b}}"
-    },
-    "DefinePolykiteTile*{}{}{}": {
-      "snippet": "DefinePolykiteTile*{${1:name}}{${2:a}}{${3:b}}"
+  "deps": [
+    {
+      "name": "tilings"
     }
+  ],
+  "macros": [
+    {
+      "name": "DefinePolykiteTile",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:a}}{${3:b}}"
+      }
+    },
+    {
+      "name": "DefinePolykiteTile*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:a}}{${3:b}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\BakeTile#c,\\pic#c": [
+      "aperiodical hat",
+      "aperiodical turtle",
+      "spectral hat",
+      "spectral turtle",
+      "spectre",
+      "meta cluster T",
+      "meta cluster P",
+      "meta cluster F",
+      "meta cluster H",
+      "super cluster T",
+      "super cluster P",
+      "super cluster F",
+      "super cluster H",
+      "subcluster T",
+      "subcluster P",
+      "subcluster F",
+      "subcluster H"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

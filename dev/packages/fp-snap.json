@@ -1,19 +1,33 @@
 {
-  "includes": {
-    "fp-basic": []
-  },
-  "macros": {
-    "FPround{}{}{}": {
-      "snippet": "FPround{${1:variable}}{${2:value}}{${3:digits}}"
-    },
-    "FPtrunc{}{}{}": {
-      "snippet": "FPtrunc{${1:variable}}{${2:value}}{${3:digits}}"
-    },
-    "FPclip{}{}": {
-      "snippet": "FPclip{${1:variable}}{${2:value}}"
+  "deps": [
+    {
+      "name": "fp-basic"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "FPround",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:variable%cmd}}{${2:value}}{${3:digits}}"
+      }
+    },
+    {
+      "name": "FPtrunc",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:variable%cmd}}{${2:value}}{${3:digits}}"
+      }
+    },
+    {
+      "name": "FPclip",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable%cmd}}{${2:value}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

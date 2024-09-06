@@ -1,54 +1,106 @@
 {
-  "includes": {
-    "marginnote": [],
-    "setspace": [],
-    "soul": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarydecorations.pathmorphing": []
-  },
-  "macros": {
-    "skp": {},
-    "skp[]": {
-      "snippet": "skp[${1:number}]"
+  "deps": [
+    {
+      "name": "marginnote"
     },
-    "del{}": {
-      "snippet": "del{${1:phrase}}"
+    {
+      "name": "setspace"
     },
-    "yel{}": {
-      "snippet": "yel{${1:phrase}}"
+    {
+      "name": "soul"
     },
-    "yel[]{}": {
-      "snippet": "yel[${2:comment}]{${1:phrase}}"
+    {
+      "name": "tikz"
     },
-    "add{}": {
-      "snippet": "add{${1:phrase}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "rep{}{}": {
-      "snippet": "rep{${1:phrase}}{${2:replacement}}"
-    },
-    "com{}": {
-      "snippet": "com{${1:comment}}"
-    },
-    "hilite{}": {
-      "snippet": "hilite{${1:phrase}}"
-    },
-    "hilite[]{}": {
-      "snippet": "hilite[${2:options}]{${1:phrase}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
     }
-  },
-  "envs": {},
-  "options": [
-    "onehalfspacing",
-    "doublespacing",
-    "corrected",
-    "uncorrected",
-    "frame"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "skp"
+    },
+    {
+      "name": "skp",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "del",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:phrase%text}}"
+      }
+    },
+    {
+      "name": "yel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:phrase%text}}"
+      }
+    },
+    {
+      "name": "yel",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:comment%text}]{${1:phrase%text}}"
+      }
+    },
+    {
+      "name": "add",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:phrase%text}}"
+      }
+    },
+    {
+      "name": "rep",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:phrase%text}}{${2:replacement}}"
+      }
+    },
+    {
+      "name": "com",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "hilite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:phrase%text}}"
+      }
+    },
+    {
+      "name": "hilite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:phrase%text}}",
+        "keys": [
+          "\\hilite#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/proofread#c": [
+      "onehalfspacing",
+      "doublespacing",
+      "corrected",
+      "uncorrected",
+      "frame"
+    ],
+    "\\hilite#c": [
       "fill=",
       "draw=",
       "opacity=",
@@ -56,5 +108,8 @@
       "draw opacity=",
       "line width="
     ]
+  },
+  "args": [
+    "\\usepackage/proofread#c"
   ]
 }

@@ -1,26 +1,37 @@
 {
-  "includes": {
-    "nccheadings": [],
-    "nccfancyhdr": []
-  },
-  "macros": {
-    "lefttitlemark": {
-      "option": "title"
+  "deps": [
+    {
+      "name": "nccheadings"
     },
-    "titlemark": {
-      "option": "title"
-    },
-    "righttitlemark": {
-      "option": "title"
+    {
+      "name": "nccfancyhdr"
     }
-  },
-  "envs": {},
-  "options": [
-    "empty",
-    "plain",
-    "myheadings",
-    "headings",
-    "title"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "lefttitlemark",
+      "if": "title"
+    },
+    {
+      "name": "titlemark",
+      "if": "title"
+    },
+    {
+      "name": "righttitlemark",
+      "if": "title"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ncchdr#c": [
+      "empty",
+      "plain",
+      "myheadings",
+      "headings",
+      "title"
+    ]
+  },
+  "args": [
+    "\\usepackage/ncchdr#c"
+  ]
 }

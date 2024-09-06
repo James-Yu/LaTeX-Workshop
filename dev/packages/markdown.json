@@ -1,579 +1,1539 @@
 {
-  "includes": {
-    "paralist": [],
-    "amsmath": [],
-    "amssymb": [],
-    "csvsimple": [],
-    "fancyvrb": [],
-    "graphicx": [],
-    "ltxcmds": [],
-    "gobble": [],
-    "url": [],
-    "etoolbox": [],
-    "lt3luabridge": [],
-    "soulutf8": [
-      "strikeThrough",
-      "strikeThrough=true"
-    ],
-    "grffile": [
-      "theme=witiko/dot",
-      "theme=witiko/graphicx/http"
-    ],
-    "catchfile": [
-      "theme=witiko/graphicx/http"
-    ],
-    "verse": [
-      "lineBlocks",
-      "lineBlocks=true"
-    ]
-  },
-  "macros": {
-    "markinline{}": {
-      "snippet": "markinline{${1:markdown text}}"
-    },
-    "markinline[]{}": {
-      "snippet": "markinline[${2:options}]{${1:markdown text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "markdownInput{}": {
-      "snippet": "markdownInput{${1:file}}"
-    },
-    "markdownInput[]{}": {
-      "snippet": "markdownInput[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "markdownSetup{}": {
-      "snippet": "markdownSetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "markdownSetupSnippet{}{}": {
-      "snippet": "markdownSetupSnippet{${1:name}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "markdownIfSnippetExists{}{}{}": {
-      "snippet": "markdownIfSnippetExists{${1:name}}{${2:true}}{${3:false}}"
-    },
-    "ifmarkdownLaTeXLoaded": {},
-    "markdownInputPlainTeX{}": {
-      "snippet": "markdownInputPlainTeX{${1:file}}"
-    },
-    "markdownLaTeXBasicCitations{}{}{}{}{}{}": {
-      "snippet": "markdownLaTeXBasicCitations{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
-    },
-    "markdownLaTeXBasicTextCitations{}{}{}{}{}{}": {
-      "snippet": "markdownLaTeXBasicTextCitations{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
-    },
-    "markdownLaTeXBibLaTeXCitations{}{}{}{}{}": {
-      "snippet": "markdownLaTeXBibLaTeXCitations{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "markdownLaTeXBibLaTeXTextCitations{}{}{}{}{}": {
-      "snippet": "markdownLaTeXBibLaTeXTextCitations{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "markdownLaTeXBottomRule": {},
-    "markdownLaTeXCitationsCounter": {},
-    "markdownLaTeXCitationsTotal": {},
-    "markdownLaTeXColumnCounter": {},
-    "markdownLaTeXColumnTotal": {},
-    "markdownLaTeXLoadedfalse": {},
-    "markdownLaTeXLoadedtrue": {},
-    "markdownLaTeXMidRule": {},
-    "markdownLaTeXNatbibCitations{}{}{}{}{}": {
-      "snippet": "markdownLaTeXNatbibCitations{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "markdownLaTeXNatbibTextCitations{}{}{}{}{}": {
-      "snippet": "markdownLaTeXNatbibTextCitations{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "markdownLaTeXReadAlignments{}": {
-      "snippet": "markdownLaTeXReadAlignments{${1:arg1}}"
-    },
-    "markdownLaTeXRenderTableCell{}": {
-      "snippet": "markdownLaTeXRenderTableCell{${1:arg1}}"
-    },
-    "markdownLaTeXRenderTableRow{}": {
-      "snippet": "markdownLaTeXRenderTableRow{${1:arg1}}"
-    },
-    "markdownLaTeXRowCounter": {},
-    "markdownLaTeXRowTotal": {},
-    "markdownLATEXStrongEmphasis{}": {
-      "snippet": "markdownLATEXStrongEmphasis{${1:text}}"
-    },
-    "markdownLaTeXTable{}": {
-      "snippet": "markdownLaTeXTable{${1:arg1}}"
-    },
-    "markdownLaTeXTableAlignment{}": {
-      "snippet": "markdownLaTeXTableAlignment{${1:arg1}}"
-    },
-    "markdownLaTeXTableEnd{}": {
-      "snippet": "markdownLaTeXTableEnd{${1:arg1}}"
-    },
-    "markdownLaTeXThemeLoad{}{}": {
-      "snippet": "markdownLaTeXThemeLoad{${1:package}}{${2:theme name}}"
-    },
-    "markdownLaTeXThemeName": {},
-    "markdownLaTeXThemePackageName": {},
-    "markdownLaTeXTopRule": {},
-    "markdownLaTeXUlItem": {},
-    "markdownMakeOther": {},
-    "markdownOptionCodeSpans": {},
-    "markdownOptionExpectJekyllData": {},
-    "markdownOptionRelativeReferences": {},
-    "markdownOptionTexComments": {},
-    "markdownOptionUnderscores": {},
-    "markdownVersionSpace": {},
-    "markdown": {},
-    "endmarkdown": {},
-    "markdownBegin": {},
-    "markdownEnd": {},
-    "markdownEscape{}": {
-      "snippet": "markdownEscape{${1:file}}"
-    },
-    "markdownExecute{}": {
-      "snippet": "markdownExecute{${1:code}}"
-    },
-    "markdownExecuteDirect{}": {
-      "snippet": "markdownExecuteDirect{${1:code}}"
-    },
-    "markdownExecuteShellEscape": {},
-    "markdownIfOption{}{}{}": {
-      "snippet": "markdownIfOption{${1:option}}{${2:true}}{${3:false}}"
-    },
-    "markdownInputFileStream": {},
-    "markdownLastModified": {},
-    "markdownLuaExecute{}": {
-      "snippet": "markdownLuaExecute{${1:code}}"
-    },
-    "markdownLuaOptions": {},
-    "markdownOptionBlankBeforeBlockquote": {},
-    "markdownOptionBlankBeforeCodeFence": {},
-    "markdownOptionBlankBeforeHeading": {},
-    "markdownOptionBreakableBlockquotes": {},
-    "markdownOptionCacheDir": {},
-    "markdownOptionCitationNbsps": {},
-    "markdownOptionCitations": {},
-    "markdownOptionContentBlocks": {},
-    "markdownOptionContentBlocksLanguageMap": {},
-    "markdownOptionDefinitionLists": {},
-    "markdownOptionEagerCache": {},
-    "markdownOptionFencedCode": {},
-    "markdownOptionFinalizeCache": {},
-    "markdownOptionFootnotes": {},
-    "markdownOptionFrozenCache": {},
-    "markdownOptionFrozenCacheFileName": {},
-    "markdownOptionHardLineBreaks": {},
-    "markdownOptionHashEnumerators": {},
-    "markdownOptionHeaderAttributes": {},
-    "markdownOptionHtml": {},
-    "markdownOptionHybrid": {},
-    "markdownOptionInlineFootnotes": {},
-    "markdownOptionInputTempFileName": {},
-    "markdownOptionJekyllData": {},
-    "markdownOptionPipeTables": {},
-    "markdownOptionPreserveTabs": {},
-    "markdownOptionShiftHeadings": {},
-    "markdownOptionSlice": {},
-    "markdownOptionSmartEllipses": {},
-    "markdownOptionStartNumber": {},
-    "markdownOptionStripIndent": {},
-    "markdownOptionStripPercentSigns": {},
-    "markdownOptionTableCaptions": {},
-    "markdownOptionTaskLists": {},
-    "markdownOptionTeXComments": {},
-    "markdownOptionTightLists": {},
-    "markdownOutputFileStream": {},
-    "markdownPrepare": {},
-    "markdownPrepareLuaOptions": {},
-    "markdownReadAndConvert": {},
-    "markdownReadAndConvertProcessLine{}{}{}": {
-      "snippet": "markdownReadAndConvertProcessLine{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "markdownReadAndConvertStripPercentSign{}": {
-      "snippet": "markdownReadAndConvertStripPercentSign{${1:arg1}}"
-    },
-    "markdownReadAndConvertTab": {},
-    "markdownRendererAmpersand": {},
-    "markdownRendererAmpersandPrototype": {},
-    "markdownRendererAttributeClassName": {},
-    "markdownRendererAttributeClassNamePrototype": {},
-    "markdownRendererAttributeIdentifier": {},
-    "markdownRendererAttributeIdentifierPrototype": {},
-    "markdownRendererAttributeKeyValue": {},
-    "markdownRendererBackslash": {},
-    "markdownRendererBackslashPrototype": {},
-    "markdownRendererBlockHtmlCommentBegin": {},
-    "markdownRendererBlockHtmlCommentEnd": {},
-    "markdownRendererBlockQuoteBegin": {},
-    "markdownRendererBlockQuoteBeginPrototype": {},
-    "markdownRendererBlockQuoteEnd": {},
-    "markdownRendererBlockQuoteEndPrototype": {},
-    "markdownRendererBracketedSpanAttributeContextBegin": {},
-    "markdownRendererBracketedSpanAttributeContextBeginPrototype": {},
-    "markdownRendererBracketedSpanAttributeContextEnd": {},
-    "markdownRendererBracketedSpanAttributeContextEndPrototype": {},
-    "markdownRendererCircumflex": {},
-    "markdownRendererCircumflexPrototype": {},
-    "markdownRendererCite": {},
-    "markdownRendererCitePrototype{}": {
-      "snippet": "markdownRendererCitePrototype{${1:arg1}}"
-    },
-    "markdownRendererCodeSpan": {},
-    "markdownRendererCodeSpanAttributeContextBegin": {},
-    "markdownRendererCodeSpanAttributeContextBeginPrototype": {},
-    "markdownRendererCodeSpanAttributeContextEnd": {},
-    "markdownRendererCodeSpanAttributeContextEndPrototype": {},
-    "markdownRendererCodeSpanPrototype{}": {
-      "snippet": "markdownRendererCodeSpanPrototype{${1:arg1}}"
-    },
-    "markdownRendererContentBlock": {},
-    "markdownRendererContentBlockCode": {},
-    "markdownRendererContentBlockCodePrototype{}{}{}{}{}": {
-      "snippet": "markdownRendererContentBlockCodePrototype{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "markdownRendererContentBlockOnlineImage": {},
-    "markdownRendererContentBlockOnlineImagePrototype": {},
-    "markdownRendererContentBlockOnlineImagePrototype{}{}{}{}": {
-      "snippet": "markdownRendererContentBlockOnlineImagePrototype{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "markdownRendererContentBlockPrototype{}{}{}{}": {
-      "snippet": "markdownRendererContentBlockPrototype{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "markdownRendererDisplayMath": {},
-    "markdownRendererDisplayMathPrototype": {},
-    "markdownRendererDlBegin": {},
-    "markdownRendererDlBeginPrototype": {},
-    "markdownRendererDlBeginTight": {},
-    "markdownRendererDlBeginTightPrototype": {},
-    "markdownRendererDlDefinitionBegin": {},
-    "markdownRendererDlDefinitionBeginPrototype": {},
-    "markdownRendererDlDefinitionEnd": {},
-    "markdownRendererDlDefinitionEndPrototype": {},
-    "markdownRendererDlEnd": {},
-    "markdownRendererDlEndPrototype": {},
-    "markdownRendererDlEndTight": {},
-    "markdownRendererDlEndTightPrototype": {},
-    "markdownRendererDlItem": {},
-    "markdownRendererDlItemEnd": {},
-    "markdownRendererDlItemEndPrototype": {},
-    "markdownRendererDlItemPrototype{}": {
-      "snippet": "markdownRendererDlItemPrototype{${1:arg1}}"
-    },
-    "markdownRendererDocumentBegin": {},
-    "markdownRendererDocumentEnd": {},
-    "markdownRendererDollarSign": {},
-    "markdownRendererDollarSignPrototype": {},
-    "markdownRendererEllipsis": {},
-    "markdownRendererEllipsisPrototype": {},
-    "markdownRendererEmphasis": {},
-    "markdownRendererEmphasisPrototype{}": {
-      "snippet": "markdownRendererEmphasisPrototype{${1:arg1}}"
-    },
-    "markdownRendererFancyOlBegin": {},
-    "markdownRendererFancyOlBeginPrototype": {},
-    "markdownRendererFancyOlBeginTight": {},
-    "markdownRendererFancyOlBeginTightPrototype": {},
-    "markdownRendererFancyOlEnd": {},
-    "markdownRendererFancyOlEndPrototype": {},
-    "markdownRendererFancyOlEndTight": {},
-    "markdownRendererFancyOlEndTightPrototype": {},
-    "markdownRendererFancyOlItem": {},
-    "markdownRendererFancyOlItemEnd": {},
-    "markdownRendererFancyOlItemEndPrototype": {},
-    "markdownRendererFancyOlItemPrototype": {},
-    "markdownRendererFancyOlItemWithNumber": {},
-    "markdownRendererFancyOlItemWithNumberPrototype": {},
-    "markdownRendererFencedCodeAttributeContextBegin": {},
-    "markdownRendererFencedCodeAttributeContextBeginPrototype": {},
-    "markdownRendererFencedCodeAttributeContextEnd": {},
-    "markdownRendererFencedCodeAttributeContextEndPrototype": {},
-    "markdownRendererFencedDivAttributeContextBegin": {},
-    "markdownRendererFencedDivAttributeContextBeginPrototype": {},
-    "markdownRendererFencedDivAttributeContextEnd": {},
-    "markdownRendererFencedDivAttributeContextEndPrototype": {},
-    "markdownRendererHalfTickedBox": {},
-    "markdownRendererHalfTickedBoxPrototype": {},
-    "markdownRendererHash": {},
-    "markdownRendererHashPrototype": {},
-    "markdownRendererHeaderAttributeContextBegin": {},
-    "markdownRendererHeaderAttributeContextBeginPrototype": {},
-    "markdownRendererHeaderAttributeContextEnd": {},
-    "markdownRendererHeaderAttributeContextEndPrototype": {},
-    "markdownRendererHeadingFive": {},
-    "markdownRendererHeadingFivePrototype{}": {
-      "snippet": "markdownRendererHeadingFivePrototype{${1:arg1}}"
-    },
-    "markdownRendererHeadingFour": {},
-    "markdownRendererHeadingFourPrototype{}": {
-      "snippet": "markdownRendererHeadingFourPrototype{${1:arg1}}"
-    },
-    "markdownRendererHeadingOne": {},
-    "markdownRendererHeadingOnePrototype{}": {
-      "snippet": "markdownRendererHeadingOnePrototype{${1:arg1}}"
-    },
-    "markdownRendererHeadingSix": {},
-    "markdownRendererHeadingSixPrototype{}": {
-      "snippet": "markdownRendererHeadingSixPrototype{${1:arg1}}"
-    },
-    "markdownRendererHeadingThree": {},
-    "markdownRendererHeadingThreePrototype{}": {
-      "snippet": "markdownRendererHeadingThreePrototype{${1:arg1}}"
-    },
-    "markdownRendererHeadingTwo": {},
-    "markdownRendererHeadingTwoPrototype{}": {
-      "snippet": "markdownRendererHeadingTwoPrototype{${1:arg1}}"
-    },
-    "markdownRendererImage": {},
-    "markdownRendererImageAttributeContextBegin": {},
-    "markdownRendererImageAttributeContextBeginPrototype": {},
-    "markdownRendererImageAttributeContextEnd": {},
-    "markdownRendererImageAttributeContextEndPrototype": {},
-    "markdownRendererImagePrototype{}{}{}{}": {
-      "snippet": "markdownRendererImagePrototype{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "markdownRendererInlineHtmlComment": {},
-    "markdownRendererInlineHtmlCommentPrototype{}": {
-      "snippet": "markdownRendererInlineHtmlCommentPrototype{${1:arg1}}"
-    },
-    "markdownRendererInlineHtmlTag": {},
-    "markdownRendererInlineMath": {},
-    "markdownRendererInlineMathPrototype": {},
-    "markdownRendererInputBlockHtmlElement": {},
-    "markdownRendererInputFencedCode": {},
-    "markdownRendererInputFencedCodePrototype{}{}": {
-      "snippet": "markdownRendererInputFencedCodePrototype{${1:arg1}}{${2:arg2}}"
-    },
-    "markdownRendererInputRawBlock{}{}": {
-      "snippet": "markdownRendererInputRawBlock{${1:file}}{${2:attribute}}"
-    },
-    "markdownRendererInputRawInlinePrototype{}{}": {
-      "snippet": "markdownRendererInputRawInlinePrototype{${1:file}}{${2:attribute}}"
-    },
-    "markdownRendererInputRawInline{}{}": {
-      "snippet": "markdownRendererInputRawInline{${1:file}}{${2:attribute}}"
-    },
-    "markdownRendererInputRawBlockPrototype{}{}": {
-      "snippet": "markdownRendererInputRawBlockPrototype{${1:file}}{${2:attribute}}"
-    },
-    "markdownRendererInputVerbatim": {},
-    "markdownRendererInputVerbatimPrototype{}": {
-      "snippet": "markdownRendererInputVerbatimPrototype{${1:arg1}}"
-    },
-    "markdownRendererInterblockSeparator": {},
-    "markdownRendererInterblockSeparatorPrototype": {},
-    "markdownRendererJekyllDataBegin": {},
-    "markdownRendererJekyllDataBeginPrototype": {},
-    "markdownRendererJekyllDataBoolean": {},
-    "markdownRendererJekyllDataBooleanPrototype{}{}": {
-      "snippet": "markdownRendererJekyllDataBooleanPrototype{${1:arg1}}{${2:arg2}}"
-    },
-    "markdownRendererJekyllDataEmpty": {},
-    "markdownRendererJekyllDataEmptyPrototype{}": {
-      "snippet": "markdownRendererJekyllDataEmptyPrototype{${1:arg1}}"
-    },
-    "markdownRendererJekyllDataEnd": {},
-    "markdownRendererJekyllDataEndPrototype": {},
-    "markdownRendererJekyllDataMappingBegin{}{}": {
-      "snippet": "markdownRendererJekyllDataMappingBegin{${1:key}}{${2:number}}"
-    },
-    "markdownRendererJekyllDataMappingBeginPrototype{}{}": {
-      "snippet": "markdownRendererJekyllDataMappingBeginPrototype{${1:key}}{${2:number}}"
-    },
-    "markdownRendererJekyllDataMappingEnd": {},
-    "markdownRendererJekyllDataMappingEndPrototype": {},
-    "markdownRendererJekyllDataNumber": {},
-    "markdownRendererJekyllDataNumberPrototype{}{}": {
-      "snippet": "markdownRendererJekyllDataNumberPrototype{${1:arg1}}{${2:arg2}}"
-    },
-    "markdownRendererJekyllDataSequenceBegin": {},
-    "markdownRendererJekyllDataSequenceBeginPrototype{}{}": {
-      "snippet": "markdownRendererJekyllDataSequenceBeginPrototype{${1:arg1}}{${2:arg2}}"
-    },
-    "markdownRendererJekyllDataSequenceEnd": {},
-    "markdownRendererJekyllDataSequenceEndPrototype": {},
-    "markdownRendererJekyllDataString": {},
-    "markdownRendererJekyllDataStringPrototype{}{}": {
-      "snippet": "markdownRendererJekyllDataStringPrototype{${1:arg1}}{${2:arg2}}"
-    },
-    "markdownRendererLeftBrace": {},
-    "markdownRendererLeftBracePrototype": {},
-    "markdownRendererLineBlockBegin": {},
-    "markdownRendererLineBlockBeginPrototype": {},
-    "markdownRendererLineBlockEnd": {},
-    "markdownRendererLineBlockEndPrototype": {},
-    "markdownRendererHardLineBreak": {},
-    "markdownRendererHardLineBreakPrototype": {},
-    "markdownRendererLink": {},
-    "markdownRendererLinkAttributeContextBegin": {},
-    "markdownRendererLinkAttributeContextBeginPrototype": {},
-    "markdownRendererLinkAttributeContextEnd": {},
-    "markdownRendererLinkAttributeContextEndPrototype": {},
-    "markdownRendererLinkPrototype{}{}{}{}": {
-      "snippet": "markdownRendererLinkPrototype{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "markdownRendererNbsp": {},
-    "markdownRendererNbspPrototype": {},
-    "markdownRendererNote{}": {
-      "snippet": "markdownRendererNote{${1:text}}"
-    },
-    "markdownRendererNotePrototype{}": {
-      "snippet": "markdownRendererNotePrototype{${1:text}}"
-    },
-    "markdownRendererOlBegin": {},
-    "markdownRendererOlBeginPrototype": {},
-    "markdownRendererOlBeginTight": {},
-    "markdownRendererOlBeginTightPrototype": {},
-    "markdownRendererOlEnd": {},
-    "markdownRendererOlEndPrototype": {},
-    "markdownRendererOlEndTight": {},
-    "markdownRendererOlEndTightPrototype": {},
-    "markdownRendererOlItem": {},
-    "markdownRendererOlItemEnd": {},
-    "markdownRendererOlItemEndPrototype": {},
-    "markdownRendererOlItemPrototype": {},
-    "markdownRendererOlItemWithNumber": {},
-    "markdownRendererOlItemWithNumberPrototype{}": {
-      "snippet": "markdownRendererOlItemWithNumberPrototype{${1:arg1}}"
-    },
-    "markdownRendererPercentSign": {},
-    "markdownRendererPercentSignPrototype": {},
-    "markdownRendererPipe": {},
-    "markdownRendererPipePrototype": {},
-    "markdownRendererReplacementCharacter": {},
-    "markdownRendererReplacementCharacterPrototype": {},
-    "markdownRendererRightBrace": {},
-    "markdownRendererRightBracePrototype": {},
-    "markdownRendererSectionBegin": {},
-    "markdownRendererSectionBeginPrototype": {},
-    "markdownRendererSectionEnd": {},
-    "markdownRendererSectionEndPrototype": {},
-    "markdownRendererStrikeThrough": {},
-    "markdownRendererStrikeThroughPrototype": {},
-    "markdownRendererStrongEmphasis": {},
-    "markdownRendererStrongEmphasisPrototype{}": {
-      "snippet": "markdownRendererStrongEmphasisPrototype{${1:arg1}}"
-    },
-    "markdownRendererSubscript": {},
-    "markdownRendererSubscriptPrototype": {},
-    "markdownRendererSuperscript": {},
-    "markdownRendererSuperscriptPrototype": {},
-    "markdownRendererTable": {},
-    "markdownRendererTablePrototype{}{}{}": {
-      "snippet": "markdownRendererTablePrototype{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "markdownRendererTextCite": {},
-    "markdownRendererTextCitePrototype{}": {
-      "snippet": "markdownRendererTextCitePrototype{${1:arg1}}"
-    },
-    "markdownRendererThematicBreak": {},
-    "markdownRendererThematicBreakPrototype": {},
-    "markdownRendererTickedBox": {},
-    "markdownRendererTickedBoxPrototype": {},
-    "markdownRendererTilde": {},
-    "markdownRendererTildePrototype": {},
-    "markdownRendererUlBegin": {},
-    "markdownRendererUlBeginPrototype": {},
-    "markdownRendererUlBeginTight": {},
-    "markdownRendererUlBeginTightPrototype": {},
-    "markdownRendererUlEnd": {},
-    "markdownRendererUlEndPrototype": {},
-    "markdownRendererUlEndTight": {},
-    "markdownRendererUlEndTightPrototype": {},
-    "markdownRendererUlItem": {},
-    "markdownRendererUlItemEnd": {},
-    "markdownRendererUlItemEndPrototype": {},
-    "markdownRendererUlItemPrototype": {},
-    "markdownRendererUnderscore": {},
-    "markdownRendererUnderscorePrototype": {},
-    "markdownRendererUntickedBox": {},
-    "markdownRendererUntickedBoxPrototype": {},
-    "markdownVersion": {},
-    "markinlinePlainTeX{}": {
-      "snippet": "markinlinePlainTeX{${1:markdown text}}"
+  "deps": [
+    {
+      "name": "paralist"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "csvsimple"
+    },
+    {
+      "name": "fancyvrb"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "ltxcmds"
+    },
+    {
+      "name": "gobble"
+    },
+    {
+      "name": "url"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "lt3luabridge"
+    },
+    {
+      "name": "soulutf8",
+      "if": "strikeThrough"
+    },
+    {
+      "name": "soulutf8",
+      "if": "strikeThrough=true"
+    },
+    {
+      "name": "grffile",
+      "if": "theme=witiko/dot"
+    },
+    {
+      "name": "catchfile",
+      "if": "theme=witiko/graphicx/http"
+    },
+    {
+      "name": "grffile",
+      "if": "theme=witiko/graphicx/http"
+    },
+    {
+      "name": "verse",
+      "if": "lineBlocks"
+    },
+    {
+      "name": "verse",
+      "if": "lineBlocks=true"
     }
-  },
-  "envs": {
-    "markdown": {},
-    "markdown[]": {
-      "name": "markdown",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    }
-  },
-  "options": [
-    "plain",
-    "import=${1|witiko/dot,witiko/graphicx/http,witiko/tilde,witiko/markdown/techdoc|}",
-    "snippet=",
-    "helperScriptFileName=${1:file name}",
-    "inputTempFileName=${1:file name}",
-    "outputTempFileName=${1:file name}",
-    "errorTempFileName=${1:file name}",
-    "cacheDir=${1:directory}",
-    "contentBlocksLanguageMap=${1:file name}",
-    "debugExtensionsFileName=${1:file name}",
-    "outputDir=${1:directory}",
-    "blankBeforeBlockquote",
-    "blankBeforeCodeFence",
-    "blankBeforeDivFence",
-    "blankBeforeHeading",
-    "bracketedSpans",
-    "breakableBlockquotes",
-    "citations",
-    "citationNbsps",
-    "contentBlocks",
-    "debugExtensions",
-    "codeSpans",
-    "definitionLists",
-    "eagerCache",
-    "extensions=${1:file names}",
-    "expectJekyllData",
-    "fancyLists",
-    "fencedCode",
-    "fencedCodeAttributes",
-    "fencedDivs",
-    "hashEnumerators",
-    "headerAttributes",
-    "html",
-    "hybrid",
-    "inlineCodeAttributes",
-    "inlineNotes",
-    "jekyllData",
-    "linkAttributes",
-    "lineBlocks",
-    "notes",
-    "pipeTables",
-    "preserveTabs",
-    "rawAttribute",
-    "relativeReferences",
-    "smartEllipses",
-    "shiftHeadings=${1:shift amount}",
-    "slice=${1:beginning and end of a slice}",
-    "startNumber",
-    "strikeThrough",
-    "stripIndent",
-    "subscripts",
-    "superscripts",
-    "tableCaptions",
-    "taskLists",
-    "texComments",
-    "texMathDollars",
-    "texMathDoubleBackslash",
-    "texMathSingleBackslash",
-    "tightLists",
-    "underscores",
-    "stripPercentSigns",
-    "finalizeCache",
-    "frozenCache",
-    "frozenCacheFileName=${1:file name}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "markinline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:markdown text}}"
+      }
+    },
+    {
+      "name": "markinline",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:markdown text}}",
+        "keys": [
+          "\\usepackage/markdown#c,\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c",
+          "\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "markdownInput",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "markdownInput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\usepackage/markdown#c,\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c",
+          "\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "markdownSetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/markdown#c,\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c",
+          "\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "markdownSetupSnippet",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:options%keyvals}}",
+        "keys": [
+          "\\usepackage/markdown#c,\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c",
+          "\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "markdownIfSnippetExists",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "markdownMakeOther",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionCodeSpans",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionExpectJekyllData",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionRelativeReferences",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionTexComments",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionUnderscores",
+      "unusual": true
+    },
+    {
+      "name": "markdownBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownEscape",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "markdownExecute",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "markdownExecuteDirect",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "markdownExecuteShellEscape",
+      "unusual": true
+    },
+    {
+      "name": "markdownIfOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:option}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "markdownLuaExecute",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "markdownLuaOptions",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionBlankBeforeBlockquote",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionBlankBeforeCodeFence",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionBlankBeforeHeading",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionBreakableBlockquotes",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionCacheDir",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionCitationNbsps",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionCitations",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionCodeSpans",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionContentBlocks",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionContentBlocksLanguageMap",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionDefinitionLists",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionEagerCache",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionFencedCode",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionFinalizeCache",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionFootnotes",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionFrozenCache",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionFrozenCacheFileName",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionHardLineBreaks",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionHashEnumerators",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionHeaderAttributes",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionHtml",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionHybrid",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionInlineFootnotes",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionInputTempFileName",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionJekyllData",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionPipeTables",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionPreserveTabs",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionShiftHeadings",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionSlice",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionSmartEllipses",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionStartNumber",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionStripIndent",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionStripPercentSigns",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionTableCaptions",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionTaskLists",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionTeXComments",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionTightLists",
+      "unusual": true
+    },
+    {
+      "name": "markdownOptionUnderscores",
+      "unusual": true
+    },
+    {
+      "name": "markdownPrepare",
+      "unusual": true
+    },
+    {
+      "name": "markdownPrepareLuaOptions",
+      "unusual": true
+    },
+    {
+      "name": "markdownReadAndConvert",
+      "unusual": true
+    },
+    {
+      "name": "markdownReadAndConvertProcessLine",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "markdownReadAndConvertStripPercentSign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownReadAndConvertTab",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererAmpersand",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererAmpersandPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererAttributeClassName",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererAttributeClassNamePrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererAttributeIdentifier",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererAttributeIdentifierPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererAttributeKeyValue",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererBackslash",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererBackslashPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererBlockHtmlCommentBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererBlockHtmlCommentEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererBlockQuoteBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererBlockQuoteBeginPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererBlockQuoteEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererBlockQuoteEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererBracketedSpanAttributeContextBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererBracketedSpanAttributeContextBeginPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererBracketedSpanAttributeContextEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererBracketedSpanAttributeContextEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererCircumflex",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererCircumflexPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererCite",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererCitePrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownRendererCodeSpan",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererCodeSpanAttributeContextBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererCodeSpanAttributeContextBeginPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererCodeSpanAttributeContextEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererCodeSpanAttributeContextEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererCodeSpanPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownRendererContentBlock",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererContentBlockCode",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererContentBlockCodePrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+      }
+    },
+    {
+      "name": "markdownRendererContentBlockOnlineImage",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererContentBlockOnlineImagePrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererContentBlockOnlineImagePrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "markdownRendererContentBlockPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "markdownRendererDisplayMath",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDisplayMathPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDlBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDlBeginPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDlBeginTight",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDlBeginTightPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDlDefinitionBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDlDefinitionBeginPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDlDefinitionEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDlDefinitionEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDlEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDlEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDlEndTight",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDlEndTightPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDlItem",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDlItemEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDlItemEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDlItemPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownRendererDocumentBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDocumentEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDollarSign",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererDollarSignPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererEllipsis",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererEllipsisPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererEmphasis",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererEmphasisPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownRendererFancyOlBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFancyOlBeginPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFancyOlBeginTight",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFancyOlBeginTightPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFancyOlEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFancyOlEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFancyOlEndTight",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFancyOlEndTightPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFancyOlItem",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFancyOlItemEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFancyOlItemEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFancyOlItemPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFancyOlItemWithNumber",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFancyOlItemWithNumberPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFencedCodeAttributeContextBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFencedCodeAttributeContextBeginPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFencedCodeAttributeContextEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFencedCodeAttributeContextEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFencedDivAttributeContextBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFencedDivAttributeContextBeginPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFencedDivAttributeContextEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererFencedDivAttributeContextEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHalfTickedBox",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHalfTickedBoxPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHash",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHashPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHeaderAttributeContextBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHeaderAttributeContextBeginPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHeaderAttributeContextEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHeaderAttributeContextEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHeadingFive",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHeadingFivePrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownRendererHeadingFour",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHeadingFourPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownRendererHeadingOne",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHeadingOnePrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownRendererHeadingSix",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHeadingSixPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownRendererHeadingThree",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHeadingThreePrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownRendererHeadingTwo",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHeadingTwoPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownRendererImage",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererImageAttributeContextBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererImageAttributeContextBeginPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererImageAttributeContextEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererImageAttributeContextEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererImagePrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "markdownRendererInlineHtmlComment",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererInlineHtmlCommentPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownRendererInlineHtmlTag",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererInlineMath",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererInlineMathPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererInputBlockHtmlElement",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererInputFencedCode",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererInputFencedCodePrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "markdownRendererInputRawBlock",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file}}{${2:attribute}}"
+      }
+    },
+    {
+      "name": "markdownRendererInputRawInlinePrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file}}{${2:attribute}}"
+      }
+    },
+    {
+      "name": "markdownRendererInputRawInline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file}}{${2:attribute}}"
+      }
+    },
+    {
+      "name": "markdownRendererInputRawBlockPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file}}{${2:attribute}}"
+      }
+    },
+    {
+      "name": "markdownRendererInputVerbatim",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererInputVerbatimPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownRendererInterblockSeparator",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererInterblockSeparatorPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererJekyllDataBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererJekyllDataBeginPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererJekyllDataBoolean",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererJekyllDataBooleanPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "markdownRendererJekyllDataEmpty",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererJekyllDataEmptyPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownRendererJekyllDataEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererJekyllDataEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererJekyllDataMappingBegin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:number}}"
+      }
+    },
+    {
+      "name": "markdownRendererJekyllDataMappingBeginPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:number}}"
+      }
+    },
+    {
+      "name": "markdownRendererJekyllDataMappingEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererJekyllDataMappingEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererJekyllDataNumber",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererJekyllDataNumberPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "markdownRendererJekyllDataSequenceBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererJekyllDataSequenceBeginPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "markdownRendererJekyllDataSequenceEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererJekyllDataSequenceEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererJekyllDataString",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererJekyllDataStringPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "markdownRendererLeftBrace",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererLeftBracePrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererLineBlockBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererLineBlockBeginPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererLineBlockEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererLineBlockEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHardLineBreak",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererHardLineBreakPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererLink",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererLinkAttributeContextBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererLinkAttributeContextBeginPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererLinkAttributeContextEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererLinkAttributeContextEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererLinkPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "markdownRendererNbsp",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererNbspPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererNote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "markdownRendererNotePrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "markdownRendererOlBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererOlBeginPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererOlBeginTight",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererOlBeginTightPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererOlEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererOlEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererOlEndTight",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererOlEndTightPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererOlItem",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererOlItemEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererOlItemEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererOlItemPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererOlItemWithNumber",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererOlItemWithNumberPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownRendererPercentSign",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererPercentSignPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererPipe",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererPipePrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererReplacementCharacter",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererReplacementCharacterPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererRightBrace",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererRightBracePrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererSectionBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererSectionBeginPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererSectionEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererSectionEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererStrikeThrough",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererStrikeThroughPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererStrongEmphasis",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererStrongEmphasisPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownRendererSubscript",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererSubscriptPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererSuperscript",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererSuperscriptPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererTable",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererTablePrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "markdownRendererTextCite",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererTextCitePrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "markdownRendererThematicBreak",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererThematicBreakPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererTickedBox",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererTickedBoxPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererTilde",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererTildePrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererUlBegin",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererUlBeginPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererUlBeginTight",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererUlBeginTightPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererUlEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererUlEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererUlEndTight",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererUlEndTightPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererUlItem",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererUlItemEnd",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererUlItemEndPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererUlItemPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererUnderscore",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererUnderscorePrototype",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererUntickedBox",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererUntickedBoxPrototype",
+      "unusual": true
+    },
+    {
+      "name": "markinlinePlainTeX",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:markdown text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "markdown"
+    },
+    {
+      "name": "markdown",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\usepackage/markdown#c,\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c",
+          "\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/markdown#c,\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c": [
+      "plain",
+      "import=${1|witiko/dot,witiko/graphicx/http,witiko/tilde,witiko/markdown/techdoc|}",
+      "snippet=",
+      "helperScriptFileName=${1:file name}",
+      "inputTempFileName=${1:file name}",
+      "outputTempFileName=${1:file name}",
+      "errorTempFileName=${1:file name}",
+      "cacheDir=${1:directory}",
+      "contentBlocksLanguageMap=${1:file name}",
+      "debugExtensionsFileName=${1:file name}",
+      "outputDir=${1:directory}",
+      "blankBeforeBlockquote",
+      "blankBeforeCodeFence",
+      "blankBeforeDivFence",
+      "blankBeforeHeading",
+      "bracketedSpans",
+      "breakableBlockquotes",
+      "citations",
+      "citationNbsps",
+      "contentBlocks",
+      "debugExtensions",
+      "codeSpans",
+      "definitionLists",
+      "eagerCache",
+      "extensions=${1:file names}",
+      "expectJekyllData",
+      "fancyLists",
+      "fencedCode",
+      "fencedCodeAttributes",
+      "fencedDivs",
+      "hashEnumerators",
+      "headerAttributes",
+      "html",
+      "hybrid",
+      "inlineCodeAttributes",
+      "inlineNotes",
+      "jekyllData",
+      "linkAttributes",
+      "lineBlocks",
+      "notes",
+      "pipeTables",
+      "preserveTabs",
+      "rawAttribute",
+      "relativeReferences",
+      "smartEllipses",
+      "shiftHeadings=${1:shift amount}",
+      "slice=${1:beginning and end of a slice}",
+      "startNumber",
+      "strikeThrough",
+      "stripIndent",
+      "subscripts",
+      "superscripts",
+      "tableCaptions",
+      "taskLists",
+      "texComments",
+      "texMathDollars",
+      "texMathDoubleBackslash",
+      "texMathSingleBackslash",
+      "tightLists",
+      "underscores",
+      "stripPercentSigns",
+      "finalizeCache",
+      "frozenCache",
+      "frozenCacheFileName=${1:file name}"
+    ],
+    "\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c": [
       "renderers={${1:renderer options}}",
       "rendererPrototypes={${1:renderer prototype options}}",
       "code={${1:code}}",
       "jekyllDataRenderers={${1:keyvals}}"
     ]
+  },
+  "args": [
+    "\\usepackage/markdown#c,\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c"
   ]
 }

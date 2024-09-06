@@ -1,21 +1,49 @@
 {
-  "includes": {
-    "biditools": []
-  },
-  "macros": {
-    "setkurdishlipsumdefault{}": {
-      "snippet": "setkurdishlipsumdefault{${1:num-num}}"
-    },
-    "kurdishlipsum": {},
-    "kurdishlipsum[]": {
-      "snippet": "kurdishlipsum[${1:num-num}]"
-    },
-    "kurdishlipsum*": {},
-    "ChangeKurdishlipsumPar": {}
-  },
-  "envs": {},
-  "options": [
-    "nopar"
+  "deps": [
+    {
+      "name": "biditools"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "setkurdishlipsumdefault",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:num-num}}"
+      }
+    },
+    {
+      "name": "kurdishlipsum"
+    },
+    {
+      "name": "kurdishlipsum",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:num}]"
+      }
+    },
+    {
+      "name": "kurdishlipsum",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:num-num}]"
+      }
+    },
+    {
+      "name": "kurdishlipsum*"
+    },
+    {
+      "name": "ChangeKurdishlipsumPar",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/kurdishlipsum#c": [
+      "nopar"
+    ]
+  },
+  "args": [
+    "\\usepackage/kurdishlipsum#c"
+  ]
 }

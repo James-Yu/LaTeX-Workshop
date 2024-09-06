@@ -1,101 +1,326 @@
 {
-  "includes": {},
-  "macros": {
-    "vt": {},
-    "vtt": {},
-    "vttt{}": {
-      "snippet": "vttt{${1:thickness}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "",
+      "arg": {
+        "format": "|",
+        "snippet": "|"
+      }
     },
-    "vtr": {},
-    "vttr": {},
-    "vtttr{}": {
-      "snippet": "vtttr{${1:thickness}}"
+    {
+      "name": "vt"
     },
-    "stpar{}{}": {
-      "snippet": "stpar{${1:dimen}}{${2:content}}"
+    {
+      "name": "vtt"
     },
-    "el": {},
-    "elt": {},
-    "eltt": {},
-    "elttt{}": {
-      "snippet": "elttt{${1:thickness}}"
+    {
+      "name": "vttt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:thickness%l}}"
+      }
     },
-    "elspec": {},
-    "trule": {},
-    "ttrule": {},
-    "tttrule{}": {
-      "snippet": "tttrule{${1:thickness}}"
+    {
+      "name": "vtr"
     },
-    "borderrule": {},
-    "emultirow": {},
-    "estpar": {},
-    "estparrow": {},
-    "ifstablemode": {},
-    "ifstablesborderthin": {},
-    "ifstablesin": {},
-    "ifstablesinternalthin": {},
-    "ifstablesomit": {},
-    "ifstablesright": {},
-    "internalrule": {},
-    "mscount": {},
-    "stablelinehelp": {},
-    "stablemodefalse": {},
-    "stablemodetrue": {},
-    "stablesadj": {},
-    "stablesbaselineskip": {},
-    "stablesborderthinfalse": {},
-    "stablesborderthintrue": {},
-    "stablesborderwidth": {},
-    "stablescount": {},
-    "stablesdef": {},
-    "stablesdummy": {},
-    "stablesdummyc": {},
-    "stablesel": {},
-    "stablesend": {},
-    "stablesinfalse": {},
-    "stablesinternalthinfalse": {},
-    "stablesinternalthintrue": {},
-    "stablesinternalwidth": {},
-    "stablesintrue": {},
-    "stablesleft": {},
-    "stableslines": {},
-    "stableslineskip": {},
-    "stableslineskiplimit": {},
-    "stableslinet": {},
-    "stablesmode": {},
-    "stablesmultiplehelp": {},
-    "stablesomitfalse": {},
-    "stablesomittrue": {},
-    "stablesright": {},
-    "stablesrightfalse": {},
-    "stablesrighttrue": {},
-    "stablestart": {},
-    "stablestemp": {},
-    "stablesthickline": {},
-    "stablesthinline": {},
-    "stablestrut": {},
-    "stablestrutbox": {},
-    "stablestrutsize": {},
-    "stablestyle": {},
-    "stablestylehelp": {},
-    "stmultispan{}": {
-      "snippet": "stmultispan{${1:number}}"
+    {
+      "name": "vttr"
     },
-    "stspan": {},
-    "thickline": {},
-    "thinline": {}
-  },
-  "envs": {
-    "stable": {},
-    "stableto{}": {
-      "name": "stableto",
-      "snippet": "{${1:width}}"
+    {
+      "name": "vtttr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:thickness%l}}"
+      }
     },
-    "stablesp{}": {
-      "name": "stablesp",
-      "snippet": "{${1:stretch}}"
+    {
+      "name": "stpar",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:dimen%l}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "el"
+    },
+    {
+      "name": "elt"
+    },
+    {
+      "name": "eltt"
+    },
+    {
+      "name": "elttt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:thickness%l}}"
+      }
+    },
+    {
+      "name": "elspec"
+    },
+    {
+      "name": "trule"
+    },
+    {
+      "name": "ttrule"
+    },
+    {
+      "name": "tttrule",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:thickness%l}}"
+      }
+    },
+    {
+      "name": "borderrule",
+      "unusual": true
+    },
+    {
+      "name": "emultirow",
+      "unusual": true
+    },
+    {
+      "name": "estpar",
+      "unusual": true
+    },
+    {
+      "name": "estparrow",
+      "unusual": true
+    },
+    {
+      "name": "ifstablemode",
+      "unusual": true
+    },
+    {
+      "name": "ifstablesborderthin",
+      "unusual": true
+    },
+    {
+      "name": "ifstablesin",
+      "unusual": true
+    },
+    {
+      "name": "ifstablesinternalthin",
+      "unusual": true
+    },
+    {
+      "name": "ifstablesomit",
+      "unusual": true
+    },
+    {
+      "name": "ifstablesright",
+      "unusual": true
+    },
+    {
+      "name": "internalrule",
+      "unusual": true
+    },
+    {
+      "name": "mscount",
+      "unusual": true
+    },
+    {
+      "name": "stablelinehelp",
+      "unusual": true
+    },
+    {
+      "name": "stablemodefalse",
+      "unusual": true
+    },
+    {
+      "name": "stablemodetrue",
+      "unusual": true
+    },
+    {
+      "name": "stablesadj",
+      "unusual": true
+    },
+    {
+      "name": "stablesbaselineskip",
+      "unusual": true
+    },
+    {
+      "name": "stablesborderthinfalse",
+      "unusual": true
+    },
+    {
+      "name": "stablesborderthintrue",
+      "unusual": true
+    },
+    {
+      "name": "stablesborderwidth",
+      "unusual": true
+    },
+    {
+      "name": "stablescount",
+      "unusual": true
+    },
+    {
+      "name": "stablesdef",
+      "unusual": true
+    },
+    {
+      "name": "stablesdummy",
+      "unusual": true
+    },
+    {
+      "name": "stablesdummyc",
+      "unusual": true
+    },
+    {
+      "name": "stablesel",
+      "unusual": true
+    },
+    {
+      "name": "stablesend",
+      "unusual": true
+    },
+    {
+      "name": "stablesinfalse",
+      "unusual": true
+    },
+    {
+      "name": "stablesinternalthinfalse",
+      "unusual": true
+    },
+    {
+      "name": "stablesinternalthintrue",
+      "unusual": true
+    },
+    {
+      "name": "stablesinternalwidth",
+      "unusual": true
+    },
+    {
+      "name": "stablesintrue",
+      "unusual": true
+    },
+    {
+      "name": "stablesleft",
+      "unusual": true
+    },
+    {
+      "name": "stableslines",
+      "unusual": true
+    },
+    {
+      "name": "stableslineskip",
+      "unusual": true
+    },
+    {
+      "name": "stableslineskiplimit",
+      "unusual": true
+    },
+    {
+      "name": "stableslinet",
+      "unusual": true
+    },
+    {
+      "name": "stablesmode",
+      "unusual": true
+    },
+    {
+      "name": "stablesmultiplehelp",
+      "unusual": true
+    },
+    {
+      "name": "stablesomitfalse",
+      "unusual": true
+    },
+    {
+      "name": "stablesomittrue",
+      "unusual": true
+    },
+    {
+      "name": "stablesright",
+      "unusual": true
+    },
+    {
+      "name": "stablesrightfalse",
+      "unusual": true
+    },
+    {
+      "name": "stablesrighttrue",
+      "unusual": true
+    },
+    {
+      "name": "stablestart",
+      "unusual": true
+    },
+    {
+      "name": "stablestemp",
+      "unusual": true
+    },
+    {
+      "name": "stablesthickline",
+      "unusual": true
+    },
+    {
+      "name": "stablesthinline",
+      "unusual": true
+    },
+    {
+      "name": "stablestrut",
+      "unusual": true
+    },
+    {
+      "name": "stablestrutbox",
+      "unusual": true
+    },
+    {
+      "name": "stablestrutsize",
+      "unusual": true
+    },
+    {
+      "name": "stablestyle",
+      "unusual": true
+    },
+    {
+      "name": "stablestylehelp",
+      "unusual": true
+    },
+    {
+      "name": "stmultispan",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "stspan",
+      "unusual": true
+    },
+    {
+      "name": "thickline",
+      "unusual": true
+    },
+    {
+      "name": "thinline",
+      "unusual": true
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "stable"
+    },
+    {
+      "name": "stableto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "stablesp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:stretch}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

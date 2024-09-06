@@ -1,158 +1,462 @@
 {
-  "includes": {
-    "xetex": [],
-    "amstext": [],
-    "etoolbox": [],
-    "ifxetex": [],
-    "fontspec": [],
-    "xkeyval": [],
-    "MnSymbol": [
-      "MnSymbol"
+  "deps": [
+    {
+      "name": "xetex"
+    },
+    {
+      "name": "amstext"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "fontspec"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "MnSymbol",
+      "if": "MnSymbol"
+    }
+  ],
+  "macros": [
+    {
+      "name": "setmathsfont",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:sets}){${1:font name}}"
+      }
+    },
+    {
+      "name": "setmathsfont",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "(${3:sets})[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmathsfont,\\setmathfont,\\setallmainfonts,\\setprimaryfont",
+          "\\setmathsfont,\\setmathfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmathcal,\\setmathbb,\\setmathfrak,\\setallmainfonts,\\setprimaryfont,\\setallsansfonts,\\setallmonofonts"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmathfont",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:sets}){${1:font name}}"
+      }
+    },
+    {
+      "name": "setmathfont",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "(${3:sets})[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmathsfont,\\setmathfont,\\setallmainfonts,\\setprimaryfont",
+          "\\setmathsfont,\\setmathfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmathcal,\\setmathbb,\\setmathfrak,\\setallmainfonts,\\setprimaryfont,\\setallsansfonts,\\setallmonofonts"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmathrm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setmathrm",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmathsfont,\\setmathfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmathcal,\\setmathbb,\\setmathfrak,\\setallmainfonts,\\setprimaryfont,\\setallsansfonts,\\setallmonofonts"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmathsf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setmathsf",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmathsfont,\\setmathfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmathcal,\\setmathbb,\\setmathfrak,\\setallmainfonts,\\setprimaryfont,\\setallsansfonts,\\setallmonofonts"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmathtt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setmathtt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmathsfont,\\setmathfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmathcal,\\setmathbb,\\setmathfrak,\\setallmainfonts,\\setprimaryfont,\\setallsansfonts,\\setallmonofonts"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmathcal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setmathcal",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmathsfont,\\setmathfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmathcal,\\setmathbb,\\setmathfrak,\\setallmainfonts,\\setprimaryfont,\\setallsansfonts,\\setallmonofonts"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmathbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setmathbb",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmathsfont,\\setmathfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmathcal,\\setmathbb,\\setmathfrak,\\setallmainfonts,\\setprimaryfont,\\setallsansfonts,\\setallmonofonts"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmathfrak",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setmathfrak",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmathsfont,\\setmathfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmathcal,\\setmathbb,\\setmathfrak,\\setallmainfonts,\\setprimaryfont,\\setallsansfonts,\\setallmonofonts"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setallmainfonts",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:sets}){${1:font name}}"
+      }
+    },
+    {
+      "name": "setallmainfonts",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "(${3:sets})[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmathsfont,\\setmathfont,\\setallmainfonts,\\setprimaryfont",
+          "\\setmathsfont,\\setmathfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmathcal,\\setmathbb,\\setmathfrak,\\setallmainfonts,\\setprimaryfont,\\setallsansfonts,\\setallmonofonts"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setprimaryfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setprimaryfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmathsfont,\\setmathfont,\\setallmainfonts,\\setprimaryfont",
+          "\\setmathsfont,\\setmathfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmathcal,\\setmathbb,\\setmathfrak,\\setallmainfonts,\\setprimaryfont,\\setallsansfonts,\\setallmonofonts"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setallsansfonts",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setallsansfonts",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmathsfont,\\setmathfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmathcal,\\setmathbb,\\setmathfrak,\\setallmainfonts,\\setprimaryfont,\\setallsansfonts,\\setallmonofonts"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setallmonofonts",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setallmonofonts",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmathsfont,\\setmathfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmathcal,\\setmathbb,\\setmathfrak,\\setallmainfonts,\\setprimaryfont,\\setallsansfonts,\\setallmonofonts"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "exchangeforms",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list%keyvals}}",
+        "keys": [
+          "\\exchangeforms,\\normalisevarforms,\\normalizevarforms"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Alpha"
+    },
+    {
+      "name": "Beta"
+    },
+    {
+      "name": "Epsilon"
+    },
+    {
+      "name": "Zeta"
+    },
+    {
+      "name": "Eta"
+    },
+    {
+      "name": "Iota"
+    },
+    {
+      "name": "Kappa"
+    },
+    {
+      "name": "Mu"
+    },
+    {
+      "name": "Nu"
+    },
+    {
+      "name": "Omicron"
+    },
+    {
+      "name": "omicron"
+    },
+    {
+      "name": "Rho"
+    },
+    {
+      "name": "Tau"
+    },
+    {
+      "name": "Chi"
+    },
+    {
+      "name": "Digamma"
+    },
+    {
+      "name": "digamma"
+    },
+    {
+      "name": "varbeta"
+    },
+    {
+      "name": "varkappa"
+    },
+    {
+      "name": "varTheta"
+    },
+    {
+      "name": "normalisevarforms"
+    },
+    {
+      "name": "normalisevarforms",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:list%keyvals}]",
+        "keys": [
+          "\\exchangeforms,\\normalisevarforms,\\normalizevarforms"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "normalizevarforms"
+    },
+    {
+      "name": "normalizevarforms",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:list%keyvals}]",
+        "keys": [
+          "\\exchangeforms,\\normalisevarforms,\\normalizevarforms"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setminwhitespace"
+    },
+    {
+      "name": "setminwhitespace",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "themkern",
+      "unusual": true
+    },
+    {
+      "name": "ernewcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/mathspec#c": [
+      "normalskips",
+      "math",
+      "no-math",
+      "MnSymbol",
+      "tuenc",
+      "euenc",
+      "config",
+      "no-config",
+      "quiet",
+      "silent"
+    ],
+    "\\setmathsfont,\\setmathfont,\\setallmainfonts,\\setprimaryfont": [
+      "Uppercase=${1|Regular,Italic,PLain|}",
+      "Lowercase=${1|Regular,Italic,PLain|}",
+      "Arabic=${1|Regular,Italic,PLain|}"
+    ],
+    "\\setmathsfont,\\setmathfont,\\setmathrm,\\setmathsf,\\setmathtt,\\setmathcal,\\setmathbb,\\setmathfrak,\\setallmainfonts,\\setprimaryfont,\\setallsansfonts,\\setallmonofonts": [
+      "Alternate=${1:feature}",
+      "Annotation=",
+      "AutoFakeBold=${1:number}",
+      "AutoFakeSlant=${1:number}",
+      "BoldFeatures={${1:features}}",
+      "BoldFont=${1:font name}",
+      "BoldItalicFeatures={${1:features}}",
+      "BoldItalicFont=${1:font name}",
+      "BoldSlantedFeatures={${1:features}}",
+      "BoldSlantedFont=${1:font name}",
+      "CJKShape=${1|Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC|}",
+      "CharacterVariant={${1:glyph num list}:${2:variety num}}",
+      "CharacterWidth=${1|Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll|}",
+      "Color=",
+      "Colour=",
+      "Contextuals=${1|Swash,Alternate,WordInitial,WordFinal,LineFinal,Inner,ResetAll|}",
+      "Diacritics=${1|MarkToBase,MarkToMark,AboveBase,BelowBase,ResetAll|}",
+      "Extension=${1:extension}",
+      "FakeBold=${1:number}",
+      "FakeSlant=${1:number}",
+      "FakeStretch=${1:number}",
+      "Font=${1:font name}",
+      "FontFace={${1:series}}{${2:shape}}{${3:font name}}",
+      "Fractions=${1|On,Off,Reset,Alternate,ResetAll|}",
+      "HyphenChar=${1:character}",
+      "IgnoreFontspecFile",
+      "ItalicFeatures={${1:features}}",
+      "ItalicFont=${1:font name}",
+      "Kerning=${1|On,Off,Reset,Uppercase,ResetAll|}",
+      "Language=${1:language}",
+      "LetterSpace=${1:number}",
+      "Letters=${1|SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,ResetAll|}",
+      "Ligatures=${1|Required,Common,Contextual,Rare,Discretionary,Historic,TeX|}",
+      "LocalForms=${1|On,Off,Reset|}",
+      "NFSSFamily=${1:font family}",
+      "Numbers=${1|Uppercase,Lowercase,Lining,OldStyle,Proportional,Monospaced,SlashedZero,Arabic,ResetAll|}",
+      "OpticalSize=${1:size}",
+      "Ornament=",
+      "Path=${1:file path}",
+      "PunctuationSpace=${1:number}",
+      "RawFeature=${1:feature tag}",
+      "Scale=${1:number}",
+      "ScaleAgain=${1:number}",
+      "Script=${1:name}",
+      "Size=${1:number}",
+      "SizeFeatures={${1:features}}",
+      "SlantedFeatures={${1:features}}",
+      "SlantedFont=${1:font name}",
+      "SmallCapsFeatures={${1:features}}",
+      "SmallCapsFont=${1:font name}",
+      "Style=${1|Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,HorizontalKana,VerticalKana,ResetAll|}",
+      "StylisticAlternates=${1:feature}",
+      "StylisticSet=${1:set number}",
+      "UprightFeatures={${1:features}}",
+      "UprightFont=${1:font name}",
+      "Variant=${1:integer}",
+      "Vertical=${1|RotatedGlyphs,AlternatesForRotation,Alternates,KanaAlternates,Kerning,AlternateMetrics,HalfMetrics,ProportionalMetrics,ResetAll|}",
+      "VerticalPosition=${1|Superior,Inferior,Numerator,Denominator,ScientificInferior,Ordinal,ResetAll|}",
+      "WordSpace=${1:number}",
+      "Mapping=${1:xetex-only feature}",
+      "Renderer=${1:renderer}"
+    ],
+    "\\exchangeforms,\\normalisevarforms,\\normalizevarforms": [
+      "beta",
+      "epsilon",
+      "theta",
+      "kappa",
+      "pi",
+      "rho",
+      "phi",
+      "Theta"
     ]
   },
-  "macros": {
-    "setmathsfont(){}": {
-      "snippet": "setmathsfont(${2:sets}){${1:font name}}"
-    },
-    "setmathsfont()[]{}": {
-      "snippet": "setmathsfont(${3:sets})[${2:font features}]{${1:font name}}"
-    },
-    "setmathfont(){}": {
-      "snippet": "setmathfont(${2:sets}){${1:font name}}"
-    },
-    "setmathfont()[]{}": {
-      "snippet": "setmathfont(${3:sets})[${2:font features}]{${1:font name}}"
-    },
-    "setmathrm{}": {
-      "snippet": "setmathrm{${1:font name}}"
-    },
-    "setmathrm[]{}": {
-      "snippet": "setmathrm[${2:font features}]{${1:font name}}"
-    },
-    "setmathsf{}": {
-      "snippet": "setmathsf{${1:font name}}"
-    },
-    "setmathsf[]{}": {
-      "snippet": "setmathsf[${2:font features}]{${1:font name}}"
-    },
-    "setmathtt{}": {
-      "snippet": "setmathtt{${1:font name}}"
-    },
-    "setmathtt[]{}": {
-      "snippet": "setmathtt[${2:font features}]{${1:font name}}"
-    },
-    "setmathcal{}": {
-      "snippet": "setmathcal{${1:font name}}"
-    },
-    "setmathcal[]{}": {
-      "snippet": "setmathcal[${2:font features}]{${1:font name}}"
-    },
-    "setmathbb{}": {
-      "snippet": "setmathbb{${1:font name}}"
-    },
-    "setmathbb[]{}": {
-      "snippet": "setmathbb[${2:font features}]{${1:font name}}"
-    },
-    "setmathfrak{}": {
-      "snippet": "setmathfrak{${1:font name}}"
-    },
-    "setmathfrak[]{}": {
-      "snippet": "setmathfrak[${2:font features}]{${1:font name}}"
-    },
-    "setallmainfonts(){}": {
-      "snippet": "setallmainfonts(${2:sets}){${1:font name}}"
-    },
-    "setallmainfonts()[]{}": {
-      "snippet": "setallmainfonts(${3:sets})[${2:font features}]{${1:font name}}"
-    },
-    "setprimaryfont{}": {
-      "snippet": "setprimaryfont{${1:font name}}"
-    },
-    "setprimaryfont[]{}": {
-      "snippet": "setprimaryfont[${2:font features}]{${1:font name}}"
-    },
-    "setallsansfonts{}": {
-      "snippet": "setallsansfonts{${1:font name}}"
-    },
-    "setallsansfonts[]{}": {
-      "snippet": "setallsansfonts[${2:font features}]{${1:font name}}"
-    },
-    "setallmonofonts{}": {
-      "snippet": "setallmonofonts{${1:font name}}"
-    },
-    "setallmonofonts[]{}": {
-      "snippet": "setallmonofonts[${2:font features}]{${1:font name}}"
-    },
-    "exchangeforms{}": {
-      "snippet": "exchangeforms{${1:list}}"
-    },
-    "Alpha": {},
-    "Beta": {},
-    "Epsilon": {},
-    "Zeta": {},
-    "Eta": {},
-    "Iota": {},
-    "Kappa": {},
-    "Mu": {},
-    "Nu": {},
-    "Omicron": {},
-    "omicron": {},
-    "Rho": {},
-    "Tau": {},
-    "Chi": {},
-    "Digamma": {
-      "detail": "Ϝ",
-      "documentation": "capital digamma"
-    },
-    "digamma": {
-      "detail": "ϝ",
-      "documentation": "GREEK SMALL LETTER DIGAMMA"
-    },
-    "varbeta": {
-      "detail": "ϐ",
-      "documentation": "rounded be greek"
-    },
-    "varkappa": {
-      "detail": "𝜘",
-      "documentation": "MATHEMATICAL ITALIC KAPPA SYMBOL"
-    },
-    "varTheta": {
-      "detail": "𝛩",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL THETA"
-    },
-    "normalisevarforms": {},
-    "normalisevarforms[]": {
-      "snippet": "normalisevarforms[${1:list}]"
-    },
-    "normalizevarforms": {},
-    "normalizevarforms[]": {
-      "snippet": "normalizevarforms[${1:list}]"
-    },
-    "setminwhitespace": {},
-    "setminwhitespace[]": {
-      "snippet": "setminwhitespace[${1:number}]"
-    },
-    "XeTeXDeclareMathSymbol{}{}{}{}": {
-      "snippet": "XeTeXDeclareMathSymbol{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "currentmathstyle": {},
-    "themkern": {},
-    "ernewcommand{}{}": {
-      "snippet": "ernewcommand{${1:cmd}}{${2:def}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "normalskips",
-    "math",
-    "no-math",
-    "MnSymbol",
-    "tuenc",
-    "euenc",
-    "config",
-    "no-config",
-    "quiet",
-    "silent"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/mathspec#c"
+  ]
 }

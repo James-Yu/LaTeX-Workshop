@@ -1,65 +1,160 @@
 {
-  "includes": {
-    "ifpdf": [],
-    "pdfpages": [],
-    "keyval": []
-  },
-  "macros": {
-    "AvToAiv": {},
-    "AvToAiv[]": {
-      "snippet": "AvToAiv[${1:Original-Datei}]"
+  "deps": [
+    {
+      "name": "ifpdf"
     },
-    "ifbooklet{}{}": {
-      "snippet": "ifbooklet{${1:Dann-Code}}{${2:Sonst-Code}}"
+    {
+      "name": "pdfpages"
     },
-    "bookletfrontpagestyle": {},
-    "motto{}": {
-      "snippet": "motto{${1:Motto}}"
-    },
-    "titlepicture{}": {
-      "snippet": "titlepicture{${1:Bild}}"
-    },
-    "parish{}": {
-      "snippet": "parish{${1:Gemeinde}}"
-    },
-    "makebooklettitlepage": {},
-    "bookletbackpagestyle": {},
-    "bookletemptypagestyle": {},
-    "setupprayer{}": {
-      "snippet": "setupprayer{${1:Optionen}}"
-    },
-    "noresponder": {},
-    "bookletbackpagebox": {},
-    "bookletemptypagebox": {},
-    "bookletfrontpagebox": {},
-    "bookletpagebox": {},
-    "bookletpagestyle": {},
-    "endbookletpagebox": {},
-    "pfarreirevision": {},
-    "pfarreirevisiondate": {},
-    "printbookletbackpage": {},
-    "printbookletpagebox": {},
-    "printbookletpagebox[]": {
-      "snippet": "printbookletpagebox[${1:opt}]"
-    },
-    "revision": {},
-    "revisiondate": {},
-    "bookletpage": {},
-    "endbookletpage": {}
-  },
-  "envs": {
-    "bookletfrontpage": {},
-    "bookletbackpage": {},
-    "bookletemptypage": {},
-    "samedoublepage": {},
-    "prayer": {},
-    "prayer[]": {
-      "name": "prayer",
-      "snippet": "[${1:Optionen}]"
+    {
+      "name": "keyval"
     }
-  },
-  "options": [
-    "booklet"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "AvToAiv"
+    },
+    {
+      "name": "AvToAiv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Original-Datei}]"
+      }
+    },
+    {
+      "name": "ifbooklet",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:Dann-Code}}{${2:Sonst-Code}}"
+      }
+    },
+    {
+      "name": "bookletfrontpagestyle"
+    },
+    {
+      "name": "motto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Motto%text}}"
+      }
+    },
+    {
+      "name": "titlepicture",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Bild}}"
+      }
+    },
+    {
+      "name": "parish",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Gemeinde}}"
+      }
+    },
+    {
+      "name": "makebooklettitlepage"
+    },
+    {
+      "name": "bookletbackpagestyle"
+    },
+    {
+      "name": "bookletemptypagestyle"
+    },
+    {
+      "name": "setupprayer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Optionen%keyvals}}",
+        "keys": [
+          "\\setupprayer,\\begin{prayer}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "noresponder"
+    },
+    {
+      "name": "bookletbackpagebox",
+      "unusual": true
+    },
+    {
+      "name": "bookletemptypagebox",
+      "unusual": true
+    },
+    {
+      "name": "bookletfrontpagebox",
+      "unusual": true
+    },
+    {
+      "name": "bookletpagebox",
+      "unusual": true
+    },
+    {
+      "name": "bookletpagestyle",
+      "unusual": true
+    },
+    {
+      "name": "endbookletpagebox",
+      "unusual": true
+    },
+    {
+      "name": "printbookletbackpage",
+      "unusual": true
+    },
+    {
+      "name": "printbookletpagebox",
+      "unusual": true
+    },
+    {
+      "name": "printbookletpagebox",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:opt}]"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "bookletfrontpage"
+    },
+    {
+      "name": "bookletbackpage"
+    },
+    {
+      "name": "bookletemptypage"
+    },
+    {
+      "name": "samedoublepage"
+    },
+    {
+      "name": "prayer"
+    },
+    {
+      "name": "prayer",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Optionen%keyvals}]",
+        "keys": [
+          "\\setupprayer,\\begin{prayer}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/pfarrei#c": [
+      "booklet"
+    ],
+    "\\setupprayer,\\begin{prayer}": [
+      "leader=${1:Vorbeter}",
+      "responder=${1:Antwortende(r)}",
+      "response=${1:Antwort}"
+    ]
+  },
+  "args": [
+    "\\usepackage/pfarrei#c"
+  ]
 }

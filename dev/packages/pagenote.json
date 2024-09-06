@@ -1,63 +1,176 @@
 {
-  "includes": {
-    "ifmtarg": []
-  },
-  "macros": {
-    "makepagenote": {},
-    "printnotes": {},
-    "printnotes*": {},
-    "pagenote{}": {
-      "snippet": "pagenote{${1:text}}"
-    },
-    "pagenote[]{}": {
-      "snippet": "pagenote[${2:id}]{${1:text}}"
-    },
-    "notenumintext{}": {
-      "snippet": "notenumintext{${1:number}}"
-    },
-    "noteentry{}{}{}{}": {
-      "snippet": "noteentry{${1:note number}}{${2:id}}{${3:text}}{${4:page number}}"
-    },
-    "prenoteinnotes": {},
-    "noteidinnotes{}{}": {
-      "snippet": "noteidinnotes{${1:note number}}{${2:id}}"
-    },
-    "pageinnotes{}": {
-      "snippet": "pageinnotes{${1:page number}}"
-    },
-    "noteinnotes{}": {
-      "snippet": "noteinnotes{${1:text}}"
-    },
-    "postnoteinnotes": {},
-    "notedivision": {},
-    "notesname": {},
-    "addtonotes{}": {
-      "snippet": "addtonotes{${1:text}}"
-    },
-    "pagenotesubhead{}{}": {
-      "snippet": "pagenotesubhead{${1:number}}{${2:title}}"
-    },
-    "chaptername": {},
-    "sectionname": {},
-    "ifpnhaschapter": {},
-    "pnhaschapterfalse": {},
-    "pnhaschaptertrue": {},
-    "ifpnpageopt": {},
-    "pnpageoptfalse": {},
-    "pnpageopttrue": {},
-    "ifpncontopt": {},
-    "pncontoptfalse": {},
-    "pncontopttrue": {},
-    "thepagenote": {},
-    "ifmakingpagenotes": {},
-    "makingpagenotesfalse": {},
-    "makingpagenotestrue": {},
-    "pnofilewarn": {}
-  },
-  "envs": {},
-  "options": [
-    "page",
-    "continuous"
+  "deps": [
+    {
+      "name": "ifmtarg"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "makepagenote"
+    },
+    {
+      "name": "printnotes"
+    },
+    {
+      "name": "printnotes*"
+    },
+    {
+      "name": "pagenote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pagenote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:text}}"
+      }
+    },
+    {
+      "name": "notenumintext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "noteentry",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:note number}}{${2:id}}{${3:text}}{${4:page number}}"
+      }
+    },
+    {
+      "name": "prenoteinnotes",
+      "unusual": true
+    },
+    {
+      "name": "noteidinnotes",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:note number}}{${2:id}}"
+      }
+    },
+    {
+      "name": "pageinnotes",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:page number}}"
+      }
+    },
+    {
+      "name": "noteinnotes",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "postnoteinnotes",
+      "unusual": true
+    },
+    {
+      "name": "notedivision",
+      "unusual": true
+    },
+    {
+      "name": "notesname",
+      "unusual": true
+    },
+    {
+      "name": "addtonotes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pagenotesubhead",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:number}}{${2:title%plain}}"
+      }
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "sectionname",
+      "unusual": true
+    },
+    {
+      "name": "ifpnhaschapter",
+      "unusual": true
+    },
+    {
+      "name": "pnhaschapterfalse",
+      "unusual": true
+    },
+    {
+      "name": "pnhaschaptertrue",
+      "unusual": true
+    },
+    {
+      "name": "ifpnpageopt",
+      "unusual": true
+    },
+    {
+      "name": "pnpageoptfalse",
+      "unusual": true
+    },
+    {
+      "name": "pnpageopttrue",
+      "unusual": true
+    },
+    {
+      "name": "ifpncontopt",
+      "unusual": true
+    },
+    {
+      "name": "pncontoptfalse",
+      "unusual": true
+    },
+    {
+      "name": "pncontopttrue",
+      "unusual": true
+    },
+    {
+      "name": "thepagenote",
+      "unusual": true
+    },
+    {
+      "name": "ifmakingpagenotes",
+      "unusual": true
+    },
+    {
+      "name": "makingpagenotesfalse",
+      "unusual": true
+    },
+    {
+      "name": "makingpagenotestrue",
+      "unusual": true
+    },
+    {
+      "name": "pnofilewarn",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pagenote#c": [
+      "page",
+      "continuous"
+    ]
+  },
+  "args": [
+    "\\usepackage/pagenote#c"
+  ]
 }

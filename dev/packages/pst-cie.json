@@ -1,32 +1,62 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-plot": [],
-    "pst-node": []
-  },
-  "macros": {
-    "psChromaticityDiagram": {},
-    "psChromaticityDiagram[]": {
-      "snippet": "psChromaticityDiagram[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "pstCIEcontour": {},
-    "pstCIEcontour[]": {
-      "snippet": "pstCIEcontour[${1:options}]"
+    {
+      "name": "pst-plot"
     },
-    "pstPlanck": {},
-    "pstPlanck[]": {
-      "snippet": "pstPlanck[${1:options}]"
+    {
+      "name": "pst-node"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psChromaticityDiagram"
     },
-    "txCIEdictBegin": {},
-    "CIEdefaultYear": {},
-    "PSTcieLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "psChromaticityDiagram",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\psChromaticityDiagram"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pstCIEcontour"
+    },
+    {
+      "name": "pstCIEcontour",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "pstPlanck"
+    },
+    {
+      "name": "pstPlanck",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "txCIEdictBegin",
+      "unusual": true
+    },
+    {
+      "name": "CIEdefaultYear",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psChromaticityDiagram": [
       "gamma=${1:number}",
       "contrast=${1:number}",
       "ColorSpace=${1|Adobe,CIE,ColorMatch,NTSC,Pal-Secam,ProPhoto,SMPTE,sRGB|}",
@@ -42,5 +72,6 @@
       "PSfont=${1:font name}",
       "fontscale=${1:scale in pts}"
     ]
-  ]
+  },
+  "args": []
 }

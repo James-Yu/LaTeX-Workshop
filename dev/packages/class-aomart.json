@@ -1,187 +1,398 @@
 {
-  "includes": {
-    "class-amsart": [],
-    "fancyhdr": [],
-    "lastpage": [],
-    "ifpdf": [],
-    "graphicx": [],
-    "environ": [],
-    "yhmath": [],
-    "cmtiup": [],
-    "hyperref": [],
-    "color": []
-  },
-  "macros": {
-    "orcid{}": {
-      "snippet": "orcid{${1:orcid}}"
+  "deps": [
+    {
+      "name": "class-amsart"
     },
-    "givenname{}": {
-      "snippet": "givenname{${1:name}}"
+    {
+      "name": "fancyhdr"
     },
-    "surname{}": {
-      "snippet": "surname{${1:name}}"
+    {
+      "name": "lastpage"
     },
-    "fulladdress{}": {
-      "snippet": "fulladdress{${1:full address}}"
+    {
+      "name": "ifpdf"
     },
-    "contrib{}": {
-      "snippet": "contrib{${1:name}}"
+    {
+      "name": "graphicx"
     },
-    "contrib[]{}": {
-      "snippet": "contrib[${2:role}]{${1:name}}"
+    {
+      "name": "environ"
     },
-    "contribs": {},
-    "copyrightnote{}": {
-      "snippet": "copyrightnote{${1:note text}}"
+    {
+      "name": "yhmath"
     },
-    "keyword{}": {
-      "snippet": "keyword{${1:keyword}}"
+    {
+      "name": "cmtiup"
     },
-    "subject{}{}{}": {
-      "snippet": "subject{${1:primary or secondary}}{${2:classification scheme}}{${3:subject}}"
+    {
+      "name": "hyperref"
     },
-    "formatdate{}": {
-      "snippet": "formatdate{${1:YYYY-MM-DD}}"
-    },
-    "proposed{}": {
-      "snippet": "proposed{${1:name}}"
-    },
-    "seconded{}": {
-      "snippet": "seconded{${1:name}}"
-    },
-    "corresponding{}": {
-      "snippet": "corresponding{${1:name}}"
-    },
-    "editor{}": {
-      "snippet": "editor{${1:name}}"
-    },
-    "version{}": {
-      "snippet": "version{${1:version}}"
-    },
-    "volumenumber{}": {
-      "snippet": "volumenumber{${1:number}}"
-    },
-    "issuenumber{}": {
-      "snippet": "issuenumber{${1:number}}"
-    },
-    "publicationyear{}": {
-      "snippet": "publicationyear{${1:year}}"
-    },
-    "papernumber{}": {
-      "snippet": "papernumber{${1:number}}"
-    },
-    "startpage{}": {
-      "snippet": "startpage{${1:number}}"
-    },
-    "endpage{}": {
-      "snippet": "endpage{${1:number}}"
-    },
-    "doinumber{}": {
-      "snippet": "doinumber{${1:number}}"
-    },
-    "mrnumber{}": {
-      "snippet": "mrnumber{${1:number}}"
-    },
-    "zblnumber{}": {
-      "snippet": "zblnumber{${1:number}}"
-    },
-    "arxivnumber{}": {
-      "snippet": "arxivnumber{${1:number}}"
-    },
-    "oldsubsections": {},
-    "widebar{}": {
-      "snippet": "widebar{${1:arg}}"
-    },
-    "EditorialComment{}": {
-      "snippet": "EditorialComment{${1:comment}}"
-    },
-    "fullref{}{}": {
-      "snippet": "fullref{${1:word}}{${2:label}}"
-    },
-    "pfullref{}{}": {
-      "snippet": "pfullref{${1:word}}{${2:label}}"
-    },
-    "bfullref{}{}": {
-      "snippet": "bfullref{${1:word}}{${2:label}}"
-    },
-    "eqfullref{}{}": {
-      "snippet": "eqfullref{${1:word}}{${2:label}}"
-    },
-    "fullpageref{}": {
-      "snippet": "fullpageref{${1:label}}"
-    },
-    "fullpageref[]{}": {
-      "snippet": "fullpageref[${2:prefix text}]{${1:label}}"
-    },
-    "newtheorem[]{}{}": {
-      "snippet": "newtheorem[${3:code}]{${1:envname}}{${2:caption}}"
-    },
-    "newtheorem*[]{}{}": {
-      "snippet": "newtheorem*[${3:code}]{${1:envname}}{${2:caption}}"
-    },
-    "funding{}{}": {
-      "snippet": "funding{${1:sponsor}}{${2:grant-id}}"
-    },
-    "funding[]{}{}": {
-      "snippet": "funding[${3:text}]{${1:sponsor}}{${2:grant-id}}"
-    },
-    "doi{}": {
-      "snippet": "doi{${1:DOI}}"
-    },
-    "mr{}": {
-      "snippet": "mr{${1:mathscinet path}}"
-    },
-    "zbl{}": {
-      "snippet": "zbl{${1:zentralblatt path}}"
-    },
-    "jfm{}": {
-      "snippet": "jfm{${1:jahrbuch path}}"
-    },
-    "arxiv{}": {
-      "snippet": "arxiv{${1:arxiv path}}"
-    },
-    "annalsurl{}": {
-      "snippet": "annalsurl{${1:URL}}"
-    },
-    "specialdigits": {},
-    "sishape": {},
-    "textsi{}": {
-      "snippet": "textsi{${1:text}}"
+    {
+      "name": "color"
     }
-  },
-  "envs": {},
-  "options": [
-    "8pt",
-    "9pt",
-    "10pt",
-    "11pt",
-    "12pt",
-    "manuscript",
-    "screen",
-    "olddoi",
-    "doi2016",
-    "oldkeywords",
-    "printscheme",
-    "a4paper",
-    "centertags",
-    "draft",
-    "e-only",
-    "final",
-    "fleqn",
-    "landscape",
-    "leqno",
-    "letterpaper",
-    "noamsfonts",
-    "nomath",
-    "notitlepage",
-    "onecolumn",
-    "oneside",
-    "portrait",
-    "reqno",
-    "tbtags",
-    "titlepage",
-    "twocolumn",
-    "twoside"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "orcid",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:orcid%URL}}"
+      }
+    },
+    {
+      "name": "givenname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "surname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "fulladdress",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:full address%text}}"
+      }
+    },
+    {
+      "name": "contrib",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "contrib",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:role%text}]{${1:name}}"
+      }
+    },
+    {
+      "name": "contribs",
+      "unusual": true
+    },
+    {
+      "name": "copyrightnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note text%text}}"
+      }
+    },
+    {
+      "name": "keyword",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyword%text}}"
+      }
+    },
+    {
+      "name": "subject",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:primary or secondary}}{${2:classification scheme}}{${3:subject}}"
+      }
+    },
+    {
+      "name": "formatdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:YYYY-MM-DD}}"
+      }
+    },
+    {
+      "name": "proposed",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "seconded",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "corresponding",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "editor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "version",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:version}}"
+      }
+    },
+    {
+      "name": "volumenumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "issuenumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "publicationyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "papernumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "startpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "endpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "publicationyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "doinumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "mrnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "zblnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "arxivnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "oldsubsections",
+      "unusual": true
+    },
+    {
+      "name": "widebar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "EditorialComment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:comment%todo}}"
+      }
+    },
+    {
+      "name": "fullref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:word%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "pfullref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:word%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "bfullref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:word%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "eqfullref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:word%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "fullpageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "fullpageref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix text%text}]{${1:label}}"
+      }
+    },
+    {
+      "name": "newtheorem",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:code}]{${1:envname}}{${2:caption}}"
+      }
+    },
+    {
+      "name": "newtheorem*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:code}]{${1:envname}}{${2:caption}}"
+      }
+    },
+    {
+      "name": "funding",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sponsor}}{${2:grant-id}}"
+      }
+    },
+    {
+      "name": "funding",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:text}]{${1:sponsor}}{${2:grant-id}}"
+      }
+    },
+    {
+      "name": "doi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:DOI%URL}}"
+      }
+    },
+    {
+      "name": "mr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:mathscinet path%URL}}"
+      }
+    },
+    {
+      "name": "zbl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:zentralblatt path%URL}}"
+      }
+    },
+    {
+      "name": "jfm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:jahrbuch path%URL}}"
+      }
+    },
+    {
+      "name": "arxiv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arxiv path%URL}}"
+      }
+    },
+    {
+      "name": "annalsurl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/aomart#c": [
+      "8pt",
+      "9pt",
+      "10pt",
+      "11pt",
+      "12pt",
+      "manuscript",
+      "screen",
+      "olddoi",
+      "doi2016",
+      "oldkeywords",
+      "printscheme",
+      "a4paper",
+      "centertags",
+      "draft",
+      "e-only",
+      "final",
+      "fleqn",
+      "landscape",
+      "leqno",
+      "letterpaper",
+      "noamsfonts",
+      "nomath",
+      "notitlepage",
+      "onecolumn",
+      "oneside",
+      "portrait",
+      "reqno",
+      "tbtags",
+      "titlepage",
+      "twocolumn",
+      "twoside"
+    ],
+    "\\bibliographystyle#c": [
+      "aomplain",
+      "aomalpha"
+    ]
+  },
+  "args": [
+    "\\documentclass/aomart#c"
+  ]
 }

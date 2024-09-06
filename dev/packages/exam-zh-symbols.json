@@ -1,41 +1,134 @@
 {
-  "includes": {
-    "tikz": []
-  },
-  "macros": {
-    "eu": {},
-    "upe": {},
-    "iu": {},
-    "upi": {},
-    "uppi": {
-      "detail": "π",
-      "documentation": "pi, greek"
-    },
-    "paralleleq": {},
-    "subset*": {},
-    "nsubset*": {},
-    "subseteq*": {},
-    "nsubseteq*": {},
-    "subsetneqq*": {},
-    "nsubsetneqq": {},
-    "supset*": {},
-    "nsupset*": {},
-    "supseteq*": {},
-    "nsupseteq*": {},
-    "supsetneqq*": {},
-    "nsupsetneqq": {},
-    "cap*": {},
-    "cup*": {},
-    "sim*": {},
-    "cong*": {},
-    "examzhfrac{}{}": {
-      "snippet": "examzhfrac{${1:numerator}}{${2:denominator}}"
-    },
-    "examzhdfrac{}{}": {
-      "snippet": "examzhdfrac{${1:numerator}}{${2:denominator}}"
+  "deps": [
+    {
+      "name": "tikz"
     }
+  ],
+  "macros": [
+    {
+      "name": "eu"
+    },
+    {
+      "name": "upe"
+    },
+    {
+      "name": "iu"
+    },
+    {
+      "name": "upi"
+    },
+    {
+      "name": "uppi",
+      "detail": "π",
+      "doc": "\\mathrm{\\pi} (omlmathrm), \\piup (kpfonts mathdesign), \\uppi (upgreek), pi, greek"
+    },
+    {
+      "name": "paralleleq"
+    },
+    {
+      "name": "subset*"
+    },
+    {
+      "name": "nsubset*"
+    },
+    {
+      "name": "subseteq*"
+    },
+    {
+      "name": "nsubseteq*"
+    },
+    {
+      "name": "subsetneqq*"
+    },
+    {
+      "name": "nsubsetneqq"
+    },
+    {
+      "name": "supset*"
+    },
+    {
+      "name": "nsupset*"
+    },
+    {
+      "name": "supseteq*"
+    },
+    {
+      "name": "nsupseteq*"
+    },
+    {
+      "name": "supsetneqq*"
+    },
+    {
+      "name": "nsupsetneqq"
+    },
+    {
+      "name": "cap*"
+    },
+    {
+      "name": "cup*"
+    },
+    {
+      "name": "sim*"
+    },
+    {
+      "name": "cong*"
+    },
+    {
+      "name": "examzhfrac",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "examzhdfrac",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\examsetup,\\ExamPrintAnswerSet": [
+      "symbols={${1:键值列表}}",
+      "symbols/paralleleq-type=${1|slant,perpendicular|}",
+      "symbols/change-frac-style",
+      "symbols/change-dfrac-style",
+      "symbols/frac-add=${1:muskip}",
+      "symbols/dfrac-add=${1:muskip}",
+      "symbols/parallel-angle=${1:degrees}",
+      "symbols/parallel-twoline-distance=",
+      "symbols/parallel-length=",
+      "symbols/parallel-baseline=",
+      "symbols/nparallel-slant-angle=${1:degrees}",
+      "symbols/nparallel-slant-length=",
+      "symbols/parallel-type=${1|slant,perpendicular|}",
+      "symbols/nparallel-type=${1|slant,perpendicular|}",
+      "symbols/paralleleq-slant-angle=${1:degrees}",
+      "symbols/paralleleq-upper-line-length=",
+      "symbols/paralleleq-lower-line-length=",
+      "symbols/paralleleq-upper-twoline-distance=",
+      "symbols/paralleleq-lower-twoline-distance=",
+      "symbols/paralleleq-lower-xshift=",
+      "symbols/subset-radius=",
+      "symbols/subset-upper-linewidth=",
+      "symbols/subset-lower-linewidth=",
+      "symbols/subset-upper-lower-distance=",
+      "symbols/subsetneqq-lower-twoline-distance=",
+      "symbols/subsetneqq-lower-slant-length=",
+      "symbols/supsetneqq-lower-slant-length=",
+      "symbols/subsetneqq-lower-slant-angle=${1:degrees}",
+      "symbols/supsetneqq-lower-slant-angle=${1:degrees}",
+      "symbols/nsubset-n-slant-angle=${1:degrees}",
+      "symbols/nsubseteq-n-slant-angle=${1:degrees}",
+      "symbols/nsubsetneqq-n-slant-angle=${1:degrees}",
+      "symbols/nsubset-n-slant-length=",
+      "symbols/nsubseteq-n-slant-length=",
+      "symbols/nsubsetneqq-n-slant-length="
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

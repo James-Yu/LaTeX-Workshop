@@ -1,31 +1,62 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "cxkvsetkeys{}{}": {
-      "snippet": "cxkvsetkeys{${1:family}}{${2:keyval pairs}}"
-    },
-    "cxkvsetkeys(){}{}": {
-      "snippet": "cxkvsetkeys(${3:name}){${1:family}}{${2:keyval pairs}}"
-    },
-    "cxkvsetkeys()[]{}{}": {
-      "snippet": "cxkvsetkeys(${4:name})[${3:prefix}]{${1:family}}{${2:keyval pairs}}"
-    },
-    "cxkvsetkeys()[]{}[]{}": {
-      "snippet": "cxkvsetkeys(${5:name})[${3:prefix}]{${1:family}}[${4:na}]{${2:keyval pairs}}"
-    },
-    "DeclareDelimiter{}{}": {
-      "snippet": "DeclareDelimiter{${1:name}}{${2:delimiter}}"
-    },
-    "usekvdelim{}": {
-      "snippet": "usekvdelim{${1:name}}"
-    },
-    "cxkvSetup{}": {
-      "snippet": "cxkvSetup{${1:file}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "cxkvsetkeys",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:family}}{${2:keyval pairs}}"
+      }
+    },
+    {
+      "name": "cxkvsetkeys",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "(${3:name}){${1:family}}{${2:keyval pairs}}"
+      }
+    },
+    {
+      "name": "cxkvsetkeys",
+      "arg": {
+        "format": "()[]{}{}",
+        "snippet": "(${4:name})[${3:prefix}]{${1:family}}{${2:keyval pairs}}"
+      }
+    },
+    {
+      "name": "cxkvsetkeys",
+      "arg": {
+        "format": "()[]{}[]{}",
+        "snippet": "(${5:name})[${3:prefix}]{${1:family}}[${4:na}]{${2:keyval pairs}}"
+      }
+    },
+    {
+      "name": "DeclareDelimiter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:delimiter}}"
+      }
+    },
+    {
+      "name": "usekvdelim",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "cxkvSetup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

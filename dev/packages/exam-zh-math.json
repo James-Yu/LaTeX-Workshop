@@ -1,23 +1,77 @@
 {
-  "includes": {
-    "tabularray": [],
-    "varwidth": [],
-    "graphicx": [],
-    "filehook": [],
-    "wrapstuff": []
-  },
-  "macros": {
-    "AddCalculationsCounter{}{}": {
-      "snippet": "AddCalculationsCounter{${1:arg1}}{${2:arg2}}"
+  "deps": [
+    {
+      "name": "tabularray"
+    },
+    {
+      "name": "varwidth"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "filehook"
+    },
+    {
+      "name": "wrapstuff"
     }
-  },
-  "envs": {
-    "calculations": {},
-    "calculations[]": {
+  ],
+  "macros": [],
+  "envs": [
+    {
+      "name": "calculations"
+    },
+    {
       "name": "calculations",
-      "snippet": "[${1:键值列表}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:键值列表%keyvals}]",
+        "keys": [
+          "\\begin{calculations}"
+        ],
+        "keyPos": 0
+      }
     }
+  ],
+  "keys": {
+    "\\examsetup,\\ExamPrintAnswerSet": [
+      "calculations=${1:{〈键值列表〉}}",
+      "calculations/index=${1:integer}",
+      "calculations/columns=${1:integer}",
+      "calculations/fig-pos=${1|top,above,bottom,below,left,right,left-top|}",
+      "calculations/top-sep=",
+      "calculations/bottom-sep=",
+      "calculations/hsep=",
+      "calculations/vsep=",
+      "calculations/align=${1|t,m,b|}",
+      "calculations/xshift=",
+      "calculations/hshift=",
+      "calculations/yshift=",
+      "calculations/vshift=",
+      "calculations/label-xshift=",
+      "calculations/label-hshift=",
+      "calculations/label-yshift=",
+      "calculations/label-vshift="
+    ],
+    "\\begin{calculations}": [
+      "label=${1:code}",
+      "index=${1:integer}",
+      "columns=${1:integer}",
+      "fig-pos=${1|top,above,bottom,below,left,right,left-top|}",
+      "top-sep=",
+      "bottom-sep=",
+      "hsep=",
+      "vsep=",
+      "align=${1|t,m,b|}",
+      "xshift=",
+      "hshift=",
+      "yshift=",
+      "vshift=",
+      "label-xshift=",
+      "label-hshift=",
+      "label-yshift=",
+      "label-vshift="
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

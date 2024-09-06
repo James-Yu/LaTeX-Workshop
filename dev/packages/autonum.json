@@ -1,65 +1,160 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "etextools": [],
-    "amsmath": [],
-    "textpos": [],
-    "letltxmacro": []
-  },
-  "macros": {
-    "csxdefall{}{}": {
-      "snippet": "csxdefall{${1:csname}}{${2:replacement}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "csxdefaux{}{}": {
-      "snippet": "csxdefaux{${1:csname}}{${2:replacement}}"
+    {
+      "name": "etextools"
     },
-    "ifcsedef{}{}{}": {
-      "snippet": "ifcsedef{${1:csname}}{${2:true}}{${3:false}}"
+    {
+      "name": "amsmath"
     },
-    "newcommandsequence{}{}": {
-      "snippet": "newcommandsequence{${1:csname}}{${2:def}}"
+    {
+      "name": "textpos"
     },
-    "newcommandsequence{}[]{}": {
-      "snippet": "newcommandsequence{${1:csname}}[${2:args}]{${3:def}}"
-    },
-    "newcommandsequence{}[][]{}": {
-      "snippet": "newcommandsequence{${1:csname}}[${2:args}][${3:default}]{${4:def}}"
-    },
-    "renewcommandsequence{}{}": {
-      "snippet": "renewcommandsequence{${1:csname}}{${2:def}}"
-    },
-    "renewcommandsequence{}[]{}": {
-      "snippet": "renewcommandsequence{${1:csname}}[${2:args}]{${3:def}}"
-    },
-    "renewcommandsequence{}[][]{}": {
-      "snippet": "renewcommandsequence{${1:csname}}[${2:args}][${3:default}]{${4:def}}"
-    },
-    "skipInPDFTOC{}": {
-      "snippet": "skipInPDFTOC{${1:arg}}"
-    },
-    "vanishprotect{}": {
-      "snippet": "vanishprotect{${1:arg}}"
-    },
-    "CsLetLtxMacro{}{}": {
-      "snippet": "CsLetLtxMacro{${1:csname}}{${2:cmd}}"
-    },
-    "LetCsLtxMacro{}{}": {
-      "snippet": "LetCsLtxMacro{${1:cmd}}{${2:csname}}"
-    },
-    "CsLetCsLtxMacro{}{}": {
-      "snippet": "CsLetCsLtxMacro{${1:csname}}{${2:csname}}"
-    },
-    "GlobalCsLetLtxMacro{}{}": {
-      "snippet": "GlobalCsLetLtxMacro{${1:csname}}{${2:cmd}}"
-    },
-    "GlobalLetCsLtxMacro{}{}": {
-      "snippet": "GlobalLetCsLtxMacro{${1:cmd}}{${2:csname}}"
-    },
-    "GlobalCsLetCsLtxMacro{}{}": {
-      "snippet": "GlobalCsLetCsLtxMacro{${1:csname}}{${2:csname}}"
+    {
+      "name": "letltxmacro"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "csxdefall",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:replacement}}"
+      }
+    },
+    {
+      "name": "csxdefaux",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:replacement}}"
+      }
+    },
+    {
+      "name": "ifcsedef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:csname}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "newcommandsequence",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:def}}"
+      }
+    },
+    {
+      "name": "newcommandsequence",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:csname}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newcommandsequence",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:csname}}[${3:args}][${4:default}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewcommandsequence",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:def}}"
+      }
+    },
+    {
+      "name": "renewcommandsequence",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:csname}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewcommandsequence",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:csname}}[${3:args}][${4:default}]{${2:def}}"
+      }
+    },
+    {
+      "name": "skipInPDFTOC",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "vanishprotect",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "CsLetLtxMacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "LetCsLtxMacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:csname}}"
+      }
+    },
+    {
+      "name": "CsLetCsLtxMacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:csname}}"
+      }
+    },
+    {
+      "name": "GlobalCsLetLtxMacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "GlobalLetCsLtxMacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:csname}}"
+      }
+    },
+    {
+      "name": "GlobalCsLetCsLtxMacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:csname}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

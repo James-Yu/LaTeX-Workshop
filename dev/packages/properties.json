@@ -1,26 +1,50 @@
 {
-  "includes": {
-    "datatool": []
-  },
-  "macros": {
-    "loadDefaultProperties": {},
-    "loadOtherProperties{}": {
-      "snippet": "loadOtherProperties{${1:xxx}}"
-    },
-    "getDefaultProperty{}": {
-      "snippet": "getDefaultProperty{${1:key}}"
-    },
-    "getOtherProperty{}{}": {
-      "snippet": "getOtherProperty{${1:xxx}}{${2:key}}"
-    },
-    "setDefaultProperty{}{}": {
-      "snippet": "setDefaultProperty{${1:key}}{${2:value}}"
-    },
-    "setOtherProperty{}{}{}": {
-      "snippet": "setOtherProperty{${1:xxx}}{${2:key}}{${3:value}}"
+  "deps": [
+    {
+      "name": "datatool"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "loadDefaultProperties"
+    },
+    {
+      "name": "loadOtherProperties",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:xxx}}"
+      }
+    },
+    {
+      "name": "getDefaultProperty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "getOtherProperty",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:xxx}}{${2:key%plain}}"
+      }
+    },
+    {
+      "name": "setDefaultProperty",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:value}}"
+      }
+    },
+    {
+      "name": "setOtherProperty",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:xxx}}{${2:key%plain}}{${3:value}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

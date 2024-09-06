@@ -1,59 +1,161 @@
 {
-  "includes": {
-    "zref": [],
-    "zref-abspage": []
+  "deps": [
+    {
+      "name": "zref"
+    },
+    {
+      "name": "zref-abspage"
+    }
+  ],
+  "macros": [
+    {
+      "name": "crossrefenum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:enumeration}}"
+      }
+    },
+    {
+      "name": "crossrefenum",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:type%keyvals}]{${1:enumeration}}",
+        "keys": [
+          "\\crossrefenum#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "crossrefenum",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:type%keyvals}][${3:print prefix?}]{${1:enumeration}}",
+        "keys": [
+          "\\crossrefenum#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "crfnmPage",
+      "unusual": true
+    },
+    {
+      "name": "crfnmPages",
+      "unusual": true
+    },
+    {
+      "name": "crfnmNote",
+      "unusual": true
+    },
+    {
+      "name": "crfnmNotes",
+      "unusual": true
+    },
+    {
+      "name": "crfnmLine",
+      "unusual": true
+    },
+    {
+      "name": "crfnmLines",
+      "unusual": true
+    },
+    {
+      "name": "crfnmEdpage",
+      "unusual": true
+    },
+    {
+      "name": "crfnmEdpages",
+      "unusual": true
+    },
+    {
+      "name": "crfnmEdline",
+      "unusual": true
+    },
+    {
+      "name": "crfnmEdlines",
+      "unusual": true
+    },
+    {
+      "name": "crfnmDefaultEnumDelim",
+      "unusual": true
+    },
+    {
+      "name": "crfnmDefaultBeforeLastInEnum",
+      "unusual": true
+    },
+    {
+      "name": "crfnmDefaultRangeSep",
+      "unusual": true
+    },
+    {
+      "name": "crfnmDefaultCollapsable",
+      "unusual": true
+    },
+    {
+      "name": "crfnmNoteCollapsable",
+      "unusual": true
+    },
+    {
+      "name": "crfnmDefaultSubtypesSep",
+      "unusual": true
+    },
+    {
+      "name": "crfnmDefaultPrintFirstPrefix",
+      "unusual": true
+    },
+    {
+      "name": "crfnmDefaultFormatInSecond",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "crfnmEdlineFormatInSecond",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "crfnmEdlinePrintPrefixInSecond",
+      "unusual": true
+    },
+    {
+      "name": "crfnmDefaultEnumDelimInSecond",
+      "unusual": true
+    },
+    {
+      "name": "crfnmDefaultBeforeLastInEnumInSecond",
+      "unusual": true
+    },
+    {
+      "name": "crfnmDefaultGroupSubtypes",
+      "unusual": true
+    },
+    {
+      "name": "crfnmDefaultNumberingContinuousAcrossDocument",
+      "unusual": true
+    },
+    {
+      "name": "crfnmDefaultOrder",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\crossrefenum#c": [
+      "page",
+      "note",
+      "pagenote",
+      "edpage",
+      "edline",
+      "edpageline"
+    ]
   },
-  "macros": {
-    "crossrefenum{}": {
-      "snippet": "crossrefenum{${1:enumeration}}"
-    },
-    "crossrefenum[]{}": {
-      "snippet": "crossrefenum[${2:type}]{${1:enumeration}}"
-    },
-    "crossrefenum[][]{}": {
-      "snippet": "crossrefenum[${2:type}][${3:print prefix?}]{${1:enumeration}}"
-    },
-    "crfnmPage": {},
-    "crfnmPages": {},
-    "crfnmNote": {},
-    "crfnmNotes": {},
-    "crfnmLine": {},
-    "crfnmLines": {},
-    "crfnmEdpage": {},
-    "crfnmEdpages": {},
-    "crfnmEdline": {},
-    "crfnmEdlines": {},
-    "crfnmDefaultEnumDelim": {},
-    "crfnmDefaultBeforeLastInEnum": {},
-    "crfnmDefaultRangeSep": {},
-    "crfnmDefaultCollapsable": {},
-    "crfnmNoteCollapsable": {},
-    "crfnmDefaultSubtypesSep": {},
-    "crfnmDefaultPrintFirstPrefix": {},
-    "crfnmDefaultFormatInSecond{}": {
-      "snippet": "crfnmDefaultFormatInSecond{${1:arg}}"
-    },
-    "crfnmEdlineFormatInSecond{}": {
-      "snippet": "crfnmEdlineFormatInSecond{${1:arg}}"
-    },
-    "crfnmEdlinePrintPrefixInSecond": {},
-    "crfnmDefaultEnumDelimInSecond": {},
-    "crfnmDefaultBeforeLastInEnumInSecond": {},
-    "crfnmDefaultGroupSubtypes": {},
-    "crfnmDefaultNumberingContinuousAcrossDocument": {},
-    "crfnmDefaultOrder": {},
-    "crfnmAuthor": {},
-    "crfnmDate": {},
-    "crfnmDefaultBeforeLastInSecond": {},
-    "crfnmDefaultPrintPrefixInSecond": {},
-    "crfnmName": {},
-    "crfnmOriginalCatcodeAt": {},
-    "crfnmShortDesc": {},
-    "crfnmSubscript": {},
-    "crfnmSuperscript": {},
-    "crfnmVersion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,115 +1,296 @@
 {
-  "includes": {},
-  "macros": {
-    "pmt{}": {
-      "snippet": "pmt{${1:permutation}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "pmt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:permutation}}"
+      }
     },
-    "pmt[]{}": {
-      "snippet": "pmt[${2:print order}]{${1:permutation}}"
+    {
+      "name": "pmt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:print order}]{${1:permutation}}"
+      }
     },
-    "pmt*{}": {
-      "snippet": "pmt*{${1:permutation}}"
+    {
+      "name": "pmt*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:permutation}}"
+      }
     },
-    "pmt*[]{}": {
-      "snippet": "pmt*[${2:print order}]{${1:permutation}}"
+    {
+      "name": "pmt*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:print order}]{${1:permutation}}"
+      }
     },
-    "pmtv{}": {
-      "snippet": "pmtv{${1:permutation}}"
+    {
+      "name": "pmtv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:permutation}}"
+      }
     },
-    "pmtv[]{}": {
-      "snippet": "pmtv[${2:print order}]{${1:permutation}}"
+    {
+      "name": "pmtv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:print order}]{${1:permutation}}"
+      }
     },
-    "pmtv*{}": {
-      "snippet": "pmtv*{${1:permutation}}"
+    {
+      "name": "pmtv*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:permutation}}"
+      }
     },
-    "pmtv*[]{}": {
-      "snippet": "pmtv*[${2:print order}]{${1:permutation}}"
+    {
+      "name": "pmtv*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:print order}]{${1:permutation}}"
+      }
     },
-    "pmttable{}{}": {
-      "snippet": "pmttable{${1:list of pmts}}{${2:list of pmts}}"
+    {
+      "name": "pmttable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list of pmts}}{${2:list of pmts}}"
+      }
     },
-    "pmttable[]{}{}": {
-      "snippet": "pmttable[${3:print order}]{${1:list of pmts}}{${2:list of pmts}}"
+    {
+      "name": "pmttable",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:print order}]{${1:list of pmts}}{${2:list of pmts}}"
+      }
     },
-    "pmttable*{}{}": {
-      "snippet": "pmttable*{${1:list of pmts}}{${2:list of pmts}}"
+    {
+      "name": "pmttable*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list of pmts}}{${2:list of pmts}}"
+      }
     },
-    "pmttable*[]{}{}": {
-      "snippet": "pmttable*[${3:print order}]{${1:list of pmts}}{${2:list of pmts}}"
+    {
+      "name": "pmttable*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:print order}]{${1:list of pmts}}{${2:list of pmts}}"
+      }
     },
-    "pmtvtable{}{}": {
-      "snippet": "pmtvtable{${1:list of pmts}}{${2:list of pmts}}"
+    {
+      "name": "pmtvtable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list of pmts}}{${2:list of pmts}}"
+      }
     },
-    "pmtvtable[]{}{}": {
-      "snippet": "pmtvtable[${3:print order}]{${1:list of pmts}}{${2:list of pmts}}"
+    {
+      "name": "pmtvtable",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:print order}]{${1:list of pmts}}{${2:list of pmts}}"
+      }
     },
-    "pmtvtable*{}{}": {
-      "snippet": "pmtvtable*{${1:list of pmts}}{${2:list of pmts}}"
+    {
+      "name": "pmtvtable*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list of pmts}}{${2:list of pmts}}"
+      }
     },
-    "pmtvtable*[]{}{}": {
-      "snippet": "pmtvtable*[${3:print order}]{${1:list of pmts}}{${2:list of pmts}}"
+    {
+      "name": "pmtvtable*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:print order}]{${1:list of pmts}}{${2:list of pmts}}"
+      }
     },
-    "pmtshorttrue": {},
-    "pmtshortfalse": {},
-    "pmtload{}": {
-      "snippet": "pmtload{${1:name}}"
+    {
+      "name": "pmtshorttrue",
+      "unusual": true
     },
-    "pmtsave{}": {
-      "snippet": "pmtsave{${1:name}}"
+    {
+      "name": "pmtshortfalse",
+      "unusual": true
     },
-    "pmtid": {},
-    "pmtid[]": {
-      "snippet": "pmtid[${1:name}]"
+    {
+      "name": "pmtload",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "pmtdo{}": {
-      "snippet": "pmtdo{${1:permutation}}"
+    {
+      "name": "pmtsave",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "pmtdo[]{}": {
-      "snippet": "pmtdo[${2:name}]{${1:permutation}}"
+    {
+      "name": "pmtid",
+      "unusual": true
     },
-    "pmtcirc{}": {
-      "snippet": "pmtcirc{${1:permutation}}"
+    {
+      "name": "pmtid",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:name}]"
+      }
     },
-    "pmtcirc[]{}": {
-      "snippet": "pmtcirc[${2:name}]{${1:permutation}}"
+    {
+      "name": "pmtdo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:permutation%formula}}"
+      }
     },
-    "pmtprint": {},
-    "pmtprint*": {},
-    "pmtprint[]": {
-      "snippet": "pmtprint[${1:print order}]"
+    {
+      "name": "pmtdo",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name}]{${1:permutation%formula}}"
+      }
     },
-    "pmtprint*[]": {
-      "snippet": "pmtprint*[${1:print order}]"
+    {
+      "name": "pmtcirc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:permutation%formula}}"
+      }
     },
-    "pmtvprint": {},
-    "pmtvprint*": {},
-    "pmtvprint[]": {
-      "snippet": "pmtvprint[${1:print order}]"
+    {
+      "name": "pmtcirc",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name}]{${1:permutation%formula}}"
+      }
     },
-    "pmtvprint*[]": {
-      "snippet": "pmtvprint*[${1:print order}]"
+    {
+      "name": "pmtprint",
+      "unusual": true
     },
-    "pmtimageof{}": {
-      "snippet": "pmtimageof{${1:pre-image}}"
+    {
+      "name": "pmtprint*",
+      "unusual": true
     },
-    "pmtimageof[]{}": {
-      "snippet": "pmtimageof[${2:name}]{${1:pre-image}}"
+    {
+      "name": "pmtprint",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:print order}]"
+      }
     },
-    "pmtpreimageof{}": {
-      "snippet": "pmtpreimageof{${1:image}}"
+    {
+      "name": "pmtprint*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:print order}]"
+      }
     },
-    "pmtpreimageof[]{}": {
-      "snippet": "pmtpreimageof[${2:name}]{${1:image}}"
+    {
+      "name": "pmtvprint",
+      "unusual": true
     },
-    "pmtprintorder": {},
-    "pmtseparator": {},
-    "pmtidname": {},
-    "pmtldelim": {},
-    "pmtrdelim": {},
-    "pmttableborders": {},
-    "pmtarraystretch": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "pmtvprint*",
+      "unusual": true
+    },
+    {
+      "name": "pmtvprint",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:print order}]"
+      }
+    },
+    {
+      "name": "pmtvprint*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:print order}]"
+      }
+    },
+    {
+      "name": "pmtimageof",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pre-image}}"
+      }
+    },
+    {
+      "name": "pmtimageof",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name}]{${1:pre-image}}"
+      }
+    },
+    {
+      "name": "pmtpreimageof",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:image}}"
+      }
+    },
+    {
+      "name": "pmtpreimageof",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name}]{${1:image}}"
+      }
+    },
+    {
+      "name": "pmtprintorder",
+      "unusual": true
+    },
+    {
+      "name": "pmtseparator",
+      "unusual": true
+    },
+    {
+      "name": "pmtidname",
+      "unusual": true
+    },
+    {
+      "name": "pmtldelim",
+      "unusual": true
+    },
+    {
+      "name": "pmtrdelim",
+      "unusual": true
+    },
+    {
+      "name": "pmttableborders",
+      "unusual": true
+    },
+    {
+      "name": "pmtarraystretch",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,981 +1,2004 @@
 {
-  "includes": {
-    "iftex": [],
-    "graphicx": [],
-    "ifthen": [],
-    "etoolbox": [],
-    "exscale": [],
-    "textalpha": [],
-    "trace": []
-  },
-  "macros": {
-    "<{}": {
-      "snippet": "<{${1:letter}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    ">{}": {
-      "snippet": ">{${1:letter}}"
+    {
+      "name": "graphicx"
     },
-    "A{}": {
-      "snippet": "A{${1:letter}}"
+    {
+      "name": "ifthen"
     },
-    "Ab{}": {
-      "snippet": "Ab{${1:letter}}"
+    {
+      "name": "etoolbox"
     },
-    "acapo": {},
-    "accacuto{}": {
-      "snippet": "accacuto{${1:letter}}"
+    {
+      "name": "exscale"
     },
-    "accbreve{}": {
-      "snippet": "accbreve{${1:letter}}"
+    {
+      "name": "textalpha"
     },
-    "acccircon{}": {
-      "snippet": "acccircon{${1:letter}}"
-    },
-    "accdieresi{}": {
-      "snippet": "accdieresi{${1:letter}}"
-    },
-    "accgrave{}": {
-      "snippet": "accgrave{${1:letter}}"
-    },
-    "accmacron{}": {
-      "snippet": "accmacron{${1:letter}}"
-    },
-    "Ad{}": {
-      "snippet": "Ad{${1:letter}}"
-    },
-    "aeolchorsor": {},
-    "aeolicbii": {},
-    "aeolicbiii": {},
-    "aeolicbiv": {},
-    "Am{}": {
-      "snippet": "Am{${1:letter}}"
-    },
-    "anceps": {},
-    "ancepsdbrevis": {},
-    "antilabe": {},
-    "ap{}": {
-      "snippet": "ap{${1:text}}"
-    },
-    "apex": {},
-    "apici{}": {
-      "snippet": "apici{${1:text}}"
-    },
-    "Ar{}": {
-      "snippet": "Ar{${1:letter}}"
-    },
-    "Arb{}": {
-      "snippet": "Arb{${1:letter}}"
-    },
-    "Arm{}": {
-      "snippet": "Arm{${1:letter}}"
-    },
-    "As{}": {
-      "snippet": "As{${1:letter}}"
-    },
-    "Asb{}": {
-      "snippet": "Asb{${1:letter}}"
-    },
-    "Asm{}": {
-      "snippet": "Asm{${1:letter}}"
-    },
-    "AtticNumeral{}": {
-      "snippet": "AtticNumeral{${1:number}}"
-    },
-    "B{}": {
-      "snippet": "B{${1:letter}}"
-    },
-    "banceps": {},
-    "barbbrevis": {},
-    "barbrevis": {},
-    "bbrevis": {},
-    "bcutbar": {},
-    "bd{}": {
-      "snippet": "bd{${1:letter}}"
-    },
-    "boldLipsianfalse": {},
-    "boldLipsiantrue": {},
-    "BreakVersofalse": {},
-    "BreakVersotrue": {},
-    "brevis": {},
-    "C{}": {
-      "snippet": "C{${1:letter}}"
-    },
-    "c{}": {
-      "snippet": "c{${1:letter}}"
-    },
-    "cap{}": {
-      "snippet": "cap{${1:letter}}"
-    },
-    "catal": {},
-    "Cd{}": {
-      "snippet": "Cd{${1:letter}}"
-    },
-    "chor": {},
-    "Cm{}": {
-      "snippet": "Cm{${1:letter}}"
-    },
-    "coppa": {},
-    "Coppa": {},
-    "corona": {},
-    "coronainv": {},
-    "Coronis": {},
-    "coronis": {},
-    "Cr{}": {
-      "snippet": "Cr{${1:letter}}"
-    },
-    "Crm{}": {
-      "snippet": "Crm{${1:letter}}"
-    },
-    "crux": {},
-    "Cs{}": {
-      "snippet": "Cs{${1:letter}}"
-    },
-    "Csm{}": {
-      "snippet": "Csm{${1:letter}}"
-    },
-    "cut{}": {
-      "snippet": "cut{${1:letter}}"
-    },
-    "D{}": {
-      "snippet": "D{${1:letter}}"
-    },
-    "d{}": {
-      "snippet": "d{${1:letter}}"
-    },
-    "Dashes": {},
-    "DASHES": {},
-    "Dashes[]": {
-      "snippet": "Dashes[${1:number}]"
-    },
-    "DASHES[]": {
-      "snippet": "DASHES[${1:number}]"
-    },
-    "dBar": {},
-    "dcutbar": {},
-    "denarius": {},
-    "Digamma": {
-      "detail": "Ϝ",
-      "documentation": "capital digamma"
-    },
-    "Dots": {},
-    "DOTS": {},
-    "Dots[]": {
-      "snippet": "Dots[${1:number}]"
-    },
-    "DOTS[]": {
-      "snippet": "DOTS[${1:number}]"
-    },
-    "downfill": {},
-    "dparagr": {},
-    "dracma": {},
-    "dstar": {},
-    "dz": {},
-    "ElemInd": {},
-    "ENcdq": {},
-    "ENdqtext{}": {
-      "snippet": "ENdqtext{${1:text}}"
-    },
-    "ENodq": {},
-    "enopl": {},
-    "etos": {},
-    "euro": {
-      "detail": "€",
-      "documentation": "EURO SIGN"
-    },
-    "Euro": {},
-    "f": {
-      "detail": "𝑓",
-      "documentation": "MATHEMATICAL ITALIC SMALL F"
-    },
-    "F": {
-      "detail": "𝐹",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL F"
-    },
-    "fHigh": {},
-    "FinisCarmen": {},
-    "FinCar": {},
-    "fLow": {},
-    "frapar{}": {
-      "snippet": "frapar{${1:text}}"
-    },
-    "G{}": {
-      "snippet": "G{${1:letter}}"
-    },
-    "Gb{}": {
-      "snippet": "Gb{${1:letter}}"
-    },
-    "gcutbar": {},
-    "Gd{}": {
-      "snippet": "Gd{${1:letter}}"
-    },
-    "GEcdq": {},
-    "GEcq": {},
-    "GEdqtext{}": {
-      "snippet": "GEdqtext{${1:text}}"
-    },
-    "GEodq": {},
-    "GEoq": {},
-    "GEqtext{}": {
-      "snippet": "GEqtext{${1:text}}"
-    },
-    "GlyphNamesfalse": {},
-    "GlyphNamestrue": {},
-    "Gm{}": {
-      "snippet": "Gm{${1:letter}}"
-    },
-    "Gr{}": {
-      "snippet": "Gr{${1:letter}}"
-    },
-    "Grb{}": {
-      "snippet": "Grb{${1:letter}}"
-    },
-    "GreekName": {},
-    "greeknumeral*{}": {
-      "snippet": "greeknumeral*{${1:number}}"
-    },
-    "Greeknumeral*{}": {
-      "snippet": "Greeknumeral*{${1:number}}"
-    },
-    "Grm{}": {
-      "snippet": "Grm{${1:letter}}"
-    },
-    "grtoday": {},
-    "grtoday*": {},
-    "Gs{}": {
-      "snippet": "Gs{${1:letter}}"
-    },
-    "Gsb{}": {
-      "snippet": "Gsb{${1:letter}}"
-    },
-    "Gsm{}": {
-      "snippet": "Gsm{${1:letter}}"
-    },
-    "GTROF": {},
-    "GTRON": {},
-    "gusv": {},
-    "gw": {},
-    "h": {
-      "detail": "h",
-      "documentation": "LATIN SMALL LETTER H"
-    },
-    "hemiobelion": {},
-    "hexam": {},
-    "Hfill": {},
-    "hiatus": {},
-    "Hiatus": {},
-    "hv": {},
-    "iam": {},
-    "ifboldLipsian": {},
-    "ifBreakVersi": {},
-    "ifCMLM{}{}{}": {
-      "snippet": "ifCMLM{${1:family}}{${2:true}}{${3:false}}"
-    },
-    "ifFamily{}{}": {
-      "snippet": "ifFamily{${1:latin}}{${2:greek}}"
-    },
-    "ifGlyphNames": {},
-    "ifLipsian": {},
-    "ifonesizetypeone": {},
-    "ifor": {},
-    "ifPDF": {},
-    "ifSubVerso": {},
-    "Int": {},
-    "iod": {},
-    "ipercatal": {},
-    "iS{}": {
-      "snippet": "iS{${1:letter}}"
-    },
-    "itclosedquotes": {},
-    "itcq": {},
-    "itopenquotes": {},
-    "itoq": {},
-    "kclick": {},
-    "koppa": {
-      "detail": "ϟ",
-      "documentation": "GREEK SMALL LETTER KOPPA"
-    },
-    "Koppa": {
-      "detail": "Ϟ",
-      "documentation": "capital koppa"
-    },
-    "ladd{}": {
-      "snippet": "ladd{${1:text}}"
-    },
-    "Ladd{}": {
-      "snippet": "Ladd{${1:text}}"
-    },
-    "lbrk": {},
-    "ldel{}": {
-      "snippet": "ldel{${1:text}}"
-    },
-    "lesp{}": {
-      "snippet": "lesp{${1:text}}"
-    },
-    "Lipsiakostext": {},
-    "Lipsianfalse": {},
-    "Lipsiantrue": {},
-    "lishape": {},
-    "LitNil": {},
-    "litnil": {},
-    "lladd{}": {
-      "snippet": "lladd{${1:text}}"
-    },
-    "LLadd{}": {
-      "snippet": "LLadd{${1:text}}"
-    },
-    "LLadd{}[]": {
-      "snippet": "LLadd{${1:text}}[${2:right kerning}]"
-    },
-    "LLadd[]{}": {
-      "snippet": "LLadd[${2:left kerning}]{${1:text}}"
-    },
-    "LLadd[]{}[]": {
-      "snippet": "LLadd[${2:left kerning}]{${1:text}}[${3:right kerning}]"
-    },
-    "LLaddKern{}{}": {
-      "snippet": "LLaddKern{${1:len1}}{${2:len2}}"
-    },
-    "lmqi": {},
-    "lmqs": {},
-    "longa": {},
-    "lpar": {},
-    "M{}": {
-      "snippet": "M{${1:letter}}"
-    },
-    "mcap{}": {
-      "snippet": "mcap{${1:letter}}"
-    },
-    "md{}": {
-      "snippet": "md{${1:letter}}"
-    },
-    "metricsfont": {},
-    "metricstack{}{}": {
-      "snippet": "metricstack{${1:base}}{${2:superscript}}"
-    },
-    "mezzeq{}": {
-      "snippet": "mezzeq{${1:text}}"
-    },
-    "mO{}": {
-      "snippet": "mO{${1:letter}}"
-    },
-    "mqi{}": {
-      "snippet": "mqi{${1:text}}"
-    },
-    "mqs{}": {
-      "snippet": "mqs{${1:text}}"
-    },
-    "MutPers": {},
-    "mutpers": {},
-    "nasal{}": {
-      "snippet": "nasal{${1:letter}}"
-    },
-    "nbs": {},
-    "nesso{}": {
-      "snippet": "nesso{${1:text}}"
-    },
-    "newmetrics{}{}": {
-      "snippet": "newmetrics{${1:command}}{${2:definition}}"
-    },
-    "nexus{}": {
-      "snippet": "nexus{${1:text}}"
-    },
-    "NoLipsiakostext": {},
-    "NoSubVerso": {},
-    "onesizetypeonefalse": {},
-    "onesizetypeonetrue": {},
-    "Open{}": {
-      "snippet": "Open{${1:letter}}"
-    },
-    "orfalse": {},
-    "ortrue": {},
-    "OSN{}": {
-      "snippet": "OSN{${1:digits}}"
-    },
-    "palat{}": {
-      "snippet": "palat{${1:letter}}"
-    },
-    "paragr": {},
-    "pentam": {},
-    "permill": {},
-    "positio": {},
-    "posthindspace": {},
-    "posthinspace": {},
-    "previousencoding": {},
-    "previouslanguage": {},
-    "q": {
-      "detail": "𝑞",
-      "documentation": "MATHEMATICAL ITALIC SMALL Q"
-    },
-    "qmark": {},
-    "qu": {},
-    "qusv": {},
-    "qw": {},
-    "r{}": {
-      "snippet": "r{${1:letter}}"
-    },
-    "Rb{}": {
-      "snippet": "Rb{${1:letter}}"
-    },
-    "rbrk": {},
-    "responsio": {},
-    "ring{}": {
-      "snippet": "ring{${1:letter}}"
-    },
-    "Rm{}": {
-      "snippet": "Rm{${1:letter}}"
-    },
-    "rmqi": {},
-    "rmqs": {},
-    "rpar": {},
-    "rsshape": {},
-    "rszeugma{}": {
-      "snippet": "rszeugma{${1:two letters}}"
-    },
-    "s{}": {
-      "snippet": "s{${1:letter}}"
-    },
-    "sampi": {
-      "detail": "ϡ",
-      "documentation": "GREEK SMALL LETTER SAMPI"
-    },
-    "Sampi": {
-      "detail": "Ϡ",
-      "documentation": "capital sampi"
-    },
-    "Sb{}": {
-      "snippet": "Sb{${1:letter}}"
-    },
-    "schwa": {},
-    "semiv{}": {
-      "snippet": "semiv{${1:letter}}"
-    },
-    "shva": {},
-    "shwa": {},
-    "sinafia": {},
-    "siner{}": {
-      "snippet": "siner{${1:text}}"
-    },
-    "siniz{}": {
-      "snippet": "siniz{${1:text}}"
-    },
-    "skewstack{}{}": {
-      "snippet": "skewstack{${1:base}}{${2:apex}}"
-    },
-    "slzeugm{}": {
-      "snippet": "slzeugm{${1:two letters}}"
-    },
-    "slzeugma{}": {
-      "snippet": "slzeugma{${1:text}}"
-    },
-    "Sm{}": {
-      "snippet": "Sm{${1:letter}}"
-    },
-    "smallvert": {},
-    "splus": {},
-    "star": {
-      "detail": "⋆",
-      "documentation": "small s filled, low"
-    },
-    "stater": {},
-    "stigma": {
-      "detail": "ϛ",
-      "documentation": "GREEK SMALL LETTER STIGMA"
-    },
-    "Stigma": {
-      "detail": "Ϛ",
-      "documentation": "capital stigma"
-    },
-    "stimes": {},
-    "substitutefontfamily{}{}{}": {
-      "snippet": "substitutefontfamily{${1:family}}{${2:latin}}{${3:greek}}"
-    },
-    "SubVerso": {},
-    "SubVerso[]": {
-      "snippet": "SubVerso[${1:inner number}]"
-    },
-    "SubVersofalse": {},
-    "SubVersotrue": {},
-    "sva": {},
-    "svert": {},
-    "tBar": {},
-    "tenaspir{}": {
-      "snippet": "tenaspir{${1:letter}}"
-    },
-    "tetartemorion": {},
-    "textDidot{}": {
-      "snippet": "textDidot{${1:text}}"
-    },
-    "textdigamma": {},
-    "textli{}": {
-      "snippet": "textli{${1:text}}"
-    },
-    "textLipsias{}": {
-      "snippet": "textLipsias{${1:text}}"
-    },
-    "textmtr{}": {
-      "snippet": "textmtr{${1:text}}"
-    },
-    "textoverline{}": {
-      "snippet": "textoverline{${1:text}}"
-    },
-    "textrs{}": {
-      "snippet": "textrs{${1:text}}"
-    },
-    "textui{}": {
-      "snippet": "textui{${1:text}}"
-    },
-    "thesubverso": {},
-    "theverso": {},
-    "thorn": {},
-    "Thorn": {},
-    "TROF": {},
-    "TRON": {},
-    "tstar": {},
-    "U{}": {
-      "snippet": "U{${1:diphthong}}"
-    },
-    "ubarbbrevis": {},
-    "ubarbrevis": {},
-    "ubarsbrevis": {},
-    "ubrevislonga": {},
-    "Ud{}": {
-      "snippet": "Ud{${1:letter}}"
-    },
-    "uishape": {},
-    "UO{}": {
-      "snippet": "UO{${1:letter}}"
-    },
-    "upfill": {},
-    "ut{}": {
-      "snippet": "ut{${1:letters}}"
-    },
-    "Utie{}": {
-      "snippet": "Utie{${1:two letters}}"
-    },
-    "varkoppa": {},
-    "varstigma": {},
-    "Vdeka": {},
-    "verseskip{}": {
-      "snippet": "verseskip{${1:number}}"
-    },
-    "verso": {},
-    "verso[]": {
-      "snippet": "verso[${1:number}]"
-    },
-    "versoskip": {},
-    "Vetto": {},
-    "Vkilo": {},
-    "Vmiria": {},
-    "X": {
-      "detail": "𝑋",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL X"
-    },
-    "yod": {},
-    "zeugma{}": {
-      "snippet": "zeugma{${1:text}}"
-    },
-    "aa": {
-      "option": "GlyphNames"
-    },
-    "aai": {
-      "option": "GlyphNames"
-    },
-    "ac": {
-      "option": "GlyphNames"
-    },
-    "aci": {
-      "option": "GlyphNames"
-    },
-    "ag": {
-      "option": "GlyphNames"
-    },
-    "agi": {
-      "option": "GlyphNames"
-    },
-    "ai": {
-      "option": "GlyphNames"
-    },
-    "ar": {
-      "option": "GlyphNames"
-    },
-    "ara": {
-      "option": "GlyphNames"
-    },
-    "arai": {
-      "option": "GlyphNames"
-    },
-    "arc": {
-      "option": "GlyphNames"
-    },
-    "arci": {
-      "option": "GlyphNames"
-    },
-    "arg": {
-      "option": "GlyphNames"
-    },
-    "argi": {
-      "option": "GlyphNames"
-    },
-    "ari": {
-      "option": "GlyphNames"
-    },
-    "as": {
-      "option": "GlyphNames"
-    },
-    "asa": {
-      "option": "GlyphNames"
-    },
-    "asai": {
-      "option": "GlyphNames"
-    },
-    "asc": {
-      "option": "GlyphNames"
-    },
-    "asci": {
-      "option": "GlyphNames"
-    },
-    "asg": {
-      "option": "GlyphNames"
-    },
-    "asgi": {
-      "option": "GlyphNames"
-    },
-    "asi": {
-      "option": "GlyphNames"
-    },
-    "ea": {
-      "option": "GlyphNames"
-    },
-    "eg": {
-      "option": "GlyphNames"
-    },
-    "er": {
-      "option": "GlyphNames"
-    },
-    "era": {
-      "option": "GlyphNames"
-    },
-    "erg": {
-      "option": "GlyphNames"
-    },
-    "es": {
-      "option": "GlyphNames"
-    },
-    "esa": {
-      "option": "GlyphNames"
-    },
-    "esg": {
-      "option": "GlyphNames"
-    },
-    "ha": {
-      "option": "GlyphNames"
-    },
-    "hai": {
-      "option": "GlyphNames"
-    },
-    "hc": {
-      "option": "GlyphNames"
-    },
-    "hci": {
-      "option": "GlyphNames"
-    },
-    "hg": {
-      "option": "GlyphNames"
-    },
-    "hgi": {
-      "option": "GlyphNames"
-    },
-    "hi": {
-      "option": "GlyphNames"
-    },
-    "hr": {
-      "option": "GlyphNames"
-    },
-    "hra": {
-      "option": "GlyphNames"
-    },
-    "hrai": {
-      "option": "GlyphNames"
-    },
-    "hrc": {
-      "option": "GlyphNames"
-    },
-    "hrci": {
-      "option": "GlyphNames"
-    },
-    "hrg": {
-      "option": "GlyphNames"
-    },
-    "hrgi": {
-      "option": "GlyphNames"
-    },
-    "hri": {
-      "option": "GlyphNames"
-    },
-    "hs": {
-      "option": "GlyphNames"
-    },
-    "hsa": {
-      "option": "GlyphNames"
-    },
-    "hsai": {
-      "option": "GlyphNames"
-    },
-    "hsc": {
-      "option": "GlyphNames"
-    },
-    "hsci": {
-      "option": "GlyphNames"
-    },
-    "hsg": {
-      "option": "GlyphNames"
-    },
-    "hsgi": {
-      "option": "GlyphNames"
-    },
-    "hsi": {
-      "option": "GlyphNames"
-    },
-    "ia": {
-      "option": "GlyphNames"
-    },
-    "ic": {
-      "option": "GlyphNames"
-    },
-    "id": {
-      "option": "GlyphNames"
-    },
-    "Id": {
-      "option": "GlyphNames"
-    },
-    "ida": {
-      "option": "GlyphNames"
-    },
-    "idc": {
-      "option": "GlyphNames"
-    },
-    "idg": {
-      "option": "GlyphNames"
-    },
-    "ig": {
-      "option": "GlyphNames"
-    },
-    "ir": {
-      "option": "GlyphNames"
-    },
-    "ira": {
-      "option": "GlyphNames"
-    },
-    "irc": {
-      "option": "GlyphNames"
-    },
-    "irg": {
-      "option": "GlyphNames"
-    },
-    "is": {
-      "option": "GlyphNames"
-    },
-    "isa": {
-      "option": "GlyphNames"
-    },
-    "isc": {
-      "option": "GlyphNames"
-    },
-    "isg": {
-      "option": "GlyphNames"
-    },
-    "oa": {
-      "option": "GlyphNames"
-    },
-    "oG": {
-      "option": "GlyphNames"
-    },
-    "oR": {
-      "option": "GlyphNames"
-    },
-    "ora": {
-      "option": "GlyphNames"
-    },
-    "org": {
-      "option": "GlyphNames"
-    },
-    "os": {
-      "option": "GlyphNames"
-    },
-    "osa": {
-      "option": "GlyphNames"
-    },
-    "osg": {
-      "option": "GlyphNames"
-    },
-    "rr": {
-      "option": "GlyphNames"
-    },
-    "rs": {
-      "option": "GlyphNames"
-    },
-    "ua": {
-      "option": "GlyphNames"
-    },
-    "uc": {
-      "option": "GlyphNames"
-    },
-    "ud": {
-      "option": "GlyphNames"
-    },
-    "Ud": {
-      "option": "GlyphNames"
-    },
-    "uda": {
-      "option": "GlyphNames"
-    },
-    "udc": {
-      "option": "GlyphNames"
-    },
-    "udg": {
-      "option": "GlyphNames"
-    },
-    "ug": {
-      "option": "GlyphNames"
-    },
-    "ur": {
-      "option": "GlyphNames"
-    },
-    "ura": {
-      "option": "GlyphNames"
-    },
-    "urc": {
-      "option": "GlyphNames"
-    },
-    "urg": {
-      "option": "GlyphNames"
-    },
-    "us": {
-      "option": "GlyphNames"
-    },
-    "usa": {
-      "option": "GlyphNames"
-    },
-    "usc": {
-      "option": "GlyphNames"
-    },
-    "usg": {
-      "option": "GlyphNames"
-    },
-    "wa": {
-      "option": "GlyphNames"
-    },
-    "wai": {
-      "option": "GlyphNames"
-    },
-    "wc": {
-      "option": "GlyphNames"
-    },
-    "wci": {
-      "option": "GlyphNames"
-    },
-    "wg": {
-      "option": "GlyphNames"
-    },
-    "wgi": {
-      "option": "GlyphNames"
-    },
-    "wi": {
-      "option": "GlyphNames"
-    },
-    "wr": {
-      "option": "GlyphNames",
-      "detail": "≀",
-      "documentation": "WREATH PRODUCT"
-    },
-    "wra": {
-      "option": "GlyphNames"
-    },
-    "wrai": {
-      "option": "GlyphNames"
-    },
-    "wrc": {
-      "option": "GlyphNames"
-    },
-    "wrci": {
-      "option": "GlyphNames"
-    },
-    "wrg": {
-      "option": "GlyphNames"
-    },
-    "wrgi": {
-      "option": "GlyphNames"
-    },
-    "wri": {
-      "option": "GlyphNames"
-    },
-    "ws": {
-      "option": "GlyphNames"
-    },
-    "wsa": {
-      "option": "GlyphNames"
-    },
-    "wsai": {
-      "option": "GlyphNames"
-    },
-    "wsc": {
-      "option": "GlyphNames"
-    },
-    "wsci": {
-      "option": "GlyphNames"
-    },
-    "wsg": {
-      "option": "GlyphNames"
-    },
-    "wsgi": {
-      "option": "GlyphNames"
-    },
-    "wsi": {
-      "option": "GlyphNames"
+    {
+      "name": "trace"
     }
-  },
-  "envs": {
-    "bracedmetrics{}": {
-      "name": "bracedmetrics",
-      "snippet": "{${1:length}}"
-    },
-    "GRD": {},
-    "GRD[]": {
-      "name": "GRD",
-      "snippet": "[${1:series}]"
-    },
-    "GRL": {},
-    "GRL[]": {
-      "name": "GRL",
-      "snippet": "[${1:series}]"
-    },
-    "Lipsiakostext": {},
-    "Versi": {},
-    "VERSI": {},
-    "Versi[]": {
-      "name": "Versi",
-      "snippet": "[${1:number}]"
-    },
-    "VERSI[]": {
-      "name": "VERSI",
-      "snippet": "[${1:outer number}]"
-    },
-    "versi{}": {
-      "name": "versi",
-      "snippet": "{${1:label}}"
-    },
-    "Versus": {},
-    "VERSUS": {},
-    "versus{}": {
-      "name": "versus",
-      "snippet": "{${1:label}}"
-    }
-  },
-  "options": [
-    "boldLipsian",
-    "10pt",
-    "NoGlyphNames",
-    "GlyphNames"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "",
+      "arg": {
+        "format": "|",
+        "snippet": "|"
+      }
+    },
+    {
+      "name": "<",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": ">",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "2tr"
+    },
+    {
+      "name": "4MACRO"
+    },
+    {
+      "name": "A",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "Ab",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "acapo",
+      "unusual": true
+    },
+    {
+      "name": "accacuto",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "accbreve",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "acccircon",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "accdieresi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "accgrave",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "accmacron",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "Ad",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "aeolchorsor"
+    },
+    {
+      "name": "aeolicbii"
+    },
+    {
+      "name": "aeolicbiii"
+    },
+    {
+      "name": "aeolicbiv"
+    },
+    {
+      "name": "Am",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "anceps"
+    },
+    {
+      "name": "ancepsdbrevis"
+    },
+    {
+      "name": "antilabe"
+    },
+    {
+      "name": "ap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "apex"
+    },
+    {
+      "name": "apici",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Ar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "Arb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "Arm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "As",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "Asb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "Asm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "AtticNumeral",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "B",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "banceps"
+    },
+    {
+      "name": "barbbrevis"
+    },
+    {
+      "name": "barbrevis"
+    },
+    {
+      "name": "bbrevis"
+    },
+    {
+      "name": "bcutbar",
+      "unusual": true
+    },
+    {
+      "name": "bd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "boldLipsianfalse",
+      "unusual": true
+    },
+    {
+      "name": "boldLipsiantrue",
+      "unusual": true
+    },
+    {
+      "name": "BreakVersofalse",
+      "unusual": true
+    },
+    {
+      "name": "BreakVersotrue",
+      "unusual": true
+    },
+    {
+      "name": "brevis"
+    },
+    {
+      "name": "C",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "c",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "cap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      },
+      "detail": "∩",
+      "doc": "Intersection"
+    },
+    {
+      "name": "catal"
+    },
+    {
+      "name": "Cd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "chor"
+    },
+    {
+      "name": "Cm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "coppa"
+    },
+    {
+      "name": "Coppa",
+      "unusual": true
+    },
+    {
+      "name": "corona"
+    },
+    {
+      "name": "coronainv"
+    },
+    {
+      "name": "Coronis"
+    },
+    {
+      "name": "coronis",
+      "unusual": true
+    },
+    {
+      "name": "Cr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "Crm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "crux"
+    },
+    {
+      "name": "Cs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "Csm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "cut",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "D",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "d",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "Dashes"
+    },
+    {
+      "name": "DASHES"
+    },
+    {
+      "name": "Dashes",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "DASHES",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "dBar"
+    },
+    {
+      "name": "dcutbar",
+      "unusual": true
+    },
+    {
+      "name": "denarius"
+    },
+    {
+      "name": "Digamma"
+    },
+    {
+      "name": "Dots"
+    },
+    {
+      "name": "DOTS"
+    },
+    {
+      "name": "Dots",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "DOTS",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "downfill",
+      "unusual": true
+    },
+    {
+      "name": "dparagr"
+    },
+    {
+      "name": "dracma"
+    },
+    {
+      "name": "dstar"
+    },
+    {
+      "name": "dz",
+      "unusual": true
+    },
+    {
+      "name": "ElemInd"
+    },
+    {
+      "name": "ENcdq"
+    },
+    {
+      "name": "ENdqtext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ENodq"
+    },
+    {
+      "name": "enopl"
+    },
+    {
+      "name": "etos"
+    },
+    {
+      "name": "euro",
+      "detail": "€",
+      "doc": "Euro sign"
+    },
+    {
+      "name": "Euro",
+      "unusual": true
+    },
+    {
+      "name": "f"
+    },
+    {
+      "name": "F"
+    },
+    {
+      "name": "fHigh"
+    },
+    {
+      "name": "FinisCarmen"
+    },
+    {
+      "name": "FinCar",
+      "unusual": true
+    },
+    {
+      "name": "fLow"
+    },
+    {
+      "name": "frapar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "G",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "Gb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "gcutbar",
+      "unusual": true
+    },
+    {
+      "name": "Gd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "GEcdq"
+    },
+    {
+      "name": "GEcq"
+    },
+    {
+      "name": "GEdqtext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "GEodq"
+    },
+    {
+      "name": "GEoq"
+    },
+    {
+      "name": "GEqtext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "GlyphNamesfalse",
+      "unusual": true
+    },
+    {
+      "name": "GlyphNamestrue",
+      "unusual": true
+    },
+    {
+      "name": "Gm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "Gr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "Grb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "GreekName",
+      "unusual": true
+    },
+    {
+      "name": "greeknumeral*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Greeknumeral*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Grm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "grtoday"
+    },
+    {
+      "name": "grtoday*"
+    },
+    {
+      "name": "Gs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "Gsb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "Gsm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "GTROF",
+      "unusual": true
+    },
+    {
+      "name": "GTRON",
+      "unusual": true
+    },
+    {
+      "name": "gusv",
+      "unusual": true
+    },
+    {
+      "name": "gw",
+      "unusual": true
+    },
+    {
+      "name": "h"
+    },
+    {
+      "name": "hemiobelion"
+    },
+    {
+      "name": "hexam"
+    },
+    {
+      "name": "Hfill"
+    },
+    {
+      "name": "hiatus"
+    },
+    {
+      "name": "Hiatus"
+    },
+    {
+      "name": "hv",
+      "unusual": true
+    },
+    {
+      "name": "iam"
+    },
+    {
+      "name": "ifboldLipsian",
+      "unusual": true
+    },
+    {
+      "name": "ifBreakVersi",
+      "unusual": true
+    },
+    {
+      "name": "ifCMLM",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:family}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifFamily",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:latin}}{${2:greek}}"
+      }
+    },
+    {
+      "name": "ifGlyphNames",
+      "unusual": true
+    },
+    {
+      "name": "ifLipsian",
+      "unusual": true
+    },
+    {
+      "name": "ifonesizetypeone",
+      "unusual": true
+    },
+    {
+      "name": "ifPDF",
+      "unusual": true
+    },
+    {
+      "name": "ifSubVerso"
+    },
+    {
+      "name": "Int"
+    },
+    {
+      "name": "iod",
+      "unusual": true
+    },
+    {
+      "name": "ipercatal"
+    },
+    {
+      "name": "iS",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "itclosedquotes",
+      "unusual": true
+    },
+    {
+      "name": "itcq",
+      "unusual": true
+    },
+    {
+      "name": "itopenquotes",
+      "unusual": true
+    },
+    {
+      "name": "itoq",
+      "unusual": true
+    },
+    {
+      "name": "kclick"
+    },
+    {
+      "name": "koppa"
+    },
+    {
+      "name": "Koppa"
+    },
+    {
+      "name": "ladd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Ladd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "lbrk"
+    },
+    {
+      "name": "ldel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "lesp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Lipsiakostext"
+    },
+    {
+      "name": "Lipsianfalse",
+      "unusual": true
+    },
+    {
+      "name": "Lipsiantrue",
+      "unusual": true
+    },
+    {
+      "name": "lishape"
+    },
+    {
+      "name": "LitNil"
+    },
+    {
+      "name": "litnil",
+      "unusual": true
+    },
+    {
+      "name": "lladd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LLadd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LLadd",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:text}}[${2:right kerning}]"
+      }
+    },
+    {
+      "name": "LLadd",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:left kerning}]{${1:text}}"
+      }
+    },
+    {
+      "name": "LLadd",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:left kerning}]{${1:text}}[${3:right kerning}]"
+      }
+    },
+    {
+      "name": "LLaddKern",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:len1}}{${2:len2}}"
+      }
+    },
+    {
+      "name": "lmqi"
+    },
+    {
+      "name": "lmqs"
+    },
+    {
+      "name": "longa"
+    },
+    {
+      "name": "lpar"
+    },
+    {
+      "name": "M",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "mcap",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "md",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "metricsfont",
+      "unusual": true
+    },
+    {
+      "name": "metricstack",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:base}}{${2:superscript}}"
+      }
+    },
+    {
+      "name": "mezzeq",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "mO",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "mqi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "mqs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "MutPers",
+      "unusual": true
+    },
+    {
+      "name": "mutpers",
+      "unusual": true
+    },
+    {
+      "name": "nasal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "nbs",
+      "unusual": true
+    },
+    {
+      "name": "nesso",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "newmetrics",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "nexus",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "NoLipsiakostext"
+    },
+    {
+      "name": "NoSubVerso"
+    },
+    {
+      "name": "onesizetypeonefalse",
+      "unusual": true
+    },
+    {
+      "name": "onesizetypeonetrue",
+      "unusual": true
+    },
+    {
+      "name": "Open",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "OSN",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:digits}}"
+      }
+    },
+    {
+      "name": "palat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "paragr"
+    },
+    {
+      "name": "pentam"
+    },
+    {
+      "name": "permill"
+    },
+    {
+      "name": "positio",
+      "unusual": true
+    },
+    {
+      "name": "posthindspace"
+    },
+    {
+      "name": "posthinspace"
+    },
+    {
+      "name": "previousencoding",
+      "unusual": true
+    },
+    {
+      "name": "previouslanguage",
+      "unusual": true
+    },
+    {
+      "name": "q"
+    },
+    {
+      "name": "qmark"
+    },
+    {
+      "name": "qu",
+      "unusual": true
+    },
+    {
+      "name": "qusv",
+      "unusual": true
+    },
+    {
+      "name": "qw",
+      "unusual": true
+    },
+    {
+      "name": "r",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "Rb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "rbrk"
+    },
+    {
+      "name": "responsio"
+    },
+    {
+      "name": "ring",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "Rm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "rmqi"
+    },
+    {
+      "name": "rmqs"
+    },
+    {
+      "name": "rpar"
+    },
+    {
+      "name": "rsshape"
+    },
+    {
+      "name": "rszeugma",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:two letters}}"
+      }
+    },
+    {
+      "name": "s",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "sampi"
+    },
+    {
+      "name": "Sampi"
+    },
+    {
+      "name": "Sb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "schwa",
+      "unusual": true
+    },
+    {
+      "name": "semiv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "shva",
+      "unusual": true
+    },
+    {
+      "name": "shwa"
+    },
+    {
+      "name": "sinafia"
+    },
+    {
+      "name": "siner",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "siniz",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "skewstack",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:base}}{${2:apex}}"
+      }
+    },
+    {
+      "name": "slzeugm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:two letters}}"
+      }
+    },
+    {
+      "name": "slzeugma",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Sm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "smallvert",
+      "unusual": true
+    },
+    {
+      "name": "splus"
+    },
+    {
+      "name": "star",
+      "detail": "⋆",
+      "doc": "Small star, filled, low"
+    },
+    {
+      "name": "stater"
+    },
+    {
+      "name": "stigma"
+    },
+    {
+      "name": "Stigma"
+    },
+    {
+      "name": "stimes"
+    },
+    {
+      "name": "substitutefontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:family}}{${2:latin}}{${3:greek}}"
+      }
+    },
+    {
+      "name": "SubVerso"
+    },
+    {
+      "name": "SubVerso",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:inner number}]"
+      }
+    },
+    {
+      "name": "SubVersofalse"
+    },
+    {
+      "name": "SubVersotrue"
+    },
+    {
+      "name": "sva",
+      "unusual": true
+    },
+    {
+      "name": "svert",
+      "unusual": true
+    },
+    {
+      "name": "tBar"
+    },
+    {
+      "name": "tenaspir",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "tetartemorion"
+    },
+    {
+      "name": "textDidot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textdigamma"
+    },
+    {
+      "name": "textli",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textLipsias",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textmtr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textoverline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textrs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textui",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "thesubverso"
+    },
+    {
+      "name": "theverso",
+      "unusual": true
+    },
+    {
+      "name": "thorn"
+    },
+    {
+      "name": "Thorn"
+    },
+    {
+      "name": "TROF",
+      "unusual": true
+    },
+    {
+      "name": "TRON",
+      "unusual": true
+    },
+    {
+      "name": "tstar"
+    },
+    {
+      "name": "U",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:diphthong}}"
+      }
+    },
+    {
+      "name": "ubarbbrevis"
+    },
+    {
+      "name": "ubarbrevis"
+    },
+    {
+      "name": "ubarsbrevis"
+    },
+    {
+      "name": "ubrevislonga"
+    },
+    {
+      "name": "Ud",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "uishape"
+    },
+    {
+      "name": "UO",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "upfill",
+      "unusual": true
+    },
+    {
+      "name": "ut",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letters}}"
+      }
+    },
+    {
+      "name": "Utie",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:two letters}}"
+      }
+    },
+    {
+      "name": "varkoppa",
+      "unusual": true
+    },
+    {
+      "name": "varstigma"
+    },
+    {
+      "name": "Vdeka",
+      "unusual": true
+    },
+    {
+      "name": "verseskip",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "verso"
+    },
+    {
+      "name": "verso",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "versoskip"
+    },
+    {
+      "name": "Vetto",
+      "unusual": true
+    },
+    {
+      "name": "Vkilo",
+      "unusual": true
+    },
+    {
+      "name": "Vmiria",
+      "unusual": true
+    },
+    {
+      "name": "X",
+      "unusual": true
+    },
+    {
+      "name": "yod"
+    },
+    {
+      "name": "zeugma",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "aa",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "aai",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ac",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "aci",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ag",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "agi",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ai",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ar",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ara",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "arai",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "arc",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "arci",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "arg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "argi",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ari",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "as",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "asa",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "asai",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "asc",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "asci",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "asg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "asgi",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "asi",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ea",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "eg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "er",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "era",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "erg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "es",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "esa",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "esg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ha",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hai",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hc",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hci",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hgi",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hi",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hr",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hra",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hrai",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hrc",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hrci",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hrg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hrgi",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hri",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hs",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hsa",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hsai",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hsc",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hsci",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hsg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hsgi",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "hsi",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ia",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ic",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "id",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "Id",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ida",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "idc",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "idg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ig",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ir",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ira",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "irc",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "irg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "is",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "isa",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "isc",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "isg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "oa",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "oG",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "oR",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ora",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "org",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "os",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "osa",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "osg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "rr",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "rs",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ua",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "uc",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ud",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "Ud",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "uda",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "udc",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "udg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ug",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ur",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ura",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "urc",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "urg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "us",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "usa",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "usc",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "usg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wa",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wai",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wc",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wci",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wgi",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wi",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wr",
+      "if": "GlyphNames",
+      "detail": "≀ (\"amssymb\" command)",
+      "doc": "Wreath product"
+    },
+    {
+      "name": "wra",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wrai",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wrc",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wrci",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wrg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wrgi",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wri",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "ws",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wsa",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wsai",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wsc",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wsci",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wsg",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wsgi",
+      "if": "GlyphNames"
+    },
+    {
+      "name": "wsi",
+      "if": "GlyphNames"
+    }
+  ],
+  "envs": [
+    {
+      "name": "bracedmetrics",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "GRD"
+    },
+    {
+      "name": "GRD",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:series}]"
+      }
+    },
+    {
+      "name": "GRL"
+    },
+    {
+      "name": "GRL",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:series}]"
+      }
+    },
+    {
+      "name": "Lipsiakostext"
+    },
+    {
+      "name": "Versi"
+    },
+    {
+      "name": "VERSI"
+    },
+    {
+      "name": "Versi",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "VERSI",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:outer number}]"
+      }
+    },
+    {
+      "name": "versi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/teubner#c": [
+      "boldLipsian",
+      "10pt",
+      "NoGlyphNames",
+      "GlyphNames"
+    ]
+  },
+  "args": [
+    "\\usepackage/teubner#c"
+  ]
 }

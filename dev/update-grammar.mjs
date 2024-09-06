@@ -1,3 +1,5 @@
+/* global console */
+
 import fs from 'fs'
 import path from 'path'
 import {download, getCommitSha, expandConfigurationFile} from'vscode-extend-language'

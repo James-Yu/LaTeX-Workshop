@@ -1,172 +1,407 @@
 {
-  "includes": {
-    "l3keys2e": []
-  },
-  "macros": {
-    "lipsum": {},
-    "lipsum[]": {
-      "snippet": "lipsum[${1:num-num}]"
-    },
-    "lipsum[][]": {
-      "snippet": "lipsum[${1:num-num}][${2:num-num}]"
-    },
-    "lipsum*": {},
-    "lipsum*[]": {
-      "snippet": "lipsum*[${1:num-num}]"
-    },
-    "lipsum*[][]": {
-      "snippet": "lipsum*[${1:num-num}][${2:num-num}]"
-    },
-    "unpacklipsum": {},
-    "unpacklipsum[]": {
-      "snippet": "unpacklipsum[${1:num}]"
-    },
-    "unpacklipsum*": {},
-    "unpacklipsum*[]": {
-      "snippet": "unpacklipsum*[${1:num}]"
-    },
-    "lipsumexp": {},
-    "setlipsum{}": {
-      "snippet": "setlipsum{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "SetLipsumText{}": {
-      "snippet": "SetLipsumText{${1:lipsum text definition filename}}"
-    },
-    "SetLipsumDefault{}": {
-      "snippet": "SetLipsumDefault{${1:num-num}}"
-    },
-    "LipsumPar{}": {
-      "snippet": "LipsumPar{${1:num}}"
-    },
-    "SetLipsumParListStart{}": {
-      "snippet": "SetLipsumParListStart{${1:tokens}}"
-    },
-    "SetLipsumParListStart*{}": {
-      "snippet": "SetLipsumParListStart*{${1:tokens}}"
-    },
-    "SetLipsumParListEnd{}": {
-      "snippet": "SetLipsumParListEnd{${1:tokens}}"
-    },
-    "SetLipsumParListEnd*{}": {
-      "snippet": "SetLipsumParListEnd*{${1:tokens}}"
-    },
-    "SetLipsumSentenceListStart{}": {
-      "snippet": "SetLipsumSentenceListStart{${1:tokens}}"
-    },
-    "SetLipsumSentenceListStart*{}": {
-      "snippet": "SetLipsumSentenceListStart*{${1:tokens}}"
-    },
-    "SetLipsumSentenceListEnd{}": {
-      "snippet": "SetLipsumSentenceListEnd{${1:tokens}}"
-    },
-    "SetLipsumSentenceListEnd*{}": {
-      "snippet": "SetLipsumSentenceListEnd*{${1:tokens}}"
-    },
-    "SetLipsumParListSurrounders{}{}": {
-      "snippet": "SetLipsumParListSurrounders{${1:start}}{${2:end}}"
-    },
-    "SetLipsumParListSurrounders*{}{}": {
-      "snippet": "SetLipsumParListSurrounders*{${1:start}}{${2:end}}"
-    },
-    "SetLipsumSentenceListSurrounders{}{}": {
-      "snippet": "SetLipsumSentenceListSurrounders{${1:start}}{${2:end}}"
-    },
-    "SetLipsumSentenceListSurrounders*{}{}": {
-      "snippet": "SetLipsumSentenceListSurrounders*{${1:start}}{${2:end}}"
-    },
-    "SetLipsumParListItemStart{}": {
-      "snippet": "SetLipsumParListItemStart{${1:tokens}}"
-    },
-    "SetLipsumParListItemStart*{}": {
-      "snippet": "SetLipsumParListItemStart*{${1:tokens}}"
-    },
-    "SetLipsumParListItemEnd{}": {
-      "snippet": "SetLipsumParListItemEnd{${1:tokens}}"
-    },
-    "SetLipsumParListItemEnd*{}": {
-      "snippet": "SetLipsumParListItemEnd*{${1:tokens}}"
-    },
-    "SetLipsumSentenceListItemStart{}": {
-      "snippet": "SetLipsumSentenceListItemStart{${1:tokens}}"
-    },
-    "SetLipsumSentenceListItemStart*{}": {
-      "snippet": "SetLipsumSentenceListItemStart*{${1:tokens}}"
-    },
-    "SetLipsumSentenceListItemEnd{}": {
-      "snippet": "SetLipsumSentenceListItemEnd{${1:tokens}}"
-    },
-    "SetLipsumSentenceListItemEnd*{}": {
-      "snippet": "SetLipsumSentenceListItemEnd*{${1:tokens}}"
-    },
-    "SetLipsumParListItemSurrounders{}{}": {
-      "snippet": "SetLipsumParListItemSurrounders{${1:start}}{${2:end}}"
-    },
-    "SetLipsumParListItemSurrounders*{}{}": {
-      "snippet": "SetLipsumParListItemSurrounders*{${1:start}}{${2:end}}"
-    },
-    "SetLipsumSentenceListItemSurrounders{}{}": {
-      "snippet": "SetLipsumSentenceListItemSurrounders{${1:start}}{${2:end}}"
-    },
-    "SetLipsumSentenceListItemSurrounders*{}{}": {
-      "snippet": "SetLipsumSentenceListItemSurrounders*{${1:start}}{${2:end}}"
-    },
-    "SetLipsumParListItemSeparator{}": {
-      "snippet": "SetLipsumParListItemSeparator{${1:tokens}}"
-    },
-    "SetLipsumParListItemSeparator*{}": {
-      "snippet": "SetLipsumParListItemSeparator*{${1:tokens}}"
-    },
-    "SetLipsumSentenceListItemSeparator{}": {
-      "snippet": "SetLipsumSentenceListItemSeparator{${1:tokens}}"
-    },
-    "SetLipsumSentenceListItemSeparator*{}": {
-      "snippet": "SetLipsumSentenceListItemSeparator*{${1:tokens}}"
-    },
-    "LipsumProtect{}": {
-      "snippet": "LipsumProtect{${1:tokens}}"
-    },
-    "LipsumRestoreParList": {},
-    "LipsumRestoreSentenceList": {},
-    "LipsumRestoreAll": {},
-    "NewLipsumPar{}": {
-      "snippet": "NewLipsumPar{${1:paragrph}}"
-    },
-    "SetLipsumLanguage{}": {
-      "snippet": "SetLipsumLanguage{${1:language}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     }
-  },
-  "envs": {},
-  "options": [
-    "nopar",
-    "text=${1|lipsum,cicero,lipsum-cs|}",
-    "language=${1:language}",
-    "auto-lang",
-    "default-range=${1:i-j}",
-    "par-before=${1:tokens}",
-    "par-begin=${1:tokens}",
-    "par-sep=${1:tokens}",
-    "par-end=${1:tokens}",
-    "par-after=${1:tokens}",
-    "sentence-before=${1:tokens}",
-    "sentence-begin=${1:tokens}",
-    "sentence-sep=${1:tokens}",
-    "sentence-end=${1:tokens}",
-    "sentence-after=${1:tokens}",
-    "par-before*=${1:tokens}",
-    "par-begin*=${1:tokens}",
-    "par-sep*=${1:tokens}",
-    "par-end*=${1:tokens}",
-    "par-after*=${1:tokens}",
-    "sentence-before*=${1:tokens}",
-    "sentence-begin*=${1:tokens}",
-    "sentence-sep*=${1:tokens}",
-    "sentence-end*=${1:tokens}",
-    "sentence-after*=${1:tokens}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "lipsum"
+    },
+    {
+      "name": "lipsum",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:num}]"
+      }
+    },
+    {
+      "name": "lipsum",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:num}][${2:num}]"
+      }
+    },
+    {
+      "name": "lipsum",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:num-num}]"
+      }
+    },
+    {
+      "name": "lipsum",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:num-num}][${2:num-num}]"
+      }
+    },
+    {
+      "name": "lipsum*"
+    },
+    {
+      "name": "lipsum*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:num}]"
+      }
+    },
+    {
+      "name": "lipsum*",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:num}][${2:num}]"
+      }
+    },
+    {
+      "name": "lipsum*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:num-num}]"
+      }
+    },
+    {
+      "name": "lipsum*",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:num-num}][${2:num-num}]"
+      }
+    },
+    {
+      "name": "unpacklipsum",
+      "unusual": true
+    },
+    {
+      "name": "unpacklipsum",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:num}]"
+      }
+    },
+    {
+      "name": "unpacklipsum*",
+      "unusual": true
+    },
+    {
+      "name": "unpacklipsum*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:num}]"
+      }
+    },
+    {
+      "name": "lipsumexp",
+      "unusual": true
+    },
+    {
+      "name": "setlipsum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\setlipsum#c,\\usepackage/lipsum#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SetLipsumText",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lipsum text definition filename%file}}"
+      }
+    },
+    {
+      "name": "SetLipsumDefault",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:num}}"
+      }
+    },
+    {
+      "name": "SetLipsumDefault",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:num-num}}"
+      }
+    },
+    {
+      "name": "LipsumPar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:num}}"
+      }
+    },
+    {
+      "name": "SetLipsumParListStart",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumParListStart*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumParListEnd",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumParListEnd*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumSentenceListStart",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumSentenceListStart*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumSentenceListEnd",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumSentenceListEnd*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumParListSurrounders",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:start}}{${2:end}}"
+      }
+    },
+    {
+      "name": "SetLipsumParListSurrounders*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:start}}{${2:end}}"
+      }
+    },
+    {
+      "name": "SetLipsumSentenceListSurrounders",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:start}}{${2:end}}"
+      }
+    },
+    {
+      "name": "SetLipsumSentenceListSurrounders*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:start}}{${2:end}}"
+      }
+    },
+    {
+      "name": "SetLipsumParListItemStart",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumParListItemStart*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumParListItemEnd",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumParListItemEnd*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumSentenceListItemStart",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumSentenceListItemStart*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumSentenceListItemEnd",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumSentenceListItemEnd*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumParListItemSurrounders",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:start}}{${2:end}}"
+      }
+    },
+    {
+      "name": "SetLipsumParListItemSurrounders*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:start}}{${2:end}}"
+      }
+    },
+    {
+      "name": "SetLipsumSentenceListItemSurrounders",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:start}}{${2:end}}"
+      }
+    },
+    {
+      "name": "SetLipsumSentenceListItemSurrounders*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:start}}{${2:end}}"
+      }
+    },
+    {
+      "name": "SetLipsumParListItemSeparator",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumParListItemSeparator*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumSentenceListItemSeparator",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "SetLipsumSentenceListItemSeparator*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "LipsumProtect",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "LipsumRestoreParList",
+      "unusual": true
+    },
+    {
+      "name": "LipsumRestoreSentenceList",
+      "unusual": true
+    },
+    {
+      "name": "LipsumRestoreAll",
+      "unusual": true
+    },
+    {
+      "name": "NewLipsumPar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:paragrph}}"
+      }
+    },
+    {
+      "name": "SetLipsumLanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setlipsum#c,\\usepackage/lipsum#c": [
       "nopar",
       "text=${1|lipsum,cicero,lipsum-cs|}",
       "language=${1:language}",
@@ -193,5 +428,8 @@
       "sentence-end*=${1:tokens}",
       "sentence-after*=${1:tokens}"
     ]
+  },
+  "args": [
+    "\\setlipsum#c,\\usepackage/lipsum#c"
   ]
 }

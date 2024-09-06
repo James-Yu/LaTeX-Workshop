@@ -1,112 +1,249 @@
 {
-  "includes": {
-    "ifthen": [],
-    "xkeyval": [],
-    "tikz": [],
-    "tikzlibrarypatterns": []
-  },
-  "macros": {
-    "tkzTabInit{}{}": {
-      "snippet": "tkzTabInit{${1:expr1/height1,${3:expr2/height2},${4:...}}{${2:expr1},${5:expr2},...}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "tkzTabInit[]{}{}": {
-      "snippet": "tkzTabInit[${3:options}]{${1:expr1/height1,${4:expr2/height2},${5:...}}{${2:expr1},${6:expr2},...}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xkeyval"
     },
-    "tkzTab{}{}{}{}": {
-      "snippet": "tkzTab{${1:list1}}{${2:list2}}{${3:list3}}{${4:list4}}"
+    {
+      "name": "tikz"
     },
-    "tkzTab[]{}{}{}{}": {
-      "snippet": "tkzTab[${5:options}]{${1:list1}}{${2:list2}}{${3:list3}}{${4:list4}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarypatterns"
+    }
+  ],
+  "macros": [
+    {
+      "name": "tkzTabInit",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expr1/height1,expr2/height2,...}}{${2:expr1,expr2,...}}"
+      }
     },
-    "tkzTabLine{}": {
-      "snippet": "tkzTabLine{${1:symbol1,${2:symbol2},...}}"
+    {
+      "name": "tkzTabInit",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:expr1/height1,expr2/height2,...}}{${2:expr1,expr2,...}}",
+        "keys": [
+          "\\tkzTabInit,\\tkzTab"
+        ],
+        "keyPos": 0
+      }
     },
-    "tkzTabLine[]{}": {
-      "snippet": "tkzTabLine[${2:options}]{${1:symbol1,${3:symbol2},...}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tkzTab",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:list1}}{${2:list2}}{${3:list3%formula}}{${4:list4}}"
+      }
     },
-    "tkzTabVar{}": {
-      "snippet": "tkzTabVar{${1:symbol1/expr,${2:symbol2/expr1/expr2},...}}"
+    {
+      "name": "tkzTab",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:list1}}{${2:list2}}{${3:list3%formula}}{${4:list4}}",
+        "keys": [
+          "\\tkzTabInit,\\tkzTab"
+        ],
+        "keyPos": 0
+      }
     },
-    "tkzTabVar[]{}": {
-      "snippet": "tkzTabVar[${2:options}]{${1:symbol1/expr,${3:symbol2/expr1/expr2},...}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "tkzTabLine",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol1,symbol2,...%formula}}"
+      }
     },
-    "tkzTabVal{}{}{}{}{}": {
-      "snippet": "tkzTabVal{${1:start}}{${2:finish}}{${3:position}}{${4:antecedent}}{${5:image}}"
+    {
+      "name": "tkzTabLine",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:symbol1,symbol2,...%formula}}",
+        "keys": [
+          "\\tkzTabLine"
+        ],
+        "keyPos": 0
+      }
     },
-    "tkzTabVal[]{}{}{}{}{}": {
-      "snippet": "tkzTabVal[${6:options}]{${1:start}}{${2:finish}}{${3:position}}{${4:antecedent}}{${5:image}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "tkzTabVar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol1/expr,symbol2/expr1/expr2,...}}"
+      }
     },
-    "tkzTabIma{}{}{}{}{}": {
-      "snippet": "tkzTabIma{${1:start}}{${2:finish}}{${3:position}}{${4:antecedent}}{${5:image}}"
+    {
+      "name": "tkzTabVar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:symbol1/expr,symbol2/expr1/expr2,...}}",
+        "keys": [
+          "\\tkzTabVar"
+        ],
+        "keyPos": 0
+      }
     },
-    "tkzTabIma[]{}{}{}{}{}": {
-      "snippet": "tkzTabIma[${6:options}]{${1:start}}{${2:finish}}{${3:position}}{${4:antecedent}}{${5:image}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "tkzTabVal",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:start}}{${2:finish}}{${3:position}}{${4:antecedent}}{${5:image}}"
+      }
     },
-    "tkzTabImaFrom{}{}{}{}": {
-      "snippet": "tkzTabImaFrom{${1:start}}{${2:finish}}{${3:antecedent}}{${4:image}}"
+    {
+      "name": "tkzTabVal",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:options%keyvals}]{${1:start}}{${2:finish}}{${3:position}}{${4:antecedent}}{${5:image}}",
+        "keys": [
+          "\\tkzTabVal,\\tkzTabIma,\\tkzTabImaFrom"
+        ],
+        "keyPos": 0
+      }
     },
-    "tkzTabImaFrom[]{}{}{}{}": {
-      "snippet": "tkzTabImaFrom[${5:options}]{${1:start}}{${2:finish}}{${3:antecedent}}{${4:image}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "tkzTabIma",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:start}}{${2:finish}}{${3:position}}{${4:antecedent}}{${5:image}}"
+      }
     },
-    "tkzTabTan{}{}{}{}": {
-      "snippet": "tkzTabTan{${1:start}}{${2:finish}}{${3:antecedent}}{${4:image}}"
+    {
+      "name": "tkzTabIma",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:options%keyvals}]{${1:start}}{${2:finish}}{${3:position}}{${4:antecedent}}{${5:image}}",
+        "keys": [
+          "\\tkzTabVal,\\tkzTabIma,\\tkzTabImaFrom"
+        ],
+        "keyPos": 0
+      }
     },
-    "tkzTabTan[]{}{}{}{}": {
-      "snippet": "tkzTabTan[${5:options}]{${1:start}}{${2:finish}}{${3:antecedent}}{${4:image}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "tkzTabImaFrom",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:start}}{${2:finish}}{${3:antecedent}}{${4:image}}"
+      }
     },
-    "tkzTabTanFrom{}{}{}{}": {
-      "snippet": "tkzTabTanFrom{${1:start}}{${2:finish}}{${3:antecedent}}{${4:image}}"
+    {
+      "name": "tkzTabImaFrom",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:start}}{${2:finish}}{${3:antecedent}}{${4:image}}",
+        "keys": [
+          "\\tkzTabVal,\\tkzTabIma,\\tkzTabImaFrom"
+        ],
+        "keyPos": 0
+      }
     },
-    "tkzTabTanFrom[]{}{}{}{}": {
-      "snippet": "tkzTabTanFrom[${5:options}]{${1:start}}{${2:finish}}{${3:antecedent}}{${4:image}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "tkzTabTan",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:start}}{${2:finish}}{${3:antecedent}}{${4:image}}"
+      }
     },
-    "tkzTabSlope{}": {
-      "snippet": "tkzTabSlope{${1:num1/leftexpr1/rightexpr1,${2:num2/leftexpr2/rightexpr3},...}}"
+    {
+      "name": "tkzTabTan",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:start}}{${2:finish}}{${3:antecedent}}{${4:image}}",
+        "keys": [
+          "\\tkzTabTan,\\tkzTabTanFrom"
+        ],
+        "keyPos": 0
+      }
     },
-    "tkzTabSetup": {},
-    "tkzTabSetup[]": {
-      "snippet": "tkzTabSetup[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
+    {
+      "name": "tkzTabTanFrom",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:start}}{${2:finish}}{${3:antecedent}}{${4:image}}"
+      }
     },
-    "tkzTabColors[]": {
-      "snippet": "tkzTabColors[${1:options}]",
-      "keyvalindex": 6,
-      "keyvalpos": 0
+    {
+      "name": "tkzTabTanFrom",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:start}}{${2:finish}}{${3:antecedent}}{${4:image}}",
+        "keys": [
+          "\\tkzTabTan,\\tkzTabTanFrom"
+        ],
+        "keyPos": 0
+      }
     },
-    "ecartcl": {},
-    "stripspaces{}": {
-      "snippet": "stripspaces{${1:arg}}"
+    {
+      "name": "tkzTabSlope",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:num1/leftexpr1/rightexpr1,num2/leftexpr2/rightexpr3,...}}"
+      }
     },
-    "tkzDrawArrow": {},
-    "tkzTabDefaultArrowStyle": {},
-    "tkzTabDefaultBackgroundColor": {},
-    "tkzTabDefaultLineWidth": {},
-    "tkzTabDefaultSep": {},
-    "tkzTabDefaultWritingColor": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tkzTabSetup"
+    },
+    {
+      "name": "tkzTabSetup",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\tkzTabSetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzTabColors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\tkzTabColors"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "stripspaces",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "tkzDrawArrow",
+      "unusual": true
+    },
+    {
+      "name": "tkzTabDefaultArrowStyle",
+      "unusual": true
+    },
+    {
+      "name": "tkzTabDefaultBackgroundColor",
+      "unusual": true
+    },
+    {
+      "name": "tkzTabDefaultLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "tkzTabDefaultSep",
+      "unusual": true
+    },
+    {
+      "name": "tkzTabDefaultWritingColor",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\tkzTabInit,\\tkzTab": [
       "color",
       "colorC=",
       "colorL=",
@@ -120,25 +257,25 @@
       "nocadre",
       "textw="
     ],
-    [
+    "\\tkzTabLine": [
       "help"
     ],
-    [
+    "\\tkzTabVar": [
       "color=",
       "help"
     ],
-    [
+    "\\tkzTabVal,\\tkzTabIma,\\tkzTabImaFrom": [
       "draw",
       "remember=${1:name}"
     ],
-    [
+    "\\tkzTabTan,\\tkzTabTanFrom": [
       "color=",
       "draw",
       "pos",
       "pos=${1:position}",
       "remember=${1:name}"
     ],
-    [
+    "\\tkzTabSetup": [
       "arrowcolor=",
       "arrowlinewidth=",
       "arrowstyle={${1:TikZ keys}}",
@@ -164,9 +301,10 @@
       "tstyle={${1:TikZ keys}}",
       "twidth="
     ],
-    [
+    "\\tkzTabColors": [
       "color=",
       "backgroundcolor="
     ]
-  ]
+  },
+  "args": []
 }

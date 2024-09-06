@@ -1,83 +1,214 @@
 {
-  "includes": {
-    "ifthen": [],
-    "fancyhdr": [],
-    "etoolbox": [],
-    "xspace": [],
-    "titlesec": [],
-    "footmisc": [],
-    "tcolorbox": [],
-    "tcolorboxlibrarybreakable": [],
-    "tcolorboxlibraryskins": []
-  },
-  "macros": {
-    "scripttitles": {},
-    "themusicalpage": {},
-    "theactcounter": {},
-    "thescenecounter": {},
-    "act": {},
-    "scene{}": {
-      "snippet": "scene{${1:setting}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "scene[]{}": {
-      "snippet": "scene[${2:title}]{${1:setting}}"
+    {
+      "name": "fancyhdr"
     },
-    "sectionname": {},
-    "setdescription": {},
-    "rehearsalmark{}": {
-      "snippet": "rehearsalmark{${1:mark}}"
+    {
+      "name": "etoolbox"
     },
-    "transition": {},
-    "transition[]": {
-      "snippet": "transition[${1:name}]"
+    {
+      "name": "xspace"
     },
-    "speechmargin": {},
-    "dialogfootnote{}": {
-      "snippet": "dialogfootnote{${1:text}}"
+    {
+      "name": "titlesec"
     },
-    "dialog{}{}": {
-      "snippet": "dialog{${1:character}}{${2:text}}"
+    {
+      "name": "footmisc"
     },
-    "charactername": {},
-    "lyrics{}{}": {
-      "snippet": "lyrics{${1:character}}{${2:lyrics}}"
+    {
+      "name": "tcolorbox"
     },
-    "spacer{}": {
-      "snippet": "spacer{${1:text}}"
+    {
+      "name": "tcolorboxlibrarybreakable"
     },
-    "stdir{}": {
-      "snippet": "stdir{${1:direction}}"
-    },
-    "music{}": {
-      "snippet": "music{${1:title}}"
-    },
-    "dance{}": {
-      "snippet": "dance{${1:title}}"
-    },
-    "pause": {},
-    "dialogue{}{}": {
-      "snippet": "dialogue{${1:character}}{${2:text}}"
-    },
-    "listofsongs": {},
-    "listofdances": {},
-    "addcharacter{}{}": {
-      "snippet": "addcharacter{${1:name}}{${2:description}}"
-    },
-    "addcharacter[]{}{}": {
-      "snippet": "addcharacter[${3:nickname}]{${1:name}}{${2:description}}"
-    },
-    "character{}": {
-      "snippet": "character{${1:name}}"
-    },
-    "comment{}": {
-      "snippet": "comment{${1:comment}}"
+    {
+      "name": "tcolorboxlibraryskins"
     }
+  ],
+  "macros": [
+    {
+      "name": "scripttitles",
+      "unusual": true
+    },
+    {
+      "name": "themusicalpage",
+      "unusual": true
+    },
+    {
+      "name": "theactcounter",
+      "unusual": true
+    },
+    {
+      "name": "thescenecounter",
+      "unusual": true
+    },
+    {
+      "name": "act"
+    },
+    {
+      "name": "scene",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:setting%text}}"
+      }
+    },
+    {
+      "name": "scene",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:title}]{${1:setting%text}}"
+      }
+    },
+    {
+      "name": "sectionname",
+      "unusual": true
+    },
+    {
+      "name": "setdescription",
+      "unusual": true
+    },
+    {
+      "name": "rehearsalmark",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:mark}}"
+      }
+    },
+    {
+      "name": "transition"
+    },
+    {
+      "name": "transition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:name}]"
+      }
+    },
+    {
+      "name": "speechmargin",
+      "unusual": true
+    },
+    {
+      "name": "dialogfootnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "dialog",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:character}}{${2:text}}"
+      }
+    },
+    {
+      "name": "charactername",
+      "unusual": true
+    },
+    {
+      "name": "lyrics",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:character}}{${2:lyrics%text}}"
+      }
+    },
+    {
+      "name": "spacer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "stdir",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:direction%text}}"
+      }
+    },
+    {
+      "name": "music",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "dance",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "pause"
+    },
+    {
+      "name": "dialogue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:character}}{${2:text}}"
+      }
+    },
+    {
+      "name": "listofsongs"
+    },
+    {
+      "name": "listofdances"
+    },
+    {
+      "name": "addcharacter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "addcharacter",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:nickname}]{${1:name}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "character",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "comment",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:comment%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "script"
+    },
+    {
+      "name": "spokentext",
+      "unusual": true
+    },
+    {
+      "name": "lyrictext",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\pagestyle#c,\\thispagestyle#c": [
+      "scriptheader"
+    ]
   },
-  "envs": {
-    "script": {},
-    "spokentext": {},
-    "lyrictext": {}
-  },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

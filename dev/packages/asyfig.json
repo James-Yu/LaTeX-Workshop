@@ -1,31 +1,69 @@
 {
-  "includes": {
-    "asyalign": [],
-    "color": [],
-    "ifmtarg": [],
-    "ifpdf": [],
-    "ifplatform": [],
-    "import": [],
-    "graphicx": [],
-    "pdftexcmds": [],
-    "suffix": [],
-    "xkeyval": [],
-    "asyprocess": []
-  },
-  "macros": {
-    "asyfig{}": {
-      "snippet": "asyfig{${1:file}}"
+  "deps": [
+    {
+      "name": "asyalign"
     },
-    "asyfig*{}": {
-      "snippet": "asyfig*{${1:file}}"
+    {
+      "name": "color"
     },
-    "asypath{}": {
-      "snippet": "asypath{${1:path}}"
+    {
+      "name": "ifmtarg"
+    },
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "ifplatform"
+    },
+    {
+      "name": "import"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "pdftexcmds"
+    },
+    {
+      "name": "suffix"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "asyprocess"
     }
-  },
-  "envs": {},
-  "options": [
-    "process=${1|all,none,auto|}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "asyfig",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "asyfig*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "asypath",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path%URL}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/asyfig#c": [
+      "process=${1|all,none,auto|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/asyfig#c"
+  ]
 }

@@ -1,25 +1,83 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "class-ctexart": [],
-    "xeCJK": [],
-    "geometry": [],
-    "fancyhdr": [],
-    "setspace": [],
-    "caption": [],
-    "booktabs": [],
-    "pdfpages": []
-  },
-  "macros": {
-    "BITSetup{}": {
-      "snippet": "BITSetup{${1:键值对}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "MakeCover": {},
-    "MakeReviewTable": {}
-  },
-  "envs": {},
-  "options": [
-    "type=undergraduate_proposal"
+    {
+      "name": "class-ctexart"
+    },
+    {
+      "name": "xeCJK"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "setspace"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "pdfpages"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "BITSetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:键值对%keyvals}}",
+        "keys": [
+          "\\BITSetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MakeCover"
+    },
+    {
+      "name": "MakeReviewTable"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/bitreport#c": [
+      "type=undergraduate_proposal"
+    ],
+    "\\BITSetup#c": [
+      "cover={${1:键值列表}}",
+      "cover/date=${1:任意字符串}",
+      "cover/dilimiter=${1:任意字符串}",
+      "cover/autoWidth",
+      "cover/autoWidthPadding=",
+      "cover/labelMaxWidth=",
+      "cover/valueMaxWidth=",
+      "cover/labelAlign=${1|c,l,r|}",
+      "cover/valueAlign=${1|c,l,r|}",
+      "cover/underlineThickness=",
+      "cover/underlineOffset=",
+      "info={${1:键值列表}}",
+      "info/title=${1:字符串}",
+      "info/school=${1:字符串}",
+      "info/major=${1:字符串}",
+      "info/class=${1:字符串}",
+      "info/author=${1:字符串}",
+      "info/studentId=${1:字符串}",
+      "info/supervisor=${1:字符串}",
+      "info/externalSupervisor=${1:字符串}",
+      "misc={${1:键值列表}}",
+      "misc/reviewTable=${1:.pdf file}"
+    ]
+  },
+  "args": [
+    "\\documentclass/bitreport#c"
+  ]
 }

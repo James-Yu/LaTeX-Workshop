@@ -1,259 +1,576 @@
 {
-  "includes": {},
-  "macros": {
-    "newpagestyle{}{}": {
-      "snippet": "newpagestyle{${1:name}}{${2:commands}}"
-    },
-    "newpagestyle{}[]{}": {
-      "snippet": "newpagestyle{${1:name}}[${2:global-style}]{${3:commands}}"
-    },
-    "renewpagestyle{}{}": {
-      "snippet": "renewpagestyle{${1:name}}{${2:commands}}"
-    },
-    "renewpagestyle{}[]{}": {
-      "snippet": "renewpagestyle{${1:name}}[${2:global-style}]{${3:commands}}"
-    },
-    "sethead{}{}{}": {
-      "snippet": "sethead{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}"
-    },
-    "sethead[][][]{}{}{}": {
-      "snippet": "sethead[${4:even-left}][${5:even-center}][${6:even-right}]{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}"
-    },
-    "sethead*{}{}{}": {
-      "snippet": "sethead*{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}"
-    },
-    "setfoot{}{}{}": {
-      "snippet": "setfoot{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}"
-    },
-    "setfoot[][][]{}{}{}": {
-      "snippet": "setfoot[${4:even-left}][${5:even-center}][${6:even-right}]{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}"
-    },
-    "setfoot*{}{}{}": {
-      "snippet": "setfoot*{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}"
-    },
-    "parttitle": {},
-    "chaptertitle": {},
-    "sectiontitle": {},
-    "subsectiontitle": {},
-    "subsubsectiontitle": {},
-    "paragraphtitle": {},
-    "subparagraphtitle": {},
-    "ifthepart{}{}": {
-      "snippet": "ifthepart{${1:true}}{${2:false}}"
-    },
-    "ifthechapter{}{}": {
-      "snippet": "ifthechapter{${1:true}}{${2:false}}"
-    },
-    "ifthesection{}{}": {
-      "snippet": "ifthesection{${1:true}}{${2:false}}"
-    },
-    "ifthesubsection{}{}": {
-      "snippet": "ifthesubsection{${1:true}}{${2:false}}"
-    },
-    "ifthesubsubsection{}{}": {
-      "snippet": "ifthesubsubsection{${1:true}}{${2:false}}"
-    },
-    "iftheparagraph{}{}": {
-      "snippet": "iftheparagraph{${1:true}}{${2:false}}"
-    },
-    "ifthesubparagraph{}{}": {
-      "snippet": "ifthesubparagraph{${1:true}}{${2:false}}"
-    },
-    "settitlemarks{}": {
-      "snippet": "settitlemarks{${1:level-name,${2:sublevel-name},...}}"
-    },
-    "settitlemarks*{}": {
-      "snippet": "settitlemarks*{${1:level-name,${2:sublevel-name},...}}",
-      "option": "extramarks"
-    },
-    "headrule": {},
-    "footrule": {},
-    "setheadrule{}": {
-      "snippet": "setheadrule{${1:length}}"
-    },
-    "setfootrule{}": {
-      "snippet": "setfootrule{${1:length}}"
-    },
-    "makeheadrule": {},
-    "makefootrule": {},
-    "setmarkboth{}": {
-      "snippet": "setmarkboth{${1:code}}"
-    },
-    "resetmarkboth": {},
-    "widenhead{}{}": {
-      "snippet": "widenhead{${1:odd-left}}{${2:odd-right}}"
-    },
-    "widenhead[][]{}{}": {
-      "snippet": "widenhead[${3:even-left}][${4:even-right}]{${1:odd-left}}{${2:odd-right}}"
-    },
-    "widenhead*{}{}": {
-      "snippet": "widenhead*{${1:even-right/odd-left}}{${2:even-left/odd-right}}"
-    },
-    "setheadindent": {},
-    "TitlepsPatchSection{}": {
-      "snippet": "TitlepsPatchSection{${1:level}}"
-    },
-    "TitlepsPatchSection*{}": {
-      "snippet": "TitlepsPatchSection*{${1:level}}"
-    },
-    "bottitlemarks": {},
-    "toptitlemarks": {},
-    "firsttitlemarks": {},
-    "nexttoptitlemarks": {},
-    "outertitlemarks": {},
-    "innertitlemarks": {},
-    "newtitlemark{}": {
-      "snippet": "newtitlemark{${1:command}}"
-    },
-    "newtitlemark*{}": {
-      "snippet": "newtitlemark*{${1:variable}}"
-    },
-    "pretitlemark{}{}": {
-      "snippet": "pretitlemark{${1:level}}{${2:text}}"
-    },
-    "pretitlemark*{}{}": {
-      "snippet": "pretitlemark*{${1:level}}{${2:text}}"
-    },
-    "ifsamemark{}{}{}{}": {
-      "snippet": "ifsamemark{${1:group}}{${2:command}}{${3:true}}{${4:false}}"
-    },
-    "setfloathead{}{}{}{}": {
-      "snippet": "setfloathead{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}",
-      "option": "psfloats"
-    },
-    "setfloathead[][][]{}{}{}{}[]": {
-      "snippet": "setfloathead[${5:even-left}][${6:even-center}][${7:even-right}]{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}[${8:floats}]",
-      "option": "psfloats"
-    },
-    "setfloathead*{}{}{}{}": {
-      "snippet": "setfloathead*{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}",
-      "option": "psfloats"
-    },
-    "setfloatfoot{}{}{}{}": {
-      "snippet": "setfloatfoot{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}",
-      "option": "psfloats"
-    },
-    "setfloatfoot[][][]{}{}{}{}[]": {
-      "snippet": "setfloatfoot[${5:even-left}][${6:even-center}][${7:even-right}]{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}[${8:floats}]",
-      "option": "psfloats"
-    },
-    "setfloatfoot*{}{}{}{}": {
-      "snippet": "setfloatfoot*{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}",
-      "option": "psfloats"
-    },
-    "nextfloathead{}{}{}{}": {
-      "snippet": "nextfloathead{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}",
-      "option": "psfloats"
-    },
-    "nextfloathead[][][]{}{}{}{}[]": {
-      "snippet": "nextfloathead[${5:even-left}][${6:even-center}][${7:even-right}]{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}[${8:floats}]",
-      "option": "psfloats"
-    },
-    "nextfloathead*{}{}{}{}": {
-      "snippet": "nextfloathead*{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}",
-      "option": "psfloats"
-    },
-    "nextfloatfoot{}{}{}{}": {
-      "snippet": "nextfloatfoot{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}",
-      "option": "psfloats"
-    },
-    "nextfloatfoot[][][]{}{}{}{}[]": {
-      "snippet": "nextfloatfoot[${5:even-left}][${6:even-center}][${7:even-right}]{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}[${8:floats}]",
-      "option": "psfloats"
-    },
-    "nextfloatfoot*{}{}{}{}": {
-      "snippet": "nextfloatfoot*{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}",
-      "option": "psfloats"
-    },
-    "newshortmark{}": {
-      "snippet": "newshortmark{${1:command}}",
-      "option": "extramarks"
-    },
-    "botshortmark{}": {
-      "snippet": "botshortmark{${1:command}}",
-      "option": "extramarks"
-    },
-    "firstshortmark{}": {
-      "snippet": "firstshortmark{${1:command}}",
-      "option": "extramarks"
-    },
-    "nexttopshortmark{}": {
-      "snippet": "nexttopshortmark{${1:command}}",
-      "option": "extramarks"
-    },
-    "preshortmark{}": {
-      "snippet": "preshortmark{${1:command}}",
-      "option": "extramarks"
-    },
-    "shortmark{}": {
-      "snippet": "shortmark{${1:command}}",
-      "option": "extramarks"
-    },
-    "topshortmark{}": {
-      "snippet": "topshortmark{${1:command}}",
-      "option": "extramarks"
-    },
-    "newmarkset{}": {
-      "snippet": "newmarkset{${1:markset}}",
-      "option": "extramarks"
-    },
-    "newextramark{}{}": {
-      "snippet": "newextramark{${1:markset}}{${2:command}}",
-      "option": "extramarks"
-    },
-    "newextramark*{}{}": {
-      "snippet": "newextramark*{${1:markset}}{${2:command}}",
-      "option": "extramarks"
-    },
-    "botextramarks{}": {
-      "snippet": "botextramarks{${1:markset}}",
-      "option": "extramarks"
-    },
-    "topextramarks{}": {
-      "snippet": "topextramarks{${1:markset}}",
-      "option": "extramarks"
-    },
-    "firstextramarks{}": {
-      "snippet": "firstextramarks{${1:markset}}",
-      "option": "extramarks"
-    },
-    "nexttopextramarks{}": {
-      "snippet": "nexttopextramarks{${1:markset}}",
-      "option": "extramarks"
-    },
-    "outerextramarks{}": {
-      "snippet": "outerextramarks{${1:markset}}",
-      "option": "extramarks"
-    },
-    "innerextramarks{}": {
-      "snippet": "innerextramarks{${1:markset}}",
-      "option": "extramarks"
-    },
-    "extramark{}": {
-      "snippet": "extramark{${1:counter}}",
-      "option": "extramarks"
-    },
-    "preextramark": {
-      "option": "extramarks"
-    },
-    "preshortmark": {
-      "option": "extramarks"
-    },
-    "iftitle{}": {
-      "snippet": "iftitle{${1:arg}}"
-    },
-    "usepage": {},
-    "setmarks": {}
-  },
-  "envs": {},
-  "options": [
-    "psfloats",
-    "outermarks",
-    "topmarks",
-    "botmarks",
-    "innermarks",
-    "extramarks",
-    "nopatches"
+  "deps": [],
+  "macros": [
+    {
+      "name": "newpagestyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:commands}}"
+      }
+    },
+    {
+      "name": "newpagestyle",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name%specialDef}}[${3:global-style}]{${2:commands}}"
+      }
+    },
+    {
+      "name": "renewpagestyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:commands}}"
+      }
+    },
+    {
+      "name": "renewpagestyle",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:global-style}]{${2:commands}}"
+      }
+    },
+    {
+      "name": "sethead",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}"
+      }
+    },
+    {
+      "name": "sethead",
+      "arg": {
+        "format": "[][][]{}{}{}",
+        "snippet": "[${4:even-left}][${5:even-center}][${6:even-right}]{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}"
+      }
+    },
+    {
+      "name": "sethead*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}"
+      }
+    },
+    {
+      "name": "setfoot",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}"
+      }
+    },
+    {
+      "name": "setfoot",
+      "arg": {
+        "format": "[][][]{}{}{}",
+        "snippet": "[${4:even-left}][${5:even-center}][${6:even-right}]{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}"
+      }
+    },
+    {
+      "name": "setfoot*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}"
+      }
+    },
+    {
+      "name": "parttitle",
+      "unusual": true
+    },
+    {
+      "name": "chaptertitle",
+      "unusual": true
+    },
+    {
+      "name": "sectiontitle",
+      "unusual": true
+    },
+    {
+      "name": "subsectiontitle",
+      "unusual": true
+    },
+    {
+      "name": "subsubsectiontitle",
+      "unusual": true
+    },
+    {
+      "name": "paragraphtitle",
+      "unusual": true
+    },
+    {
+      "name": "subparagraphtitle",
+      "unusual": true
+    },
+    {
+      "name": "ifthepart",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "ifthechapter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "ifthesection",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "ifthesubsection",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "ifthesubsubsection",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "iftheparagraph",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "ifthesubparagraph",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "settitlemarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:level-name,sublevel-name,...}}"
+      }
+    },
+    {
+      "name": "settitlemarks*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:level-name,sublevel-name,...}}"
+      }
+    },
+    {
+      "name": "headrule"
+    },
+    {
+      "name": "footrule"
+    },
+    {
+      "name": "setheadrule",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "setfootrule",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "makeheadrule",
+      "unusual": true
+    },
+    {
+      "name": "makefootrule",
+      "unusual": true
+    },
+    {
+      "name": "setmarkboth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "resetmarkboth"
+    },
+    {
+      "name": "widenhead",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:odd-left}}{${2:odd-right}}"
+      }
+    },
+    {
+      "name": "widenhead",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:even-left}][${4:even-right}]{${1:odd-left}}{${2:odd-right}}"
+      }
+    },
+    {
+      "name": "widenhead*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:even-right/odd-left}}{${2:even-left/odd-right}}"
+      }
+    },
+    {
+      "name": "TitlepsPatchSection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:level}}"
+      }
+    },
+    {
+      "name": "TitlepsPatchSection*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:level}}"
+      }
+    },
+    {
+      "name": "bottitlemarks"
+    },
+    {
+      "name": "toptitlemarks"
+    },
+    {
+      "name": "firsttitlemarks"
+    },
+    {
+      "name": "nexttoptitlemarks"
+    },
+    {
+      "name": "outertitlemarks"
+    },
+    {
+      "name": "innertitlemarks"
+    },
+    {
+      "name": "newtitlemark",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "newtitlemark*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:variable}}"
+      }
+    },
+    {
+      "name": "pretitlemark",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:level}}{${2:text}}"
+      }
+    },
+    {
+      "name": "pretitlemark*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:level}}{${2:text}}"
+      }
+    },
+    {
+      "name": "ifsamemark",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:group}}{${2:command}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "setfloathead",
+      "if": "psfloats",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}"
+      }
+    },
+    {
+      "name": "setfloathead",
+      "if": "psfloats",
+      "arg": {
+        "format": "[][][]{}{}{}{}[]",
+        "snippet": "[${5:even-left}][${6:even-center}][${7:even-right}]{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}[${8:floats}]"
+      }
+    },
+    {
+      "name": "setfloathead*",
+      "if": "psfloats",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}"
+      }
+    },
+    {
+      "name": "setfloatfoot",
+      "if": "psfloats",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}"
+      }
+    },
+    {
+      "name": "setfloatfoot",
+      "if": "psfloats",
+      "arg": {
+        "format": "[][][]{}{}{}{}[]",
+        "snippet": "[${5:even-left}][${6:even-center}][${7:even-right}]{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}[${8:floats}]"
+      }
+    },
+    {
+      "name": "setfloatfoot*",
+      "if": "psfloats",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}"
+      }
+    },
+    {
+      "name": "nextfloathead",
+      "if": "psfloats",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}"
+      }
+    },
+    {
+      "name": "nextfloathead",
+      "if": "psfloats",
+      "arg": {
+        "format": "[][][]{}{}{}{}[]",
+        "snippet": "[${5:even-left}][${6:even-center}][${7:even-right}]{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}[${8:floats}]"
+      }
+    },
+    {
+      "name": "nextfloathead*",
+      "if": "psfloats",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}"
+      }
+    },
+    {
+      "name": "nextfloatfoot",
+      "if": "psfloats",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}"
+      }
+    },
+    {
+      "name": "nextfloatfoot",
+      "if": "psfloats",
+      "arg": {
+        "format": "[][][]{}{}{}{}[]",
+        "snippet": "[${5:even-left}][${6:even-center}][${7:even-right}]{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}[${8:floats}]"
+      }
+    },
+    {
+      "name": "nextfloatfoot*",
+      "if": "psfloats",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:odd-left}}{${2:odd-center}}{${3:odd-right}}{${4:extra}}"
+      }
+    },
+    {
+      "name": "newshortmark",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "botshortmark",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "firstshortmark",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "nexttopshortmark",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "preshortmark",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "shortmark",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "topshortmark",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "newmarkset",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:markset}}"
+      }
+    },
+    {
+      "name": "newextramark",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:markset}}{${2:command}}"
+      }
+    },
+    {
+      "name": "newextramark*",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:markset}}{${2:command}}"
+      }
+    },
+    {
+      "name": "botextramarks",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:markset}}"
+      }
+    },
+    {
+      "name": "topextramarks",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:markset}}"
+      }
+    },
+    {
+      "name": "firstextramarks",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:markset}}"
+      }
+    },
+    {
+      "name": "nexttopextramarks",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:markset}}"
+      }
+    },
+    {
+      "name": "outerextramarks",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:markset}}"
+      }
+    },
+    {
+      "name": "innerextramarks",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:markset}}"
+      }
+    },
+    {
+      "name": "extramark",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "preextramark",
+      "if": "extramarks"
+    },
+    {
+      "name": "preshortmark",
+      "if": "extramarks"
+    },
+    {
+      "name": "settitlemarks*",
+      "if": "extramarks",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:level-name,sublevel-name,...}}"
+      }
+    },
+    {
+      "name": "iftitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/titleps#c": [
+      "psfloats",
+      "outermarks",
+      "topmarks",
+      "botmarks",
+      "innermarks",
+      "extramarks",
+      "nopatches"
+    ],
+    "\\pagestyle#c": [
+      "%titlepspagestyle"
+    ]
+  },
+  "args": [
+    "\\usepackage/titleps#c"
+  ]
 }

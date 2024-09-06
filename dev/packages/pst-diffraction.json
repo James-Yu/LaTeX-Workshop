@@ -1,34 +1,62 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-3dplot": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psdiffractionRectangle": {},
-    "psdiffractionRectangle[]": {
-      "snippet": "psdiffractionRectangle[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psdiffractionCircular": {},
-    "psdiffractionCircular[]": {
-      "snippet": "psdiffractionCircular[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pst-3dplot"
     },
-    "psdiffractionTriangle": {},
-    "psdiffractionTriangle[]": {
-      "snippet": "psdiffractionTriangle[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psdiffractionRectangle"
     },
-    "PSTDiffractionLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "psdiffractionRectangle",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\psdiffractionRectangle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psdiffractionCircular"
+    },
+    {
+      "name": "psdiffractionCircular",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\psdiffractionCircular"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psdiffractionTriangle"
+    },
+    {
+      "name": "psdiffractionTriangle",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\psdiffractionTriangle"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psdiffractionRectangle": [
       "a=${1:area}",
       "Alpha=${1:number}",
       "colorMode=${1|0,1,2,3|}",
@@ -41,7 +69,7 @@
       "s=${1:distance}",
       "twoSlit"
     ],
-    [
+    "\\psdiffractionCircular": [
       "colorMode=${1|0,1,2,3|}",
       "contrast=${1:number}",
       "d=${1:distance}",
@@ -52,7 +80,7 @@
       "r=${1:radius}",
       "twoHole"
     ],
-    [
+    "\\psdiffractionTriangle": [
       "colorMode=${1|0,1,2,3|}",
       "contrast=${1:number}",
       "f=${1:focal length}",
@@ -61,5 +89,6 @@
       "IIID",
       "lambda=${1:wavelength in nm}"
     ]
-  ]
+  },
+  "args": []
 }

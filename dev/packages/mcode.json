@@ -1,29 +1,52 @@
 {
-  "includes": {
-    "listings": [],
-    "xcolor": []
-  },
-  "macros": {
-    "mcode{}": {
-      "snippet": "mcode{${1:Matlab code}}"
+  "deps": [
+    {
+      "name": "listings"
     },
-    "mcodefn{}": {
-      "snippet": "mcodefn{${1:Matlab code}}"
-    },
-    "lstbasicfont": {},
-    "mcommentfont": {},
-    "lbreakdots": {},
-    "fileversion": {},
-    "filedate": {}
-  },
-  "envs": {},
-  "options": [
-    "bw",
-    "numbered",
-    "final",
-    "autolinebreaks",
-    "useliterate",
-    "framed"
+    {
+      "name": "xcolor"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "mcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Matlab code%definition}}"
+      }
+    },
+    {
+      "name": "mcodefn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Matlab code%definition}}"
+      }
+    },
+    {
+      "name": "lstbasicfont",
+      "unusual": true
+    },
+    {
+      "name": "mcommentfont",
+      "unusual": true
+    },
+    {
+      "name": "lbreakdots",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/mcode#c": [
+      "bw",
+      "numbered",
+      "final",
+      "autolinebreaks",
+      "useliterate",
+      "framed"
+    ]
+  },
+  "args": [
+    "\\usepackage/mcode#c"
+  ]
 }

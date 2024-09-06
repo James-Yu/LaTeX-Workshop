@@ -1,32 +1,40 @@
 {
-  "includes": {},
-  "macros": {
-    "pgfplotsboxplotvalue{}": {
-      "snippet": "pgfplotsboxplotvalue{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [],
+  "macros": [
+    {
+      "name": "pgfplotsboxplotvalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pgfplotsboxplotvalue#c,\\boxplotvalue#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "boxplotvalue{}": {
-      "snippet": "boxplotvalue{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pgfplotsplothandlerboxplot": {},
-    "pgfplotsplothandlerboxplotprepared": {},
-    "pgfplotsboxplotpointabbox{}{}": {
-      "snippet": "pgfplotsboxplotpointabbox{${1:arg1}}{${2:arg2}}"
-    },
-    "pgfplotsboxplotpointabwhisker{}{}": {
-      "snippet": "pgfplotsboxplotpointabwhisker{${1:arg1}}{${2:arg2}}"
-    },
-    "pgfplotsboxplotpointab{}{}": {
-      "snippet": "pgfplotsboxplotpointab{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "boxplotvalue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pgfplotsboxplotvalue#c,\\boxplotvalue#c"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "envs": [],
+  "keys": {
+    "\\begin{axis}#c,\\begin{loglogaxis}#c,\\begin{semilogxaxis}#c,\\begin{semilogyaxis}#c,\\addplot#c,\\addplot3#c,\\addplot+#c,\\pgfplotsset#c,\\begin{groupplot}#c,\\nextgroupplot#c": [
+      "boxplot prepared={${1:options}}",
+      "boxplot",
+      "boxplot={${1:options}}",
+      "hist",
+      "hist={${1:options}}"
+    ],
+    "\\pgfplotsboxplotvalue#c,\\boxplotvalue#c": [
       "draw position=${1:axis unit}",
       "data=${1:expression}",
       "data value=${1:value}",
@@ -55,5 +63,6 @@
       "every median/.style={${1:TikZ keys}}",
       "every average/.style={${1:TikZ keys}}"
     ]
-  ]
+  },
+  "args": []
 }

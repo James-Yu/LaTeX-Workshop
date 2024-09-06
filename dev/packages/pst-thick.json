@@ -1,20 +1,48 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-plot": [],
-    "pst-node": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psthick{}{}{}": {
-      "snippet": "psthick{${1:t1}}{${2:t2}}{${3:function}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "fonctionSinus{}{}": {
-      "snippet": "fonctionSinus{${1:period}}{${2:amplitude}}"
+    {
+      "name": "pst-plot"
     },
-    "CalculsCurves": {}
+    {
+      "name": "pst-node"
+    },
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psthick",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:t1}}{${2:t2}}{${3:function%definition}}"
+      }
+    },
+    {
+      "name": "fonctionSinus",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:period}}{${2:amplitude}}"
+      }
+    },
+    {
+      "name": "CalculsCurves",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psthick#c": [
+      "E=${1:number}",
+      "K=${1:number}",
+      "stylethick=${1|vide,thickline,onlythecurvered,onlythecurveblue,thicklineblue,rainbow,solide,serpent|}",
+      "curveonly",
+      "stylecurve1=${1|vide,thickline,onlythecurvered,onlythecurveblue,thicklineblue,rainbow,solide,serpent|}",
+      "stylecurve2=${1|vide,thickline,onlythecurvered,onlythecurveblue,thicklineblue,rainbow,solide,serpent|}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

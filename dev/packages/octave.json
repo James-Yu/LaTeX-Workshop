@@ -1,21 +1,42 @@
 {
-  "includes": {},
-  "macros": {
-    "octaveprimes": {},
-    "octavenumbers": {},
-    "pitch{}{}": {
-      "snippet": "pitch{${1:letter}}{${2:number}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "octaveprimes"
     },
-    "pitch{}[]{}": {
-      "snippet": "pitch{${1:letter}}[${2:accidental}]{${3:number}}"
+    {
+      "name": "octavenumbers"
     },
-    "pitchfont": {},
-    "octavetable": {}
-  },
-  "envs": {},
-  "options": [
-    "prime",
-    "number"
+    {
+      "name": "pitch",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:letter}}{${2:number}}"
+      }
+    },
+    {
+      "name": "pitch",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:letter}}[${3:accidental}]{${2:number}}"
+      }
+    },
+    {
+      "name": "pitchfont",
+      "unusual": true
+    },
+    {
+      "name": "octavetable"
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/octave#c": [
+      "prime",
+      "number"
+    ]
+  },
+  "args": [
+    "\\usepackage/octave#c"
+  ]
 }

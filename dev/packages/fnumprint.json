@@ -1,40 +1,84 @@
 {
-  "includes": {
-    "xifthen": [],
-    "numprint": [],
-    "zahl2string": [
+  "deps": [
+    {
+      "name": "xifthen"
+    },
+    {
+      "name": "numprint"
+    },
+    {
+      "name": "zahl2string",
+      "if": "german"
+    },
+    {
+      "name": "zahl2string",
+      "if": "ngerman"
+    }
+  ],
+  "macros": [
+    {
+      "name": "fnumprintc",
+      "if": "german",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:eins}]{${1:counter}}"
+      }
+    },
+    {
+      "name": "fnumprint",
+      "if": "german",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:eins}]{${1:number}}"
+      }
+    },
+    {
+      "name": "fnumprintc",
+      "if": "ngerman",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:eins}]{${1:counter}}"
+      }
+    },
+    {
+      "name": "fnumprint",
+      "if": "ngerman",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:eins}]{${1:number}}"
+      }
+    },
+    {
+      "name": "fnumprintc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "fnumprint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/fnumprint#c": [
       "german",
-      "ngerman"
+      "ngerman",
+      "english",
+      "USenglish",
+      "american",
+      "UKenglish",
+      "british",
+      "canadian",
+      "australian",
+      "newzealand"
     ]
   },
-  "macros": {
-    "fnumprintc[]{}": {
-      "snippet": "fnumprintc[${2:eins}]{${1:counter}}",
-      "option": "ngerman"
-    },
-    "fnumprint[]{}": {
-      "snippet": "fnumprint[${2:eins}]{${1:number}}",
-      "option": "ngerman"
-    },
-    "fnumprintc{}": {
-      "snippet": "fnumprintc{${1:counter}}"
-    },
-    "fnumprint{}": {
-      "snippet": "fnumprint{${1:number}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "german",
-    "ngerman",
-    "english",
-    "USenglish",
-    "american",
-    "UKenglish",
-    "british",
-    "canadian",
-    "australian",
-    "newzealand"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/fnumprint#c"
+  ]
 }

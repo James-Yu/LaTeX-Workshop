@@ -1,27 +1,53 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "xcolor": [],
-    "pagecolor": []
-  },
-  "macros": {
-    "enabledarkmode": {},
-    "disabledarkmode": {},
-    "IfDarkModeT{}": {
-      "snippet": "IfDarkModeT{${1:true code}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "IfDarkModeF{}": {
-      "snippet": "IfDarkModeF{${1:false code}}"
+    {
+      "name": "xcolor"
     },
-    "IfDarkModeTF{}{}": {
-      "snippet": "IfDarkModeTF{${1:true code}}{${2:false code}}"
+    {
+      "name": "pagecolor"
     }
-  },
-  "envs": {},
-  "options": [
-    "enable",
-    "defaulthook",
-    "nodefaulthook"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "enabledarkmode"
+    },
+    {
+      "name": "disabledarkmode"
+    },
+    {
+      "name": "IfDarkModeT",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:true code}}"
+      }
+    },
+    {
+      "name": "IfDarkModeF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:false code}}"
+      }
+    },
+    {
+      "name": "IfDarkModeTF",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true code}}{${2:false code}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/darkmode#c": [
+      "enable",
+      "defaulthook",
+      "nodefaulthook"
+    ]
+  },
+  "args": [
+    "\\usepackage/darkmode#c"
+  ]
 }

@@ -1,15 +1,25 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "mathbbb{}": {
-      "snippet": "mathbbb{${1:text}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "mathbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tx-of#c": [
+      "scaled=${1:factor}"
+    ]
+  },
+  "args": [
+    "\\usepackage/tx-of#c"
+  ]
 }

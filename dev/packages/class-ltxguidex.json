@@ -1,122 +1,276 @@
 {
-  "includes": {
-    "class-ltxguide": [],
-    "hyperref": [],
-    "xkeyval": [],
-    "xcolor": [],
-    "framed": [],
-    "showexpl": [],
-    "enumitem": []
-  },
-  "macros": {
-    "pipe": {},
-    "bs": {},
-    "meta{}": {
-      "snippet": "meta{${1:arg}}"
+  "deps": [
+    {
+      "name": "class-ltxguide"
     },
-    "ctanlogo": {},
-    "command{}": {
-      "snippet": "command{${1:csname}}"
+    {
+      "name": "hyperref"
     },
-    "cs{}": {
-      "snippet": "cs{${1:csname}}"
+    {
+      "name": "xkeyval"
     },
-    "email{}": {
-      "snippet": "email{${1:address}}"
+    {
+      "name": "xcolor"
     },
-    "https{}": {
-      "snippet": "https{${1:URL}}"
+    {
+      "name": "framed"
     },
-    "http{}": {
-      "snippet": "http{${1:URL}}"
+    {
+      "name": "showexpl"
     },
-    "ctan{}": {
-      "snippet": "ctan{${1:package}}"
-    },
-    "package{}": {
-      "snippet": "package{${1:package}}"
-    },
-    "ltxclass{}": {
-      "snippet": "ltxclass{${1:class}}"
-    },
-    "option{}": {
-      "snippet": "option{${1:option}}"
-    },
-    "filename{}": {
-      "snippet": "filename{${1:file}}"
-    },
-    "extension{}": {
-      "snippet": "extension{${1:file extension}}"
-    },
-    "New{}": {
-      "snippet": "New{${1:text}}"
-    },
-    "newnotice{}{}": {
-      "snippet": "newnotice{${1:envname}}{${2:text}}"
-    },
-    "Q": {
-      "detail": "𝑄",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL Q"
-    },
-    "A": {
-      "detail": "𝐴",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL A"
-    },
-    "advisespace": {},
-    "alternative{}": {
-      "snippet": "alternative{${1:csv list}}"
-    },
-    "key{}[]": {
-      "snippet": "key{${1:key name}}[${2:key value}]"
-    },
-    "key{}[][]": {
-      "snippet": "key{${1:key name}}[${2:key value}][${3:default value}]"
-    },
-    "key[]{}[]": {
-      "snippet": "key[${2:options}]{${1:key name}}[${3:key value}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "key[]{}[][]": {
-      "snippet": "key[${2:options}]{${1:key name}}[${3:key value}][${4:default value}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "bool": {},
-    "noticestyle": {},
-    "newdescriptionenvironment{}{}": {
-      "snippet": "newdescriptionenvironment{${1:envname}}{${2:label cmd}}"
-    },
-    "labeladvise": {},
-    "advisestyle": {},
-    "docstrip": {},
-    "Th{}": {
-      "snippet": "Th{${1:text}}"
-    },
-    "Th[]{}": {
-      "snippet": "Th[${2:cols}]{${1:text}}"
+    {
+      "name": "enumitem"
     }
-  },
-  "envs": {
-    "desc": {},
-    "latexcode": {},
-    "warning": {},
-    "note": {},
-    "example": {},
-    "bug": {},
-    "packages": {},
-    "classes": {},
-    "options": {},
-    "advise": {},
-    "faq": {},
-    "keys": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "pipe"
+    },
+    {
+      "name": "bs"
+    },
+    {
+      "name": "meta",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ctanlogo"
+    },
+    {
+      "name": "command",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "cs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address}}"
+      }
+    },
+    {
+      "name": "https",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "http",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "ctan",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package}}"
+      }
+    },
+    {
+      "name": "package",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package}}"
+      }
+    },
+    {
+      "name": "ltxclass",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:class}}"
+      }
+    },
+    {
+      "name": "option",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "filename",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "extension",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file extension}}"
+      }
+    },
+    {
+      "name": "New",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "newnotice",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:text}}"
+      }
+    },
+    {
+      "name": "Q"
+    },
+    {
+      "name": "A"
+    },
+    {
+      "name": "advisespace"
+    },
+    {
+      "name": "alternative",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csv list}}"
+      }
+    },
+    {
+      "name": "key",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:key name}}[${2:key value}]"
+      }
+    },
+    {
+      "name": "key",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:key name}}[${2:key value}][${3:default value}]"
+      }
+    },
+    {
+      "name": "key",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:key name}}[${3:key value}]",
+        "keys": [
+          "\\key"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "key",
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:options%keyvals}]{${1:key name}}[${3:key value}][${4:default value}]",
+        "keys": [
+          "\\key"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bool"
+    },
+    {
+      "name": "noticestyle",
+      "unusual": true
+    },
+    {
+      "name": "newdescriptionenvironment",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:label cmd}}"
+      }
+    },
+    {
+      "name": "labeladvise",
+      "unusual": true
+    },
+    {
+      "name": "advisestyle",
+      "unusual": true
+    },
+    {
+      "name": "docstrip",
+      "unusual": true
+    },
+    {
+      "name": "Th",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Th",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:cols}]{${1:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "desc"
+    },
+    {
+      "name": "latexcode"
+    },
+    {
+      "name": "warning"
+    },
+    {
+      "name": "note"
+    },
+    {
+      "name": "example"
+    },
+    {
+      "name": "bug"
+    },
+    {
+      "name": "packages"
+    },
+    {
+      "name": "classes"
+    },
+    {
+      "name": "options"
+    },
+    {
+      "name": "advise"
+    },
+    {
+      "name": "faq"
+    },
+    {
+      "name": "keys"
+    }
+  ],
+  "keys": {
+    "\\key": [
       "default=${1:default value}",
       "note=${1:note}",
       "v="
     ]
-  ]
+  },
+  "args": []
 }

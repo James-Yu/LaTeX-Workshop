@@ -1,56 +1,93 @@
 {
-  "includes": {
-    "class-ltxdoc": [],
-    "luatexja": []
-  },
-  "macros": {
-    "Cjascale": {},
-    "Lcount{}": {
-      "snippet": "Lcount{${1:text}}"
+  "deps": [
+    {
+      "name": "class-ltxdoc"
     },
-    "Lopt{}": {
-      "snippet": "Lopt{${1:option}}"
-    },
-    "NFSS": {},
-    "dst": {},
-    "file{}": {
-      "snippet": "file{${1:file name}}"
-    },
-    "mlineplus{}": {
-      "snippet": "mlineplus{${1:number}}"
-    },
-    "pstyle{}": {
-      "snippet": "pstyle{${1:text}}"
+    {
+      "name": "luatexja"
     }
-  },
-  "envs": {
-    "tsample{}": {
-      "name": "tsample",
-      "snippet": "{${1:height}}"
-    }
-  },
-  "options": [
-    "nocfg",
-    "a4paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "Cjascale"
+    },
+    {
+      "name": "Lcount",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "Lopt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "NFSS"
+    },
+    {
+      "name": "dst"
+    },
+    {
+      "name": "file",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file name}}"
+      }
+    },
+    {
+      "name": "mlineplus",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "pstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "tsample",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:height}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/ltjltxdoc#c": [
+      "nocfg",
+      "a4paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "fleqn",
+      "openbib"
+    ]
+  },
+  "args": [
+    "\\documentclass/ltjltxdoc#c"
+  ]
 }

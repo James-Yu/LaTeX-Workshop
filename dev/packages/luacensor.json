@@ -1,59 +1,160 @@
 {
-  "includes": {
-    "luacode": [],
-    "environ": [],
-    "verbatim": [],
-    "accsupp": [],
-    "fontspec": [],
-    "xcolor": [],
-    "graphicx": []
-  },
-  "macros": {
-    "cnsr{}": {
-      "snippet": "cnsr{${1:text}}"
+  "deps": [
+    {
+      "name": "luacode"
     },
-    "ifcnsr": {},
-    "cnsrtrue": {},
-    "cnsrfalse": {},
-    "luacensorversionnumber": {},
-    "cnsrfnt": {},
-    "onething": {},
-    "twothings": {},
-    "donothing": {},
-    "voidenvironment{}": {
-      "snippet": "voidenvironment{${1:envname}}"
+    {
+      "name": "environ"
     },
-    "hddn{}": {
-      "snippet": "hddn{${1:text}}"
+    {
+      "name": "verbatim"
     },
-    "ifwarning": {},
-    "warningtrue": {},
-    "warningfalse": {},
-    "wrnstncl": {},
-    "warnword": {},
-    "danger": {
-      "detail": "☡",
-      "documentation": "CAUTION SIGN, dangerous bend"
+    {
+      "name": "accsupp"
     },
-    "warnformat": {},
-    "textwarn": {},
-    "textsafe": {},
-    "dquad": {},
-    "dangersign{}": {
-      "snippet": "dangersign{${1:arg}}"
+    {
+      "name": "fontspec"
     },
-    "dangerblock": {},
-    "warnblock": {},
-    "tworules": {},
-    "allwarning": {},
-    "confwarning": {},
-    "oldmaketitle": {}
-  },
-  "envs": {
-    "hidden": {}
-  },
-  "options": [
-    "warning"
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "graphicx"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "cnsr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifcnsr",
+      "unusual": true
+    },
+    {
+      "name": "cnsrtrue"
+    },
+    {
+      "name": "cnsrfalse"
+    },
+    {
+      "name": "cnsrfnt",
+      "unusual": true
+    },
+    {
+      "name": "onething",
+      "unusual": true
+    },
+    {
+      "name": "twothings",
+      "unusual": true
+    },
+    {
+      "name": "donothing",
+      "unusual": true
+    },
+    {
+      "name": "voidenvironment",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "hddn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifwarning",
+      "unusual": true
+    },
+    {
+      "name": "warningtrue",
+      "unusual": true
+    },
+    {
+      "name": "warningfalse",
+      "unusual": true
+    },
+    {
+      "name": "wrnstncl",
+      "unusual": true
+    },
+    {
+      "name": "warnword",
+      "unusual": true
+    },
+    {
+      "name": "danger",
+      "unusual": true,
+      "detail": "☡",
+      "doc": "Caution sign, dangerous bend"
+    },
+    {
+      "name": "warnformat",
+      "unusual": true
+    },
+    {
+      "name": "textwarn",
+      "unusual": true
+    },
+    {
+      "name": "textsafe",
+      "unusual": true
+    },
+    {
+      "name": "dquad",
+      "unusual": true
+    },
+    {
+      "name": "dangersign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "dangerblock",
+      "unusual": true
+    },
+    {
+      "name": "warnblock",
+      "unusual": true
+    },
+    {
+      "name": "tworules",
+      "unusual": true
+    },
+    {
+      "name": "allwarning",
+      "unusual": true
+    },
+    {
+      "name": "confwarning",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "hidden",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/luacensor#c": [
+      "warning"
+    ]
+  },
+  "args": [
+    "\\usepackage/luacensor#c"
+  ]
 }

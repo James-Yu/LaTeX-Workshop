@@ -1,108 +1,224 @@
 {
-  "includes": {
-    "ifpdf": [],
-    "color": [],
-    "graphicx": [],
-    "fancyhdr": [],
-    "mathpazo": [],
-    "courier": [],
-    "helvet": [],
-    "fontenc": [],
-    "microtype": [],
-    "trajan": [],
-    "flushend": []
-  },
-  "macros": {
-    "HUGE": {},
-    "affiliation{}": {
-      "snippet": "affiliation{${1:affiliation}}"
+  "deps": [
+    {
+      "name": "ifpdf"
     },
-    "author[]{}": {
-      "snippet": "author[${2:short names}]{${1:names}}"
+    {
+      "name": "color"
     },
-    "copyrightinfo{}": {
-      "snippet": "copyrightinfo{${1:info}}"
+    {
+      "name": "graphicx"
     },
-    "copyrightlicense{}": {
-      "snippet": "copyrightlicense{${1:license}}"
+    {
+      "name": "fancyhdr"
     },
-    "journalnumber{}": {
-      "snippet": "journalnumber{${1:number}}"
+    {
+      "name": "mathpazo"
     },
-    "journalvolume{}": {
-      "snippet": "journalvolume{${1:number}}"
+    {
+      "name": "courier"
     },
-    "keywords{}": {
-      "snippet": "keywords{${1:keyword1,${2:keyword2},...}}"
+    {
+      "name": "helvet"
     },
-    "subject{}": {
-      "snippet": "subject{${1:subject}}"
+    {
+      "name": "fontenc"
     },
-    "title[]{}": {
-      "snippet": "title[${2:short title}]{${1:text}}"
+    {
+      "name": "microtype"
     },
-    "titleimage{}": {
-      "snippet": "titleimage{${1:imagefile}}"
+    {
+      "name": "trajan"
     },
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {}
-  },
-  "envs": {},
-  "options": [
-    "titleimage",
-    "notitleimage",
-    "trajantitle",
-    "notrajantitle",
-    "nosc",
-    "noosf",
-    "slantedGreek",
-    "noBBpl",
-    "flushend",
-    "noflushend",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
+    {
+      "name": "flushend"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "HUGE"
+    },
+    {
+      "name": "affiliation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:affiliation}}"
+      }
+    },
+    {
+      "name": "author",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short names}]{${1:names}}"
+      }
+    },
+    {
+      "name": "copyrightinfo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:info%text}}"
+      }
+    },
+    {
+      "name": "copyrightlicense",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:license}}"
+      }
+    },
+    {
+      "name": "journalnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "journalvolume",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyword1,keyword2,...%text}}"
+      }
+    },
+    {
+      "name": "subject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subject%text}}"
+      }
+    },
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "titleimage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/philosophersimprint#c": [
+      "titleimage",
+      "notitleimage",
+      "trajantitle",
+      "notrajantitle",
+      "nosc",
+      "noosf",
+      "slantedGreek",
+      "noBBpl",
+      "flushend",
+      "noflushend",
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "fleqn",
+      "openbib"
+    ]
+  },
+  "args": [
+    "\\documentclass/philosophersimprint#c"
+  ]
 }

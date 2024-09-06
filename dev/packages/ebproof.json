@@ -1,89 +1,155 @@
 {
-  "includes": {},
-  "macros": {
-    "hypo{}": {
-      "snippet": "hypo{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "hypo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "hypo[]{}": {
-      "snippet": "hypo[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "hypo",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\ebproofset#c,\\set#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\hypo#c,\\infer#c,\\ebproofnewstyle#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "ellipsis{}{}": {
-      "snippet": "ellipsis{${1:label}}{${2:text}}"
+    {
+      "name": "ellipsis",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:text}}"
+      }
     },
-    "rewrite{}": {
-      "snippet": "rewrite{${1:code}}"
+    {
+      "name": "rewrite",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
     },
-    "treebox": {},
-    "treemark{}": {
-      "snippet": "treemark{${1:name}}"
+    {
+      "name": "treebox",
+      "unusual": true
     },
-    "delims{}{}": {
-      "snippet": "delims{${1:left}}{${2:right}}"
+    {
+      "name": "treemark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "overlay": {},
-    "ebproofset{}": {
-      "snippet": "ebproofset{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "delims",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left}}{${2:right}}"
+      }
     },
-    "set{}": {
-      "snippet": "set{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "overlay",
+      "unusual": true
     },
-    "ebproofnewstyle{}{}": {
-      "snippet": "ebproofnewstyle{${1:name}}{${2:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
+    {
+      "name": "ebproofset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\ebproofset#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\ebproofnewstyle#c",
+          "\\ebproofset#c,\\set#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\hypo#c,\\infer#c,\\ebproofnewstyle#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "inserttext": {},
-    "ebproofnewrulestyle{}{}": {
-      "snippet": "ebproofnewrulestyle{${1:name}}{${2:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 1
+    {
+      "name": "set",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\ebproofset#c,\\set#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\hypo#c,\\infer#c,\\ebproofnewstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ebproofnewstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\ebproofset#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\ebproofnewstyle#c",
+          "\\ebproofset#c,\\set#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\hypo#c,\\infer#c,\\ebproofnewstyle#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "inserttext"
+    },
+    {
+      "name": "ebproofnewrulestyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\ebproofnewrulestyle#c"
+        ],
+        "keyPos": 1
+      }
     }
-  },
-  "envs": {
-    "prooftree": {},
-    "prooftree[]": {
+  ],
+  "envs": [
+    {
+      "name": "prooftree"
+    },
+    {
       "name": "prooftree",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\ebproofset#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\ebproofnewstyle#c",
+          "\\ebproofset#c,\\set#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\hypo#c,\\infer#c,\\ebproofnewstyle#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "prooftree*": {},
-    "prooftree*[]": {
+    {
+      "name": "prooftree*"
+    },
+    {
       "name": "prooftree*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\ebproofset#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\ebproofnewstyle#c",
+          "\\ebproofset#c,\\set#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\hypo#c,\\infer#c,\\ebproofnewstyle#c"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "separation=",
-      "rule margin=",
-      "rule style=",
-      "rule thickness=",
-      "rule separation=",
-      "rule dash length=",
-      "rule dash space=",
-      "rule code=${1:code}",
-      "template=${1:code}",
-      "left template=${1:code}",
-      "right template=${1:code}",
-      "left label=",
-      "right label=",
-      "left label template=${1:code}",
-      "right label template=${1:code}",
-      "label separation="
-    ],
-    [
+  ],
+  "keys": {
+    "\\ebproofset#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\ebproofnewstyle#c": [
       "proof style=${1|upwards,downwards|}",
-      "center",
+      "center"
+    ],
+    "\\ebproofset#c,\\set#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\hypo#c,\\infer#c,\\ebproofnewstyle#c": [
       "separation=",
       "rule margin=",
       "rule style=",
@@ -101,7 +167,13 @@
       "right label template=${1:code}",
       "label separation="
     ],
-    [
+    "\\infer#c": [
+      "simple",
+      "no rule",
+      "double",
+      "dashed"
+    ],
+    "\\ebproofnewrulestyle#c": [
       "rule margin=",
       "rule style=",
       "rule thickness=",
@@ -110,5 +182,6 @@
       "rule dash space=",
       "rule code=${1:code}"
     ]
-  ]
+  },
+  "args": []
 }

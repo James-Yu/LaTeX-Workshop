@@ -1,74 +1,150 @@
 {
-  "includes": {
-    "graphicx": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "xstring": [],
-    "calc": [],
-    "simplekv": []
-  },
-  "macros": {
-    "loetalab": {},
-    "loetalab[]": {
-      "snippet": "loetalab[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "loetalab*": {},
-    "loetalab*[]": {
-      "snippet": "loetalab*[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     },
-    "affloetalab": {},
-    "affloetalab[]": {
-      "snippet": "affloetalab[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarycalc"
     },
-    "affloetalab*": {},
-    "affloetalab*[]": {
-      "snippet": "affloetalab*[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xstring"
     },
-    "loetalabtkz": {},
-    "loetalabtkz[]": {
-      "snippet": "loetalabtkz[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "calc"
     },
-    "loetalabtkz*": {},
-    "loetalabtkz*[]": {
-      "snippet": "loetalabtkz*[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "affloetalabtkz": {},
-    "affloetalabtkz[]": {
-      "snippet": "affloetalabtkz[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "affloetalabtkz*": {},
-    "affloetalabtkz*[]": {
-      "snippet": "affloetalabtkz*[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "simplekv"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "loetalab"
+    },
+    {
+      "name": "loetalab",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\loetalab,\\loetalab*,\\affloetalab,\\affloetalab*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "loetalab*"
+    },
+    {
+      "name": "loetalab*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\loetalab,\\loetalab*,\\affloetalab,\\affloetalab*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "affloetalab"
+    },
+    {
+      "name": "affloetalab",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\loetalab,\\loetalab*,\\affloetalab,\\affloetalab*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "affloetalab*"
+    },
+    {
+      "name": "affloetalab*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\loetalab,\\loetalab*,\\affloetalab,\\affloetalab*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "loetalabtkz"
+    },
+    {
+      "name": "loetalabtkz",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\loetalabtkz,\\loetalabtkz*,\\affloetalabtkz,\\affloetalabtkz*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "loetalabtkz*"
+    },
+    {
+      "name": "loetalabtkz*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\loetalabtkz,\\loetalabtkz*,\\affloetalabtkz,\\affloetalabtkz*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "affloetalabtkz"
+    },
+    {
+      "name": "affloetalabtkz",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\loetalabtkz,\\loetalabtkz*,\\affloetalabtkz,\\affloetalabtkz*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "affloetalabtkz*"
+    },
+    {
+      "name": "affloetalabtkz*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\loetalabtkz,\\loetalabtkz*,\\affloetalabtkz,\\affloetalabtkz*"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\loetalab,\\loetalab*,\\affloetalab,\\affloetalab*": [
       "Couleur=",
       "Legende",
       "TexteLegende={${1:texte}}"
     ],
-    [
+    "\\loetalabtkz,\\loetalabtkz*,\\affloetalabtkz,\\affloetalabtkz*": [
       "Couleur=",
       "Hauteur=",
       "DecalageV="
     ]
-  ]
+  },
+  "args": []
 }

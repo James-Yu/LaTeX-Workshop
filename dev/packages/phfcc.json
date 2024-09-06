@@ -1,62 +1,165 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "kvoptions": [],
-    "etoolbox": [],
-    "xcolor": [],
-    "marginnote": []
-  },
-  "macros": {
-    "phfMakeCommentingCommand{}": {
-      "snippet": "phfMakeCommentingCommand{${1:cmd name}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "phfMakeCommentingCommand[]{}": {
-      "snippet": "phfMakeCommentingCommand[${2:options}]{${1:cmd name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "kvoptions"
     },
-    "phfDisableCommentingCommands": {},
-    "phfDefineCommentingStyle{}{}": {
-      "snippet": "phfDefineCommentingStyle{${1:style name}}{${2:options}}"
+    {
+      "name": "etoolbox"
     },
-    "phfSetDefaultCommentingStyle{}": {
-      "snippet": "phfSetDefaultCommentingStyle{${1:options}}"
+    {
+      "name": "xcolor"
     },
-    "phfccformatmargininitials{}": {
-      "snippet": "phfccformatmargininitials{${1:initials}}"
+    {
+      "name": "marginnote"
+    }
+  ],
+  "macros": [
+    {
+      "name": "phfMakeCommentingCommand",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd name}}"
+      }
     },
-    "phfccmargininitialssep": {},
-    "phfccformatboxinitials{}": {
-      "snippet": "phfccformatboxinitials{${1:initials}}"
+    {
+      "name": "phfMakeCommentingCommand",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:cmd name}}",
+        "keys": [
+          "\\phfMakeCommentingCommand#c,\\phfDefineCommentingStyle#c,\\phfSetDefaultCommentingStyle#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "phfCCChangesBy{}": {
-      "snippet": "phfCCChangesBy{${1:initials}}"
+    {
+      "name": "phfDisableCommentingCommands"
     },
-    "phfCommentingDefaultStartCmds": {},
-    "phfCommentingDefaultEndCmds": {},
-    "phfCommentingDefaultFont": {},
-    "phfCommentingDefaultSpacing": {},
-    "phfCommentingDefaultBegin": {},
-    "phfCommentingDefaultEnd": {},
-    "phfCommentingDefaultCFont": {},
-    "phfCommentingDefaultCSpacing": {},
-    "phfCommentingDefaultCBegin": {},
-    "phfCommentingDefaultCEnd": {},
-    "phfCommentingDefaultRmFont": {},
-    "phfCommentingDefaultRmSpacing": {},
-    "phfCommentingDefaultRmBegin": {},
-    "phfCommentingDefaultRmEnd": {},
-    "phfCommentingDefaultIFont": {},
-    "phfCommentingDefaultISpacing": {},
-    "phfCommentingDefaultIBegin": {},
-    "phfCommentingDefaultIEnd": {},
-    "phfccfootcommenttextstyle": {},
-    "newphfccmarginnote": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "phfDefineCommentingStyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:style name}}{${2:options%keyvals}}"
+      }
+    },
+    {
+      "name": "phfSetDefaultCommentingStyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "phfccformatmargininitials",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:initials}}"
+      }
+    },
+    {
+      "name": "phfccmargininitialssep",
+      "unusual": true
+    },
+    {
+      "name": "phfccformatboxinitials",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:initials}}"
+      }
+    },
+    {
+      "name": "phfCCChangesBy",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:initials}}"
+      }
+    },
+    {
+      "name": "phfCommentingDefaultStartCmds",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultEndCmds",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultFont",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultSpacing",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultBegin",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultEnd",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultCFont",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultCSpacing",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultCBegin",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultCEnd",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultRmFont",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultRmSpacing",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultRmBegin",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultRmEnd",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultIFont",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultISpacing",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultIBegin",
+      "unusual": true
+    },
+    {
+      "name": "phfCommentingDefaultIEnd",
+      "unusual": true
+    },
+    {
+      "name": "phfccfootcommenttextstyle",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\phfMakeCommentingCommand#c,\\phfDefineCommentingStyle#c,\\phfSetDefaultCommentingStyle#c": [
       "color=",
       "initials={${1:initials}}",
       "formatinitials=${1:format cmds}",
@@ -79,5 +182,6 @@
       "ibegin=",
       "iend="
     ]
-  ]
+  },
+  "args": []
 }

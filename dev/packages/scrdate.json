@@ -1,42 +1,90 @@
 {
-  "includes": {
-    "scrkbase": [],
-    "scrlogo": []
-  },
-  "macros": {
-    "CenturyPart{}": {
-      "snippet": "CenturyPart{${1:year}}"
+  "deps": [
+    {
+      "name": "scrkbase"
     },
-    "DecadePart{}": {
-      "snippet": "DecadePart{${1:year}}"
-    },
-    "DayNumber{}{}{}": {
-      "snippet": "DayNumber{${1:year}}{${2:month}}{${3:day}}"
-    },
-    "ISODayNumber{}": {
-      "snippet": "ISODayNumber{${1:ISO-date}}"
-    },
-    "DayName{}{}{}": {
-      "snippet": "DayName{${1:year}}{${2:month}}{${3:day}}"
-    },
-    "ISODayName{}": {
-      "snippet": "ISODayName{${1:ISO-date}}"
-    },
-    "DayNameByNumber{}": {
-      "snippet": "DayNameByNumber{${1:number}}"
-    },
-    "ISOToday": {},
-    "IsoToday": {},
-    "todaysname": {},
-    "todaysnumber": {},
-    "nameday{}": {
-      "snippet": "nameday{${1:name}}"
-    },
-    "newdaylanguage{}{}{}{}{}{}{}{}": {
-      "snippet": "newdaylanguage{${1:language}}{${2:Monday}}{${3:Tuesday}}{${4:Wednesday}}{${5:Thursday}}{${6:Friday}}{${7:Saturday}}{${8:Sunday}}"
+    {
+      "name": "scrlogo"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "CenturyPart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "DecadePart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "DayNumber",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:year}}{${2:month}}{${3:day}}"
+      }
+    },
+    {
+      "name": "ISODayNumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ISO-date}}"
+      }
+    },
+    {
+      "name": "DayName",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:year}}{${2:month}}{${3:day}}"
+      }
+    },
+    {
+      "name": "ISODayName",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ISO-date}}"
+      }
+    },
+    {
+      "name": "DayNameByNumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "ISOToday"
+    },
+    {
+      "name": "IsoToday"
+    },
+    {
+      "name": "todaysname"
+    },
+    {
+      "name": "todaysnumber"
+    },
+    {
+      "name": "nameday",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "newdaylanguage",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}",
+        "snippet": "{${1:language}}{${2:Monday}}{${3:Tuesday}}{${4:Wednesday}}{${5:Thursday}}{${6:Friday}}{${7:Saturday}}{${8:Sunday}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,41 +1,90 @@
 {
-  "includes": {},
-  "macros": {
-    "ingredient{}": {
-      "snippet": "ingredient{${1:ingredient}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "ingredient",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ingredient%text}}"
+      }
     },
-    "energy{}": {
-      "snippet": "energy{${1:energy}}"
+    {
+      "name": "energy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:energy}}"
+      }
     },
-    "sidedish{}": {
-      "snippet": "sidedish{${1:sidedish}}"
+    {
+      "name": "sidedish",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sidedish%text}}"
+      }
     },
-    "hint{}": {
-      "snippet": "hint{${1:text}}"
+    {
+      "name": "hint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "preparationtime{}": {
-      "snippet": "preparationtime{${1:text}}"
+    {
+      "name": "preparationtime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "modification{}": {
-      "snippet": "modification{${1:text}}"
+    {
+      "name": "modification",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "recipemargin": {},
-    "ingredientfont": {},
-    "recipeendhook": {},
-    "recipetitlefont": {},
-    "recipetitle": {}
-  },
-  "envs": {
-    "recipe{}": {
-      "name": "recipe",
-      "snippet": "{${1:title}}"
+    {
+      "name": "recipemargin",
+      "unusual": true
+    },
+    {
+      "name": "ingredientfont",
+      "unusual": true
+    },
+    {
+      "name": "recipeendhook",
+      "unusual": true
+    },
+    {
+      "name": "recipetitlefont",
+      "unusual": true
+    },
+    {
+      "name": "recipetitle",
+      "unusual": true
     }
-  },
-  "options": [
-    "bf",
-    "it",
-    "nopage",
-    "newpage"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "recipe",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/cooking#c": [
+      "bf",
+      "it",
+      "nopage",
+      "newpage"
+    ],
+    "\\pagestyle#c,\\thispagestyle#c": [
+      "recipe"
+    ]
+  },
+  "args": [
+    "\\usepackage/cooking#c"
+  ]
 }

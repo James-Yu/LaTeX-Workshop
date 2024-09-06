@@ -1,26 +1,54 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": [],
-    "mweights": []
-  },
-  "macros": {
-    "linguisticspro": {},
-    "linguisticsproLF": {},
-    "linguisticsproOsF": {},
-    "linguisticsprolgr": {},
-    "linguisticsprot": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "scaled=${1:factor}",
-    "type1",
-    "lf",
-    "lining"
+  "deps": [
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "mweights"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "linguisticspro"
+    },
+    {
+      "name": "linguisticsproLF"
+    },
+    {
+      "name": "linguisticsproOsF"
+    },
+    {
+      "name": "linguisticsprolgr",
+      "unusual": true
+    },
+    {
+      "name": "linguisticsprot3",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/linguisticspro#c": [
+      "scale=${1:factor}",
+      "scaled=${1:factor}",
+      "type1",
+      "lf",
+      "lining"
+    ]
+  },
+  "args": [
+    "\\usepackage/linguisticspro#c"
+  ]
 }

@@ -1,56 +1,56 @@
 {
-  "includes": {
-    "graphicx": []
-  },
-  "macros": {
-    "endlabellist": {},
-    "hair": {},
-    "hyperactivelabels": {},
-    "labellist": {},
-    "psfig{}": {
-      "snippet": "psfig{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "graphicx"
+    }
+  ],
+  "macros": [
+    {
+      "name": "endlabellist"
     },
-    "reallyincludegraphics[]{}": {
-      "snippet": "reallyincludegraphics[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "hair"
     },
-    "reallyincludegraphics{}": {
-      "snippet": "reallyincludegraphics{${1:imagefile}}"
+    {
+      "name": "hyperactivelabels",
+      "unusual": true
     },
-    "atcatcode": {},
-    "dvifalse": {},
-    "dvitrue": {},
-    "ifdvi": {},
-    "ifoldlabels": {},
-    "includegraphicsplain{}": {
-      "snippet": "includegraphicsplain{${1:imagefile}}"
+    {
+      "name": "labellist"
     },
-    "includegraphicswithoptions[]{}": {
-      "snippet": "includegraphicswithoptions[${2:options}]{${1:imagefile}}"
+    {
+      "name": "psfig",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\psfig"
+        ],
+        "keyPos": 0
+      }
     },
-    "maxheaderlines": {},
-    "oldlabelsfalse": {},
-    "oldlabelstrue": {},
-    "partest": {},
-    "psdraft": {},
-    "psfull": {},
-    "psnoisy": {},
-    "pssilent": {},
-    "setlabel*{}{}{}{}{}": {
-      "snippet": "setlabel*{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+    {
+      "name": "reallyincludegraphics",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\reallyincludegraphics"
+        ],
+        "keyPos": 0
+      }
     },
-    "setlabel{}{}{}{}{}": {
-      "snippet": "setlabel{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "thelabellist": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "reallyincludegraphics",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psfig": [
       "file=${1:imagefile}",
       "height=",
       "width=",
@@ -64,7 +64,7 @@
       "scale=${1:factor}",
       "proportional="
     ],
-    [
+    "\\reallyincludegraphics": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -95,5 +95,6 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
-  ]
+  },
+  "args": []
 }

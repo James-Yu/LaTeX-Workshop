@@ -1,24 +1,38 @@
 {
-  "includes": {
-    "zref-base": [],
-    "zref-savepos": [],
-    "keyval": []
-  },
-  "macros": {
-    "zdotfill": {},
-    "zdotfillsetup{}": {
-      "snippet": "zdotfillsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "zref-base"
+    },
+    {
+      "name": "zref-savepos"
+    },
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "zdotfill"
+    },
+    {
+      "name": "zdotfillsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\zdotfillsetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\zdotfillsetup": [
       "min=${1:integer}",
       "unit=",
       "dot=${1:symbol}"
     ]
-  ]
+  },
+  "args": []
 }

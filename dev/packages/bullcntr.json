@@ -1,22 +1,44 @@
 {
-  "includes": {},
-  "macros": {
-    "bullcntr{}": {
-      "snippet": "bullcntr{${1:counter}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "bullcntr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
     },
-    "counterlargebullet": {},
-    "countersmallbullet": {},
-    "largectrbull": {},
-    "smallctrbull": {},
-    "smartctrbull": {},
-    "heartctrbull": {}
-  },
-  "envs": {},
-  "options": [
-    "largectrbull",
-    "smallctrbull",
-    "smartctrbull",
-    "heartctrbull"
+    {
+      "name": "counterlargebullet",
+      "unusual": true
+    },
+    {
+      "name": "countersmallbullet",
+      "unusual": true
+    },
+    {
+      "name": "largectrbull"
+    },
+    {
+      "name": "smallctrbull"
+    },
+    {
+      "name": "smartctrbull"
+    },
+    {
+      "name": "heartctrbull"
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/bullcntr#c": [
+      "largectrbull",
+      "smallctrbull",
+      "smartctrbull",
+      "heartctrbull"
+    ]
+  },
+  "args": [
+    "\\usepackage/bullcntr#c"
+  ]
 }

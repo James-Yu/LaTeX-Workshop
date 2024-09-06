@@ -1,28 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "coati": {},
-    "coati[]": {
-      "snippet": "coati[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "coatihookbackground": {},
-    "coatihookbelly": {},
-    "coatihookbody": {},
-    "coatihookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "coati"
+    },
+    {
+      "name": "coati",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\coati#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "coatihookbackground",
+      "unusual": true
+    },
+    {
+      "name": "coatihookbelly",
+      "unusual": true
+    },
+    {
+      "name": "coatihookbody",
+      "unusual": true
+    },
+    {
+      "name": "coatihookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\coati#c": [
       "body=",
       "eye=",
       "rotatehead=${1:number}",
@@ -145,5 +180,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

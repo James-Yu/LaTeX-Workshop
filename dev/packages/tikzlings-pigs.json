@@ -1,28 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "pig": {},
-    "pig[]": {
-      "snippet": "pig[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "pighookbackground": {},
-    "pighookbelly": {},
-    "pighookbody": {},
-    "pighookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pig"
+    },
+    {
+      "name": "pig",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\pig#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pighookbackground",
+      "unusual": true
+    },
+    {
+      "name": "pighookbelly",
+      "unusual": true
+    },
+    {
+      "name": "pighookbody",
+      "unusual": true
+    },
+    {
+      "name": "pighookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pig#c": [
       "body=",
       "eye=",
       "tail=",
@@ -145,5 +180,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

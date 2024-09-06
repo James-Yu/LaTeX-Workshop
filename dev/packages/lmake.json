@@ -1,19 +1,28 @@
 {
-  "includes": {},
-  "macros": {
-    "lcmd{}{}{}": {
-      "snippet": "lcmd{${1:command}}{${2:prefix}}{${3:list}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "lcmd",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:command}}{${2:prefix}}{${3:list}}"
+      }
     },
-    "lmake[]": {
-      "snippet": "lmake[${1:keyvals}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "lmake",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:keyvals}]",
+        "keys": [
+          "\\lmake#c"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "envs": [],
+  "keys": {
+    "\\lmake#c": [
       "p=${1:pattern}",
       "c=${1:separator}",
       "n=%{last index%>",
@@ -22,5 +31,6 @@
       "d=${1:dots}",
       "l={${1:sym1,sym2,...}}"
     ]
-  ]
+  },
+  "args": []
 }

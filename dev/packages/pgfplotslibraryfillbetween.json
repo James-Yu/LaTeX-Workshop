@@ -1,32 +1,64 @@
 {
-  "includes": {
-    "pgfplotslibrarydecorations.softclip": []
-  },
-  "macros": {
-    "pgfplotslibraryfillbetweenpreparecurrentlayer": {},
-    "tikzsegmentindex": {},
-    "tikzfillbetween[]{}": {
-      "snippet": "tikzfillbetween[${2:options}]{${1:draw style}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pgfplotslibrarydecorations.softclip"
+    }
+  ],
+  "macros": [
+    {
+      "name": "tikzsegmentindex",
+      "unusual": true
     },
-    "tikzgetnamedpath{}": {
-      "snippet": "tikzgetnamedpath{${1:path name}}"
+    {
+      "name": "tikzfillbetween",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:draw style}}",
+        "keys": [
+          "\\tikzfillbetween#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "tikznamecurrentpath{}": {
-      "snippet": "tikznamecurrentpath{${1:name}}"
+    {
+      "name": "tikzgetnamedpath",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path name}}"
+      }
     },
-    "tikzpathintersectionsegments[]": {
-      "snippet": "tikzpathintersectionsegments[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikznamecurrentpath",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "tikzsegmentlastindex": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzpathintersectionsegments",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\tikzpathintersectionsegments#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\addplot#c,\\addplot+#c": [
+      "name path=${1:name}"
+    ],
+    "\\path#c,\\draw#c,\\fill#c": [
+      "intersection segments={${1:options}}"
+    ],
+    "\\tikzfillbetween#c": [
       "split",
       "soft clip={${1:specification}}",
       "soft clip first={${1:specification}}",
@@ -41,10 +73,11 @@
       "on layer=${1:layer name}",
       "inner moveto=${1|connect,keep|}"
     ],
-    [
+    "\\tikzpathintersectionsegments#c": [
       "of=${1:first} and ${2:second}",
       "sequence={${1:series spec}}",
       "reverse"
     ]
-  ]
+  },
+  "args": []
 }

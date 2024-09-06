@@ -1,16 +1,34 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "listings": []
-  },
-  "macros": {
-    "ActivateVerbatimLigatures": {},
-    "DeactivateVerbatimLigatures": {},
-    "RestoreVerbatimBehavior": {}
-  },
-  "envs": {},
-  "options": [
-    "verbatim"
+  "deps": [
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "listings"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ActivateVerbatimLigatures"
+    },
+    {
+      "name": "DeactivateVerbatimLigatures"
+    },
+    {
+      "name": "RestoreVerbatimBehavior"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/lstfiracode#c": [
+      "verbatim"
+    ],
+    "\\lstset,\\lstinline,\\begin{lstlisting},\\lstinputlisting,\\lstMakeShortInline": [
+      "style=FiraCodeStyle",
+      "moreliterate="
+    ]
+  },
+  "args": [
+    "\\usepackage/lstfiracode#c"
+  ]
 }

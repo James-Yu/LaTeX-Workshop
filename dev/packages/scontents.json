@@ -1,97 +1,171 @@
 {
-  "includes": {},
-  "macros": {
-    "setupsc{}": {
-      "snippet": "setupsc{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [],
+  "macros": [
+    {
+      "name": "setupsc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\setupsc,\\usepackage/scontents#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "newenvsc{}": {
-      "snippet": "newenvsc{${1:envname}}"
+    {
+      "name": "newenvsc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
     },
-    "newenvsc{}[]": {
-      "snippet": "newenvsc{${1:envname}}[${2:initial keys}]"
+    {
+      "name": "newenvsc",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:envname}}[${2:initial keys%keyvals}]"
+      }
     },
-    "Scontents{}": {
-      "snippet": "Scontents{${1:argument}}"
+    {
+      "name": "Scontents",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:argument}}"
+      }
     },
-    "Scontents[]{}": {
-      "snippet": "Scontents[${2:options}]{${1:argument}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "Scontents",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:argument}}",
+        "keys": [
+          "\\Scontents"
+        ],
+        "keyPos": 0
+      }
     },
-    "Scontents*{}": {
-      "snippet": "Scontents*{${1:argument}}"
+    {
+      "name": "Scontents*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:argument}}"
+      }
     },
-    "Scontents*[]{}": {
-      "snippet": "Scontents*[${2:options}]{${1:argument}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "Scontents*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:argument}}",
+        "keys": [
+          "\\Scontents*"
+        ],
+        "keyPos": 0
+      }
     },
-    "getstored{}": {
-      "snippet": "getstored{${1:seq name}}"
+    {
+      "name": "getstored",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:seq name}}"
+      }
     },
-    "getstored[]{}": {
-      "snippet": "getstored[${2:index}]{${1:seq name}}"
+    {
+      "name": "getstored",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:index}]{${1:seq name}}"
+      }
     },
-    "foreachsc{}": {
-      "snippet": "foreachsc{${1:seq name}}"
+    {
+      "name": "foreachsc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:seq name}}"
+      }
     },
-    "foreachsc[]{}": {
-      "snippet": "foreachsc[${2:options}]{${1:seq name}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "foreachsc",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:seq name}}",
+        "keys": [
+          "\\foreachsc"
+        ],
+        "keyPos": 0
+      }
     },
-    "typestored{}": {
-      "snippet": "typestored{${1:seq name}}"
+    {
+      "name": "typestored",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:seq name}}"
+      }
     },
-    "typestored[]{}": {
-      "snippet": "typestored[${2:options}]{${1:seq name}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "typestored",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:seq name}}",
+        "keys": [
+          "\\typestored#c,\\meaningsc#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "meaningsc{}": {
-      "snippet": "meaningsc{${1:seq name}}"
+    {
+      "name": "meaningsc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:seq name}}"
+      }
     },
-    "meaningsc[]{}": {
-      "snippet": "meaningsc[${2:options}]{${1:seq name}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "meaningsc",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:seq name}}",
+        "keys": [
+          "\\typestored#c,\\meaningsc#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "countsc{}": {
-      "snippet": "countsc{${1:seq name}}"
+    {
+      "name": "countsc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:seq name}}"
+      }
     },
-    "cleanseqsc{}": {
-      "snippet": "cleanseqsc{${1:seq name}}"
-    },
-    "ScontentsFileDate": {},
-    "ScontentsFileVersion": {},
-    "ScontentsFileDescription": {}
-  },
-  "envs": {
-    "scontents": {},
-    "scontents[]": {
-      "name": "scontents",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "verbatimsc": {}
-  },
-  "options": [
-    "store-env=${1:seq name}",
-    "store-cmd=${1:seq name}",
-    "print-env",
-    "print-cmd",
-    "print-all",
-    "store-all=${1:seq name}",
-    "overwrite",
-    "width-tab=${1:integer}",
-    "force-eol",
-    "verb-font=${1:font family}"
+    {
+      "name": "cleanseqsc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:seq name}}"
+      }
+    }
   ],
-  "keyvals": [
-    [
+  "envs": [
+    {
+      "name": "scontents"
+    },
+    {
+      "name": "scontents",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{scontents}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "verbatimsc"
+    }
+  ],
+  "keys": {
+    "\\setupsc,\\usepackage/scontents#c": [
       "store-env=${1:seq name}",
       "store-cmd=${1:seq name}",
       "print-env",
@@ -103,12 +177,20 @@
       "force-eol",
       "verb-font=${1:font family}"
     ],
-    [
+    "\\begin{scontents}": [
+      "store-env=${1:seq name}",
+      "print-env",
+      "write-env=${1:file.ext}",
+      "write-out=${1:file.ext}",
+      "overwrite",
+      "force-eol"
+    ],
+    "\\Scontents": [
       "store-cmd=${1:seq name}",
       "print-cmd",
       "force-eol"
     ],
-    [
+    "\\Scontents*": [
       "store-cmd=${1:seq name}",
       "print-cmd",
       "write-cmd=${1:file.ext}",
@@ -116,7 +198,7 @@
       "overwrite",
       "force-eol"
     ],
-    [
+    "\\foreachsc": [
       "sep={${1:code}}",
       "step=${1:integer}",
       "start=${1:integer}",
@@ -125,17 +207,20 @@
       "after={${1:code}}",
       "wrapper={${1:code}}"
     ],
-    [
+    "\\typestored#c,\\meaningsc#c": [
       "width-tab=${1:integer}",
       "${1:index}"
     ],
-    [
-      "store-env=${1:seq name}",
-      "print-env",
-      "write-env=${1:file.ext}",
+    "\\mergesc": [
+      "typestored",
+      "meaningsc",
+      "print-cmd",
       "write-out=${1:file.ext}",
-      "overwrite",
-      "force-eol"
+      "width-tab=${1:integer}",
+      "overwrite"
     ]
+  },
+  "args": [
+    "\\setupsc,\\usepackage/scontents#c"
   ]
 }

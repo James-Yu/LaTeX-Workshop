@@ -1,67 +1,140 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "url": []
-  },
-  "macros": {
-    "urisetup{}": {
-      "snippet": "urisetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "uref{}{}": {
-      "snippet": "uref{${1:URL}}{${2:link text}}"
-    },
-    "arxiv{}": {
-      "snippet": "arxiv{${1:arXiv path}}"
-    },
-    "asin{}": {
-      "snippet": "asin{${1:Amazon number}}"
-    },
-    "doi{}": {
-      "snippet": "doi{${1:DOI number}}"
-    },
-    "hdl{}": {
-      "snippet": "hdl{${1:handle.net path}}"
-    },
-    "nbn{}": {
-      "snippet": "nbn{${1:NBN spec}}"
-    },
-    "oclc{}": {
-      "snippet": "oclc{${1:WorldCat number}}"
-    },
-    "oid{}": {
-      "snippet": "oid{${1:OID number}}"
-    },
-    "pubmed{}": {
-      "snippet": "pubmed{${1:PubMed number}}"
-    },
-    "tinyuri{}": {
-      "snippet": "tinyuri{${1:TinyURL path}}"
-    },
-    "tinypuri{}": {
-      "snippet": "tinypuri{${1:TinyURL path}}"
-    },
-    "wc{}": {
-      "snippet": "wc{${1:WebCite path}}"
-    },
-    "citeurl{}": {
-      "snippet": "citeurl{${1:URL}}"
-    },
-    "mailto{}": {
-      "snippet": "mailto{${1:address}}"
-    },
-    "mailto[]{}": {
-      "snippet": "mailto[${2:subject}]{${1:address}}"
-    },
-    "ukoeln{}": {
-      "snippet": "ukoeln{${1:UKoeln address}}"
+    {
+      "name": "url"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "urisetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\urisetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "uref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:URL}}{${2:link text}}"
+      }
+    },
+    {
+      "name": "arxiv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arXiv path}}"
+      }
+    },
+    {
+      "name": "asin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Amazon number}}"
+      }
+    },
+    {
+      "name": "doi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:DOI number}}"
+      }
+    },
+    {
+      "name": "hdl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:handle.net path}}"
+      }
+    },
+    {
+      "name": "nbn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:NBN spec}}"
+      }
+    },
+    {
+      "name": "oclc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:WorldCat number}}"
+      }
+    },
+    {
+      "name": "oid",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:OID number}}"
+      }
+    },
+    {
+      "name": "pubmed",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:PubMed number}}"
+      }
+    },
+    {
+      "name": "tinyuri",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TinyURL path}}"
+      }
+    },
+    {
+      "name": "tinypuri",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TinyURL path}}"
+      }
+    },
+    {
+      "name": "wc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:WebCite path}}"
+      }
+    },
+    {
+      "name": "citeurl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "mailto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address}}"
+      }
+    },
+    {
+      "name": "mailto",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:subject}]{${1:address}}"
+      }
+    },
+    {
+      "name": "ukoeln",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:UKoeln address}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\urisetup": [
       "arxivpre={%|}",
       "arxivpost={%|}",
       "asinpre={%|}",
@@ -93,5 +166,6 @@
       "ukoelnpre={%|}",
       "ukoelnpost={%|}"
     ]
-  ]
+  },
+  "args": []
 }

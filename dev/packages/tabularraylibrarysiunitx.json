@@ -1,16 +1,28 @@
 {
-  "includes": {
-    "siunitx": []
-  },
-  "macros": {
-    "TblrNum{}": {
-      "snippet": "TblrNum{${1:number}}"
-    },
-    "TblrUnit{}": {
-      "snippet": "TblrUnit{${1:unit}}"
+  "deps": [
+    {
+      "name": "siunitx"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "TblrNum",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "TblrUnit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:unit}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

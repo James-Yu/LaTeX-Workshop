@@ -1,39 +1,90 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "pgfopts": [],
-    "ifxetex": [],
-    "ifluatex": [],
-    "fontspec": [],
-    "keyval": [],
-    "calc": [],
-    "tikz": []
-  },
-  "macros": {
-    "metroset{}": {
-      "snippet": "metroset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "plain{}": {
-      "snippet": "plain{${1:title}}"
+    {
+      "name": "pgfopts"
     },
-    "plain[]{}": {
-      "snippet": "plain[${2:format}]{${1:title}}"
+    {
+      "name": "ifxetex"
     },
-    "mreducelistspacing": {},
-    "thefontsnotfound": {},
-    "checkfont{}": {
-      "snippet": "checkfont{${1:font name}}"
+    {
+      "name": "ifluatex"
     },
-    "iffontsavailable{}{}{}": {
-      "snippet": "iffontsavailable{${1:font list}}{${2:true}}{${3:false}}"
+    {
+      "name": "fontspec"
+    },
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "tikz"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "metroset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usetheme/metropolis,\\metroset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "plain",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "plain",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:format%keyvals}]{${1:title%text}}",
+        "keys": [
+          "\\plain"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mreducelistspacing",
+      "unusual": true
+    },
+    {
+      "name": "thefontsnotfound",
+      "unusual": true
+    },
+    {
+      "name": "checkfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "iffontsavailable",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:font list}}{${2:true}}{${3:false}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usetheme/metropolis,\\metroset": [
       "titleformat=${1|regular,smallcaps,allsmallcaps,allcaps|}",
       "titleformat plain=${1|regular,smallcaps,allsmallcaps,allcaps|}",
       "sectionpage=${1|none,simple,progressbar|}",
@@ -46,6 +97,19 @@
       "titleformat subtitle=${1|regular,smallcaps,allsmallcaps,allcaps|}",
       "titleformat section=${1|regular,smallcaps,allsmallcaps,allcaps|}",
       "titleformat frame=${1|regular,smallcaps,allsmallcaps,allcaps|}"
+    ],
+    "\\plain": [
+      "regular",
+      "smallcaps",
+      "allsmallcaps",
+      "allcaps"
+    ],
+    "\\begin{axis}#c,\\begin{loglogaxis}#c,\\begin{semilogxaxis}#c,\\begin{semilogyaxis}#c,\\addplot#c,\\addplot3#c,\\addplot+#c,\\pgfplotsset#c,\\begin{groupplot}#c,\\begin{smithchart}#c,\\begin{polaraxis}#c,\\begin{ternaryaxis}#c": [
+      "mlineplot",
+      "mbarplot",
+      "horizontal mbarplot",
+      "disable thousands separator"
     ]
-  ]
+  },
+  "args": []
 }

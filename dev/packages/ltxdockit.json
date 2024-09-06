@@ -1,185 +1,435 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "listings": [],
-    "color": [],
-    "xspace": [],
-    "ifpdf": [],
-    "hyperref": []
-  },
-  "macros": {
-    "marglistwidth": {},
-    "marglistsep": {},
-    "marglistfont": {},
-    "margnotefont": {},
-    "optionlistfont": {},
-    "ltxsyntaxfont": {},
-    "ltxsyntaxlabelfont": {},
-    "changelogfont": {},
-    "changeloglabelfont": {},
-    "verbatimfont": {},
-    "displayverbfont": {},
-    "defaultcolor": {},
-    "spotcolor": {},
-    "cs{}": {
-      "snippet": "cs{${1:csname}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "cmd{}": {
-      "snippet": "cmd{${1:csname}}"
+    {
+      "name": "listings"
     },
-    "env{}": {
-      "snippet": "env{${1:envname}}"
+    {
+      "name": "color"
     },
-    "len{}": {
-      "snippet": "len{${1:length}}"
+    {
+      "name": "xspace"
     },
-    "cnt{}": {
-      "snippet": "cnt{${1:counter}}"
+    {
+      "name": "ifpdf"
     },
-    "prm{}": {
-      "snippet": "prm{${1:arg}}"
-    },
-    "mprm{}": {
-      "snippet": "mprm{${1:arg}}"
-    },
-    "oprm{}": {
-      "snippet": "oprm{${1:arg}}"
-    },
-    "opt{}": {
-      "snippet": "opt{${1:arg}}"
-    },
-    "kvopt{}{}": {
-      "snippet": "kvopt{${1:key}}{${2:value}}"
-    },
-    "file{}": {
-      "snippet": "file{${1:filename}}"
-    },
-    "sty{}": {
-      "snippet": "sty{${1:arg}}"
-    },
-    "bin{}": {
-      "snippet": "bin{${1:arg}}"
-    },
-    "acr{}": {
-      "snippet": "acr{${1:arg}}"
-    },
-    "keyval": {},
-    "refs{}{}{}": {
-      "snippet": "refs{${1:sing name}}{${2:plural name}}{${3:label}}"
-    },
-    "secref{}": {
-      "snippet": "secref{${1:label}}"
-    },
-    "Secref{}": {
-      "snippet": "Secref{${1:label}}"
-    },
-    "apxref{}": {
-      "snippet": "apxref{${1:label}}"
-    },
-    "Apxref{}": {
-      "snippet": "Apxref{${1:label}}"
-    },
-    "tabref{}": {
-      "snippet": "tabref{${1:label}}"
-    },
-    "Tabref{}": {
-      "snippet": "Tabref{${1:label}}"
-    },
-    "csitem{}": {
-      "snippet": "csitem{${1:csname}}"
-    },
-    "cmditem{}": {
-      "snippet": "cmditem{${1:csname}}"
-    },
-    "cmditem{}[]": {
-      "snippet": "cmditem{${1:csname}}[${2:options}]"
-    },
-    "cmditem{}[]{}": {
-      "snippet": "cmditem{${1:csname}}[${2:options}]{${3:arg}}"
-    },
-    "envitem{}": {
-      "snippet": "envitem{${1:envname}}"
-    },
-    "lenitem{}": {
-      "snippet": "lenitem{${1:length}}"
-    },
-    "boolitem{}": {
-      "snippet": "boolitem{${1:key}}"
-    },
-    "boolitem[]{}": {
-      "snippet": "boolitem[${2:true or false}]{${1:key}}"
-    },
-    "cntitem{}": {
-      "snippet": "cntitem{${1:counter}}"
-    },
-    "optitem{}": {
-      "snippet": "optitem{${1:option}}"
-    },
-    "varitem{}": {
-      "snippet": "varitem{${1:variable}}"
-    },
-    "valitem{}": {
-      "snippet": "valitem{${1:value}}"
-    },
-    "choitem{}{}": {
-      "snippet": "choitem{${1:key}}{${2:values}}"
-    },
-    "choitem[]{}{}": {
-      "snippet": "choitem[${3:opt}]{${1:key}}{${2:values}}"
-    },
-    "intitem{}": {
-      "snippet": "intitem{${1:key}}"
-    },
-    "intitem[]{}": {
-      "snippet": "intitem[${2:integer}]{${1:key}}"
-    },
-    "legitem{}": {
-      "snippet": "legitem{${1:arg}}"
-    },
-    "see{}": {
-      "snippet": "see{${1:label}}"
-    },
-    "lstenvsep": {}
-  },
-  "envs": {
-    "marglist": {},
-    "keymarglist": {},
-    "ltxsyntax": {},
-    "optionlist": {},
-    "optionlist*": {},
-    "valuelist": {},
-    "valuelist[]": {
-      "name": "valuelist",
-      "snippet": "[${1:opt}]"
-    },
-    "valuelist*": {},
-    "argumentlist{}": {
-      "name": "argumentlist",
-      "snippet": "{${1:arg}}"
-    },
-    "changelog": {},
-    "release{}{}": {
-      "name": "release",
-      "snippet": "{${1:version}}{${2:date}}"
-    },
-    "ltxcode": {},
-    "ltxcode[]": {
-      "name": "ltxcode",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ltxexample": {},
-    "ltxexample[]": {
-      "name": "ltxexample",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "hyperref"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "marglistwidth",
+      "unusual": true
+    },
+    {
+      "name": "marglistsep",
+      "unusual": true
+    },
+    {
+      "name": "marglistfont",
+      "unusual": true
+    },
+    {
+      "name": "margnotefont",
+      "unusual": true
+    },
+    {
+      "name": "optionlistfont",
+      "unusual": true
+    },
+    {
+      "name": "ltxsyntaxfont",
+      "unusual": true
+    },
+    {
+      "name": "ltxsyntaxlabelfont",
+      "unusual": true
+    },
+    {
+      "name": "changelogfont",
+      "unusual": true
+    },
+    {
+      "name": "changeloglabelfont",
+      "unusual": true
+    },
+    {
+      "name": "verbatimfont",
+      "unusual": true
+    },
+    {
+      "name": "displayverbfont",
+      "unusual": true
+    },
+    {
+      "name": "defaultcolor",
+      "unusual": true
+    },
+    {
+      "name": "spotcolor",
+      "unusual": true
+    },
+    {
+      "name": "cs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "cmd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "env",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "len",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "cnt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "prm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "mprm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "oprm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "opt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "kvopt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:value}}"
+      }
+    },
+    {
+      "name": "file",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename}}"
+      }
+    },
+    {
+      "name": "sty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "bin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "acr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "refs",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:sing name}}{${2:plural name}}{${3:label}}"
+      }
+    },
+    {
+      "name": "secref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Secref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "apxref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Apxref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "tabref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Tabref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "csitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "cmditem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "cmditem",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:csname}}[${2:options}]"
+      }
+    },
+    {
+      "name": "cmditem",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:csname}}[${3:options}]{${2:arg}}"
+      }
+    },
+    {
+      "name": "envitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "lenitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "boolitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "boolitem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:true or false}]{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "cntitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "optitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "varitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:variable}}"
+      }
+    },
+    {
+      "name": "valitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "choitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:values}}"
+      }
+    },
+    {
+      "name": "choitem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:opt}]{${1:key%plain}}{${2:values}}"
+      }
+    },
+    {
+      "name": "intitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "intitem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:integer}]{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "legitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "see",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "lstenvsep",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "marglist"
+    },
+    {
+      "name": "keymarglist"
+    },
+    {
+      "name": "ltxsyntax"
+    },
+    {
+      "name": "optionlist"
+    },
+    {
+      "name": "optionlist*"
+    },
+    {
+      "name": "valuelist"
+    },
+    {
+      "name": "valuelist",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:opt}]"
+      }
+    },
+    {
+      "name": "valuelist*"
+    },
+    {
+      "name": "argumentlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "changelog"
+    },
+    {
+      "name": "release",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:version}}{${2:date}}"
+      }
+    },
+    {
+      "name": "ltxcode"
+    },
+    {
+      "name": "ltxcode",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{ltxcode},\\begin{ltxexample}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ltxexample"
+    },
+    {
+      "name": "ltxexample",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{ltxcode},\\begin{ltxexample}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{ltxcode},\\begin{ltxexample}": [
       "inputpath=${1:path}",
       "aboveskip=",
       "belowskip=",
@@ -344,5 +594,6 @@
       "keywordcommentsemicolon={${1:keywords}}{${2:keywords}}{${3:keywords}}",
       "podcomment"
     ]
-  ]
+  },
+  "args": []
 }

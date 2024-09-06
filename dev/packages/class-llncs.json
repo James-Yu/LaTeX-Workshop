@@ -1,201 +1,562 @@
 {
-  "includes": {
-    "aliascnt": [],
-    "multicol": []
-  },
-  "macros": {
-    "authorrunning{}": {
-      "snippet": "authorrunning{${1:abbreviated author list}}"
+  "deps": [
+    {
+      "name": "aliascnt"
     },
-    "email{}": {
-      "snippet": "email{${1:email address}}"
-    },
-    "fnmsep": {},
-    "inst{}": {
-      "snippet": "inst{${1:number}}"
-    },
-    "institute{}": {
-      "snippet": "institute{${1:institutes}}"
-    },
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}"
-    },
-    "orcidID{}": {
-      "snippet": "orcidID{${1:ORCID identifier}}"
-    },
-    "subtitle{}": {
-      "snippet": "subtitle{${1:text}}"
-    },
-    "titlerunning{}": {
-      "snippet": "titlerunning{${1:abbreviated title}}"
-    },
-    "url{}": {
-      "snippet": "url{${1:URL}}"
-    },
-    "grole": {},
-    "getsto": {},
-    "lid": {},
-    "gid": {},
-    "bbbc": {},
-    "bbbf": {},
-    "bbbh": {},
-    "bbbk": {},
-    "bbbm": {},
-    "bbbn": {},
-    "bbbp": {},
-    "bbbq": {},
-    "bbbr": {},
-    "bbbs": {},
-    "bbbt": {},
-    "bbbz": {},
-    "bbbone": {},
-    "qed": {},
-    "spnewtheorem{}{}{}{}": {
-      "snippet": "spnewtheorem{${1:envname}}{${2:caption}}{${3:cap font}}{${4:body font}}"
-    },
-    "spnewtheorem{}[]{}{}{}": {
-      "snippet": "spnewtheorem{${1:envname}}[${2:numbered like}]{${3:caption}}{${4:cap font}}{${5:body font}}"
-    },
-    "spnewtheorem*{}{}{}{}": {
-      "snippet": "spnewtheorem*{${1:envname}}{${2:caption}}{${3:cap font}}{${4:body font}}"
-    },
-    "doi{}": {
-      "snippet": "doi{${1:DOI}}"
-    },
-    "ackname": {},
-    "addcontentsmark{}{}{}": {
-      "snippet": "addcontentsmark{${1:file}}{${2:type}}{${3:text}}"
-    },
-    "addcontentsmarkwop{}{}{}": {
-      "snippet": "addcontentsmarkwop{${1:file}}{${2:type}}{${3:text}}"
-    },
-    "addnumcontentsmark{}{}{}": {
-      "snippet": "addnumcontentsmark{${1:file}}{${2:type}}{${3:text}}"
-    },
-    "addtocmark[]{}{}{}": {
-      "snippet": "addtocmark[${4:num}]{${1:file}}{${2:type}}{${3:text}}"
-    },
-    "addtocmark{}{}{}": {
-      "snippet": "addtocmark{${1:file}}{${2:type}}{${3:text}}"
-    },
-    "andname": {},
-    "authcount{}": {
-      "snippet": "authcount{${1:arg}}"
-    },
-    "authrun": {},
-    "backmatter": {},
-    "calctocindent": {},
-    "chaptername": {},
-    "claimname": {},
-    "clearheadinfo": {},
-    "conjecturename": {},
-    "contriblistname": {},
-    "corollaryname": {},
-    "definitionname": {},
-    "discintname": {},
-    "examplename": {},
-    "exercisename": {},
-    "fnindent": {},
-    "fnnstart": {},
-    "frontmatter": {},
-    "headlineindent": {},
-    "homedir": {},
-    "hyperhrefextend": {},
-    "idxquad": {},
-    "instindent": {},
-    "institutename": {},
-    "keywordname": {},
-    "lastand": {},
-    "lastandname": {},
-    "lemmaname": {},
-    "mailname": {},
-    "mainmatter": {},
-    "noteaddname": {},
-    "notename": {},
-    "phantomsection": {},
-    "problemname": {},
-    "proofname": {},
-    "propertyname": {},
-    "propositionname": {},
-    "questionname": {},
-    "remarkname": {},
-    "seename": {},
-    "solutionname": {},
-    "squareforqed": {},
-    "subclassname": {},
-    "theauco": {},
-    "thechapter": {},
-    "theopargself": {},
-    "theoremname": {},
-    "thisbottomragged": {},
-    "titrun": {},
-    "tocauthor{}": {
-      "snippet": "tocauthor{${1:name}}"
-    },
-    "tocchpnum": {},
-    "tocparanum": {},
-    "tocparatotal": {},
-    "tocsecnum": {},
-    "tocsectotal": {},
-    "tocsubparanum": {},
-    "tocsubsecnum": {},
-    "tocsubsectotal": {},
-    "tocsubsubsecnum": {},
-    "tocsubsubsectotal": {},
-    "toctitle{}": {
-      "snippet": "toctitle{${1:text}}"
-    },
-    "ts": {},
-    "citeauthoryear": {
-      "option": "citeauthoryear"
-    },
-    "oribibl": {
-      "option": "oribibl"
+    {
+      "name": "multicol"
     }
-  },
-  "envs": {
-    "theorem": {},
-    "claim": {},
-    "proof": {},
-    "case": {},
-    "conjecture": {},
-    "corollary": {},
-    "definition": {},
-    "example": {},
-    "exercise": {},
-    "lemma": {},
-    "note": {},
-    "problem": {},
-    "property": {},
-    "proposition": {},
-    "question": {},
-    "solution": {},
-    "remark": {},
-    "credits": {}
-  },
-  "options": [
-    "citeauthoryear",
-    "runningheads",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "authorrunning",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:abbreviated author list}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email address%URL}}"
+      }
+    },
+    {
+      "name": "fnmsep"
+    },
+    {
+      "name": "inst",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "institute",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:institutes%text}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "orcidID",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ORCID identifier}}"
+      }
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "titlerunning",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:abbreviated title%text}}"
+      }
+    },
+    {
+      "name": "url",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "grole"
+    },
+    {
+      "name": "getsto"
+    },
+    {
+      "name": "lid"
+    },
+    {
+      "name": "gid"
+    },
+    {
+      "name": "bbbc"
+    },
+    {
+      "name": "bbbf"
+    },
+    {
+      "name": "bbbh"
+    },
+    {
+      "name": "bbbk"
+    },
+    {
+      "name": "bbbm"
+    },
+    {
+      "name": "bbbn"
+    },
+    {
+      "name": "bbbp"
+    },
+    {
+      "name": "bbbq"
+    },
+    {
+      "name": "bbbr"
+    },
+    {
+      "name": "bbbs"
+    },
+    {
+      "name": "bbbt"
+    },
+    {
+      "name": "bbbz"
+    },
+    {
+      "name": "bbbone"
+    },
+    {
+      "name": "qed"
+    },
+    {
+      "name": "spnewtheorem",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:envname}}{${2:caption}}{${3:cap font}}{${4:body font}}"
+      }
+    },
+    {
+      "name": "spnewtheorem",
+      "arg": {
+        "format": "{}[]{}{}{}",
+        "snippet": "{${1:envname}}[${5:numbered like}]{${2:caption}}{${3:cap font}}{${4:body font}}"
+      }
+    },
+    {
+      "name": "spnewtheorem*",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:envname}}{${2:caption}}{${3:cap font}}{${4:body font}}"
+      }
+    },
+    {
+      "name": "doi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:DOI}}"
+      }
+    },
+    {
+      "name": "ackname",
+      "unusual": true
+    },
+    {
+      "name": "addcontentsmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:file}}{${2:type}}{${3:text}}"
+      }
+    },
+    {
+      "name": "addcontentsmarkwop",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:file}}{${2:type}}{${3:text}}"
+      }
+    },
+    {
+      "name": "addnumcontentsmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:file}}{${2:type}}{${3:text}}"
+      }
+    },
+    {
+      "name": "addtocmark",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:num}]{${1:file}}{${2:type}}{${3:text}}"
+      }
+    },
+    {
+      "name": "addtocmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:file}}{${2:type}}{${3:text}}"
+      }
+    },
+    {
+      "name": "andname",
+      "unusual": true
+    },
+    {
+      "name": "authcount",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "authrun",
+      "unusual": true
+    },
+    {
+      "name": "backmatter",
+      "unusual": true
+    },
+    {
+      "name": "calctocindent",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "claimname",
+      "unusual": true
+    },
+    {
+      "name": "clearheadinfo",
+      "unusual": true
+    },
+    {
+      "name": "conjecturename",
+      "unusual": true
+    },
+    {
+      "name": "contriblistname",
+      "unusual": true
+    },
+    {
+      "name": "corollaryname",
+      "unusual": true
+    },
+    {
+      "name": "definitionname",
+      "unusual": true
+    },
+    {
+      "name": "discintname",
+      "unusual": true
+    },
+    {
+      "name": "examplename",
+      "unusual": true
+    },
+    {
+      "name": "exercisename",
+      "unusual": true
+    },
+    {
+      "name": "fnindent",
+      "unusual": true
+    },
+    {
+      "name": "fnnstart",
+      "unusual": true
+    },
+    {
+      "name": "frontmatter",
+      "unusual": true
+    },
+    {
+      "name": "headlineindent",
+      "unusual": true
+    },
+    {
+      "name": "homedir",
+      "unusual": true
+    },
+    {
+      "name": "hyperhrefextend",
+      "unusual": true
+    },
+    {
+      "name": "idxquad",
+      "unusual": true
+    },
+    {
+      "name": "instindent",
+      "unusual": true
+    },
+    {
+      "name": "institutename",
+      "unusual": true
+    },
+    {
+      "name": "keywordname",
+      "unusual": true
+    },
+    {
+      "name": "lastand",
+      "unusual": true
+    },
+    {
+      "name": "lastandname",
+      "unusual": true
+    },
+    {
+      "name": "lemmaname",
+      "unusual": true
+    },
+    {
+      "name": "mailname",
+      "unusual": true
+    },
+    {
+      "name": "mainmatter",
+      "unusual": true
+    },
+    {
+      "name": "noteaddname",
+      "unusual": true
+    },
+    {
+      "name": "notename",
+      "unusual": true
+    },
+    {
+      "name": "phantomsection",
+      "unusual": true
+    },
+    {
+      "name": "problemname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "propertyname",
+      "unusual": true
+    },
+    {
+      "name": "propositionname",
+      "unusual": true
+    },
+    {
+      "name": "questionname",
+      "unusual": true
+    },
+    {
+      "name": "remarkname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "solutionname",
+      "unusual": true
+    },
+    {
+      "name": "squareforqed",
+      "unusual": true
+    },
+    {
+      "name": "subclassname",
+      "unusual": true
+    },
+    {
+      "name": "theauco",
+      "unusual": true
+    },
+    {
+      "name": "thechapter",
+      "unusual": true
+    },
+    {
+      "name": "theopargself",
+      "unusual": true
+    },
+    {
+      "name": "theoremname",
+      "unusual": true
+    },
+    {
+      "name": "thisbottomragged",
+      "unusual": true
+    },
+    {
+      "name": "titrun",
+      "unusual": true
+    },
+    {
+      "name": "tocauthor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "tocchpnum",
+      "unusual": true
+    },
+    {
+      "name": "tocparanum",
+      "unusual": true
+    },
+    {
+      "name": "tocparatotal",
+      "unusual": true
+    },
+    {
+      "name": "tocsecnum",
+      "unusual": true
+    },
+    {
+      "name": "tocsectotal",
+      "unusual": true
+    },
+    {
+      "name": "tocsubparanum",
+      "unusual": true
+    },
+    {
+      "name": "tocsubsecnum",
+      "unusual": true
+    },
+    {
+      "name": "tocsubsectotal",
+      "unusual": true
+    },
+    {
+      "name": "tocsubsubsecnum",
+      "unusual": true
+    },
+    {
+      "name": "tocsubsubsectotal",
+      "unusual": true
+    },
+    {
+      "name": "toctitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ts",
+      "unusual": true
+    },
+    {
+      "name": "citeauthoryear",
+      "if": "citeauthoryear",
+      "unusual": true
+    },
+    {
+      "name": "oribibl",
+      "if": "oribibl",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "theorem"
+    },
+    {
+      "name": "claim"
+    },
+    {
+      "name": "proof"
+    },
+    {
+      "name": "case"
+    },
+    {
+      "name": "conjecture"
+    },
+    {
+      "name": "corollary"
+    },
+    {
+      "name": "definition"
+    },
+    {
+      "name": "example"
+    },
+    {
+      "name": "exercise"
+    },
+    {
+      "name": "lemma"
+    },
+    {
+      "name": "note"
+    },
+    {
+      "name": "problem"
+    },
+    {
+      "name": "property"
+    },
+    {
+      "name": "proposition"
+    },
+    {
+      "name": "question"
+    },
+    {
+      "name": "solution"
+    },
+    {
+      "name": "remark"
+    },
+    {
+      "name": "credits"
+    }
+  ],
+  "keys": {
+    "\\documentclass/llncs#c": [
+      "citeauthoryear",
+      "runningheads",
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "fleqn"
+    ],
+    "\\bibliographystyle#c": [
+      "splncs04"
+    ]
+  },
+  "args": [
+    "\\documentclass/llncs#c"
+  ]
 }

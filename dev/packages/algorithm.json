@@ -1,29 +1,48 @@
 {
-  "includes": {
-    "float": [],
-    "ifthen": []
-  },
-  "macros": {
-    "listalgorithmname": {},
-    "listofalgorithms": {}
-  },
-  "envs": {
-    "algorithm": {},
-    "algorithm[]": {
-      "name": "algorithm",
-      "snippet": "[${1:placement}]"
+  "deps": [
+    {
+      "name": "float"
+    },
+    {
+      "name": "ifthen"
     }
-  },
-  "options": [
-    "plain",
-    "ruled",
-    "boxed",
-    "part",
-    "chapter",
-    "section",
-    "subsection",
-    "subsubsection",
-    "nothing"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "listalgorithmname",
+      "unusual": true
+    },
+    {
+      "name": "listofalgorithms",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "algorithm"
+    },
+    {
+      "name": "algorithm",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:placement}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/algorithm#c": [
+      "plain",
+      "ruled",
+      "boxed",
+      "part",
+      "chapter",
+      "section",
+      "subsection",
+      "subsubsection",
+      "nothing"
+    ]
+  },
+  "args": [
+    "\\usepackage/algorithm#c"
+  ]
 }

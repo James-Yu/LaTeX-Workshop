@@ -1,169 +1,305 @@
 {
-  "includes": {
-    "class-memoir": [],
-    "ifluatex": [],
-    "ifxetex": [],
-    "luatexko": [],
-    "memhangul-x": [],
-    "hyperref": [],
-    "ob-toclof": [],
-    "ob-koreanappendix": []
-  },
-  "macros": {
-    "AppendixTitle": {},
-    "AppendixTitleToToc": {},
-    "appref{}": {
-      "snippet": "appref{${1:label}}"
+  "deps": [
+    {
+      "name": "class-memoir"
     },
-    "AttachAppendixTitleToSecnum": {},
-    "oblivoirchapterstyle{}": {
-      "snippet": "oblivoirchapterstyle{${1:style name}}"
+    {
+      "name": "ifluatex"
     },
-    "bookmarkpkgfalse": {},
-    "bookmarkpkgtrue": {},
-    "CallHyperref": {},
-    "DEFAULTskips": {},
-    "ensp": {},
-    "hyperrefwithlyxfalse": {},
-    "hyperrefwithlyxtrue": {},
-    "ifbookmarkpkg": {},
-    "ifhyperrefwithlyx": {},
-    "ifkosection": {},
-    "ifLwarp": {},
-    "ifnobookmarks": {},
-    "ifnokorean": {},
-    "ifopenrightdoc": {},
-    "ifPRELOAD": {},
-    "iftwosidedoc": {},
-    "kosectionfalse": {},
-    "kosectiontrue": {},
-    "LWARPlan": {},
-    "MarkDocTitle": {},
-    "memucshangulskips": {},
-    "memucsinterwordchapterskip": {},
-    "memucsinterwordskip": {},
-    "nobookmarksfalse": {},
-    "nobookmarkstrue": {},
-    "nokoreanfalse": {},
-    "nokoreantrue": {},
-    "openrightdocfalse": {},
-    "openrightdoctrue": {},
-    "PRELOADfalse": {},
-    "PRELOADstr": {},
-    "PRELOADtrue": {},
-    "twosidedocfalse": {},
-    "twosidedoctrue": {}
-  },
-  "envs": {},
-  "options": [
-    "10.5pt",
-    "amsmath",
-    "arabicfront",
-    "bookmark",
-    "chapter",
-    "faht=",
-    "fawd=",
-    "figtabcapt",
-    "footnote",
-    "gremph",
-    "hangulpagestyle",
-    "hcr",
-    "itemph",
-    "kosection",
-    "latinquote",
-    "lwarp",
-    "lwarplanguage=${1:language}",
-    "lwarpoption={${1:lwarp option}}",
-    "lyxhyper",
-    "manualfontspec",
-    "mathdisp",
-    "microtype",
-    "moreverb",
-    "nanum",
-    "nobookmarks",
-    "nohyperref",
-    "nokorean",
-    "nonfrench",
-    "nounfonts",
-    "nowinname",
-    "obspace",
-    "oldhangul",
-    "openright",
-    "polyglossia",
-    "babelhangul",
-    "babelvacant",
-    "preload={${1:package1,package2,...}}",
-    "preloadoption={${1:package options}}",
-    "quotespacing",
-    "subfigure",
-    "tocentry",
-    "twoside",
-    "unfonts",
-    "usedotemph",
-    "uset1font",
-    "10pt",
-    "11pt",
-    "12pt",
-    "14pt",
-    "17pt",
-    "20pt",
-    "25pt",
-    "30pt",
-    "36pt",
-    "48pt",
-    "60pt",
-    "9pt",
-    "a3paper",
-    "a4paper",
-    "a5paper",
-    "a6paper",
-    "article",
-    "b3paper",
-    "b4paper",
-    "b5paper",
-    "b6paper",
-    "broadsheetpaper",
-    "crownvopaper",
-    "dbillpaper",
-    "demyvopaper",
-    "draft",
-    "ebook",
-    "executivepaper",
-    "extrafontsizes",
-    "final",
-    "fleqn",
-    "foolscapvopaper",
-    "fullptlayout",
-    "imperialvopaper",
-    "landscape",
-    "largecrownvopaper",
-    "largepostvopaper",
-    "ledgerpaper",
-    "legalpaper",
-    "leqno",
-    "letterpaper",
-    "mcrownvopaper",
-    "mdemyvopaper",
-    "mediumvopaper",
-    "mlargecrownvopaper",
-    "ms",
-    "msmallroyalvopaper",
-    "oldfontcommands",
-    "oldpaper",
-    "onecolumn",
-    "oneside",
-    "openany",
-    "openbib",
-    "openleft",
-    "postvopaper",
-    "pottvopaper",
-    "royalvopaper",
-    "showtrims",
-    "smalldemyvopaper",
-    "smallroyalvopaper",
-    "statementpaper",
-    "superroyalvopaper",
-    "twocolumn"
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "luatexko"
+    },
+    {
+      "name": "memhangul-x"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "ob-toclof"
+    },
+    {
+      "name": "ob-koreanappendix"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "AppendixTitle"
+    },
+    {
+      "name": "AppendixTitleToToc"
+    },
+    {
+      "name": "appref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "AttachAppendixTitleToSecnum"
+    },
+    {
+      "name": "oblivoirchapterstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style name}}"
+      }
+    },
+    {
+      "name": "bookmarkpkgfalse",
+      "unusual": true
+    },
+    {
+      "name": "bookmarkpkgtrue",
+      "unusual": true
+    },
+    {
+      "name": "CallHyperref",
+      "unusual": true
+    },
+    {
+      "name": "DEFAULTskips",
+      "unusual": true
+    },
+    {
+      "name": "ensp",
+      "unusual": true
+    },
+    {
+      "name": "hyperrefwithlyxfalse",
+      "unusual": true
+    },
+    {
+      "name": "hyperrefwithlyxtrue",
+      "unusual": true
+    },
+    {
+      "name": "ifbookmarkpkg",
+      "unusual": true
+    },
+    {
+      "name": "ifhyperrefwithlyx",
+      "unusual": true
+    },
+    {
+      "name": "ifkosection",
+      "unusual": true
+    },
+    {
+      "name": "ifLwarp",
+      "unusual": true
+    },
+    {
+      "name": "ifnobookmarks",
+      "unusual": true
+    },
+    {
+      "name": "ifnokorean",
+      "unusual": true
+    },
+    {
+      "name": "ifopenrightdoc",
+      "unusual": true
+    },
+    {
+      "name": "ifPRELOAD",
+      "unusual": true
+    },
+    {
+      "name": "iftwosidedoc",
+      "unusual": true
+    },
+    {
+      "name": "kosectionfalse",
+      "unusual": true
+    },
+    {
+      "name": "kosectiontrue",
+      "unusual": true
+    },
+    {
+      "name": "LWARPlan",
+      "unusual": true
+    },
+    {
+      "name": "MarkDocTitle",
+      "unusual": true
+    },
+    {
+      "name": "memucshangulskips",
+      "unusual": true
+    },
+    {
+      "name": "memucsinterwordchapterskip",
+      "unusual": true
+    },
+    {
+      "name": "memucsinterwordskip",
+      "unusual": true
+    },
+    {
+      "name": "nobookmarksfalse",
+      "unusual": true
+    },
+    {
+      "name": "nobookmarkstrue",
+      "unusual": true
+    },
+    {
+      "name": "nokoreanfalse",
+      "unusual": true
+    },
+    {
+      "name": "nokoreantrue",
+      "unusual": true
+    },
+    {
+      "name": "openrightdocfalse",
+      "unusual": true
+    },
+    {
+      "name": "openrightdoctrue",
+      "unusual": true
+    },
+    {
+      "name": "PRELOADfalse",
+      "unusual": true
+    },
+    {
+      "name": "PRELOADstr",
+      "unusual": true
+    },
+    {
+      "name": "PRELOADtrue",
+      "unusual": true
+    },
+    {
+      "name": "twosidedocfalse",
+      "unusual": true
+    },
+    {
+      "name": "twosidedoctrue",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/oblivoir#c": [
+      "10.5pt",
+      "amsmath",
+      "arabicfront",
+      "bookmark",
+      "chapter",
+      "faht=",
+      "fawd=",
+      "figtabcapt",
+      "footnote",
+      "gremph",
+      "hangulpagestyle",
+      "hcr",
+      "itemph",
+      "kosection",
+      "latinquote",
+      "lwarp",
+      "lwarplanguage=${1:language}",
+      "lwarpoption={${1:lwarp option}}",
+      "lyxhyper",
+      "manualfontspec",
+      "mathdisp",
+      "microtype",
+      "moreverb",
+      "nanum",
+      "nobookmarks",
+      "nohyperref",
+      "nokorean",
+      "nonfrench",
+      "nounfonts",
+      "nowinname",
+      "obspace",
+      "oldhangul",
+      "openright",
+      "polyglossia",
+      "babelhangul",
+      "babelvacant",
+      "preload={${1:package1,package2,...}}",
+      "preloadoption={${1:package options}}",
+      "quotespacing",
+      "subfigure",
+      "tocentry",
+      "twoside",
+      "unfonts",
+      "usedotemph",
+      "uset1font",
+      "10pt",
+      "11pt",
+      "12pt",
+      "14pt",
+      "17pt",
+      "20pt",
+      "25pt",
+      "30pt",
+      "36pt",
+      "48pt",
+      "60pt",
+      "9pt",
+      "a3paper",
+      "a4paper",
+      "a5paper",
+      "a6paper",
+      "article",
+      "b3paper",
+      "b4paper",
+      "b5paper",
+      "b6paper",
+      "broadsheetpaper",
+      "crownvopaper",
+      "dbillpaper",
+      "demyvopaper",
+      "draft",
+      "ebook",
+      "executivepaper",
+      "extrafontsizes",
+      "final",
+      "fleqn",
+      "foolscapvopaper",
+      "fullptlayout",
+      "imperialvopaper",
+      "landscape",
+      "largecrownvopaper",
+      "largepostvopaper",
+      "ledgerpaper",
+      "legalpaper",
+      "leqno",
+      "letterpaper",
+      "mcrownvopaper",
+      "mdemyvopaper",
+      "mediumvopaper",
+      "mlargecrownvopaper",
+      "ms",
+      "msmallroyalvopaper",
+      "oldfontcommands",
+      "oldpaper",
+      "onecolumn",
+      "oneside",
+      "openany",
+      "openbib",
+      "openleft",
+      "postvopaper",
+      "pottvopaper",
+      "royalvopaper",
+      "showtrims",
+      "smalldemyvopaper",
+      "smallroyalvopaper",
+      "statementpaper",
+      "superroyalvopaper",
+      "twocolumn"
+    ]
+  },
+  "args": [
+    "\\documentclass/oblivoir#c"
+  ]
 }

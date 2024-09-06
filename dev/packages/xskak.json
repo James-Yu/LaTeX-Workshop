@@ -1,175 +1,264 @@
 {
-  "includes": {
-    "skak": [],
-    "xifthen": [],
-    "etoolbox": [],
-    "chessboard": []
-  },
-  "macros": {
-    "newchessgame": {},
-    "newchessgame[]": {
-      "snippet": "newchessgame[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "skak"
     },
-    "resumechessgame[]": {
-      "snippet": "resumechessgame[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "xifthen"
     },
-    "xskaknewpgninfo{}": {
-      "snippet": "xskaknewpgninfo{${1:keyname}}"
+    {
+      "name": "etoolbox"
     },
-    "xskaknewpgninfo[]{}": {
-      "snippet": "xskaknewpgninfo[${2:default}]{${1:keyname}}"
-    },
-    "xskakgetgame{}": {
-      "snippet": "xskakgetgame{${1:type}}"
-    },
-    "xskakget{}": {
-      "snippet": "xskakget{${1:type}}"
-    },
-    "xskakcomment{}": {
-      "snippet": "xskakcomment{${1:text}}"
-    },
-    "xskakexportgames": {},
-    "xskakexportgames[]": {
-      "snippet": "xskakexportgames[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "xskakendgamedata": {},
-    "xskakcurrentgameid": {},
-    "xskakset{}": {
-      "snippet": "xskakset{${1:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "xskaktestmoveid{}{}": {
-      "snippet": "xskaktestmoveid{${1:movenr}}{${2:player}}"
-    },
-    "xskakloop{}": {
-      "snippet": "xskakloop{${1:code}}"
-    },
-    "xskakloop[]{}": {
-      "snippet": "xskakloop[${2:options}]{${1:code}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "xskakenpassanttext": {},
-    "mainline[]{}": {
-      "snippet": "mainline[${2:option}]{${1:moves}}"
-    },
-    "variation[]{}": {
-      "snippet": "variation[${2:option}]{${1:moves}}"
-    },
-    "xskaknewstyleitem{}": {
-      "snippet": "xskaknewstyleitem{${1:item}}"
-    },
-    "xskaknewstyleitem[]{}": {
-      "snippet": "xskaknewstyleitem[${2:options}]{${1:item}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "xskaknewstyle{}": {
-      "snippet": "xskaknewstyle{${1:style}}"
-    },
-    "xskaknewstyle[]{}": {
-      "snippet": "xskaknewstyle[${2:options}]{${1:style}}",
-      "keyvalindex": 6,
-      "keyvalpos": 0
-    },
-    "xskakaddtostyle{}": {
-      "snippet": "xskakaddtostyle{${1:style}}"
-    },
-    "xskakaddtostyle[]{}": {
-      "snippet": "xskakaddtostyle[${2:options}]{${1:style}}",
-      "keyvalindex": 6,
-      "keyvalpos": 0
-    },
-    "printchessgame": {},
-    "printchessgame[]": {
-      "snippet": "printchessgame[${1:options}]",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "chessdiagramname": {},
-    "xskakaddtoid": {},
-    "ifxskakboolcapture": {},
-    "ifxskakboolcastling": {},
-    "ifxskakboolcheck": {},
-    "ifxskakboolcomment": {},
-    "ifxskakboolenpassant": {},
-    "ifxskakboollongcastling": {},
-    "ifxskakboolmate": {},
-    "ifxskakboolnag": {},
-    "ifxskakboolpromotion": {},
-    "ifxskakboolvar": {},
-    "ifxskakpdfmatch": {},
-    "ParseCastlingAA()": {
-      "snippet": "ParseCastlingAA(${1:arg})"
-    },
-    "skaklongmoves": {},
-    "variationmovemode": {},
-    "xskakboolcapturefalse": {},
-    "xskakboolcapturetrue": {},
-    "xskakboolcastlingfalse": {},
-    "xskakboolcastlingtrue": {},
-    "xskakboolcheckfalse": {},
-    "xskakboolchecktrue": {},
-    "xskakboolcommentfalse": {},
-    "xskakboolcommenttrue": {},
-    "xskakboolenpassantfalse": {},
-    "xskakboolenpassanttrue": {},
-    "xskakboollongcastlingfalse": {},
-    "xskakboollongcastlingtrue": {},
-    "xskakboolmatefalse": {},
-    "xskakboolmatetrue": {},
-    "xskakboolnagfalse": {},
-    "xskakboolnagtrue": {},
-    "xskakboolpromotionfalse": {},
-    "xskakboolpromotiontrue": {},
-    "xskakboolvarfalse": {},
-    "xskakboolvartrue": {},
-    "xskakmovehyphen": {},
-    "xskakpdfmatchfalse": {},
-    "xskakpdfmatchtrue": {}
-  },
-  "envs": {},
-  "options": [
-    "nopdfmatch"
+    {
+      "name": "chessboard"
+    }
   ],
-  "keyvals": [
-    [
-      "id",
-      "id=${1:GameID}",
-      "movenr=${1:number}",
-      "player=${1|w,b|}",
-      "moveid=${1:⟨number⟩⟨w or b⟩}",
-      "newvar=${1:GameID}",
-      "refid=${1:tag}",
-      "refpastmoveid=${1:tag}",
-      "refpastmovenr=${1:tag}",
-      "refpastplayer=${1:tag}",
-      "refnextmoveid=${1:tag}",
-      "refnextmovenr=${1:tag}",
-      "refnextplayer=${1:tag}",
-      "refpast=${1:tag}",
-      "refnext=${1:tag}",
-      "reffen=${1:tag}",
-      "reftag=${1:tag}",
-      "%xskakkey",
-      "result=${1:result}",
-      "white=${1:name}",
-      "black=${1:name}",
-      "whiteelo=${1:rating}",
-      "blackelo=${1:rating}",
-      "site=${1:site}",
-      "date=${1:date}",
-      "event=${1:event name}",
-      "round=${1:round}"
+  "macros": [
+    {
+      "name": "newchessgame"
+    },
+    {
+      "name": "newchessgame",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\newchessgame,\\resumechessgame,\\xskakset,\\chessboard",
+          "\\newchessgame"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "resumechessgame",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\newchessgame,\\resumechessgame,\\xskakset,\\chessboard"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "xskaknewpgninfo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyname%specialDef}}"
+      }
+    },
+    {
+      "name": "xskaknewpgninfo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:default}]{${1:keyname%specialDef}}"
+      }
+    },
+    {
+      "name": "xskakgetgame",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type%keyvals}}",
+        "keys": [
+          "\\xskakgetgame#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "xskakget",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type%keyvals}}",
+        "keys": [
+          "\\xskakget#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "xskakcomment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "xskakexportgames"
+    },
+    {
+      "name": "xskakexportgames",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\xskakexportgames"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "xskakendgamedata",
+      "unusual": true
+    },
+    {
+      "name": "xskakcurrentgameid",
+      "unusual": true
+    },
+    {
+      "name": "xskakset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\xskakset",
+          "\\mainline,\\variation,\\xskakset,\\printchessgame"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "xskaktestmoveid",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:movenr}}{${2:player}}"
+      }
+    },
+    {
+      "name": "xskakloop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "xskakloop",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:code}}",
+        "keys": [
+          "\\xskakloop"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "xskakenpassanttext",
+      "unusual": true
+    },
+    {
+      "name": "mainline",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:moves}}",
+        "keys": [
+          "\\mainline,\\variation,\\xskakset,\\printchessgame"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "variation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:moves}}",
+        "keys": [
+          "\\mainline,\\variation,\\xskakset,\\printchessgame"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "xskaknewstyleitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:item}}"
+      }
+    },
+    {
+      "name": "xskaknewstyleitem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:item}}",
+        "keys": [
+          "\\xskaknewstyleitem"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "xskaknewstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style}}"
+      }
+    },
+    {
+      "name": "xskaknewstyle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:style}}",
+        "keys": [
+          "\\xskaknewstyle,\\xskakaddtostyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "xskakaddtostyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style}}"
+      }
+    },
+    {
+      "name": "xskakaddtostyle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:style}}",
+        "keys": [
+          "\\xskaknewstyle,\\xskakaddtostyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "printchessgame"
+    },
+    {
+      "name": "printchessgame",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\printchessgame"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "chessdiagramname",
+      "unusual": true
+    },
+    {
+      "name": "xskakaddtoid",
+      "unusual": true
+    },
+    {
+      "name": "variationmovemode",
+      "unusual": true
+    },
+    {
+      "name": "xskakmovehyphen",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/xskak#c": [
+      "nopdfmatch"
     ],
-    [
+    "\\newchessgame,\\resumechessgame,\\xskakset,\\chessboard": [
       "id",
       "id=${1:GameID}",
       "movenr=${1:number}",
@@ -189,11 +278,94 @@
       "reftag=${1:tag}",
       "%xskakkey"
     ],
-    [
+    "\\newchessgame": [
+      "result=${1:result}",
+      "white=${1:name}",
+      "black=${1:name}",
+      "whiteelo=${1:rating}",
+      "blackelo=${1:rating}",
+      "site=${1:site}",
+      "date=${1:date}",
+      "event=${1:event name}",
+      "round=${1:round}"
+    ],
+    "\\chessboard": [
+      "stepmoveid=${1:number}",
+      "lastmoveid",
+      "lastmoveid=${1:GameID}"
+    ],
+    "\\xskakgetgame#c": [
+      "initfen",
+      "initplayer",
+      "initmovenr",
+      "initmoveid",
+      "lastfen",
+      "lastplayer",
+      "lastmovenr",
+      "lastmoveid",
+      "nextplayer",
+      "nextmovenr",
+      "nextmoveid",
+      "diagramlist",
+      "gameid",
+      "parentid",
+      "result",
+      "white",
+      "black",
+      "whiteelo",
+      "blackelo",
+      "site",
+      "event",
+      "date",
+      "round",
+      "%xskakkey"
+    ],
+    "\\xskakget#c": [
+      "pgnpiece",
+      "piecechar",
+      "piece",
+      "pgnlostpiece",
+      "lostpiecechar",
+      "lostpiece",
+      "movefrom",
+      "pgnmovefrom",
+      "moveto",
+      "enpassant",
+      "enpassantsquare",
+      "castling",
+      "longcastling",
+      "capture",
+      "promotion",
+      "promotionpiece",
+      "promotionpiecechar",
+      "addpieces",
+      "clearfields",
+      "nextfen",
+      "pastfen",
+      "san",
+      "lan",
+      "opennr",
+      "comments",
+      "movenr",
+      "player",
+      "moveid",
+      "refid",
+      "refpastmoveid",
+      "refnextmoveid",
+      "refpastmovenr",
+      "refnextmovenr",
+      "refpastplayer",
+      "refnextplayer",
+      "check",
+      "mate",
+      "move",
+      "nag"
+    ],
+    "\\xskakexportgames": [
       "file=",
       "games={${1:list of games}}"
     ],
-    [
+    "\\xskakset": [
       "stepmoveid=${1:number}",
       "lastmoveid=${1:GameID}",
       "tag=${1:name}",
@@ -210,17 +382,9 @@
       "defaultmovenr=${1:number}",
       "defaultplayer=${1|w,b|}",
       "defaultmoveid=${1:⟨number⟩⟨w or b⟩}",
-      "defaultfen=${1:FEN}",
-      "style=${1:style name}",
-      "gstyle=${1:style name}",
-      "level=${1:number}",
-      "glevel=${1:number}",
-      "invar",
-      "ginvar",
-      "outvar",
-      "goutvar"
+      "defaultfen=${1:FEN}"
     ],
-    [
+    "\\xskakloop": [
       "id=${1:GameID}",
       "initmovenr=${1:number}",
       "initplayer=${1|w,b|}",
@@ -231,7 +395,17 @@
       "step=${1:number}",
       "showlast"
     ],
-    [
+    "\\mainline,\\variation,\\xskakset,\\printchessgame": [
+      "style=${1:style name}",
+      "gstyle=${1:style name}",
+      "level=${1:number}",
+      "glevel=${1:number}",
+      "invar",
+      "ginvar",
+      "outvar",
+      "goutvar"
+    ],
+    "\\xskaknewstyleitem": [
       "opencommands=${1:cmds}",
       "closecommands=${1:cmds}",
       "beforenumber=${1:cmds}",
@@ -245,13 +419,13 @@
       "beforecomment=${1:cmds}",
       "template=${1:item}"
     ],
-    [
+    "\\xskaknewstyle,\\xskakaddtostyle": [
       "level=${1:number}",
       "styleitem=${1:item}",
       "font=${1:cmds}",
       "xfont=${1:cmds}"
     ],
-    [
+    "\\printchessgame": [
       "id=${1:GameID}",
       "refid=${1:tag}",
       "initmovenr=${1:number}",
@@ -262,5 +436,8 @@
       "stopmoveid=${1:⟨number⟩⟨w or b⟩}",
       "reftag=${1:tag}"
     ]
+  },
+  "args": [
+    "\\usepackage/xskak#c"
   ]
 }

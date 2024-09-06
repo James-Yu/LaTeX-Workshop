@@ -1,93 +1,283 @@
 {
-  "includes": {
-    "pgfrcs": [],
-    "pgfkeys": []
-  },
-  "macros": {
-    "pgfcalendardatetojulian{}{}": {
-      "snippet": "pgfcalendardatetojulian{${1:date}}{${2:counter}}"
+  "deps": [
+    {
+      "name": "pgfrcs"
     },
-    "pgfcalendarjuliantodate{}{}{}{}": {
-      "snippet": "pgfcalendarjuliantodate{${1:Julian day}}{${2:year cmd}}{${3:month cmd}}{${4:day cmd}}"
-    },
-    "pgfcalendarjuliantoweekday{}{}": {
-      "snippet": "pgfcalendarjuliantoweekday{${1:Julian day}}{${2:week day cmd}}"
-    },
-    "pgfcalendareastersunday{}{}": {
-      "snippet": "pgfcalendareastersunday{${1:year}}{${2:cmd}}"
-    },
-    "pgfcalendarifdate{}{}{}{}": {
-      "snippet": "pgfcalendarifdate{${1:date}}{${2:tests}}{${3:code}}{${4:else code}}"
-    },
-    "pgfcalendarifdatejulian": {},
-    "pgfcalendarifdateweekday": {},
-    "pgfcalendarifdateyear": {},
-    "pgfcalendarifdatemonth": {},
-    "pgfcalendarifdateday": {},
-    "pgfcalendarweekdayname{}": {
-      "snippet": "pgfcalendarweekdayname{${1:week day number}}"
-    },
-    "pgfcalendarweekdayshortname{}": {
-      "snippet": "pgfcalendarweekdayshortname{${1:week day number}}"
-    },
-    "pgfcalendarmonthname{}": {
-      "snippet": "pgfcalendarmonthname{${1:month number}}"
-    },
-    "pgfcalendarmonthshortname{}": {
-      "snippet": "pgfcalendarmonthshortname{${1:month number}}"
-    },
-    "pgfcalendar{}{}{}{}": {
-      "snippet": "pgfcalendar{${1:prefix}}{${2:start date}}{${3:end date}}{${4:rendering code}}"
-    },
-    "pgfcalendarprefix": {},
-    "pgfcalendarbeginiso": {},
-    "pgfcalendarbeginjulian": {},
-    "pgfcalendarendiso": {},
-    "pgfcalendarendjulian": {},
-    "pgfcalendarcurrentjulian": {},
-    "pgfcalendarcurrentweekday": {},
-    "pgfcalendarcurrentyear": {},
-    "pgfcalendarcurrentmonth": {},
-    "pgfcalendarcurrentday": {},
-    "ifdate{}{}{}": {
-      "snippet": "ifdate{${1:test}}{${2:code}}{${3:else code}}"
-    },
-    "pgfcalendarshorthand{}{}": {
-      "snippet": "pgfcalendarshorthand{${1:kind}}{${2:representation}}"
-    },
-    "pgfcalendarsuggestedname": {},
-    "ifpgfcalendarmatches": {},
-    "pgfcalendarmatchestrue": {},
-    "pgfcalendarmatchesfalse": {},
-    "pgfinteval{}": {
-      "snippet": "pgfinteval{${1:arg}}"
-    },
-    "pgfintabs{}": {
-      "snippet": "pgfintabs{${1:arg}}"
-    },
-    "pgfintmax{}{}": {
-      "snippet": "pgfintmax{${1:arg1}}{${2:arg2}}"
-    },
-    "pgfintmin{}{}": {
-      "snippet": "pgfintmin{${1:arg1}}{${2:arg2}}"
-    },
-    "pgfintdivtruncate{}{}": {
-      "snippet": "pgfintdivtruncate{${1:arg1}}{${2:arg2}}"
-    },
-    "pgfintdivfloor{}{}": {
-      "snippet": "pgfintdivfloor{${1:arg1}}{${2:arg2}}"
-    },
-    "pgfintdivround{}{}": {
-      "snippet": "pgfintdivround{${1:arg1}}{${2:arg2}}"
-    },
-    "pgfintmod{}{}": {
-      "snippet": "pgfintmod{${1:arg1}}{${2:arg2}}"
-    },
-    "pgfintset{}{}": {
-      "snippet": "pgfintset{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "pgfkeys"
     }
+  ],
+  "macros": [
+    {
+      "name": "pgfcalendardatetojulian",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:date}}{${2:counter}}"
+      }
+    },
+    {
+      "name": "pgfcalendarjuliantodate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:Julian day}}{${2:year cmd%cmd}}{${3:month cmd%cmd}}{${4:day cmd%cmd}}"
+      }
+    },
+    {
+      "name": "pgfcalendarjuliantoweekday",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:Julian day}}{${2:week day cmd%cmd}}"
+      }
+    },
+    {
+      "name": "pgfcalendareastersunday",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:year}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "pgfcalendarifdate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:date}}{${2:tests%keyvals}}{${3:code}}{${4:else code}}",
+        "keys": [
+          "\\pgfcalendarifdate#c,\\ifdate#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "pgfcalendarifdatejulian",
+      "unusual": true
+    },
+    {
+      "name": "pgfcalendarifdateweekday",
+      "unusual": true
+    },
+    {
+      "name": "pgfcalendarifdateyear",
+      "unusual": true
+    },
+    {
+      "name": "pgfcalendarifdatemonth",
+      "unusual": true
+    },
+    {
+      "name": "pgfcalendarifdateday",
+      "unusual": true
+    },
+    {
+      "name": "pgfcalendarweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:week day number}}"
+      }
+    },
+    {
+      "name": "pgfcalendarweekdayshortname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:week day number}}"
+      }
+    },
+    {
+      "name": "pgfcalendarmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:month number}}"
+      }
+    },
+    {
+      "name": "pgfcalendarmonthshortname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:month number}}"
+      }
+    },
+    {
+      "name": "pgfcalendar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:prefix}}{${2:start date}}{${3:end date}}{${4:rendering code}}"
+      }
+    },
+    {
+      "name": "pgfcalendarprefix",
+      "unusual": true
+    },
+    {
+      "name": "pgfcalendarbeginiso",
+      "unusual": true
+    },
+    {
+      "name": "pgfcalendarbeginjulian",
+      "unusual": true
+    },
+    {
+      "name": "pgfcalendarendiso",
+      "unusual": true
+    },
+    {
+      "name": "pgfcalendarendjulian",
+      "unusual": true
+    },
+    {
+      "name": "pgfcalendarcurrentjulian",
+      "unusual": true
+    },
+    {
+      "name": "pgfcalendarcurrentweekday",
+      "unusual": true
+    },
+    {
+      "name": "pgfcalendarcurrentyear",
+      "unusual": true
+    },
+    {
+      "name": "pgfcalendarcurrentmonth",
+      "unusual": true
+    },
+    {
+      "name": "pgfcalendarcurrentday",
+      "unusual": true
+    },
+    {
+      "name": "ifdate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:test%keyvals}}{${2:code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "pgfcalendarshorthand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:kind}}{${2:representation}}"
+      }
+    },
+    {
+      "name": "pgfcalendarsuggestedname",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfcalendarmatches",
+      "unusual": true
+    },
+    {
+      "name": "pgfcalendarmatchestrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfcalendarmatchesfalse",
+      "unusual": true
+    },
+    {
+      "name": "pgfinteval",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "pgfintabs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "pgfintmax",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "pgfintmin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "pgfintdivtruncate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "pgfintdivfloor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "pgfintdivround",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "pgfintmod",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "pgfintset",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pgfcalendarifdate#c,\\ifdate#c": [
+      "all",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+      "workday",
+      "weekend",
+      "equals=${1:reference}",
+      "at least=${1:reference}",
+      "at most=${1:reference}",
+      "between=${1:start} and ${2:end}",
+      "day of month=${1:number}",
+      "end of month=${1:number}",
+      "Easter=${1:number}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,20 +1,40 @@
 {
-  "includes": {
-    "zref-base": [],
-    "zref-abspage": [],
-    "zref-thepage": [],
-    "zref-lastpage": [],
-    "uniquecounter": []
-  },
-  "macros": {
-    "znextpage": {},
-    "zunknownnextpagename": {},
-    "znonextpagename": {},
-    "znextpagesetup{}{}{}": {
-      "snippet": "znextpagesetup{${1:unknown}}{${2:no next}}{${3:next}}"
+  "deps": [
+    {
+      "name": "zref-base"
+    },
+    {
+      "name": "zref-abspage"
+    },
+    {
+      "name": "zref-thepage"
+    },
+    {
+      "name": "zref-lastpage"
+    },
+    {
+      "name": "uniquecounter"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "znextpage"
+    },
+    {
+      "name": "zunknownnextpagename"
+    },
+    {
+      "name": "znonextpagename"
+    },
+    {
+      "name": "znextpagesetup",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:unknown}}{${2:no next}}{${3:next}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

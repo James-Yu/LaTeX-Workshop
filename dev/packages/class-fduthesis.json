@@ -1,106 +1,223 @@
 {
-  "includes": {
-    "xtemplate": [],
-    "l3keys2e": [],
-    "class-ctexbook": [],
-    "xeCJK": [],
-    "amsmath": [],
-    "unicode-math": [],
-    "geometry": [],
-    "fancyhdr": [],
-    "footmisc": [],
-    "ntheorem": [],
-    "graphicx": [],
-    "longtable": [],
-    "caption": [],
-    "xcolor": [],
-    "pifont": [],
-    "natbib": [],
-    "biblatex": [],
-    "hyperref": []
-  },
-  "macros": {
-    "fdusetup{}": {
-      "snippet": "fdusetup{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xtemplate"
     },
-    "makecoveri": {},
-    "makecoverii": {},
-    "makecoveriii": {},
-    "newtheorem[]{}{}": {
-      "snippet": "newtheorem[${3:options}]{${1:envname}}{${2:title}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "l3keys2e"
     },
-    "newtheorem*{}{}": {
-      "snippet": "newtheorem*{${1:envname}}{${2:title}}"
+    {
+      "name": "class-ctexbook"
     },
-    "newtheorem*[]{}{}": {
-      "snippet": "newtheorem*[${3:options}]{${1:envname}}{${2:title}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "xeCJK"
     },
-    "DeclareCoverTemplate{}{}": {
-      "snippet": "DeclareCoverTemplate{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "amsmath"
     },
-    "theoremsymbol{}": {
-      "snippet": "theoremsymbol{${1:symbol}}"
+    {
+      "name": "unicode-math"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "footmisc"
+    },
+    {
+      "name": "ntheorem"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "longtable"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "pifont"
+    },
+    {
+      "name": "natbib"
+    },
+    {
+      "name": "biblatex"
+    },
+    {
+      "name": "hyperref"
     }
-  },
-  "envs": {
-    "abstract*": {},
-    "notation": {},
-    "notation[]": {
-      "name": "notation",
-      "snippet": "[${1:cols}]"
-    },
-    "acknowledgements": {},
-    "axiom": {},
-    "axiom[]": {
-      "name": "axiom",
-      "snippet": "[${1:subheading}]"
-    },
-    "corollary": {},
-    "corollary[]": {
-      "name": "corollary",
-      "snippet": "[${1:subheading}]"
-    },
-    "definition": {},
-    "definition[]": {
-      "name": "definition",
-      "snippet": "[${1:subheading}]"
-    },
-    "example": {},
-    "example[]": {
-      "name": "example",
-      "snippet": "[${1:subheading}]"
-    },
-    "lemma": {},
-    "lemma[]": {
-      "name": "lemma",
-      "snippet": "[${1:subheading}]"
-    },
-    "proof": {},
-    "proof[]": {
-      "name": "proof",
-      "snippet": "[${1:subheading}]"
-    },
-    "theorem": {},
-    "theorem[]": {
-      "name": "theorem",
-      "snippet": "[${1:subheading}]"
-    }
-  },
-  "options": [
-    "type=${1|doctor,master,bachelor|}",
-    "oneside",
-    "twoside",
-    "draft",
-    "config=${1:file}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "fdusetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\fdusetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "makecoveri"
+    },
+    {
+      "name": "makecoverii"
+    },
+    {
+      "name": "makecoveriii"
+    },
+    {
+      "name": "newtheorem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:envname}}{${2:title%plain}}",
+        "keys": [
+          "\\newtheorem,\\newtheorem*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "newtheorem*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:title%plain}}"
+      }
+    },
+    {
+      "name": "newtheorem*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:envname}}{${2:title%plain}}",
+        "keys": [
+          "\\newtheorem,\\newtheorem*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DeclareCoverTemplate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "theoremsymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "abstract*"
+    },
+    {
+      "name": "notation"
+    },
+    {
+      "name": "notation",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:cols}]"
+      }
+    },
+    {
+      "name": "acknowledgements"
+    },
+    {
+      "name": "axiom"
+    },
+    {
+      "name": "axiom",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:subheading%text}]"
+      }
+    },
+    {
+      "name": "corollary"
+    },
+    {
+      "name": "corollary",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:subheading%text}]"
+      }
+    },
+    {
+      "name": "definition"
+    },
+    {
+      "name": "definition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:subheading%text}]"
+      }
+    },
+    {
+      "name": "example"
+    },
+    {
+      "name": "example",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:subheading%text}]"
+      }
+    },
+    {
+      "name": "lemma"
+    },
+    {
+      "name": "lemma",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:subheading%text}]"
+      }
+    },
+    {
+      "name": "proof"
+    },
+    {
+      "name": "proof",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:subheading%text}]"
+      }
+    },
+    {
+      "name": "theorem"
+    },
+    {
+      "name": "theorem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:subheading%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/fduthesis#c": [
+      "type=${1|doctor,master,bachelor|}",
+      "oneside",
+      "twoside",
+      "draft",
+      "config=${1:file}"
+    ],
+    "\\fdusetup#c": [
       "style={${1:options}}",
       "style/font=${1|garamond,libertinus,lm,palatino,times,times*,none|}",
       "style/cjk-font=${1|adobe,fandol,founder,mac,sinotype,sourcehan,windows,none|}",
@@ -110,7 +227,7 @@
       "style/hyperlink=${1|border,color,none|}",
       "style/hyperlink-color=${1|default,classic,material,graylevel,prl|}",
       "style/bib-backend=${1|bibtex,biblatex|}",
-      "style/bib-style=${1|author-year,numerical,${1:other style}|}",
+      "style/bib-style=${2|author-year,numerical,${1:other style}|}",
       "style/cite-style=${1:style}",
       "style/bib-resource={${1:bib files}}",
       "style/logo=${1:imagefile}",
@@ -144,12 +261,15 @@
       "theorem/qed=${1:symbol}",
       "theorem/counter=${1:counter}"
     ],
-    [
+    "\\newtheorem,\\newtheorem*": [
       "style=${1|plain,margin,change,break,marginbreak,changebreak|}",
       "header-font=${1:font commands}",
       "body-font=${1:font commands}",
       "qed=${1:symbol}",
       "counter=${1:counter}"
     ]
+  },
+  "args": [
+    "\\documentclass/fduthesis#c"
   ]
 }

@@ -1,49 +1,114 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "ifoddpage": [],
-    "afterpage": [],
-    "placeins": [],
-    "pdfpages": []
-  },
-  "macros": {
-    "figcontent{}": {
-      "snippet": "figcontent{${1:code}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "figpdf{}": {
-      "snippet": "figpdf{${1:file}}"
+    {
+      "name": "ifoddpage"
     },
-    "figpdf[]{}": {
-      "snippet": "figpdf[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "afterpage"
     },
-    "figpageside{}": {
-      "snippet": "figpageside{${1:option}}"
+    {
+      "name": "placeins"
     },
-    "figplacement{}": {
-      "snippet": "figplacement{${1:position}}"
-    },
-    "figcapmaxheight{}": {
-      "snippet": "figcapmaxheight{${1:length}}"
-    },
-    "fullpagefigurecaptionfmt": {},
-    "FlushAllFullPageFigures": {},
-    "FlushAllFullPageFigures[]": {
-      "snippet": "FlushAllFullPageFigures[${1:clear cmd}]"
-    },
-    "phffpfFloatBarrier": {}
-  },
-  "envs": {
-    "fullpagefigure": {},
-    "fullpagefigure[]": {
-      "name": "fullpagefigure",
-      "snippet": "[${1:position}]"
+    {
+      "name": "pdfpages"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "figcontent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "figpdf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "figpdf",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\figpdf"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "figpageside",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option%keyvals}}",
+        "keys": [
+          "\\figpageside"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "figplacement",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:position%keyvals}}",
+        "keys": [
+          "\\figplacement,\\begin{fullpagefigure}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "figcapmaxheight",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "fullpagefigurecaptionfmt",
+      "unusual": true
+    },
+    {
+      "name": "FlushAllFullPageFigures"
+    },
+    {
+      "name": "FlushAllFullPageFigures",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clear cmd}]"
+      }
+    },
+    {
+      "name": "phffpfFloatBarrier",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "fullpagefigure"
+    },
+    {
+      "name": "fullpagefigure",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:position%keyvals}]",
+        "keys": [
+          "\\figplacement,\\begin{fullpagefigure}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\figpdf": [
       "pages=",
       "nup=${1:xnup}x${2:ynup}",
       "landscape",
@@ -107,6 +172,16 @@
       "quiet",
       "page=",
       "interpolate"
+    ],
+    "\\figpageside": [
+      "even",
+      "odd"
+    ],
+    "\\figplacement,\\begin{fullpagefigure}": [
+      "b",
+      "t",
+      "p"
     ]
-  ]
+  },
+  "args": []
 }

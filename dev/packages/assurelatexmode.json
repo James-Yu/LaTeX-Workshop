@@ -1,77 +1,185 @@
 {
-  "includes": {
-    "chemstr": []
-  },
-  "macros": {
-    "HashWedgeAsSubst()(){}": {
-      "snippet": "HashWedgeAsSubst(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
+  "deps": [
+    {
+      "name": "chemstr"
+    }
+  ],
+  "macros": [
+    {
+      "name": "HashWedgeAsSubst",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
+      }
     },
-    "HashWedgeAsSubstTeXLaTeX()(){}": {
-      "snippet": "HashWedgeAsSubstTeXLaTeX(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
+    {
+      "name": "HashWedgeAsSubstTeXLaTeX",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
+      }
     },
-    "HashWedgeAsSubstX()()": {
-      "snippet": "HashWedgeAsSubstX(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
+    {
+      "name": "HashWedgeAsSubstX",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
+      }
     },
-    "HashWedgeAsSubstX()()[]": {
-      "snippet": "HashWedgeAsSubstX(${2:xstart},${3:ystart})(${4:xend},${5:yend})[${1:thickness}]"
+    {
+      "name": "HashWedgeAsSubstX",
+      "arg": {
+        "format": "()()[]",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend})[${1:thickness}]"
+      }
     },
-    "HashWedgeAsSubstXTeXLaTeX()()": {
-      "snippet": "HashWedgeAsSubstXTeXLaTeX(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
+    {
+      "name": "HashWedgeAsSubstXTeXLaTeX",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
+      }
     },
-    "HashWedgeAsSubstXTeXLaTeX()()[]": {
-      "snippet": "HashWedgeAsSubstXTeXLaTeX(${2:xstart},${3:ystart})(${4:xend},${5:yend})[${1:thickness}]"
+    {
+      "name": "HashWedgeAsSubstXTeXLaTeX",
+      "unusual": true,
+      "arg": {
+        "format": "()()[]",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend})[${1:thickness}]"
+      }
     },
-    "PutBondLine()(){}": {
-      "snippet": "PutBondLine(${2:xstart},${3:ystart})(${4:xend},${5:yend}){${1:thickness}}"
+    {
+      "name": "PutBondLine",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend}){${1:thickness}}"
+      }
     },
-    "PutDashedBond()(){}": {
-      "snippet": "PutDashedBond(${2:xstart},${3:ystart})(${4:xend},${5:yend}){${1:thickness}}"
+    {
+      "name": "PutDashedBond",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend}){${1:thickness}}"
+      }
     },
-    "PutTeXLaTeXLine()(){}": {
-      "snippet": "PutTeXLaTeXLine(${2:xstart},${3:ystart})(${4:xend},${5:yend}){${1:thickness}}"
+    {
+      "name": "PutTeXLaTeXLine",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend}){${1:thickness}}"
+      }
     },
-    "PutTeXLaTeXdashed()(){}": {
-      "snippet": "PutTeXLaTeXdashed(${2:xstart},${3:ystart})(${4:xend},${5:yend}){${1:thickness}}"
+    {
+      "name": "PutTeXLaTeXdashed",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend}){${1:thickness}}"
+      }
     },
-    "WedgeAsSubst()(){}": {
-      "snippet": "WedgeAsSubst(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
+    {
+      "name": "WedgeAsSubst",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
+      }
     },
-    "WedgeAsSubstTeXLaTeX()(){}": {
-      "snippet": "WedgeAsSubstTeXLaTeX(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
+    {
+      "name": "WedgeAsSubstTeXLaTeX",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
+      }
     },
-    "WedgeAsSubstX()()": {
-      "snippet": "WedgeAsSubstX(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
+    {
+      "name": "WedgeAsSubstX",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
+      }
     },
-    "WedgeAsSubstX()()[]": {
-      "snippet": "WedgeAsSubstX(${2:xstart},${3:ystart})(${4:xend},${5:yend})[${1:thickness}]"
+    {
+      "name": "WedgeAsSubstX",
+      "arg": {
+        "format": "()()[]",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend})[${1:thickness}]"
+      }
     },
-    "WedgeAsSubstXTeXLaTeX()()": {
-      "snippet": "WedgeAsSubstXTeXLaTeX(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
+    {
+      "name": "WedgeAsSubstXTeXLaTeX",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
+      }
     },
-    "dashhasheddash": {},
-    "putRoundArrow{}": {
-      "snippet": "putRoundArrow{${1:(${2:x1},${3:y1})(${4:x2},${5:y2})...}}"
+    {
+      "name": "WedgeAsSubstX",
+      "unusual": true,
+      "arg": {
+        "format": "()()[]",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend})[${1:thickness}]"
+      }
     },
-    "putRoundArrow[]{}": {
-      "snippet": "putRoundArrow[${2:arrowhead}]{${1:(${3:x1},${4:y1})(${5:x2},${6:y2})...}}"
+    {
+      "name": "dashhasheddash"
     },
-    "putRoundArrowTeXLaTeX{}": {
-      "snippet": "putRoundArrowTeXLaTeX{${1:(${2:x1},${3:y1})(${4:x2},${5:y2})...}}"
+    {
+      "name": "putRoundArrow",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:(${2:x1},${3:y1})(${4:x2},${5:y2})...}}"
+      }
     },
-    "putRoundArrowTeXLaTeX[]{}": {
-      "snippet": "putRoundArrowTeXLaTeX[${2:arrowhead}]{${1:(${3:x1},${4:y1})(${5:x2},${6:y2})...}}"
+    {
+      "name": "putRoundArrow",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:arrowhead}]{${1:(${3:x1},${4:y1})(${5:x2},${6:y2})...}}"
+      }
     },
-    "thickLineWidth": {},
-    "thicklines": {},
-    "thinLineWidth": {},
-    "thinlines": {},
-    "wedgehasheddash": {},
-    "wedgehashedwedge": {},
-    "ifmolfront": {},
-    "molfrontfalse": {},
-    "molfronttrue": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "putRoundArrowTeXLaTeX",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:(${2:x1},${3:y1})(${4:x2},${5:y2})...}}"
+      }
+    },
+    {
+      "name": "putRoundArrowTeXLaTeX",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:arrowhead}]{${1:(${3:x1},${4:y1})(${5:x2},${6:y2})...}}"
+      }
+    },
+    {
+      "name": "thickLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "thicklines"
+    },
+    {
+      "name": "thinLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "thinlines"
+    },
+    {
+      "name": "wedgehasheddash"
+    },
+    {
+      "name": "wedgehashedwedge"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

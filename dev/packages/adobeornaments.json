@@ -1,16 +1,46 @@
 {
-  "includes": {
-    "iftex": [],
-    "fontspec": [],
-    "xstring": []
-  },
-  "macros": {
-    "orn{}{}": {
-      "snippet": "orn{${1:font}}{${2:number}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "adobeornamentsversionnumber": {}
+    {
+      "name": "fontspec"
+    },
+    {
+      "name": "xstring"
+    }
+  ],
+  "macros": [
+    {
+      "name": "orn",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:font%keyvals}}{${2:number}}",
+        "keys": [
+          "\\orn#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\orn#c": [
+      "minion",
+      "arno",
+      "warnock",
+      "brioso",
+      "caslon",
+      "jenson",
+      "agp",
+      "kepler",
+      "voluta",
+      "gpp",
+      "cronos",
+      "bickham",
+      "chaparral",
+      "silentium"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

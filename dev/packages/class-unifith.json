@@ -1,170 +1,352 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "class-book": [],
-    "geometry": [],
-    "ifxetex": [],
-    "fontspec": [],
-    "caption": [],
-    "graphicx": [],
-    "color": [],
-    "booktabs": [],
-    "amsmath": [],
-    "etoolbox": [],
-    "fancyhdr": [],
-    "hyperref": []
-  },
-  "macros": {
-    "subtitle{}": {
-      "snippet": "subtitle{${1:text}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "alttitle{}": {
-      "snippet": "alttitle{${1:text}}"
+    {
+      "name": "class-book"
     },
-    "IDnumber{}": {
-      "snippet": "IDnumber{${1:number}}"
+    {
+      "name": "geometry"
     },
-    "course{}": {
-      "snippet": "course{${1:course}}"
+    {
+      "name": "ifxetex"
     },
-    "cycle{}": {
-      "snippet": "cycle{${1:cycle}}"
+    {
+      "name": "fontspec"
     },
-    "courseorganizer": {},
-    "courseorganizer{}": {
-      "snippet": "courseorganizer{${1:name}}"
+    {
+      "name": "caption"
     },
-    "AcademicYear{}": {
-      "snippet": "AcademicYear{${1:year}}"
+    {
+      "name": "graphicx"
     },
-    "submitdate{}": {
-      "snippet": "submitdate{${1:year}}"
+    {
+      "name": "color"
     },
-    "advisor{}": {
-      "snippet": "advisor{${1:name}}"
+    {
+      "name": "booktabs"
     },
-    "coadvisor{}": {
-      "snippet": "coadvisor{${1:name}}"
+    {
+      "name": "amsmath"
     },
-    "customcoadvisorlabel{}": {
-      "snippet": "customcoadvisorlabel{${1:text}}"
+    {
+      "name": "etoolbox"
     },
-    "director{}": {
-      "snippet": "director{${1:name}}"
+    {
+      "name": "fancyhdr"
     },
-    "customdirectorlabel{}": {
-      "snippet": "customdirectorlabel{${1:text}}"
-    },
-    "examdate{}": {
-      "snippet": "examdate{${1:date}}"
-    },
-    "examiner{}": {
-      "snippet": "examiner{${1:name}}"
-    },
-    "examiner[]{}": {
-      "snippet": "examiner[${2:role}]{${1:name}}"
-    },
-    "thesistype{}": {
-      "snippet": "thesistype{${1:type}}"
-    },
-    "ISBN{}": {
-      "snippet": "ISBN{${1:ISBN}}"
-    },
-    "copyyear{}": {
-      "snippet": "copyyear{${1:year}}"
-    },
-    "copyrightstatement{}": {
-      "snippet": "copyrightstatement{${1:text}}"
-    },
-    "versiondate{}": {
-      "snippet": "versiondate{${1:date}}"
-    },
-    "website{}": {
-      "snippet": "website{${1:URL}}"
-    },
-    "authoremail{}": {
-      "snippet": "authoremail{${1:email}}"
-    },
-    "reviewer{}": {
-      "snippet": "reviewer{${1:name}}"
-    },
-    "reviewerlabel{}": {
-      "snippet": "reviewerlabel{${1:text}}"
-    },
-    "dedication{}": {
-      "snippet": "dedication{${1:text}}"
-    },
-    "eu": {},
-    "iu": {},
-    "der{}{}": {
-      "snippet": "der{${1:func}}{${2:vars}}"
-    },
-    "pder{}{}": {
-      "snippet": "pder{${1:func}}{${2:vars}}"
-    },
-    "rb{}": {
-      "snippet": "rb{${1:subscript}}"
-    },
-    "rp{}": {
-      "snippet": "rp{${1:superscript}}"
-    },
-    "tb{}": {
-      "snippet": "tb{${1:subscript}}"
-    },
-    "tp{}": {
-      "snippet": "tp{${1:superscript}}"
-    },
-    "un{}": {
-      "snippet": "un{${1:units}}"
-    },
-    "g": {
-      "detail": "𝑔",
-      "documentation": "MATHEMATICAL ITALIC SMALL G"
-    },
-    "degree": {},
-    "C": {
-      "detail": "𝐶",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL C"
-    },
-    "celsius": {},
-    "A": {
-      "detail": "𝐴",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL A"
-    },
-    "angstrom": {},
-    "micro": {},
-    "ohm": {},
-    "di": {},
-    "x": {
-      "detail": "𝑥",
-      "documentation": "MATHEMATICAL ITALIC SMALL X"
+    {
+      "name": "hyperref"
     }
-  },
-  "envs": {
-    "abstract": {},
-    "abstract[]": {
-      "name": "abstract",
-      "snippet": "[${1:title}]"
-    },
-    "acknowledgments": {},
-    "acknowledgments[]": {
-      "name": "acknowledgments",
-      "snippet": "[${1:title}]"
-    }
-  },
-  "options": [
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "layout=${1|a5paper,b5paper|}",
-    "draft",
-    "oneside",
-    "twoside",
-    "binding=",
-    "noexaminfo",
-    "nodefaultfont",
-    "romandiff",
-    "fem"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "alttitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "IDnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "course",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:course%text}}"
+      }
+    },
+    {
+      "name": "cycle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cycle}}"
+      }
+    },
+    {
+      "name": "courseorganizer"
+    },
+    {
+      "name": "courseorganizer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "AcademicYear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "advisor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "coadvisor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "customcoadvisorlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "director",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "customdirectorlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "examdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "examiner",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "examiner",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:role}]{${1:name}}"
+      }
+    },
+    {
+      "name": "thesistype",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type%text}}"
+      }
+    },
+    {
+      "name": "ISBN",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ISBN}}"
+      }
+    },
+    {
+      "name": "copyyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "copyrightstatement",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "versiondate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "website",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "authoremail",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "reviewer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "reviewerlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "dedication",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "eu"
+    },
+    {
+      "name": "iu"
+    },
+    {
+      "name": "der",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:func}}{${2:vars}}"
+      }
+    },
+    {
+      "name": "pder",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:func}}{${2:vars}}"
+      }
+    },
+    {
+      "name": "rb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subscript}}"
+      }
+    },
+    {
+      "name": "rp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:superscript}}"
+      }
+    },
+    {
+      "name": "tb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subscript}}"
+      }
+    },
+    {
+      "name": "tp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:superscript}}"
+      }
+    },
+    {
+      "name": "un",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:units%formula}}"
+      }
+    },
+    {
+      "name": "g"
+    },
+    {
+      "name": "degree",
+      "unusual": true
+    },
+    {
+      "name": "C"
+    },
+    {
+      "name": "celsius",
+      "unusual": true
+    },
+    {
+      "name": "A"
+    },
+    {
+      "name": "angstrom",
+      "unusual": true
+    },
+    {
+      "name": "micro"
+    },
+    {
+      "name": "ohm"
+    },
+    {
+      "name": "di"
+    },
+    {
+      "name": "x"
+    }
+  ],
+  "envs": [
+    {
+      "name": "abstract"
+    },
+    {
+      "name": "abstract",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "acknowledgments"
+    },
+    {
+      "name": "acknowledgments",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/unifith#c": [
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "layout=${1|a5paper,b5paper|}",
+      "draft",
+      "oneside",
+      "twoside",
+      "binding=",
+      "noexaminfo",
+      "nodefaultfont",
+      "romandiff",
+      "fem"
+    ]
+  },
+  "args": [
+    "\\documentclass/unifith#c"
+  ]
 }

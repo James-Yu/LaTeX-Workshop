@@ -1,225 +1,625 @@
 {
-  "includes": {
-    "amsgen": [],
-    "amsfonts": [],
-    "amsmath": [],
-    "multicol": [],
-    "amsthm": []
-  },
-  "macros": {
-    "address{}": {
-      "snippet": "address{${1:address}}"
+  "deps": [
+    {
+      "name": "amsgen"
     },
-    "altkeywords{}": {
-      "snippet": "altkeywords{${1:keywords}}"
+    {
+      "name": "amsfonts"
     },
-    "alttitle{}": {
-      "snippet": "alttitle{${1:text}}"
+    {
+      "name": "amsmath"
     },
-    "backmatter": {},
-    "curraddr{}": {
-      "snippet": "curraddr{${1:address}}"
+    {
+      "name": "multicol"
     },
-    "dedicatory{}": {
-      "snippet": "dedicatory{${1:text}}"
-    },
-    "email{}": {
-      "snippet": "email{${1:email}}"
-    },
-    "frontmatter": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "ISBN{}": {
-      "snippet": "ISBN{${1:ISBN}}"
-    },
-    "ISSN{}": {
-      "snippet": "ISSN{${1:ISSN}}"
-    },
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}"
-    },
-    "larger": {},
-    "larger[]": {
-      "snippet": "larger[${1:number}]"
-    },
-    "mainmatter": {},
-    "SMALL": {},
-    "Small": {},
-    "smaller": {},
-    "smaller[]": {
-      "snippet": "smaller[${1:number}]"
-    },
-    "specialsection": {},
-    "subjclass{}": {
-      "snippet": "subjclass{${1:classification}}"
-    },
-    "Subsection*{}": {
-      "snippet": "Subsection*{${1:title}}"
-    },
-    "Subsection[]{}": {
-      "snippet": "Subsection[${2:short title}]{${1:title}}"
-    },
-    "Subsection{}": {
-      "snippet": "Subsection{${1:title}}"
-    },
-    "Subsubsection*{}": {
-      "snippet": "Subsubsection*{${1:title}}"
-    },
-    "Subsubsection[]{}": {
-      "snippet": "Subsubsection[${2:short title}]{${1:title}}"
-    },
-    "Subsubsection{}": {
-      "snippet": "Subsubsection{${1:title}}"
-    },
-    "Tiny": {},
-    "title[]{}": {
-      "snippet": "title[${2:short title}]{${1:text}}"
-    },
-    "translator{}": {
-      "snippet": "translator{${1:name}}"
-    },
-    "urladdr{}": {
-      "snippet": "urladdr{${1:URL}}"
-    },
-    "abstractfont": {},
-    "abstractheadfont": {},
-    "abstractmargin": {},
-    "addresses": {},
-    "altabstractname": {},
-    "altkeywordsname": {},
-    "andify": {},
-    "bibliofont": {},
-    "bibliosection{}": {
-      "snippet": "bibliosection{${1:title}}"
-    },
-    "bibliosection[]{}": {
-      "snippet": "bibliosection[${2:short title}]{${1:title}}"
-    },
-    "bibname": {},
-    "bysame": {},
-    "calclayout": {},
-    "captionindent": {},
-    "chaptername": {},
-    "conjname": {},
-    "coroname": {},
-    "dedicatoryfont": {},
-    "definame": {},
-    "enumerate": {},
-    "exemname": {},
-    "firstaddress": {},
-    "fullwidthdisplay": {},
-    "ifsmfabstracta": {},
-    "indentlabel": {},
-    "indexsection*{}": {
-      "snippet": "indexsection*{${1:title}}"
-    },
-    "indexsection[]{}": {
-      "snippet": "indexsection[${2:short title}]{${1:title}}"
-    },
-    "indexsection{}": {
-      "snippet": "indexsection{${1:title}}"
-    },
-    "keywordsname": {},
-    "lemmname": {},
-    "linespacing": {},
-    "listtableename": {},
-    "MakePointrait": {},
-    "MakeQed": {},
-    "nonbreakingspace": {},
-    "normalparindent": {},
-    "nxandlist{}{}{}{}": {
-      "snippet": "nxandlist{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "otheraddress": {},
-    "paragraphname": {},
-    "partmark": {},
-    "partrunhead{}{}{}": {
-      "snippet": "partrunhead{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "pointrait": {},
-    "printindex": {},
-    "propname": {},
-    "remaname": {},
-    "sectionname": {},
-    "sectionrunhead{}{}{}": {
-      "snippet": "sectionrunhead{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "see{}{}": {
-      "snippet": "see{${1:arg1}}{${2:arg2}}"
-    },
-    "seename": {},
-    "shortauthors": {},
-    "shorttitle": {},
-    "signature{}": {
-      "snippet": "signature{${1:signature}}"
-    },
-    "skippointrait": {},
-    "skipqed": {},
-    "smfabstractafalse": {},
-    "smfabstractatrue": {},
-    "smfandname": {},
-    "smfbyname": {},
-    "smfedbyname": {},
-    "smfedname": {},
-    "smfmastersthesisname": {},
-    "smfphdthesisname": {},
-    "subjclassname": {},
-    "subsectionname": {},
-    "subsubsectionname": {},
-    "theoname": {},
-    "thmnewline": {},
-    "tochyphenpenalty": {},
-    "tocmark": {},
-    "tocparagraph": {},
-    "tocpart{}{}{}": {
-      "snippet": "tocpart{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "tocsection{}{}{}": {
-      "snippet": "tocsection{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "tocsubsection{}{}{}": {
-      "snippet": "tocsubsection{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "tocsubsubsection{}{}{}": {
-      "snippet": "tocsubsubsection{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "translatedby": {},
-    "uppercasenonmath{}": {
-      "snippet": "uppercasenonmath{${1:text}}"
-    },
-    "xandlist{}{}{}{}": {
-      "snippet": "xandlist{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    {
+      "name": "amsthm"
     }
-  },
-  "envs": {
-    "altabstract": {},
-    "proof[]": {
-      "name": "proof",
-      "snippet": "[${1:header}]"
-    }
-  },
-  "options": [
-    "a4paper",
-    "letterpaper",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "reqno",
-    "fleqn",
-    "boldmath",
-    "french",
-    "francais",
-    "english",
-    "10pt",
-    "11pt",
-    "12pt",
-    "14pt",
-    "8pt",
-    "9pt"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "address",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address}}"
+      }
+    },
+    {
+      "name": "altkeywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "alttitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "backmatter"
+    },
+    {
+      "name": "curraddr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address}}"
+      }
+    },
+    {
+      "name": "dedicatory",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "frontmatter"
+    },
+    {
+      "name": "guillemotleft"
+    },
+    {
+      "name": "guillemotright"
+    },
+    {
+      "name": "ISBN",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ISBN}}"
+      }
+    },
+    {
+      "name": "ISSN",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ISSN}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "larger"
+    },
+    {
+      "name": "larger",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "mainmatter"
+    },
+    {
+      "name": "SMALL"
+    },
+    {
+      "name": "Small"
+    },
+    {
+      "name": "smaller"
+    },
+    {
+      "name": "smaller",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "specialsection"
+    },
+    {
+      "name": "subjclass",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:classification}}"
+      }
+    },
+    {
+      "name": "Subsection*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "Subsection",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "Subsection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "Subsubsection*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "Subsubsection",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "Subsubsection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "Tiny"
+    },
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "translator",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "urladdr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "abstractfont",
+      "unusual": true
+    },
+    {
+      "name": "abstractheadfont",
+      "unusual": true
+    },
+    {
+      "name": "abstractmargin",
+      "unusual": true
+    },
+    {
+      "name": "addresses",
+      "unusual": true
+    },
+    {
+      "name": "altabstractname",
+      "unusual": true
+    },
+    {
+      "name": "altkeywordsname",
+      "unusual": true
+    },
+    {
+      "name": "andify",
+      "unusual": true
+    },
+    {
+      "name": "bibliofont",
+      "unusual": true
+    },
+    {
+      "name": "bibliosection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "bibliosection",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "bibliosection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "bysame",
+      "unusual": true
+    },
+    {
+      "name": "calclayout",
+      "unusual": true
+    },
+    {
+      "name": "captionindent",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "conjname",
+      "unusual": true
+    },
+    {
+      "name": "coroname",
+      "unusual": true
+    },
+    {
+      "name": "dedicatoryfont",
+      "unusual": true
+    },
+    {
+      "name": "definame",
+      "unusual": true
+    },
+    {
+      "name": "enumerate",
+      "unusual": true
+    },
+    {
+      "name": "exemname",
+      "unusual": true
+    },
+    {
+      "name": "firstaddress",
+      "unusual": true
+    },
+    {
+      "name": "fullwidthdisplay",
+      "unusual": true
+    },
+    {
+      "name": "ifsmfabstracta",
+      "unusual": true
+    },
+    {
+      "name": "indentlabel",
+      "unusual": true
+    },
+    {
+      "name": "indexsection*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "indexsection",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "indexsection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "keywordsname",
+      "unusual": true
+    },
+    {
+      "name": "lemmname",
+      "unusual": true
+    },
+    {
+      "name": "linespacing",
+      "unusual": true
+    },
+    {
+      "name": "listtableename",
+      "unusual": true
+    },
+    {
+      "name": "MakePointrait",
+      "unusual": true
+    },
+    {
+      "name": "MakeQed",
+      "unusual": true
+    },
+    {
+      "name": "nonbreakingspace",
+      "unusual": true
+    },
+    {
+      "name": "normalparindent",
+      "unusual": true
+    },
+    {
+      "name": "nxandlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "otheraddress",
+      "unusual": true
+    },
+    {
+      "name": "paragraphname",
+      "unusual": true
+    },
+    {
+      "name": "partmark",
+      "unusual": true
+    },
+    {
+      "name": "partrunhead",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "pointrait",
+      "unusual": true
+    },
+    {
+      "name": "printindex",
+      "unusual": true
+    },
+    {
+      "name": "propname",
+      "unusual": true
+    },
+    {
+      "name": "remaname",
+      "unusual": true
+    },
+    {
+      "name": "sectionname",
+      "unusual": true
+    },
+    {
+      "name": "sectionrunhead",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "see",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "shortauthors",
+      "unusual": true
+    },
+    {
+      "name": "shorttitle",
+      "unusual": true
+    },
+    {
+      "name": "signature",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:signature}}"
+      }
+    },
+    {
+      "name": "skippointrait",
+      "unusual": true
+    },
+    {
+      "name": "skipqed",
+      "unusual": true
+    },
+    {
+      "name": "smfabstractafalse",
+      "unusual": true
+    },
+    {
+      "name": "smfabstractatrue",
+      "unusual": true
+    },
+    {
+      "name": "smfandname",
+      "unusual": true
+    },
+    {
+      "name": "smfbyname",
+      "unusual": true
+    },
+    {
+      "name": "smfedbyname",
+      "unusual": true
+    },
+    {
+      "name": "smfedname",
+      "unusual": true
+    },
+    {
+      "name": "smfmastersthesisname",
+      "unusual": true
+    },
+    {
+      "name": "smfphdthesisname",
+      "unusual": true
+    },
+    {
+      "name": "subjclassname",
+      "unusual": true
+    },
+    {
+      "name": "subsectionname",
+      "unusual": true
+    },
+    {
+      "name": "subsubsectionname",
+      "unusual": true
+    },
+    {
+      "name": "theoname",
+      "unusual": true
+    },
+    {
+      "name": "thmnewline",
+      "unusual": true
+    },
+    {
+      "name": "tochyphenpenalty",
+      "unusual": true
+    },
+    {
+      "name": "tocmark",
+      "unusual": true
+    },
+    {
+      "name": "tocparagraph",
+      "unusual": true
+    },
+    {
+      "name": "tocpart",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "tocsection",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "tocsubsection",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "tocsubsubsection",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "translatedby",
+      "unusual": true
+    },
+    {
+      "name": "uppercasenonmath",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "xandlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "altabstract"
+    },
+    {
+      "name": "proof",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:header%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/smfart#c": [
+      "a4paper",
+      "letterpaper",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "reqno",
+      "fleqn",
+      "boldmath",
+      "french",
+      "francais",
+      "english",
+      "10pt",
+      "11pt",
+      "12pt",
+      "14pt",
+      "8pt",
+      "9pt"
+    ],
+    "\\bibliographystyle#c": [
+      "smfplain",
+      "smfalpha"
+    ]
+  },
+  "args": [
+    "\\documentclass/smfart#c"
+  ]
 }

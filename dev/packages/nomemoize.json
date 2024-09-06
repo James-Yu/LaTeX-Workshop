@@ -1,69 +1,173 @@
 {
-  "includes": {
-    "pgfkeys": []
-  },
-  "macros": {
-    "mmzset{}": {
-      "snippet": "mmzset{${1:options}}"
-    },
-    "mmznext{}": {
-      "snippet": "mmznext{${1:options}}"
-    },
-    "nommzkeys{}": {
-      "snippet": "nommzkeys{${1:options}}"
-    },
-    "mmz{}": {
-      "snippet": "mmz{${1:code}}"
-    },
-    "mmz[]{}": {
-      "snippet": "mmz[${2:options}]{${1:code}}"
-    },
-    "nommz{}": {
-      "snippet": "nommz{${1:code}}"
-    },
-    "nommz[]{}": {
-      "snippet": "nommz[${2:options}]{${1:code}}"
-    },
-    "ifmemoize": {},
-    "memoizetrue": {},
-    "memoizefalse": {},
-    "ifmemoizing": {},
-    "ifinmemoize": {},
-    "IfMemoizing{}{}{}": {
-      "snippet": "IfMemoizing{${1:name}}{${2:true code}}{${3:false code}}"
-    },
-    "IfMemoizing[]{}{}{}": {
-      "snippet": "IfMemoizing[${4:offset}]{${1:name}}{${2:true code}}{${3:false code}}"
-    },
-    "mmzAbort": {},
-    "mmzUnmemoizable": {},
-    "mmzNoRef{}": {
-      "snippet": "mmzNoRef{${1:label}}"
-    },
-    "mmzForceNoRef{}": {
-      "snippet": "mmzForceNoRef{${1:label}}"
-    },
-    "mmzContext": {},
-    "mmzContextExtra": {},
-    "mmzCMemo": {},
-    "mmzCCMemo": {},
-    "mmzExternPages": {},
-    "mmzExtraPages": {},
-    "mmzTracingOn": {},
-    "mmzTracingOff": {}
-  },
-  "envs": {
-    "memoize": {},
-    "memoize[]": {
-      "name": "memoize",
-      "snippet": "[${1:options}]"
-    },
-    "nomemoize": {},
-    "nomemoize[]": {
-      "name": "nomemoize",
-      "snippet": "[${1:options}]"
+  "deps": [
+    {
+      "name": "pgfkeys"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "mmzset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "mmznext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "nommzkeys",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "mmz",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%text}}"
+      }
+    },
+    {
+      "name": "mmz",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:code%text}}"
+      }
+    },
+    {
+      "name": "nommz",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%text}}"
+      }
+    },
+    {
+      "name": "nommz",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:code%text}}"
+      }
+    },
+    {
+      "name": "ifmemoize",
+      "unusual": true
+    },
+    {
+      "name": "memoizetrue",
+      "unusual": true
+    },
+    {
+      "name": "memoizefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifmemoizing",
+      "unusual": true
+    },
+    {
+      "name": "ifinmemoize",
+      "unusual": true
+    },
+    {
+      "name": "IfMemoizing",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:true code}}{${3:false code}}"
+      }
+    },
+    {
+      "name": "IfMemoizing",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:offset}]{${1:name}}{${2:true code}}{${3:false code}}"
+      }
+    },
+    {
+      "name": "mmzAbort"
+    },
+    {
+      "name": "mmzUnmemoizable"
+    },
+    {
+      "name": "mmzNoRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "mmzForceNoRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "mmzContext",
+      "unusual": true
+    },
+    {
+      "name": "mmzContextExtra",
+      "unusual": true
+    },
+    {
+      "name": "mmzCMemo",
+      "unusual": true
+    },
+    {
+      "name": "mmzCCMemo",
+      "unusual": true
+    },
+    {
+      "name": "mmzExternPages",
+      "unusual": true
+    },
+    {
+      "name": "mmzExtraPages",
+      "unusual": true
+    },
+    {
+      "name": "mmzTracingOn",
+      "unusual": true
+    },
+    {
+      "name": "mmzTracingOff",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "memoize"
+    },
+    {
+      "name": "memoize",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "nomemoize"
+    },
+    {
+      "name": "nomemoize",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

@@ -1,46 +1,89 @@
 {
-  "includes": {
-    "luatexja": []
-  },
-  "macros": {
-    "ltjruby{}{}": {
-      "snippet": "ltjruby{${1:親|文|字}}{${2:おや|も|じ}}"
-    },
-    "ltjruby[]{}": {
-      "snippet": "ltjruby[${2:options}]{${1:親|文|字}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ruby{}{}": {
-      "snippet": "ruby{${1:親|文|字}}{${2:おや|も|じ}}"
-    },
-    "ruby[]{}": {
-      "snippet": "ruby[${2:options}]{${1:親|文|字}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ltjsetruby{}": {
-      "snippet": "ltjsetruby{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ltjkenten": {},
-    "ltjkenten[]": {
-      "snippet": "ltjkenten[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "kenten": {},
-    "kenten[]": {
-      "snippet": "kenten[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "luatexja"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "ltjruby",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:親|${3:文}|${4:字}}{${2:おや}|${5:も}|じ}}"
+      }
+    },
+    {
+      "name": "ltjruby",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:親|${3:文}|字}}",
+        "keys": [
+          "\\ltjruby,\\ruby,\\ltjsetruby,\\ltjkenten,\\kenten"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ruby",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:親|${3:文}|${4:字}}{${2:おや}|${5:も}|じ}}"
+      }
+    },
+    {
+      "name": "ruby",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:親|${3:文}|字}}",
+        "keys": [
+          "\\ltjruby,\\ruby,\\ltjsetruby,\\ltjkenten,\\kenten"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ltjsetruby",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\ltjruby,\\ruby,\\ltjsetruby,\\ltjkenten,\\kenten"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ltjkenten"
+    },
+    {
+      "name": "ltjkenten",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\ltjruby,\\ruby,\\ltjsetruby,\\ltjkenten,\\kenten"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "kenten"
+    },
+    {
+      "name": "kenten",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\ltjruby,\\ruby,\\ltjsetruby,\\ltjkenten,\\kenten"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\ltjruby,\\ruby,\\ltjsetruby,\\ltjkenten,\\kenten": [
       "pre=${1:real}",
       "post=${1:real}",
       "mode=",
@@ -65,6 +108,15 @@
       "fontcmd=${1:command}",
       "naka",
       "kata"
+    ],
+    "\\ltjsetparameter,\\ltjglobalsetparameter": [
+      "rubypreintrusion={${1:chr_code,pre_int}}",
+      "rubypostintrusion={${1:chr_code,post_int}}"
+    ],
+    "\\ltjgetparameter": [
+      "rubypreintrusion",
+      "rubypostintrusion"
     ]
-  ]
+  },
+  "args": []
 }

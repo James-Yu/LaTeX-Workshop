@@ -1,31 +1,61 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "cprotect": [],
-    "ifthen": []
-  },
-  "macros": {
-    "ifinclude{}": {
-      "snippet": "ifinclude{${1:content}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "ifshow{}": {
-      "snippet": "ifshow{${1:content}}"
+    {
+      "name": "cprotect"
     },
-    "framefor{}{}": {
-      "snippet": "framefor{${1:audience}}{${2:content}}"
-    },
-    "justfor{}{}": {
-      "snippet": "justfor{${1:audience}}{${2:content}}"
-    },
-    "showcontentfor{}{}": {
-      "snippet": "showcontentfor{${1:audience}}{${2:content}}"
-    },
-    "fileversion": {},
-    "filedate": {}
-  },
-  "envs": {},
-  "options": [
-    "audience=${1:keyword}"
+    {
+      "name": "ifthen"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ifinclude",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "ifshow",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "framefor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:audience}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "justfor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:audience}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "showcontentfor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:audience}}{${2:content%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/beameraudience#c": [
+      "audience=${1:keyword}"
+    ]
+  },
+  "args": [
+    "\\usepackage/beameraudience#c"
+  ]
 }

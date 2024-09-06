@@ -1,108 +1,242 @@
 {
-  "includes": {
-    "array": [],
-    "booktabs": [],
-    "siunitx": []
-  },
-  "macros": {
-    "typrintalph{}": {
-      "snippet": "typrintalph{${1:font switch}}"
+  "deps": [
+    {
+      "name": "array"
     },
-    "typrintalph*{}": {
-      "snippet": "typrintalph*{${1:font switch}}"
+    {
+      "name": "booktabs"
     },
-    "typrintex{}": {
-      "snippet": "typrintex{${1:font switch}}"
-    },
-    "typrintex*{}": {
-      "snippet": "typrintex*{${1:font switch}}"
-    },
-    "typrintem{}": {
-      "snippet": "typrintem{${1:font switch}}"
-    },
-    "typrintem*{}": {
-      "snippet": "typrintem*{${1:font switch}}"
-    },
-    "tyallsimple{}": {
-      "snippet": "tyallsimple{${1:font switch}}"
-    },
-    "tyallsimple*{}": {
-      "snippet": "tyallsimple*{${1:font switch}}"
-    },
-    "tychperwidth{}": {
-      "snippet": "tychperwidth{${1:font switch}}"
-    },
-    "tychperwidth[]{}": {
-      "snippet": "tychperwidth[${2:width}]{${1:font switch}}"
-    },
-    "tychperwidth*{}": {
-      "snippet": "tychperwidth*{${1:font switch}}"
-    },
-    "tychperwidth*[]{}": {
-      "snippet": "tychperwidth*[${2:width}]{${1:font switch}}"
-    },
-    "tywidthgivchar{}": {
-      "snippet": "tywidthgivchar{${1:number}}"
-    },
-    "tywidthgivchar[]{}": {
-      "snippet": "tywidthgivchar[${2:font switch}]{${1:number}}"
-    },
-    "tywidthgivchar*{}": {
-      "snippet": "tywidthgivchar*{${1:number}}"
-    },
-    "tywidthgivchar*[]{}": {
-      "snippet": "tywidthgivchar*[${2:font switch}]{${1:number}}"
-    },
-    "tyheight{}{}": {
-      "snippet": "tyheight{${1:height}}{${2:baselineskip}}"
-    },
-    "tyheight[]{}{}": {
-      "snippet": "tyheight[${3:font switch}]{${1:height}}{${2:baselineskip}}"
-    },
-    "tyheight[]{}{}[]": {
-      "snippet": "tyheight[${3:font switch}]{${1:height}}{${2:baselineskip}}[${4:font size}]"
-    },
-    "tyheight*{}{}": {
-      "snippet": "tyheight*{${1:height}}{${2:baselineskip}}"
-    },
-    "tyheight*[]{}{}": {
-      "snippet": "tyheight*[${3:font switch}]{${1:height}}{${2:baselineskip}}"
-    },
-    "tyheight*[]{}{}[]": {
-      "snippet": "tyheight*[${3:font switch}]{${1:height}}{${2:baselineskip}}[${4:font size}]"
-    },
-    "tyfonttable{}": {
-      "snippet": "tyfonttable{${1:font switch}}"
-    },
-    "tyfonttable*{}": {
-      "snippet": "tyfonttable*{${1:font switch}}"
-    },
-    "tywidthtable{}": {
-      "snippet": "tywidthtable{${1:font switch}}"
-    },
-    "tywidthtable*{}": {
-      "snippet": "tywidthtable*{${1:font switch}}"
-    },
-    "tyformfactorheight{}{}": {
-      "snippet": "tyformfactorheight{${1:height}}{${2:form factor}}"
-    },
-    "tyformfactorheight[]{}{}": {
-      "snippet": "tyformfactorheight[${3:font switch}]{${1:height}}{${2:form factor}}"
-    },
-    "tyformfactorheight[]{}{}[]": {
-      "snippet": "tyformfactorheight[${3:font switch}]{${1:height}}{${2:form factor}}[${4:baselineskip}]"
-    },
-    "tyformfactorheight*{}{}": {
-      "snippet": "tyformfactorheight*{${1:height}}{${2:form factor}}"
-    },
-    "tyformfactorheight*[]{}{}": {
-      "snippet": "tyformfactorheight*[${3:font switch}]{${1:height}}{${2:form factor}}"
-    },
-    "tyformfactorheight*[]{}{}[]": {
-      "snippet": "tyformfactorheight*[${3:font switch}]{${1:height}}{${2:form factor}}[${4:baselineskip}]"
+    {
+      "name": "siunitx"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "typrintalph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font switch}}"
+      }
+    },
+    {
+      "name": "typrintalph*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font switch}}"
+      }
+    },
+    {
+      "name": "typrintex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font switch}}"
+      }
+    },
+    {
+      "name": "typrintex*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font switch}}"
+      }
+    },
+    {
+      "name": "typrintem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font switch}}"
+      }
+    },
+    {
+      "name": "typrintem*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font switch}}"
+      }
+    },
+    {
+      "name": "tyallsimple",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font switch}}"
+      }
+    },
+    {
+      "name": "tyallsimple*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font switch}}"
+      }
+    },
+    {
+      "name": "tychperwidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font switch}}"
+      }
+    },
+    {
+      "name": "tychperwidth",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:font switch}}"
+      }
+    },
+    {
+      "name": "tychperwidth*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font switch}}"
+      }
+    },
+    {
+      "name": "tychperwidth*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:font switch}}"
+      }
+    },
+    {
+      "name": "tywidthgivchar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "tywidthgivchar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font switch}]{${1:number}}"
+      }
+    },
+    {
+      "name": "tywidthgivchar*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "tywidthgivchar*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font switch}]{${1:number}}"
+      }
+    },
+    {
+      "name": "tyheight",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:height}}{${2:baselineskip}}"
+      }
+    },
+    {
+      "name": "tyheight",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:font switch}]{${1:height}}{${2:baselineskip}}"
+      }
+    },
+    {
+      "name": "tyheight",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:font switch}]{${1:height}}{${2:baselineskip}}[${4:font size}]"
+      }
+    },
+    {
+      "name": "tyheight*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:height}}{${2:baselineskip}}"
+      }
+    },
+    {
+      "name": "tyheight*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:font switch}]{${1:height}}{${2:baselineskip}}"
+      }
+    },
+    {
+      "name": "tyheight*",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:font switch}]{${1:height}}{${2:baselineskip}}[${4:font size}]"
+      }
+    },
+    {
+      "name": "tyfonttable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font switch}}"
+      }
+    },
+    {
+      "name": "tyfonttable*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font switch}}"
+      }
+    },
+    {
+      "name": "tywidthtable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font switch}}"
+      }
+    },
+    {
+      "name": "tywidthtable*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font switch}}"
+      }
+    },
+    {
+      "name": "tyformfactorheight",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:height}}{${2:form factor}}"
+      }
+    },
+    {
+      "name": "tyformfactorheight",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:font switch}]{${1:height}}{${2:form factor}}"
+      }
+    },
+    {
+      "name": "tyformfactorheight",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:font switch}]{${1:height}}{${2:form factor}}[${4:baselineskip}]"
+      }
+    },
+    {
+      "name": "tyformfactorheight*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:height}}{${2:form factor}}"
+      }
+    },
+    {
+      "name": "tyformfactorheight*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:font switch}]{${1:height}}{${2:form factor}}"
+      }
+    },
+    {
+      "name": "tyformfactorheight*",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:font switch}]{${1:height}}{${2:form factor}}[${4:baselineskip}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

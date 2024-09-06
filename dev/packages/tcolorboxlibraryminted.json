@@ -1,233 +1,513 @@
 {
-  "includes": {
-    "minted": []
-  },
-  "macros": {
-    "tcbinputlisting{}": {
-      "snippet": "tcbinputlisting{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "tcbuselistingtext": {},
-    "tcbuselistinglisting": {},
-    "tcbusetemplisting": {},
-    "newtcblisting{}{}": {
-      "snippet": "newtcblisting{${1:envname}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "newtcblisting{}[]{}": {
-      "snippet": "newtcblisting{${1:envname}}[${2:args}]{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "newtcblisting{}[][]{}": {
-      "snippet": "newtcblisting{${1:envname}}[${2:args}][${3:default}]{${4:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "newtcblisting[]{}{}": {
-      "snippet": "newtcblisting[${3:init options}]{${1:envname}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "newtcblisting[]{}[]{}": {
-      "snippet": "newtcblisting[${3:init options}]{${1:envname}}[${4:args}]{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "newtcblisting[]{}[][]{}": {
-      "snippet": "newtcblisting[${3:init options}]{${1:envname}}[${4:args}][${5:default}]{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 4
-    },
-    "renewtcblisting{}{}": {
-      "snippet": "renewtcblisting{${1:envname}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "renewtcblisting{}[]{}": {
-      "snippet": "renewtcblisting{${1:envname}}[${2:args}]{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "renewtcblisting{}[][]{}": {
-      "snippet": "renewtcblisting{${1:envname}}[${2:args}][${3:default}]{${4:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "renewtcblisting[]{}{}": {
-      "snippet": "renewtcblisting[${3:init options}]{${1:envname}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "renewtcblisting[]{}[]{}": {
-      "snippet": "renewtcblisting[${3:init options}]{${1:envname}}[${4:args}]{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "renewtcblisting[]{}[][]{}": {
-      "snippet": "renewtcblisting[${3:init options}]{${1:envname}}[${4:args}][${5:default}]{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 4
-    },
-    "DeclareTCBListing{}{}{}": {
-      "snippet": "DeclareTCBListing{${1:envname}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "DeclareTCBListing[]{}{}{}": {
-      "snippet": "DeclareTCBListing[${4:init options}]{${1:envname}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "NewTCBListing{}{}{}": {
-      "snippet": "NewTCBListing{${1:envname}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "NewTCBListing[]{}{}{}": {
-      "snippet": "NewTCBListing[${4:init options}]{${1:envname}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "RenewTCBListing{}{}{}": {
-      "snippet": "RenewTCBListing{${1:envname}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "RenewTCBListing[]{}{}{}": {
-      "snippet": "RenewTCBListing[${4:init options}]{${1:envname}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "ProvideTCBListing{}{}{}": {
-      "snippet": "ProvideTCBListing{${1:envname}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "ProvideTCBListing[]{}{}{}": {
-      "snippet": "ProvideTCBListing[${4:init options}]{${1:envname}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "newtcbinputlisting{}{}": {
-      "snippet": "newtcbinputlisting{${1:cmd}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "newtcbinputlisting{}[]{}": {
-      "snippet": "newtcbinputlisting{${1:cmd}}[${2:args}]{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "newtcbinputlisting{}[][]{}": {
-      "snippet": "newtcbinputlisting{${1:cmd}}[${2:args}][${3:default}]{${4:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "newtcbinputlisting[]{}{}": {
-      "snippet": "newtcbinputlisting[${3:init options}]{${1:cmd}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "newtcbinputlisting[]{}[]{}": {
-      "snippet": "newtcbinputlisting[${3:init options}]{${1:cmd}}[${4:args}]{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "newtcbinputlisting[]{}[][]{}": {
-      "snippet": "newtcbinputlisting[${3:init options}]{${1:cmd}}[${4:args}][${5:default}]{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 4
-    },
-    "renewtcbinputlisting{}{}": {
-      "snippet": "renewtcbinputlisting{${1:cmd}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "renewtcbinputlisting{}[]{}": {
-      "snippet": "renewtcbinputlisting{${1:cmd}}[${2:args}]{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "renewtcbinputlisting{}[][]{}": {
-      "snippet": "renewtcbinputlisting{${1:cmd}}[${2:args}][${3:default}]{${4:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "renewtcbinputlisting[]{}{}": {
-      "snippet": "renewtcbinputlisting[${3:init options}]{${1:cmd}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "renewtcbinputlisting[]{}[]{}": {
-      "snippet": "renewtcbinputlisting[${3:init options}]{${1:cmd}}[${4:args}]{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "renewtcbinputlisting[]{}[][]{}": {
-      "snippet": "renewtcbinputlisting[${3:init options}]{${1:cmd}}[${4:args}][${5:default}]{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 4
-    },
-    "DeclareTCBInputListing{}{}{}": {
-      "snippet": "DeclareTCBInputListing{${1:cmd}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "DeclareTCBInputListing[]{}{}{}": {
-      "snippet": "DeclareTCBInputListing[${4:init options}]{${1:cmd}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "NewTCBInputListing{}{}{}": {
-      "snippet": "NewTCBInputListing{${1:cmd}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "NewTCBInputListing[]{}{}{}": {
-      "snippet": "NewTCBInputListing[${4:init options}]{${1:cmd}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "RenewTCBInputListing{}{}{}": {
-      "snippet": "RenewTCBInputListing{${1:cmd}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "RenewTCBInputListing[]{}{}{}": {
-      "snippet": "RenewTCBInputListing[${4:init options}]{${1:cmd}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "ProvideTCBInputListing{}{}{}": {
-      "snippet": "ProvideTCBInputListing{${1:cmd}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "ProvideTCBInputListing[]{}{}{}": {
-      "snippet": "ProvideTCBInputListing[${4:init options}]{${1:cmd}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
-    },
-    "thetcblisting": {},
-    "tcbiffileprocess{}{}{}{}{}{}": {
-      "snippet": "tcbiffileprocess{${1:condition}}{${2:source}}{${3:md5-file}}{${4:target}}{${5:true}}{${6:false}}"
+  "deps": [
+    {
+      "name": "minted"
     }
-  },
-  "envs": {
-    "tcblisting{}": {
-      "name": "tcblisting",
-      "snippet": "{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  ],
+  "macros": [
+    {
+      "name": "tcbinputlisting",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 0
+      }
     },
-    "tcboutputlisting": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tcbuselistingtext"
+    },
+    {
+      "name": "tcbuselistinglisting"
+    },
+    {
+      "name": "tcbusetemplisting"
+    },
+    {
+      "name": "newtcblisting",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newtcblisting",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:envname}}[${3:args}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "newtcblisting",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:envname}}[${3:args}][${4:default}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "newtcblisting",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:init options}]{${1:envname}}{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "newtcblisting",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:init options}]{${1:envname}}[${4:args}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "newtcblisting",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}",
+        "snippet": "[${3:init options}]{${1:envname}}[${4:args}][${5:default}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 4
+      }
+    },
+    {
+      "name": "renewtcblisting",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "renewtcblisting",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:envname}}[${3:args}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "renewtcblisting",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:envname}}[${3:args}][${4:default}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "renewtcblisting",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:init options}]{${1:envname}}{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "renewtcblisting",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:init options}]{${1:envname}}[${4:args}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "renewtcblisting",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}",
+        "snippet": "[${3:init options}]{${1:envname}}[${4:args}][${5:default}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 4
+      }
+    },
+    {
+      "name": "DeclareTCBListing",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:envname}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "DeclareTCBListing",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:init options}]{${1:envname}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "NewTCBListing",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:envname}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "NewTCBListing",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:init options}]{${1:envname}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "RenewTCBListing",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:envname}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "RenewTCBListing",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:init options}]{${1:envname}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "ProvideTCBListing",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:envname}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "ProvideTCBListing",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:init options}]{${1:envname}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "newtcbinputlisting",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newtcbinputlisting",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "newtcbinputlisting",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "newtcbinputlisting",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:init options}]{${1:cmd}}{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "newtcbinputlisting",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:init options}]{${1:cmd}}[${4:args}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "newtcbinputlisting",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}",
+        "snippet": "[${3:init options}]{${1:cmd}}[${4:args}][${5:default}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 4
+      }
+    },
+    {
+      "name": "renewtcbinputlisting",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "renewtcbinputlisting",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "renewtcbinputlisting",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "renewtcbinputlisting",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:init options}]{${1:cmd}}{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "renewtcbinputlisting",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:init options}]{${1:cmd}}[${4:args}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "renewtcbinputlisting",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}",
+        "snippet": "[${3:init options}]{${1:cmd}}[${4:args}][${5:default}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 4
+      }
+    },
+    {
+      "name": "DeclareTCBInputListing",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "DeclareTCBInputListing",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:init options}]{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "NewTCBInputListing",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "NewTCBInputListing",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:init options}]{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "RenewTCBInputListing",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "RenewTCBInputListing",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:init options}]{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "ProvideTCBInputListing",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "ProvideTCBInputListing",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:init options}]{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 3
+      }
+    },
+    {
+      "name": "thetcblisting",
+      "unusual": true
+    },
+    {
+      "name": "tcbiffileprocess",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:condition}}{${2:source}}{${3:md5-file}}{${4:target}}{${5:true}}{${6:false}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "tcblisting",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tcboutputlisting"
+    }
+  ],
+  "keys": {
+    "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing": [
+      "minted language=${1:programming lang}",
+      "minted options={${1:minted options}}",
+      "default minted options={${1:minted options}}",
+      "minted style=${1:style}",
       "listing engine=${1|listings,minted|}",
       "listing file=${1:file name}",
       "listing and text",
@@ -291,5 +571,6 @@
       "freeze png",
       "freeze jpg"
     ]
-  ]
+  },
+  "args": []
 }

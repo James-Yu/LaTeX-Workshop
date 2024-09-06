@@ -1,29 +1,66 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": [],
-    "tikzlibrarydecorations.pathmorphing": []
-  },
-  "macros": {
-    "chicken": {},
-    "chicken[]": {
-      "snippet": "chicken[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "chickenhookbackground": {},
-    "chickenhookbelly": {},
-    "chickenhookbody": {},
-    "chickenhookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    },
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
+    }
+  ],
+  "macros": [
+    {
+      "name": "chicken"
+    },
+    {
+      "name": "chicken",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\chicken#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "chickenhookbackground",
+      "unusual": true
+    },
+    {
+      "name": "chickenhookbelly",
+      "unusual": true
+    },
+    {
+      "name": "chickenhookbody",
+      "unusual": true
+    },
+    {
+      "name": "chickenhookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\chicken#c": [
       "body=",
       "comb=",
       "eye=",
@@ -150,5 +187,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

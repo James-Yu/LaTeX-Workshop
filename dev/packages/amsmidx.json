@@ -1,21 +1,40 @@
 {
-  "includes": {},
-  "macros": {
-    "makeindex{}": {
-      "snippet": "makeindex{${1:name}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "makeindex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "printindex{}": {
-      "snippet": "printindex{${1:name}}"
+    {
+      "name": "printindex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "Printindex{}{}": {
-      "snippet": "Printindex{${1:name}}{${2:title}}"
+    {
+      "name": "Printindex",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:title}}"
+      }
     },
-    "indexcomment{}": {
-      "snippet": "indexcomment{${1:text}}"
+    {
+      "name": "indexcomment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "theindexcomment": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "theindexcomment",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

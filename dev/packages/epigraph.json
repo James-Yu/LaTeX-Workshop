@@ -1,37 +1,85 @@
 {
-  "includes": {},
-  "macros": {
-    "epigraph{}{}": {
-      "snippet": "epigraph{${1:text}}{${2:source}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "epigraph",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:source}}"
+      }
     },
-    "qitem{}{}": {
-      "snippet": "qitem{${1:text}}{${2:source}}"
+    {
+      "name": "qitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:source}}"
+      }
     },
-    "epigraphnoindent": {},
-    "epigraphnoindentfalse": {},
-    "epigraphwidth": {},
-    "textflush": {},
-    "epigraphflush": {},
-    "sourceflush": {},
-    "epigraphsize": {},
-    "epigraphrule": {},
-    "beforeepigraphskip": {},
-    "afterepigraphskip": {},
-    "epigraphhead[]{}": {
-      "snippet": "epigraphhead[${2:distance}]{${1:text}}"
+    {
+      "name": "epigraphnoindent",
+      "unusual": true
     },
-    "epigraphhead{}": {
-      "snippet": "epigraphhead{${1:text}}"
+    {
+      "name": "epigraphnoindentfalse",
+      "unusual": true
     },
-    "dropchapter{}": {
-      "snippet": "dropchapter{${1:length}}"
+    {
+      "name": "epigraphwidth"
     },
-    "undodrop": {},
-    "cleartoevenpage": {}
-  },
-  "envs": {
-    "epigraphs": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "textflush"
+    },
+    {
+      "name": "epigraphflush"
+    },
+    {
+      "name": "sourceflush"
+    },
+    {
+      "name": "epigraphsize"
+    },
+    {
+      "name": "epigraphrule"
+    },
+    {
+      "name": "beforeepigraphskip"
+    },
+    {
+      "name": "afterepigraphskip"
+    },
+    {
+      "name": "epigraphhead",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:distance}]{${1:text}}"
+      }
+    },
+    {
+      "name": "epigraphhead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "dropchapter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "undodrop"
+    },
+    {
+      "name": "cleartoevenpage"
+    }
+  ],
+  "envs": [
+    {
+      "name": "epigraphs"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

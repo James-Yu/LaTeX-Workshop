@@ -1,208 +1,363 @@
 {
-  "includes": {
-    "keyval": [],
-    "kvoptions": [],
-    "fvextra": [],
-    "ifthen": [],
-    "shellesc": [],
-    "ifplatform": [],
-    "pdftexcmds": [],
-    "etoolbox": [],
-    "xstring": [],
-    "lineno": [],
-    "framed": [],
-    "catchfile": [],
-    "xcolor": [],
-    "float": [],
-    "newfloat": [
-      "newfloat",
-      "newfloat=true"
-    ]
-  },
-  "macros": {
-    "mint[]{}{}": {
-      "snippet": "mint[${3:keys}]{${1:language}}{${2:verbatimSymbol}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "mint{}": {
-      "snippet": "mint{${1:language}}|${2:code}|"
+    {
+      "name": "kvoptions"
     },
-    "mint[]{}": {
-      "snippet": "mint[${2:options}]{${1:language}}|${3:code}|",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "fvextra"
     },
-    "mintinline[]{}{}": {
-      "snippet": "mintinline[${3:keys}]{${1:language}}{${2:verbatimSymbol}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifthen"
     },
-    "mintinline{}": {
-      "snippet": "mintinline{${1:language}}|${2:code}|"
+    {
+      "name": "shellesc"
     },
-    "mintinline[]{}": {
-      "snippet": "mintinline[${2:options}]{${1:language}}|${3:code}|",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifplatform"
     },
-    "inputminted{}{}": {
-      "snippet": "inputminted{${1:language}}{${2:file}}"
+    {
+      "name": "pdftexcmds"
     },
-    "inputminted[]{}{}": {
-      "snippet": "inputminted[${3:options}]{${1:language}}{${2:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "etoolbox"
     },
-    "usemintedstyle{}": {
-      "snippet": "usemintedstyle{${1:pygments style}}"
+    {
+      "name": "xstring"
     },
-    "usemintedstyle[]{}": {
-      "snippet": "usemintedstyle[${2:language}]{${1:pygments style}}"
+    {
+      "name": "lineno"
     },
-    "setminted{}": {
-      "snippet": "setminted{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "framed"
     },
-    "setminted[]{}": {
-      "snippet": "setminted[${2:language}]{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "catchfile"
     },
-    "setmintedinline{}": {
-      "snippet": "setmintedinline{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xcolor"
     },
-    "setmintedinline[]{}": {
-      "snippet": "setmintedinline[${2:language}]{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "float"
     },
-    "listoflistings": {},
-    "listingscaption": {},
-    "listoflistingscaption": {},
-    "newminted{}{}": {
-      "snippet": "newminted{${1:language}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "newfloat",
+      "if": "newfloat"
     },
-    "newminted[]{}{}": {
-      "snippet": "newminted[${3:envname}]{${1:language}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "newmint{}{}": {
-      "snippet": "newmint{${1:language}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "newmint[]{}{}": {
-      "snippet": "newmint[${3:macro name}]{${1:language}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "newmintinline{}{}": {
-      "snippet": "newmintinline{${1:language}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "newmintinline[]{}{}": {
-      "snippet": "newmintinline[${3:macro name}]{${1:language}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "newmintedfile{}{}": {
-      "snippet": "newmintedfile{${1:language}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "newmintedfile[]{}{}": {
-      "snippet": "newmintedfile[${3:macro name}]{${1:language}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "DeleteFile{}": {
-      "snippet": "DeleteFile{${1:file}}"
-    },
-    "DeleteFile[]{}": {
-      "snippet": "DeleteFile[${2:directory}]{${1:file}}"
-    },
-    "ProvideDirectory{}": {
-      "snippet": "ProvideDirectory{${1:directory}}"
-    },
-    "ifAppExists": {},
-    "TestAppExists{}": {
-      "snippet": "TestAppExists{${1:application}}"
-    },
-    "MintedPygmentize": {},
-    "MintedPython": {},
-    "PYG": {},
-    "PYGZsq": {},
-    "PYGZhy": {},
-    "RobustMintInline{}": {
-      "snippet": "RobustMintInline{${1:arg}}"
-    },
-    "RobustMintInline[]{}": {
-      "snippet": "RobustMintInline[${2:opt}]{${1:arg}}"
-    },
-    "RobustMintInlineProcess{}{}{}": {
-      "snippet": "RobustMintInlineProcess{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "RobustMint{}": {
-      "snippet": "RobustMint{${1:arg}}"
-    },
-    "RobustMint[]{}": {
-      "snippet": "RobustMint[${2:opt}]{${1:arg}}"
-    },
-    "RobustMintProcess{}{}{}": {
-      "snippet": "RobustMintProcess{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "RobustNewMint": {},
-    "RobustNewMintInline": {}
-  },
-  "envs": {
-    "minted[]": {
-      "name": "minted",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "minted{}": {
-      "name": "minted",
-      "snippet": "{${1:language}}"
-    },
-    "minted[]{}": {
-      "name": "minted",
-      "snippet": "[${2:options}]{${1:language}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "listing": {},
-    "listing[]": {
-      "name": "listing",
-      "snippet": "[${1:placement}]"
+    {
+      "name": "newfloat",
+      "if": "newfloat=true"
     }
-  },
-  "options": [
-    "chapter",
-    "section",
-    "cache",
-    "cachedir=${1:directory}",
-    "finalizecache",
-    "fontencoding=${1:encoding}",
-    "frozencache",
-    "draft",
-    "final",
-    "inputlanglinenos",
-    "kpsewhich",
-    "langlinenos",
-    "newfloat",
-    "outputdir=${1:directory}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "mint",
+      "arg": {
+        "format": "{}||",
+        "snippet": "{${1:language}}|${2:code}|"
+      }
+    },
+    {
+      "name": "mint",
+      "arg": {
+        "format": "[]{}||",
+        "snippet": "[${2:options}]{${1:language}}|${3:code}|",
+        "keys": [
+          "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mintinline",
+      "arg": {
+        "format": "{}||",
+        "snippet": "{${1:language}}|${2:code}|"
+      }
+    },
+    {
+      "name": "mintinline",
+      "arg": {
+        "format": "[]{}||",
+        "snippet": "[${2:options}]{${1:language}}|${3:code}|",
+        "keys": [
+          "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inputminted",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:file}}"
+      }
+    },
+    {
+      "name": "inputminted",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:language}}{${2:file}}",
+        "keys": [
+          "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "usemintedstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pygments style}}"
+      }
+    },
+    {
+      "name": "usemintedstyle",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:language}]{${1:pygments style}}"
+      }
+    },
+    {
+      "name": "setminted",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setminted",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:language}]{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setmintedinline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmintedinline",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:language}]{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "listoflistings"
+    },
+    {
+      "name": "listingscaption",
+      "unusual": true
+    },
+    {
+      "name": "listoflistingscaption",
+      "unusual": true
+    },
+    {
+      "name": "newminted",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:options%keyvals}}",
+        "keys": [
+          "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newminted",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:envname}]{${1:language}}{${2:options%keyvals}}",
+        "keys": [
+          "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "newmint",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:options%keyvals}}",
+        "keys": [
+          "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newmint",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:macro name}]{${1:language}}{${2:options%keyvals}}",
+        "keys": [
+          "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "newmintinline",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:options%keyvals}}",
+        "keys": [
+          "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newmintinline",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:macro name}]{${1:language}}{${2:options%keyvals}}",
+        "keys": [
+          "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "newmintedfile",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:options%keyvals}}",
+        "keys": [
+          "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newmintedfile",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:macro name}]{${1:language}}{${2:options%keyvals}}",
+        "keys": [
+          "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "DeleteFile",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "DeleteFile",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:directory}]{${1:file}}"
+      }
+    },
+    {
+      "name": "ProvideDirectory",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:directory}}"
+      }
+    },
+    {
+      "name": "ifAppExists",
+      "unusual": true
+    },
+    {
+      "name": "TestAppExists",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:application}}"
+      }
+    },
+    {
+      "name": "MintedPygmentize",
+      "unusual": true
+    },
+    {
+      "name": "MintedPython",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "minted",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "minted",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:language}}",
+        "keys": [
+          "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "listing"
+    },
+    {
+      "name": "listing",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:placement}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/minted#c": [
+      "chapter",
+      "section",
+      "cache",
+      "cachedir=${1:directory}",
+      "finalizecache",
+      "fontencoding=${1:encoding}",
+      "frozencache",
+      "draft",
+      "final",
+      "inputlanglinenos",
+      "kpsewhich",
+      "langlinenos",
+      "newfloat",
+      "outputdir=${1:directory}"
+    ],
+    "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile": [
       "autogobble",
       "baselinestretch=",
       "beameroverlays",
@@ -215,7 +370,7 @@
       "encoding=${1:encoding}",
       "escapeinside=${1:two chars}",
       "firstline=${1:int}",
-      "firstnumber=${1|auto,last,${1:integer}|}",
+      "firstnumber=${2|auto,last,${1:integer}|}",
       "fontfamily=${1:family name}",
       "fontseries=${1:series name}",
       "fontsize=${1:size command}",
@@ -293,5 +448,8 @@
       "breaksymbolsepright=",
       "breaksymbolseprightnchars=${1:int}"
     ]
+  },
+  "args": [
+    "\\usepackage/minted#c"
   ]
 }

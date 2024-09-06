@@ -1,26 +1,50 @@
 {
-  "includes": {
-    "iftex": [],
-    "luacode": []
-  },
-  "macros": {
-    "makeSimpleRandomNumberList{}{}{}": {
-      "snippet": "makeSimpleRandomNumberList{${1:least}}{${2:greatest}}{${3:number}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "makeSimpleRandomNumberList[]{}{}{}": {
-      "snippet": "makeSimpleRandomNumberList[${4:seed}]{${1:least}}{${2:greatest}}{${3:number}}"
-    },
-    "makeRandomNumberList{}{}{}": {
-      "snippet": "makeRandomNumberList{${1:least}}{${2:greatest}}{${3:number}}"
-    },
-    "makeRandomNumberList[]{}{}{}": {
-      "snippet": "makeRandomNumberList[${4:seed}]{${1:least}}{${2:greatest}}{${3:number}}"
-    },
-    "getNumberFromList{}": {
-      "snippet": "getNumberFromList{${1:number}}"
+    {
+      "name": "luacode"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "makeSimpleRandomNumberList",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:least}}{${2:greatest}}{${3:number}}"
+      }
+    },
+    {
+      "name": "makeSimpleRandomNumberList",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:seed}]{${1:least}}{${2:greatest}}{${3:number}}"
+      }
+    },
+    {
+      "name": "makeRandomNumberList",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:least}}{${2:greatest}}{${3:number}}"
+      }
+    },
+    {
+      "name": "makeRandomNumberList",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:seed}]{${1:least}}{${2:greatest}}{${3:number}}"
+      }
+    },
+    {
+      "name": "getNumberFromList",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,21 +1,31 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarycommutative-diagrams": []
-  },
-  "macros": {},
-  "envs": {
-    "codi": {},
-    "codi[]": {
-      "name": "codi",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibrarycommutative-diagrams"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [],
+  "envs": [
+    {
+      "name": "codi"
+    },
+    {
+      "name": "codi",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{codi}#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{codi}#c": [
       "prompter",
       "expand=${1|none,once,full|}",
       "replace character=${1:character1} with ${2:character2}",
@@ -45,5 +55,6 @@
       "y=",
       "node distance="
     ]
-  ]
+  },
+  "args": []
 }

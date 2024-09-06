@@ -1,28 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "mouse": {},
-    "mouse[]": {
-      "snippet": "mouse[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "mousehookbackground": {},
-    "mousehookbelly": {},
-    "mousehookbody": {},
-    "mousehookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "mouse"
+    },
+    {
+      "name": "mouse",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\mouse#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mousehookbackground",
+      "unusual": true
+    },
+    {
+      "name": "mousehookbelly",
+      "unusual": true
+    },
+    {
+      "name": "mousehookbody",
+      "unusual": true
+    },
+    {
+      "name": "mousehookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\mouse#c": [
       "body=",
       "eye=",
       "whiskers=",
@@ -147,5 +182,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

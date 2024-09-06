@@ -1,35 +1,51 @@
 {
-  "includes": {
-    "epic": []
-  },
-  "macros": {
-    "changeunitlength{}": {
-      "snippet": "changeunitlength{${1:length}}"
+  "deps": [
+    {
+      "name": "epic"
+    }
+  ],
+  "macros": [
+    {
+      "name": "changeunitlength",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "ifsizereduction": {},
-    "reducedsizepicture": {},
-    "reducedsizepicture[]": {
-      "snippet": "reducedsizepicture[${1:unit length}]"
+    {
+      "name": "ifsizereduction",
+      "unusual": true
     },
-    "sizereductionfalse": {},
-    "sizereductiontrue": {},
-    "substfontsize": {},
-    "thicklines": {},
-    "thinlines": {},
-    "DIVIDE{}{}{}": {
-      "snippet": "DIVIDE{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "reducedsizepicture"
     },
-    "dotorline": {},
-    "ifseifuflag": {},
-    "LineTemp": {},
-    "oldlineslope": {},
-    "RR": {},
-    "seifuflagfalse": {},
-    "seifuflagtrue": {}
-  },
-  "envs": {
-    "sfpicture": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "reducedsizepicture",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:unit length}]"
+      }
+    },
+    {
+      "name": "sizereductionfalse",
+      "unusual": true
+    },
+    {
+      "name": "sizereductiontrue",
+      "unusual": true
+    },
+    {
+      "name": "substfontsize",
+      "unusual": true
+    },
+    {
+      "name": "thicklines"
+    },
+    {
+      "name": "thinlines"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

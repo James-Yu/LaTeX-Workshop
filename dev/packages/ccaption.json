@@ -1,197 +1,510 @@
 {
-  "includes": {},
-  "macros": {
-    "captiondelim{}": {
-      "snippet": "captiondelim{${1:delim}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "captiondelim",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:delim}}"
+      }
     },
-    "captionnamefont{}": {
-      "snippet": "captionnamefont{${1:font}}"
+    {
+      "name": "captionnamefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
     },
-    "captiontitlefont{}": {
-      "snippet": "captiontitlefont{${1:font}}"
+    {
+      "name": "captiontitlefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
     },
-    "captionstyle{}": {
-      "snippet": "captionstyle{${1:style}}"
+    {
+      "name": "captionstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style}}"
+      }
     },
-    "centerlastline": {},
-    "flushleftright": {},
-    "hangcaption": {},
-    "indentcaption{}": {
-      "snippet": "indentcaption{${1:length}}"
+    {
+      "name": "centerlastline"
     },
-    "normalcaption": {},
-    "changecaptionwidth": {},
-    "normalcaptionwidth": {},
-    "captionwidth{}": {
-      "snippet": "captionwidth{${1:width}}"
+    {
+      "name": "flushleftright"
     },
-    "precaption{}": {
-      "snippet": "precaption{${1:text}}"
+    {
+      "name": "hangcaption"
     },
-    "postcaption{}": {
-      "snippet": "postcaption{${1:text}}"
+    {
+      "name": "indentcaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "contcaption{}": {
-      "snippet": "contcaption{${1:text}}"
+    {
+      "name": "normalcaption"
     },
-    "legend{}": {
-      "snippet": "legend{${1:text}}"
+    {
+      "name": "changecaptionwidth"
     },
-    "abovelegendskip": {},
-    "belowlegendskip": {},
-    "namedlegend{}": {
-      "snippet": "namedlegend{${1:title}}"
+    {
+      "name": "normalcaptionwidth"
     },
-    "namedlegend[]{}": {
-      "snippet": "namedlegend[${2:short title}]{${1:title}}"
+    {
+      "name": "captionwidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
     },
-    "newfixedcaption{}{}": {
-      "snippet": "newfixedcaption{${1:command}}{${2:env}}"
+    {
+      "name": "precaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "newfixedcaption[]{}{}": {
-      "snippet": "newfixedcaption[${3:cap-command}]{${1:command}}{${2:env}}"
+    {
+      "name": "postcaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "renewfixedcaption{}{}": {
-      "snippet": "renewfixedcaption{${1:command}}{${2:env}}"
+    {
+      "name": "contcaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "renewfixedcaption[]{}{}": {
-      "snippet": "renewfixedcaption[${3:cap-command}]{${1:command}}{${2:env}}"
+    {
+      "name": "legend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "providefixedcaption{}{}": {
-      "snippet": "providefixedcaption{${1:command}}{${2:env}}"
+    {
+      "name": "abovelegendskip",
+      "unusual": true
     },
-    "providefixedcaption[]{}{}": {
-      "snippet": "providefixedcaption[${3:cap-command}]{${1:command}}{${2:env}}"
+    {
+      "name": "belowlegendskip",
+      "unusual": true
     },
-    "bitwonumcaption{}{}{}{}{}": {
-      "snippet": "bitwonumcaption{${1:short1}}{${2:long1}}{${3:name}}{${4:short2}}{${5:long2}}"
+    {
+      "name": "namedlegend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
     },
-    "bitwonumcaption[]{}{}{}{}{}": {
-      "snippet": "bitwonumcaption[${6:label}]{${1:short1}}{${2:long1}}{${3:name}}{${4:short2}}{${5:long2}}"
+    {
+      "name": "namedlegend",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title%text}}"
+      }
     },
-    "bionenumcaption{}{}{}{}{}": {
-      "snippet": "bionenumcaption{${1:short1}}{${2:long1}}{${3:name}}{${4:short2}}{${5:long2}}"
+    {
+      "name": "newfixedcaption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:env}}"
+      }
     },
-    "bionenumcaption[]{}{}{}{}{}": {
-      "snippet": "bionenumcaption[${6:label}]{${1:short1}}{${2:long1}}{${3:name}}{${4:short2}}{${5:long2}}"
+    {
+      "name": "newfixedcaption",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:cap-command}]{${1:command}}{${2:env}}"
+      }
     },
-    "bicaption{}{}{}{}{}": {
-      "snippet": "bicaption{${1:short1}}{${2:long1}}{${3:name}}{${4:short2}}{${5:long2}}"
+    {
+      "name": "renewfixedcaption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:env}}"
+      }
     },
-    "bicaption[]{}{}{}{}{}": {
-      "snippet": "bicaption[${6:label}]{${1:short1}}{${2:long1}}{${3:name}}{${4:short2}}{${5:long2}}"
+    {
+      "name": "renewfixedcaption",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:cap-command}]{${1:command}}{${2:env}}"
+      }
     },
-    "bicontcaption{}{}{}": {
-      "snippet": "bicontcaption{${1:long1}}{${2:name}}{${3:long2}}"
+    {
+      "name": "providefixedcaption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:env}}"
+      }
     },
-    "midbicaption{}": {
-      "snippet": "midbicaption{${1:text}}"
+    {
+      "name": "providefixedcaption",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:cap-command}]{${1:command}}{${2:env}}"
+      }
     },
-    "longbitwonumcaption{}{}{}{}{}": {
-      "snippet": "longbitwonumcaption{${1:short1}}{${2:long1}}{${3:name}}{${4:short2}}{${5:long2}}"
+    {
+      "name": "bitwonumcaption",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:short1%text}}{${2:long1%text}}{${3:name}}{${4:short2%text}}{${5:long2%text}}"
+      }
     },
-    "longbionenumcaption{}{}{}{}{}": {
-      "snippet": "longbionenumcaption{${1:short1}}{${2:long1}}{${3:name}}{${4:short2}}{${5:long2}}"
+    {
+      "name": "bitwonumcaption",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:label}]{${1:short1%text}}{${2:long1%text}}{${3:name}}{${4:short2%text}}{${5:long2%text}}"
+      }
     },
-    "longbicaption{}{}{}{}": {
-      "snippet": "longbicaption{${1:short1}}{${2:long1}}{${3:name}}{${4:long2}}"
+    {
+      "name": "bionenumcaption",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:short1%text}}{${2:long1%text}}{${3:name}}{${4:short2%text}}{${5:long2%text}}"
+      }
     },
-    "contsubtop{}": {
-      "snippet": "contsubtop{${1:text}}",
-      "option": "subfigure20"
+    {
+      "name": "bionenumcaption",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:label}]{${1:short1%text}}{${2:long1%text}}{${3:name}}{${4:short2%text}}{${5:long2%text}}"
+      }
     },
-    "contsubtop[]{}": {
-      "snippet": "contsubtop[${2:subcaption}]{${1:text}}",
-      "option": "subfigure"
+    {
+      "name": "bicaption",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:short1%text}}{${2:long1%text}}{${3:name}}{${4:short2%text}}{${5:long2%text}}"
+      }
     },
-    "contsubtop[][]{}": {
-      "snippet": "contsubtop[${2:list entry}][${3:subcaption}]{${1:text}}",
-      "option": "subfigure"
+    {
+      "name": "bicaption",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:label}]{${1:short1%text}}{${2:long1%text}}{${3:name}}{${4:short2%text}}{${5:long2%text}}"
+      }
     },
-    "contsubbottom{}": {
-      "snippet": "contsubbottom{${1:text}}",
-      "option": "subfigure20"
+    {
+      "name": "bicontcaption",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:long1%text}}{${2:name}}{${3:long2%text}}"
+      }
     },
-    "contsubbottom[]{}": {
-      "snippet": "contsubbottom[${2:subcaption}]{${1:text}}",
-      "option": "subfigure"
+    {
+      "name": "midbicaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "contsubbottom[][]{}": {
-      "snippet": "contsubbottom[${2:list entry}][${3:subcaption}]{${1:text}}",
-      "option": "subfigure"
+    {
+      "name": "longbitwonumcaption",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:short1%text}}{${2:long1%text}}{${3:name}}{${4:short2%text}}{${5:long2%text}}"
+      }
     },
-    "subconcluded": {
-      "option": "subfigure20"
+    {
+      "name": "longbionenumcaption",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:short1%text}}{${2:long1%text}}{${3:name}}{${4:short2%text}}{${5:long2%text}}"
+      }
     },
-    "subtop{}": {
-      "snippet": "subtop{${1:text}}",
-      "option": "subfigure20"
+    {
+      "name": "longbicaption",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:short1%text}}{${2:long1%text}}{${3:name}}{${4:long2%text}}"
+      }
     },
-    "subtop[]{}": {
-      "snippet": "subtop[${2:subcaption}]{${1:text}}",
-      "option": "subfigure"
+    {
+      "name": "contsubtop",
+      "if": "subfigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "subbottom{}": {
-      "snippet": "subbottom{${1:text}}",
-      "option": "subfigure20"
+    {
+      "name": "contsubtop",
+      "if": "subfigure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:subcaption}]{${1:text}}"
+      }
     },
-    "subbottom[]{}": {
-      "snippet": "subbottom[${2:subcaption}]{${1:text}}",
-      "option": "subfigure"
+    {
+      "name": "contsubtop",
+      "if": "subfigure",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:list entry}][${3:subcaption}]{${1:text}}"
+      }
     },
-    "newsubfloat{}": {
-      "snippet": "newsubfloat{${1:envname}}",
-      "option": "subfigure20"
+    {
+      "name": "contsubbottom",
+      "if": "subfigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "contsubfigure{}": {
-      "snippet": "contsubfigure{${1:text}}",
-      "option": "subfigure20"
+    {
+      "name": "contsubbottom",
+      "if": "subfigure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:subcaption}]{${1:text}}"
+      }
     },
-    "contsubfigure[]{}": {
-      "snippet": "contsubfigure[${2:subcaption}]{${1:text}}",
-      "option": "subfigure"
+    {
+      "name": "contsubbottom",
+      "if": "subfigure",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:list entry}][${3:subcaption}]{${1:text}}"
+      }
     },
-    "contsubtable{}": {
-      "snippet": "contsubtable{${1:text}}",
-      "option": "subfigure20"
+    {
+      "name": "subconcluded",
+      "if": "subfigure"
     },
-    "contsubtable[]{}": {
-      "snippet": "contsubtable[${2:subcaption}]{${1:text}}",
-      "option": "subfigure"
+    {
+      "name": "subtop",
+      "if": "subfigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "newfloatlist{}{}{}{}": {
-      "snippet": "newfloatlist{${1:envname}}{${2:ext}}{${3:listname}}{${4:capname}}"
+    {
+      "name": "subtop",
+      "if": "subfigure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:subcaption}]{${1:text}}"
+      }
     },
-    "newfloatlist[]{}{}{}{}": {
-      "snippet": "newfloatlist[${5:within}]{${1:envname}}{${2:ext}}{${3:listname}}{${4:capname}}"
+    {
+      "name": "subbottom",
+      "if": "subfigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "newfloatentry{}{}{}": {
-      "snippet": "newfloatentry{${1:counter}}{${2:ext}}{${3:level-1}}"
+    {
+      "name": "subbottom",
+      "if": "subfigure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:subcaption}]{${1:text}}"
+      }
     },
-    "newfloatentry[]{}{}{}": {
-      "snippet": "newfloatentry[${4:within}]{${1:counter}}{${2:ext}}{${3:level-1}}"
+    {
+      "name": "newsubfloat",
+      "if": "subfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
     },
-    "setnewfloatindents{}{}{}": {
-      "snippet": "setnewfloatindents{${1:envname}}{${2:indent}}{${3:numwidth}}"
+    {
+      "name": "contsubfigure",
+      "if": "subfigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "newfloatpagesoff{}": {
-      "snippet": "newfloatpagesoff{${1:envname}}"
+    {
+      "name": "contsubfigure",
+      "if": "subfigure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:subcaption}]{${1:text}}"
+      }
     },
-    "newfloatpageson{}": {
-      "snippet": "newfloatpageson{${1:envname}}"
+    {
+      "name": "contsubtable",
+      "if": "subfigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "cftdot": {},
-    "cftdotfill{}": {
-      "snippet": "cftdotfill{${1:arg}}"
+    {
+      "name": "contsubtable",
+      "if": "subfigure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:subcaption}]{${1:text}}"
+      }
     },
-    "cftdotsep": {}
-  },
-  "envs": {},
-  "options": [
-    "subfigure20",
-    "subfigure",
-    "caption2",
-    "titles"
+    {
+      "name": "contsubtop",
+      "if": "subfigure20",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "contsubbottom",
+      "if": "subfigure20",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subconcluded",
+      "if": "subfigure20"
+    },
+    {
+      "name": "subtop",
+      "if": "subfigure20",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subbottom",
+      "if": "subfigure20",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "newsubfloat",
+      "if": "subfigure20",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "contsubfigure",
+      "if": "subfigure20",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "contsubtable",
+      "if": "subfigure20",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "newfloatlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:envname}}{${2:ext}}{${3:listname}}{${4:capname}}"
+      }
+    },
+    {
+      "name": "newfloatlist",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:within}]{${1:envname}}{${2:ext}}{${3:listname}}{${4:capname}}"
+      }
+    },
+    {
+      "name": "newfloatentry",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:counter}}{${2:ext}}{${3:level-1}}"
+      }
+    },
+    {
+      "name": "newfloatentry",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:within}]{${1:counter}}{${2:ext}}{${3:level-1}}"
+      }
+    },
+    {
+      "name": "setnewfloatindents",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:envname}}{${2:indent%l}}{${3:numwidth%l}}"
+      }
+    },
+    {
+      "name": "newfloatpagesoff",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "newfloatpageson",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "cftdot",
+      "unusual": true
+    },
+    {
+      "name": "cftdotfill",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "cftdotsep",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/ccaption#c": [
+      "subfigure20",
+      "subfigure",
+      "caption2",
+      "titles"
+    ]
+  },
+  "args": [
+    "\\usepackage/ccaption#c"
+  ]
 }

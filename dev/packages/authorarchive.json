@@ -1,69 +1,133 @@
 {
-  "includes": {
-    "ifthen": [],
-    "enumitem": [],
-    "orcidlink": [],
-    "eso-pic": [],
-    "intopdf": [],
-    "kvoptions": [],
-    "hyperref": [],
-    "calc": [],
-    "qrcode": [],
-    "etoolbox": [],
-    "lastpage": []
-  },
-  "macros": {
-    "authorsetup{}": {
-      "snippet": "authorsetup{${1:option}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "authorcrfont": {},
-    "authorat{}": {
-      "snippet": "authorat{${1:text}}"
+    {
+      "name": "enumitem"
     },
-    "authorwidth{}": {
-      "snippet": "authorwidth{${1:width}}"
+    {
+      "name": "orcidlink"
     },
-    "BibTeX": {}
-  },
-  "envs": {
-    "enumerate*": {},
-    "enumerate*[]": {
-      "name": "enumerate*",
-      "snippet": "[${1:options}]"
+    {
+      "name": "eso-pic"
     },
-    "itemize*": {},
-    "itemize*[]": {
-      "name": "itemize*",
-      "snippet": "[${1:options}]"
+    {
+      "name": "intopdf"
     },
-    "description*": {},
-    "description*[]": {
-      "name": "description*",
-      "snippet": "[${1:options}]"
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "qrcode"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "lastpage"
     }
-  },
-  "options": [
-    "bibtexdir=${1:directory}",
-    "baseurl=${1:URL}",
-    "suffix=${1:string}",
-    "publisher=${1:text}",
-    "year=${1:year}",
-    "key=${1:string}",
-    "doi=${1:DOI}",
-    "doiText=${1:text}",
-    "publisherurl=${1:URL}",
-    "startpage=${1:start page}",
-    "publication=${1:text}",
-    "ACM",
-    "acmart",
-    "ENTCS",
-    "IEEE",
-    "LNCS",
-    "LNI",
-    "nocopyright",
-    "nourl",
-    "nobib",
-    "orcidicon"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "authorsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option%keyvals}}",
+        "keys": [
+          "\\usepackage/authorarchive#c,\\authorsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "authorcrfont",
+      "unusual": true
+    },
+    {
+      "name": "authorat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "authorwidth",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "BibTeX"
+    }
+  ],
+  "envs": [
+    {
+      "name": "enumerate*"
+    },
+    {
+      "name": "enumerate*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "itemize*"
+    },
+    {
+      "name": "itemize*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "description*"
+    },
+    {
+      "name": "description*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/authorarchive#c,\\authorsetup": [
+      "bibtexdir=${1:directory}",
+      "baseurl=${1:URL}",
+      "suffix=${1:string}",
+      "publisher=${1:text}",
+      "year=${1:year}",
+      "key=${1:string}",
+      "doi=${1:DOI}",
+      "doiText=${1:text}",
+      "publisherurl=${1:URL}",
+      "startpage=${1:start page}",
+      "publication=${1:text}",
+      "ACM",
+      "acmart",
+      "ENTCS",
+      "IEEE",
+      "LNCS",
+      "LNI",
+      "nocopyright",
+      "nourl",
+      "nobib",
+      "orcidicon"
+    ]
+  },
+  "args": [
+    "\\usepackage/authorarchive#c,\\authorsetup"
+  ]
 }

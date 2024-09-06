@@ -1,24 +1,51 @@
 {
-  "includes": {},
-  "macros": {
-    "btensor{}": {
-      "snippet": "btensor{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "btensor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
     },
-    "boperator{}": {
-      "snippet": "boperator{${1:text}}"
+    {
+      "name": "boperator",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
     },
-    "bsymbols{}": {
-      "snippet": "bsymbols{${1:text}}"
+    {
+      "name": "bsymbols",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
     },
-    "bboard{}": {
-      "snippet": "bboard{${1:text}}"
+    {
+      "name": "bboard",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
     },
-    "boldtensor": {}
-  },
-  "envs": {},
-  "options": [
-    "nabla",
-    "differential"
+    {
+      "name": "boldtensor",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/boldtensors#c": [
+      "nabla",
+      "differential"
+    ]
+  },
+  "args": [
+    "\\usepackage/boldtensors#c"
+  ]
 }

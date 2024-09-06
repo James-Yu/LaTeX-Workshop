@@ -1,27 +1,41 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psVenn()()(){}{}": {
-      "snippet": "psVenn(${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3}){${1:radius}}{${2:segments}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psVenn[]()()(){}{}": {
-      "snippet": "psVenn[${3:options}](${4:x1},${5:y1})(${6:x2},${7:y2})(${8:x3},${9:y3}){${1:radius}}{${2:segments}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "psVenn",
+      "arg": {
+        "format": "()()(){}{}",
+        "snippet": "(${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3}){${1:radius}}{${2:segments}}"
+      }
+    },
+    {
+      "name": "psVenn",
+      "arg": {
+        "format": "[]()()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2})(${8:x3},${9:y3}){${1:radius}}{${2:segments}}",
+        "keys": [
+          "\\psVenn#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psVenn#c": [
       "bgcircle",
       "bgcolor=",
       "bgradius=",
       "fgcolor=",
       "vennfill=${1|solid,hlines,dots|}"
     ]
-  ]
+  },
+  "args": []
 }

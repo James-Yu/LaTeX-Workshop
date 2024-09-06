@@ -1,31 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "cat": {
-      "detail": "⁀",
-      "documentation": "CHARACTER TIE, z notation sequence concatenation"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "cat[]": {
-      "snippet": "cat[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "cat"
     },
-    "cathookbackground": {},
-    "cathookbelly": {},
-    "cathookbody": {},
-    "cathookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "cat",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\cat#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cathookbackground",
+      "unusual": true
+    },
+    {
+      "name": "cathookbelly",
+      "unusual": true
+    },
+    {
+      "name": "cathookbody",
+      "unusual": true
+    },
+    {
+      "name": "cathookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\cat#c": [
       "body=",
       "eye=",
       "pupil=",
@@ -156,5 +188,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

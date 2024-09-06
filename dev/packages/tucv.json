@@ -1,75 +1,167 @@
 {
-  "includes": {
-    "array": [],
-    "color": [],
-    "calc": [],
-    "fancyhdr": []
-  },
-  "macros": {
-    "resbib{}{}": {
-      "snippet": "resbib{${1:title}}{${2:information}}"
+  "deps": [
+    {
+      "name": "array"
     },
-    "resconference[]{}{}": {
-      "snippet": "resconference[${3:description}]{${1:conference name}}{${2:role}}"
+    {
+      "name": "color"
     },
-    "resconference{}{}": {
-      "snippet": "resconference{${1:conference name}}{${2:role}}"
+    {
+      "name": "calc"
     },
-    "resdegree[]{}": {
-      "snippet": "resdegree[${2:description}]{${1:degree}}"
-    },
-    "resdegree{}": {
-      "snippet": "resdegree{${1:degree}}"
-    },
-    "resdesc{}{}": {
-      "snippet": "resdesc{${1:item}}{${2:description}}"
-    },
-    "resemployer[]{}": {
-      "snippet": "resemployer[${2:description}]{${1:name}}"
-    },
-    "resemployer{}": {
-      "snippet": "resemployer{${1:name}}"
-    },
-    "resentry[]{}{}": {
-      "snippet": "resentry[${3:indent}]{${1:left text}}{${2:right text}}"
-    },
-    "resentry{}{}": {
-      "snippet": "resentry{${1:left text}}{${2:right text}}"
-    },
-    "resentrysinglecol[]{}": {
-      "snippet": "resentrysinglecol[${2:indent}]{${1:text}}"
-    },
-    "resentrysinglecol{}": {
-      "snippet": "resentrysinglecol{${1:text}}"
-    },
-    "resheading{}": {
-      "snippet": "resheading{${1:heading}}"
-    },
-    "resjob[]{}{}{}": {
-      "snippet": "resjob[${4:description}]{${1:job name}}{${2:start}}{${3:end}}"
-    },
-    "resjob{}{}{}": {
-      "snippet": "resjob{${1:job name}}{${2:start}}{${3:end}}"
-    },
-    "resschool{}{}": {
-      "snippet": "resschool{${1:school name}}{${2:location}}"
-    },
-    "ressubconference[]{}": {
-      "snippet": "ressubconference[${2:description}]{${1:name}}"
-    },
-    "ressubconference{}": {
-      "snippet": "ressubconference{${1:name}}"
-    },
-    "ressubentry{}{}": {
-      "snippet": "ressubentry{${1:left text}}{${2:right text}}"
-    },
-    "ressubentrysinglecol{}": {
-      "snippet": "ressubentrysinglecol{${1:text}}"
+    {
+      "name": "fancyhdr"
     }
-  },
-  "envs": {},
-  "options": [
-    "pagesetup"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "resbib",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:information%text}}"
+      }
+    },
+    {
+      "name": "resconference",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:description%text}]{${1:conference name}}{${2:role%text}}"
+      }
+    },
+    {
+      "name": "resconference",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:conference name}}{${2:role%text}}"
+      }
+    },
+    {
+      "name": "resdegree",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:description%text}]{${1:degree%text}}"
+      }
+    },
+    {
+      "name": "resdegree",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:degree%text}}"
+      }
+    },
+    {
+      "name": "resdesc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:item%text}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "resemployer",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:description%text}]{${1:name}}"
+      }
+    },
+    {
+      "name": "resemployer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "resentry",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:indent}]{${1:left text%text}}{${2:right text%text}}"
+      }
+    },
+    {
+      "name": "resentry",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left text%text}}{${2:right text%text}}"
+      }
+    },
+    {
+      "name": "resentrysinglecol",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:indent}]{${1:text}}"
+      }
+    },
+    {
+      "name": "resentrysinglecol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "resheading",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "resjob",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:description%text}]{${1:job name%text}}{${2:start}}{${3:end}}"
+      }
+    },
+    {
+      "name": "resjob",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:job name%text}}{${2:start}}{${3:end}}"
+      }
+    },
+    {
+      "name": "resschool",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:school name}}{${2:location}}"
+      }
+    },
+    {
+      "name": "ressubconference",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:description%text}]{${1:name}}"
+      }
+    },
+    {
+      "name": "ressubconference",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "ressubentry",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left text%text}}{${2:right text%text}}"
+      }
+    },
+    {
+      "name": "ressubentrysinglecol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tucv#c": [
+      "pagesetup"
+    ]
+  },
+  "args": [
+    "\\usepackage/tucv#c"
+  ]
 }

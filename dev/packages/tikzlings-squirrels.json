@@ -1,28 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "squirrel": {},
-    "squirrel[]": {
-      "snippet": "squirrel[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "squirrelhookbackground": {},
-    "squirrelhookbelly": {},
-    "squirrelhookbody": {},
-    "squirrelhookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "squirrel"
+    },
+    {
+      "name": "squirrel",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\squirrel#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "squirrelhookbackground",
+      "unusual": true
+    },
+    {
+      "name": "squirrelhookbelly",
+      "unusual": true
+    },
+    {
+      "name": "squirrelhookbody",
+      "unusual": true
+    },
+    {
+      "name": "squirrelhookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\squirrel#c": [
       "body=",
       "eye=",
       "pupil=",
@@ -144,5 +179,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

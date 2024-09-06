@@ -1,78 +1,107 @@
 {
-  "includes": {
-    "hyperref": []
-  },
-  "macros": {
-    "bookmarksetup{}": {
-      "snippet": "bookmarksetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "bookmarksetupnext{}": {
-      "snippet": "bookmarksetupnext{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "bookmark{}": {
-      "snippet": "bookmark{${1:title}}"
-    },
-    "bookmark[]{}": {
-      "snippet": "bookmark[${2:options}]{${1:title}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "bookmarkdefinestyle{}{}": {
-      "snippet": "bookmarkdefinestyle{${1:name}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "bookmarkget{}": {
-      "snippet": "bookmarkget{${1:option}}"
-    },
-    "BookmarkAtEnd{}": {
-      "snippet": "BookmarkAtEnd{${1:code}}",
-      "option": "atend"
-    },
-    "BookmarkDriverDefault": {},
-    "calc{}": {
-      "snippet": "calc{${1:expression}}"
+  "deps": [
+    {
+      "name": "hyperref"
     }
-  },
-  "envs": {},
-  "options": [
-    "draft",
-    "final",
-    "atend",
-    "pdftex",
-    "dvips",
-    "dvipdfm",
-    "dvipdfmx",
-    "xetex",
-    "vtex",
-    "bold",
-    "italic",
-    "color=${1:color}",
-    "color=[${1:model}]{${2:color spec}}",
-    "dest=${1:destination name}",
-    "page=${1:number}",
-    "view={${1:view specs}}",
-    "named=${1|FirstPage,LastPage,NextPage,PrevPage|}",
-    "gotor=${1:file}",
-    "uri={${1:uri}}",
-    "rawaction=${1:action spec}",
-    "level=${1:integer}",
-    "rellevel=${1:integer}",
-    "keeplevel",
-    "startatroot",
-    "style=${1:style name}",
-    "addtohook=${1:code}",
-    "depth=${1:integer}",
-    "open",
-    "openlevel=${1:integer}",
-    "numbered"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "bookmarksetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\bookmarksetup,\\bookmarksetupnext,\\bookmark,\\bookmarkdefinestyle,\\usepackage/bookmark#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bookmarksetupnext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\bookmarksetup,\\bookmarksetupnext,\\bookmark,\\bookmarkdefinestyle,\\usepackage/bookmark#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bookmark",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "bookmark",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title%text}}",
+        "keys": [
+          "\\bookmarksetup,\\bookmarksetupnext,\\bookmark,\\bookmarkdefinestyle,\\usepackage/bookmark#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bookmarkdefinestyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\bookmarksetup,\\bookmarksetupnext,\\bookmark,\\bookmarkdefinestyle,\\usepackage/bookmark#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "bookmarkget",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option%keyvals}}",
+        "keys": [
+          "\\bookmarkget"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "BookmarkAtEnd",
+      "if": "atend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "BookmarkDriverDefault",
+      "unusual": true
+    },
+    {
+      "name": "calc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bookmark#c": [
+      "draft",
+      "final",
+      "atend",
+      "pdftex",
+      "dvips",
+      "dvipdfm",
+      "dvipdfmx",
+      "xetex",
+      "vtex"
+    ],
+    "\\bookmarksetup,\\bookmarksetupnext,\\bookmark,\\bookmarkdefinestyle,\\usepackage/bookmark#c": [
       "bold",
       "italic",
       "color=${1:color}",
@@ -94,6 +123,27 @@
       "open",
       "openlevel=${1:integer}",
       "numbered"
+    ],
+    "\\bookmarkget": [
+      "bold",
+      "italic",
+      "open",
+      "depth",
+      "dest",
+      "color",
+      "gotor",
+      "level",
+      "named",
+      "openlevel",
+      "page",
+      "rawaction",
+      "uri",
+      "view",
+      "text"
     ]
+  },
+  "args": [
+    "\\usepackage/bookmark#c",
+    "\\bookmarksetup,\\bookmarksetupnext,\\bookmark,\\bookmarkdefinestyle,\\usepackage/bookmark#c"
   ]
 }

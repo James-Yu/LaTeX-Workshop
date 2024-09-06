@@ -1,34 +1,47 @@
 {
-  "includes": {
-    "hyperref": [],
-    "xcolor": [],
-    "xkeyval": [],
-    "tikz": []
-  },
-  "macros": {
-    "initclock": {},
-    "analogclock": {},
-    "clocksizefactor{}": {
-      "snippet": "clocksizefactor{${1:factor}}"
+  "deps": [
+    {
+      "name": "hyperref"
     },
-    "faceclock{}{}": {
-      "snippet": "faceclock{${1:integer}}{${2:color}}"
+    {
+      "name": "xcolor"
     },
-    "kk": {},
-    "sizebox": {},
-    "uu": {},
-    "colocafield{}": {
-      "snippet": "colocafield{${1:arg}}"
+    {
+      "name": "xkeyval"
     },
-    "facebg": {},
-    "faceframe": {},
-    "face": {},
-    "clockskin": {},
-    "startclock": {}
-  },
-  "envs": {},
-  "options": [
-    "timeinterval=${1:integer}"
+    {
+      "name": "tikz"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "initclock"
+    },
+    {
+      "name": "analogclock"
+    },
+    {
+      "name": "clocksizefactor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "faceclock",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:integer}}{${2:color}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/analogclock#c": [
+      "timeinterval=${1:integer}"
+    ]
+  },
+  "args": [
+    "\\usepackage/analogclock#c"
+  ]
 }

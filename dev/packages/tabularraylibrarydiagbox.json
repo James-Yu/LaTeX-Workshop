@@ -1,21 +1,32 @@
 {
-  "includes": {
-    "diagbox": []
-  },
-  "macros": {
-    "diagboxthree{}{}{}": {
-      "snippet": "diagboxthree{${1:lower}}{${2:middle}}{${3:upper}}"
-    },
-    "diagboxthree[]{}{}{}": {
-      "snippet": "diagboxthree[${4:options}]{${1:lower}}{${2:middle}}{${3:upper}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "diagbox"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "diagboxthree",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:lower}}{${2:middle}}{${3:upper}}"
+      }
+    },
+    {
+      "name": "diagboxthree",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:lower}}{${2:middle}}{${3:upper}}",
+        "keys": [
+          "\\diagboxthree"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\diagboxthree": [
       "width=",
       "height=",
       "dir=${1|NW,NE,SW,SE|}",
@@ -31,5 +42,6 @@
       "linewidth=",
       "linecolor="
     ]
-  ]
+  },
+  "args": []
 }

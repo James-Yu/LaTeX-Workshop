@@ -1,28 +1,72 @@
 {
-  "includes": {
-    "tikzlibrarymatrix": [],
-    "tikzlibraryfit": [],
-    "tikzlibrarybackgrounds": []
-  },
-  "macros": {
-    "fitandstyle{}{}": {
-      "snippet": "fitandstyle{${1:node spec}}{${2:TikZ keys}}"
+  "deps": [
+    {
+      "name": "tikzlibrarymatrix"
     },
-    "fitandstyle[]{}{}": {
-      "snippet": "fitandstyle[${3:layer name}]{${1:node spec}}{${2:TikZ keys}}"
+    {
+      "name": "tikzlibraryfit"
     },
-    "pgfmatrixlabelskeleton": {},
-    "stylecontour{}": {
-      "snippet": "stylecontour{${1:TikZ keys}}"
-    },
-    "stylegrid{}": {
-      "snippet": "stylegrid{${1:TikZ keys}}"
-    },
-    "styletilinggrid{}": {
-      "snippet": "styletilinggrid{${1:TikZ keys}}"
+    {
+      "name": "tikzlibrarybackgrounds"
     }
+  ],
+  "macros": [
+    {
+      "name": "fitandstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node spec}}{${2:TikZ keys%keyvals}}",
+        "keys": [
+          "\\fitandstyle#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "fitandstyle",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:layer name}]{${1:node spec}}{${2:TikZ keys%keyvals}}",
+        "keys": [
+          "\\fitandstyle#c"
+        ],
+        "keyPos": 2
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\matrix#c": [
+      "label skeleton",
+      "style odd rows={${1:TikZ keys}}",
+      "style odd rows on layer={${1:layer}}{${2:TikZ keys}}",
+      "style even rows={${1:TikZ keys}}",
+      "style even rows on layer={${1:layer}}{${2:TikZ keys}}",
+      "style odd tiling rows={${1:TikZ keys}}",
+      "style odd tiling rows on layer={${1:layer}}{${2:TikZ keys}}",
+      "style even tiling rows={${1:TikZ keys}}",
+      "style even tiling rows on layer={${1:layer}}{${2:TikZ keys}}",
+      "style odd columns={${1:TikZ keys}}",
+      "style odd columns on layer={${1:layer}}{${2:TikZ keys}}",
+      "style even columns={${1:TikZ keys}}",
+      "style even columns on layer={${1:layer}}{${2:TikZ keys}}",
+      "style odd tiling columns={${1:TikZ keys}}",
+      "style odd tiling columns on layer={${1:layer}}{${2:TikZ keys}}",
+      "style even tiling columns={${1:TikZ keys}}",
+      "style even tiling columns on layer={${1:layer}}{${2:TikZ keys}}",
+      "style grid={${1:TikZ keys}}",
+      "style grid on layer={${1:layer}}{${2:TikZ keys}}",
+      "style tiling grid={${1:TikZ keys}}",
+      "style tiling grid on layer={${1:layer}}{${2:TikZ keys}}",
+      "style contour={${1:TikZ keys}}",
+      "style contour on layer={${1:layer}}{${2:TikZ keys}}"
+    ],
+    "\\fitandstyle#c": [
+      "fill=",
+      "highlight=",
+      "opacity=${1:factor}",
+      "draw="
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

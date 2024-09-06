@@ -1,38 +1,90 @@
 {
-  "includes": {},
-  "macros": {
-    "brow": {},
-    "erow": {},
-    "cell{}": {
-      "snippet": "cell{${1:content}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "brow"
     },
-    "thead{}": {
-      "snippet": "thead{${1:content}}"
+    {
+      "name": "erow"
     },
-    "tfoot{}": {
-      "snippet": "tfoot{${1:content}}"
+    {
+      "name": "cell",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
     },
-    "tbreak{}": {
-      "snippet": "tbreak{${1:content}}"
+    {
+      "name": "thead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
     },
-    "lastrule": {},
-    "alignL": {},
-    "alignC": {},
-    "alignR": {},
-    "nullcell{}": {
-      "snippet": "nullcell{${1:location}}"
+    {
+      "name": "tfoot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
     },
-    "spancontent{}": {
-      "snippet": "spancontent{${1:content}}"
+    {
+      "name": "tbreak",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "lastrule"
+    },
+    {
+      "name": "alignL"
+    },
+    {
+      "name": "alignC"
+    },
+    {
+      "name": "alignR"
+    },
+    {
+      "name": "nullcell",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:location}}"
+      }
+    },
+    {
+      "name": "spancontent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
     }
-  },
-  "envs": {
-    "calstable": {},
-    "calstable[]": {
+  ],
+  "envs": [
+    {
+      "name": "calstable"
+    },
+    {
       "name": "calstable",
-      "snippet": "[${1:alignment}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:alignment%keyvals}]",
+        "keys": [
+          "\\begin{calstable}"
+        ],
+        "keyPos": 0
+      }
     }
+  ],
+  "keys": {
+    "\\begin{calstable}": [
+      "n",
+      "l",
+      "c",
+      "r"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

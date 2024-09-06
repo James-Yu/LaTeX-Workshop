@@ -1,92 +1,223 @@
 {
-  "includes": {
-    "anyfontsize": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryshadings": [],
-    "tikzpagenodes": [],
-    "geometry": [],
-    "fancyhdr": [],
-    "extramarks": [],
-    "titlesec": [],
-    "ulem": [],
-    "titletoc": [],
-    "enumitem": [],
-    "imakeidx": [],
-    "silence": [],
-    "projlib-draft": [],
-    "mathtools": [],
-    "amsthm": [],
-    "bookmark": [],
-    "hyperref": [],
-    "projlib-theorem": [],
-    "marginnote": [],
-    "ifoddpage": [],
-    "iftex": [],
-    "projlib-author": [],
-    "projlib-titlepage": [],
-    "tcolorbox": [],
-    "tcolorboxlibrarymany": [],
-    "projlib-language": [],
-    "scontents": []
-  },
-  "macros": {
-    "parttext{}": {
-      "snippet": "parttext{${1:text}}"
+  "deps": [
+    {
+      "name": "anyfontsize"
     },
-    "AfterEnvEnd{}": {
-      "snippet": "AfterEnvEnd{${1:code}}"
+    {
+      "name": "tikz"
     },
-    "ScanEnv{}{}{}": {
-      "snippet": "ScanEnv{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "ScanEnv*{}{}{}": {
-      "snippet": "ScanEnv*{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "tikzlibraryshadings"
     },
-    "keywordname": {},
-    "partstring": {},
-    "customqedsymbol": {},
-    "IndexDotfill": {},
-    "IndexLinebreak": {},
-    "IndexHeading{}": {
-      "snippet": "IndexHeading{${1:text}}"
+    {
+      "name": "tikzpagenodes"
     },
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}"
+    {
+      "name": "geometry"
     },
-    "dedicatory{}": {
-      "snippet": "dedicatory{${1:text}}"
+    {
+      "name": "fancyhdr"
     },
-    "subjclass{}": {
-      "snippet": "subjclass{${1:classification}}"
+    {
+      "name": "extramarks"
     },
-    "subjclass[]{}": {
-      "snippet": "subjclass[${2:year}]{${1:classification}}"
+    {
+      "name": "titlesec"
+    },
+    {
+      "name": "ulem"
+    },
+    {
+      "name": "titletoc"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "imakeidx"
+    },
+    {
+      "name": "silence"
+    },
+    {
+      "name": "projlib-draft"
+    },
+    {
+      "name": "mathtools"
+    },
+    {
+      "name": "amsthm"
+    },
+    {
+      "name": "bookmark"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "projlib-theorem"
+    },
+    {
+      "name": "marginnote"
+    },
+    {
+      "name": "ifoddpage"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "projlib-author"
+    },
+    {
+      "name": "projlib-titlepage"
+    },
+    {
+      "name": "tcolorbox"
+    },
+    {
+      "name": "tcolorboxlibrarymany"
+    },
+    {
+      "name": "projlib-language"
+    },
+    {
+      "name": "scontents"
     }
-  },
-  "envs": {
-    "keyword": {},
-    "emphasis": {},
-    "proof[]": {
+  ],
+  "macros": [
+    {
+      "name": "parttext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "AfterEnvEnd",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "ScanEnv",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "ScanEnv*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "keywordname",
+      "unusual": true
+    },
+    {
+      "name": "partstring",
+      "unusual": true
+    },
+    {
+      "name": "IndexDotfill",
+      "unusual": true
+    },
+    {
+      "name": "IndexLinebreak",
+      "unusual": true
+    },
+    {
+      "name": "IndexHeading",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "dedicatory",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:classification}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:year}]{${1:classification}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "keyword"
+    },
+    {
+      "name": "emphasis"
+    },
+    {
       "name": "proof",
-      "snippet": "[${1:heading}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
     },
-    "enumerate*": {},
-    "enumerate*[]": {
+    {
+      "name": "enumerate*"
+    },
+    {
       "name": "enumerate*",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "itemize*": {},
-    "itemize*[]": {
+    {
+      "name": "itemize*"
+    },
+    {
       "name": "itemize*",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "description*": {},
-    "description*[]": {
+    {
+      "name": "description*"
+    },
+    {
       "name": "description*",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

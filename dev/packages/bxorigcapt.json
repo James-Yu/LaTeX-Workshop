@@ -1,21 +1,37 @@
 {
-  "includes": {
-    "etoolbox": []
-  },
-  "macros": {
-    "bxDebug{}": {
-      "snippet": "bxDebug{${1:message}}"
-    },
-    "bxorigcaptDeprecateCommand{}": {
-      "snippet": "bxorigcaptDeprecateCommand{${1:csname1,${2:csname2},...}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [
-    "main",
-    "${1:language}",
-    "warn",
-    "nowarn"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "bxDebug",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:message}}"
+      }
+    },
+    {
+      "name": "bxorigcaptDeprecateCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname1,csname2,...}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bxorigcapt#c": [
+      "main",
+      "${1:language}",
+      "warn",
+      "nowarn"
+    ]
+  },
+  "args": [
+    "\\usepackage/bxorigcapt#c"
+  ]
 }

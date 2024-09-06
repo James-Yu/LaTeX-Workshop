@@ -1,46 +1,83 @@
 {
-  "includes": {},
-  "macros": {
-    "showrefnames": {},
-    "norefnames": {},
-    "showcitenames": {},
-    "nocitenames": {},
-    "refcheckxrdoc{}": {
-      "snippet": "refcheckxrdoc{${1:file}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "showrefnames"
     },
-    "refcheckxrdoc[]{}": {
-      "snippet": "refcheckxrdoc[${2:prefix}]{${1:file}}"
+    {
+      "name": "norefnames"
     },
-    "setonmsgs": {},
-    "setoffmsgs": {},
-    "checkunlbld": {},
-    "ignoreunlbld": {},
-    "cleanprefix{}{}": {
-      "snippet": "cleanprefix{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "showcitenames"
     },
-    "usedref{}": {
-      "snippet": "usedref{${1:arg}}"
+    {
+      "name": "nocitenames"
     },
-    "wrtusdrf{}": {
-      "snippet": "wrtusdrf{${1:arg}}"
+    {
+      "name": "refcheckxrdoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     },
-    "btoks{}": {
-      "snippet": "btoks{${1:arg}}"
+    {
+      "name": "refcheckxrdoc",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix}]{${1:file}}"
+      }
     },
-    "filedate": {},
-    "filename": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [
-    "showrefs",
-    "showcites",
-    "msgs",
-    "chckunlbld",
-    "norefs",
-    "nocites",
-    "nomsgs",
-    "ignoreunlbld"
+    {
+      "name": "setonmsgs"
+    },
+    {
+      "name": "setoffmsgs"
+    },
+    {
+      "name": "checkunlbld"
+    },
+    {
+      "name": "ignoreunlbld"
+    },
+    {
+      "name": "cleanprefix",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "usedref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "wrtusdrf",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/refcheck#c": [
+      "showrefs",
+      "showcites",
+      "msgs",
+      "chckunlbld",
+      "norefs",
+      "nocites",
+      "nomsgs",
+      "ignoreunlbld"
+    ]
+  },
+  "args": [
+    "\\usepackage/refcheck#c"
+  ]
 }

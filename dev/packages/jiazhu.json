@@ -1,23 +1,55 @@
 {
-  "includes": {},
-  "macros": {
-    "jiazhu{}": {
-      "snippet": "jiazhu{${1:夹注内容}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "jiazhu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:夹注内容%text}}"
+      }
     },
-    "jiazhu[]{}": {
-      "snippet": "jiazhu[${2:键值选项}]{${1:夹注内容}}"
+    {
+      "name": "jiazhu",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:键值选项%keyvals}]{${1:夹注内容%text}}",
+        "keys": [
+          "\\jiazhu,\\jiazhuset"
+        ],
+        "keyPos": 0
+      }
     },
-    "jiazhuset{}": {
-      "snippet": "jiazhuset{${1:键值选项}}"
-    },
-    "jiazhuoptiongrabber{}": {
-      "snippet": "jiazhuoptiongrabber{${1:arg}}"
-    },
-    "jiazhuoptiongrabber{}[]": {
-      "snippet": "jiazhuoptiongrabber{${1:arg}}[${2:opt}]"
+    {
+      "name": "jiazhuset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:键值选项%keyvals}}",
+        "keys": [
+          "\\jiazhu,\\jiazhuset"
+        ],
+        "keyPos": 0
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\jiazhu,\\jiazhuset": [
+      "format=${1:格式命令}",
+      "beforeskip=${1:弹性间距}",
+      "afterskip=${1:弹性间距}",
+      "opening=${1:前置内容}",
+      "closing=${1:后置内容}",
+      "ideohtratio=${1:数字}",
+      "jzideohtratio=${1:数字}",
+      "ratio=${1:数字}",
+      "bracketratio=${1:数字}",
+      "baselineshift=",
+      "lines=${1:正整数}",
+      "shortcut=${1:字符}",
+      "shortcut-=${1:字符列表}",
+      "halign=${1|justified,left,right,centered,distributed|}",
+      "valign=${1|middle,top,bottom|}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

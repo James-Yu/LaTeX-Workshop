@@ -1,27 +1,50 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "ocr{}": {
-      "snippet": "ocr{${1:text}}"
-    },
-    "ocrfamily": {},
-    "ocrneg{}": {
-      "snippet": "ocrneg{${1:text}}"
-    },
-    "ocrnegfamily": {},
-    "ocrdefault": {}
-  },
-  "envs": {},
-  "options": [
-    "ocr-a",
-    "oca",
-    "ocr-b",
-    "ocr-b-outline",
-    "ocr-b-negative",
-    "ocr-b-sharp",
-    "ocr-b-sharp-negative"
+  "deps": [
+    {
+      "name": "ifthen"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ocr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ocrfamily",
+      "unusual": true
+    },
+    {
+      "name": "ocrneg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ocrnegfamily",
+      "unusual": true
+    },
+    {
+      "name": "ocrdefault",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ocr#c": [
+      "ocr-a",
+      "oca",
+      "ocr-b",
+      "ocr-b-outline",
+      "ocr-b-negative",
+      "ocr-b-sharp",
+      "ocr-b-sharp-negative"
+    ]
+  },
+  "args": [
+    "\\usepackage/ocr#c"
+  ]
 }

@@ -1,44 +1,91 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": [],
-    "pst-node": [],
-    "pst-func": []
-  },
-  "macros": {
-    "pssavepath{}{}": {
-      "snippet": "pssavepath{${1:name}}{${2:commands}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "pssavepath[]{}{}": {
-      "snippet": "pssavepath[${3:options}]{${1:name}}{${2:commands}}"
+    {
+      "name": "pst-xkey"
     },
-    "psintersect{}{}": {
-      "snippet": "psintersect{${1:curveA}}{${2:curveB}}"
+    {
+      "name": "pst-node"
     },
-    "psintersect[]{}{}": {
-      "snippet": "psintersect[${3:options}]{${1:curveA}}{${2:curveB}}"
+    {
+      "name": "pst-func"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pssavepath",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:commands}}"
+      }
     },
-    "pstracecurve{}": {
-      "snippet": "pstracecurve{${1:curve name}}"
+    {
+      "name": "pssavepath",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:commands}}"
+      }
     },
-    "pstracecurve{}{}": {
-      "snippet": "pstracecurve{${1:intersection}}{${2:curve name}}"
+    {
+      "name": "psintersect",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:curveA}}{${2:curveB}}"
+      }
     },
-    "pstracecurve[]{}": {
-      "snippet": "pstracecurve[${2:options}]{${1:curve name}}"
+    {
+      "name": "psintersect",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:curveA}}{${2:curveB}}"
+      }
     },
-    "pstracecurve[]{}{}": {
-      "snippet": "pstracecurve[${3:options}]{${1:intersection}}{${2:curve name}}"
+    {
+      "name": "pstracecurve",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:curve name}}"
+      }
     },
-    "psGetCurvePoint{}{}": {
-      "snippet": "psGetCurvePoint{${1:curve name}}{${2:macro}}"
+    {
+      "name": "pstracecurve",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:intersection}}{${2:curve name}}"
+      }
     },
-    "psGetIsectCenter{}{}{}": {
-      "snippet": "psGetIsectCenter{${1:intersection}}{${2:curve name}}{${3:macro}}"
+    {
+      "name": "pstracecurve",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:curve name}}"
+      }
     },
-    "PSTintersectLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "pstracecurve",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:intersection}}{${2:curve name}}"
+      }
+    },
+    {
+      "name": "psGetCurvePoint",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:curve name}}{${2:macro%cmd}}"
+      }
+    },
+    {
+      "name": "psGetIsectCenter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:intersection}}{${2:curve name}}{${3:macro%cmd}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,32 +1,65 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "xkvltxp": [],
-    "geometry": [],
-    "longtable": [],
-    "tabularx": [],
-    "xcolor": [],
-    "graphicx": [],
-    "booktabs": [],
-    "datatool": [],
-    "calc": [],
-    "ifthen": [],
-    "siunitx": []
-  },
-  "macros": {
-    "bankstatement{}": {
-      "snippet": "bankstatement{${1:csv file}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "bankstatement[]{}": {
-      "snippet": "bankstatement[${2:options}]{${1:csv file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xkvltxp"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "longtable"
+    },
+    {
+      "name": "tabularx"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "datatool"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "siunitx"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "bankstatement",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csv file%file}}"
+      }
+    },
+    {
+      "name": "bankstatement",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:csv file%file}}",
+        "keys": [
+          "\\bankstatement"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\bankstatement": [
       "title=${1:title}",
       "logo=${1:logo}",
       "logowidth=",
@@ -39,5 +72,6 @@
       "openingbalance=",
       "closingbalance="
     ]
-  ]
+  },
+  "args": []
 }

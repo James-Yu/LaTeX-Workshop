@@ -1,31 +1,67 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": [],
-    "pst-plot": [],
-    "pst-node": []
-  },
-  "macros": {
-    "psRQBCmasse()()(){}": {
-      "snippet": "psRQBCmasse(${2:x0},${3:y0})(${4:x1},${5:y1})(${6:x2},${7:y2}){${1:w0,${8:w1},w2}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psRQBCmasse[]()()(){}": {
-      "snippet": "psRQBCmasse[${2:options}](${3:x0},${4:y0})(${5:x1},${6:y1})(${7:x2},${8:y2}){${1:w0,${9:w1},w2}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
     },
-    "pscalculate{}": {
-      "snippet": "pscalculate{${1:expr}}"
+    {
+      "name": "pst-plot"
     },
-    "PSTbezierLoaded": {},
-    "defopt{}{}[]args{}": {
-      "snippet": "defopt{${1:macro}}{${2:default}}[${3:optargs}]args{${4:definition}}"
+    {
+      "name": "pst-node"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "psRQBCmasse",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "(${2:x0},${3:y0})(${4:x1},${5:y1})(${6:x2},${7:y2}){${1:w0,w1,w2}}"
+      }
+    },
+    {
+      "name": "psRQBCmasse",
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x0},${4:y0})(${5:x1},${6:y1})(${7:x2},${8:y2}){${1:w0,w1,w2}}",
+        "keys": [
+          "\\psRQBCmasse"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pscalculate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr%definition}}"
+      }
+    },
+    {
+      "name": "defopt",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]args{}",
+        "snippet": "{${1:macro%cmd}}{${2:default}}[${4:optargs}]args{${3:definition}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psbcurve": [
+      "bcurveTension=${1:value}",
+      "dash=${1:a b}",
+      "fillcolor=",
+      "fillstyle=${1:style}",
+      "linecolor=",
+      "linestyle=${1:style}",
+      "linewidth=",
+      "showpoints"
+    ],
+    "\\psRQBCmasse": [
       "autoTrace",
       "linecolor=",
       "linewidth=",
@@ -33,5 +69,6 @@
       "showpoints",
       "showPolygon"
     ]
-  ]
+  },
+  "args": []
 }

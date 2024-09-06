@@ -1,72 +1,192 @@
 {
-  "includes": {
-    "pgfcore": [],
-    "calc": []
-  },
-  "macros": {
-    "pgfpagesuselayout{}": {
-      "snippet": "pgfpagesuselayout{${1:layout}}"
+  "deps": [
+    {
+      "name": "pgfcore"
     },
-    "pgfpagesuselayout{}[]": {
-      "snippet": "pgfpagesuselayout{${1:layout}}[${2:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "pgfpagesdeclarelayout{}{}{}": {
-      "snippet": "pgfpagesdeclarelayout{${1:layout}}{${2:before actions}}{${3:after actions}}"
-    },
-    "pgfpagesphysicalpageoptions{}": {
-      "snippet": "pgfpagesphysicalpageoptions{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "pgfpageslogicalpageoptions{}{}": {
-      "snippet": "pgfpageslogicalpageoptions{${1:logical page number}}{${2:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 1
-    },
-    "pgfpagesshipoutlogicalpage{}": {
-      "snippet": "pgfpagesshipoutlogicalpage{${1:number}}"
-    },
-    "pgfpagescurrentpagewillbelogicalpage{}": {
-      "snippet": "pgfpagescurrentpagewillbelogicalpage{${1:number}}"
-    },
-    "pgfshipoutphysicalpage": {},
-    "pgfhookintoshipout": {},
-    "pgfsetupphysicalpagesizes": {},
-    "ifpgfphysicalpageempty": {},
-    "pgfphysicalpageemptytrue": {},
-    "pgfphysicalpageemptyfalse": {},
-    "pgfphysicalheight": {},
-    "pgfphysicalwidth": {},
-    "pgfpageoptionheight": {},
-    "pgfpageoptionwidth": {},
-    "pgfpageoptionborder": {},
-    "pgfpageoptioncornerwidth": {},
-    "pgfpageoptionfirstshipout": {},
-    "pgfpageoptionfirstcenter": {},
-    "pgfpageoptionsecondcenter": {},
-    "pgfpageoptiontwoheight": {},
-    "pgfpageoptiontwowidth": {},
-    "ifpgfpagesship": {},
-    "pgfpagesshiptrue": {},
-    "pgfpagesshipfalse": {},
-    "pgfactualpage": {},
-    "pgfpageoptionbordercode": {},
-    "pgfmorepagesloadextralayouts": {},
-    "pgfpagesphysicalpage{}{}": {
-      "snippet": "pgfpagesphysicalpage{${1:number}}{${2:options}}"
-    },
-    "pgfpagessetdefaults{}": {
-      "snippet": "pgfpagessetdefaults{${1:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "calc"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "pgfpagesuselayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:layout}}"
+      }
+    },
+    {
+      "name": "pgfpagesuselayout",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:layout}}[${2:options%keyvals}]",
+        "keys": [
+          "\\pgfpagesuselayout"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "pgfpagesdeclarelayout",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:layout}}{${2:before actions}}{${3:after actions}}"
+      }
+    },
+    {
+      "name": "pgfpagesphysicalpageoptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pgfpagesphysicalpageoptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pgfpageslogicalpageoptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:logical page number}}{${2:options%keyvals}}",
+        "keys": [
+          "\\pgfpageslogicalpageoptions,\\pgfpagessetdefaults"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "pgfpagesshipoutlogicalpage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "pgfpagescurrentpagewillbelogicalpage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "pgfshipoutphysicalpage",
+      "unusual": true
+    },
+    {
+      "name": "pgfhookintoshipout",
+      "unusual": true
+    },
+    {
+      "name": "pgfsetupphysicalpagesizes",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfphysicalpageempty",
+      "unusual": true
+    },
+    {
+      "name": "pgfphysicalpageemptytrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfphysicalpageemptyfalse",
+      "unusual": true
+    },
+    {
+      "name": "pgfphysicalheight",
+      "unusual": true
+    },
+    {
+      "name": "pgfphysicalwidth",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptionheight",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptionwidth",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptionborder",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptioncornerwidth",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptionfirstshipout",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptionfirstcenter",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptionsecondcenter",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptiontwoheight",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptiontwowidth",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfpagesship",
+      "unusual": true
+    },
+    {
+      "name": "pgfpagesshiptrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfpagesshipfalse",
+      "unusual": true
+    },
+    {
+      "name": "pgfactualpage",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptionbordercode",
+      "unusual": true
+    },
+    {
+      "name": "pgfmorepagesloadextralayouts"
+    },
+    {
+      "name": "pgfpagesphysicalpage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:number}}{${2:options}}"
+      }
+    },
+    {
+      "name": "pgfpagessetdefaults",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pgfpageslogicalpageoptions,\\pgfpagessetdefaults"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pgfpagesuselayout": [
       "physical paper height=",
       "physical paper width=",
       "a0paper",
@@ -89,7 +209,7 @@
       "second top",
       "border code=${1:code}"
     ],
-    [
+    "\\pgfpagesphysicalpageoptions": [
       "logical pages=${1:integer}",
       "first logical shipout=${1:first}",
       "last logical shipout=${1:last}",
@@ -97,7 +217,7 @@
       "physical height=",
       "physical width="
     ],
-    [
+    "\\pgfpageslogicalpageoptions,\\pgfpagessetdefaults": [
       "center=${1:pgf point}",
       "resized width=",
       "resized height=",
@@ -112,9 +232,7 @@
       "border code=${1:code}",
       "corner width=",
       "skip code=${1:code}"
-    ],
-    [
-      "skip code=${1:code}"
     ]
-  ]
+  },
+  "args": []
 }

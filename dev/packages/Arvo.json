@@ -1,24 +1,42 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "fontenc": [],
-    "ifthen": [],
-    "mweights": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "Arvotabular": {},
-    "Arvoproportional": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1|${1:factor},MatchLowercase|}",
-    "scaled=${1|${1:factor},MatchLowercase|}",
-    "lining",
-    "tabular",
-    "mainfont",
-    "bold",
-    "regular"
+  "deps": [
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "mweights"
+    },
+    {
+      "name": "fontaxes"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "Arvotabular"
+    },
+    {
+      "name": "Arvoproportional"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/Arvo#c": [
+      "scale=${2|${1:factor},MatchLowercase|}",
+      "scaled=${2|${1:factor},MatchLowercase|}",
+      "lining",
+      "tabular",
+      "mainfont",
+      "bold",
+      "regular"
+    ]
+  },
+  "args": [
+    "\\usepackage/Arvo#c"
+  ]
 }

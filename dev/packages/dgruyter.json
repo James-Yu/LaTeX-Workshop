@@ -1,414 +1,1111 @@
 {
-  "includes": {
-    "cmap": [],
-    "amsmath": [],
-    "tipa": [],
-    "fontenc": [],
-    "zi4": [],
-    "amssymb": [],
-    "babel": [],
-    "ragged2e": [],
-    "footmisc": [],
-    "amsthm": [],
-    "graphicx": [],
-    "array": [],
-    "multirow": [],
-    "tabularx": [],
-    "bigstrut": [],
-    "supertabular": [],
-    "booktabs": [],
-    "multicol": [],
-    "caption": [],
-    "sidecap": [],
-    "rotating": [],
-    "makeidx": [],
-    "lineno": [],
-    "url": [],
-    "hyperref": [],
-    "doi": [],
-    "manyfoot": [],
-    "authblk": [],
-    "lastpage": [],
-    "environ": [],
-    "changepage": [
-      "margincol"
+  "deps": [
+    {
+      "name": "cmap"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "tipa"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "zi4"
+    },
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "ragged2e"
+    },
+    {
+      "name": "footmisc"
+    },
+    {
+      "name": "amsthm"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "array"
+    },
+    {
+      "name": "multirow"
+    },
+    {
+      "name": "tabularx"
+    },
+    {
+      "name": "bigstrut"
+    },
+    {
+      "name": "supertabular"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "multicol"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "sidecap"
+    },
+    {
+      "name": "rotating"
+    },
+    {
+      "name": "makeidx"
+    },
+    {
+      "name": "lineno"
+    },
+    {
+      "name": "url"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "doi"
+    },
+    {
+      "name": "manyfoot"
+    },
+    {
+      "name": "authblk"
+    },
+    {
+      "name": "lastpage"
+    },
+    {
+      "name": "environ"
+    },
+    {
+      "name": "changepage",
+      "if": "margincol"
+    }
+  ],
+  "macros": [
+    {
+      "name": "starttabularbody"
+    },
+    {
+      "name": "baretabulars"
+    },
+    {
+      "name": "layouttabulars"
+    },
+    {
+      "name": "articletype",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "articlesubtype",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "openaccess"
+    },
+    {
+      "name": "runningauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:names}}"
+      }
+    },
+    {
+      "name": "runningtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "abstract",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "transabstract",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "transabstract",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:language}]{${1:text}}"
+      }
+    },
+    {
+      "name": "transkeywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "transkeywords",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:language}]{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "correctionnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "correctionnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:heading%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "classification",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "classification",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:system}]{${1:text}}"
+      }
+    },
+    {
+      "name": "communicated",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "dedication",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "received",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "accepted",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "journalname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%text}}"
+      }
+    },
+    {
+      "name": "journalyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "journalvolume",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:volume}}"
+      }
+    },
+    {
+      "name": "journalissue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:issue}}"
+      }
+    },
+    {
+      "name": "startpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "aop"
+    },
+    {
+      "name": "DOI",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:DOI}}"
+      }
+    },
+    {
+      "name": "contributioncopyright",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:year}}{${2:holder}}{${3:text}}"
+      }
+    },
+    {
+      "name": "contributioncopyright",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:imagefile}]{${1:year}}{${2:holder}}{${3:text}}"
+      }
+    },
+    {
+      "name": "articlenote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "graphicalabstract",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:names}}{${2:title%text}}{${3:metainfo}}{${4:abstract%text}}{${5:imagefile}}"
+      }
+    },
+    {
+      "name": "contributor",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:name}}{${2:address}}{${3:email%URL}}{${4:imagefile}}{${5:short vita%text}}"
+      }
+    },
+    {
+      "name": "reviewauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "reviewinfo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "furtherreview",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:text}}{${2:name}}{${3:address}}{${4:DOI}}"
+      }
+    },
+    {
+      "name": "transtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "distributionseries",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:series%text}}"
+      }
+    },
+    {
+      "name": "seriestitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "transseriestitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "seriessubtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "serieseditor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "seriesvolume",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:volume}}"
+      }
+    },
+    {
+      "name": "editor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "collaborator",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "edition",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "publisherlogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:logo choice%keyvals}}",
+        "keys": [
+          "\\publisherlogo#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "authorinfo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "isbn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ISBN}}"
+      }
+    },
+    {
+      "name": "eisbnpdf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:eISBN}}"
+      }
+    },
+    {
+      "name": "eisbnepub",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:eISBN}}"
+      }
+    },
+    {
+      "name": "issn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ISSN}}"
+      }
+    },
+    {
+      "name": "copyrightyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "copyrighttext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "cover",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "typesetter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "printbind",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "otherpubl",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title%text}}{${2:authors}}{${3:ISBN info}}"
+      }
+    },
+    {
+      "name": "otherpubl",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:imagefile}]{${1:title%text}}{${2:authors}}{${3:ISBN info}}"
+      }
+    },
+    {
+      "name": "otherpubl",
+      "arg": {
+        "format": "[][]{}{}{}",
+        "snippet": "[${4:imagefile}][${5:volume}]{${1:title%text}}{${2:authors}}{${3:ISBN info}}"
+      }
+    },
+    {
+      "name": "makeadvertisement"
+    },
+    {
+      "name": "partmotto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "contribution"
+    },
+    {
+      "name": "makecontributiontitle"
+    },
+    {
+      "name": "contributionauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "contributionauthor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:mark}]{${1:name}}"
+      }
+    },
+    {
+      "name": "contributionauthor*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "contributiontitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "contributionsubtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "contributionnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "markleft",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "captionsenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateenglish",
+      "unusual": true
+    },
+    {
+      "name": "extrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "acceptedname",
+      "unusual": true
+    },
+    {
+      "name": "acknowledgementname",
+      "unusual": true
+    },
+    {
+      "name": "addissuecontentsline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "addissuetwocolcontentsline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "adverttitlename",
+      "unusual": true
+    },
+    {
+      "name": "baretablefirsthead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "baretablehead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "baretablelasttail",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "baretabletail",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "classificationname",
+      "unusual": true
+    },
+    {
+      "name": "communicatedname",
+      "unusual": true
+    },
+    {
+      "name": "conflictofinterestname",
+      "unusual": true
+    },
+    {
+      "name": "CorrAuth",
+      "unusual": true
+    },
+    {
+      "name": "correctionnotename",
+      "unusual": true
+    },
+    {
+      "name": "footinsauthor",
+      "unusual": true
+    },
+    {
+      "name": "footinsnote",
+      "unusual": true
+    },
+    {
+      "name": "Footnotetextauthor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:marker}}{${2:text}}"
+      }
+    },
+    {
+      "name": "Footnotetextnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:marker}}{${2:text}}"
+      }
+    },
+    {
+      "name": "fundingname",
+      "unusual": true
+    },
+    {
+      "name": "generaltitledef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "graphicalabstractname",
+      "unusual": true
+    },
+    {
+      "name": "gridwidth",
+      "unusual": true
+    },
+    {
+      "name": "idxlevel",
+      "unusual": true
+    },
+    {
+      "name": "indexpreamble",
+      "unusual": true
+    },
+    {
+      "name": "issuename",
+      "unusual": true
+    },
+    {
+      "name": "issuetableofcontents",
+      "unusual": true
+    },
+    {
+      "name": "keywordsname",
+      "unusual": true
+    },
+    {
+      "name": "laytablefirsthead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "laytablehead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "laytablelasttail",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "laytabletail",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "listauthorname",
+      "unusual": true
+    },
+    {
+      "name": "notename",
+      "unusual": true
+    },
+    {
+      "name": "partnumberline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "receivedname",
+      "unusual": true
+    },
+    {
+      "name": "recital",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "reviewedbyname",
+      "unusual": true
+    },
+    {
+      "name": "revised",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "revisedname",
+      "unusual": true
+    },
+    {
+      "name": "setisbn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ISBN}}"
+      }
+    },
+    {
+      "name": "showinmm",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "sidecaptionrelwidth",
+      "unusual": true
+    },
+    {
+      "name": "sidecaptionsep",
+      "unusual": true
+    },
+    {
+      "name": "tablefont",
+      "unusual": true
+    },
+    {
+      "name": "tableheadfont",
+      "unusual": true
+    },
+    {
+      "name": "tailrule",
+      "unusual": true
+    },
+    {
+      "name": "thefrontmatterpage",
+      "unusual": true
+    },
+    {
+      "name": "theinchapequation",
+      "unusual": true
+    },
+    {
+      "name": "theinchapfigure",
+      "unusual": true
+    },
+    {
+      "name": "theinchapsection",
+      "unusual": true
+    },
+    {
+      "name": "theinchaptable",
+      "unusual": true
+    },
+    {
+      "name": "theplainequation",
+      "unusual": true
+    },
+    {
+      "name": "theplainfigure",
+      "unusual": true
+    },
+    {
+      "name": "theplainsection",
+      "unusual": true
+    },
+    {
+      "name": "theplaintable",
+      "unusual": true
+    },
+    {
+      "name": "volumename",
+      "unusual": true
+    },
+    {
+      "name": "xeisbnpdf",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ISBN}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "note"
+    },
+    {
+      "name": "note",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:vignette choice%keyvals}]",
+        "keys": [
+          "\\begin{note}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "acknowledgement"
+    },
+    {
+      "name": "funding"
+    },
+    {
+      "name": "conflictofinterest"
+    },
+    {
+      "name": "thegraphicalabstractsection"
+    },
+    {
+      "name": "contributors"
+    },
+    {
+      "name": "contributors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "advertisement"
+    },
+    {
+      "name": "advertisement",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "legaltext",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/dgruyter#c": [
+      "small",
+      "medium",
+      "big",
+      "margincol",
+      "online",
+      "print",
+      "printona4",
+      "work"
+    ],
+    "\\theoremstyle#c": [
+      "dgdef",
+      "dgthm"
+    ],
+    "\\begin{note}#c": [
+      "DG_attention",
+      "DG_exercise",
+      "DG_information",
+      "DG_notice",
+      "DG_question"
+    ],
+    "\\publisherlogo#c": [
+      "dg-degruyter",
+      "dg-mouton",
+      "dg-saur"
     ]
   },
-  "macros": {
-    "starttabularbody": {},
-    "baretabulars": {},
-    "layouttabulars": {},
-    "articletype{}": {
-      "snippet": "articletype{${1:text}}"
-    },
-    "articlesubtype{}": {
-      "snippet": "articlesubtype{${1:text}}"
-    },
-    "openaccess": {},
-    "runningauthor{}": {
-      "snippet": "runningauthor{${1:names}}"
-    },
-    "runningtitle{}": {
-      "snippet": "runningtitle{${1:text}}"
-    },
-    "subtitle{}": {
-      "snippet": "subtitle{${1:text}}"
-    },
-    "abstract{}": {
-      "snippet": "abstract{${1:text}}"
-    },
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}"
-    },
-    "transabstract{}": {
-      "snippet": "transabstract{${1:text}}"
-    },
-    "transabstract[]{}": {
-      "snippet": "transabstract[${2:language}]{${1:text}}"
-    },
-    "transkeywords{}": {
-      "snippet": "transkeywords{${1:keywords}}"
-    },
-    "transkeywords[]{}": {
-      "snippet": "transkeywords[${2:language}]{${1:keywords}}"
-    },
-    "correctionnote{}": {
-      "snippet": "correctionnote{${1:text}}"
-    },
-    "correctionnote[]{}": {
-      "snippet": "correctionnote[${2:heading}]{${1:text}}"
-    },
-    "classification{}": {
-      "snippet": "classification{${1:text}}"
-    },
-    "classification[]{}": {
-      "snippet": "classification[${2:system}]{${1:text}}"
-    },
-    "communicated{}": {
-      "snippet": "communicated{${1:text}}"
-    },
-    "dedication{}": {
-      "snippet": "dedication{${1:text}}"
-    },
-    "received{}": {
-      "snippet": "received{${1:date}}"
-    },
-    "accepted{}": {
-      "snippet": "accepted{${1:date}}"
-    },
-    "journalname{}": {
-      "snippet": "journalname{${1:name}}"
-    },
-    "journalyear{}": {
-      "snippet": "journalyear{${1:year}}"
-    },
-    "journalvolume{}": {
-      "snippet": "journalvolume{${1:volume}}"
-    },
-    "journalissue{}": {
-      "snippet": "journalissue{${1:issue}}"
-    },
-    "startpage{}": {
-      "snippet": "startpage{${1:text}}"
-    },
-    "aop": {},
-    "DOI{}": {
-      "snippet": "DOI{${1:DOI}}"
-    },
-    "contributioncopyright{}{}{}": {
-      "snippet": "contributioncopyright{${1:year}}{${2:holder}}{${3:text}}"
-    },
-    "contributioncopyright[]{}{}{}": {
-      "snippet": "contributioncopyright[${4:imagefile}]{${1:year}}{${2:holder}}{${3:text}}"
-    },
-    "articlenote{}": {
-      "snippet": "articlenote{${1:text}}"
-    },
-    "graphicalabstract{}{}{}{}{}": {
-      "snippet": "graphicalabstract{${1:names}}{${2:title}}{${3:metainfo}}{${4:abstract}}{${5:imagefile}}"
-    },
-    "contributor{}{}{}{}{}": {
-      "snippet": "contributor{${1:name}}{${2:address}}{${3:email}}{${4:imagefile}}{${5:short vita}}"
-    },
-    "reviewauthor{}": {
-      "snippet": "reviewauthor{${1:name}}"
-    },
-    "reviewinfo{}": {
-      "snippet": "reviewinfo{${1:text}}"
-    },
-    "furtherreview{}{}{}{}": {
-      "snippet": "furtherreview{${1:text}}{${2:name}}{${3:address}}{${4:DOI}}"
-    },
-    "transtitle{}": {
-      "snippet": "transtitle{${1:text}}"
-    },
-    "distributionseries{}": {
-      "snippet": "distributionseries{${1:series}}"
-    },
-    "seriestitle{}": {
-      "snippet": "seriestitle{${1:text}}"
-    },
-    "transseriestitle{}": {
-      "snippet": "transseriestitle{${1:text}}"
-    },
-    "seriessubtitle{}": {
-      "snippet": "seriessubtitle{${1:text}}"
-    },
-    "serieseditor{}": {
-      "snippet": "serieseditor{${1:name}}"
-    },
-    "seriesvolume{}": {
-      "snippet": "seriesvolume{${1:volume}}"
-    },
-    "editor{}": {
-      "snippet": "editor{${1:name}}"
-    },
-    "collaborator{}": {
-      "snippet": "collaborator{${1:name}}"
-    },
-    "edition{}": {
-      "snippet": "edition{${1:text}}"
-    },
-    "publisherlogo{}": {
-      "snippet": "publisherlogo{${1:logo choice}}"
-    },
-    "authorinfo{}": {
-      "snippet": "authorinfo{${1:text}}"
-    },
-    "isbn{}": {
-      "snippet": "isbn{${1:ISBN}}"
-    },
-    "eisbnpdf{}": {
-      "snippet": "eisbnpdf{${1:eISBN}}"
-    },
-    "eisbnepub{}": {
-      "snippet": "eisbnepub{${1:eISBN}}"
-    },
-    "issn{}": {
-      "snippet": "issn{${1:ISSN}}"
-    },
-    "copyrightyear{}": {
-      "snippet": "copyrightyear{${1:year}}"
-    },
-    "copyrighttext{}": {
-      "snippet": "copyrighttext{${1:text}}"
-    },
-    "cover{}": {
-      "snippet": "cover{${1:name}}"
-    },
-    "typesetter{}": {
-      "snippet": "typesetter{${1:name}}"
-    },
-    "printbind{}": {
-      "snippet": "printbind{${1:name}}"
-    },
-    "otherpubl{}{}{}": {
-      "snippet": "otherpubl{${1:title}}{${2:authors}}{${3:ISBN info}}"
-    },
-    "otherpubl[]{}{}{}": {
-      "snippet": "otherpubl[${4:imagefile}]{${1:title}}{${2:authors}}{${3:ISBN info}}"
-    },
-    "otherpubl[][]{}{}{}": {
-      "snippet": "otherpubl[${4:imagefile}][${5:volume}]{${1:title}}{${2:authors}}{${3:ISBN info}}"
-    },
-    "makeadvertisement": {},
-    "partmotto{}": {
-      "snippet": "partmotto{${1:text}}"
-    },
-    "contribution": {},
-    "makecontributiontitle": {},
-    "contributionauthor{}": {
-      "snippet": "contributionauthor{${1:name}}"
-    },
-    "contributionauthor[]{}": {
-      "snippet": "contributionauthor[${2:mark}]{${1:name}}"
-    },
-    "contributionauthor*{}": {
-      "snippet": "contributionauthor*{${1:name}}"
-    },
-    "contributiontitle{}": {
-      "snippet": "contributiontitle{${1:text}}"
-    },
-    "contributionsubtitle{}": {
-      "snippet": "contributionsubtitle{${1:text}}"
-    },
-    "contributionnote{}": {
-      "snippet": "contributionnote{${1:text}}"
-    },
-    "markleft{}": {
-      "snippet": "markleft{${1:text}}"
-    },
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {},
-    "captionsenglish": {},
-    "dateenglish": {},
-    "extrasenglish": {},
-    "noextrasenglish": {},
-    "englishhyphenmins": {},
-    "britishhyphenmins": {},
-    "americanhyphenmins": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "acceptedname": {},
-    "acknowledgementname": {},
-    "addissuecontentsline{}{}": {
-      "snippet": "addissuecontentsline{${1:arg1}}{${2:arg2}}"
-    },
-    "addissuetwocolcontentsline{}{}": {
-      "snippet": "addissuetwocolcontentsline{${1:arg1}}{${2:arg2}}"
-    },
-    "adverttitlename": {},
-    "baretablefirsthead{}": {
-      "snippet": "baretablefirsthead{${1:text}}"
-    },
-    "baretablehead{}": {
-      "snippet": "baretablehead{${1:text}}"
-    },
-    "baretablelasttail{}": {
-      "snippet": "baretablelasttail{${1:text}}"
-    },
-    "baretabletail{}": {
-      "snippet": "baretabletail{${1:text}}"
-    },
-    "classificationname": {},
-    "communicatedname": {},
-    "conflictofinterestname": {},
-    "CorrAuth": {},
-    "correctionnotename": {},
-    "footinsauthor": {},
-    "footinsnote": {},
-    "Footnotetextauthor{}{}": {
-      "snippet": "Footnotetextauthor{${1:marker}}{${2:text}}"
-    },
-    "Footnotetextnote{}{}": {
-      "snippet": "Footnotetextnote{${1:marker}}{${2:text}}"
-    },
-    "fundingname": {},
-    "generaltitledef{}": {
-      "snippet": "generaltitledef{${1:arg1}}"
-    },
-    "graphicalabstractname": {},
-    "gridwidth": {},
-    "Hyphen": {},
-    "idxlevel": {},
-    "indexpreamble": {},
-    "issuename": {},
-    "issuetableofcontents": {},
-    "keywordsname": {},
-    "laytablefirsthead{}": {
-      "snippet": "laytablefirsthead{${1:text}}"
-    },
-    "laytablehead{}": {
-      "snippet": "laytablehead{${1:text}}"
-    },
-    "laytablelasttail{}": {
-      "snippet": "laytablelasttail{${1:text}}"
-    },
-    "laytabletail{}": {
-      "snippet": "laytabletail{${1:text}}"
-    },
-    "listauthorname": {},
-    "notename": {},
-    "partnumberline{}": {
-      "snippet": "partnumberline{${1:arg1}}"
-    },
-    "receivedname": {},
-    "recital{}": {
-      "snippet": "recital{${1:text}}"
-    },
-    "reviewedbyname": {},
-    "revised{}": {
-      "snippet": "revised{${1:date}}"
-    },
-    "revisedname": {},
-    "rls": {},
-    "setisbn{}": {
-      "snippet": "setisbn{${1:ISBN}}"
-    },
-    "showinmm{}": {
-      "snippet": "showinmm{${1:arg}}"
-    },
-    "sidecaptionrelwidth": {},
-    "sidecaptionsep": {},
-    "tablefont": {},
-    "tableheadfont": {},
-    "tailrule": {},
-    "thefrontmatterpage": {},
-    "theinchapequation": {},
-    "theinchapfigure": {},
-    "theinchapsection": {},
-    "theinchaptable": {},
-    "theplainequation": {},
-    "theplainfigure": {},
-    "theplainsection": {},
-    "theplaintable": {},
-    "volumename": {},
-    "xeisbnpdf{}": {
-      "snippet": "xeisbnpdf{${1:ISBN}}"
-    }
-  },
-  "envs": {
-    "note": {},
-    "note[]": {
-      "name": "note",
-      "snippet": "[${1:vignette choice}]"
-    },
-    "acknowledgement": {},
-    "funding": {},
-    "conflictofinterest": {},
-    "thegraphicalabstractsection": {},
-    "contributors": {},
-    "contributors[]": {
-      "name": "contributors",
-      "snippet": "[${1:heading}]"
-    },
-    "advertisement": {},
-    "advertisement[]": {
-      "name": "advertisement",
-      "snippet": "[${1:heading}]"
-    },
-    "legaltext": {}
-  },
-  "options": [
-    "small",
-    "medium",
-    "big",
-    "margincol",
-    "online",
-    "print",
-    "printona4",
-    "work"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/dgruyter#c"
+  ]
 }

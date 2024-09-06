@@ -1,29 +1,68 @@
 {
-  "includes": {},
-  "macros": {
-    "CurrentPackage": {},
-    "CurrentClass": {},
-    "IfOption{}{}{}": {
-      "snippet": "IfOption{${1:option}}{${2:true}}{${3:false}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "CurrentPackage",
+      "unusual": true
     },
-    "IfPackageOption{}{}{}{}": {
-      "snippet": "IfPackageOption{${1:package}}{${2:option}}{${3:true}}{${4:false}}"
+    {
+      "name": "CurrentClass",
+      "unusual": true
     },
-    "IfClassOption{}{}{}{}": {
-      "snippet": "IfClassOption{${1:class}}{${2:option}}{${3:true}}{${4:false}}"
+    {
+      "name": "IfOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:option}}{${2:true}}{${3:false}}"
+      }
     },
-    "DeclareExclusiveOptions{}": {
-      "snippet": "DeclareExclusiveOptions{${1:name1,${2:name2},...}}"
+    {
+      "name": "IfPackageOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:package}}{${2:option}}{${3:true}}{${4:false}}"
+      }
     },
-    "ProcessExclusiveOptions": {},
-    "DeclareBooleanOption{}": {
-      "snippet": "DeclareBooleanOption{${1:name}}"
+    {
+      "name": "IfClassOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:class}}{${2:option}}{${3:true}}{${4:false}}"
+      }
     },
-    "OptionsFalseTrue{}{}": {
-      "snippet": "OptionsFalseTrue{${1:option}}{${2:arg}}"
+    {
+      "name": "DeclareExclusiveOptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name1,name2,...}}"
+      }
+    },
+    {
+      "name": "ProcessExclusiveOptions",
+      "unusual": true
+    },
+    {
+      "name": "DeclareBooleanOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "OptionsFalseTrue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:arg}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

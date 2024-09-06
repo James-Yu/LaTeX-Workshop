@@ -1,406 +1,1159 @@
 {
-  "includes": {},
-  "macros": {
-    "ack": {},
-    "address{}": {
-      "snippet": "address{${1:address}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "ack"
     },
-    "ams{}": {
-      "snippet": "ams{${1:MSC number}}"
+    {
+      "name": "address",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address%text}}"
+      }
     },
-    "article[]{}{}": {
-      "snippet": "article[${3:short title}]{${1:type}}{${2:title}}"
+    {
+      "name": "ams",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:MSC number}}"
+      }
     },
-    "article{}{}": {
-      "snippet": "article{${1:type}}{${2:title}}"
+    {
+      "name": "article",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:short title%text}]{${1:type%text}}{${2:title%text}}"
+      }
     },
-    "bcal{}": {
-      "snippet": "bcal{${1:text}}"
+    {
+      "name": "article",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type%text}}{${2:title%text}}"
+      }
     },
-    "bi{}": {
-      "snippet": "bi{${1:text}}"
+    {
+      "name": "bcal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
     },
-    "Bibliography{}": {
-      "snippet": "Bibliography{${1:number}}"
+    {
+      "name": "bi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
     },
-    "br": {},
-    "broken": {},
-    "bs": {},
-    "case{}{}": {
-      "snippet": "case{${1:num}}{${2:denom}}"
+    {
+      "name": "Bibliography",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "centre{}{}": {
-      "snippet": "centre{${1:columns}}{${2:text}}"
+    {
+      "name": "br"
     },
-    "chain": {},
-    "comment[]{}": {
-      "snippet": "comment[${2:short title}]{${1:title}}"
+    {
+      "name": "broken"
     },
-    "comment{}": {
-      "snippet": "comment{${1:title}}"
+    {
+      "name": "bs"
     },
-    "crule{}": {
-      "snippet": "crule{${1:columns}}"
+    {
+      "name": "case",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:denom}}"
+      }
     },
-    "dashddot": {},
-    "dashed": {},
-    "dotted": {},
-    "e": {
-      "detail": "𝑒",
-      "documentation": "MATHEMATICAL ITALIC SMALL E"
+    {
+      "name": "centre",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:columns}}{${2:text}}"
+      }
     },
-    "ead{}": {
-      "snippet": "ead{${1:email address}}"
+    {
+      "name": "chain"
     },
-    "eads{}": {
-      "snippet": "eads{${1:email addresses}}"
+    {
+      "name": "comment",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title%text}]{${1:title%text}}"
+      }
     },
-    "endbib": {},
-    "endfulltable": {},
-    "endnumparts": {},
-    "endrefs": {},
-    "endtab": {},
-    "endTable": {},
-    "eqalign{}": {
-      "snippet": "eqalign{${1:⟨line⟩ \\cr ... ⟨line⟩ \\cr}}"
+    {
+      "name": "comment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
     },
-    "eqalignno{}": {
-      "snippet": "eqalignno{${1:⟨line⟩ \\cr ... ⟨line⟩ \\cr}}"
+    {
+      "name": "crule",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:columns}}"
+      }
     },
-    "eqnobysec": {},
-    "eref{}": {
-      "snippet": "eref{${1:label}}"
+    {
+      "name": "dashddot"
     },
-    "Eref{}": {
-      "snippet": "Eref{${1:label}}"
+    {
+      "name": "dashed"
     },
-    "es": {},
-    "etal": {},
-    "Figure{}": {
-      "snippet": "Figure{${1:caption}}"
+    {
+      "name": "dotted"
     },
-    "Figures": {},
-    "fl": {},
-    "fref{}": {
-      "snippet": "fref{${1:label}}"
+    {
+      "name": "e",
+      "unusual": true
     },
-    "Fref{}": {
-      "snippet": "Fref{${1:label}}"
+    {
+      "name": "ead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email address%URL}}"
+      }
     },
-    "ftc{}": {
-      "snippet": "ftc{${1:title}}"
+    {
+      "name": "eads",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email addresses}}"
+      }
     },
-    "full": {},
-    "fullcircle": {},
-    "fullsquare": {},
-    "fulltable{}": {
-      "snippet": "fulltable{${1:caption}}"
+    {
+      "name": "endbib"
     },
-    "ioptwocol": {},
-    "letter{}": {
-      "snippet": "letter{${1:title}}"
+    {
+      "name": "endfulltable"
     },
-    "lineup": {},
-    "longbroken": {},
-    "lshad": {},
-    "mailto{}": {
-      "snippet": "mailto{${1:email address}}"
+    {
+      "name": "endnumparts"
     },
-    "mr": {},
-    "ms": {},
-    "multiparteqn": {},
-    "noappendix": {},
-    "nonum": {},
-    "nosections": {},
-    "note[]{}": {
-      "snippet": "note[${2:short title}]{${1:title}}"
+    {
+      "name": "endrefs"
     },
-    "note{}": {
-      "snippet": "note{${1:title}}"
+    {
+      "name": "endtab",
+      "unusual": true
     },
-    "ns": {},
-    "numparts": {},
-    "opencircle": {},
-    "opendiamond": {},
-    "opensquare": {},
-    "opentriangle": {},
-    "opentriangledown": {},
-    "Or": {},
-    "pacno{}": {
-      "snippet": "pacno{${1:PAC number}}"
+    {
+      "name": "endTable"
     },
-    "pacs{}": {
-      "snippet": "pacs{${1:PAC numbers}}"
+    {
+      "name": "eqalign",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:⟨line⟩ \\cr ... ⟨line⟩ \\cr}}"
+      }
     },
-    "paper[]{}": {
-      "snippet": "paper[${2:short title}]{${1:text}}"
+    {
+      "name": "eqalignno",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:⟨line⟩ \\cr ... ⟨line⟩ \\cr}}"
+      }
     },
-    "paper{}": {
-      "snippet": "paper{${1:text}}"
+    {
+      "name": "eqnobysec"
     },
-    "prelim[]{}": {
-      "snippet": "prelim[${2:short title}]{${1:title}}"
+    {
+      "name": "eref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "prelim{}": {
-      "snippet": "prelim{${1:title}}"
+    {
+      "name": "Eref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "rapid[]{}": {
-      "snippet": "rapid[${2:short title}]{${1:title}}"
+    {
+      "name": "es"
     },
-    "rapid{}": {
-      "snippet": "rapid{${1:title}}"
+    {
+      "name": "etal"
     },
-    "References": {},
-    "refs": {},
-    "review[]{}": {
-      "snippet": "review[${2:short title}]{${1:title}}"
+    {
+      "name": "Figure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:caption%text}}"
+      }
     },
-    "review{}": {
-      "snippet": "review{${1:title}}"
+    {
+      "name": "Figures"
     },
-    "rmd": {},
-    "rme": {},
-    "rmi": {},
-    "rshad": {},
-    "sref{}": {
-      "snippet": "sref{${1:label}}"
+    {
+      "name": "fl"
     },
-    "Sref{}": {
-      "snippet": "Sref{${1:label}}"
+    {
+      "name": "fref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "submitted": {},
-    "submitto{}": {
-      "snippet": "submitto{${1:journal}}"
+    {
+      "name": "Fref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "Table{}": {
-      "snippet": "Table{${1:caption}}"
+    {
+      "name": "ftc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
     },
-    "Tables": {},
-    "tdot{}": {
-      "snippet": "tdot{${1:arg}}"
+    {
+      "name": "full"
     },
-    "title[]{}": {
-      "snippet": "title[${2:short title}]{${1:text}}"
+    {
+      "name": "fullcircle"
     },
-    "topical[]{}": {
-      "snippet": "topical[${2:short title}]{${1:title}}"
+    {
+      "name": "fullsquare"
     },
-    "topical{}": {
-      "snippet": "topical{${1:title}}"
+    {
+      "name": "fulltable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:caption%text}}"
+      }
     },
-    "Tr": {},
-    "tr": {},
-    "tref{}": {
-      "snippet": "tref{${1:label}}"
+    {
+      "name": "ioptwocol"
     },
-    "Tref{}": {
-      "snippet": "Tref{${1:label}}"
+    {
+      "name": "letter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
     },
-    "CQG": {},
-    "CTM": {},
-    "DSE": {},
-    "EJP": {},
-    "JNE": {},
-    "PB": {},
-    "SMS": {},
-    "HPP": {},
-    "IP": {},
-    "JHM": {},
-    "JO": {},
-    "JOA": {},
-    "JOB": {},
-    "JPA": {},
-    "JPB": {},
-    "jpb": {},
-    "JPC": {},
-    "JPCM": {},
-    "JPD": {},
-    "JPE": {},
-    "JPF": {},
-    "JPG": {},
-    "jpg": {},
-    "JMM": {},
-    "MSMSE": {},
-    "MST": {},
-    "NET": {},
-    "NJP": {},
-    "NL": {},
-    "NT": {},
-    "PAO": {},
-    "PM": {},
-    "PMB": {},
-    "PPCF": {},
-    "PSST": {},
-    "PUS": {},
-    "QO": {},
-    "QSO": {},
-    "RPP": {},
-    "SLC": {},
-    "SST": {},
-    "SUST": {},
-    "WRM": {},
-    "AC": {
-      "detail": "∿",
-      "documentation": "SINE WAVE, alternating current"
+    {
+      "name": "lineup"
     },
-    "AM": {},
-    "AP": {},
-    "APNY": {},
-    "APP": {},
-    "CJP": {},
-    "JAP": {},
-    "JCP": {},
-    "JJAP": {},
-    "JP": {},
-    "JPhCh": {},
-    "JMMM": {},
-    "JMP": {},
-    "JOSA": {},
-    "JPSJ": {},
-    "JQSRT": {},
-    "NC": {},
-    "NIM": {},
-    "NP": {},
-    "PL": {},
-    "PR": {},
-    "PRL": {},
-    "PRS": {},
-    "PS": {},
-    "PSS": {},
-    "PTRS": {},
-    "RMP": {},
-    "RSI": {},
-    "SSC": {},
-    "ZP": {},
-    "GRG": {},
-    "PF": {},
-    "SPJ": {},
-    "jpa": {},
-    "BF": {},
-    "BB": {},
-    "BMM": {},
-    "CSD": {},
-    "ERL": {},
-    "JBR": {},
-    "JGE": {},
-    "JOPT": {},
-    "JRP": {},
-    "MET": {},
-    "NF": {},
-    "PED": {},
-    "TDM": {},
-    "MRE": {},
-    "MAF": {},
-    "TMR": {},
-    "STMP": {},
-    "AJ": {},
-    "APJ": {},
-    "APJL": {},
-    "APJS": {},
-    "ANSN": {},
-    "CJCP": {},
-    "CPB": {},
-    "CPC": {},
-    "CPL": {},
-    "CTP": {},
-    "EPL": {},
-    "FDR": {},
-    "IZV": {},
-    "JOS": {},
-    "PHU": {},
-    "PST": {},
-    "QEL": {},
-    "RAA": {},
-    "RCR": {},
-    "RMS": {},
-    "MSB": {},
-    "SFC": {},
-    "STAM": {},
-    "LP": {},
-    "LPL": {},
-    "APEX": {},
-    "JCAP": {},
-    "JHEP": {},
-    "JSTAT": {},
-    "JINST": {},
-    "JPCS": {},
-    "EES": {},
-    "MSE": {},
-    "ackn": {},
-    "bhline": {},
-    "boldarrayrulewidth": {},
-    "dash": {},
-    "dsty": {},
-    "endnumrefs": {},
-    "eql": {},
-    "fcrule{}": {
-      "snippet": "fcrule{${1:columns}}"
+    {
+      "name": "longbroken"
     },
-    "ifiopams": {},
-    "ifletter": {},
-    "ifnumbysec": {},
-    "indentedwidth": {},
-    "iopamsfalse": {},
-    "iopamstrue": {},
-    "jl{}": {
-      "snippet": "jl{${1:arg}}"
+    {
+      "name": "lshad"
     },
-    "journal": {},
-    "lequiv": {},
-    "letterfalse": {},
-    "lettertrue": {},
-    "lo{}": {
-      "snippet": "lo{${1:arg}}"
+    {
+      "name": "mailto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email address%URL}}"
+      }
     },
-    "lsim": {},
-    "lsimeq": {},
-    "m": {
-      "detail": "𝑚",
-      "documentation": "MATHEMATICAL ITALIC SMALL M"
+    {
+      "name": "mr"
     },
-    "mat{}": {
-      "snippet": "mat{${1:text}}"
+    {
+      "name": "ms"
     },
-    "mathindent": {},
-    "numbysecfalse": {},
-    "numbysectrue": {},
-    "numrefs{}": {
-      "snippet": "numrefs{${1:widestlabel}}"
+    {
+      "name": "multiparteqn",
+      "unusual": true
     },
-    "pcal": {},
-    "pmit": {},
-    "psemicolon": {},
-    "pt()": {
-      "snippet": "pt(${1:arg})"
+    {
+      "name": "noappendix"
     },
-    "sssty": {},
-    "ssty": {},
-    "theeqnval": {},
-    "thejnl": {},
-    "tqs": {},
-    "tsty": {}
-  },
-  "envs": {
-    "equation*": {},
-    "harvard": {},
-    "indented": {},
-    "varindent{}": {
-      "name": "varindent",
-      "snippet": "{${1:length}}"
+    {
+      "name": "nonum"
     },
-    "thereferences": {}
-  },
-  "options": [
-    "a4paper",
-    "letterpaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage"
+    {
+      "name": "nosections"
+    },
+    {
+      "name": "note",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title%text}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "note",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "ns"
+    },
+    {
+      "name": "numparts"
+    },
+    {
+      "name": "opencircle"
+    },
+    {
+      "name": "opendiamond"
+    },
+    {
+      "name": "opensquare"
+    },
+    {
+      "name": "opentriangle"
+    },
+    {
+      "name": "opentriangledown"
+    },
+    {
+      "name": "Or"
+    },
+    {
+      "name": "pacno",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:PAC number}}"
+      }
+    },
+    {
+      "name": "pacs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:PAC numbers}}"
+      }
+    },
+    {
+      "name": "paper",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "paper",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "prelim",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title%text}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "prelim",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "rapid",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title%text}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "rapid",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "References"
+    },
+    {
+      "name": "refs",
+      "unusual": true
+    },
+    {
+      "name": "review",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title%text}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "review",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "rmd"
+    },
+    {
+      "name": "rme"
+    },
+    {
+      "name": "rmi"
+    },
+    {
+      "name": "rshad"
+    },
+    {
+      "name": "sref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Sref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "submitted",
+      "unusual": true
+    },
+    {
+      "name": "submitto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:journal}}"
+      }
+    },
+    {
+      "name": "Table",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:caption%text}}"
+      }
+    },
+    {
+      "name": "Tables"
+    },
+    {
+      "name": "tdot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "topical",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title%text}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "topical",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "Tr"
+    },
+    {
+      "name": "tr"
+    },
+    {
+      "name": "tref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Tref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "CQG",
+      "unusual": true
+    },
+    {
+      "name": "CTM",
+      "unusual": true
+    },
+    {
+      "name": "DSE",
+      "unusual": true
+    },
+    {
+      "name": "EJP",
+      "unusual": true
+    },
+    {
+      "name": "JNE",
+      "unusual": true
+    },
+    {
+      "name": "PB",
+      "unusual": true
+    },
+    {
+      "name": "SMS",
+      "unusual": true
+    },
+    {
+      "name": "HPP",
+      "unusual": true
+    },
+    {
+      "name": "IP",
+      "unusual": true
+    },
+    {
+      "name": "JHM",
+      "unusual": true
+    },
+    {
+      "name": "JO",
+      "unusual": true
+    },
+    {
+      "name": "JOA",
+      "unusual": true
+    },
+    {
+      "name": "JOB",
+      "unusual": true
+    },
+    {
+      "name": "JPA",
+      "unusual": true
+    },
+    {
+      "name": "JPB",
+      "unusual": true
+    },
+    {
+      "name": "jpb",
+      "unusual": true
+    },
+    {
+      "name": "JPC",
+      "unusual": true
+    },
+    {
+      "name": "JPCM",
+      "unusual": true
+    },
+    {
+      "name": "JPD",
+      "unusual": true
+    },
+    {
+      "name": "JPE",
+      "unusual": true
+    },
+    {
+      "name": "JPF",
+      "unusual": true
+    },
+    {
+      "name": "JPG",
+      "unusual": true
+    },
+    {
+      "name": "jpg",
+      "unusual": true
+    },
+    {
+      "name": "JMM",
+      "unusual": true
+    },
+    {
+      "name": "MSMSE",
+      "unusual": true
+    },
+    {
+      "name": "MST",
+      "unusual": true
+    },
+    {
+      "name": "NET",
+      "unusual": true
+    },
+    {
+      "name": "NJP",
+      "unusual": true
+    },
+    {
+      "name": "NL",
+      "unusual": true
+    },
+    {
+      "name": "NT",
+      "unusual": true
+    },
+    {
+      "name": "PAO",
+      "unusual": true
+    },
+    {
+      "name": "PM",
+      "unusual": true
+    },
+    {
+      "name": "PMB",
+      "unusual": true
+    },
+    {
+      "name": "PPCF",
+      "unusual": true
+    },
+    {
+      "name": "PSST",
+      "unusual": true
+    },
+    {
+      "name": "PUS",
+      "unusual": true
+    },
+    {
+      "name": "QO",
+      "unusual": true
+    },
+    {
+      "name": "QSO",
+      "unusual": true
+    },
+    {
+      "name": "RPP",
+      "unusual": true
+    },
+    {
+      "name": "SLC",
+      "unusual": true
+    },
+    {
+      "name": "SST",
+      "unusual": true
+    },
+    {
+      "name": "SUST",
+      "unusual": true
+    },
+    {
+      "name": "WRM",
+      "unusual": true
+    },
+    {
+      "name": "AC",
+      "unusual": true
+    },
+    {
+      "name": "AM",
+      "unusual": true
+    },
+    {
+      "name": "AP",
+      "unusual": true
+    },
+    {
+      "name": "APNY",
+      "unusual": true
+    },
+    {
+      "name": "APP",
+      "unusual": true
+    },
+    {
+      "name": "CJP",
+      "unusual": true
+    },
+    {
+      "name": "JAP",
+      "unusual": true
+    },
+    {
+      "name": "JCP",
+      "unusual": true
+    },
+    {
+      "name": "JJAP",
+      "unusual": true
+    },
+    {
+      "name": "JP",
+      "unusual": true
+    },
+    {
+      "name": "JPhCh",
+      "unusual": true
+    },
+    {
+      "name": "JMMM",
+      "unusual": true
+    },
+    {
+      "name": "JMP",
+      "unusual": true
+    },
+    {
+      "name": "JOSA",
+      "unusual": true
+    },
+    {
+      "name": "JPSJ",
+      "unusual": true
+    },
+    {
+      "name": "JQSRT",
+      "unusual": true
+    },
+    {
+      "name": "NC",
+      "unusual": true
+    },
+    {
+      "name": "NIM",
+      "unusual": true
+    },
+    {
+      "name": "NP",
+      "unusual": true
+    },
+    {
+      "name": "PL",
+      "unusual": true
+    },
+    {
+      "name": "PR",
+      "unusual": true
+    },
+    {
+      "name": "PRL",
+      "unusual": true
+    },
+    {
+      "name": "PRS",
+      "unusual": true
+    },
+    {
+      "name": "PS",
+      "unusual": true
+    },
+    {
+      "name": "PSS",
+      "unusual": true
+    },
+    {
+      "name": "PTRS",
+      "unusual": true
+    },
+    {
+      "name": "RMP",
+      "unusual": true
+    },
+    {
+      "name": "RSI",
+      "unusual": true
+    },
+    {
+      "name": "SSC",
+      "unusual": true
+    },
+    {
+      "name": "ZP",
+      "unusual": true
+    },
+    {
+      "name": "GRG",
+      "unusual": true
+    },
+    {
+      "name": "PF",
+      "unusual": true
+    },
+    {
+      "name": "SPJ",
+      "unusual": true
+    },
+    {
+      "name": "jpa",
+      "unusual": true
+    },
+    {
+      "name": "BF",
+      "unusual": true
+    },
+    {
+      "name": "BB",
+      "unusual": true
+    },
+    {
+      "name": "BMM",
+      "unusual": true
+    },
+    {
+      "name": "CSD",
+      "unusual": true
+    },
+    {
+      "name": "ERL",
+      "unusual": true
+    },
+    {
+      "name": "JBR",
+      "unusual": true
+    },
+    {
+      "name": "JGE",
+      "unusual": true
+    },
+    {
+      "name": "JOPT",
+      "unusual": true
+    },
+    {
+      "name": "JRP",
+      "unusual": true
+    },
+    {
+      "name": "MET",
+      "unusual": true
+    },
+    {
+      "name": "NF",
+      "unusual": true
+    },
+    {
+      "name": "PED",
+      "unusual": true
+    },
+    {
+      "name": "TDM",
+      "unusual": true
+    },
+    {
+      "name": "MRE",
+      "unusual": true
+    },
+    {
+      "name": "MAF",
+      "unusual": true
+    },
+    {
+      "name": "TMR",
+      "unusual": true
+    },
+    {
+      "name": "STMP",
+      "unusual": true
+    },
+    {
+      "name": "AJ",
+      "unusual": true
+    },
+    {
+      "name": "APJ",
+      "unusual": true
+    },
+    {
+      "name": "APJL",
+      "unusual": true
+    },
+    {
+      "name": "APJS",
+      "unusual": true
+    },
+    {
+      "name": "ANSN",
+      "unusual": true
+    },
+    {
+      "name": "CJCP",
+      "unusual": true
+    },
+    {
+      "name": "CPB",
+      "unusual": true
+    },
+    {
+      "name": "CPC",
+      "unusual": true
+    },
+    {
+      "name": "CPL",
+      "unusual": true
+    },
+    {
+      "name": "CTP",
+      "unusual": true
+    },
+    {
+      "name": "EPL",
+      "unusual": true
+    },
+    {
+      "name": "FDR",
+      "unusual": true
+    },
+    {
+      "name": "IZV",
+      "unusual": true
+    },
+    {
+      "name": "JOS",
+      "unusual": true
+    },
+    {
+      "name": "PHU",
+      "unusual": true
+    },
+    {
+      "name": "PST",
+      "unusual": true
+    },
+    {
+      "name": "QEL",
+      "unusual": true
+    },
+    {
+      "name": "RAA",
+      "unusual": true
+    },
+    {
+      "name": "RCR",
+      "unusual": true
+    },
+    {
+      "name": "RMS",
+      "unusual": true
+    },
+    {
+      "name": "MSB",
+      "unusual": true
+    },
+    {
+      "name": "SFC",
+      "unusual": true
+    },
+    {
+      "name": "STAM",
+      "unusual": true
+    },
+    {
+      "name": "LP",
+      "unusual": true
+    },
+    {
+      "name": "LPL",
+      "unusual": true
+    },
+    {
+      "name": "APEX",
+      "unusual": true
+    },
+    {
+      "name": "JCAP",
+      "unusual": true
+    },
+    {
+      "name": "JHEP",
+      "unusual": true
+    },
+    {
+      "name": "JSTAT",
+      "unusual": true
+    },
+    {
+      "name": "JINST",
+      "unusual": true
+    },
+    {
+      "name": "JPCS",
+      "unusual": true
+    },
+    {
+      "name": "EES",
+      "unusual": true
+    },
+    {
+      "name": "MSE",
+      "unusual": true
+    },
+    {
+      "name": "bhline",
+      "unusual": true
+    },
+    {
+      "name": "boldarrayrulewidth",
+      "unusual": true
+    },
+    {
+      "name": "dash",
+      "unusual": true
+    },
+    {
+      "name": "dsty",
+      "unusual": true
+    },
+    {
+      "name": "endnumrefs",
+      "unusual": true
+    },
+    {
+      "name": "eql",
+      "unusual": true
+    },
+    {
+      "name": "fcrule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:columns}}"
+      }
+    },
+    {
+      "name": "indentedwidth",
+      "unusual": true
+    },
+    {
+      "name": "journal",
+      "unusual": true
+    },
+    {
+      "name": "lequiv",
+      "unusual": true
+    },
+    {
+      "name": "lo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "lsim",
+      "unusual": true
+    },
+    {
+      "name": "lsimeq",
+      "unusual": true
+    },
+    {
+      "name": "m",
+      "unusual": true
+    },
+    {
+      "name": "mat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "mathindent",
+      "unusual": true
+    },
+    {
+      "name": "numrefs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:widestlabel}}"
+      }
+    },
+    {
+      "name": "pcal",
+      "unusual": true
+    },
+    {
+      "name": "psemicolon",
+      "unusual": true
+    },
+    {
+      "name": "pt",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:arg})"
+      }
+    },
+    {
+      "name": "sssty",
+      "unusual": true
+    },
+    {
+      "name": "ssty",
+      "unusual": true
+    },
+    {
+      "name": "theeqnval"
+    },
+    {
+      "name": "tqs",
+      "unusual": true
+    },
+    {
+      "name": "tsty",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "equation*"
+    },
+    {
+      "name": "harvard"
+    },
+    {
+      "name": "indented"
+    },
+    {
+      "name": "varindent",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/iopart#c": [
+      "a4paper",
+      "letterpaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage"
+    ]
+  },
+  "args": [
+    "\\documentclass/iopart#c"
+  ]
 }

@@ -1,25 +1,51 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "atbegshi": [],
-    "atveryend": [],
-    "zref-abspage": [],
-    "filehook": [],
-    "balance": []
-  },
-  "macros": {
-    "shrinkLastPage{}": {
-      "snippet": "shrinkLastPage{${1:dimen}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "balancePageNum{}": {
-      "snippet": "balancePageNum{${1:page-number}}"
+    {
+      "name": "atbegshi"
     },
-    "nopbalance": {}
-  },
-  "envs": {},
-  "options": [
-    "safe",
-    "draft"
+    {
+      "name": "atveryend"
+    },
+    {
+      "name": "zref-abspage"
+    },
+    {
+      "name": "filehook"
+    },
+    {
+      "name": "balance"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "shrinkLastPage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen%l}}"
+      }
+    },
+    {
+      "name": "balancePageNum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:page-number}}"
+      }
+    },
+    {
+      "name": "nopbalance"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pbalance#c": [
+      "safe",
+      "draft"
+    ]
+  },
+  "args": [
+    "\\usepackage/pbalance#c"
+  ]
 }

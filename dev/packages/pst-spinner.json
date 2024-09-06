@@ -1,31 +1,52 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-node": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psFidgetSpinner": {},
-    "psFidgetSpinner()": {
-      "snippet": "psFidgetSpinner(${1:x},${2:y})"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psFidgetSpinner[]": {
-      "snippet": "psFidgetSpinner[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-node"
     },
-    "psFidgetSpinner[]()": {
-      "snippet": "psFidgetSpinner[${1:options}](${2:x},${3:y})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psFidgetSpinner"
     },
-    "pstspinnerFV": {},
-    "PSTSPINNERLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "psFidgetSpinner",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "psFidgetSpinner",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\psFidgetSpinner#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psFidgetSpinner",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})",
+        "keys": [
+          "\\psFidgetSpinner#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psFidgetSpinner#c": [
       "R=${1:radius}",
       "color0=",
       "color1=",
@@ -41,5 +62,6 @@
       "linecolor=",
       "linewidth="
     ]
-  ]
+  },
+  "args": []
 }

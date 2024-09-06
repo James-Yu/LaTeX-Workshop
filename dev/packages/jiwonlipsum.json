@@ -1,25 +1,65 @@
 {
-  "includes": {},
-  "macros": {
-    "jiwon": {},
-    "jiwon[]": {
-      "snippet": "jiwon[${1:num-num}]"
+  "deps": [],
+  "macros": [
+    {
+      "name": "jiwon"
     },
-    "jiwon*": {},
-    "jiwon*[]": {
-      "snippet": "jiwon*[${1:num-num}]"
+    {
+      "name": "jiwon",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:num/char}]"
+      }
     },
-    "jiwondef{}{}": {
-      "snippet": "jiwondef{${1:cmd}}{${2:jiwon no.}}"
+    {
+      "name": "jiwon",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:num-num}]"
+      }
     },
-    "jiwonparnumberon": {},
-    "jiwonparnumberoff": {},
-    "jiwonbase": {}
-  },
-  "envs": {},
-  "options": [
-    "nopar",
-    "numbers"
+    {
+      "name": "jiwon*",
+      "unusual": true
+    },
+    {
+      "name": "jiwon*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:num/char}]"
+      }
+    },
+    {
+      "name": "jiwon*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:num-num}]"
+      }
+    },
+    {
+      "name": "jiwondef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:jiwon no.}}"
+      }
+    },
+    {
+      "name": "jiwonparnumberon"
+    },
+    {
+      "name": "jiwonparnumberoff"
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/jiwonlipsum#c": [
+      "nopar",
+      "numbers"
+    ]
+  },
+  "args": [
+    "\\usepackage/jiwonlipsum#c"
+  ]
 }

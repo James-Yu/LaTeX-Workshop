@@ -1,28 +1,40 @@
 {
-  "includes": {
-    "calc": [],
-    "expex": [],
-    "gb4e": [
-      "gb4e"
-    ],
-    "gb4e-emulate": [
-      "gb4e-emulate"
-    ],
-    "linguex": [
-      "linguex"
-    ],
-    "covington": [
-      "covington"
+  "deps": [
+    {
+      "name": "calc"
+    },
+    {
+      "name": "expex"
+    },
+    {
+      "name": "gb4e",
+      "if": "gb4e"
+    },
+    {
+      "name": "gb4e-emulate",
+      "if": "gb4e-emulate"
+    },
+    {
+      "name": "linguex",
+      "if": "linguex"
+    },
+    {
+      "name": "covington",
+      "if": "covington"
+    }
+  ],
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\usepackage/expex-glossonly#c": [
+      "gb4e",
+      "gb4e-emulate",
+      "linguex",
+      "covington",
+      "covington={${1:package options}}"
     ]
   },
-  "macros": {},
-  "envs": {},
-  "options": [
-    "gb4e",
-    "gb4e-emulate",
-    "linguex",
-    "covington",
-    "covington={${1:package options}}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/expex-glossonly#c"
+  ]
 }

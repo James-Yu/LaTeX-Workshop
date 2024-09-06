@@ -1,27 +1,61 @@
 {
-  "includes": {
-    "upmethodology-p-common": [],
-    "upmethodology-extension": [],
-    "upmethodology-document": []
-  },
-  "macros": {
-    "setfrontcover{}": {
-      "snippet": "setfrontcover{${1:layout name}}"
+  "deps": [
+    {
+      "name": "upmethodology-p-common"
     },
-    "makefrontcover": {},
-    "setfrontillustration{}": {
-      "snippet": "setfrontillustration{${1:imagefile}}"
+    {
+      "name": "upmethodology-extension"
     },
-    "setfrontillustration[]{}": {
-      "snippet": "setfrontillustration[${2:scale}]{${1:imagefile}}"
-    },
-    "clearfrontillustration": {}
-  },
-  "envs": {},
-  "options": [
-    "french",
-    "francais",
-    "english"
+    {
+      "name": "upmethodology-document"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "setfrontcover",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:layout name%keyvals}}",
+        "keys": [
+          "\\setfrontcover#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "makefrontcover"
+    },
+    {
+      "name": "setfrontillustration",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "setfrontillustration",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:scale}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "clearfrontillustration"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/upmethodology-frontpage#c": [
+      "french",
+      "francais",
+      "english"
+    ],
+    "\\setfrontcover#c": [
+      "classic",
+      "modern"
+    ]
+  },
+  "args": [
+    "\\usepackage/upmethodology-frontpage#c"
+  ]
 }

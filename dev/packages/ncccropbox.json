@@ -1,26 +1,50 @@
 {
-  "includes": {},
-  "macros": {
-    "cropbox{}": {
-      "snippet": "cropbox{${1:content}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "cropbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
     },
-    "cropbox[]{}": {
-      "snippet": "cropbox[${2:width}]{${1:content}}"
+    {
+      "name": "cropbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:content%text}}"
+      }
     },
-    "cropbox[][]{}": {
-      "snippet": "cropbox[${2:width}][${3:height}]{${1:content}}"
+    {
+      "name": "cropbox",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:width}][${3:height}]{${1:content%text}}"
+      }
     },
-    "cropboxsep{}": {
-      "snippet": "cropboxsep{${1:length}}"
+    {
+      "name": "cropboxsep",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "croplinewidth{}": {
-      "snippet": "croplinewidth{${1:length}}"
+    {
+      "name": "croplinewidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "croplinelength{}": {
-      "snippet": "croplinelength{${1:length}}"
+    {
+      "name": "croplinelength",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

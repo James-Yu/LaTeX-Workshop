@@ -1,98 +1,231 @@
 {
-  "includes": {
-    "moredefs": [],
-    "slemph": []
-  },
-  "macros": {
-    "word{}": {
-      "snippet": "word{${1:word}}"
+  "deps": [
+    {
+      "name": "moredefs"
     },
-    "phrase{}": {
-      "snippet": "phrase{${1:phrase}}"
-    },
-    "foreign{}": {
-      "snippet": "foreign{${1:foreign text}}"
-    },
-    "foreignword{}": {
-      "snippet": "foreignword{${1:foreign word}}"
-    },
-    "term{}": {
-      "snippet": "term{${1:technical term}}"
-    },
-    "defn{}": {
-      "snippet": "defn{${1:definition}}"
-    },
-    "book{}": {
-      "snippet": "book{${1:book title}}"
-    },
-    "journal{}": {
-      "snippet": "journal{${1:journal title}}"
-    },
-    "music{}": {
-      "snippet": "music{${1:music title}}"
-    },
-    "article{}": {
-      "snippet": "article{${1:article title}}"
-    },
-    "storytitle{}": {
-      "snippet": "storytitle{${1:story title}}"
-    },
-    "poemtitle{}": {
-      "snippet": "poemtitle{${1:poem title}}"
-    },
-    "play{}": {
-      "snippet": "play{${1:play title}}"
-    },
-    "craft{}": {
-      "snippet": "craft{${1:craft title}}"
-    },
-    "species{}": {
-      "snippet": "species{${1:species}}"
-    },
-    "Wrapquotes{}": {
-      "snippet": "Wrapquotes{${1:text}}"
-    },
-    "WrapquotesNS{}": {
-      "snippet": "WrapquotesNS{${1:text}}"
-    },
-    "WrapquotesIS{}": {
-      "snippet": "WrapquotesIS{${1:text}}"
-    },
-    "WrapquotesNN{}": {
-      "snippet": "WrapquotesNN{${1:text}}"
-    },
-    "WrapquotesIN{}": {
-      "snippet": "WrapquotesIN{${1:text}}"
-    },
-    "WrapquotesSN{}": {
-      "snippet": "WrapquotesSN{${1:text}}"
-    },
-    "WrapquotesDN{}": {
-      "snippet": "WrapquotesDN{${1:text}}"
-    },
-    "WrapquotesSK{}": {
-      "snippet": "WrapquotesSK{${1:text}}"
-    },
-    "IfQuestionOrExclamation{}{}{}": {
-      "snippet": "IfQuestionOrExclamation{${1:text}}{${2:true}}{${3:false}}"
-    },
-    "longpoem{}": {
-      "snippet": "longpoem{${1:poem title}}"
-    },
-    "film{}": {
-      "snippet": "film{${1:film title}}"
-    },
-    "essaytitle{}": {
-      "snippet": "essaytitle{${1:essay title}}"
-    },
-    "chaptertitle{}": {
-      "snippet": "chaptertitle{${1:chapter title}}"
+    {
+      "name": "slemph"
     }
-  },
-  "envs": {},
-  "options": [
-    "british",
-    "american"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "word",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:word%text}}"
+      }
+    },
+    {
+      "name": "phrase",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:phrase%text}}"
+      }
+    },
+    {
+      "name": "foreign",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:foreign text}}"
+      }
+    },
+    {
+      "name": "foreignword",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:foreign word}}"
+      }
+    },
+    {
+      "name": "term",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:technical term}}"
+      }
+    },
+    {
+      "name": "defn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:definition%text}}"
+      }
+    },
+    {
+      "name": "book",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:book title%text}}"
+      }
+    },
+    {
+      "name": "journal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:journal title%text}}"
+      }
+    },
+    {
+      "name": "music",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:music title%text}}"
+      }
+    },
+    {
+      "name": "article",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:article title%text}}"
+      }
+    },
+    {
+      "name": "storytitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:story title%text}}"
+      }
+    },
+    {
+      "name": "poemtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:poem title%text}}"
+      }
+    },
+    {
+      "name": "play",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:play title%text}}"
+      }
+    },
+    {
+      "name": "craft",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:craft title%text}}"
+      }
+    },
+    {
+      "name": "species",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:species}}"
+      }
+    },
+    {
+      "name": "Wrapquotes",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "WrapquotesNS",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "WrapquotesIS",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "WrapquotesNN",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "WrapquotesIN",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "WrapquotesSN",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "WrapquotesDN",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "WrapquotesSK",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "IfQuestionOrExclamation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:text}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "longpoem",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:poem title%text}}"
+      }
+    },
+    {
+      "name": "film",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:film title%text}}"
+      }
+    },
+    {
+      "name": "essaytitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:essay title%text}}"
+      }
+    },
+    {
+      "name": "chaptertitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:chapter title%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/titles#c": [
+      "british",
+      "american"
+    ]
+  },
+  "args": [
+    "\\usepackage/titles#c"
+  ]
 }

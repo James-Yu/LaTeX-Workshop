@@ -1,146 +1,339 @@
 {
-  "includes": {
-    "stacklet": [],
-    "actcodes": []
-  },
-  "macros": {
-    "NVerb": {
-      "snippet": "NVerb|${1:text}|"
+  "deps": [
+    {
+      "name": "stacklet"
     },
-    "NVerb[]": {
-      "snippet": "NVerb[${1:opt}]|${2:text}|"
+    {
+      "name": "actcodes"
+    }
+  ],
+  "macros": [
+    {
+      "name": "NVerb",
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:text}|"
+      }
     },
-    "NVerb[]{}": {
-      "snippet": "NVerb[${2:opt}]{${1:verbatimSymbol}}"
+    {
+      "name": "NVerb",
+      "unusual": true,
+      "arg": {
+        "format": "[]||",
+        "snippet": "[${1:opt}]|${2:text}|"
+      }
     },
-    "HardNVerb": {
-      "snippet": "HardNVerb|${1:text}|"
+    {
+      "name": "HardNVerb",
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:text}|"
+      }
     },
-    "HardNVerb[]": {
-      "snippet": "HardNVerb[${1:opt}]|${2:text}|"
+    {
+      "name": "HardNVerb",
+      "unusual": true,
+      "arg": {
+        "format": "[]||",
+        "snippet": "[${1:opt}]|${2:text}|"
+      }
     },
-    "HardNVerb[]{}": {
-      "snippet": "HardNVerb[${2:opt}]{${1:verbatimSymbol}}"
+    {
+      "name": "cs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
     },
-    "cs{}": {
-      "snippet": "cs{${1:csname}}"
+    {
+      "name": "cstx",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:arg}}"
+      }
     },
-    "cstx{}{}": {
-      "snippet": "cstx{${1:csname}}{${2:arg}}"
+    {
+      "name": "cstx",
+      "arg": {
+        "format": "{}*{}",
+        "snippet": "{${1:csname}}*{${2:arg}}"
+      }
     },
-    "cstx{}*{}": {
-      "snippet": "cstx{${1:csname}}*{${2:arg}}"
+    {
+      "name": "cstx",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:csname}}[${3:option}]{${2:arg}}"
+      }
     },
-    "cstx{}[]{}": {
-      "snippet": "cstx{${1:csname}}[${2:option}]{${3:arg}}"
+    {
+      "name": "cstx",
+      "arg": {
+        "format": "{}*[]{}",
+        "snippet": "{${1:csname}}*[${3:option}]{${2:arg}}"
+      }
     },
-    "cstx{}*[]{}": {
-      "snippet": "cstx{${1:csname}}*[${2:option}]{${3:arg}}"
+    {
+      "name": "GenCmdBox",
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:chars}|"
+      }
     },
-    "GenCmdBox": {
-      "snippet": "GenCmdBox|${1:chars}|"
+    {
+      "name": "HardVerbBox",
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:chars}|"
+      }
     },
-    "GenCmdBox{}": {
-      "snippet": "GenCmdBox{${1:verbatimSymbol}}"
+    {
+      "name": "VerticalCmdBox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
     },
-    "HardVerbBox": {
-      "snippet": "HardVerbBox|${1:chars}|"
+    {
+      "name": "InlineCmdBox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
     },
-    "HardVerbBox{}": {
-      "snippet": "HardVerbBox{${1:verbatimSymbol}}"
+    {
+      "name": "cmdboxitem",
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:text}|"
+      }
     },
-    "VerticalCmdBox{}": {
-      "snippet": "VerticalCmdBox{${1:content}}"
+    {
+      "name": "lt"
     },
-    "InlineCmdBox{}": {
-      "snippet": "InlineCmdBox{${1:content}}"
+    {
+      "name": "gt"
     },
-    "cmdboxitem": {
-      "snippet": "cmdboxitem|${1:text}|"
+    {
+      "name": "qtd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "cmdboxitem{}": {
-      "snippet": "cmdboxitem{${1:verbatimSymbol}}"
+    {
+      "name": "dqtd",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "lt": {},
-    "gt": {},
-    "qtd{}": {
-      "snippet": "qtd{${1:text}}"
+    {
+      "name": "qtdnverb",
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:text}|"
+      }
     },
-    "dqtd{}": {
-      "snippet": "dqtd{${1:text}}"
+    {
+      "name": "newlet",
+      "unusual": true
     },
-    "qtdnverb": {
-      "snippet": "qtdnverb|${1:text}|"
+    {
+      "name": "do",
+      "unusual": true
     },
-    "qtdnverb{}": {
-      "snippet": "qtdnverb{${1:verbatimSymbol}}"
+    {
+      "name": "IfTypesetting",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:if}}{${2:unless}}"
+      }
     },
-    "newlet": {},
-    "newlet{}{}": {
-      "snippet": "newlet{${1:cmd}}{${2:def}}"
+    {
+      "name": "nvSelfProtect",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd-char}}{${2:typeset}}"
+      }
     },
-    "do": {},
-    "IfTypesetting{}{}": {
-      "snippet": "IfTypesetting{${1:if}}{${2:unless}}"
+    {
+      "name": "NewSelfProtectedCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
     },
-    "nvSelfProtect{}{}": {
-      "snippet": "nvSelfProtect{${1:cmd-char}}{${2:typeset}}"
+    {
+      "name": "nvShowProtectedEdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
     },
-    "NewSelfProtectedCommand{}{}": {
-      "snippet": "NewSelfProtectedCommand{${1:cmd}}{${2:def}}"
+    {
+      "name": "SetNiceVerbSaveBox",
+      "unusual": true
     },
-    "nvShowProtectedEdef{}{}": {
-      "snippet": "nvShowProtectedEdef{${1:cmd}}{${2:def}}"
+    {
+      "name": "TheNiceVerbSaveBox",
+      "unusual": true
     },
-    "SetNiceVerbSaveBox": {},
-    "TheNiceVerbSaveBox": {},
-    "NiceMaybeMetaVerb": {
-      "snippet": "NiceMaybeMetaVerb|${1:chars}|"
+    {
+      "name": "NiceMaybeMetaVerb",
+      "unusual": true,
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:chars}|"
+      }
     },
-    "NiceMaybeMetaVerb[]": {
-      "snippet": "NiceMaybeMetaVerb[${1:opt}]|${2:chars}|"
+    {
+      "name": "NiceMaybeMetaVerb",
+      "unusual": true,
+      "arg": {
+        "format": "[]||",
+        "snippet": "[${1:opt}]|${2:chars}|"
+      }
     },
-    "NiceMaybeMetaVerb[]{}": {
-      "snippet": "NiceMaybeMetaVerb[${2:opt}]{${1:verbatimSymbol}}"
+    {
+      "name": "LQverb",
+      "unusual": true
     },
-    "LQverb": {},
-    "CmdSyntaxVerb": {},
-    "BuildCsSyntax": {},
-    "AutoCmdSyntaxVerb": {},
-    "EndAutoCmdSyntaxVerb": {},
-    "NormalCommand{}": {
-      "snippet": "NormalCommand{${1:csname}}"
+    {
+      "name": "CmdSyntaxVerb",
+      "unusual": true
     },
-    "niceverbNoVerbList": {},
-    "AddToMacro{}{}": {
-      "snippet": "AddToMacro{${1:cmd}}{${2:macros}}"
+    {
+      "name": "BuildCsSyntax",
+      "unusual": true
     },
-    "AddToNoVerbList{}": {
-      "snippet": "AddToNoVerbList{${1:macros}}"
+    {
+      "name": "AutoCmdSyntaxVerb",
+      "unusual": true
     },
-    "AutoCmdInput{}": {
-      "snippet": "AutoCmdInput{${1:file}}"
+    {
+      "name": "EndAutoCmdSyntaxVerb",
+      "unusual": true
     },
-    "RQsansserif": {},
-    "DoRQsansserif": {},
-    "nvAllowRQSS": {},
-    "nvRightQuoteSansSerif": {},
-    "nvRightQuoteNormal": {},
-    "NiceVerbMove{}": {
-      "snippet": "NiceVerbMove{${1:text}}"
+    {
+      "name": "NormalCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
     },
-    "nvAllRightQuotesSansSerif": {},
-    "nvCmdBox": {},
-    "SetOffInlineCmdBox": {},
-    "SetOffInlineCmdBoxInner": {},
-    "SetOffInlineCmdBoxOuter": {},
-    "AddQuotes": {},
-    "DontAddQuotes": {},
-    "nvResetPages": {},
-    "noNiceVerb": {},
-    "useNiceVerb": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "niceverbNoVerbList",
+      "unusual": true
+    },
+    {
+      "name": "AddToMacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:macros}}"
+      }
+    },
+    {
+      "name": "AddToNoVerbList",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macros}}"
+      }
+    },
+    {
+      "name": "AutoCmdInput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "RQsansserif",
+      "unusual": true
+    },
+    {
+      "name": "DoRQsansserif",
+      "unusual": true
+    },
+    {
+      "name": "nvAllowRQSS",
+      "unusual": true
+    },
+    {
+      "name": "nvRightQuoteSansSerif",
+      "unusual": true
+    },
+    {
+      "name": "nvRightQuoteNormal",
+      "unusual": true
+    },
+    {
+      "name": "NiceVerbMove",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "nvAllRightQuotesSansSerif",
+      "unusual": true
+    },
+    {
+      "name": "nvCmdBox",
+      "unusual": true
+    },
+    {
+      "name": "SetOffInlineCmdBox",
+      "unusual": true
+    },
+    {
+      "name": "SetOffInlineCmdBoxInner",
+      "unusual": true
+    },
+    {
+      "name": "SetOffInlineCmdBoxOuter",
+      "unusual": true
+    },
+    {
+      "name": "AddQuotes",
+      "unusual": true
+    },
+    {
+      "name": "DontAddQuotes",
+      "unusual": true
+    },
+    {
+      "name": "nvResetPages",
+      "unusual": true
+    },
+    {
+      "name": "NiceVerbMove",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "noNiceVerb",
+      "unusual": true
+    },
+    {
+      "name": "useNiceVerb",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

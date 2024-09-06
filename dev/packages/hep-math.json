@@ -1,322 +1,814 @@
 {
-  "includes": {
-    "mathtools": [],
-    "soulutf8": [],
-    "amssymb": [],
-    "units": [],
-    "cancel": [],
-    "slashed": [],
-    "mleftright": [],
-    "etoolbox": [],
-    "xpatch": []
-  },
-  "macros": {
-    "mathdef{}{}": {
-      "snippet": "mathdef{${1:cmd}}{${2:def}}"
+  "deps": [
+    {
+      "name": "mathtools"
     },
-    "mathdef{}[]{}": {
-      "snippet": "mathdef{${1:cmd}}[${2:args}]{${3:def}}"
+    {
+      "name": "soulutf8"
     },
-    "mathdef{}[][]{}": {
-      "snippet": "mathdef{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    {
+      "name": "amssymb"
     },
-    "textoverline{}": {
-      "snippet": "textoverline{${1:text}}"
+    {
+      "name": "units"
     },
-    "widebar{}": {
-      "snippet": "widebar{${1:text}}"
+    {
+      "name": "cancel"
     },
-    "oset{}{}": {
-      "snippet": "oset{${1:over}}{${2:math}}"
+    {
+      "name": "slashed"
     },
-    "overleft{}": {
-      "snippet": "overleft{${1:math}}"
+    {
+      "name": "mleftright"
     },
-    "overright{}": {
-      "snippet": "overright{${1:math}}"
+    {
+      "name": "etoolbox"
     },
-    "overleftright{}": {
-      "snippet": "overleftright{${1:math}}"
-    },
-    "tr": {},
-    "Tr": {},
-    "rank": {},
-    "erf": {},
-    "Res": {},
-    "sgn": {},
-    "diag": {},
-    "transpose": {},
-    "trans": {},
-    "arccsc": {},
-    "arcsec": {},
-    "arccot": {},
-    "asin": {},
-    "acos": {},
-    "atan": {},
-    "acsc": {},
-    "asec": {},
-    "acot": {},
-    "csch": {},
-    "sech": {},
-    "inv{}": {
-      "snippet": "inv{${1:text}}"
-    },
-    "inv[]{}": {
-      "snippet": "inv[${2:power}]{${1:text}}"
-    },
-    "textfrac{}{}": {
-      "snippet": "textfrac{${1:numerator}}{${2:denominator}}"
-    },
-    "flatfrac{}{}": {
-      "snippet": "flatfrac{${1:numerator}}{${2:denominator}}"
-    },
-    "differential{}": {
-      "snippet": "differential{${1:symbol}}"
-    },
-    "newderivative{}{}": {
-      "snippet": "newderivative{${1:cmd}}{${2:symbol}}"
-    },
-    "newpartialderivative{}{}": {
-      "snippet": "newpartialderivative{${1:cmd}}{${2:symbol}}"
-    },
-    "diffsymbol": {},
-    "diff": {},
-    "derivative{}": {
-      "snippet": "derivative{${1:var}}"
-    },
-    "derivative[]{}": {
-      "snippet": "derivative[${2:func}]{${1:var}}"
-    },
-    "derivative*{}": {
-      "snippet": "derivative*{${1:var}}"
-    },
-    "derivative*[]{}": {
-      "snippet": "derivative*[${2:func}]{${1:var}}"
-    },
-    "dv{}": {
-      "snippet": "dv{${1:var}}"
-    },
-    "dv[]{}": {
-      "snippet": "dv[${2:func}]{${1:var}}"
-    },
-    "dv*{}": {
-      "snippet": "dv*{${1:var}}"
-    },
-    "dv*[]{}": {
-      "snippet": "dv*[${2:func}]{${1:var}}"
-    },
-    "partialdifferential": {},
-    "pd": {},
-    "partialderivative{}": {
-      "snippet": "partialderivative{${1:var}}"
-    },
-    "partialderivative[]{}": {
-      "snippet": "partialderivative[${2:func}]{${1:var}}"
-    },
-    "partialderivative*{}": {
-      "snippet": "partialderivative*{${1:var}}"
-    },
-    "partialderivative*[]{}": {
-      "snippet": "partialderivative*[${2:func}]{${1:var}}"
-    },
-    "pdv{}": {
-      "snippet": "pdv{${1:var}}"
-    },
-    "pdv[]{}": {
-      "snippet": "pdv[${2:func}]{${1:var}}"
-    },
-    "pdv*{}": {
-      "snippet": "pdv*{${1:var}}"
-    },
-    "pdv*[]{}": {
-      "snippet": "pdv*[${2:func}]{${1:var}}"
-    },
-    "gaugediffsymbol": {},
-    "gaugediff": {},
-    "D": {
-      "detail": "𝐷",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL D"
-    },
-    "covariantdiff": {},
-    "cd": {},
-    "variation": {},
-    "var": {},
-    "functionalderivative{}": {
-      "snippet": "functionalderivative{${1:var}}"
-    },
-    "functionalderivative[]{}": {
-      "snippet": "functionalderivative[${2:func}]{${1:var}}"
-    },
-    "functionalderivative*{}": {
-      "snippet": "functionalderivative*{${1:var}}"
-    },
-    "functionalderivative*[]{}": {
-      "snippet": "functionalderivative*[${2:func}]{${1:var}}"
-    },
-    "fdv{}": {
-      "snippet": "fdv{${1:var}}"
-    },
-    "fdv[]{}": {
-      "snippet": "fdv[${2:func}]{${1:var}}"
-    },
-    "fdv*{}": {
-      "snippet": "fdv*{${1:var}}"
-    },
-    "fdv*[]{}": {
-      "snippet": "fdv*[${2:func}]{${1:var}}"
-    },
-    "noargumentsymbol": {},
-    "optionalargument{}": {
-      "snippet": "optionalargument{${1:arg}}"
-    },
-    "abs{}": {
-      "snippet": "abs{${1:arg}}"
-    },
-    "norm{}": {
-      "snippet": "norm{${1:arg}}"
-    },
-    "norm[]{}": {
-      "snippet": "norm[${2:sub}]{${1:arg}}"
-    },
-    "norm*{}": {
-      "snippet": "norm*{${1:arg}}"
-    },
-    "norm*[]{}": {
-      "snippet": "norm*[${2:sub}]{${1:arg}}"
-    },
-    "ordersymbol": {},
-    "order{}": {
-      "snippet": "order{${1:arg}}"
-    },
-    "evaluated{}": {
-      "snippet": "evaluated{${1:arg}}"
-    },
-    "evaluated*{}": {
-      "snippet": "evaluated*{${1:arg}}"
-    },
-    "eval{}": {
-      "snippet": "eval{${1:arg}}"
-    },
-    "eval*{}": {
-      "snippet": "eval*{${1:arg}}"
-    },
-    "rowseperator": {},
-    "row{}": {
-      "snippet": "row{${1:x1,${2:x2},...}}"
-    },
-    "column{}": {
-      "snippet": "column{${1:x1,${2:x2},...}}"
-    },
-    "midbar": {},
-    "midbar[]": {
-      "snippet": "midbar[${1:prefix}]"
-    },
-    "suchthat": {},
-    "suchthat[]": {
-      "snippet": "suchthat[${1:prefix}]"
-    },
-    "set{}": {
-      "snippet": "set{${1:arg}}"
-    },
-    "probabilitysymbol": {},
-    "given": {},
-    "given[]": {
-      "snippet": "given[${1:prefix}]"
-    },
-    "Pr": {},
-    "Pr[]": {
-      "snippet": "Pr[${1:arg}]"
-    },
-    "Pr*": {},
-    "Pr*[]": {
-      "snippet": "Pr*[${1:arg}]"
-    },
-    "newpair{}{}{}": {
-      "snippet": "newpair{${1:cmd}}{${2:leftdelim}}{${3:rightdelim}}"
-    },
-    "newpair{}{}{}_{}^{}": {
-      "snippet": "newpair{${1:cmd}}{${2:leftdelim}}{${3:rightdelim}}_{${4:sub}}^{${5:sup}}"
-    },
-    "innerproduct{}{}": {
-      "snippet": "innerproduct{${1:arg1}}{${2:arg2}}"
-    },
-    "poissonbracket{}{}": {
-      "snippet": "poissonbracket{${1:arg1}}{${2:arg2}}"
-    },
-    "commutator{}{}": {
-      "snippet": "commutator{${1:arg1}}{${2:arg2}}"
-    },
-    "pb{}{}": {
-      "snippet": "pb{${1:arg1}}{${2:arg2}}"
-    },
-    "comm{}{}": {
-      "snippet": "comm{${1:arg1}}{${2:arg2}}"
-    },
-    "acomm{}{}": {
-      "snippet": "acomm{${1:arg1}}{${2:arg2}}"
-    },
-    "braketouterspace": {},
-    "braketinnerspace": {},
-    "braket{}{}": {
-      "snippet": "braket{${1:arg1}}{${2:arg2}}"
-    },
-    "bra{}": {
-      "snippet": "bra{${1:arg}}"
-    },
-    "ket{}": {
-      "snippet": "ket{${1:arg}}"
-    },
-    "ketbra{}{}": {
-      "snippet": "ketbra{${1:arg1}}{${2:arg2}}"
-    },
-    "ketbra*{}{}": {
-      "snippet": "ketbra*{${1:arg1}}{${2:arg2}}"
-    },
-    "matrixelement{}{}{}": {
-      "snippet": "matrixelement{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "matrixel{}{}{}": {
-      "snippet": "matrixel{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "mel{}{}{}": {
-      "snippet": "mel{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "expectationvalue{}": {
-      "snippet": "expectationvalue{${1:arg}}"
-    },
-    "expectationvalue[]{}": {
-      "snippet": "expectationvalue[${2:arg1}]{${1:arg2}}"
-    },
-    "expectationvalue*{}": {
-      "snippet": "expectationvalue*{${1:arg}}"
-    },
-    "expectationvalue*[]{}": {
-      "snippet": "expectationvalue*[${2:arg1}]{${1:arg2}}"
-    },
-    "ev{}": {
-      "snippet": "ev{${1:arg}}"
-    },
-    "ev[]{}": {
-      "snippet": "ev[${2:arg1}]{${1:arg2}}"
-    },
-    "ev*{}": {
-      "snippet": "ev*{${1:arg}}"
-    },
-    "ev*[]{}": {
-      "snippet": "ev*[${2:arg1}]{${1:arg2}}"
-    },
-    "vev{}": {
-      "snippet": "vev{${1:arg}}"
-    },
-    "imaginaryunit": {},
-    "ceil{}": {
-      "snippet": "ceil{${1:arg}}"
-    },
-    "floor{}": {
-      "snippet": "floor{${1:arg}}"
+    {
+      "name": "xpatch"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "mathdef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
+    },
+    {
+      "name": "mathdef",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "mathdef",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:def}}"
+      }
+    },
+    {
+      "name": "textoverline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "widebar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%formula}}"
+      }
+    },
+    {
+      "name": "oset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:over%formula}}{${2:math%formula}}"
+      }
+    },
+    {
+      "name": "overleft",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math%formula}}"
+      }
+    },
+    {
+      "name": "overright",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math%formula}}"
+      }
+    },
+    {
+      "name": "overleftright",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math%formula}}"
+      }
+    },
+    {
+      "name": "tr"
+    },
+    {
+      "name": "Tr"
+    },
+    {
+      "name": "rank"
+    },
+    {
+      "name": "erf"
+    },
+    {
+      "name": "Res"
+    },
+    {
+      "name": "sgn"
+    },
+    {
+      "name": "diag"
+    },
+    {
+      "name": "transpose",
+      "unusual": true
+    },
+    {
+      "name": "trans",
+      "unusual": true
+    },
+    {
+      "name": "arccsc"
+    },
+    {
+      "name": "arcsec"
+    },
+    {
+      "name": "arccot"
+    },
+    {
+      "name": "asin"
+    },
+    {
+      "name": "acos"
+    },
+    {
+      "name": "atan"
+    },
+    {
+      "name": "acsc"
+    },
+    {
+      "name": "asec"
+    },
+    {
+      "name": "acot"
+    },
+    {
+      "name": "csch"
+    },
+    {
+      "name": "sech"
+    },
+    {
+      "name": "inv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "inv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:power%formula}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "textfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "flatfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "differential",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "newderivative",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:symbol}}"
+      }
+    },
+    {
+      "name": "newpartialderivative",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:symbol}}"
+      }
+    },
+    {
+      "name": "diffsymbol",
+      "unusual": true
+    },
+    {
+      "name": "diff",
+      "unusual": true
+    },
+    {
+      "name": "derivative",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
+    },
+    {
+      "name": "derivative",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:func}]{${1:var}}"
+      }
+    },
+    {
+      "name": "derivative*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
+    },
+    {
+      "name": "derivative*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:func}]{${1:var}}"
+      }
+    },
+    {
+      "name": "dv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
+    },
+    {
+      "name": "dv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:func}]{${1:var}}"
+      }
+    },
+    {
+      "name": "dv*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
+    },
+    {
+      "name": "dv*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:func}]{${1:var}}"
+      }
+    },
+    {
+      "name": "partialdifferential",
+      "unusual": true
+    },
+    {
+      "name": "pd"
+    },
+    {
+      "name": "partialderivative",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
+    },
+    {
+      "name": "partialderivative",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:func}]{${1:var}}"
+      }
+    },
+    {
+      "name": "partialderivative*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
+    },
+    {
+      "name": "partialderivative*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:func}]{${1:var}}"
+      }
+    },
+    {
+      "name": "pdv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
+    },
+    {
+      "name": "pdv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:func}]{${1:var}}"
+      }
+    },
+    {
+      "name": "pdv*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
+    },
+    {
+      "name": "pdv*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:func}]{${1:var}}"
+      }
+    },
+    {
+      "name": "gaugediffsymbol",
+      "unusual": true
+    },
+    {
+      "name": "gaugediff",
+      "unusual": true
+    },
+    {
+      "name": "D"
+    },
+    {
+      "name": "covariantdiff",
+      "unusual": true
+    },
+    {
+      "name": "cd"
+    },
+    {
+      "name": "variation",
+      "unusual": true
+    },
+    {
+      "name": "var"
+    },
+    {
+      "name": "functionalderivative",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
+    },
+    {
+      "name": "functionalderivative",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:func}]{${1:var}}"
+      }
+    },
+    {
+      "name": "functionalderivative*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
+    },
+    {
+      "name": "functionalderivative*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:func}]{${1:var}}"
+      }
+    },
+    {
+      "name": "fdv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
+    },
+    {
+      "name": "fdv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:func}]{${1:var}}"
+      }
+    },
+    {
+      "name": "fdv*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
+    },
+    {
+      "name": "fdv*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:func}]{${1:var}}"
+      }
+    },
+    {
+      "name": "noargumentsymbol",
+      "unusual": true
+    },
+    {
+      "name": "optionalargument",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "abs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "norm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "norm",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:sub}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "norm*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "norm*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:sub}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "ordersymbol",
+      "unusual": true
+    },
+    {
+      "name": "order",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "evaluated",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "evaluated*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "eval",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "eval*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "rowseperator",
+      "unusual": true
+    },
+    {
+      "name": "row",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:x1,x2,...}}"
+      }
+    },
+    {
+      "name": "column",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:x1,x2,...}}"
+      }
+    },
+    {
+      "name": "midbar",
+      "unusual": true
+    },
+    {
+      "name": "midbar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:prefix}]"
+      }
+    },
+    {
+      "name": "suchthat",
+      "unusual": true
+    },
+    {
+      "name": "suchthat",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:prefix}]"
+      }
+    },
+    {
+      "name": "set",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "probabilitysymbol",
+      "unusual": true
+    },
+    {
+      "name": "given",
+      "unusual": true
+    },
+    {
+      "name": "given",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:prefix}]"
+      }
+    },
+    {
+      "name": "Pr"
+    },
+    {
+      "name": "Pr",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:arg}]"
+      }
+    },
+    {
+      "name": "Pr*"
+    },
+    {
+      "name": "Pr*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:arg}]"
+      }
+    },
+    {
+      "name": "newpair",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:leftdelim}}{${3:rightdelim}}"
+      }
+    },
+    {
+      "name": "newpair",
+      "arg": {
+        "format": "{}{}{}_{}^{}",
+        "snippet": "{${1:cmd}}{${2:leftdelim}}{${3:rightdelim}}_{${4:sub}}^{${5:sup}}"
+      }
+    },
+    {
+      "name": "innerproduct",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "poissonbracket",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "commutator",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "pb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "comm",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "acomm",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "braketouterspace",
+      "unusual": true
+    },
+    {
+      "name": "braketinnerspace",
+      "unusual": true
+    },
+    {
+      "name": "braket",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "bra",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ket",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ketbra",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ketbra*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "matrixelement",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "matrixel",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "mel",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "expectationvalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "expectationvalue",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:arg1}]{${1:arg2}}"
+      }
+    },
+    {
+      "name": "expectationvalue*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "expectationvalue*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:arg1}]{${1:arg2}}"
+      }
+    },
+    {
+      "name": "ev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ev",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:arg1}]{${1:arg2}}"
+      }
+    },
+    {
+      "name": "ev*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ev*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:arg1}]{${1:arg2}}"
+      }
+    },
+    {
+      "name": "vev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "imaginaryunit",
+      "unusual": true
+    },
+    {
+      "name": "ceil",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "floor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

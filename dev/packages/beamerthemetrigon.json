@@ -1,65 +1,149 @@
 {
-  "includes": {
-    "pgfopts": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrary3d": [],
-    "sourcesanspro": []
-  },
-  "macros": {
-    "trigonset{}": {
-      "snippet": "trigonset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pgfopts"
     },
-    "headcol": {},
-    "txtcol": {},
-    "logbig": {},
-    "biglogo{}": {
-      "snippet": "biglogo{${1:imagefile}}"
+    {
+      "name": "tikz"
     },
-    "biglogo[]{}": {
-      "snippet": "biglogo[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarycalc"
     },
-    "slidestyle": {},
-    "titlestyle": {},
-    "sectionstyle": {},
-    "leftTriangle{}{}": {
-      "snippet": "leftTriangle{${1:x}}{${2:y}}"
+    {
+      "name": "tikzlibrary3d"
     },
-    "rightTriangle{}{}": {
-      "snippet": "rightTriangle{${1:x}}{${2:y}}"
-    },
-    "topTriangle{}{}": {
-      "snippet": "topTriangle{${1:x}}{${2:y}}"
-    },
-    "leftColorTriangle{}{}{}": {
-      "snippet": "leftColorTriangle{${1:color}}{${2:x}}{${3:y}}"
-    },
-    "rightColorTriangle{}{}{}": {
-      "snippet": "rightColorTriangle{${1:color}}{${2:x}}{${3:y}}"
-    },
-    "topColorTriangle{}{}{}": {
-      "snippet": "topColorTriangle{${1:color}}{${2:x}}{${3:y}}"
-    },
-    "titleframe": {},
-    "sectionframe": {},
-    "logsmall": {},
-    "smalllogo{}": {
-      "snippet": "smalllogo{${1:imagefile}}"
-    },
-    "smalllogo[]{}": {
-      "snippet": "smalllogo[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "sourcesanspro"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "trigonset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usetheme/trigon,\\trigonset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "headcol",
+      "unusual": true
+    },
+    {
+      "name": "txtcol",
+      "unusual": true
+    },
+    {
+      "name": "logbig",
+      "unusual": true
+    },
+    {
+      "name": "biglogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "biglogo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\biglogo,\\smalllogo"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "slidestyle",
+      "unusual": true
+    },
+    {
+      "name": "titlestyle",
+      "unusual": true
+    },
+    {
+      "name": "sectionstyle",
+      "unusual": true
+    },
+    {
+      "name": "leftTriangle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "rightTriangle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "topTriangle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "leftColorTriangle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:color}}{${2:x}}{${3:y}}"
+      }
+    },
+    {
+      "name": "rightColorTriangle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:color}}{${2:x}}{${3:y}}"
+      }
+    },
+    {
+      "name": "topColorTriangle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:color}}{${2:x}}{${3:y}}"
+      }
+    },
+    {
+      "name": "titleframe"
+    },
+    {
+      "name": "sectionframe"
+    },
+    {
+      "name": "logsmall",
+      "unusual": true
+    },
+    {
+      "name": "smalllogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "smalllogo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\biglogo,\\smalllogo"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usetheme/trigon,\\trigonset": [
       "background=${1|light,dark|}",
       "titleformat=${1|regular,smallcaps,allsmallcaps,allcaps|}",
       "usesourcefonts",
@@ -76,7 +160,7 @@
       "titleformat section=${1|regular,smallcaps,allsmallcaps,allcaps|}",
       "titleformat frame=${1|regular,smallcaps,allsmallcaps,allcaps|}"
     ],
-    [
+    "\\biglogo,\\smalllogo": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -107,5 +191,6 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
-  ]
+  },
+  "args": []
 }

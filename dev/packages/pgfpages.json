@@ -1,58 +1,151 @@
 {
-  "includes": {
-    "pgfcore": [],
-    "calc": []
-  },
-  "macros": {
-    "pgfpagesuselayout{}": {
-      "snippet": "pgfpagesuselayout{${1:layout}}"
+  "deps": [
+    {
+      "name": "pgfcore"
     },
-    "pgfpagesuselayout{}[]": {
-      "snippet": "pgfpagesuselayout{${1:layout}}[${2:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "calc"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pgfpagesuselayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:layout}}"
+      }
     },
-    "pgfpagesdeclarelayout{}{}{}": {
-      "snippet": "pgfpagesdeclarelayout{${1:layout}}{${2:before actions}}{${3:after actions}}"
+    {
+      "name": "pgfpagesuselayout",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:layout}}[${2:options%keyvals}]",
+        "keys": [
+          "\\pgfpagesuselayout"
+        ],
+        "keyPos": 1
+      }
     },
-    "pgfpagesphysicalpageoptions{}": {
-      "snippet": "pgfpagesphysicalpageoptions{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pgfpagesdeclarelayout",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:layout}}{${2:before actions}}{${3:after actions}}"
+      }
     },
-    "pgfpageslogicalpageoptions{}{}": {
-      "snippet": "pgfpageslogicalpageoptions{${1:logical page number}}{${2:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 1
+    {
+      "name": "pgfpagesphysicalpageoptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pgfpagesphysicalpageoptions"
+        ],
+        "keyPos": 0
+      }
     },
-    "pgfpagesshipoutlogicalpage{}": {
-      "snippet": "pgfpagesshipoutlogicalpage{${1:number}}"
+    {
+      "name": "pgfpageslogicalpageoptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:logical page number}}{${2:options%keyvals}}",
+        "keys": [
+          "\\pgfpageslogicalpageoptions"
+        ],
+        "keyPos": 1
+      }
     },
-    "pgfpagescurrentpagewillbelogicalpage{}": {
-      "snippet": "pgfpagescurrentpagewillbelogicalpage{${1:number}}"
+    {
+      "name": "pgfpagesshipoutlogicalpage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "pgfshipoutphysicalpage": {},
-    "pgfhookintoshipout": {},
-    "pgfsetupphysicalpagesizes": {},
-    "ifpgfphysicalpageempty": {},
-    "pgfphysicalpageemptytrue": {},
-    "pgfphysicalpageemptyfalse": {},
-    "pgfphysicalheight": {},
-    "pgfphysicalwidth": {},
-    "pgfpageoptionheight": {},
-    "pgfpageoptionwidth": {},
-    "pgfpageoptionborder": {},
-    "pgfpageoptioncornerwidth": {},
-    "pgfpageoptionfirstshipout": {},
-    "pgfpageoptionfirstcenter": {},
-    "pgfpageoptionsecondcenter": {},
-    "pgfpageoptiontwoheight": {},
-    "pgfpageoptiontwowidth": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "pgfpagescurrentpagewillbelogicalpage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "pgfshipoutphysicalpage",
+      "unusual": true
+    },
+    {
+      "name": "pgfhookintoshipout",
+      "unusual": true
+    },
+    {
+      "name": "pgfsetupphysicalpagesizes",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfphysicalpageempty",
+      "unusual": true
+    },
+    {
+      "name": "pgfphysicalpageemptytrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfphysicalpageemptyfalse",
+      "unusual": true
+    },
+    {
+      "name": "pgfphysicalheight",
+      "unusual": true
+    },
+    {
+      "name": "pgfphysicalwidth",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptionheight",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptionwidth",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptionborder",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptioncornerwidth",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptionfirstshipout",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptionfirstcenter",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptionsecondcenter",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptiontwoheight",
+      "unusual": true
+    },
+    {
+      "name": "pgfpageoptiontwowidth",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pgfpagesuselayout": [
       "physical paper height=",
       "physical paper width=",
       "a0paper",
@@ -74,7 +167,7 @@
       "second bottom",
       "second top"
     ],
-    [
+    "\\pgfpagesphysicalpageoptions": [
       "logical pages=${1:integer}",
       "first logical shipout=${1:first}",
       "last logical shipout=${1:last}",
@@ -82,7 +175,7 @@
       "physical height=",
       "physical width="
     ],
-    [
+    "\\pgfpageslogicalpageoptions": [
       "center=${1:pgf point}",
       "resized width=",
       "resized height=",
@@ -97,5 +190,6 @@
       "border code=${1:code}",
       "corner width="
     ]
-  ]
+  },
+  "args": []
 }

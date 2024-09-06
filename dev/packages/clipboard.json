@@ -1,23 +1,44 @@
 {
-  "includes": {},
-  "macros": {
-    "newclipboard{}": {
-      "snippet": "newclipboard{${1:basename}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "newclipboard",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:basename}}"
+      }
     },
-    "openclipboard{}": {
-      "snippet": "openclipboard{${1:basename}}"
+    {
+      "name": "openclipboard",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:basename}}"
+      }
     },
-    "clipboard{}{}": {
-      "snippet": "clipboard{${1:key}}{${2:content}}"
+    {
+      "name": "clipboard",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:content%text}}"
+      }
     },
-    "Copy{}{}": {
-      "snippet": "Copy{${1:key}}{${2:content}}"
+    {
+      "name": "Copy",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:content%text}}"
+      }
     },
-    "Paste{}": {
-      "snippet": "Paste{${1:key}}"
+    {
+      "name": "Paste",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

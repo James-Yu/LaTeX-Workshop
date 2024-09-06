@@ -1,48 +1,83 @@
 {
-  "includes": {
-    "threeparttable": [],
-    "environ": []
-  },
-  "macros": {
-    "insertTableNotes": {},
-    "tnotex{}": {
-      "snippet": "tnotex{${1:label}}",
-      "option": "referable"
+  "deps": [
+    {
+      "name": "threeparttable"
     },
-    "tnotex*{}": {
-      "snippet": "tnotex*{${1:label}}",
-      "option": "referable"
-    },
-    "setTableNoteFont{}": {
-      "snippet": "setTableNoteFont{${1:font cmds}}",
-      "option": "referable"
-    },
-    "note": {
-      "option": "referable"
-    },
-    "source": {
-      "option": "referable"
-    },
-    "TPTLnotename": {
-      "option": "referable"
-    },
-    "TPTLsourcename": {
-      "option": "referable"
-    },
-    "TPTLnotesnamefontcommand": {
-      "option": "referable"
+    {
+      "name": "environ"
     }
-  },
-  "envs": {
-    "ThreePartTable": {},
-    "TableNotes": {}
-  },
-  "options": [
-    "referable",
-    "para",
-    "flushleft",
-    "online",
-    "normal"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "insertTableNotes"
+    },
+    {
+      "name": "tnotex",
+      "if": "referable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "tnotex*",
+      "if": "referable",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "setTableNoteFont",
+      "if": "referable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font cmds}}"
+      }
+    },
+    {
+      "name": "note",
+      "if": "referable"
+    },
+    {
+      "name": "source",
+      "if": "referable"
+    },
+    {
+      "name": "TPTLnotename",
+      "if": "referable",
+      "unusual": true
+    },
+    {
+      "name": "TPTLsourcename",
+      "if": "referable",
+      "unusual": true
+    },
+    {
+      "name": "TPTLnotesnamefontcommand",
+      "if": "referable",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "ThreePartTable"
+    },
+    {
+      "name": "TableNotes"
+    }
+  ],
+  "keys": {
+    "\\usepackage/threeparttablex#c": [
+      "referable",
+      "para",
+      "flushleft",
+      "online",
+      "normal"
+    ]
+  },
+  "args": [
+    "\\usepackage/threeparttablex#c"
+  ]
 }

@@ -1,60 +1,130 @@
 {
-  "includes": {
-    "iexec": [],
-    "xkeyval": [],
-    "anyfontsize": [],
-    "tikz": [],
-    "microtype": [],
-    "xcolor": [],
-    "graphicx": [],
-    "calc": [],
-    "setspace": [],
-    "geometry": [],
-    "textpos": []
-  },
-  "macros": {
-    "putSpine{}": {
-      "snippet": "putSpine{${1:text}}"
+  "deps": [
+    {
+      "name": "iexec"
     },
-    "putSpine[]{}": {
-      "snippet": "putSpine[${2:imagefile}]{${1:text}}"
+    {
+      "name": "xkeyval"
     },
-    "putPicture{}": {
-      "snippet": "putPicture{${1:imagefile}}"
+    {
+      "name": "anyfontsize"
     },
-    "putVolume{}": {
-      "snippet": "putVolume{${1:number}}"
+    {
+      "name": "tikz"
     },
-    "putPrice{}": {
-      "snippet": "putPrice{${1:price}}"
+    {
+      "name": "microtype"
     },
-    "putBack{}": {
-      "snippet": "putBack{${1:text}}"
+    {
+      "name": "xcolor"
     },
-    "putTitle{}": {
-      "snippet": "putTitle{${1:text}}"
+    {
+      "name": "graphicx"
     },
-    "putAuthor{}": {
-      "snippet": "putAuthor{${1:name}}"
+    {
+      "name": "calc"
     },
-    "putTLDR{}": {
-      "snippet": "putTLDR{${1:text}}"
+    {
+      "name": "setspace"
     },
-    "putVersion{}": {
-      "snippet": "putVersion{${1:version}}"
+    {
+      "name": "geometry"
     },
-    "putCopyright{}{}": {
-      "snippet": "putCopyright{${1:year}}{${2:name}}"
+    {
+      "name": "textpos"
     }
-  },
-  "envs": {},
-  "options": [
-    "6x9",
-    "7x10",
-    "8x10",
-    "pages=${1:integer}",
-    "barless",
-    "pdf=${1:PDF file}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "putSpine",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "putSpine",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:imagefile}]{${1:text}}"
+      }
+    },
+    {
+      "name": "putPicture",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "putVolume",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "putPrice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:price}}"
+      }
+    },
+    {
+      "name": "putBack",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "putTitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "putAuthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "putTLDR",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "putVersion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:version}}"
+      }
+    },
+    {
+      "name": "putCopyright",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:year}}{${2:name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/kdpcover#c": [
+      "6x9",
+      "7x10",
+      "8x10",
+      "pages=${1:integer}",
+      "barless",
+      "pdf=${1:PDF file}"
+    ]
+  },
+  "args": [
+    "\\documentclass/kdpcover#c"
+  ]
 }

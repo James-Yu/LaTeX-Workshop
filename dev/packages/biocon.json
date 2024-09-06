@@ -1,105 +1,352 @@
 {
-  "includes": {
-    "keyval": [],
-    "ifthen": []
+  "deps": [
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "ifthen"
+    }
+  ],
+  "macros": [
+    {
+      "name": "plantlike",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:parameters%keyvals}}",
+        "keys": [
+          "\\plantlike,\\funguslike,\\animallike,\\bactlike,\\newplant,\\newfungus,\\newanimal,\\newbact"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "plantlike",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:how}]{${1:parameters%keyvals}}",
+        "keys": [
+          "\\plantlike,\\funguslike,\\animallike,\\bactlike,\\newplant,\\newfungus,\\newanimal,\\newbact"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "funguslike",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:parameters%keyvals}}",
+        "keys": [
+          "\\plantlike,\\funguslike,\\animallike,\\bactlike,\\newplant,\\newfungus,\\newanimal,\\newbact"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "funguslike",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:how}]{${1:parameters%keyvals}}",
+        "keys": [
+          "\\plantlike,\\funguslike,\\animallike,\\bactlike,\\newplant,\\newfungus,\\newanimal,\\newbact"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "animallike",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:parameters%keyvals}}",
+        "keys": [
+          "\\plantlike,\\funguslike,\\animallike,\\bactlike,\\newplant,\\newfungus,\\newanimal,\\newbact"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "animallike",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:how}]{${1:parameters%keyvals}}",
+        "keys": [
+          "\\plantlike,\\funguslike,\\animallike,\\bactlike,\\newplant,\\newfungus,\\newanimal,\\newbact"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "bactlike",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:parameters%keyvals}}",
+        "keys": [
+          "\\plantlike,\\funguslike,\\animallike,\\bactlike,\\newplant,\\newfungus,\\newanimal,\\newbact"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bactlike",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:how}]{${1:parameters%keyvals}}",
+        "keys": [
+          "\\plantlike,\\funguslike,\\animallike,\\bactlike,\\newplant,\\newfungus,\\newanimal,\\newbact"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newplant",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:identifier}}{${2:parameters%keyvals}}",
+        "keys": [
+          "\\plantlike,\\funguslike,\\animallike,\\bactlike,\\newplant,\\newfungus,\\newanimal,\\newbact"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newfungus",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:identifier}}{${2:parameters%keyvals}}",
+        "keys": [
+          "\\plantlike,\\funguslike,\\animallike,\\bactlike,\\newplant,\\newfungus,\\newanimal,\\newbact"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newanimal",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:identifier}}{${2:parameters%keyvals}}",
+        "keys": [
+          "\\plantlike,\\funguslike,\\animallike,\\bactlike,\\newplant,\\newfungus,\\newanimal,\\newbact"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newbact",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:identifier}}{${2:parameters%keyvals}}",
+        "keys": [
+          "\\plantlike,\\funguslike,\\animallike,\\bactlike,\\newplant,\\newfungus,\\newanimal,\\newbact"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "plant",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:identifier}}"
+      }
+    },
+    {
+      "name": "plant",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:how%keyvals}]{${1:identifier}}",
+        "keys": [
+          "\\plant,\\fungus,\\animal,\\bact,\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fungus",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:identifier}}"
+      }
+    },
+    {
+      "name": "fungus",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:how%keyvals}]{${1:identifier}}",
+        "keys": [
+          "\\plant,\\fungus,\\animal,\\bact,\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "animal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:identifier}}"
+      }
+    },
+    {
+      "name": "animal",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:how%keyvals}]{${1:identifier}}",
+        "keys": [
+          "\\plant,\\fungus,\\animal,\\bact,\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bact",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:identifier}}"
+      }
+    },
+    {
+      "name": "bact",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:how%keyvals}]{${1:identifier}}",
+        "keys": [
+          "\\plant,\\fungus,\\animal,\\bact,\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "defaultplante",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style-name%keyvals}}",
+        "keys": [
+          "\\plant,\\fungus,\\animal,\\bact,\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr",
+          "\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "defaultfunguse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style-name%keyvals}}",
+        "keys": [
+          "\\plant,\\fungus,\\animal,\\bact,\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr",
+          "\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "defaultanimale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style-name%keyvals}}",
+        "keys": [
+          "\\plant,\\fungus,\\animal,\\bact,\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr",
+          "\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "defaultbacte",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style-name%keyvals}}",
+        "keys": [
+          "\\plant,\\fungus,\\animal,\\bact,\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr",
+          "\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "defaultfull",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style-name%keyvals}}",
+        "keys": [
+          "\\plant,\\fungus,\\animal,\\bact,\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr",
+          "\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "defaultabbr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style-name%keyvals}}",
+        "keys": [
+          "\\plant,\\fungus,\\animal,\\bact,\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr",
+          "\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "newtaxon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%specialDef}}"
+      }
+    },
+    {
+      "name": "newtaxastyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:style}}"
+      }
+    },
+    {
+      "name": "taxon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pre!name!post}}"
+      }
+    },
+    {
+      "name": "taxonfirst",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pre!name!post}}"
+      }
+    },
+    {
+      "name": "taxit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "taxitalics",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\plantlike,\\funguslike,\\animallike,\\bactlike,\\newplant,\\newfungus,\\newanimal,\\newbact": [
+      "genus=${1:genus}",
+      "oldgenus=${1:genus}",
+      "epithet=${1:epithet}",
+      "author=${1:author}",
+      "oldauthor=${1:author}",
+      "year=${1:year}",
+      "oldyear=${1:year}",
+      "%biocontaxon"
+    ],
+    "\\plant,\\fungus,\\animal,\\bact,\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr": [
+      "e",
+      "f",
+      "a",
+      "g",
+      "%biocontaxastyle"
+    ],
+    "\\defaultplante,\\defaultfunguse,\\defaultanimale,\\defaultbacte,\\defaultfull,\\defaultabbr": [
+      "ePlant",
+      "eAnimal"
+    ]
   },
-  "macros": {
-    "plantlike{}": {
-      "snippet": "plantlike{${1:parameters}}"
-    },
-    "plantlike[]{}": {
-      "snippet": "plantlike[${2:how}]{${1:parameters}}"
-    },
-    "funguslike{}": {
-      "snippet": "funguslike{${1:parameters}}"
-    },
-    "funguslike[]{}": {
-      "snippet": "funguslike[${2:how}]{${1:parameters}}"
-    },
-    "animallike{}": {
-      "snippet": "animallike{${1:parameters}}"
-    },
-    "animallike[]{}": {
-      "snippet": "animallike[${2:how}]{${1:parameters}}"
-    },
-    "bactlike{}": {
-      "snippet": "bactlike{${1:parameters}}"
-    },
-    "bactlike[]{}": {
-      "snippet": "bactlike[${2:how}]{${1:parameters}}"
-    },
-    "newplant{}{}": {
-      "snippet": "newplant{${1:identifier}}{${2:parameters}}"
-    },
-    "newfungus{}{}": {
-      "snippet": "newfungus{${1:identifier}}{${2:parameters}}"
-    },
-    "newanimal{}{}": {
-      "snippet": "newanimal{${1:identifier}}{${2:parameters}}"
-    },
-    "newbact{}{}": {
-      "snippet": "newbact{${1:identifier}}{${2:parameters}}"
-    },
-    "plant{}": {
-      "snippet": "plant{${1:identifier}}"
-    },
-    "plant[]{}": {
-      "snippet": "plant[${2:how}]{${1:identifier}}"
-    },
-    "fungus{}": {
-      "snippet": "fungus{${1:identifier}}"
-    },
-    "fungus[]{}": {
-      "snippet": "fungus[${2:how}]{${1:identifier}}"
-    },
-    "animal{}": {
-      "snippet": "animal{${1:identifier}}"
-    },
-    "animal[]{}": {
-      "snippet": "animal[${2:how}]{${1:identifier}}"
-    },
-    "bact{}": {
-      "snippet": "bact{${1:identifier}}"
-    },
-    "bact[]{}": {
-      "snippet": "bact[${2:how}]{${1:identifier}}"
-    },
-    "defaultplante{}": {
-      "snippet": "defaultplante{${1:style-name}}"
-    },
-    "defaultfunguse{}": {
-      "snippet": "defaultfunguse{${1:style-name}}"
-    },
-    "defaultanimale{}": {
-      "snippet": "defaultanimale{${1:style-name}}"
-    },
-    "defaultbacte{}": {
-      "snippet": "defaultbacte{${1:style-name}}"
-    },
-    "defaultfull{}": {
-      "snippet": "defaultfull{${1:style-name}}"
-    },
-    "defaultabbr{}": {
-      "snippet": "defaultabbr{${1:style-name}}"
-    },
-    "newtaxon{}": {
-      "snippet": "newtaxon{${1:name}}"
-    },
-    "newtaxastyle{}{}": {
-      "snippet": "newtaxastyle{${1:name}}{${2:style}}"
-    },
-    "taxon{}": {
-      "snippet": "taxon{${1:pre!name!post}}"
-    },
-    "taxonfirst{}": {
-      "snippet": "taxonfirst{${1:pre!name!post}}"
-    },
-    "taxit{}": {
-      "snippet": "taxit{${1:text}}"
-    },
-    "taxitalics": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

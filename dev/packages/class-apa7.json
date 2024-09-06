@@ -1,378 +1,854 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "lmodern": [],
-    "fontenc": [],
-    "txfonts": [],
-    "geometry": [],
-    "graphicx": [],
-    "scalerel": [],
-    "tikz": [],
-    "tikzlibrarysvg.path": [],
-    "hyperref": [],
-    "booktabs": [],
-    "threeparttable": [],
-    "caption": [],
-    "bm": [],
-    "fancyhdr": [],
-    "flushend": [],
-    "ftnright": [],
-    "apacite": [
+  "deps": [
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "lmodern"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "txfonts"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "scalerel"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibrarysvg.path"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "threeparttable"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "bm"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "flushend"
+    },
+    {
+      "name": "ftnright"
+    },
+    {
+      "name": "apacite",
+      "if": "apacite"
+    },
+    {
+      "name": "babel",
+      "if": "babel"
+    },
+    {
+      "name": "biblatex",
+      "if": "biblatex"
+    },
+    {
+      "name": "draftwatermark",
+      "if": "draftall"
+    },
+    {
+      "name": "draftwatermark",
+      "if": "draftfirst"
+    },
+    {
+      "name": "float",
+      "if": "floatsintext"
+    },
+    {
+      "name": "array",
+      "if": "longtable"
+    },
+    {
+      "name": "longtable",
+      "if": "longtable"
+    },
+    {
+      "name": "endfloat",
+      "if": "man"
+    },
+    {
+      "name": "substr",
+      "if": "mask"
+    },
+    {
+      "name": "apacite",
+      "if": "natbib"
+    },
+    {
+      "name": "pslatex",
+      "if": "notxfonts"
+    },
+    {
+      "name": "mathptm",
+      "if": "notxfonts"
+    },
+    {
+      "name": "endfloat",
+      "if": "stu"
+    }
+  ],
+  "macros": [
+    {
+      "name": "footmark",
+      "if": "man",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:mark}}"
+      }
+    },
+    {
+      "name": "ifnextchar",
+      "if": "stu",
+      "unusual": true
+    },
+    {
+      "name": "shorttitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:short title%text}}"
+      }
+    },
+    {
+      "name": "leftheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:author last names}}"
+      }
+    },
+    {
+      "name": "journal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:journal name}}"
+      }
+    },
+    {
+      "name": "volume",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:volume}}"
+      }
+    },
+    {
+      "name": "ccoppy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:copyright notice%text}}"
+      }
+    },
+    {
+      "name": "copnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:more copyright info%text}}"
+      }
+    },
+    {
+      "name": "affiliation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:affiliation}}"
+      }
+    },
+    {
+      "name": "authorsnames",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:author names}}"
+      }
+    },
+    {
+      "name": "authorsnames",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:superscripts}]{${1:author names}}"
+      }
+    },
+    {
+      "name": "authorsaffiliations",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:affiliations}}"
+      }
+    },
+    {
+      "name": "course",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:course name}}"
+      }
+    },
+    {
+      "name": "professor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:professor name}}"
+      }
+    },
+    {
+      "name": "duedate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "abstract",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:abstract text%text}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "authornote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "addORCIDlink",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:author}}{${2:ORCID%URL}}"
+      }
+    },
+    {
+      "name": "note",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "figurenote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tablenote"
+    },
+    {
+      "name": "fitfigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:EPS file}}"
+      }
+    },
+    {
+      "name": "fitfigure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:height}]{${1:EPS file}}"
+      }
+    },
+    {
+      "name": "fitbitmap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:EPS file}}"
+      }
+    },
+    {
+      "name": "fitbitmap",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:height}]{${1:EPS file}}"
+      }
+    },
+    {
+      "name": "tabfnm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "tabfnt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id}}{${2:text}}"
+      }
+    },
+    {
+      "name": "apaSevenvector",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol%formula}}"
+      }
+    },
+    {
+      "name": "apaSevenmatrix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol%formula}}"
+      }
+    },
+    {
+      "name": "maskcite",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskcite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskCite",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskCite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskCite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskparencite",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskparencite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskparencite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskParencite",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskParencite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskParencite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "masktextcite",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "masktextcite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "masktextcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskTextcite",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskTextcite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskTextcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskciteauthor",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskciteauthor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskciteauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskCiteauthor",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskCiteauthor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskCiteauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskciteyear",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskciteyear",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskciteyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskfootcite",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskfootcite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskfootcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskfootcitetext",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskfootcitetext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maskfootcitetext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "acksname",
+      "unusual": true
+    },
+    {
+      "name": "addperi",
+      "unusual": true
+    },
+    {
+      "name": "apaSevenappeq",
+      "unusual": true
+    },
+    {
+      "name": "apaSevenappfig",
+      "unusual": true
+    },
+    {
+      "name": "apaSevenapptab",
+      "unusual": true
+    },
+    {
+      "name": "apaSevensmash",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "authorsep",
+      "unusual": true
+    },
+    {
+      "name": "displayaffiliations",
+      "unusual": true
+    },
+    {
+      "name": "displayauthors",
+      "unusual": true
+    },
+    {
+      "name": "ifapamodedoc",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "ifapamodejou",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "ifapamodeman",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "ifapamode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:man}}{${2:jou}}{${3:doc}}"
+      }
+    },
+    {
+      "name": "keywordname",
+      "unusual": true
+    },
+    {
+      "name": "lastauthor",
+      "unusual": true
+    },
+    {
+      "name": "lastauthorseparator",
+      "unusual": true
+    },
+    {
+      "name": "listaffiliations",
+      "unusual": true
+    },
+    {
+      "name": "listauthors",
+      "unusual": true
+    },
+    {
+      "name": "listsuperscripts",
+      "unusual": true
+    },
+    {
+      "name": "mspart",
+      "unusual": true
+    },
+    {
+      "name": "notelabel",
+      "unusual": true
+    },
+    {
+      "name": "notesname",
+      "unusual": true
+    },
+    {
+      "name": "prelastauthor",
+      "unusual": true
+    },
+    {
+      "name": "prelastauthorsep",
+      "unusual": true
+    },
+    {
+      "name": "processfigures",
+      "unusual": true
+    },
+    {
+      "name": "processtables",
+      "unusual": true
+    },
+    {
+      "name": "rightheader",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "stiny",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "theAPAenum",
+      "unusual": true
+    },
+    {
+      "name": "theAffiliationNumber",
+      "unusual": true
+    },
+    {
+      "name": "theNumberOfAffiliations",
+      "unusual": true
+    },
+    {
+      "name": "theNumberOfAuthors",
+      "unusual": true
+    },
+    {
+      "name": "theNumberOfSuperscripts",
+      "unusual": true
+    },
+    {
+      "name": "theappendix",
+      "unusual": true
+    },
+    {
+      "name": "themaskedRefs",
+      "unusual": true
+    },
+    {
+      "name": "thickline",
+      "unusual": true
+    },
+    {
+      "name": "typesectitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "uprightlowercasegreek",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [
+    {
+      "name": "seriate"
+    },
+    {
+      "name": "APAenumerate"
+    },
+    {
+      "name": "APAitemize"
+    }
+  ],
+  "keys": {
+    "\\documentclass/apa7": [
+      "10pt",
+      "11pt",
+      "12pt",
+      "a4paper",
       "apacite",
-      "natbib"
-    ],
-    "babel": [
-      "babel"
-    ],
-    "biblatex": [
-      "biblatex"
-    ],
-    "draftwatermark": [
+      "babel",
+      "biblatex",
+      "doc",
+      "donotrepeattitle",
       "draftall",
-      "draftfirst"
-    ],
-    "float": [
-      "floatsintext"
-    ],
-    "array": [
-      "longtable"
-    ],
-    "longtable": [
-      "longtable"
-    ],
-    "endfloat": [
+      "draftfirst",
+      "fignum",
+      "floatsintext",
+      "helv",
+      "jou",
+      "longtable",
       "man",
-      "stu"
-    ],
-    "substr": [
-      "mask"
-    ],
-    "pslatex": [
-      "notxfonts"
-    ],
-    "mathptm": [
-      "notxfonts"
+      "mask",
+      "natbib",
+      "nobf",
+      "nofontenc",
+      "nolmodern",
+      "nosf",
+      "notab",
+      "notimes",
+      "notxfonts",
+      "stu",
+      "tt"
     ]
   },
-  "macros": {
-    "footmark{}": {
-      "snippet": "footmark{${1:mark}}",
-      "option": "man"
-    },
-    "ifnextchar": {
-      "option": "stu"
-    },
-    "shorttitle{}": {
-      "snippet": "shorttitle{${1:short title}}"
-    },
-    "leftheader{}": {
-      "snippet": "leftheader{${1:author last names}}"
-    },
-    "journal{}": {
-      "snippet": "journal{${1:journal name}}"
-    },
-    "volume{}": {
-      "snippet": "volume{${1:volume}}"
-    },
-    "ccoppy{}": {
-      "snippet": "ccoppy{${1:copyright notice}}"
-    },
-    "copnum{}": {
-      "snippet": "copnum{${1:more copyright info}}"
-    },
-    "affiliation{}": {
-      "snippet": "affiliation{${1:affiliation}}"
-    },
-    "authorsnames{}": {
-      "snippet": "authorsnames{${1:author names}}"
-    },
-    "authorsnames[]{}": {
-      "snippet": "authorsnames[${2:superscripts}]{${1:author names}}"
-    },
-    "authorsaffiliations{}": {
-      "snippet": "authorsaffiliations{${1:affiliations}}"
-    },
-    "course{}": {
-      "snippet": "course{${1:course name}}"
-    },
-    "professor{}": {
-      "snippet": "professor{${1:professor name}}"
-    },
-    "duedate{}": {
-      "snippet": "duedate{${1:date}}"
-    },
-    "abstract{}": {
-      "snippet": "abstract{${1:abstract text}}"
-    },
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}"
-    },
-    "authornote{}": {
-      "snippet": "authornote{${1:text}}"
-    },
-    "addORCIDlink{}{}": {
-      "snippet": "addORCIDlink{${1:author}}{${2:ORCID}}"
-    },
-    "note{}": {
-      "snippet": "note{${1:text}}"
-    },
-    "figurenote{}": {
-      "snippet": "figurenote{${1:text}}"
-    },
-    "tablenote": {},
-    "fitfigure{}": {
-      "snippet": "fitfigure{${1:imagefile}}"
-    },
-    "fitfigure[]{}": {
-      "snippet": "fitfigure[${2:height}]{${1:imagefile}}"
-    },
-    "fitbitmap{}": {
-      "snippet": "fitbitmap{${1:imagefile}}"
-    },
-    "fitbitmap[]{}": {
-      "snippet": "fitbitmap[${2:height}]{${1:imagefile}}"
-    },
-    "tabfnm{}": {
-      "snippet": "tabfnm{${1:id}}"
-    },
-    "tabfnt{}{}": {
-      "snippet": "tabfnt{${1:id}}{${2:text}}"
-    },
-    "apaSevenvector{}": {
-      "snippet": "apaSevenvector{${1:symbol}}"
-    },
-    "apaSevenmatrix{}": {
-      "snippet": "apaSevenmatrix{${1:symbol}}"
-    },
-    "maskcite[][]{}": {
-      "snippet": "maskcite[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "maskcite[]{}": {
-      "snippet": "maskcite[${2:postnote}]{${1:bibid}}"
-    },
-    "maskcite{}": {
-      "snippet": "maskcite{${1:bibid}}"
-    },
-    "maskCite[][]{}": {
-      "snippet": "maskCite[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "maskCite[]{}": {
-      "snippet": "maskCite[${2:postnote}]{${1:bibid}}"
-    },
-    "maskCite{}": {
-      "snippet": "maskCite{${1:bibid}}"
-    },
-    "maskparencite[][]{}": {
-      "snippet": "maskparencite[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "maskparencite[]{}": {
-      "snippet": "maskparencite[${2:postnote}]{${1:bibid}}"
-    },
-    "maskparencite{}": {
-      "snippet": "maskparencite{${1:bibid}}"
-    },
-    "maskParencite[][]{}": {
-      "snippet": "maskParencite[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "maskParencite[]{}": {
-      "snippet": "maskParencite[${2:postnote}]{${1:bibid}}"
-    },
-    "maskParencite{}": {
-      "snippet": "maskParencite{${1:bibid}}"
-    },
-    "masktextcite[][]{}": {
-      "snippet": "masktextcite[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "masktextcite[]{}": {
-      "snippet": "masktextcite[${2:postnote}]{${1:bibid}}"
-    },
-    "masktextcite{}": {
-      "snippet": "masktextcite{${1:bibid}}"
-    },
-    "maskTextcite[][]{}": {
-      "snippet": "maskTextcite[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "maskTextcite[]{}": {
-      "snippet": "maskTextcite[${2:postnote}]{${1:bibid}}"
-    },
-    "maskTextcite{}": {
-      "snippet": "maskTextcite{${1:bibid}}"
-    },
-    "maskciteauthor[][]{}": {
-      "snippet": "maskciteauthor[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "maskciteauthor[]{}": {
-      "snippet": "maskciteauthor[${2:postnote}]{${1:bibid}}"
-    },
-    "maskciteauthor{}": {
-      "snippet": "maskciteauthor{${1:bibid}}"
-    },
-    "maskCiteauthor[][]{}": {
-      "snippet": "maskCiteauthor[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "maskCiteauthor[]{}": {
-      "snippet": "maskCiteauthor[${2:postnote}]{${1:bibid}}"
-    },
-    "maskCiteauthor{}": {
-      "snippet": "maskCiteauthor{${1:bibid}}"
-    },
-    "maskciteyear[][]{}": {
-      "snippet": "maskciteyear[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "maskciteyear[]{}": {
-      "snippet": "maskciteyear[${2:postnote}]{${1:bibid}}"
-    },
-    "maskciteyear{}": {
-      "snippet": "maskciteyear{${1:bibid}}"
-    },
-    "maskfootcite[][]{}": {
-      "snippet": "maskfootcite[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "maskfootcite[]{}": {
-      "snippet": "maskfootcite[${2:postnote}]{${1:bibid}}"
-    },
-    "maskfootcite{}": {
-      "snippet": "maskfootcite{${1:bibid}}"
-    },
-    "maskfootcitetext[][]{}": {
-      "snippet": "maskfootcitetext[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "maskfootcitetext[]{}": {
-      "snippet": "maskfootcitetext[${2:postnote}]{${1:bibid}}"
-    },
-    "maskfootcitetext{}": {
-      "snippet": "maskfootcitetext{${1:bibid}}"
-    },
-    "acksname": {},
-    "addperi": {},
-    "apaSevenappeq": {},
-    "apaSevenappfig": {},
-    "apaSevenapptab": {},
-    "apaSevensmash{}": {
-      "snippet": "apaSevensmash{${1:arg}}"
-    },
-    "authorsep": {},
-    "displayaffiliations": {},
-    "displayauthors": {},
-    "ifapamodedoc{}{}": {
-      "snippet": "ifapamodedoc{${1:true}}{${2:false}}"
-    },
-    "ifapamodejou{}{}": {
-      "snippet": "ifapamodejou{${1:true}}{${2:false}}"
-    },
-    "ifapamodeman{}{}": {
-      "snippet": "ifapamodeman{${1:true}}{${2:false}}"
-    },
-    "ifapamode{}{}{}": {
-      "snippet": "ifapamode{${1:man}}{${2:jou}}{${3:doc}}"
-    },
-    "keywordname": {},
-    "lastauthor": {},
-    "lastauthorseparator": {},
-    "listaffiliations": {},
-    "listauthors": {},
-    "listsuperscripts": {},
-    "mspart": {},
-    "notelabel": {},
-    "notesname": {},
-    "prelastauthor": {},
-    "prelastauthorsep": {},
-    "processfigures": {},
-    "processtables": {},
-    "rightheader{}": {
-      "snippet": "rightheader{${1:text}}"
-    },
-    "stiny{}": {
-      "snippet": "stiny{${1:text}}"
-    },
-    "theAPAenum": {},
-    "theAffiliationNumber": {},
-    "theNumberOfAffiliations": {},
-    "theNumberOfAuthors": {},
-    "theNumberOfSuperscripts": {},
-    "theappendix": {},
-    "themaskedRefs": {},
-    "thickline": {},
-    "typesectitle{}": {
-      "snippet": "typesectitle{${1:title}}"
-    },
-    "uprightlowercasegreek": {},
-    "TPToverlap": {},
-    "bibsection": {},
-    "dotwo{}{}": {
-      "snippet": "dotwo{${1:arg1}}{${2:arg2}}"
-    },
-    "eatarg{}": {
-      "snippet": "eatarg{${1:arg}}"
-    },
-    "ignore": {},
-    "looptwo{}{}": {
-      "snippet": "looptwo{${1:arg1}}{${2:arg2}}"
-    },
-    "savefootnoterule": {},
-    "xtwo{}": {
-      "snippet": "xtwo{${1:arg}}"
-    },
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {}
-  },
-  "envs": {
-    "seriate": {},
-    "APAenumerate": {},
-    "APAitemize": {}
-  },
-  "options": [
-    "10pt",
-    "11pt",
-    "12pt",
-    "a4paper",
-    "apacite",
-    "babel",
-    "biblatex",
-    "doc",
-    "donotrepeattitle",
-    "draftall",
-    "draftfirst",
-    "fignum",
-    "floatsintext",
-    "helv",
-    "jou",
-    "longtable",
-    "man",
-    "mask",
-    "natbib",
-    "nobf",
-    "nofontenc",
-    "nolmodern",
-    "nosf",
-    "notab",
-    "notimes",
-    "notxfonts",
-    "stu",
-    "tt"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/apa7"
+  ]
 }

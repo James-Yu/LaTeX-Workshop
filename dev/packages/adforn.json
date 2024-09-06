@@ -1,83 +1,221 @@
 {
-  "includes": {
-    "pifont": []
-  },
-  "macros": {
-    "adforn{}": {
-      "snippet": "adforn{${1:number}}"
+  "deps": [
+    {
+      "name": "pifont"
+    }
+  ],
+  "macros": [
+    {
+      "name": "adforn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "adfast{}": {
-      "snippet": "adfast{${1:number}}"
+    {
+      "name": "adfast",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "adfbullet": {},
-    "adfclosedflourishleft": {},
-    "adfclosedflourishright": {},
-    "adfdiamond": {},
-    "adfdoubleflourishleft": {},
-    "adfdoubleflourishright": {},
-    "adfdoublesharpflourishleft": {},
-    "adfdoublesharpflourishright": {},
-    "adfdownhalfleafleft": {},
-    "adfdownhalfleafright": {},
-    "adfdownleafleft": {},
-    "adfdownleafright": {},
-    "adfflatdownhalfleafleft": {},
-    "adfflatdownhalfleafright": {},
-    "adfflatdownoutlineleafleft": {},
-    "adfflatdownoutlineleafright": {},
-    "adfflatleafleft": {},
-    "adfflatleafoutlineleft": {},
-    "adfflatleafoutlineright": {},
-    "adfflatleafright": {},
-    "adfflatleafsolidleft": {},
-    "adfflatleafsolidright": {},
-    "adfflourishleft": {},
-    "adfflourishleftdouble": {},
-    "adfflourishright": {},
-    "adfflourishrightdouble": {},
-    "adfflowerleft": {},
-    "adfflowerright": {},
-    "adfgee": {},
-    "adfhalfleafleft": {},
-    "adfhalfleafright": {},
-    "adfhalfleftarrow": {},
-    "adfhalfleftarrowhead": {},
-    "adfhalfrightarrow": {},
-    "adfhalfrightarrowhead": {},
-    "adfhangingflatleafleft": {},
-    "adfhangingflatleafright": {
-      "snippet": "adfhangingflatleafright "
+    {
+      "name": "adfbullet"
     },
-    "adfhangingleafleft": {},
-    "adfhangingleafright": {},
-    "adfleafleft": {},
-    "adfleafright": {},
-    "adfleftarrowhead": {},
-    "adfopenflourishleft": {},
-    "adfopenflourishright": {},
-    "adfoutlineleafleft": {},
-    "adfoutlineleafright": {},
-    "adfrightarrowhead": {},
-    "adfS": {},
-    "adfsharpflourishleft": {},
-    "adfsharpflourishright": {},
-    "adfsickleflourishleft": {},
-    "adfsickleflourishright": {},
-    "adfsingleflourishleft": {},
-    "adfsingleflourishright": {},
-    "adfsmallhangingleafleft": {},
-    "adfsmallhangingleafright": {},
-    "adfsmallleafleft": {},
-    "adfsmallleafright": {},
-    "adfsolidleafleft": {},
-    "adfsolidleafright": {},
-    "adfsquare": {},
-    "adftripleflourishleft": {},
-    "adftripleflourishright": {},
-    "adfwavesleft": {},
-    "adfwavesright": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "adfclosedflourishleft"
+    },
+    {
+      "name": "adfclosedflourishright"
+    },
+    {
+      "name": "adfdiamond"
+    },
+    {
+      "name": "adfdoubleflourishleft"
+    },
+    {
+      "name": "adfdoubleflourishright"
+    },
+    {
+      "name": "adfdoublesharpflourishleft"
+    },
+    {
+      "name": "adfdoublesharpflourishright"
+    },
+    {
+      "name": "adfdownhalfleafleft"
+    },
+    {
+      "name": "adfdownhalfleafright"
+    },
+    {
+      "name": "adfdownleafleft"
+    },
+    {
+      "name": "adfdownleafright"
+    },
+    {
+      "name": "adfflatdownhalfleafleft"
+    },
+    {
+      "name": "adfflatdownhalfleafright"
+    },
+    {
+      "name": "adfflatdownoutlineleafleft"
+    },
+    {
+      "name": "adfflatdownoutlineleafright"
+    },
+    {
+      "name": "adfflatleafleft"
+    },
+    {
+      "name": "adfflatleafoutlineleft"
+    },
+    {
+      "name": "adfflatleafoutlineright"
+    },
+    {
+      "name": "adfflatleafright"
+    },
+    {
+      "name": "adfflatleafsolidleft"
+    },
+    {
+      "name": "adfflatleafsolidright"
+    },
+    {
+      "name": "adfflourishleft"
+    },
+    {
+      "name": "adfflourishleftdouble"
+    },
+    {
+      "name": "adfflourishright"
+    },
+    {
+      "name": "adfflourishrightdouble"
+    },
+    {
+      "name": "adfflowerleft"
+    },
+    {
+      "name": "adfflowerright"
+    },
+    {
+      "name": "adfgee"
+    },
+    {
+      "name": "adfhalfleafleft"
+    },
+    {
+      "name": "adfhalfleafright"
+    },
+    {
+      "name": "adfhalfleftarrow"
+    },
+    {
+      "name": "adfhalfleftarrowhead"
+    },
+    {
+      "name": "adfhalfrightarrow"
+    },
+    {
+      "name": "adfhalfrightarrowhead"
+    },
+    {
+      "name": "adfhangingflatleafleft"
+    },
+    {
+      "name": "adfhangingflatleafright "
+    },
+    {
+      "name": "adfhangingleafleft"
+    },
+    {
+      "name": "adfhangingleafright"
+    },
+    {
+      "name": "adfleafleft"
+    },
+    {
+      "name": "adfleafright"
+    },
+    {
+      "name": "adfleftarrowhead"
+    },
+    {
+      "name": "adfopenflourishleft"
+    },
+    {
+      "name": "adfopenflourishright"
+    },
+    {
+      "name": "adfoutlineleafleft"
+    },
+    {
+      "name": "adfoutlineleafright"
+    },
+    {
+      "name": "adfrightarrowhead"
+    },
+    {
+      "name": "adfS"
+    },
+    {
+      "name": "adfsharpflourishleft"
+    },
+    {
+      "name": "adfsharpflourishright"
+    },
+    {
+      "name": "adfsickleflourishleft"
+    },
+    {
+      "name": "adfsickleflourishright"
+    },
+    {
+      "name": "adfsingleflourishleft"
+    },
+    {
+      "name": "adfsingleflourishright"
+    },
+    {
+      "name": "adfsmallhangingleafleft"
+    },
+    {
+      "name": "adfsmallhangingleafright"
+    },
+    {
+      "name": "adfsmallleafleft"
+    },
+    {
+      "name": "adfsmallleafright"
+    },
+    {
+      "name": "adfsolidleafleft"
+    },
+    {
+      "name": "adfsolidleafright"
+    },
+    {
+      "name": "adfsquare"
+    },
+    {
+      "name": "adftripleflourishleft"
+    },
+    {
+      "name": "adftripleflourishright"
+    },
+    {
+      "name": "adfwavesleft"
+    },
+    {
+      "name": "adfwavesright"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

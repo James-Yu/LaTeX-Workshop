@@ -1,15 +1,25 @@
 {
-  "includes": {},
-  "macros": {
-    "theTitleReference{}{}": {
-      "snippet": "theTitleReference{${1:number}}{${2:title}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "theTitleReference",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:number}}{${2:title%plain}}"
+      }
     },
-    "titleref{}": {
-      "snippet": "titleref{${1:label}}"
+    {
+      "name": "titleref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "currenttitle": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "currenttitle"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,64 +1,139 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "subcaption": [],
-    "calc": [],
-    "etoolbox": [],
-    "booktabs": [],
-    "multirow": [],
-    "graphicx": []
-  },
-  "macros": {
-    "panel{}": {
-      "snippet": "panel{${1:width}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "graphic{}": {
-      "snippet": "graphic{${1:imagefile}}"
+    {
+      "name": "subcaption"
     },
-    "graphic[]{}": {
-      "snippet": "graphic[${2:width}]{${1:imagefile}}"
+    {
+      "name": "calc"
     },
-    "graphics{}": {
-      "snippet": "graphics{${1:file path}}"
+    {
+      "name": "etoolbox"
     },
-    "figurehspace": {},
-    "figurevspace": {},
-    "panelhspace": {},
-    "panelvspace": {},
-    "tablehspace": {},
-    "tablevspace": {},
-    "tikzsetnextfilename{}": {
-      "snippet": "tikzsetnextfilename{${1:imagefile}}"
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "multirow"
+    },
+    {
+      "name": "graphicx"
     }
-  },
-  "envs": {
-    "figures{}": {
-      "name": "figures",
-      "snippet": "{${1:width}}"
-    },
-    "figures[]{}": {
-      "name": "figures",
-      "snippet": "[${2:alignment}]{${1:width}}"
-    },
-    "panels{}": {
-      "name": "panels",
-      "snippet": "{${1:width}}"
-    },
-    "panels[]{}": {
-      "name": "panels",
-      "snippet": "[${2:alignment}]{${1:width}}"
-    },
-    "tables{}": {
-      "name": "tables",
-      "snippet": "{${1:width}}"
-    },
-    "tables[]{}": {
-      "name": "tables",
-      "snippet": "[${2:alignment}]{${1:width}}"
-    }
-  },
-  "options": [
-    "manualplacement"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "panel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "graphic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "graphic",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "graphics",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file path}}"
+      }
+    },
+    {
+      "name": "figurehspace",
+      "unusual": true
+    },
+    {
+      "name": "figurevspace",
+      "unusual": true
+    },
+    {
+      "name": "panelhspace",
+      "unusual": true
+    },
+    {
+      "name": "panelvspace",
+      "unusual": true
+    },
+    {
+      "name": "tablehspace",
+      "unusual": true
+    },
+    {
+      "name": "tablevspace",
+      "unusual": true
+    },
+    {
+      "name": "tikzsetnextfilename",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "figures",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width%plain}}"
+      }
+    },
+    {
+      "name": "figures",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:alignment}]{${1:width%plain}}"
+      }
+    },
+    {
+      "name": "panels",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width%plain}}"
+      }
+    },
+    {
+      "name": "panels",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:alignment}]{${1:width%plain}}"
+      }
+    },
+    {
+      "name": "tables",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width%plain}}"
+      }
+    },
+    {
+      "name": "tables",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:alignment}]{${1:width%plain}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/hep-float#c": [
+      "manualplacement"
+    ]
+  },
+  "args": [
+    "\\usepackage/hep-float#c"
+  ]
 }

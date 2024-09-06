@@ -1,14 +1,23 @@
 {
-  "includes": {},
-  "macros": {
-    "afterpage{}": {
-      "snippet": "afterpage{${1:command}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "afterpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command%plain}}"
+      }
     },
-    "addboxcontents{}": {
-      "snippet": "addboxcontents{${1:contents}}"
+    {
+      "name": "addboxcontents",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

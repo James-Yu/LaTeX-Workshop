@@ -1,25 +1,48 @@
 {
-  "includes": {
-    "luatex": []
-  },
-  "macros": {
-    "adddatestamp{}": {
-      "snippet": "adddatestamp{${1:key}}"
-    },
-    "adddaystamp{}": {
-      "snippet": "adddaystamp{${1:key}}"
-    },
-    "addmonthstamp{}": {
-      "snippet": "addmonthstamp{${1:key}}"
-    },
-    "addyearstamp{}": {
-      "snippet": "addyearstamp{${1:key}}"
-    },
-    "luacodefordatestamp{}{}": {
-      "snippet": "luacodefordatestamp{${1:arg1}}{${2:arg2}}"
+  "deps": [
+    {
+      "name": "luatex"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "adddatestamp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "adddaystamp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "addmonthstamp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "addyearstamp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "luacodefordatestamp",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

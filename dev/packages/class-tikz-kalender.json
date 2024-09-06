@@ -1,70 +1,180 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "ifxetex": [],
-    "pgfkeys": [],
-    "etoolbox": [],
-    "ragged2e": [],
-    "fontenc": [],
-    "lmodern": [],
-    "tgheros": [],
-    "geometry": [],
-    "inputenc": [],
-    "babel": [],
-    "translator": [],
-    "tikz": [],
-    "tikzlibrarycalendar": []
-  },
-  "macros": {
-    "setup{}": {
-      "snippet": "setup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "ifluatex"
     },
-    "makeKalender": {},
-    "period{}{}": {
-      "snippet": "period{${1:date1}}{${2:date2}}"
+    {
+      "name": "ifxetex"
     },
-    "period{}{}[]": {
-      "snippet": "period{${1:date1}}{${2:date2}}[${3:options}]"
+    {
+      "name": "pgfkeys"
     },
-    "event{}{}": {
-      "snippet": "event{${1:date}}{${2:text}}"
+    {
+      "name": "etoolbox"
     },
-    "event{}{}[]": {
-      "snippet": "event{${1:date}}{${2:text}}[${3:options}]"
+    {
+      "name": "ragged2e"
     },
-    "theweeknumber": {},
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
+    {
+      "name": "fontenc"
     },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
+    {
+      "name": "lmodern"
     },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tgheros"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "inputenc"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "translator"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibrarycalendar"
+    }
+  ],
+  "macros": [
+    {
+      "name": "setup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\setup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "makeKalender"
+    },
+    {
+      "name": "period",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:date1}}{${2:date2}}"
+      },
+      "detail": ".",
+      "doc": "Full stop, period"
+    },
+    {
+      "name": "period",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:date1}}{${2:date2}}[${3:options}]"
+      },
+      "detail": ".",
+      "doc": "Full stop, period"
+    },
+    {
+      "name": "event",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:date}}{${2:text}}"
+      }
+    },
+    {
+      "name": "event",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:date}}{${2:text}}[${3:options}]"
+      }
+    },
+    {
+      "name": "theweeknumber",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setup#c": [
       "lang={${1:babel options}}",
       "paper=${1|a0,a1,a2,a3,a4,a5,a6,b0,b1,b2,b3,b4,b5,b6,c0,c1,c2,c3,c4,c5,c6,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansia,ansib,ansic,ansid,ansie,letter,executive,legal|}",
       "showweeknumbers",
@@ -90,5 +200,6 @@
       "sundayColor=",
       "xcoloroptions={${1:xcolor options}}"
     ]
-  ]
+  },
+  "args": []
 }

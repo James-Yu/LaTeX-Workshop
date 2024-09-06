@@ -1,56 +1,114 @@
 {
-  "includes": {
-    "amsmath": [],
-    "amssymb": [],
-    "graphicx": []
-  },
-  "macros": {
-    "bigtimes": {
-      "detail": "⨉",
-      "documentation": "N-ARY TIMES OPERATOR"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "nuparrow": {},
-    "ndownarrow": {},
-    "NewShadedTheorem{}[]{}": {
-      "snippet": "NewShadedTheorem{${1:envname}}[${2:numbered like}]{${3:caption}}"
+    {
+      "name": "amssymb"
     },
-    "NewShadedTheorem{}{}": {
-      "snippet": "NewShadedTheorem{${1:envname}}{${2:caption}}"
+    {
+      "name": "graphicx"
+    }
+  ],
+  "macros": [
+    {
+      "name": "bigtimes",
+      "detail": "⨉ (\"txfonts\" command)",
+      "doc": "N-ary times operator"
     },
-    "NewShadedTheorem{}{}[]": {
-      "snippet": "NewShadedTheorem{${1:envname}}{${2:caption}}[${3:within}]"
+    {
+      "name": "nuparrow"
     },
-    "theoremframecommand": {},
-    "InsertTheoremBreak": {},
-    "InsertTheoremBreak*": {},
-    "MathIndent": {},
-    "SetMathIndent{}": {
-      "snippet": "SetMathIndent{${1:math code}}"
+    {
+      "name": "ndownarrow"
     },
-    "AddtoMathIndent{}": {
-      "snippet": "AddtoMathIndent{${1:math code}}"
+    {
+      "name": "NewShadedTheorem",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:envname}}[${3:numbered like}]{${2:caption}}"
+      }
     },
-    "PopMathIndent": {},
-    "PopMathIndent*": {},
-    "DeclareMathSet{}": {
-      "snippet": "DeclareMathSet{${1:identifier}}"
+    {
+      "name": "NewShadedTheorem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:caption}}"
+      }
     },
-    "DeclareMathSet[]{}": {
-      "snippet": "DeclareMathSet[${2:options}]{${1:identifier}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "NewShadedTheorem",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:envname}}{${2:caption}}[${3:within}]"
+      }
     },
-    "ProvidePGFPagesFourOnOneWithSpaceForNotes": {},
-    "OverloadUnderscoreInMath": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "theoremframecommand",
+      "unusual": true
+    },
+    {
+      "name": "InsertTheoremBreak"
+    },
+    {
+      "name": "InsertTheoremBreak*"
+    },
+    {
+      "name": "MathIndent"
+    },
+    {
+      "name": "SetMathIndent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math code}}"
+      }
+    },
+    {
+      "name": "AddtoMathIndent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math code}}"
+      }
+    },
+    {
+      "name": "PopMathIndent"
+    },
+    {
+      "name": "PopMathIndent*"
+    },
+    {
+      "name": "DeclareMathSet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:identifier}}"
+      }
+    },
+    {
+      "name": "DeclareMathSet",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:identifier}}",
+        "keys": [
+          "\\DeclareMathSet"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ProvidePGFPagesFourOnOneWithSpaceForNotes"
+    },
+    {
+      "name": "OverloadUnderscoreInMath"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\DeclareMathSet": [
       "format=",
       "name=",
       "prefix=",
       "overwrite"
     ]
-  ]
+  },
+  "args": []
 }

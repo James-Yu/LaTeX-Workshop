@@ -1,84 +1,173 @@
 {
-  "includes": {
-    "tkz-base": [],
-    "fp": []
-  },
-  "macros": {
-    "tkzFct{}": {
-      "snippet": "tkzFct{${1:gnuplot expression}}"
+  "deps": [
+    {
+      "name": "tkz-base"
     },
-    "tkzFct[]{}": {
-      "snippet": "tkzFct[${2:options}]{${1:gnuplot expression}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "tkzDefPointByFct()": {
-      "snippet": "tkzDefPointByFct(${1:number})"
-    },
-    "tkzDefPointByFct[]()": {
-      "snippet": "tkzDefPointByFct[${1:options}](${2:number})",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "tkzDrawTangentLine()": {
-      "snippet": "tkzDrawTangentLine(${1:number})"
-    },
-    "tkzDrawTangentLine[]()": {
-      "snippet": "tkzDrawTangentLine[${1:options}](${2:number})",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "tkzDrawArea[]": {
-      "snippet": "tkzDrawArea[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "tkzDrawAreafg[]": {
-      "snippet": "tkzDrawAreafg[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "tkzDrawRiemannSum[]": {
-      "snippet": "tkzDrawRiemannSum[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "tkzDrawRiemannSumInf[]": {
-      "snippet": "tkzDrawRiemannSumInf[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "tkzDrawRiemannSumSup[]": {
-      "snippet": "tkzDrawRiemannSumSup[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "tkzDrawRiemannSumMid[]": {
-      "snippet": "tkzDrawRiemannSumMid[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "tkzFctPar{}{}": {
-      "snippet": "tkzFctPar{${1:x(${3:t})}}{${2:y(${4:t})}}"
-    },
-    "tkzFctPar[]{}{}": {
-      "snippet": "tkzFctPar[${3:options}]{${1:x(${4:t})}}{${2:y(${5:t})}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "tkzFctPolar{}": {
-      "snippet": "tkzFctPolar{${1:f(${2:t})}}"
-    },
-    "tkzFctPolar[]{}": {
-      "snippet": "tkzFctPolar[${2:options}]{${1:f(${3:t})}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "fp"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "tkzFct",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gnuplot expression}}"
+      }
+    },
+    {
+      "name": "tkzFct",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:gnuplot expression}}",
+        "keys": [
+          "\\tkzFct#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzDefPointByFct",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:number})"
+      }
+    },
+    {
+      "name": "tkzDefPointByFct",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:number})",
+        "keys": [
+          "\\tkzDefPointByFct#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzDrawTangentLine",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:number})"
+      }
+    },
+    {
+      "name": "tkzDrawTangentLine",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:number})",
+        "keys": [
+          "\\tkzDrawTangentLine#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzDrawArea",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\tkzDrawArea#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzDrawAreafg",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\tkzDrawAreafg#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzDrawRiemannSum",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\tkzDrawRiemannSum#c,\\tkzDrawRiemannSumInf#c,\\tkzDrawRiemannSumSup#c,\\tkzDrawRiemannSumMid#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzDrawRiemannSumInf",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\tkzDrawRiemannSum#c,\\tkzDrawRiemannSumInf#c,\\tkzDrawRiemannSumSup#c,\\tkzDrawRiemannSumMid#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzDrawRiemannSumSup",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\tkzDrawRiemannSum#c,\\tkzDrawRiemannSumInf#c,\\tkzDrawRiemannSumSup#c,\\tkzDrawRiemannSumMid#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzDrawRiemannSumMid",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\tkzDrawRiemannSum#c,\\tkzDrawRiemannSumInf#c,\\tkzDrawRiemannSumSup#c,\\tkzDrawRiemannSumMid#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzFctPar",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x(${3:t})}}{${2:y(${4:t})}}"
+      }
+    },
+    {
+      "name": "tkzFctPar",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:x(${4:t})}}{${2:y(${5:t})}}",
+        "keys": [
+          "\\tkzFctPar#c,\\tkzFctPolar#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzFctPolar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:f(${2:t})}}"
+      }
+    },
+    {
+      "name": "tkzFctPolar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:f(${3:t})}}",
+        "keys": [
+          "\\tkzFctPar#c,\\tkzFctPolar#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\tkzFct#c": [
       "domain=",
       "samples=",
       "id=",
@@ -86,32 +175,41 @@
       "line width=",
       "style="
     ],
-    [
+    "\\tkzDefPointByFct#c": [
       "draw",
       "with=",
       "ref="
     ],
-    [
+    "\\tkzDrawTangentLine#c": [
       "draw",
       "with=",
       "kr=",
       "kl="
     ],
-    [
+    "\\tkzDrawArea#c": [
       "domain=",
       "with=",
       "color=",
       "opacity=",
       "style="
     ],
-    [
+    "\\tkzDrawAreafg#c": [
       "between=",
       "domain=",
       "opacity="
     ],
-    [
+    "\\tkzDrawRiemannSum#c,\\tkzDrawRiemannSumInf#c,\\tkzDrawRiemannSumSup#c,\\tkzDrawRiemannSumMid#c": [
       "interval=",
       "number="
+    ],
+    "\\tkzFctPar#c,\\tkzFctPolar#c": [
+      "domain=",
+      "samples=",
+      "id=",
+      "color=",
+      "line width=",
+      "style="
     ]
-  ]
+  },
+  "args": []
 }

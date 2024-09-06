@@ -1,25 +1,39 @@
 {
-  "includes": {
-    "tikz": []
-  },
-  "macros": {
-    "pgfinterferencepattern{}": {
-      "snippet": "pgfinterferencepattern{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pgfinterferenceoptions{}": {
-      "snippet": "pgfinterferenceoptions{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     }
-  },
-  "envs": {},
-  "options": [
-    "draft"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "pgfinterferencepattern",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pgfinterferencepattern,\\pgfinterferenceoptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pgfinterferenceoptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pgfinterferencepattern,\\pgfinterferenceoptions"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pgf-interference#c": [
+      "draft"
+    ],
+    "\\pgfinterferencepattern,\\pgfinterferenceoptions": [
       "wavelength=${1:number}",
       "intensity=${1:number}",
       "slits=${1:integer}",
@@ -32,5 +46,8 @@
       "screen-color=",
       "ruler=${1|above,below,screen,none|}"
     ]
+  },
+  "args": [
+    "\\usepackage/pgf-interference#c"
   ]
 }

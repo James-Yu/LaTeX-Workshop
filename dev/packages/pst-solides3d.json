@@ -1,103 +1,253 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-node": [],
-    "pst-xkey": [],
-    "multido": []
-  },
-  "macros": {
-    "axesIIID()()": {
-      "snippet": "axesIIID(${1:x1},${2:y1},${3:z1})(${4:x2},${5:y2},${6:z2})"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "axesIIID[]()()": {
-      "snippet": "axesIIID[${1:options}](${2:x1},${3:y1},${4:z1})(${5:x2},${6:y2},${7:z2})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-node"
     },
-    "psSolid[]": {
-      "snippet": "psSolid[${1:object=name,options}]"
+    {
+      "name": "pst-xkey"
     },
-    "psSolid[]()": {
-      "snippet": "psSolid[${1:options}](${2:x},${3:y},${4:z})",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "multido"
+    }
+  ],
+  "macros": [
+    {
+      "name": "axesIIID",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1},${3:z1})(${4:x2},${5:y2},${6:z2})"
+      }
     },
-    "codejps{}": {
-      "snippet": "codejps{${1:jps code}}"
+    {
+      "name": "axesIIID",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1},${4:z1})(${5:x2},${6:y2},${7:z2})",
+        "keys": [
+          "\\axesIIID#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "defFunction{}(){}{}{}": {
-      "snippet": "defFunction{${1:name}}(${5:var}){${2:x}}{${3:y}}{${4:z}}"
+    {
+      "name": "psSolid",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:object=name}]"
+      }
     },
-    "defFunction[]{}(){}{}{}": {
-      "snippet": "defFunction[${5:options}]{${1:name}}(${6:var}){${2:x}}{${3:y}}{${4:z}}"
+    {
+      "name": "psSolid",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:object=name,options}]"
+      }
     },
-    "psSurface()(){}": {
-      "snippet": "psSurface(${2:xmin},${3:ymin})(${4:xmax},${5:ymax}){${1:surface definition}}"
+    {
+      "name": "psSolid",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:object=name}](${2:x},${3:y},${4:z})"
+      }
     },
-    "psSurface[]()(){}": {
-      "snippet": "psSurface[${2:options}](${3:xmin},${4:ymin})(${5:xmax},${6:ymax}){${1:surface definition}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "psSolid",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:object=name,options}](${2:x},${3:y},${4:z})"
+      }
     },
-    "psImplicitSurface[]": {
-      "snippet": "psImplicitSurface[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "codejps",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:jps code}}"
+      }
     },
-    "psImplicitSurface[]()": {
-      "snippet": "psImplicitSurface[${1:options}](${2:x},${3:y},${4:z})",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "defFunction",
+      "arg": {
+        "format": "{}(){}{}{}",
+        "snippet": "{${1:name%specialDef}}(${5:var}){${2:x}}{${3:y}}{${4:z}}"
+      }
     },
-    "composeSolid": {},
-    "psPoint(){}": {
-      "snippet": "psPoint(${2:x},${3:y},${4:z}){${1:name}}"
+    {
+      "name": "defFunction",
+      "arg": {
+        "format": "[]{}(){}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:name%specialDef}}(${6:var}){${2:x}}{${3:y}}{${4:z}}"
+      }
     },
-    "psTransformPoint()(){}": {
-      "snippet": "psTransformPoint(${2:x},${3:y},${4:z})(${5:vx},${6:vy},${7:vz}){${1:name}}"
+    {
+      "name": "psSurface",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:xmin},${3:ymin})(${4:xmax},${5:ymax}){${1:surface definition%definition}}"
+      }
     },
-    "psTransformPoint[]()(){}": {
-      "snippet": "psTransformPoint[${2:options}](${3:x},${4:y},${5:z})(${6:vx},${7:vy},${8:vz}){${1:name}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "psSurface",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:xmin},${4:ymin})(${5:xmax},${6:ymax}){${1:surface definition%definition}}",
+        "keys": [
+          "\\psSurface#c,\\psImplicitSurface#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "psProjection[]": {
-      "snippet": "psProjection[${1:object=name,options}]"
+    {
+      "name": "psImplicitSurface",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\psSurface#c,\\psImplicitSurface#c",
+          "\\psImplicitSurface#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "psProjection[]()": {
-      "snippet": "psProjection[${1:options}](${2:x},${3:y},${4:z})",
-      "keyvalindex": 5,
-      "keyvalpos": 0
+    {
+      "name": "psImplicitSurface",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y},${4:z})",
+        "keys": [
+          "\\psSurface#c,\\psImplicitSurface#c",
+          "\\psImplicitSurface#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "psResetSolidKeys": {},
-    "gridIIID()()": {
-      "snippet": "gridIIID(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    {
+      "name": "composeSolid"
     },
-    "gridIIID[]()()": {
-      "snippet": "gridIIID[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})",
-      "keyvalindex": 6,
-      "keyvalpos": 0
+    {
+      "name": "psPoint",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y},${4:z}){${1:name}}"
+      }
     },
-    "psImage[]": {
-      "snippet": "psImage[${1:filename=imagefile,options}]"
+    {
+      "name": "psTransformPoint",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:x},${3:y},${4:z})(${5:vx},${6:vy},${7:vz}){${1:name}}"
+      }
     },
-    "psImage[]()": {
-      "snippet": "psImage[${1:options}](${2:x},${3:y})",
-      "keyvalindex": 7,
-      "keyvalpos": 0
+    {
+      "name": "psTransformPoint",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y},${5:z})(${6:vx},${7:vy},${8:vz}){${1:name}}",
+        "keys": [
+          "\\psTransformPoint#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "Normale()": {
-      "snippet": "Normale(${1:radius},${2:longitude},${3:latitude})"
+    {
+      "name": "psProjection",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:object=name}]"
+      }
     },
-    "addtosolideslistobject{}": {
-      "snippet": "addtosolideslistobject{${1:name}}"
+    {
+      "name": "psProjection",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:object=name,options}]"
+      }
     },
-    "PSTSOLIDESIIIDLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "psProjection",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:object=name}](${2:x},${3:y},${4:z})"
+      }
+    },
+    {
+      "name": "psProjection",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:object=name,options}](${2:x},${3:y},${4:z})"
+      }
+    },
+    {
+      "name": "psResetSolidKeys",
+      "unusual": true
+    },
+    {
+      "name": "gridIIID",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "gridIIID",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})",
+        "keys": [
+          "\\gridIIID#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psImage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:filename=imagefile}]"
+      }
+    },
+    {
+      "name": "psImage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:filename=imagefile,options}]"
+      }
+    },
+    {
+      "name": "psImage",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:filename=imagefile}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psImage",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:filename=imagefile,options}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "Normale",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:radius},${2:longitude},${3:latitude})"
+      }
+    },
+    {
+      "name": "addtosolideslistobject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\axesIIID#c": [
       "arrowinset=${1:number}",
       "arrowsize=",
       "axisemph=${1:font commands}",
@@ -108,7 +258,7 @@
       "mathLabel",
       "showOrigin"
     ],
-    [
+    "\\psSolid#c": [
       "object=${1|point,line,vector,plan,grille,cube,cylindre,cylindrecreux,cone,conecreux,tronccone,troncconecreux,sphere,ellipsoid,calottesphere,calottespherecreuse,tore,tetrahedron,octahedron,dodecahedron,icosahedron,anneau,prisme,prismecreux,parallelepiped,face,polygonregulier,ruban,surface,surface*,surfaceparametree,pie,fusion,geode,load,offfile,objfile,datfile,new,courbe,vecteur,vecteur3d|}",
       "a=${1:length}",
       "action=${1|none,draw,draw*,draw**,writesolid,writeobj,writeoff|}",
@@ -160,7 +310,7 @@
       "ngrid=${1:<n> or <n1 n2>}",
       "normal=${1:x y z}",
       "num=${1|0,1,2,3,all|}",
-      "numfaces=${1|0,1,2,3,all,${1:PS code}|}",
+      "numfaces=${2|0,1,2,3,all,${1:PS code}|}",
       "opacity=${1:factor}",
       "origine=${1:x y z}",
       "phi=${1:degrees}",
@@ -192,7 +342,7 @@
       "unit=${1:number}",
       "visibility"
     ],
-    [
+    "\\psSurface#c,\\psImplicitSurface#c": [
       "algebraic",
       "axesboxed",
       "base=${1:base spec}",
@@ -226,50 +376,27 @@
       "Zmax=${1:number}",
       "Zmin=${1:number}"
     ],
-    [
-      "algebraic",
-      "axesboxed",
-      "base=${1:base spec}",
-      "color1=${1:xcolor color}",
-      "color2=${1:xcolor color}",
-      "color3=${1:xcolor color}",
-      "color4=${1:xcolor color}",
-      "deactivatecolor",
-      "fcol=${1:n1 (col1) n2 (col2) ...}",
-      "fillcolor=",
-      "grid",
-      "hue=${1:hue spec}",
-      "incolor=",
-      "inhue=${1:hue spec}",
-      "inouthue=${1:hue spec}",
-      "intersectionplan={[${1:eq1}] ${2:[eq2] ...}}",
-      "intersectiontype=${1|0,-1|}",
-      "intersectioncolor=${1:(color1) (color2) ...}",
-      "intersectionlinewidth=${1:w1 w2 ...}",
-      "lightintensity=${1:number}",
-      "lightsrc=${1:x y z}",
-      "linecolor=",
-      "linewidth=",
-      "ngrid=${1:<n> or <n1 n2>}",
-      "opacity=${1:factor}",
-      "QZ=${1:number}",
-      "spotX=${1:pos}",
-      "spotY=${1:pos}",
-      "spotZ=${1:pos}",
-      "xytranslate=${1:x y}",
-      "Zmax=${1:number}",
-      "Zmin=${1:number}",
+    "\\psImplicitSurface#c": [
       "ImplFunction=${1:F(x,y,z)}",
       "XMinMax=${1:min max step}",
       "YMinMax=${1:min max step}",
       "ZMinMax=${1:min max step}"
     ],
-    [
+    "\\psLineIIID#c,\\psPolygonIIID#c": [
+      "doubleline",
+      "linearc=${1:number}",
+      "linecolor=",
+      "linewidth="
+    ],
+    "\\psPolygonIIID#c": [
+      "fillstyle=${1|solid,vlines,hlines,crosshatch|}"
+    ],
+    "\\psTransformPoint#c": [
       "RotX=${1:degrees}",
       "RotY=${1:degrees}",
       "RotZ=${1:degrees}"
     ],
-    [
+    "\\psProjection#c": [
       "definition=${1|milieu,parallelopoint,translatepoint,rotatepoint,hompoint,orthoproj,projx,projy,sympoint,axesympoint,cpoint,xdpoint,ydpoint,interdroite,interdroitecercle,vecteur,orthovecteur,normalize,addv,subv,mulv,horizontale,verticale,paral,perp,mediatrice,bissectrice,axesymdroite,rotatedroite,translatedroite,ABcercle,diamcercle,translatepol,rotatepol,hompol,sympol,axesympol|}",
       "args=${1:args spec}",
       "fillcolor=",
@@ -293,7 +420,7 @@
       "text=${1:text}",
       "visibility"
     ],
-    [
+    "\\gridIIID#c": [
       "axisemph=${1:font commands}",
       "linecolor=",
       "spotX=${1:pos}",
@@ -306,7 +433,7 @@
       "Zmax=${1:number}",
       "Zmin=${1:number}"
     ],
-    [
+    "\\psImage#c": [
       "divisions=${1:integer}",
       "filename=${1:imagefile}",
       "normal=${1:x y z}",
@@ -314,5 +441,6 @@
       "phi=${1:degrees}",
       "unitPicture=${1:number}"
     ]
-  ]
+  },
+  "args": []
 }

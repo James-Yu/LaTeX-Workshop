@@ -1,21 +1,39 @@
 {
-  "includes": {
-    "platex": []
-  },
-  "macros": {
-    "yen": {
-      "detail": "¥",
-      "documentation": "YEN SIGN"
-    },
-    "ttyen": {},
-    "ttbslash": {},
-    "BS": {},
-    "verbatimleftmargin": {},
-    "verbatimsize": {}
-  },
-  "envs": {},
-  "options": [
-    "yen"
+  "deps": [
+    {
+      "name": "platex"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "yen",
+      "detail": "¥ (\"amsfonts\" command)",
+      "doc": "Yen sign"
+    },
+    {
+      "name": "ttyen"
+    },
+    {
+      "name": "ttbslash"
+    },
+    {
+      "name": "BS"
+    },
+    {
+      "name": "verbatimleftmargin",
+      "unusual": true
+    },
+    {
+      "name": "verbatimsize"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/okuverb#c": [
+      "yen"
+    ]
+  },
+  "args": [
+    "\\usepackage/okuverb#c"
+  ]
 }

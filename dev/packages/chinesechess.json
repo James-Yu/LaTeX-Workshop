@@ -1,69 +1,208 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "l3draw": []
-  },
-  "macros": {
-    "cchessboard": {},
-    "cchessboard[]": {
-      "snippet": "cchessboard[${1:外观选项}]"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "cchessboard*": {},
-    "cchessboard*[]": {
-      "snippet": "cchessboard*[${1:外观选项}]"
-    },
-    "cchessman{}": {
-      "snippet": "cchessman{${1:棋子列表}}"
-    },
-    "cchessman[]{}": {
-      "snippet": "cchessman[${2:外观选项}]{${1:棋子列表}}"
-    },
-    "init{}": {
-      "snippet": "init{${1:棋子列表}}"
-    },
-    "set{}{}": {
-      "snippet": "set{${1:棋子位置}}{${2:棋子位置列表}}"
-    },
-    "del{}": {
-      "snippet": "del{${1:棋盘坐标}}"
-    },
-    "mov{}{}{}": {
-      "snippet": "mov{${1:棋子编码}}{${2:原棋盘坐标}}{${3:新棋盘坐标}}"
-    },
-    "printman{}": {
-      "snippet": "printman{${1:棋子编码}}"
-    },
-    "printman[]{}": {
-      "snippet": "printman[${2:外观选项}]{${1:棋子编码}}"
-    },
-    "getpiece{}": {
-      "snippet": "getpiece{${1:棋子编码}}"
-    },
-    "getpiece[]{}": {
-      "snippet": "getpiece[${2:棋子字号}]{${1:棋子编码}}"
-    },
-    "piecechar{}{}": {
-      "snippet": "piecechar{${1:棋子编码}}{${2:棋子字符}}"
-    },
-    "resetpiece": {},
-    "cchessset{}": {
-      "snippet": "cchessset{${1:外观选项}}"
+    {
+      "name": "l3draw"
     }
-  },
-  "envs": {
-    "setcchessman": {},
-    "setcchessman[]": {
-      "name": "setcchessman",
-      "snippet": "[${1:外观选项}]"
-    },
-    "setcchessman*": {},
-    "setcchessman*[]": {
-      "name": "setcchessman*",
-      "snippet": "[${1:外观选项}]"
-    }
-  },
-  "options": [
-    "draft"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "cchessboard"
+    },
+    {
+      "name": "cchessboard",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:外观选项%keyvals}]",
+        "keys": [
+          "\\cchessboard,\\cchessboard*,\\cchessman,\\begin{setcchessman},\\begin{setcchessman*},\\printman,\\cchessset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cchessboard*"
+    },
+    {
+      "name": "cchessboard*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:外观选项%keyvals}]",
+        "keys": [
+          "\\cchessboard,\\cchessboard*,\\cchessman,\\begin{setcchessman},\\begin{setcchessman*},\\printman,\\cchessset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cchessman",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:棋子列表}}"
+      }
+    },
+    {
+      "name": "cchessman",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:外观选项%keyvals}]{${1:棋子列表}}",
+        "keys": [
+          "\\cchessboard,\\cchessboard*,\\cchessman,\\begin{setcchessman},\\begin{setcchessman*},\\printman,\\cchessset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "init",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:棋子列表}}"
+      }
+    },
+    {
+      "name": "set",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:棋子位置}}{${2:棋子位置列表}}"
+      }
+    },
+    {
+      "name": "del",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:棋盘坐标}}"
+      }
+    },
+    {
+      "name": "mov",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:棋子编码}}{${2:原棋盘坐标}}{${3:新棋盘坐标}}"
+      }
+    },
+    {
+      "name": "printman",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:棋子编码%ref}}"
+      }
+    },
+    {
+      "name": "printman",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:外观选项%keyvals}]{${1:棋子编码%ref}}",
+        "keys": [
+          "\\cchessboard,\\cchessboard*,\\cchessman,\\begin{setcchessman},\\begin{setcchessman*},\\printman,\\cchessset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "getpiece",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:棋子编码}}"
+      }
+    },
+    {
+      "name": "getpiece",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:棋子字号}]{${1:棋子编码}}"
+      }
+    },
+    {
+      "name": "piecechar",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:棋子编码}}{${2:棋子字符}}"
+      }
+    },
+    {
+      "name": "resetpiece"
+    },
+    {
+      "name": "cchessset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:外观选项%keyvals}}",
+        "keys": [
+          "\\cchessboard,\\cchessboard*,\\cchessman,\\begin{setcchessman},\\begin{setcchessman*},\\printman,\\cchessset"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "setcchessman"
+    },
+    {
+      "name": "setcchessman",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:外观选项%keyvals}]",
+        "keys": [
+          "\\cchessboard,\\cchessboard*,\\cchessman,\\begin{setcchessman},\\begin{setcchessman*},\\printman,\\cchessset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setcchessman*"
+    },
+    {
+      "name": "setcchessman*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:外观选项%keyvals}]",
+        "keys": [
+          "\\cchessboard,\\cchessboard*,\\cchessman,\\begin{setcchessman},\\begin{setcchessman*},\\printman,\\cchessset"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/chinesechess#c": [
+      "draft"
+    ],
+    "\\cchessboard,\\cchessboard*,\\cchessman,\\begin{setcchessman},\\begin{setcchessman*},\\printman,\\cchessset": [
+      "draft",
+      "gridsize=",
+      "boardtype=${1|x,x+,x+t,x+tn,x+Xtn|}",
+      "boardlinewd=",
+      "boardlinecolor=",
+      "boardbg=${1:imagefile}",
+      "piecechar={${1:piece}}{${2:symbol}}",
+      "piecefont=${1:font commands}",
+      "piecetype=${1|o,oo,ooo|}",
+      "boxlinewd=",
+      "boxcolor=",
+      "redpiece=",
+      "blkpiece=",
+      "lower=",
+      "donut=",
+      "redupper=",
+      "blkupper=",
+      "shadow=",
+      "charstroke=${1|none,solid,white,bold,invisible|}",
+      "man={${1:man options}}",
+      "man/label=",
+      "man/nums=${1:integer}",
+      "resize={${1:resize options}}",
+      "resize/type=${1|none,real|}",
+      "resize/xscale=${1:factor}",
+      "resize/yscale=${1:factor}",
+      "resize/scale=${1:factor}",
+      "resize/width=",
+      "resize/height="
+    ]
+  },
+  "args": [
+    "\\usepackage/chinesechess#c"
+  ]
 }

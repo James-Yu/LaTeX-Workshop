@@ -1,27 +1,55 @@
 {
-  "includes": {
-    "lastpage": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "pagerangeoptions{}": {
-      "snippet": "pagerangeoptions{${1:options}}"
+  "deps": [
+    {
+      "name": "lastpage"
     },
-    "pagerange{}": {
-      "snippet": "pagerange{${1:page range}}"
-    },
-    "pagestart": {},
-    "pageend": {},
-    "getpagenumber{}": {
-      "snippet": "getpagenumber{${1:label}}"
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "tie=${1:character}",
-    "acceptempty",
-    "defaultfirstpage=${1:number}",
-    "defaultlastpage=${1:number}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "pagerangeoptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/pagerange#c,\\pagerangeoptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pagerange",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:page range}}"
+      }
+    },
+    {
+      "name": "pagestart"
+    },
+    {
+      "name": "pageend"
+    },
+    {
+      "name": "getpagenumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pagerange#c,\\pagerangeoptions": [
+      "tie=${1:character}",
+      "acceptempty",
+      "defaultfirstpage=${1:number}",
+      "defaultlastpage=${1:number}"
+    ]
+  },
+  "args": [
+    "\\usepackage/pagerange#c,\\pagerangeoptions"
+  ]
 }

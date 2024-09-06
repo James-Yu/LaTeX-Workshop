@@ -1,41 +1,77 @@
 {
-  "includes": {
-    "tcolorbox": [],
-    "tcolorboxlibraryskins": [],
-    "xstring": [],
-    "hyperref": []
-  },
-  "macros": {
-    "cvssScore{}": {
-      "snippet": "cvssScore{${1:CVSS string}}"
+  "deps": [
+    {
+      "name": "tcolorbox"
     },
-    "cvssScorepretty{}": {
-      "snippet": "cvssScorepretty{${1:CVSS string}}"
+    {
+      "name": "tcolorboxlibraryskins"
     },
-    "cvssLevel{}": {
-      "snippet": "cvssLevel{${1:CVSS string}}"
+    {
+      "name": "xstring"
     },
-    "cvssLevelpretty{}": {
-      "snippet": "cvssLevelpretty{${1:CVSS string}}"
+    {
+      "name": "hyperref"
+    }
+  ],
+  "macros": [
+    {
+      "name": "cvssScore",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:CVSS string}}"
+      }
     },
-    "cvssTag{}": {
-      "snippet": "cvssTag{${1:CVSS string}}"
+    {
+      "name": "cvssScorepretty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:CVSS string}}"
+      }
     },
-    "cvssPrint{}": {
-      "snippet": "cvssPrint{${1:CVSS string}}"
+    {
+      "name": "cvssLevel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:CVSS string}}"
+      }
     },
-    "category{}": {
-      "snippet": "category{${1:CVSS score}}"
+    {
+      "name": "cvssLevelpretty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:CVSS string}}"
+      }
     },
-    "cvssFrame{}": {
-      "snippet": "cvssFrame{${1:CVSS score}}"
+    {
+      "name": "cvssTag",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:CVSS string}}"
+      }
     },
-    "scoreLow": {},
-    "scoreMed": {},
-    "scoreHigh": {},
-    "scoreCrit": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "cvssPrint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:CVSS string}}"
+      }
+    },
+    {
+      "name": "category",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:CVSS score}}"
+      }
+    },
+    {
+      "name": "cvssFrame",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:CVSS score}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

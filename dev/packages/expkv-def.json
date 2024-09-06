@@ -1,15 +1,20 @@
 {
-  "includes": {
-    "expkv-pop": []
-  },
-  "macros": {
-    "ekvdefinekeys{}{}": {
-      "snippet": "ekvdefinekeys{${1:set}}{${2:keyvals}}"
-    },
-    "ekvdDate": {},
-    "ekvdVersion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "deps": [
+    {
+      "name": "expkv-pop"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ekvdefinekeys",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:set}}{${2:keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

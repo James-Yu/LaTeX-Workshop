@@ -1,51 +1,218 @@
 {
-  "includes": {},
-  "macros": {
-    "setmathdigitfont{}": {
-      "snippet": "setmathdigitfont{${1:font name}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "setmathdigitfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
     },
-    "setmathdigitfont[]{}": {
-      "snippet": "setmathdigitfont[${2:Options}]{${1:font name}}"
+    {
+      "name": "setmathdigitfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Options%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmathdigitfont,\\setmathsfdigitfont,\\setmathttdigitfont"
+        ],
+        "keyPos": 0
+      }
     },
-    "setmathsfdigitfont{}": {
-      "snippet": "setmathsfdigitfont{${1:font name}}"
+    {
+      "name": "setmathsfdigitfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
     },
-    "setmathsfdigitfont[]{}": {
-      "snippet": "setmathsfdigitfont[${2:Options}]{${1:font name}}"
+    {
+      "name": "setmathsfdigitfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Options%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmathdigitfont,\\setmathsfdigitfont,\\setmathttdigitfont"
+        ],
+        "keyPos": 0
+      }
     },
-    "setmathttdigitfont{}": {
-      "snippet": "setmathttdigitfont{${1:font name}}"
+    {
+      "name": "setmathttdigitfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
     },
-    "setmathttdigitfont[]{}": {
-      "snippet": "setmathttdigitfont[${2:Options}]{${1:font name}}"
+    {
+      "name": "setmathttdigitfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Options%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmathdigitfont,\\setmathsfdigitfont,\\setmathttdigitfont"
+        ],
+        "keyPos": 0
+      }
     },
-    "DefaultMathDigits": {},
-    "PersianMathDigits": {},
-    "AutoMathDigits": {},
-    "AutoDisplayMathDigits": {},
-    "AutoInlineMathDigits": {},
-    "DefaultDisplayMathDigits": {},
-    "DefaultInlineMathDigits": {},
-    "DefaultMathDecimalSeparator": {},
-    "MathDecimalSeparator": {},
-    "persiandecimalseparator": {},
-    "PersianDisplayMathDigits": {},
-    "PersianInlineMathDigits": {},
-    "persianmathdigits": {},
-    "persianmathsfdigits": {},
-    "persianmathttdigits": {},
-    "SetDisplayMathDigits": {},
-    "SetInlineMathDigits": {},
-    "SetMathCharDef{}{}{}{}": {
-      "snippet": "SetMathCharDef{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    {
+      "name": "DefaultMathDigits"
     },
-    "SetMathCode{}{}{}{}": {
-      "snippet": "SetMathCode{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    {
+      "name": "PersianMathDigits"
     },
-    "SwitchToDefaultMathDigits": {},
-    "SwitchToPersianMathDigits": {}
+    {
+      "name": "AutoMathDigits"
+    },
+    {
+      "name": "AutoDisplayMathDigits",
+      "unusual": true
+    },
+    {
+      "name": "AutoInlineMathDigits",
+      "unusual": true
+    },
+    {
+      "name": "DefaultDisplayMathDigits",
+      "unusual": true
+    },
+    {
+      "name": "DefaultInlineMathDigits",
+      "unusual": true
+    },
+    {
+      "name": "DefaultMathDecimalSeparator",
+      "unusual": true
+    },
+    {
+      "name": "MathDecimalSeparator",
+      "unusual": true
+    },
+    {
+      "name": "persiandecimalseparator",
+      "unusual": true
+    },
+    {
+      "name": "PersianDisplayMathDigits",
+      "unusual": true
+    },
+    {
+      "name": "PersianInlineMathDigits",
+      "unusual": true
+    },
+    {
+      "name": "persianmathdigits",
+      "unusual": true
+    },
+    {
+      "name": "persianmathsfdigits",
+      "unusual": true
+    },
+    {
+      "name": "persianmathttdigits",
+      "unusual": true
+    },
+    {
+      "name": "SetDisplayMathDigits",
+      "unusual": true
+    },
+    {
+      "name": "SetInlineMathDigits",
+      "unusual": true
+    },
+    {
+      "name": "SetMathCharDef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "SetMathCode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "SwitchToDefaultMathDigits",
+      "unusual": true
+    },
+    {
+      "name": "SwitchToPersianMathDigits",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setmathdigitfont,\\setmathsfdigitfont,\\setmathttdigitfont": [
+      "Alternate=${1:feature}",
+      "Annotation=",
+      "AutoFakeBold=${1:number}",
+      "AutoFakeSlant=${1:number}",
+      "BoldFeatures={${1:features}}",
+      "BoldFont=${1:font name}",
+      "BoldItalicFeatures={${1:features}}",
+      "BoldItalicFont=${1:font name}",
+      "BoldSlantedFeatures={${1:features}}",
+      "BoldSlantedFont=${1:font name}",
+      "BoldSwashFeatures={${1:features}}",
+      "BoldSwashFont=${1:font name}",
+      "CJKShape=${1|Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC|}",
+      "CharacterVariant={${1:glyph num list}:${2:variety num}}",
+      "CharacterWidth=${1|Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll|}",
+      "Color=",
+      "Colour=",
+      "Contextuals=${1|Swash,Alternate,WordInitial,WordFinal,LineFinal,Inner,ResetAll|}",
+      "Diacritics=${1|MarkToBase,MarkToMark,AboveBase,BelowBase,ResetAll|}",
+      "Extension=${1:extension}",
+      "FakeBold=${1:number}",
+      "FakeSlant=${1:number}",
+      "FakeStretch=${1:number}",
+      "Font=${1:font name}",
+      "FontFace={${1:series}}{${2:shape}}{${3:font name}}",
+      "Fractions=${1|On,Off,Reset,Alternate,ResetAll|}",
+      "HyphenChar=${1:character}",
+      "IgnoreFontspecFile",
+      "ItalicFeatures={${1:features}}",
+      "ItalicFont=${1:font name}",
+      "Kerning=${1|On,Off,Reset,Uppercase,ResetAll|}",
+      "Language=${1:language}",
+      "LetterSpace=${1:number}",
+      "Letters=${1|SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,ResetAll|}",
+      "Ligatures=${1|Required,Common,Contextual,Rare,Discretionary,Historic,TeX|}",
+      "LocalForms=${1|On,Off,Reset|}",
+      "NFSSFamily=${1:font family}",
+      "Numbers=${1|Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle,OldStyleOff,Proportional,ProportionalOff,Monospaced,MonospacedOff,SlashedZero,SlashedZeroOff,Arabic,ArabicOff,ResetAll|}",
+      "OpticalSize=${1:size}",
+      "Ornament=",
+      "Path=${1:file path}",
+      "PunctuationSpace=${1:number}",
+      "RawFeature=${1:feature tag}",
+      "Scale=${1:number}",
+      "ScaleAgain=${1:number}",
+      "Size=${1:number}",
+      "SizeFeatures={${1:features}}",
+      "SlantedFeatures={${1:features}}",
+      "SlantedFont=${1:font name}",
+      "SmallCapsFeatures={${1:features}}",
+      "SmallCapsFont=${1:font name}",
+      "Style=${1|Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,HorizontalKana,VerticalKana,ResetAll|}",
+      "StylisticAlternates=${1:feature}",
+      "StylisticSet=${1:set number}",
+      "SwashFeatures={${1:features}}",
+      "SwashFont=${1:font name}",
+      "UprightFeatures={${1:features}}",
+      "UprightFont=${1:font name}",
+      "Variant=${1:integer}",
+      "Vertical=${1|RotatedGlyphs,AlternatesForRotation,Alternates,KanaAlternates,Kerning,AlternateMetrics,HalfMetrics,ProportionalMetrics,ResetAll|}",
+      "VerticalPosition=${1|Superior,Inferior,Numerator,Denominator,ScientificInferior,Ordinal,ResetAll|}",
+      "WordSpace=${1:number}",
+      "Mapping=${1:xetex-only feature}",
+      "Renderer=${1:renderer}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

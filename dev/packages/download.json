@@ -1,19 +1,35 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "pdftexcmds": []
-  },
-  "macros": {
-    "download{}": {
-      "snippet": "download{${1:URL}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "download[]{}": {
-      "snippet": "download[${2:filename}]{${1:URL}}"
+    {
+      "name": "pdftexcmds"
     }
-  },
-  "envs": {},
-  "options": [
-    "engine=${1|auto,curl,wget,aria2,axel|}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "download",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "download",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:filename%URL}]{${1:URL}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/download#c": [
+      "engine=${1|auto,curl,wget,aria2,axel|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/download#c"
+  ]
 }

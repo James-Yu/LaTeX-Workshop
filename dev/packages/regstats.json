@@ -1,34 +1,87 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "intcalc": [
-      "timer",
-      "timer=true"
-    ],
-    "iftex": [
-      "timer",
-      "timer=true"
+  "deps": [
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "intcalc",
+      "if": "timer"
+    },
+    {
+      "name": "iftex",
+      "if": "timer"
+    },
+    {
+      "name": "intcalc",
+      "if": "timer=true"
+    },
+    {
+      "name": "iftex",
+      "if": "timer=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "regstatselapsedtime",
+      "unusual": true
+    },
+    {
+      "name": "regstatsseconds",
+      "unusual": true
+    },
+    {
+      "name": "theregstatscount",
+      "unusual": true
+    },
+    {
+      "name": "regstatsdimen",
+      "unusual": true
+    },
+    {
+      "name": "regstatsskip",
+      "unusual": true
+    },
+    {
+      "name": "regstatsmuskip",
+      "unusual": true
+    },
+    {
+      "name": "regstatsbox",
+      "unusual": true
+    },
+    {
+      "name": "regstatstoks",
+      "unusual": true
+    },
+    {
+      "name": "regstatsread",
+      "unusual": true
+    },
+    {
+      "name": "regstatswrite",
+      "unusual": true
+    },
+    {
+      "name": "regstatsfam",
+      "unusual": true
+    },
+    {
+      "name": "regstatslanguage",
+      "unusual": true
+    },
+    {
+      "name": "regstatsinsert",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/regstats#c": [
+      "left",
+      "timer"
     ]
   },
-  "macros": {
-    "regstatselapsedtime": {},
-    "regstatsseconds": {},
-    "theregstatscount": {},
-    "regstatsdimen": {},
-    "regstatsskip": {},
-    "regstatsmuskip": {},
-    "regstatsbox": {},
-    "regstatstoks": {},
-    "regstatsread": {},
-    "regstatswrite": {},
-    "regstatsfam": {},
-    "regstatslanguage": {},
-    "regstatsinsert": {}
-  },
-  "envs": {},
-  "options": [
-    "left",
-    "timer"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/regstats#c"
+  ]
 }

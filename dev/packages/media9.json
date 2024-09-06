@@ -1,57 +1,87 @@
 {
-  "includes": {
-    "ocgbase": [],
-    "pdfbase": []
-  },
-  "macros": {
-    "includemedia{}{}": {
-      "snippet": "includemedia{${1:poster text}}{${2:file or URL}}"
+  "deps": [
+    {
+      "name": "ocgbase"
     },
-    "includemedia[]{}{}": {
-      "snippet": "includemedia[${3:options}]{${1:poster text}}{${2:file or URL}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "addmediapath{}": {
-      "snippet": "addmediapath{${1:directory}}"
-    },
-    "mediabutton{}": {
-      "snippet": "mediabutton{${1:button text}}"
-    },
-    "mediabutton[]{}": {
-      "snippet": "mediabutton[${2:options}]{${1:button text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pdfbase"
     }
-  },
-  "envs": {},
-  "options": [
-    "dvipdfmx",
-    "xetex",
-    "bigfiles",
-    "draft",
-    "final",
-    "playbutton=${1|fancy,plain,none|}",
-    "noplaybutton",
-    "activate=${1|onclick,pageopen,pagevisible|}",
-    "deactivate=${1|onclick,pageclose,pageinvisible|}",
-    "windowed=",
-    "transparent",
-    "passcontext",
-    "attachfiles",
-    "3Dplaytype=${1|linear,oscillating|}",
-    "3Dplaycount=${1:integer}",
-    "3Dplayspeed=${1:number}",
-    "3Dtoolbar",
-    "3Dnavpane",
-    "3Dpartsattrs=${1|restore,keep|}",
-    "3Dmenu",
-    "3Dbg=${1:<r> <g> <b>}",
-    "3Dlights=${1|None,White,Day,Night,Hard,Primary,Blue,Red,Cube,CAD,Headlamp|}",
-    "3Drender=${1|Solid,SolidWireframe,Transparent,TransparentWireframe,BoundingBox,TransparentBoundingBox,TransparentBoundingBoxOutline,Wireframe,ShadedWireframe,HiddenWireframe,Vertices,ShadedVertices,SolidOutline,Illustration,ShadedIllustration|}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "includemedia",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:poster text%text}}{${2:file or URL%file}}"
+      }
+    },
+    {
+      "name": "includemedia",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:poster text%text}}{${2:file or URL%file}}",
+        "keys": [
+          "\\includemedia#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addmediapath",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:directory}}"
+      }
+    },
+    {
+      "name": "mediabutton",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:button text%text}}"
+      }
+    },
+    {
+      "name": "mediabutton",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:button text%text}}",
+        "keys": [
+          "\\mediabutton#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/media9#c": [
+      "dvipdfmx",
+      "xetex",
+      "bigfiles"
+    ],
+    "\\usepackage/media9#c,\\includemedia#c": [
+      "draft",
+      "final",
+      "playbutton=${1|fancy,plain,none|}",
+      "noplaybutton",
+      "activate=${1|onclick,pageopen,pagevisible|}",
+      "deactivate=${1|onclick,pageclose,pageinvisible|}",
+      "windowed=",
+      "transparent",
+      "passcontext",
+      "attachfiles",
+      "3Dplaytype=${1|linear,oscillating|}",
+      "3Dplaycount=${1:integer}",
+      "3Dplayspeed=${1:number}",
+      "3Dtoolbar",
+      "3Dnavpane",
+      "3Dpartsattrs=${1|restore,keep|}",
+      "3Dmenu",
+      "3Dbg=${1:<r> <g> <b>}",
+      "3Dlights=${1|None,White,Day,Night,Hard,Primary,Blue,Red,Cube,CAD,Headlamp|}",
+      "3Drender=${1|Solid,SolidWireframe,Transparent,TransparentWireframe,BoundingBox,TransparentBoundingBox,TransparentBoundingBoxOutline,Wireframe,ShadedWireframe,HiddenWireframe,Vertices,ShadedVertices,SolidOutline,Illustration,ShadedIllustration|}"
+    ],
+    "\\includemedia#c": [
       "label=${1:label text}",
       "width=",
       "height=",
@@ -71,7 +101,7 @@
       "3Dviews=${1:views file}",
       "add3Djscript=${1:3D JavaScript file}"
     ],
-    [
+    "\\mediabutton#c": [
       "overface=${1:text or graphic}",
       "downface=${1:text or graphic}",
       "tooltip=${1:tip text}",
@@ -85,5 +115,9 @@
       "draft",
       "final"
     ]
+  },
+  "args": [
+    "\\usepackage/media9#c",
+    "\\usepackage/media9#c,\\includemedia#c"
   ]
 }

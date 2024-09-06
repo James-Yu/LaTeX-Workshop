@@ -1,50 +1,99 @@
 {
-  "includes": {
-    "pgfkeys": [],
-    "pgfopts": [],
-    "xcolor": []
-  },
-  "macros": {
-    "ytableausetup{}": {
-      "snippet": "ytableausetup{${1:options}}"
+  "deps": [
+    {
+      "name": "pgfkeys"
     },
-    "ytableau": {},
-    "endytableau": {},
-    "none": {},
-    "ytableaushort{}": {
-      "snippet": "ytableaushort{${1:line1,${2:line2},...}}",
-      "option": "textmode"
+    {
+      "name": "pgfopts"
     },
-    "ytableaushort[]{}": {
-      "snippet": "ytableaushort[${2:formatting}]{${1:line1,${3:line2},...}}",
-      "option": "textmode"
-    },
-    "ydiagram{}": {
-      "snippet": "ydiagram{${1:offset+num1,${2:num2},...}}"
+    {
+      "name": "xcolor"
     }
-  },
-  "envs": {
-    "ytableau": {},
-    "ytableau[]": {
-      "name": "ytableau",
-      "snippet": "[${1:formatting}]"
-    }
-  },
-  "options": [
-    "boxsize=",
-    "boxframe=",
-    "smalltableaux",
-    "nosmalltableaux",
-    "aligntableaux=${1|top,center,bottom|}",
-    "centertableaux",
-    "nocentertableaux",
-    "textmode",
-    "mathmode",
-    "baseline",
-    "nobaseline",
-    "centerboxes",
-    "tabloids",
-    "notabloids"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ytableausetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/ytableau#c,\\ytableausetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "none"
+    },
+    {
+      "name": "ytableaushort",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:line1,line2,...%formula}}"
+      }
+    },
+    {
+      "name": "ytableaushort",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:formatting%formula}]{${1:line1,line2,...%formula}}"
+      }
+    },
+    {
+      "name": "ytableaushort",
+      "if": "textmode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:line1,line2,...%plain}}"
+      }
+    },
+    {
+      "name": "ytableaushort",
+      "if": "textmode",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:formatting%plain}]{${1:line1,line2,...%plain}}"
+      }
+    },
+    {
+      "name": "ydiagram",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:offset+num1,num2,...}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "ytableau"
+    },
+    {
+      "name": "ytableau",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:formatting%formula}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/ytableau#c,\\ytableausetup": [
+      "boxsize=",
+      "boxframe=",
+      "smalltableaux",
+      "nosmalltableaux",
+      "aligntableaux=${1|top,center,bottom|}",
+      "centertableaux",
+      "nocentertableaux",
+      "textmode",
+      "mathmode",
+      "baseline",
+      "nobaseline",
+      "centerboxes",
+      "tabloids",
+      "notabloids"
+    ]
+  },
+  "args": [
+    "\\usepackage/ytableau#c,\\ytableausetup"
+  ]
 }

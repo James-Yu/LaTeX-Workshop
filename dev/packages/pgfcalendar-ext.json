@@ -1,16 +1,50 @@
 {
-  "includes": {
-    "pgfcalendar": []
-  },
-  "macros": {
-    "pgfcalendarjulianyeartoweek{}{}{}": {
-      "snippet": "pgfcalendarjulianyeartoweek{${1:Julian day}}{${2:year}}{${3:week counter}}"
+  "deps": [
+    {
+      "name": "pgfcalendar"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pgfcalendarjulianyeartoweek",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:Julian day}}{${2:year}}{${3:week counter}}"
+      }
     },
-    "pgfcalendarcurrentweek": {},
-    "pgfcalendarifdateweek": {},
-    "pgfcalendarendjulianplus": {}
+    {
+      "name": "pgfcalendarcurrentweek"
+    },
+    {
+      "name": "pgfcalendarifdateweek"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pgfcalendarifdate#c,\\ifdate#c": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+      "leap year",
+      "leap year=${1:year}",
+      "and={${1:tests}}",
+      "not={${1:tests}}",
+      "week of month=${1:num}",
+      "week of month'=${1:num}",
+      "calendar week of month=${1:num}",
+      "calendar week of month'=${1:num}",
+      "yesterday={${1:tests}}",
+      "week=${1:num}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

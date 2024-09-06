@@ -1,122 +1,345 @@
 {
-  "includes": {
-    "exerquiz": [],
-    "insdljs": []
-  },
-  "macros": {
-    "includeOptions{}": {
-      "snippet": "includeOptions{${1:options}}"
+  "deps": [
+    {
+      "name": "exerquiz"
     },
-    "MsgDei": {},
-    "MsgDeii": {},
-    "MsgEni": {},
-    "MsgEnii": {},
-    "numDe{}": {
-      "snippet": "numDe{${1:msg}}"
-    },
-    "numEn{}": {
-      "snippet": "numEn{${1:msg}}"
-    },
-    "rndNumDeOpt{}{}": {
-      "snippet": "rndNumDeOpt{${1:num}}{${2:msg}}"
-    },
-    "rndNumDeReq{}{}": {
-      "snippet": "rndNumDeReq{${1:num}}{${2:msg}}"
-    },
-    "rndNumEnOpt{}{}": {
-      "snippet": "rndNumEnOpt{${1:num}}{${2:msg}}"
-    },
-    "rndNumEnReq{}{}": {
-      "snippet": "rndNumEnReq{${1:num}}{${2:msg}}"
-    },
-    "setdecimalpoint{}": {
-      "snippet": "setdecimalpoint{${1:symbol}}"
-    },
-    "aebdecimalpoint": {},
-    "alertNotComplexMsg": {},
-    "allowWrngNormSciNotn": {},
-    "allowWrngNSN": {},
-    "complexCisAlertMsg": {},
-    "complexPowerAlertMsg": {},
-    "DecimalsOnlyErrorMsg": {},
-    "DeclareAndRegister{}": {
-      "snippet": "DeclareAndRegister{${1:name}}"
-    },
-    "dljsRegister[]{}": {
-      "snippet": "dljsRegister[${2:suffix}]{${1:name}}"
-    },
-    "dljsRegister{}": {
-      "snippet": "dljsRegister{${1:name}}"
-    },
-    "emptyCompComplexMsg()": {
-      "snippet": "emptyCompComplexMsg(${1:arg})"
-    },
-    "eqDuplEntries": {},
-    "eqNonzeroEntries": {},
-    "eqSyntaxErrorNoParens": {},
-    "eqTooFewEntries": {},
-    "eqTooManyEntries": {},
-    "equationsAlertMsg": {},
-    "facNoPropForm": {},
-    "MsgDeiAlt": {},
-    "NoAddOrSubErrorMsg": {},
-    "noBinFactBinCoeffAlertMsg": {},
-    "noBinFactFactAlertMsg": {},
-    "noBinFactPermAlertMsg": {},
-    "noBracesInAnsMsg": {},
-    "noBracketsInAnsMsg": {},
-    "nodecAlertMsg": {},
-    "noDecPtDeMsg": {},
-    "noDecPtEnMsg": {},
-    "NoDivisionErrorMsg": {},
-    "NoExpAllowedErrorMsg": {},
-    "NoNegExpMsg": {},
-    "noNotEncloseMonos": {},
-    "NoPiAllowedErrorMsg": {},
-    "NoProductsErrorMsg": {},
-    "notifyWrongNumEntries": {},
-    "NoTrigAllowedErrorMsg": {},
-    "NoTrigLogAllowedErrorMsg": {},
-    "pointEmptyCompMsgiv()": {
-      "snippet": "pointEmptyCompMsgiv(${1:arg})"
-    },
-    "pointErrorMsgi": {},
-    "pointErrorMsgii": {},
-    "pointErrorMsgiii": {},
-    "satisfyEqNotify": {},
-    "sciNotNormalForm": {},
-    "sciNotSyntaxError": {},
-    "SyntaxErrorAuthor": {},
-    "vectorEmptyCompMsgiv()": {
-      "snippet": "vectorEmptyCompMsgiv(${1:arg})"
-    },
-    "vectorsErrorMsgi": {},
-    "vectorsErrorMsgii": {},
-    "vectorsErrorMsgiii": {},
-    "warnDecDeOnly": {},
-    "warnDecDeOnlyOn": {},
-    "warnDefDeOnlyOff": {},
-    "wrongNumEntriesMsg": {}
-  },
-  "envs": {},
-  "options": [
-    "equations",
-    "vectors",
-    "indefIntegral",
-    "ImplMulti",
-    "nodec",
-    "noBinFac",
-    "limitArith",
-    "combinatorics",
-    "setSupport",
-    "complex",
-    "satisfyEq",
-    "useGermanNums",
-    "useDeNums",
-    "useEnNums",
-    "factors",
-    "point",
-    "intervals"
+    {
+      "name": "insdljs"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "includeOptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/dljslib#c,\\includeOptions#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MsgDei"
+    },
+    {
+      "name": "MsgDeii"
+    },
+    {
+      "name": "MsgEni"
+    },
+    {
+      "name": "MsgEnii"
+    },
+    {
+      "name": "numDe",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:msg}}"
+      }
+    },
+    {
+      "name": "numEn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:msg}}"
+      }
+    },
+    {
+      "name": "rndNumDeOpt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:msg}}"
+      }
+    },
+    {
+      "name": "rndNumDeReq",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:msg}}"
+      }
+    },
+    {
+      "name": "rndNumEnOpt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:msg}}"
+      }
+    },
+    {
+      "name": "rndNumEnReq",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:msg}}"
+      }
+    },
+    {
+      "name": "setdecimalpoint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "aebdecimalpoint",
+      "unusual": true
+    },
+    {
+      "name": "alertNotComplexMsg",
+      "unusual": true
+    },
+    {
+      "name": "allowWrngNormSciNotn",
+      "unusual": true
+    },
+    {
+      "name": "allowWrngNSN",
+      "unusual": true
+    },
+    {
+      "name": "complexCisAlertMsg",
+      "unusual": true
+    },
+    {
+      "name": "complexPowerAlertMsg",
+      "unusual": true
+    },
+    {
+      "name": "DecimalsOnlyErrorMsg",
+      "unusual": true
+    },
+    {
+      "name": "DeclareAndRegister",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "dljsRegister",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:suffix}]{${1:name}}"
+      }
+    },
+    {
+      "name": "dljsRegister",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "emptyCompComplexMsg",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:arg})"
+      }
+    },
+    {
+      "name": "eqDuplEntries",
+      "unusual": true
+    },
+    {
+      "name": "eqNonzeroEntries",
+      "unusual": true
+    },
+    {
+      "name": "eqSyntaxErrorNoParens",
+      "unusual": true
+    },
+    {
+      "name": "eqTooFewEntries",
+      "unusual": true
+    },
+    {
+      "name": "eqTooManyEntries",
+      "unusual": true
+    },
+    {
+      "name": "equationsAlertMsg",
+      "unusual": true
+    },
+    {
+      "name": "facNoPropForm",
+      "unusual": true
+    },
+    {
+      "name": "MsgDeiAlt",
+      "unusual": true
+    },
+    {
+      "name": "NoAddOrSubErrorMsg",
+      "unusual": true
+    },
+    {
+      "name": "noBinFactBinCoeffAlertMsg",
+      "unusual": true
+    },
+    {
+      "name": "noBinFactFactAlertMsg",
+      "unusual": true
+    },
+    {
+      "name": "noBinFactPermAlertMsg",
+      "unusual": true
+    },
+    {
+      "name": "noBracesInAnsMsg",
+      "unusual": true
+    },
+    {
+      "name": "noBracketsInAnsMsg",
+      "unusual": true
+    },
+    {
+      "name": "nodecAlertMsg",
+      "unusual": true
+    },
+    {
+      "name": "noDecPtDeMsg",
+      "unusual": true
+    },
+    {
+      "name": "noDecPtEnMsg",
+      "unusual": true
+    },
+    {
+      "name": "NoDivisionErrorMsg",
+      "unusual": true
+    },
+    {
+      "name": "NoExpAllowedErrorMsg",
+      "unusual": true
+    },
+    {
+      "name": "NoNegExpMsg",
+      "unusual": true
+    },
+    {
+      "name": "noNotEncloseMonos",
+      "unusual": true
+    },
+    {
+      "name": "NoPiAllowedErrorMsg",
+      "unusual": true
+    },
+    {
+      "name": "NoProductsErrorMsg",
+      "unusual": true
+    },
+    {
+      "name": "notifyWrongNumEntries",
+      "unusual": true
+    },
+    {
+      "name": "NoTrigAllowedErrorMsg",
+      "unusual": true
+    },
+    {
+      "name": "NoTrigLogAllowedErrorMsg",
+      "unusual": true
+    },
+    {
+      "name": "pointEmptyCompMsgiv",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:arg})"
+      }
+    },
+    {
+      "name": "pointErrorMsgi",
+      "unusual": true
+    },
+    {
+      "name": "pointErrorMsgii",
+      "unusual": true
+    },
+    {
+      "name": "pointErrorMsgiii",
+      "unusual": true
+    },
+    {
+      "name": "satisfyEqNotify",
+      "unusual": true
+    },
+    {
+      "name": "sciNotNormalForm",
+      "unusual": true
+    },
+    {
+      "name": "sciNotSyntaxError",
+      "unusual": true
+    },
+    {
+      "name": "SyntaxErrorAuthor",
+      "unusual": true
+    },
+    {
+      "name": "vectorEmptyCompMsgiv",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:arg})"
+      }
+    },
+    {
+      "name": "vectorsErrorMsgi",
+      "unusual": true
+    },
+    {
+      "name": "vectorsErrorMsgii",
+      "unusual": true
+    },
+    {
+      "name": "vectorsErrorMsgiii",
+      "unusual": true
+    },
+    {
+      "name": "warnDecDeOnly",
+      "unusual": true
+    },
+    {
+      "name": "warnDecDeOnlyOn",
+      "unusual": true
+    },
+    {
+      "name": "warnDefDeOnlyOff",
+      "unusual": true
+    },
+    {
+      "name": "wrongNumEntriesMsg",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/dljslib#c,\\includeOptions#c": [
+      "equations",
+      "vectors",
+      "indefIntegral",
+      "ImplMulti",
+      "nodec",
+      "noBinFac",
+      "limitArith",
+      "combinatorics",
+      "setSupport",
+      "complex",
+      "satisfyEq",
+      "useGermanNums",
+      "useDeNums",
+      "useEnNums",
+      "factors",
+      "point",
+      "intervals"
+    ]
+  },
+  "args": [
+    "\\usepackage/dljslib#c,\\includeOptions#c"
+  ]
 }

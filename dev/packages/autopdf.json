@@ -1,58 +1,94 @@
 {
-  "includes": {
-    "keyval": [],
-    "ifthen": [],
-    "ifpdf": [],
-    "ifplatform": [],
-    "graphicx": []
-  },
-  "macros": {
-    "autopdfoptions{}": {
-      "snippet": "autopdfoptions{${1:options}}"
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "autopdfinclude": {},
-    "autopdfendinclude": {},
-    "autopdfpsfrag{}{}": {
-      "snippet": "autopdfpsfrag{${1:tag}}{${2:content}}"
+    {
+      "name": "ifthen"
     },
-    "autopdfpsfrag[]{}{}": {
-      "snippet": "autopdfpsfrag[${3:options}]{${1:tag}}{${2:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifpdf"
     },
-    "autopdfpsfoptions{}": {
-      "snippet": "autopdfpsfoptions{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifplatform"
     },
-    "DELETE": {},
-    "LEFT": {},
-    "REDIRTO": {},
-    "RIGHT": {},
-    "SILENT": {}
-  },
-  "envs": {},
-  "options": [
-    "from=${1:file extension}",
-    "to=${1:file extension}",
-    "logfile",
-    "nologfile",
-    "showcmds",
-    "cleanup",
-    "scale",
-    "margin=",
-    "resolution=${1:dpi}",
-    "gscmd=${1:GhostScript cmd}",
-    "gmidentifycmd=${1:GraphicsMagick cmd}",
-    "gmconvertcmd=${1:GraphicsMagick cmd}"
+    {
+      "name": "graphicx"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "autopdfoptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/autopdf#c,\\autopdfoptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "autopdfinclude"
+    },
+    {
+      "name": "autopdfendinclude"
+    },
+    {
+      "name": "autopdfpsfrag",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:tag}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "autopdfpsfrag",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:tag}}{${2:content%text}}",
+        "keys": [
+          "\\autopdfpsfrag,\\autopdfpsfoptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "autopdfpsfoptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\autopdfpsfrag,\\autopdfpsfoptions"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/autopdf#c,\\autopdfoptions": [
+      "from=${1:file extension}",
+      "to=${1:file extension}",
+      "logfile",
+      "nologfile",
+      "showcmds",
+      "cleanup",
+      "scale",
+      "margin=",
+      "resolution=${1:dpi}",
+      "gscmd=${1:GhostScript cmd}",
+      "gmidentifycmd=${1:GraphicsMagick cmd}",
+      "gmconvertcmd=${1:GraphicsMagick cmd}"
+    ],
+    "\\autopdfpsfrag,\\autopdfpsfoptions": [
       "texpos=${1:LaTeX ref point}",
       "epspos=${1:PS ref point}",
       "scale=${1:factor}",
       "angle=${1:degrees}",
       "add=${1:text}"
     ]
+  },
+  "args": [
+    "\\usepackage/autopdf#c,\\autopdfoptions"
   ]
 }

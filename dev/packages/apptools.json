@@ -1,17 +1,34 @@
 {
-  "includes": {},
-  "macros": {
-    "AtAppendix{}": {
-      "snippet": "AtAppendix{${1:code}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "AtAppendix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
     },
-    "IfAppendix{}{}": {
-      "snippet": "IfAppendix{${1:then}}{${2:else}}"
+    {
+      "name": "IfAppendix",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:then}}{${2:else}}"
+      }
     },
-    "ifappendix": {},
-    "appendixtrue": {},
-    "appendixfalse": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "ifappendix",
+      "unusual": true
+    },
+    {
+      "name": "appendixtrue",
+      "unusual": true
+    },
+    {
+      "name": "appendixfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

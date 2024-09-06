@@ -1,47 +1,106 @@
 {
-  "includes": {
-    "infwaerr": [],
-    "iftex": [],
-    "pdftexcmds": [],
-    "ltxcmds": [],
-    "kvsetkeys": [],
-    "kvdefinekeys": [],
-    "pdfescape": []
-  },
-  "macros": {
-    "embedfile{}": {
-      "snippet": "embedfile{${1:file}}"
+  "deps": [
+    {
+      "name": "infwaerr"
     },
-    "embedfile[]{}": {
-      "snippet": "embedfile[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "iftex"
     },
-    "embedfilesetup{}": {
-      "snippet": "embedfilesetup{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pdftexcmds"
     },
-    "embedfilefinish": {},
-    "embedfilefield{}{}": {
-      "snippet": "embedfilefield{${1:key}}{${2:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 1
+    {
+      "name": "ltxcmds"
     },
-    "embedfilesort{}": {
-      "snippet": "embedfilesort{${1:key-sort-list}}"
+    {
+      "name": "kvsetkeys"
     },
-    "embedfileifobjectexists{}{}{}{}": {
-      "snippet": "embedfileifobjectexists{${1:id}}{${2:type}}{${3:then}}{${4:else}}"
+    {
+      "name": "kvdefinekeys"
     },
-    "embedfilegetobject{}{}": {
-      "snippet": "embedfilegetobject{${1:id}}{${2:type}}"
+    {
+      "name": "pdfescape"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "embedfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "embedfile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\embedfile#c,\\embedfilesetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "embedfilesetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\embedfile#c,\\embedfilesetup#c",
+          "\\embedfilesetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "embedfilefinish",
+      "unusual": true
+    },
+    {
+      "name": "embedfilefield",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:options%keyvals}}",
+        "keys": [
+          "\\embedfilefield"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "embedfilesort",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key-sort-list}}"
+      }
+    },
+    {
+      "name": "embedfileifobjectexists",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:id}}{${2:type%keyvals}}{${3:then}}{${4:else}}",
+        "keys": [
+          "\\embedfileifobjectexists,\\embedfilegetobject"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "embedfilegetobject",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id}}{${2:type%keyvals}}",
+        "keys": [
+          "\\embedfileifobjectexists,\\embedfilegetobject"
+        ],
+        "keyPos": 1
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\embedfile#c,\\embedfilesetup#c": [
       "filespec=",
       "ucfilespec=",
       "filesystem=",
@@ -51,23 +110,20 @@
       "stringmethod=${1|psd,escape|}",
       "id="
     ],
-    [
-      "filespec=",
-      "ucfilespec=",
-      "filesystem=",
-      "mimetype=",
-      "desc=${1:description}",
-      "afrelationship=${1:PDF name}",
-      "stringmethod=${1|psd,escape|}",
-      "id=",
+    "\\embedfilesetup#c": [
       "view=${1|details,tile,hidden|}",
       "initialfile="
     ],
-    [
+    "\\embedfilefield": [
       "type=${1|text,date,number,file,desc,moddate,size|}",
       "title=",
       "visible",
       "edit"
+    ],
+    "\\embedfileifobjectexists,\\embedfilegetobject": [
+      "EmbeddedFile",
+      "Filespec"
     ]
-  ]
+  },
+  "args": []
 }

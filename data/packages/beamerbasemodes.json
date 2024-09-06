@@ -1,32 +1,64 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "beamerbasedecode": []
-  },
-  "macros": {
-    "mode<>{}": {
-      "snippet": "mode<${2:mode specification}>{${1:text}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "mode{}": {
-      "snippet": "mode{${1:text}}"
+    {
+      "name": "beamerbasedecode"
+    }
+  ],
+  "macros": [
+    {
+      "name": "mode<mode specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "mode<>": {
-      "snippet": "mode<${1:mode specification}>"
+    {
+      "name": "mode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "mode*": {},
-    "includeslide{}": {
-      "snippet": "includeslide{${1:label name}}"
+    {
+      "name": "mode<mode specification>"
     },
-    "includeslide[]{}": {
-      "snippet": "includeslide[${2:options}]{${1:label name}}"
+    {
+      "name": "mode*"
     },
-    "setjobnamebeamerversion{}": {
-      "snippet": "setjobnamebeamerversion{${1:filename without extension}}"
+    {
+      "name": "includeslide",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label name}}"
+      }
     },
-    "thebeamerpauses": {},
-    "jobnamebeamerversion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "includeslide",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label name}}"
+      }
+    },
+    {
+      "name": "setjobnamebeamerversion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename without extension%file}}"
+      }
+    },
+    {
+      "name": "thebeamerpauses",
+      "unusual": true
+    },
+    {
+      "name": "jobnamebeamerversion",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,39 +1,56 @@
 {
-  "includes": {
-    "thmtools": []
-  },
-  "macros": {
-    "restatable": {},
-    "endrestatable": {}
-  },
-  "envs": {
-    "restatable[]{}{}": {
-      "name": "restatable",
-      "snippet": "[${3:options}]{${1:envname}}{${2:cmd name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "restatable{}{}": {
-      "name": "restatable",
-      "snippet": "{${1:envname}}{${2:cmd name}}"
-    },
-    "restatable*[]{}{}": {
-      "name": "restatable*",
-      "snippet": "[${3:options}]{${1:envname}}{${2:cmd name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "restatable*{}{}": {
-      "name": "restatable*",
-      "snippet": "{${1:envname}}{${2:cmd name}}"
+  "deps": [
+    {
+      "name": "thmtools"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [],
+  "envs": [
+    {
+      "name": "restatable",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:envname}}{${2:cmd name}}",
+        "keys": [
+          "\\begin{restatable}#c,\\begin{restatable*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "restatable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:cmd name}}"
+      }
+    },
+    {
+      "name": "restatable*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:envname}}{${2:cmd name}}",
+        "keys": [
+          "\\begin{restatable}#c,\\begin{restatable*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "restatable*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:cmd name}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{restatable}#c,\\begin{restatable*}#c": [
       "${1:title}",
       "name=${1:title}",
       "label="
     ]
-  ]
+  },
+  "args": []
 }

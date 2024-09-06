@@ -1,129 +1,317 @@
 {
-  "includes": {
-    "kotex": []
-  },
-  "macros": {
-    "NumHanja{}": {
-      "snippet": "NumHanja{${1:number}}"
-    },
-    "NumHangul{}": {
-      "snippet": "NumHangul{${1:number}}"
-    },
-    "NumHanjaBig{}": {
-      "snippet": "NumHanjaBig{${1:number}}"
-    },
-    "NumHangulBig{}": {
-      "snippet": "NumHangulBig{${1:number}}"
-    },
-    "FinHanjaMode": {},
-    "FinHanjaMode{}": {
-      "snippet": "FinHanjaMode{${1:option}}"
-    },
-    "ManSpaceOn": {},
-    "ManSpaceOff": {},
-    "NumHanjaDig{}": {
-      "snippet": "NumHanjaDig{${1:number}}"
-    },
-    "HanjaZero{}": {
-      "snippet": "HanjaZero{${1:char}}"
-    },
-    "HanjaZeroFont{}": {
-      "snippet": "HanjaZeroFont{${1:font}}"
-    },
-    "TwentyHanjaChar[]": {
-      "snippet": "TwentyHanjaChar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "KRVcom{}": {
-      "snippet": "KRVcom{${1:number}}"
-    },
-    "KRVverse{}{}": {
-      "snippet": "KRVverse{${1:book}}{${2:verse}}"
-    },
-    "KRVverse{}{}{}": {
-      "snippet": "KRVverse{${1:book}}{${2:verse}}{${3:number}}"
-    },
-    "MarkHanja{}{}": {
-      "snippet": "MarkHanja{${1:name}}{${2:hanja}}"
-    },
-    "HANJA{}": {
-      "snippet": "HANJA{${1:counter}}"
-    },
-    "HANGUL{}": {
-      "snippet": "HANGUL{${1:counter}}"
-    },
-    "HANJADIG{}": {
-      "snippet": "HANJADIG{${1:counter}}"
-    },
-    "HanjaYear{}": {
-      "snippet": "HanjaYear{${1:year}}"
-    },
-    "HanjaMonth{}": {
-      "snippet": "HanjaMonth{${1:month}}"
-    },
-    "HanjaDay{}": {
-      "snippet": "HanjaDay{${1:day}}"
-    },
-    "HangulYear{}": {
-      "snippet": "HangulYear{${1:year}}"
-    },
-    "HangulMonth{}": {
-      "snippet": "HangulMonth{${1:month}}"
-    },
-    "HangulDay{}": {
-      "snippet": "HangulDay{${1:day}}"
-    },
-    "HanjaToday": {},
-    "HangulToday": {},
-    "HanjaTodayWithGanji": {},
-    "HangulTodayWithGanji": {},
-    "HangulLunarToday": {},
-    "HangulLunarTodayWithGanji": {},
-    "HangulLunarDay{}": {
-      "snippet": "HangulLunarDay{${1:day}}"
-    },
-    "HangulDangiYear{}": {
-      "snippet": "HangulDangiYear{${1:year}}"
-    },
-    "HanjaDangiYear{}": {
-      "snippet": "HanjaDangiYear{${1:year}}"
-    },
-    "HangulBulgiYear{}": {
-      "snippet": "HangulBulgiYear{${1:year}}"
-    },
-    "HanjaBulgiYear{}": {
-      "snippet": "HanjaBulgiYear{${1:year}}"
-    },
-    "HangulGanji": {},
-    "HangulGanji{}": {
-      "snippet": "HangulGanji{${1:year}}"
-    },
-    "HanjaGanji": {},
-    "HanjaGanji{}": {
-      "snippet": "HanjaGanji{${1:year}}"
-    },
-    "NumHanjaFont{}": {
-      "snippet": "NumHanjaFont{${1:font}}"
+  "deps": [
+    {
+      "name": "kotex"
     }
-  },
-  "envs": {},
-  "options": [
-    "manspace",
-    "20",
-    "30",
-    "finhanja",
-    "fullfinhanja",
-    "varfinhanja"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "NumHanja",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "NumHangul",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "NumHanjaBig",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "NumHangulBig",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "FinHanjaMode"
+    },
+    {
+      "name": "FinHanjaMode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option%keyvals}}",
+        "keys": [
+          "\\FinHanjaMode"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ManSpaceOn"
+    },
+    {
+      "name": "ManSpaceOff"
+    },
+    {
+      "name": "NumHanjaDig",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "HanjaZero",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:char}}"
+      }
+    },
+    {
+      "name": "HanjaZeroFont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "TwentyHanjaChar",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]",
+        "keys": [
+          "\\TwentyHanjaChar#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "KRVcom",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "KRVverse",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:book}}{${2:verse}}"
+      }
+    },
+    {
+      "name": "KRVverse",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:book}}{${2:verse}}{${3:number}}"
+      }
+    },
+    {
+      "name": "MarkHanja",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%keyvals}}{${2:hanja}}",
+        "keys": [
+          "\\MarkHanja#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "HANJA",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "HANGUL",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "HANJADIG",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "HanjaYear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "HanjaMonth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:month}}"
+      }
+    },
+    {
+      "name": "HanjaDay",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:day}}"
+      }
+    },
+    {
+      "name": "HangulYear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "HangulMonth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:month}}"
+      }
+    },
+    {
+      "name": "HangulDay",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:day}}"
+      }
+    },
+    {
+      "name": "HanjaToday"
+    },
+    {
+      "name": "HangulToday"
+    },
+    {
+      "name": "HanjaTodayWithGanji"
+    },
+    {
+      "name": "HangulTodayWithGanji"
+    },
+    {
+      "name": "HangulLunarToday"
+    },
+    {
+      "name": "HangulLunarTodayWithGanji"
+    },
+    {
+      "name": "HangulLunarDay",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:day}}"
+      }
+    },
+    {
+      "name": "HangulDangiYear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "HanjaDangiYear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "HangulBulgiYear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "HanjaBulgiYear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "HangulGanji"
+    },
+    {
+      "name": "HangulGanji",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "HanjaGanji"
+    },
+    {
+      "name": "HanjaGanji",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "NumHanjaFont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hanjacnt#c": [
+      "manspace",
+      "20",
+      "30",
+      "finhanja",
+      "fullfinhanja",
+      "varfinhanja"
+    ],
+    "\\FinHanjaMode": [
+      "full",
+      "var",
+      "fullvar",
+      "off",
+      "on"
+    ],
+    "\\TwentyHanjaChar#c": [
       "2",
       "10",
       "20",
       "30",
       "21",
       "31"
+    ],
+    "\\MarkHanja#c": [
+      "default",
+      "one",
+      "two",
+      "three",
+      "four",
+      "five",
+      "six",
+      "seven",
+      "eight",
+      "nine",
+      "ten",
+      "hundred",
+      "thousand",
+      "shi",
+      "bae",
+      "chu",
+      "man",
+      "eok",
+      "cho"
     ]
+  },
+  "args": [
+    "\\usepackage/hanjacnt#c"
   ]
 }

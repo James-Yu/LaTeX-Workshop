@@ -1,40 +1,64 @@
 {
-  "includes": {
-    "qcm": []
-  },
-  "macros": {
-    "titlefont{}": {
-      "snippet": "titlefont{${1:font commands}}"
-    },
-    "titlespace": {},
-    "questiontitle{}": {
-      "snippet": "questiontitle{${1:text}}"
-    },
-    "questiontitlefont{}": {
-      "snippet": "questiontitlefont{${1:font commands}}"
-    },
-    "questiontitlespace": {},
-    "questionsepspace": {}
-  },
-  "envs": {},
-  "options": [
-    "english",
-    "french",
-    "francais",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final"
+  "deps": [
+    {
+      "name": "qcm"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "titlefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "titlespace"
+    },
+    {
+      "name": "questiontitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "questiontitlefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "questiontitlespace"
+    },
+    {
+      "name": "questionsepspace"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/qcm#c": [
+      "english",
+      "french",
+      "francais",
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final"
+    ]
+  },
+  "args": [
+    "\\documentclass/qcm#c"
+  ]
 }

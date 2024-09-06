@@ -1,107 +1,363 @@
 {
-  "includes": {
-    "xetex": [],
-    "fontspec": []
-  },
-  "macros": {
-    "heji{}{}": {
-      "snippet": "heji{${1:note}}{${2:string}}"
+  "deps": [
+    {
+      "name": "xetex"
     },
-    "acc{}": {
-      "snippet": "acc{${1:string}}"
-    },
-    "otonal": {},
-    "utonal": {},
-    "Otonal": {},
-    "Utonal": {},
-    "HEJIfont": {},
-    "fsize": {},
-    "tempflatflat": {},
-    "tempflat": {},
-    "tempnat": {},
-    "tempsharp": {},
-    "tempsharpsharp": {},
-    "otonalsixtwentyfiveflatflat": {},
-    "otonalsixtwentyfiveflat": {},
-    "otonalsixtwentyfivenat": {},
-    "otonalsixtwentyfivesharp": {},
-    "otonalsixtwentyfivesharpsharp": {},
-    "otonalonetwentyfiveflatflat": {},
-    "otonalonetwentyfiveflat": {},
-    "otonalonetwentyfivenat": {},
-    "otonalonetwentyfivesharp": {},
-    "otonalonetwentyfivesharpsharp": {},
-    "otonaltwentyfiveflatflat": {},
-    "otonaltwentyfiveflat": {},
-    "otonaltwentyfivenat": {},
-    "otonaltwentyfivesharp": {},
-    "otonaltwentyfivesharpsharp": {},
-    "otonalfiveflatflat": {},
-    "otonalfiveflat": {},
-    "otonalfivenat": {},
-    "otonalfivesharp": {},
-    "otonalfivesharpsharp": {},
-    "flatflat": {},
-    "flat": {
-      "detail": "♭",
-      "documentation": "musical flat"
-    },
-    "nat": {},
-    "sharp": {
-      "detail": "♯",
-      "documentation": "= \\ MUSIC SHARP SIGN, z notation infix bag count"
-    },
-    "sharpsharp": {},
-    "utonalfiveflatflat": {},
-    "utonalfiveflat": {},
-    "utonalfivenat": {},
-    "utonalfivesharp": {},
-    "utonalfivesharpsharp": {},
-    "utonaltwentyfiveflatflat": {},
-    "utonaltwentyfiveflat": {},
-    "utonaltwentyfivenat": {},
-    "utonaltwentyfivesharp": {},
-    "utonaltwentyfivesharpsharp": {},
-    "utonalonetwentyfiveflatflat": {},
-    "utonalonetwentyfiveflat": {},
-    "utonalonetwentyfivenat": {},
-    "utonalonetwentyfivesharp": {},
-    "utonalonetwentyfivesharpsharp": {},
-    "utonalsixtwentyfiveflatflat": {},
-    "utonalsixtwentyfiveflat": {},
-    "utonalsixtwentyfivenat": {},
-    "utonalsixtwentyfivesharp": {},
-    "utonalsixtwentyfivesharpsharp": {},
-    "otonalfortynine": {},
-    "otonalseven": {},
-    "utonalseven": {},
-    "utonalfortynine": {},
-    "otonaleleven": {},
-    "utonaleleven": {},
-    "otonalthirteen": {},
-    "utonalthirteen": {},
-    "otonalseventeen": {},
-    "utonalseventeen": {},
-    "otonalnineteen": {},
-    "utonalnineteen": {},
-    "otonaltwentythree": {},
-    "utonaltwentythree": {},
-    "otonaltwentynine": {},
-    "utonaltwentynine": {},
-    "otonalthirtyone": {},
-    "utonalthirtyone": {},
-    "otonalthirtyseven": {},
-    "utonalthirtyseven": {},
-    "otonalfortyone": {},
-    "utonalfortyone": {},
-    "otonalfortythree": {},
-    "utonalfortythree": {},
-    "otonalfortyseven": {},
-    "utonalfortyseven": {}
-  },
-  "envs": {},
-  "options": [
-    "accfirst"
+    {
+      "name": "fontspec"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "heji",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:note}}{${2:string}}"
+      }
+    },
+    {
+      "name": "acc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
+    },
+    {
+      "name": "otonal"
+    },
+    {
+      "name": "utonal"
+    },
+    {
+      "name": "Otonal"
+    },
+    {
+      "name": "Utonal"
+    },
+    {
+      "name": "HEJIfont",
+      "unusual": true
+    },
+    {
+      "name": "fsize",
+      "unusual": true
+    },
+    {
+      "name": "tempflatflat",
+      "unusual": true
+    },
+    {
+      "name": "tempflat",
+      "unusual": true
+    },
+    {
+      "name": "tempnat",
+      "unusual": true
+    },
+    {
+      "name": "tempsharp",
+      "unusual": true
+    },
+    {
+      "name": "tempsharpsharp",
+      "unusual": true
+    },
+    {
+      "name": "otonalsixtwentyfiveflatflat",
+      "unusual": true
+    },
+    {
+      "name": "otonalsixtwentyfiveflat",
+      "unusual": true
+    },
+    {
+      "name": "otonalsixtwentyfivenat",
+      "unusual": true
+    },
+    {
+      "name": "otonalsixtwentyfivesharp",
+      "unusual": true
+    },
+    {
+      "name": "otonalsixtwentyfivesharpsharp",
+      "unusual": true
+    },
+    {
+      "name": "otonalonetwentyfiveflatflat",
+      "unusual": true
+    },
+    {
+      "name": "otonalonetwentyfiveflat",
+      "unusual": true
+    },
+    {
+      "name": "otonalonetwentyfivenat",
+      "unusual": true
+    },
+    {
+      "name": "otonalonetwentyfivesharp",
+      "unusual": true
+    },
+    {
+      "name": "otonalonetwentyfivesharpsharp",
+      "unusual": true
+    },
+    {
+      "name": "otonaltwentyfiveflatflat",
+      "unusual": true
+    },
+    {
+      "name": "otonaltwentyfiveflat",
+      "unusual": true
+    },
+    {
+      "name": "otonaltwentyfivenat",
+      "unusual": true
+    },
+    {
+      "name": "otonaltwentyfivesharp",
+      "unusual": true
+    },
+    {
+      "name": "otonaltwentyfivesharpsharp",
+      "unusual": true
+    },
+    {
+      "name": "otonalfiveflatflat",
+      "unusual": true
+    },
+    {
+      "name": "otonalfiveflat",
+      "unusual": true
+    },
+    {
+      "name": "otonalfivenat",
+      "unusual": true
+    },
+    {
+      "name": "otonalfivesharp",
+      "unusual": true
+    },
+    {
+      "name": "otonalfivesharpsharp",
+      "unusual": true
+    },
+    {
+      "name": "flatflat",
+      "unusual": true
+    },
+    {
+      "name": "flat",
+      "unusual": true,
+      "detail": "♭",
+      "doc": "Musical flat"
+    },
+    {
+      "name": "nat",
+      "unusual": true
+    },
+    {
+      "name": "sharp",
+      "unusual": true,
+      "detail": "♯",
+      "doc": "\\# (oz), music sharp sign, infix bag count"
+    },
+    {
+      "name": "sharpsharp",
+      "unusual": true
+    },
+    {
+      "name": "utonalfiveflatflat",
+      "unusual": true
+    },
+    {
+      "name": "utonalfiveflat",
+      "unusual": true
+    },
+    {
+      "name": "utonalfivenat",
+      "unusual": true
+    },
+    {
+      "name": "utonalfivesharp",
+      "unusual": true
+    },
+    {
+      "name": "utonalfivesharpsharp",
+      "unusual": true
+    },
+    {
+      "name": "utonaltwentyfiveflatflat",
+      "unusual": true
+    },
+    {
+      "name": "utonaltwentyfiveflat",
+      "unusual": true
+    },
+    {
+      "name": "utonaltwentyfivenat",
+      "unusual": true
+    },
+    {
+      "name": "utonaltwentyfivesharp",
+      "unusual": true
+    },
+    {
+      "name": "utonaltwentyfivesharpsharp",
+      "unusual": true
+    },
+    {
+      "name": "utonalonetwentyfiveflatflat",
+      "unusual": true
+    },
+    {
+      "name": "utonalonetwentyfiveflat",
+      "unusual": true
+    },
+    {
+      "name": "utonalonetwentyfivenat",
+      "unusual": true
+    },
+    {
+      "name": "utonalonetwentyfivesharp",
+      "unusual": true
+    },
+    {
+      "name": "utonalonetwentyfivesharpsharp",
+      "unusual": true
+    },
+    {
+      "name": "utonalsixtwentyfiveflatflat",
+      "unusual": true
+    },
+    {
+      "name": "utonalsixtwentyfiveflat",
+      "unusual": true
+    },
+    {
+      "name": "utonalsixtwentyfivenat",
+      "unusual": true
+    },
+    {
+      "name": "utonalsixtwentyfivesharp",
+      "unusual": true
+    },
+    {
+      "name": "utonalsixtwentyfivesharpsharp",
+      "unusual": true
+    },
+    {
+      "name": "otonalfortynine",
+      "unusual": true
+    },
+    {
+      "name": "otonalseven",
+      "unusual": true
+    },
+    {
+      "name": "utonalseven",
+      "unusual": true
+    },
+    {
+      "name": "utonalfortynine",
+      "unusual": true
+    },
+    {
+      "name": "otonaleleven",
+      "unusual": true
+    },
+    {
+      "name": "utonaleleven",
+      "unusual": true
+    },
+    {
+      "name": "otonalthirteen",
+      "unusual": true
+    },
+    {
+      "name": "utonalthirteen",
+      "unusual": true
+    },
+    {
+      "name": "otonalseventeen",
+      "unusual": true
+    },
+    {
+      "name": "utonalseventeen",
+      "unusual": true
+    },
+    {
+      "name": "otonalnineteen",
+      "unusual": true
+    },
+    {
+      "name": "utonalnineteen",
+      "unusual": true
+    },
+    {
+      "name": "otonaltwentythree",
+      "unusual": true
+    },
+    {
+      "name": "utonaltwentythree",
+      "unusual": true
+    },
+    {
+      "name": "otonaltwentynine",
+      "unusual": true
+    },
+    {
+      "name": "utonaltwentynine",
+      "unusual": true
+    },
+    {
+      "name": "otonalthirtyone",
+      "unusual": true
+    },
+    {
+      "name": "utonalthirtyone",
+      "unusual": true
+    },
+    {
+      "name": "otonalthirtyseven",
+      "unusual": true
+    },
+    {
+      "name": "utonalthirtyseven",
+      "unusual": true
+    },
+    {
+      "name": "otonalfortyone",
+      "unusual": true
+    },
+    {
+      "name": "utonalfortyone",
+      "unusual": true
+    },
+    {
+      "name": "otonalfortythree",
+      "unusual": true
+    },
+    {
+      "name": "utonalfortythree",
+      "unusual": true
+    },
+    {
+      "name": "otonalfortyseven",
+      "unusual": true
+    },
+    {
+      "name": "utonalfortyseven",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/helmholtz-ellis-ji-notation#c": [
+      "accfirst"
+    ]
+  },
+  "args": [
+    "\\usepackage/helmholtz-ellis-ji-notation#c"
+  ]
 }

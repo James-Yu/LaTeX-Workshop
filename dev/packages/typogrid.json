@@ -1,25 +1,50 @@
 {
-  "includes": {
-    "calc": [],
-    "keyval": [],
-    "eso-pic": []
-  },
-  "macros": {
-    "typogridsetup{}": {
-      "snippet": "typogridsetup{${1:options}}"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "typogrid": {},
-    "gridwidth": {}
-  },
-  "envs": {},
-  "options": [
-    "draft",
-    "final",
-    "colorgrid",
-    "grid",
-    "columns=${1:number}",
-    "headings",
-    "margin"
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "eso-pic"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "typogridsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/typogrid#c,\\typogridsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "typogrid"
+    },
+    {
+      "name": "gridwidth"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/typogrid#c": [
+      "draft",
+      "final",
+      "colorgrid",
+      "grid"
+    ],
+    "\\usepackage/typogrid#c,\\typogridsetup": [
+      "columns=${1:number}",
+      "headings",
+      "margin"
+    ]
+  },
+  "args": [
+    "\\usepackage/typogrid#c",
+    "\\usepackage/typogrid#c,\\typogridsetup"
+  ]
 }

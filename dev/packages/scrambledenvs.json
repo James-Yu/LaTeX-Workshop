@@ -1,32 +1,71 @@
 {
-  "includes": {
-    "ifthen": [],
-    "forloop": [],
-    "pgfmath": []
-  },
-  "macros": {
-    "newscrambledenv{}": {
-      "snippet": "newscrambledenv{${1:envname}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "defaultlabelfont{}": {
-      "snippet": "defaultlabelfont{${1:font cmds}}"
+    {
+      "name": "forloop"
     },
-    "defaultrefprefix{}": {
-      "snippet": "defaultrefprefix{${1:prefix}}"
-    },
-    "defaultreffont{}": {
-      "snippet": "defaultreffont{${1:font cmds}}"
-    },
-    "defaultprintenv{}{}": {
-      "snippet": "defaultprintenv{${1:open env code}}{${2:close env code}}"
-    },
-    "defaultprintitem{}": {
-      "snippet": "defaultprintitem{${1:item cmds}}"
+    {
+      "name": "pgfmath"
     }
-  },
-  "envs": {},
-  "options": [
-    "noscramble"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "newscrambledenv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "defaultlabelfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font cmds}}"
+      }
+    },
+    {
+      "name": "defaultrefprefix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:prefix}}"
+      }
+    },
+    {
+      "name": "defaultreffont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font cmds}}"
+      }
+    },
+    {
+      "name": "defaultprintenv",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:open env code}}{${2:close env code}}"
+      }
+    },
+    {
+      "name": "defaultprintitem",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:item cmds}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/scrambledenvs#c": [
+      "noscramble"
+    ]
+  },
+  "args": [
+    "\\usepackage/scrambledenvs#c"
+  ]
 }

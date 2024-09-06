@@ -1,162 +1,343 @@
 {
-  "includes": {
-    "class-l3doc": [],
-    "ctex": [],
-    "multitoc": [],
-    "geometry": [],
-    "tabularx": [],
-    "makecell": [],
-    "threeparttable": [],
-    "siunitx": [],
-    "unicode-math": [],
-    "xcolor": [],
-    "caption": [],
-    "fancyvrb-ex": [],
-    "zref-base": []
-  },
-  "macros": {
-    "email{}": {
-      "snippet": "email{${1:email}}"
+  "deps": [
+    {
+      "name": "class-l3doc"
     },
-    "ctexdocverbaddon": {},
-    "ctexdisableecglue": {},
-    "ctexplainps": {},
-    "TPTtagStyle{}": {
-      "snippet": "TPTtagStyle{${1:link text}}"
+    {
+      "name": "ctex"
     },
-    "ctexexamlabelref": {},
-    "thectexexam": {},
-    "ctexsetverticalspacing": {},
-    "ctexfixverticalspacing": {},
-    "SideBySideExampleSet": {},
-    "exptarget": {},
-    "rexptarget": {},
-    "expstar": {},
-    "rexpstar": {},
-    "zihaopt{}": {
-      "snippet": "zihaopt{${1:size}}"
+    {
+      "name": "multitoc"
     },
-    "StopSpecialIndexModule": {},
-    "package{}": {
-      "snippet": "package{${1:package}}"
+    {
+      "name": "geometry"
     },
-    "package[]{}": {
-      "snippet": "package[${2:CTAN path}]{${1:package}}"
+    {
+      "name": "tabularx"
     },
-    "GetFileId{}": {
-      "snippet": "GetFileId{${1:file}}"
+    {
+      "name": "makecell"
     },
-    "orbar": {},
-    "defaultval{}": {
-      "snippet": "defaultval{${1:value}}"
+    {
+      "name": "threeparttable"
     },
-    "defaultvalaux{}": {
-      "snippet": "defaultvalaux{${1:value}}"
+    {
+      "name": "siunitx"
     },
-    "TF": {},
-    "TTF": {},
-    "TFF": {},
-    "opt{}": {
-      "snippet": "opt{${1:option}}"
+    {
+      "name": "unicode-math"
     },
-    "XeLaTeX": {},
-    "LuaLaTeX": {},
-    "pdfLaTeX": {},
-    "LaTeXiii": {},
-    "dvipdfmx": {},
-    "TeXLive": {},
-    "MiKTeX": {},
-    "ApTeX": {},
-    "ApLaTeX": {},
-    "upLaTeX": {},
-    "bashcmd{}": {
-      "snippet": "bashcmd{${1:command}}"
+    {
+      "name": "xcolor"
     },
-    "BSTACK": {},
-    "ESTACK": {},
-    "ctexkit": {},
-    "ctexkitrev{}": {
-      "snippet": "ctexkitrev{${1:commit}}"
+    {
+      "name": "caption"
     },
-    "IndexLayout": {},
-    "CTEXnumberline{}": {
-      "snippet": "CTEXnumberline{${1:arg}}"
+    {
+      "name": "fancyvrb-ex"
+    },
+    {
+      "name": "zref-base"
     }
-  },
-  "envs": {
-    "arguments[]": {
-      "name": "arguments",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "optdesc": {},
-    "optdesc[]": {
-      "name": "optdesc",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "tablenotes[]": {
-      "name": "tablenotes",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "frameverb": {},
-    "frameverb[]": {
-      "name": "frameverb",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "ctexexam": {},
-    "ctexexam[]": {
-      "name": "ctexexam",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "defaultcapconfig": {}
-  },
-  "options": [
-    "full",
-    "onlydoc",
-    "check",
-    "nocheck",
-    "checktest",
-    "nochecktest",
-    "kernel",
-    "stdmodule",
-    "cm-default",
-    "lm-default",
-    "cs-break-off",
-    "cs-break-nohyphen",
-    "show-notes",
-    "hide-notes",
-    "a4paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "ctexdocverbaddon",
+      "unusual": true
+    },
+    {
+      "name": "ctexdisableecglue",
+      "unusual": true
+    },
+    {
+      "name": "ctexplainps",
+      "unusual": true
+    },
+    {
+      "name": "TPTtagStyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:link text}}"
+      }
+    },
+    {
+      "name": "ctexexamlabelref",
+      "unusual": true
+    },
+    {
+      "name": "thectexexam",
+      "unusual": true
+    },
+    {
+      "name": "ctexsetverticalspacing",
+      "unusual": true
+    },
+    {
+      "name": "ctexfixverticalspacing",
+      "unusual": true
+    },
+    {
+      "name": "SideBySideExampleSet"
+    },
+    {
+      "name": "exptarget"
+    },
+    {
+      "name": "rexptarget"
+    },
+    {
+      "name": "expstar"
+    },
+    {
+      "name": "rexpstar"
+    },
+    {
+      "name": "zihaopt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size}}"
+      }
+    },
+    {
+      "name": "StopSpecialIndexModule"
+    },
+    {
+      "name": "package",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package}}"
+      }
+    },
+    {
+      "name": "package",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:CTAN path%URL}]{${1:package}}"
+      }
+    },
+    {
+      "name": "GetFileId",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "orbar",
+      "unusual": true
+    },
+    {
+      "name": "defaultval",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "defaultvalaux",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "TF"
+    },
+    {
+      "name": "TTF"
+    },
+    {
+      "name": "TFF"
+    },
+    {
+      "name": "opt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "XeLaTeX"
+    },
+    {
+      "name": "LuaLaTeX"
+    },
+    {
+      "name": "pdfLaTeX"
+    },
+    {
+      "name": "LaTeXiii"
+    },
+    {
+      "name": "dvipdfmx"
+    },
+    {
+      "name": "TeXLive"
+    },
+    {
+      "name": "MiKTeX"
+    },
+    {
+      "name": "ApTeX"
+    },
+    {
+      "name": "ApLaTeX"
+    },
+    {
+      "name": "upLaTeX"
+    },
+    {
+      "name": "bashcmd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command%plain}}"
+      }
+    },
+    {
+      "name": "BSTACK",
+      "unusual": true
+    },
+    {
+      "name": "ESTACK",
+      "unusual": true
+    },
+    {
+      "name": "ctexkit"
+    },
+    {
+      "name": "ctexkitrev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:commit}}"
+      }
+    },
+    {
+      "name": "IndexLayout"
+    },
+    {
+      "name": "CTEXnumberline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "arguments",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{arguments}#c,\\begin{optdesc}#c,\\begin{tablenotes}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "optdesc"
+    },
+    {
+      "name": "optdesc",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{arguments}#c,\\begin{optdesc}#c,\\begin{tablenotes}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tablenotes",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{arguments}#c,\\begin{optdesc}#c,\\begin{tablenotes}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "frameverb"
+    },
+    {
+      "name": "frameverb",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{frameverb},\\begin{ctexexam}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ctexexam"
+    },
+    {
+      "name": "ctexexam",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{frameverb},\\begin{ctexexam}",
+          "\\begin{ctexexam}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "defaultcapconfig"
+    }
+  ],
+  "keys": {
+    "\\documentclass/ctxdoc#c": [
+      "full",
+      "onlydoc",
+      "check",
+      "nocheck",
+      "checktest",
+      "nochecktest",
+      "kernel",
+      "stdmodule",
+      "cm-default",
+      "lm-default",
+      "cs-break-off",
+      "cs-break-nohyphen",
+      "show-notes",
+      "hide-notes",
+      "a4paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "fleqn",
+      "openbib"
+    ],
+    "\\begin{arguments}#c,\\begin{optdesc}#c,\\begin{tablenotes}#c": [
       "topsep=",
       "partopsep=",
       "parsep=",
@@ -206,7 +387,7 @@
       "afterlabel=${1:string}",
       "mode=${1|unboxed,boxed|}"
     ],
-    [
+    "\\begin{frameverb},\\begin{ctexexam}": [
       "commentchar=${1:single char}",
       "gobble=${1:integer}",
       "formatcom=${1:commands}",
@@ -249,49 +430,11 @@
       "vspace=",
       "listparameters={${1:code}}"
     ],
-    [
-      "commentchar=${1:single char}",
-      "gobble=${1:integer}",
-      "formatcom=${1:commands}",
-      "formatcom*=${1:commands}",
-      "fontfamily=${1:family}",
-      "fontsize=${1:size macro}",
-      "fontshape=${1:shape}",
-      "fontseries=${1:series}",
-      "frame=${1|none,leftline,topline,bottomline,lines,single|}",
-      "framerule=",
-      "framesep=",
-      "rulecolor=${1:color cmd}",
-      "fillcolor=${1:color cmd}",
-      "label=${1:label text}",
-      "labelposition=${1|none,topline,bottomline,all|}",
-      "numbers=${1|none,left,right|}",
-      "numbersep=",
-      "firstnumber=${1:auto|last|<integer>}",
-      "stepnumber=${1:integer}",
-      "numberblanklines",
-      "firstline=${1:integer}",
-      "lastline=${1:integer}",
-      "showspaces",
-      "showtabs",
-      "obeytabs",
-      "tabsize=${1:integer}",
-      "baselinestretch=${1:factor}",
-      "commandchars=${1:three chars}",
-      "xleftmargin=",
-      "xrightmargin=",
-      "resetmargins",
-      "hfuzz=",
-      "samepage",
-      "codes={${1:code}}",
-      "codes*={${1:code}}",
-      "defineactive={${1:code}}",
-      "defineactive*={${1:code}}",
-      "reflabel=",
-      "fileext=${1:extension}",
-      "vspace=",
-      "listparameters={${1:code}}",
+    "\\begin{ctexexam}": [
       "labelref="
     ]
+  },
+  "args": [
+    "\\documentclass/ctxdoc#c"
   ]
 }

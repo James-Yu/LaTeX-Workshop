@@ -1,76 +1,176 @@
 {
-  "includes": {
-    "tagpdf": []
-  },
-  "macros": {
-    "PDFManagementAdd{}{}{}": {
-      "snippet": "PDFManagementAdd{${1:resource path}}{${2:name}}{${3:value}}"
-    },
-    "AddToDocumentProperties{}{}": {
-      "snippet": "AddToDocumentProperties{${1:property}}{${2:value}}"
-    },
-    "AddToDocumentProperties[]{}{}": {
-      "snippet": "AddToDocumentProperties[${3:label}]{${1:property}}{${2:value}}"
-    },
-    "GetDocumentProperties{}": {
-      "snippet": "GetDocumentProperties{${1:label/property}}"
-    },
-    "ShowDocumentProperties": {},
-    "documentmetadatasupportversion": {},
-    "documentmetadatasupportdate": {},
-    "DeclareDocumentMetadata{}": {
-      "snippet": "DeclareDocumentMetadata{${1:options}}"
-    },
-    "url[]{}": {
-      "snippet": "url[${2:options}]{${1:URL}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hrefurl{}{}": {
-      "snippet": "hrefurl{${1:URL}}{${2:text}}"
-    },
-    "hrefurl[]{}{}": {
-      "snippet": "hrefurl[${3:options}]{${1:URL}}{${2:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "hrefpdf{}{}": {
-      "snippet": "hrefpdf{${1:file}}{${2:text}}"
-    },
-    "hrefpdf[]{}{}": {
-      "snippet": "hrefpdf[${3:options}]{${1:file}}{${2:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "hrefrun{}{}": {
-      "snippet": "hrefrun{${1:launch link}}{${2:text}}"
-    },
-    "hrefrun[]{}{}": {
-      "snippet": "hrefrun[${3:options}]{${1:launch link}}{${2:text}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tagpdf"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "PDFManagementAdd",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:resource path}}{${2:name}}{${3:value}}"
+      }
+    },
+    {
+      "name": "AddToDocumentProperties",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:property}}{${2:value}}"
+      }
+    },
+    {
+      "name": "AddToDocumentProperties",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:label}]{${1:property}}{${2:value}}"
+      }
+    },
+    {
+      "name": "GetDocumentProperties",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label/property}}"
+      }
+    },
+    {
+      "name": "ShowDocumentProperties"
+    },
+    {
+      "name": "url",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:URL}}",
+        "keys": [
+          "\\url"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hrefurl",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:URL}}{${2:text}}"
+      }
+    },
+    {
+      "name": "hrefurl",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:URL}}{${2:text}}",
+        "keys": [
+          "\\hrefurl"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hrefpdf",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file}}{${2:text}}"
+      }
+    },
+    {
+      "name": "hrefpdf",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:file}}{${2:text}}",
+        "keys": [
+          "\\hrefpdf"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hrefrun",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:launch link%URL}}{${2:text}}"
+      }
+    },
+    {
+      "name": "hrefrun",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:launch link%URL}}{${2:text}}",
+        "keys": [
+          "\\hrefrun"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\url": [
       "protocol=${1:prefix}",
       "format=${1:format commands}"
     ],
-    [
+    "\\hrefurl": [
       "urlencode",
       "protocol=${1:prefix}",
       "ismap"
     ],
-    [
+    "\\hrefpdf": [
       "destination=${1:dest name}",
       "page=${1:number}",
       "pdfremotestartview=${1|Fit,FitB,FitH,FitV,FitBH,FitBV|}",
       "afrelationship=${1:PDF name}"
     ],
-    [
+    "\\hrefrun": [
       "run-parameter=${1:parameter}"
+    ],
+    "\\hypersetup": [
+      "href/urlencode",
+      "href/protocol=${1:prefix}",
+      "href/destination=${1:dest name}",
+      "href/format=${1:format commands}",
+      "pdfcopyright=${1:copyright text}",
+      "pdftype=${1|Collection,Dataset,Event,Image,InteractiveResource,MovingImage,PhysicalObject,Service,Software,Sound,StillImage,Text|}",
+      "pdflicenseurl=${1:URL}",
+      "pdfauthortitle=${1:author title}",
+      "pdfcaptionwriter=${1:caption writer name}",
+      "pdfmetalang=${1:meta language}",
+      "pdfsource=${1:source file name}",
+      "pdfdocumentid=uuid:${1:id num}",
+      "pdfinstanceid=uuid:${1:id num}",
+      "pdfversionid=${1:version id}",
+      "pdfrendition=${1|default,draft,low-res,proof,screen,thumbnail|}",
+      "pdfpublication=${1:publication}",
+      "pdfpubtype=${1:publication type}",
+      "pdfbytes=${1:file size}",
+      "pdfnumpages=${1:number of pages}",
+      "pdfissn=${1:print ISSN}",
+      "pdfeissn=${1:electronic ISSN}",
+      "pdfisbn=${1:ISBN}",
+      "pdfbookedition=${1:book edition}",
+      "pdfpublisher=${1:publisher}",
+      "pdfvolumenum=${1:volume number}",
+      "pdfissuenum=${1:issue number}",
+      "pdfpagerange={${1:page ranges}}",
+      "pdfdoi=${1:DOI}",
+      "pdfurl=${1:URL}",
+      "pdfidentifier=${1:identifier}",
+      "pdfsubtitle=${1:subtitle}",
+      "pdfpubstatus=${1:publication status}",
+      "pdfcontactaddress=${1:street address}",
+      "pdfcontactcity=${1:city}",
+      "pdfcontactregion=${1:state or province}",
+      "pdfcontactpostcode=${1:postal code}",
+      "pdfcontactcountry=${1:country}",
+      "pdfcontactphone=${1:phone number}",
+      "pdfcontactemail=${1:email}",
+      "pdfcontacturl=${1:URL}",
+      "pdfdate=${1:date}",
+      "link",
+      "url",
+      "file",
+      "run",
+      "menu",
+      "nested-links"
     ]
-  ]
+  },
+  "args": []
 }

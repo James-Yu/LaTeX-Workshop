@@ -1,15 +1,33 @@
 {
-  "includes": {},
-  "macros": {
-    "pagenumbering[]{}": {
-      "snippet": "pagenumbering[${2:prefix}]{${1:numstyle}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "pagenumbering",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix}]{${1:numstyle%keyvals}}",
+        "keys": [
+          "\\pagenumbering#c"
+        ],
+        "keyPos": 1
+      }
     },
-    "chappgsep": {}
-  },
-  "envs": {},
-  "options": [
-    "auto",
-    "noauto"
+    {
+      "name": "chappgsep",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/chappg#c": [
+      "auto",
+      "noauto"
+    ],
+    "\\pagenumbering#c": [
+      "bychapter"
+    ]
+  },
+  "args": [
+    "\\usepackage/chappg#c"
+  ]
 }

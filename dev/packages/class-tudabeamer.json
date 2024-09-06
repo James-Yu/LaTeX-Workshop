@@ -1,93 +1,140 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "URspecialopts": [],
-    "class-beamer": [],
-    "beamerthemeTUDa": [],
-    "scrlfile": [
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "URspecialopts"
+    },
+    {
+      "name": "class-beamer"
+    },
+    {
+      "name": "beamerthemeTUDa"
+    },
+    {
+      "name": "scrlfile",
+      "if": "pdfa"
+    },
+    {
+      "name": "pdfx",
+      "if": "pdfa"
+    },
+    {
+      "name": "scrlfile",
+      "if": "pdfa=true"
+    },
+    {
+      "name": "pdfx",
+      "if": "pdfa=true"
+    },
+    {
+      "name": "ucs",
+      "if": "ucs"
+    },
+    {
+      "name": "inputenc",
+      "if": "utf8x"
+    },
+    {
+      "name": "ucs",
+      "if": "utf8x"
+    },
+    {
+      "name": "inputenc",
+      "if": "utf8"
+    }
+  ],
+  "macros": [
+    {
+      "name": "department",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:department%text}}"
+      }
+    },
+    {
+      "name": "insertdepartment",
+      "unusual": true
+    },
+    {
+      "name": "insertshortdepartment",
+      "unusual": true
+    },
+    {
+      "name": "insertshortdepartment",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "Metadata",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/tudabeamer#c": [
+      "accentcolor=",
+      "colorframetitle",
+      "logo",
       "pdfa",
-      "pdfa=true"
-    ],
-    "pdfx": [
-      "pdfa",
-      "pdfa=true"
-    ],
-    "ucs": [
+      "logofile=${1:imagefile}",
+      "serif",
+      "sans-serif",
+      "department=mecheng",
+      "departmentlogofile=${1:imagefile}",
+      "tudacolors={${1:color options}}",
+      "usepdftitle",
+      "envcountsect",
+      "notheorems",
+      "noamsthm",
+      "compress",
+      "t",
+      "c",
+      "leqno",
+      "fleqn",
+      "handout",
+      "trans",
+      "pdftex",
+      "nativepdf",
+      "pdfmark",
+      "dvips",
+      "dviwindo",
+      "dvipsone",
+      "vtex",
+      "ps2pdf",
+      "ignorenonframetext",
+      "noamssymb",
+      "bigger",
+      "smaller",
+      "8pt",
+      "9pt",
+      "10pt",
+      "11pt",
+      "12pt",
+      "14pt",
+      "17pt",
+      "20pt",
+      "draft",
+      "CJK",
+      "cjk",
+      "onlytextwidth",
+      "pgf={${1:pgf options}}",
+      "hyperref={${1:hyperref options}}",
+      "xcolor={${1:xcolor options}}",
       "ucs",
-      "utf8x"
-    ],
-    "inputenc": [
       "utf8x",
-      "utf8"
+      "utf8",
+      "aspectratio=${2|2013,1610,169,149,141,54,43,32,${1:xxxx}|}"
     ]
   },
-  "macros": {
-    "department{}": {
-      "snippet": "department{${1:department}}"
-    },
-    "insertdepartment": {},
-    "insertshortdepartment": {},
-    "insertshortdepartment[]": {
-      "snippet": "insertshortdepartment[${1:options}]"
-    },
-    "Metadata{}": {
-      "snippet": "Metadata{${1:keyvals}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "accentcolor=",
-    "colorframetitle",
-    "logo",
-    "pdfa",
-    "logofile=${1:imagefile}",
-    "serif",
-    "sans-serif",
-    "department=mecheng",
-    "departmentlogofile=${1:imagefile}",
-    "tudacolors={${1:color options}}",
-    "usepdftitle",
-    "envcountsect",
-    "notheorems",
-    "noamsthm",
-    "compress",
-    "t",
-    "c",
-    "leqno",
-    "fleqn",
-    "handout",
-    "trans",
-    "pdftex",
-    "nativepdf",
-    "pdfmark",
-    "dvips",
-    "dviwindo",
-    "dvipsone",
-    "vtex",
-    "ps2pdf",
-    "ignorenonframetext",
-    "noamssymb",
-    "bigger",
-    "smaller",
-    "8pt",
-    "9pt",
-    "10pt",
-    "11pt",
-    "12pt",
-    "14pt",
-    "17pt",
-    "20pt",
-    "draft",
-    "CJK",
-    "cjk",
-    "onlytextwidth",
-    "pgf={${1:pgf options}}",
-    "hyperref={${1:hyperref options}}",
-    "xcolor={${1:xcolor options}}",
-    "ucs",
-    "utf8x",
-    "utf8",
-    "aspectratio=${1|2013,1610,169,149,141,54,43,32,${1:xxxx}|}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/tudabeamer#c"
+  ]
 }

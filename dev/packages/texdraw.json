@@ -1,97 +1,207 @@
 {
-  "includes": {
-    "graphics": []
-  },
-  "macros": {
-    "centertexdraw{}": {
-      "snippet": "centertexdraw{${1:TeXdraw commands}}"
-    },
-    "everytexdraw{}": {
-      "snippet": "everytexdraw{${1:TeXdraw commands}}"
-    },
-    "move ()": {
-      "snippet": "move (${1:x y})"
-    },
-    "lvec ()": {
-      "snippet": "lvec (${1:x y})"
-    },
-    "avec ()": {
-      "snippet": "avec (${1:x y})"
-    },
-    "rmove ()": {
-      "snippet": "rmove (${1:dx dy})"
-    },
-    "rlvec ()": {
-      "snippet": "rlvec (${1:dx dy})"
-    },
-    "ravec ()": {
-      "snippet": "ravec (${1:dx dy})"
-    },
-    "lpatt ()": {
-      "snippet": "lpatt (${1:pattern})"
-    },
-    "htext (){}": {
-      "snippet": "htext (${2:x y}){${1:text}}"
-    },
-    "htext{}": {
-      "snippet": "htext{${1:text}}"
-    },
-    "vtext (){}": {
-      "snippet": "vtext (${2:x y}){${1:text}}"
-    },
-    "vtext{}": {
-      "snippet": "vtext{${1:text}}"
-    },
-    "clvec ()()()": {
-      "snippet": "clvec (${1:x1 y1})(${2:x2 y2})(${3:x3 y3})"
-    },
-    "bsegment": {},
-    "esegment": {},
-    "savecurrpos ()": {
-      "snippet": "savecurrpos (${1:*${2:px} *py})"
-    },
-    "savepos ()()": {
-      "snippet": "savepos (${1:x y})(${2:*${3:px} *py})"
-    },
-    "drawbb": {},
-    "writeps{}": {
-      "snippet": "writeps{${1:ps-commands}}"
-    },
-    "realmult{}{}{}": {
-      "snippet": "realmult{${1:value1}}{${2:value2}}{${3:cmd}}"
-    },
-    "btexdraw": {},
-    "etexdraw": {},
-    "TeXdrawId": {},
-    "coordtopix {}{}": {
-      "snippet": "coordtopix {${1:dimen}}{${2:pixels}}"
-    },
-    "intdiv{}{}{}": {
-      "snippet": "intdiv{${1:numerator}}{${2:denominator}}{${3:macro}}"
-    },
-    "listtopix (){}": {
-      "snippet": "listtopix (${2:list}){${1:macro}}"
-    },
-    "pixtobp{}{}": {
-      "snippet": "pixtobp{${1:pixels}}{${2:macro}}"
-    },
-    "pixtocoord{}{}": {
-      "snippet": "pixtocoord{${1:pixels}}{${2:macro}}"
-    },
-    "pixtodim{}{}": {
-      "snippet": "pixtodim{${1:pixels}}{${2:dimen}}"
-    },
-    "rottxt{}{}": {
-      "snippet": "rottxt{${1:arg1}}{${2:arg2}}"
-    },
-    "setRevDate": {},
-    "writetx{}": {
-      "snippet": "writetx{${1:ps-commands}}"
+  "deps": [
+    {
+      "name": "graphics"
     }
-  },
-  "envs": {
-    "texdraw": {}
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "centertexdraw",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TeXdraw commands}}"
+      }
+    },
+    {
+      "name": "everytexdraw",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TeXdraw commands}}"
+      }
+    },
+    {
+      "name": "move ",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x y})"
+      }
+    },
+    {
+      "name": "lvec ",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x y})"
+      }
+    },
+    {
+      "name": "avec ",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x y})"
+      }
+    },
+    {
+      "name": "rmove ",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:dx dy})"
+      }
+    },
+    {
+      "name": "rlvec ",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:dx dy})"
+      }
+    },
+    {
+      "name": "ravec ",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:dx dy})"
+      }
+    },
+    {
+      "name": "lpatt ",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:pattern})"
+      }
+    },
+    {
+      "name": "htext ",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x y}){${1:text}}"
+      }
+    },
+    {
+      "name": "htext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "vtext ",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x y}){${1:text}}"
+      }
+    },
+    {
+      "name": "vtext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "clvec ",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x1 y1})(${2:x2 y2})(${3:x3 y3})"
+      }
+    },
+    {
+      "name": "bsegment"
+    },
+    {
+      "name": "esegment"
+    },
+    {
+      "name": "savecurrpos ",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:*%<px%> *%<py%>})"
+      }
+    },
+    {
+      "name": "savepos ",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:%<x y%>})(${2:*%<px%> *%<py%>})"
+      }
+    },
+    {
+      "name": "drawbb"
+    },
+    {
+      "name": "writeps",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ps-commands}}"
+      }
+    },
+    {
+      "name": "coordtopix ",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:dimen}}{${2:pixels}}"
+      }
+    },
+    {
+      "name": "intdiv",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}{${3:macro%cmd}}"
+      }
+    },
+    {
+      "name": "listtopix ",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:list}){${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "pixtobp",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pixels}}{${2:macro%cmd}}"
+      }
+    },
+    {
+      "name": "pixtocoord",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pixels}}{${2:macro%cmd}}"
+      }
+    },
+    {
+      "name": "pixtodim",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pixels}}{${2:dimen}}"
+      }
+    },
+    {
+      "name": "rottxt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "writetx",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ps-commands}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "texdraw"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

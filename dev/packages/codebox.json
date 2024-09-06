@@ -1,101 +1,206 @@
 {
-  "includes": {
-    "xtemplate": [],
-    "l3keys2e": [],
-    "fontawesome5": [],
-    "tcolorbox": [],
-    "tcolorboxlibraryskins": [],
-    "tcolorboxlibrarybreakable": [],
-    "tcolorboxlibraryminted": [],
-    "tcolorboxlibrarylistings": [],
-    "tikzlibraryshapes.geometric": [],
-    "varwidth": [],
-    "xcolor": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "codefile{}{}": {
-      "snippet": "codefile{${1:title}}{${2:file}}"
+  "deps": [
+    {
+      "name": "xtemplate"
     },
-    "codefile[]{}{}": {
-      "snippet": "codefile[${3:options}]{${1:title}}{${2:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "l3keys2e"
     },
-    "codefile*{}{}": {
-      "snippet": "codefile*{${1:title}}{${2:file}}"
+    {
+      "name": "fontawesome5"
     },
-    "codefile*[]{}{}": {
-      "snippet": "codefile*[${3:options}]{${1:title}}{${2:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tcolorbox"
     },
-    "cvfile{}{}": {
-      "snippet": "cvfile{${1:title}}{${2:file}}"
+    {
+      "name": "tcolorboxlibraryskins"
     },
-    "cvfile[]{}{}": {
-      "snippet": "cvfile[${3:options}]{${1:title}}{${2:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tcolorboxlibrarybreakable"
     },
-    "cvfile*{}{}": {
-      "snippet": "cvfile*{${1:title}}{${2:file}}"
+    {
+      "name": "tcolorboxlibraryminted"
     },
-    "cvfile*[]{}{}": {
-      "snippet": "cvfile*[${3:options}]{${1:title}}{${2:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tcolorboxlibrarylistings"
     },
-    "codeset{}": {
-      "snippet": "codeset{${1:options}}"
+    {
+      "name": "tikzlibraryshapes.geometric"
     },
-    "thecvcounter": {}
-  },
-  "envs": {
-    "codebox{}": {
-      "name": "codebox",
-      "snippet": "{${1:title}}"
+    {
+      "name": "varwidth"
     },
-    "codebox[]{}": {
-      "name": "codebox",
-      "snippet": "[${2:options}]{${1:title}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xcolor"
     },
-    "codebox*{}": {
-      "name": "codebox*",
-      "snippet": "{${1:title}}"
-    },
-    "codebox*[]{}": {
-      "name": "codebox*",
-      "snippet": "[${2:options}]{${1:title}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "codeview{}": {
-      "name": "codeview",
-      "snippet": "{${1:title}}"
-    },
-    "codeview[]{}": {
-      "name": "codeview",
-      "snippet": "[${2:options}]{${1:title}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "codeview*{}": {
-      "name": "codeview*",
-      "snippet": "{${1:title}}"
-    },
-    "codeview*[]{}": {
-      "name": "codeview*",
-      "snippet": "[${2:options}]{${1:title}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "etoolbox"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "codefile",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:file}}"
+      }
+    },
+    {
+      "name": "codefile",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:title%text}}{${2:file}}",
+        "keys": [
+          "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "codefile*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:file}}"
+      }
+    },
+    {
+      "name": "codefile*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:title%text}}{${2:file}}",
+        "keys": [
+          "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cvfile",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:file}}"
+      }
+    },
+    {
+      "name": "cvfile",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:title%text}}{${2:file}}",
+        "keys": [
+          "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*",
+          "\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cvfile*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:file}}"
+      }
+    },
+    {
+      "name": "cvfile*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:title%text}}{${2:file}}",
+        "keys": [
+          "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*",
+          "\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "codeset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "thecvcounter"
+    }
+  ],
+  "envs": [
+    {
+      "name": "codebox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "codebox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title%text}}",
+        "keys": [
+          "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "codebox*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "codebox*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title%text}}",
+        "keys": [
+          "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "codeview",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "codeview",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title%text}}",
+        "keys": [
+          "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*",
+          "\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "codeview*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "codeview*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title%text}}",
+        "keys": [
+          "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*",
+          "\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*": [
       "minted",
       "lang=${1:source code lang}",
       "pretitle=${1:title prefix}",
@@ -106,17 +211,9 @@
       "codestretch=${1:factor}",
       "linenumsep=${1:number}"
     ],
-    [
-      "minted",
-      "lang=${1:source code lang}",
-      "pretitle=${1:title prefix}",
-      "codestyle=${1:highlight style}",
-      "codesize=${1:fontsize macro}",
-      "comments=${1:text}",
-      "commentf=${1:format macros}",
-      "codestretch=${1:factor}",
-      "linenumsep=${1:number}",
+    "\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*": [
       "label="
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,180 +1,271 @@
 {
-  "includes": {},
-  "macros": {
-    "newlist{}{}{}": {
-      "snippet": "newlist{${1:name}}{${2:type}}{${3:max-depth}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "newlist",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name%envname}}{${2:type%keyvals}}{${3:max-depth}}",
+        "keys": [
+          "\\newlist#c,\\renewlist#c"
+        ],
+        "keyPos": 1
+      }
     },
-    "renewlist{}{}{}": {
-      "snippet": "renewlist{${1:name}}{${2:type}}{${3:max-depth}}"
+    {
+      "name": "renewlist",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name%envname}}{${2:type%keyvals}}{${3:max-depth}}",
+        "keys": [
+          "\\newlist#c,\\renewlist#c"
+        ],
+        "keyPos": 1
+      }
     },
-    "setlist{}": {
-      "snippet": "setlist{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "setlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options}}",
+        "keys": [
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "setlist*{}": {
-      "snippet": "setlist*{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "setlist*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options}}",
+        "keys": [
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "setlist[]{}": {
-      "snippet": "setlist[${2:names, levels}]{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "setlist",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:names, levels}]{${1:options}}",
+        "keys": [
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 1
+      }
     },
-    "setlist*[]{}": {
-      "snippet": "setlist*[${2:names, levels}]{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "setlist*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:names, levels}]{${1:options}}",
+        "keys": [
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 1
+      }
     },
-    "restartlist{}": {
-      "snippet": "restartlist{${1:list name}}"
+    {
+      "name": "restartlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list name}}"
+      }
     },
-    "EnumitemId": {},
-    "SetLabelAlign{}{}": {
-      "snippet": "SetLabelAlign{${1:value}}{${2:commands}}"
+    {
+      "name": "EnumitemId",
+      "unusual": true
     },
-    "labelindent": {},
-    "SetEnumerateShortLabel{}{}": {
-      "snippet": "SetEnumerateShortLabel{${1:key}}{${2:replacement}}"
+    {
+      "name": "SetLabelAlign",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:value}}{${2:commands}}"
+      }
     },
-    "setlistdepth{}": {
-      "snippet": "setlistdepth{${1:integer}}"
+    {
+      "name": "labelindent",
+      "unusual": true
     },
-    "AddEnumerateCounter{}{}{}": {
-      "snippet": "AddEnumerateCounter{${1:LaTeX-cmd}}{${2:internal-cmd}}{${3:widest label}}"
+    {
+      "name": "SetEnumerateShortLabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:replacement}}"
+      }
     },
-    "AddEnumerateCounter*{}{}{}": {
-      "snippet": "AddEnumerateCounter*{${1:LaTeX-cmd}}{${2:internal-cmd}}{${3:integer}}"
+    {
+      "name": "setlistdepth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
     },
-    "SetEnumitemKey{}{}": {
-      "snippet": "SetEnumitemKey{${1:key}}{${2:replacement options}}"
+    {
+      "name": "AddEnumerateCounter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:LaTeX-cmd}}{${2:internal-cmd}}{${3:widest label}}"
+      }
     },
-    "SetEnumitemValue{}{}{}": {
-      "snippet": "SetEnumitemValue{${1:key}}{${2:string-value}}{${3:replacement}}"
+    {
+      "name": "AddEnumerateCounter*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:LaTeX-cmd}}{${2:internal-cmd}}{${3:integer}}"
+      }
     },
-    "SetEnumitemSize{}{}": {
-      "snippet": "SetEnumitemSize{${1:name}}{${2:selector}}"
+    {
+      "name": "SetEnumitemKey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%specialDef}}{${2:replacement options%keyvals}}",
+        "keys": [
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 1
+      }
     },
-    "DrawEnumitemLabel": {}
-  },
-  "envs": {
-    "enumerate*": {
-      "option": "inline"
+    {
+      "name": "SetEnumitemValue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:key%plain}}{${2:string-value}}{${3:replacement}}"
+      }
     },
-    "enumerate*[]": {
-      "name": "enumerate*",
-      "snippet": "[${1:options}]",
-      "option": "inline",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "SetEnumitemSize",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:selector}}"
+      }
     },
-    "itemize*": {
-      "option": "inline"
-    },
-    "itemize*[]": {
-      "name": "itemize*",
-      "snippet": "[${1:options}]",
-      "option": "inline",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "description*": {
-      "option": "inline"
-    },
-    "description*[]": {
-      "name": "description*",
-      "snippet": "[${1:options}]",
-      "option": "inline",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "enumerate[]": {
-      "name": "enumerate",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "itemize[]": {
-      "name": "itemize",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "description[]": {
-      "name": "description",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "DrawEnumitemLabel",
+      "unusual": true
     }
-  },
-  "options": [
-    "shortlabels",
-    "inline",
-    "sizes",
-    "ignoredisplayed",
-    "includedisplayed",
-    "series=override",
-    "loadonly"
   ],
-  "keyvals": [
-    [
-      "topsep=",
-      "partopsep=",
-      "parsep=",
-      "itemsep=",
-      "leftmargin=",
-      "rightmargin=",
-      "listparindent=",
-      "labelwidth=",
-      "labelsep=",
-      "itemindent=",
-      "label=${1:commands}",
-      "label*=${1:commands}",
-      "ref=${1:commands}",
-      "font=${1:commands}",
-      "format=${1:commands}",
-      "align=${1|left,right,parleft|}",
-      "labelindent=",
-      "left=${1:labelindent}",
-      "left=${1:labelindent} .. ${2:leftmargin}",
-      "widest",
-      "widest=${1:string}",
-      "widest*=${1:integer}",
-      "labelsep*=",
-      "labelindent*=",
-      "start=${1:integer}",
-      "resume",
-      "resume=${1:series name}",
-      "resume*",
-      "resume*=${1:series name}",
-      "series=${1:series name}",
-      "beginpenalty=${1:integer}",
-      "midpenalty=${1:integer}",
-      "endpenalty=${1:integer}",
-      "before=${1:code}",
-      "before*=${1:code}",
-      "after=${1:code}",
-      "after*=${1:code}",
-      "first=${1:code}",
-      "first*=${1:code}",
-      "style=${1|standard,unboxed,nextline,sameline,multiline|}",
-      "noitemsep",
-      "nosep",
-      "wide",
-      "wide=${1:parindent}",
-      "itemjoin=${1:string}",
-      "itemjoin*=${1:string}",
-      "afterlabel=${1:string}",
-      "mode=${1|unboxed,boxed|}",
-      "%enumitemkey"
+  "envs": [
+    {
+      "name": "enumerate*",
+      "if": "inline"
+    },
+    {
+      "name": "enumerate*",
+      "if": "inline",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c",
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "itemize*",
+      "if": "inline"
+    },
+    {
+      "name": "itemize*",
+      "if": "inline",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c",
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "description*",
+      "if": "inline"
+    },
+    {
+      "name": "description*",
+      "if": "inline",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c",
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "enumerate",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "itemize",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "description",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/enumitem#c": [
+      "shortlabels",
+      "inline",
+      "sizes",
+      "ignoredisplayed",
+      "includedisplayed",
+      "series=override",
+      "loadonly"
     ],
-    [
+    "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c": [
       "A",
       "a",
       "I",
       "i",
-      "1",
+      "1"
+    ],
+    "\\newlist#c,\\renewlist#c": [
+      "enumerate",
+      "itemize",
+      "description",
+      "enumerate*",
+      "itemize*",
+      "description*"
+    ],
+    "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c": [
       "topsep=",
       "partopsep=",
       "parsep=",
@@ -225,5 +316,8 @@
       "mode=${1|unboxed,boxed|}",
       "%enumitemkey"
     ]
+  },
+  "args": [
+    "\\usepackage/enumitem#c"
   ]
 }

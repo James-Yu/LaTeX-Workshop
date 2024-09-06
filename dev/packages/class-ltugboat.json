@@ -1,678 +1,1885 @@
 {
-  "includes": {
-    "mflogo": [],
-    "gettitlestring": []
-  },
-  "macros": {
-    "bibentry": {
-      "option": "harvardcite"
-    },
-    "bibhang": {
-      "option": "harvardcite"
-    },
-    "bibindent": {
-      "option": "harvardcite"
-    },
-    "citeA{}": {
-      "snippet": "citeA{${1:key}}",
-      "option": "harvardcite"
-    },
-    "citeANP{}": {
-      "snippet": "citeANP{${1:key}}",
-      "option": "harvardcite"
-    },
-    "citeauthoryear{}{}{}": {
-      "snippet": "citeauthoryear{${1:arg1}}{${2:arg2}}{${3:arg3}}",
-      "option": "harvardcite"
-    },
-    "citeN{}": {
-      "snippet": "citeN{${1:key}}",
-      "option": "harvardcite"
-    },
-    "citeNP{}": {
-      "snippet": "citeNP{${1:key}}",
-      "option": "harvardcite"
-    },
-    "citeyearNP{}": {
-      "snippet": "citeyearNP{${1:key}}",
-      "option": "harvardcite"
-    },
-    "etal": {
-      "option": "harvardcite"
-    },
-    "shortciteA{}": {
-      "snippet": "shortciteA{${1:key}}",
-      "option": "harvardcite"
-    },
-    "shortciteANP{}": {
-      "snippet": "shortciteANP{${1:key}}",
-      "option": "harvardcite"
-    },
-    "shortciteN{}": {
-      "snippet": "shortciteN{${1:key}}",
-      "option": "harvardcite"
-    },
-    "shortciteNP{}": {
-      "snippet": "shortciteNP{${1:key}}",
-      "option": "harvardcite"
-    },
-    "acro{}": {
-      "snippet": "acro{${1:acronym}}"
-    },
-    "address{}": {
-      "snippet": "address{${1:address}}"
-    },
-    "AddToResetCommands{}": {
-      "snippet": "AddToResetCommands{${1:code}}"
-    },
-    "allowhyphens": {},
-    "AllTeX": {},
-    "AMS": {},
-    "AmS": {},
-    "AmSLaTeX": {},
-    "AmSTeX": {},
-    "ANSI": {},
-    "API": {},
-    "ASCII": {},
-    "authorlist{}": {
-      "snippet": "authorlist{${1:name}}"
-    },
-    "authornumber": {},
-    "AW": {},
-    "aw": {},
-    "basezero": {},
-    "bfBibTeX": {},
-    "Bib": {},
-    "BibJustification": {},
-    "BibLaTeX": {},
-    "BibTeX": {},
-    "bigissdt": {},
-    "BlackBoxes": {},
-    "booktitle{}": {
-      "snippet": "booktitle{${1:text}}"
-    },
-    "botregister": {},
-    "botsmash": {},
-    "boxcs{}": {
-      "snippet": "boxcs{${1:csname}}"
-    },
-    "BSD": {},
-    "bull": {},
-    "CandT": {},
-    "careof": {},
-    "cents": {},
-    "CMkIV": {},
-    "ConTeXt": {},
-    "contributor{}": {
-      "snippet": "contributor{${1:name}}"
-    },
-    "Cplusplus": {},
-    "CPU": {},
-    "creditfootnote{}": {
-      "snippet": "creditfootnote{${1:text}}"
-    },
-    "cs{}": {
-      "snippet": "cs{${1:csname}}"
-    },
-    "CSczabbr": {},
-    "CSS": {},
-    "CSTUG": {},
-    "CSV": {},
-    "CTAN": {},
-    "Dag": {},
-    "dash": {},
-    "Dash": {},
-    "DeclareLaTeXLogo{}{}{}{}{}": {
-      "snippet": "DeclareLaTeXLogo{${1:family}}{${2:series}}{${3:shape}}{${4:kern1}}{${5:kern2}}"
-    },
-    "dlap{}": {
-      "snippet": "dlap{${1:text}}"
-    },
-    "drawoutlinebox[]": {
-      "snippet": "drawoutlinebox[${1:height;width;thickness}]"
-    },
-    "DTD": {},
-    "DTK": {},
-    "DVD": {},
-    "DVI": {},
-    "DVIPDFMx": {},
-    "DVItoVDU": {},
-    "ECMA": {},
-    "EDITORnoaddress": {},
-    "EDITORnonetaddress": {},
-    "EdNote[]": {
-      "snippet": "EdNote[${1:text}]"
-    },
-    "EdNote{}": {
-      "snippet": "EdNote{${1:text}}"
-    },
-    "EdNoteFont": {},
-    "emdash": {},
-    "endash": {},
-    "EPS": {},
-    "eTeX": {},
-    "ExTeX": {},
-    "FAQ": {},
-    "fileinput{}": {
-      "snippet": "fileinput{${1:file}}"
-    },
-    "FirstParfalse": {},
-    "FirstPartrue": {},
-    "FTP": {},
-    "Ghostscript": {},
-    "GNU": {},
-    "gobble": {},
-    "GUI": {},
-    "HarfBuzz": {},
-    "Hawaii": {},
-    "hours": {},
-    "HTML": {},
-    "HTTP": {},
-    "hyph": {},
-    "IDE": {},
-    "IEEE": {},
-    "ifFirstPar": {},
-    "ifPrelimDraft": {},
-    "ifpreprint": {},
-    "ifSecTitle": {},
-    "ifshortAuthor": {},
-    "ifTBunicodeengine": {},
-    "ifTestIf": {},
-    "iftubfinaloption": {},
-    "iftubomitdoioption": {},
-    "iftubsecondcolstart": {},
-    "iftubtitlerulefullwidth": {},
-    "ifundefined{}": {
-      "snippet": "ifundefined{${1:csname}}"
-    },
-    "ifWideSecTitle": {},
-    "Input{}": {
-      "snippet": "Input{${1:file}}"
-    },
-    "iOS": {},
-    "ISBN": {},
-    "ISO": {},
-    "issdate": {},
-    "issdt": {},
-    "ISSN": {},
-    "issno": {},
-    "issueseqno": {},
-    "issyear": {},
-    "JoT": {},
-    "JPEG": {},
-    "JTeX": {},
-    "KOMAScript": {},
-    "La": {},
-    "LAMSTeX": {},
-    "latexnobreakspace": {},
-    "latextubstyle": {},
-    "ldash": {},
-    "Ldash": {},
-    "LMTX": {},
-    "lstlistingnamestyle": {},
-    "LuaHBLaTeX": {},
-    "LuaHBTeX": {},
-    "LuaLaTeX": {},
-    "LuaTeX": {},
-    "luatex": {},
-    "LyX": {},
-    "macOS": {},
-    "MacOSX": {},
-    "makeother": {},
-    "MakeRegistrationMarks": {},
-    "makesignature": {},
-    "makestrut[]": {
-      "snippet": "makestrut[${1:height;depth}]"
-    },
-    "makevmeta": {},
-    "MathML": {},
-    "Mc": {},
-    "meta{}": {
-      "snippet": "meta{${1:arg}}"
-    },
-    "mf": {},
-    "MFB": {},
-    "midrtitle": {},
-    "minutes": {},
-    "MkIV": {},
-    "mp": {
-      "detail": "∓",
-      "documentation": "MINUS-OR-PLUS SIGN"
-    },
-    "mspmetavar{}{}": {
-      "snippet": "mspmetavar{${1:var}}{${2:value}}"
-    },
-    "mtex": {},
-    "nameref{}": {
-      "snippet": "nameref{${1:label}}"
-    },
-    "net": {},
-    "netaddrat": {},
-    "NetAddrChars": {},
-    "netaddrdot": {},
-    "netaddress[]{}": {
-      "snippet": "netaddress[${2:opt}]{${1:email}}"
-    },
-    "netaddress{}": {
-      "snippet": "netaddress{${1:email}}"
-    },
-    "netaddrpercent": {},
-    "network{}": {
-      "snippet": "network{${1:arg}}"
-    },
-    "newboxcs{}": {
-      "snippet": "newboxcs{${1:csname}}"
-    },
-    "ninepoint": {},
-    "NoBlackBoxes": {},
-    "nohyphens": {},
-    "nomarkfootnote{}{}": {
-      "snippet": "nomarkfootnote{${1:commands}}{${2:text}}"
-    },
-    "NoParIndent": {},
-    "NormalParIndent": {},
-    "normalparindent": {},
-    "normalspaces": {},
-    "now": {},
-    "Now": {},
-    "NTG": {},
-    "nth{}": {
-      "snippet": "nth{${1:number}}"
-    },
-    "NTS": {},
-    "nullhrule": {},
-    "nullvrule": {},
-    "OCP": {},
-    "OMEGA": {},
-    "OOXML": {},
-    "OpTeX": {},
-    "ORCID{}": {
-      "snippet": "ORCID{${1:ORCID}}"
-    },
-    "OTF": {},
-    "other": {},
-    "OTP": {},
-    "PageXref{}": {
-      "snippet": "PageXref{${1:arg}}"
-    },
-    "pagexref{}": {
-      "snippet": "pagexref{${1:label}}"
-    },
-    "PageXrefOFF{}": {
-      "snippet": "PageXrefOFF{${1:arg}}"
-    },
-    "pagexrefOFF{}": {
-      "snippet": "pagexrefOFF{${1:label}}"
-    },
-    "PageXrefON{}": {
-      "snippet": "PageXrefON{${1:arg}}"
-    },
-    "pagexrefON{}": {
-      "snippet": "pagexrefON{${1:label}}"
-    },
-    "Pas": {},
-    "pcMF": {},
-    "PCTeX": {},
-    "pcTeX": {},
-    "PDF": {},
-    "pdfLaTeX": {},
-    "pdflatex": {},
-    "pdfTeX": {},
-    "pdftex": {},
-    "personalURL{}": {
-      "snippet": "personalURL{${1:URL}}"
-    },
-    "PGF": {},
-    "phone": {},
-    "PHP": {},
-    "PiC": {},
-    "PiCTeX": {},
-    "plain": {},
-    "plaintubstyle": {},
-    "plusplus": {},
-    "PNG": {},
-    "POBox": {},
-    "PrelimDraftfalse": {},
-    "PrelimDrafttrue": {},
-    "preprint": {},
-    "preprintfalse": {},
-    "preprinttrue": {},
-    "ProtectNetChars": {},
-    "PS": {},
-    "PSTricks": {},
-    "raggedcenter": {},
-    "raggedparfill": {},
-    "raggedskip": {},
-    "raggedspaces": {},
-    "raggedstretch": {},
-    "rdash": {},
-    "Rdash": {},
-    "ResetCommands{}": {
-      "snippet": "ResetCommands{${1:commands}}"
-    },
-    "restorecat{}": {
-      "snippet": "restorecat{${1:char}}"
-    },
-    "RestoreCS{}": {
-      "snippet": "RestoreCS{${1:csname}}"
-    },
-    "revauth{}": {
-      "snippet": "revauth{${1:name}}"
-    },
-    "Review[]{}": {
-      "snippet": "Review[${2:header}]{${1:text}}"
-    },
-    "Review{}": {
-      "snippet": "Review{${1:text}}"
-    },
-    "revpubinfo{}": {
-      "snippet": "revpubinfo{${1:info}}"
-    },
-    "revtitle{}": {
-      "snippet": "revtitle{${1:text}}"
-    },
-    "rhTitle": {},
-    "RIT": {},
-    "RTF": {},
-    "rtitlenexttopage": {},
-    "rtitlex": {},
-    "ruled": {},
-    "savecat{}": {
-      "snippet": "savecat{${1:char}}"
-    },
-    "SaveCS{}": {
-      "snippet": "SaveCS{${1:csname}}"
-    },
-    "SC": {},
-    "secsep": {},
-    "sectitle": {},
-    "SecTitlefalse": {},
-    "sectitlefont": {},
-    "SecTitletrue": {},
-    "SelfDocumenting": {},
-    "SetBibJustification{}": {
-      "snippet": "SetBibJustification{${1:justification command}}"
-    },
-    "setboxcs{}": {
-      "snippet": "setboxcs{${1:csname}}"
-    },
-    "SetTime": {},
-    "SGML": {},
-    "shortAuthor{}": {
-      "snippet": "shortAuthor{${1:name}}"
-    },
-    "shortAuthorfalse": {},
-    "shortAuthortrue": {},
-    "shortTitle{}": {
-      "snippet": "shortTitle{${1:text}}"
-    },
-    "signature{}": {
-      "snippet": "signature{${1:signature}}"
-    },
-    "signaturemark": {},
-    "signaturewidth": {},
-    "SliTeX": {},
-    "slMF": {},
-    "SMC": {},
-    "smc": {},
-    "SQL": {},
-    "STIX": {},
-    "stTeX": {},
-    "supportfootnote{}": {
-      "snippet": "supportfootnote{${1:text}}"
-    },
-    "SVG": {},
-    "TANGLE": {},
-    "TB": {},
-    "tbcode{}": {
-      "snippet": "tbcode{${1:text}}"
-    },
-    "tbcodebreak{}": {
-      "snippet": "tbcodebreak{${1:text}}"
-    },
-    "TBdriver": {},
-    "TBecircacute": {},
-    "TBEnableRemarks": {},
-    "TBError{}": {
-      "snippet": "TBError{${1:text}}"
-    },
-    "tbgobbledash": {},
-    "tbhurl{}": {
-      "snippet": "tbhurl{${1:URL}}"
-    },
-    "tbhurlfootnote{}": {
-      "snippet": "tbhurlfootnote{${1:URL}}"
-    },
-    "TBInfo{}": {
-      "snippet": "TBInfo{${1:text}}"
-    },
-    "tbotregister": {},
-    "tbppkernfoot": {},
-    "TBremark{}": {
-      "snippet": "TBremark{${1:text}}"
-    },
-    "tbsurl{}": {
-      "snippet": "tbsurl{${1:URL}}"
-    },
-    "tbsurlfootnote{}": {
-      "snippet": "tbsurlfootnote{${1:URL}}"
-    },
-    "TBtocsectionfont": {},
-    "TBunicodeenginefalse": {},
-    "TBunicodeenginetrue": {},
-    "tburl{}": {
-      "snippet": "tburl{${1:URL}}"
-    },
-    "tburlfootnote{}": {
-      "snippet": "tburlfootnote{${1:URL}}"
-    },
-    "tbUTF": {},
-    "TBWarning{}": {
-      "snippet": "TBWarning{${1:text}}"
-    },
-    "TBWarningNL{}": {
-      "snippet": "TBWarningNL{${1:text}}"
-    },
-    "tensl": {},
-    "TestBox": {},
-    "TestCount": {},
-    "TestDimen": {},
-    "TestIffalse": {},
-    "TestIftrue": {},
-    "TeXhax": {},
-    "TeXMaG": {},
-    "texorpdfstring{}{}": {
-      "snippet": "texorpdfstring{${1:arg1}}{${2:arg2}}"
-    },
-    "textSMC{}": {
-      "snippet": "textSMC{${1:text}}"
-    },
-    "texttub{}": {
-      "snippet": "texttub{${1:text}}"
-    },
-    "TeXtures": {},
-    "Textures": {},
-    "TeXworks": {},
-    "TeXXeT": {},
-    "TFM": {},
-    "Thanh": {},
-    "theaddress{}": {
-      "snippet": "theaddress{${1:number}}"
-    },
-    "theauthor{}": {
-      "snippet": "theauthor{${1:number}}"
-    },
-    "thedoi": {},
-    "thenetaddress{}": {
-      "snippet": "thenetaddress{${1:number}}"
-    },
-    "theORCID{}": {
-      "snippet": "theORCID{${1:number}}"
-    },
-    "thePersonalURL{}": {
-      "snippet": "thePersonalURL{${1:number}}"
-    },
-    "therevauth": {},
-    "therevpubinfo": {},
-    "therevtitle": {},
-    "thinskip": {},
-    "TIFF": {},
-    "TikZ": {},
-    "titleref{}": {
-      "snippet": "titleref{${1:text}}"
-    },
-    "topregister": {},
-    "topsmash": {},
-    "TP": {},
-    "TTN": {},
-    "ttn": {},
-    "ttopregister": {},
-    "TUB": {},
-    "tubabovedoi": {},
-    "tubbraced{}": {
-      "snippet": "tubbraced{${1:text}}"
-    },
-    "tubcaptionfonts": {},
-    "tubcaptionleftglue": {},
-    "TUBdefaulteTeX": {},
-    "tubdoiprefix": {},
-    "tubdots": {},
-    "TUBedit{}": {
-      "snippet": "TUBedit{${1:text}}"
-    },
-    "TUBfilename{}{}": {
-      "snippet": "TUBfilename{${1:arg1}}{${2:arg2}}"
-    },
-    "tubfinaloptionfalse": {},
-    "tubfinaloptiontrue": {},
-    "tubheadhook": {},
-    "tubhideheight{}": {
-      "snippet": "tubhideheight{${1:height}}"
-    },
-    "tubissue{}()": {
-      "snippet": "tubissue{${1:volume}}(${2:issue})"
-    },
-    "tubjustifiedpar": {},
-    "tubline{}": {
-      "snippet": "tubline{${1:text}}"
-    },
-    "tubmakecaptionbox{}{}": {
-      "snippet": "tubmakecaptionbox{${1:arg1}}{${2:arg2}}"
-    },
-    "tubmultipleaffilauthor": {},
-    "tubmultipleaffilnet": {},
-    "tubomitdoioptionfalse": {},
-    "tubomitdoioptiontrue": {},
-    "tubraggedfoot": {},
-    "tubreflect{}": {
-      "snippet": "tubreflect{${1:text}}"
-    },
-    "tubruninglue": {},
-    "tubruninsecfmt": {},
-    "tubrunningauthor": {},
-    "tubsecfmt": {},
-    "tubsechook": {},
-    "tubsecondcolstartextra": {},
-    "tubsecondcolstartfalse": {},
-    "tubsecondcolstarttrue": {},
-    "tubsentencespace": {},
-    "tubsmallerskip": {},
-    "tubthinnerspace": {},
-    "tubthinnerspaceneg": {},
-    "tubtitlerulefullwidthfalse": {},
-    "tubtitlerulefullwidthtrue": {},
-    "tubtypesetdoi": {},
-    "tubtypesetpageno{}": {
-      "snippet": "tubtypesetpageno{${1:arg}}"
-    },
-    "tug": {},
-    "TUG": {},
-    "UG": {},
-    "ulap{}": {
-      "snippet": "ulap{${1:text}}"
-    },
-    "UNIX": {},
-    "url{}": {
-      "snippet": "url{${1:URL}}"
-    },
-    "URLchars": {},
-    "UseExtraLabel": {},
-    "UseTrimMarks": {},
-    "VAX": {},
-    "vellipsis": {},
-    "VnTeX": {},
-    "vol": {},
-    "volno": {},
-    "volyr": {},
-    "VorTeX": {},
-    "WEAVE": {},
-    "WEB": {},
-    "WideSecTitlefalse": {},
-    "WideSecTitletrue": {},
-    "WYSIWYG": {},
-    "Xe": {},
-    "xEdNote{}": {
-      "snippet": "xEdNote{${1:text}}"
-    },
-    "XekernafterE": {},
-    "XekernbeforeE": {},
-    "XeLaTeX": {},
-    "XeT": {},
-    "XeTeX": {},
-    "XHTML": {},
-    "xlap{}": {
-      "snippet": "xlap{${1:text}}"
-    },
-    "XML": {},
-    "XMP": {},
-    "xrefto{}": {
-      "snippet": "xrefto{${1:label}}"
-    },
-    "xreftoOFF{}": {
-      "snippet": "xreftoOFF{${1:label}}"
-    },
-    "xreftoON{}": {
-      "snippet": "xreftoON{${1:label}}"
-    },
-    "XSL": {},
-    "XSLFO": {},
-    "XSLT": {},
-    "YAML": {},
-    "ylap{}": {
-      "snippet": "ylap{${1:text}}"
-    },
-    "zlap{}": {
-      "snippet": "zlap{${1:text}}"
+  "deps": [
+    {
+      "name": "mflogo"
+    },
+    {
+      "name": "gettitlestring"
     }
-  },
-  "envs": {
-    "appendix": {},
-    "compactdescription": {},
-    "compactenumerate": {},
-    "compactitemize": {},
-    "dedication": {},
-    "longabstract": {},
-    "reviewitem": {},
-    "SafeSection": {},
-    "verbatim[]": {
-      "name": "verbatim",
-      "snippet": "[${1:before code}]"
-    }
-  },
-  "options": [
-    "draft",
-    "extralabel",
-    "final",
-    "harvardcite",
-    "noextralabel",
-    "nonumber",
-    "numbersec",
-    "onecolumn",
-    "preprint",
-    "rawcite",
-    "runningfull",
-    "runningminimal",
-    "runningoff"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "bibentry",
+      "if": "harvardcite",
+      "unusual": true
+    },
+    {
+      "name": "bibhang",
+      "if": "harvardcite",
+      "unusual": true
+    },
+    {
+      "name": "bibindent",
+      "if": "harvardcite",
+      "unusual": true
+    },
+    {
+      "name": "citeA",
+      "if": "harvardcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "citeANP",
+      "if": "harvardcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "citeauthoryear",
+      "if": "harvardcite",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "citeN",
+      "if": "harvardcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "citeNP",
+      "if": "harvardcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "citeyearNP",
+      "if": "harvardcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "etal",
+      "if": "harvardcite",
+      "unusual": true
+    },
+    {
+      "name": "shortciteA",
+      "if": "harvardcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "shortciteANP",
+      "if": "harvardcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "shortciteN",
+      "if": "harvardcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "shortciteNP",
+      "if": "harvardcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "acro",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:acronym}}"
+      }
+    },
+    {
+      "name": "address",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address%text}}"
+      }
+    },
+    {
+      "name": "AddToResetCommands",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "allowhyphens",
+      "unusual": true
+    },
+    {
+      "name": "AllTeX"
+    },
+    {
+      "name": "AMS"
+    },
+    {
+      "name": "AmS"
+    },
+    {
+      "name": "AmSLaTeX"
+    },
+    {
+      "name": "AmSTeX"
+    },
+    {
+      "name": "ANSI"
+    },
+    {
+      "name": "API"
+    },
+    {
+      "name": "ASCII"
+    },
+    {
+      "name": "authorlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "authornumber",
+      "unusual": true
+    },
+    {
+      "name": "AW"
+    },
+    {
+      "name": "aw"
+    },
+    {
+      "name": "basezero"
+    },
+    {
+      "name": "bfBibTeX",
+      "unusual": true
+    },
+    {
+      "name": "Bib"
+    },
+    {
+      "name": "BibJustification",
+      "unusual": true
+    },
+    {
+      "name": "BibLaTeX"
+    },
+    {
+      "name": "BibTeX"
+    },
+    {
+      "name": "bigissdt",
+      "unusual": true
+    },
+    {
+      "name": "BlackBoxes"
+    },
+    {
+      "name": "botregister"
+    },
+    {
+      "name": "botsmash"
+    },
+    {
+      "name": "boxcs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "BSD"
+    },
+    {
+      "name": "bull"
+    },
+    {
+      "name": "CandT"
+    },
+    {
+      "name": "careof"
+    },
+    {
+      "name": "cents"
+    },
+    {
+      "name": "CMkIV"
+    },
+    {
+      "name": "ConTeXt"
+    },
+    {
+      "name": "contributor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "Cplusplus"
+    },
+    {
+      "name": "CPU"
+    },
+    {
+      "name": "creditfootnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "cs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "CSczabbr"
+    },
+    {
+      "name": "CSS"
+    },
+    {
+      "name": "CSTUG"
+    },
+    {
+      "name": "CSV"
+    },
+    {
+      "name": "CTAN"
+    },
+    {
+      "name": "Dag"
+    },
+    {
+      "name": "dash"
+    },
+    {
+      "name": "Dash"
+    },
+    {
+      "name": "DeclareLaTeXLogo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:family}}{${2:series}}{${3:shape}}{${4:kern1}}{${5:kern2}}"
+      }
+    },
+    {
+      "name": "dlap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "drawoutlinebox",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:height;width;thickness}]"
+      }
+    },
+    {
+      "name": "DTD"
+    },
+    {
+      "name": "DTK"
+    },
+    {
+      "name": "DVD"
+    },
+    {
+      "name": "DVI"
+    },
+    {
+      "name": "DVIPDFMx"
+    },
+    {
+      "name": "DVItoVDU"
+    },
+    {
+      "name": "ECMA"
+    },
+    {
+      "name": "EDITORnoaddress",
+      "unusual": true
+    },
+    {
+      "name": "EDITORnonetaddress",
+      "unusual": true
+    },
+    {
+      "name": "EdNote",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:text}]"
+      }
+    },
+    {
+      "name": "EdNote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "EdNoteFont",
+      "unusual": true
+    },
+    {
+      "name": "emdash"
+    },
+    {
+      "name": "endash"
+    },
+    {
+      "name": "EPS"
+    },
+    {
+      "name": "eTeX"
+    },
+    {
+      "name": "ExTeX"
+    },
+    {
+      "name": "FAQ"
+    },
+    {
+      "name": "fileinput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "FirstParfalse",
+      "unusual": true
+    },
+    {
+      "name": "FirstPartrue",
+      "unusual": true
+    },
+    {
+      "name": "FTP"
+    },
+    {
+      "name": "Ghostscript"
+    },
+    {
+      "name": "GNU"
+    },
+    {
+      "name": "gobble",
+      "unusual": true
+    },
+    {
+      "name": "GUI"
+    },
+    {
+      "name": "HarfBuzz"
+    },
+    {
+      "name": "Hawaii"
+    },
+    {
+      "name": "hours",
+      "unusual": true
+    },
+    {
+      "name": "HTML"
+    },
+    {
+      "name": "HTTP"
+    },
+    {
+      "name": "hyph"
+    },
+    {
+      "name": "IDE"
+    },
+    {
+      "name": "IEEE"
+    },
+    {
+      "name": "ifFirstPar",
+      "unusual": true
+    },
+    {
+      "name": "ifPrelimDraft"
+    },
+    {
+      "name": "ifpreprint",
+      "unusual": true
+    },
+    {
+      "name": "ifSecTitle",
+      "unusual": true
+    },
+    {
+      "name": "ifshortAuthor",
+      "unusual": true
+    },
+    {
+      "name": "ifTBunicodeengine",
+      "unusual": true
+    },
+    {
+      "name": "ifTestIf",
+      "unusual": true
+    },
+    {
+      "name": "iftubfinaloption",
+      "unusual": true
+    },
+    {
+      "name": "iftubomitdoioption",
+      "unusual": true
+    },
+    {
+      "name": "iftubsecondcolstart",
+      "unusual": true
+    },
+    {
+      "name": "iftubtitlerulefullwidth",
+      "unusual": true
+    },
+    {
+      "name": "ifundefined",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "ifWideSecTitle",
+      "unusual": true
+    },
+    {
+      "name": "Input",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "iOS"
+    },
+    {
+      "name": "ISBN"
+    },
+    {
+      "name": "ISO"
+    },
+    {
+      "name": "issdate",
+      "unusual": true
+    },
+    {
+      "name": "issdt",
+      "unusual": true
+    },
+    {
+      "name": "ISSN"
+    },
+    {
+      "name": "issno",
+      "unusual": true
+    },
+    {
+      "name": "issueseqno",
+      "unusual": true
+    },
+    {
+      "name": "issyear",
+      "unusual": true
+    },
+    {
+      "name": "JoT"
+    },
+    {
+      "name": "JPEG"
+    },
+    {
+      "name": "JTeX"
+    },
+    {
+      "name": "KOMAScript"
+    },
+    {
+      "name": "La",
+      "unusual": true
+    },
+    {
+      "name": "LAMSTeX"
+    },
+    {
+      "name": "latexnobreakspace",
+      "unusual": true
+    },
+    {
+      "name": "latextubstyle",
+      "unusual": true
+    },
+    {
+      "name": "ldash"
+    },
+    {
+      "name": "Ldash"
+    },
+    {
+      "name": "LMTX"
+    },
+    {
+      "name": "lstlistingnamestyle",
+      "unusual": true
+    },
+    {
+      "name": "LuaHBLaTeX"
+    },
+    {
+      "name": "LuaHBTeX"
+    },
+    {
+      "name": "LuaLaTeX"
+    },
+    {
+      "name": "LuaTeX"
+    },
+    {
+      "name": "luatex",
+      "unusual": true
+    },
+    {
+      "name": "LyX"
+    },
+    {
+      "name": "macOS"
+    },
+    {
+      "name": "MacOSX"
+    },
+    {
+      "name": "makeother",
+      "unusual": true
+    },
+    {
+      "name": "MakeRegistrationMarks",
+      "unusual": true
+    },
+    {
+      "name": "makesignature"
+    },
+    {
+      "name": "makestrut",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:height;depth}]"
+      }
+    },
+    {
+      "name": "makevmeta"
+    },
+    {
+      "name": "MathML"
+    },
+    {
+      "name": "Mc"
+    },
+    {
+      "name": "meta",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "mf"
+    },
+    {
+      "name": "MFB"
+    },
+    {
+      "name": "midrtitle"
+    },
+    {
+      "name": "minutes",
+      "unusual": true
+    },
+    {
+      "name": "MkIV"
+    },
+    {
+      "name": "mp",
+      "detail": "∓",
+      "doc": "Minus-or-plus sign"
+    },
+    {
+      "name": "mspmetavar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:var}}{${2:value}}"
+      }
+    },
+    {
+      "name": "mtex"
+    },
+    {
+      "name": "nameref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "netaddrat",
+      "unusual": true
+    },
+    {
+      "name": "NetAddrChars",
+      "unusual": true
+    },
+    {
+      "name": "netaddrdot",
+      "unusual": true
+    },
+    {
+      "name": "netaddress",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opt}]{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "netaddress",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "netaddrpercent",
+      "unusual": true
+    },
+    {
+      "name": "network",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "newboxcs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "ninepoint",
+      "unusual": true
+    },
+    {
+      "name": "NoBlackBoxes"
+    },
+    {
+      "name": "nohyphens",
+      "unusual": true
+    },
+    {
+      "name": "nomarkfootnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:commands}}{${2:text}}"
+      }
+    },
+    {
+      "name": "NoParIndent"
+    },
+    {
+      "name": "NormalParIndent"
+    },
+    {
+      "name": "normalparindent",
+      "unusual": true
+    },
+    {
+      "name": "normalspaces"
+    },
+    {
+      "name": "now"
+    },
+    {
+      "name": "Now"
+    },
+    {
+      "name": "NTG"
+    },
+    {
+      "name": "nth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "NTS"
+    },
+    {
+      "name": "nullhrule"
+    },
+    {
+      "name": "nullvrule"
+    },
+    {
+      "name": "OCP"
+    },
+    {
+      "name": "OMEGA"
+    },
+    {
+      "name": "OOXML"
+    },
+    {
+      "name": "OpTeX"
+    },
+    {
+      "name": "ORCID",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ORCID}}"
+      }
+    },
+    {
+      "name": "OTF"
+    },
+    {
+      "name": "OTP"
+    },
+    {
+      "name": "PageXref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "pagexref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "PageXrefOFF",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "pagexrefOFF",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "PageXrefON",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "pagexrefON",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Pas"
+    },
+    {
+      "name": "pcMF"
+    },
+    {
+      "name": "PCTeX"
+    },
+    {
+      "name": "pcTeX"
+    },
+    {
+      "name": "PDF"
+    },
+    {
+      "name": "pdfLaTeX"
+    },
+    {
+      "name": "pdflatex",
+      "unusual": true
+    },
+    {
+      "name": "pdfTeX"
+    },
+    {
+      "name": "pdftex",
+      "unusual": true
+    },
+    {
+      "name": "personalURL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "PGF"
+    },
+    {
+      "name": "phone",
+      "unusual": true
+    },
+    {
+      "name": "PHP"
+    },
+    {
+      "name": "PiC"
+    },
+    {
+      "name": "PiCTeX"
+    },
+    {
+      "name": "plain"
+    },
+    {
+      "name": "plaintubstyle",
+      "unusual": true
+    },
+    {
+      "name": "plusplus",
+      "unusual": true
+    },
+    {
+      "name": "PNG"
+    },
+    {
+      "name": "POBox"
+    },
+    {
+      "name": "PrelimDraftfalse",
+      "unusual": true
+    },
+    {
+      "name": "PrelimDrafttrue",
+      "unusual": true
+    },
+    {
+      "name": "preprint"
+    },
+    {
+      "name": "preprintfalse",
+      "unusual": true
+    },
+    {
+      "name": "preprinttrue",
+      "unusual": true
+    },
+    {
+      "name": "ProtectNetChars",
+      "unusual": true
+    },
+    {
+      "name": "PS"
+    },
+    {
+      "name": "PSTricks"
+    },
+    {
+      "name": "raggedcenter"
+    },
+    {
+      "name": "raggedparfill",
+      "unusual": true
+    },
+    {
+      "name": "raggedskip",
+      "unusual": true
+    },
+    {
+      "name": "raggedspaces"
+    },
+    {
+      "name": "raggedstretch",
+      "unusual": true
+    },
+    {
+      "name": "rdash"
+    },
+    {
+      "name": "Rdash"
+    },
+    {
+      "name": "ResetCommands",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:commands}}"
+      }
+    },
+    {
+      "name": "restorecat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:char}}"
+      }
+    },
+    {
+      "name": "RestoreCS",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "revauth",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "Review",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:header%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "Review",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "revpubinfo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:info}}"
+      }
+    },
+    {
+      "name": "revtitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rhTitle",
+      "unusual": true
+    },
+    {
+      "name": "RIT"
+    },
+    {
+      "name": "RTF"
+    },
+    {
+      "name": "rtitlenexttopage"
+    },
+    {
+      "name": "rtitlex"
+    },
+    {
+      "name": "ruled"
+    },
+    {
+      "name": "savecat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:char}}"
+      }
+    },
+    {
+      "name": "SaveCS",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "SC"
+    },
+    {
+      "name": "secsep",
+      "unusual": true
+    },
+    {
+      "name": "sectitle",
+      "unusual": true
+    },
+    {
+      "name": "SecTitlefalse",
+      "unusual": true
+    },
+    {
+      "name": "sectitlefont",
+      "unusual": true
+    },
+    {
+      "name": "SecTitletrue",
+      "unusual": true
+    },
+    {
+      "name": "SelfDocumenting",
+      "unusual": true
+    },
+    {
+      "name": "SetBibJustification",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:justification command}}"
+      }
+    },
+    {
+      "name": "setboxcs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "SetTime"
+    },
+    {
+      "name": "SGML"
+    },
+    {
+      "name": "shortAuthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "shortAuthorfalse",
+      "unusual": true
+    },
+    {
+      "name": "shortAuthortrue",
+      "unusual": true
+    },
+    {
+      "name": "shortTitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "signature",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:signature}}"
+      }
+    },
+    {
+      "name": "signaturemark"
+    },
+    {
+      "name": "signaturewidth",
+      "unusual": true
+    },
+    {
+      "name": "SliTeX"
+    },
+    {
+      "name": "SMC"
+    },
+    {
+      "name": "SQL"
+    },
+    {
+      "name": "STIX"
+    },
+    {
+      "name": "stTeX"
+    },
+    {
+      "name": "supportfootnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "SVG"
+    },
+    {
+      "name": "TANGLE"
+    },
+    {
+      "name": "TB"
+    },
+    {
+      "name": "tbcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "tbcodebreak",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "TBdriver",
+      "unusual": true
+    },
+    {
+      "name": "TBecircacute",
+      "unusual": true
+    },
+    {
+      "name": "TBEnableRemarks",
+      "unusual": true
+    },
+    {
+      "name": "TBError",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tbgobbledash",
+      "unusual": true
+    },
+    {
+      "name": "tbhurl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "tbhurlfootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "TBInfo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tbotregister",
+      "unusual": true
+    },
+    {
+      "name": "tbppkernfoot",
+      "unusual": true
+    },
+    {
+      "name": "TBremark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tbsurl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "tbsurlfootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "TBtocsectionfont",
+      "unusual": true
+    },
+    {
+      "name": "tburl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "tburlfootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "tbUTF"
+    },
+    {
+      "name": "TBWarning",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "TBWarningNL",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tensl",
+      "unusual": true
+    },
+    {
+      "name": "TestBox",
+      "unusual": true
+    },
+    {
+      "name": "TestCount",
+      "unusual": true
+    },
+    {
+      "name": "TestDimen",
+      "unusual": true
+    },
+    {
+      "name": "TestIffalse",
+      "unusual": true
+    },
+    {
+      "name": "TestIftrue",
+      "unusual": true
+    },
+    {
+      "name": "TeXhax"
+    },
+    {
+      "name": "TeXMaG"
+    },
+    {
+      "name": "texorpdfstring",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "textSMC",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texttub",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "TeXtures"
+    },
+    {
+      "name": "Textures"
+    },
+    {
+      "name": "TeXworks"
+    },
+    {
+      "name": "TeXXeT"
+    },
+    {
+      "name": "TFM"
+    },
+    {
+      "name": "Thanh"
+    },
+    {
+      "name": "theaddress",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "theauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "thedoi",
+      "unusual": true
+    },
+    {
+      "name": "thenetaddress",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "theORCID",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "thePersonalURL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "therevauth",
+      "unusual": true
+    },
+    {
+      "name": "therevpubinfo",
+      "unusual": true
+    },
+    {
+      "name": "therevtitle",
+      "unusual": true
+    },
+    {
+      "name": "thinskip",
+      "unusual": true
+    },
+    {
+      "name": "TIFF"
+    },
+    {
+      "name": "TikZ"
+    },
+    {
+      "name": "titleref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "topregister"
+    },
+    {
+      "name": "topsmash"
+    },
+    {
+      "name": "TP"
+    },
+    {
+      "name": "TTN"
+    },
+    {
+      "name": "ttn"
+    },
+    {
+      "name": "ttopregister",
+      "unusual": true
+    },
+    {
+      "name": "TUB"
+    },
+    {
+      "name": "tubabovedoi",
+      "unusual": true
+    },
+    {
+      "name": "tubbraced",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "tubcaptionfonts",
+      "unusual": true
+    },
+    {
+      "name": "tubcaptionleftglue",
+      "unusual": true
+    },
+    {
+      "name": "TUBdefaulteTeX",
+      "unusual": true
+    },
+    {
+      "name": "tubdoiprefix",
+      "unusual": true
+    },
+    {
+      "name": "tubdots"
+    },
+    {
+      "name": "TUBedit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "TUBfilename",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "tubfinaloptionfalse",
+      "unusual": true
+    },
+    {
+      "name": "tubfinaloptiontrue",
+      "unusual": true
+    },
+    {
+      "name": "tubheadhook",
+      "unusual": true
+    },
+    {
+      "name": "tubhideheight",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:height}}"
+      }
+    },
+    {
+      "name": "tubissue",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:volume}}(${2:issue})"
+      }
+    },
+    {
+      "name": "tubjustifiedpar"
+    },
+    {
+      "name": "tubline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tubmakecaptionbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "tubmultipleaffilauthor",
+      "unusual": true
+    },
+    {
+      "name": "tubmultipleaffilnet",
+      "unusual": true
+    },
+    {
+      "name": "tubomitdoioptionfalse",
+      "unusual": true
+    },
+    {
+      "name": "tubomitdoioptiontrue",
+      "unusual": true
+    },
+    {
+      "name": "tubraggedfoot",
+      "unusual": true
+    },
+    {
+      "name": "tubreflect",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tubruninglue",
+      "unusual": true
+    },
+    {
+      "name": "tubruninsecfmt",
+      "unusual": true
+    },
+    {
+      "name": "tubrunningauthor",
+      "unusual": true
+    },
+    {
+      "name": "tubsecfmt",
+      "unusual": true
+    },
+    {
+      "name": "tubsechook",
+      "unusual": true
+    },
+    {
+      "name": "tubsecondcolstartextra",
+      "unusual": true
+    },
+    {
+      "name": "tubsecondcolstartfalse",
+      "unusual": true
+    },
+    {
+      "name": "tubsecondcolstarttrue",
+      "unusual": true
+    },
+    {
+      "name": "tubsentencespace"
+    },
+    {
+      "name": "tubsmallerskip",
+      "unusual": true
+    },
+    {
+      "name": "tubthinnerspace",
+      "unusual": true
+    },
+    {
+      "name": "tubthinnerspaceneg",
+      "unusual": true
+    },
+    {
+      "name": "tubtitlerulefullwidthfalse",
+      "unusual": true
+    },
+    {
+      "name": "tubtitlerulefullwidthtrue",
+      "unusual": true
+    },
+    {
+      "name": "tubtypesetdoi",
+      "unusual": true
+    },
+    {
+      "name": "tubtypesetpageno",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "tug"
+    },
+    {
+      "name": "TUG"
+    },
+    {
+      "name": "UG",
+      "unusual": true
+    },
+    {
+      "name": "ulap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "UNIX"
+    },
+    {
+      "name": "url",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "URLchars",
+      "unusual": true
+    },
+    {
+      "name": "UseExtraLabel",
+      "unusual": true
+    },
+    {
+      "name": "UseTrimMarks",
+      "unusual": true
+    },
+    {
+      "name": "VAX"
+    },
+    {
+      "name": "vellipsis"
+    },
+    {
+      "name": "VnTeX"
+    },
+    {
+      "name": "vol",
+      "unusual": true
+    },
+    {
+      "name": "volno",
+      "unusual": true
+    },
+    {
+      "name": "volyr",
+      "unusual": true
+    },
+    {
+      "name": "VorTeX"
+    },
+    {
+      "name": "WEAVE"
+    },
+    {
+      "name": "WEB"
+    },
+    {
+      "name": "WideSecTitlefalse",
+      "unusual": true
+    },
+    {
+      "name": "WideSecTitletrue",
+      "unusual": true
+    },
+    {
+      "name": "WYSIWYG"
+    },
+    {
+      "name": "Xe",
+      "unusual": true
+    },
+    {
+      "name": "xEdNote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "XekernafterE",
+      "unusual": true
+    },
+    {
+      "name": "XekernbeforeE",
+      "unusual": true
+    },
+    {
+      "name": "XeLaTeX"
+    },
+    {
+      "name": "XeT",
+      "unusual": true
+    },
+    {
+      "name": "XeTeX"
+    },
+    {
+      "name": "XHTML"
+    },
+    {
+      "name": "xlap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "XML"
+    },
+    {
+      "name": "XMP"
+    },
+    {
+      "name": "xrefto",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "xreftoOFF",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "xreftoON",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "XSL"
+    },
+    {
+      "name": "XSLFO"
+    },
+    {
+      "name": "XSLT"
+    },
+    {
+      "name": "YAML"
+    },
+    {
+      "name": "ylap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "zlap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "appendix"
+    },
+    {
+      "name": "compactdescription"
+    },
+    {
+      "name": "compactenumerate"
+    },
+    {
+      "name": "compactitemize"
+    },
+    {
+      "name": "dedication"
+    },
+    {
+      "name": "longabstract"
+    },
+    {
+      "name": "reviewitem",
+      "unusual": true
+    },
+    {
+      "name": "SafeSection",
+      "unusual": true
+    },
+    {
+      "name": "verbatim",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:before code}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/ltugboat#c": [
+      "draft",
+      "extralabel",
+      "final",
+      "harvardcite",
+      "noextralabel",
+      "nonumber",
+      "numbersec",
+      "onecolumn",
+      "preprint",
+      "rawcite",
+      "runningfull",
+      "runningminimal",
+      "runningoff"
+    ]
+  },
+  "args": [
+    "\\documentclass/ltugboat#c"
+  ]
 }

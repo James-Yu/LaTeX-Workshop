@@ -1,113 +1,257 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "float": [],
-    "xcolor": [],
-    "pict2e": []
-  },
-  "macros": {
-    "SetWFbgd{}": {
-      "snippet": "SetWFbgd{${1:color}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "SetWFfrm{}": {
-      "snippet": "SetWFfrm{${1:color}}"
+    {
+      "name": "float"
     },
-    "SetWFtxt{}": {
-      "snippet": "SetWFtxt{${1:color}}"
+    {
+      "name": "xcolor"
     },
-    "includeframedtext{}": {
-      "snippet": "includeframedtext{${1:text}}"
-    },
-    "includeframedtext[]{}": {
-      "snippet": "includeframedtext[${2:width}]{${1:text}}"
-    },
-    "includeframedtext[]{}[][]": {
-      "snippet": "includeframedtext[${2:width}]{${1:text}}[${3:settings}][${4:radius}]"
-    },
-    "framedbox{}{}{}{}": {
-      "snippet": "framedbox{${1:frame width}}{${2:frame thickness}}{${3:frame sep}}{${4:text}}"
-    },
-    "framedbox{}{}{}[]{}": {
-      "snippet": "framedbox{${1:frame width}}{${2:frame thickness}}{${3:frame sep}}[${4:corner radius}]{${5:text}}"
-    },
-    "Frame{}{}{}": {
-      "snippet": "Frame{${1:frame width}}{${2:frame height}}{${3:corner radius}}"
-    },
-    "Frame*{}{}{}": {
-      "snippet": "Frame*{${1:frame width}}{${2:frame height}}{${3:corner radius}}"
-    },
-    "wrapoverhang": {},
-    "insertwidth": {},
-    "WFinsertwidthL": {},
-    "WFinsertwidthH": {},
-    "WFscalefactor": {},
-    "WFscalewidth": {},
-    "WFclear": {},
-    "textcorrection": {},
-    "textplacement": {},
-    "textoverhang": {},
-    "WFfrthick": {},
-    "WFfrgap": {},
-    "WFfrwidth": {},
-    "WFfrheight": {},
-    "WFXR": {},
-    "WFYD": {},
-    "WFXL": {},
-    "WFYU": {}
-  },
-  "envs": {
-    "wrapfigure{}": {
-      "name": "wrapfigure",
-      "snippet": "{${1:position}}"
-    },
-    "wrapfigure{}{}": {
-      "name": "wrapfigure",
-      "snippet": "{${1:position}}{${2:width}}"
-    },
-    "wrapfigure[]{}[]{}": {
-      "name": "wrapfigure",
-      "snippet": "[${3:lines}]{${1:position}}[${4:overhang}]{${2:width}}"
-    },
-    "wraptable{}": {
-      "name": "wraptable",
-      "snippet": "{${1:position}}"
-    },
-    "wraptable{}{}": {
-      "name": "wraptable",
-      "snippet": "{${1:position}}{${2:width}}"
-    },
-    "wraptable[]{}[]{}": {
-      "name": "wraptable",
-      "snippet": "[${3:lines}]{${1:position}}[${4:overhang}]{${2:width}}"
-    },
-    "wraptext{}": {
-      "name": "wraptext",
-      "snippet": "{${1:position}}"
-    },
-    "wraptext{}{}": {
-      "name": "wraptext",
-      "snippet": "{${1:position}}{${2:width}}"
-    },
-    "wraptext[]{}[]{}": {
-      "name": "wraptext",
-      "snippet": "[${3:lines}]{${1:position}}[${4:overhang}]{${2:width}}"
-    },
-    "wrapfloat{}{}": {
-      "name": "wrapfloat",
-      "snippet": "{${1:object}}{${2:position}}"
-    },
-    "wrapfloat{}{}{}": {
-      "name": "wrapfloat",
-      "snippet": "{${1:object}}{${2:position}}{${3:width}}"
-    },
-    "wrapfloat{}[]{}[]{}": {
-      "name": "wrapfloat",
-      "snippet": "{${1:object}}[${2:lines}]{${3:position}}[${4:overhang}]{${5:width}}"
+    {
+      "name": "pict2e"
     }
-  },
-  "options": [
-    "verbose",
-    "WFold"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "SetWFbgd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "SetWFfrm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "SetWFtxt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "includeframedtext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "includeframedtext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:text}}"
+      }
+    },
+    {
+      "name": "includeframedtext",
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:width}]{${1:text}}[${3:settings}][${4:radius%l}]"
+      }
+    },
+    {
+      "name": "framedbox",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:frame width%l}}{${2:frame thickness%l}}{${3:frame sep%l}}{${4:text}}"
+      }
+    },
+    {
+      "name": "framedbox",
+      "arg": {
+        "format": "{}{}{}[]{}",
+        "snippet": "{${1:frame width%l}}{${2:frame thickness%l}}{${3:frame sep%l}}[${5:corner radius%l}]{${4:text}}"
+      }
+    },
+    {
+      "name": "Frame",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:frame width%l}}{${2:frame height%l}}{${3:corner radius%l}}"
+      }
+    },
+    {
+      "name": "Frame*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:frame width%l}}{${2:frame height%l}}{${3:corner radius%l}}"
+      }
+    },
+    {
+      "name": "wrapoverhang",
+      "unusual": true
+    },
+    {
+      "name": "insertwidth",
+      "unusual": true
+    },
+    {
+      "name": "WFinsertwidthL",
+      "unusual": true
+    },
+    {
+      "name": "WFinsertwidthH",
+      "unusual": true
+    },
+    {
+      "name": "WFscalefactor",
+      "unusual": true
+    },
+    {
+      "name": "WFscalewidth",
+      "unusual": true
+    },
+    {
+      "name": "WFclear",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "wrapfigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:position%keyvals}}",
+        "keys": [
+          "\\begin{wrapfigure},\\begin{wraptable},\\begin{wrapfloat}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "wrapfigure",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:position%keyvals}}{${2:width}}",
+        "keys": [
+          "\\begin{wrapfigure},\\begin{wraptable},\\begin{wrapfloat}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "wrapfigure",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:lines}]{${1:position%keyvals}}[${4:overhang}]{${2:width}}",
+        "keys": [
+          "\\begin{wrapfigure},\\begin{wraptable},\\begin{wrapfloat}"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "wraptable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:position%keyvals}}",
+        "keys": [
+          "\\begin{wrapfigure},\\begin{wraptable},\\begin{wrapfloat}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "wraptable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:position%keyvals}}{${2:width}}",
+        "keys": [
+          "\\begin{wrapfigure},\\begin{wraptable},\\begin{wrapfloat}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "wraptable",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:lines}]{${1:position%keyvals}}[${4:overhang}]{${2:width}}",
+        "keys": [
+          "\\begin{wrapfigure},\\begin{wraptable},\\begin{wrapfloat}"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "wraptext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:position%keyvals}}"
+      }
+    },
+    {
+      "name": "wraptext",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:position%keyvals}}{${2:width}}"
+      }
+    },
+    {
+      "name": "wraptext",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:lines}]{${1:position%keyvals}}[${4:overhang}]{${2:width}}"
+      }
+    },
+    {
+      "name": "wrapfloat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:object}}{${2:position%keyvals}}",
+        "keys": [
+          "\\begin{wrapfigure},\\begin{wraptable},\\begin{wrapfloat}"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "wrapfloat",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:object}}{${2:position%keyvals}}{${3:width}}",
+        "keys": [
+          "\\begin{wrapfigure},\\begin{wraptable},\\begin{wrapfloat}"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "wrapfloat",
+      "arg": {
+        "format": "{}[]{}[]{}",
+        "snippet": "{${1:object}}[${4:lines}]{${2:position%keyvals}}[${5:overhang}]{${3:width}}",
+        "keys": [
+          "\\begin{wrapfigure},\\begin{wraptable},\\begin{wrapfloat}"
+        ],
+        "keyPos": 2
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/wrapfig2#c": [
+      "verbose",
+      "WFold"
+    ],
+    "\\begin{wrapfigure},\\begin{wraptable},\\begin{wrapfloat}": [
+      "l",
+      "r",
+      "L",
+      "R",
+      "i",
+      "o",
+      "I",
+      "O"
+    ]
+  },
+  "args": [
+    "\\usepackage/wrapfig2#c"
+  ]
 }

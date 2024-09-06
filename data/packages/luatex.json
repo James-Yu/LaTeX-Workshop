@@ -1,314 +1,1118 @@
 {
-  "includes": {},
-  "macros": {
-    "luatexbanner": {},
-    "luatexversion": {},
-    "luatexrevision": {},
-    "formatname": {},
-    "attributedef{}": {
-      "snippet": "attributedef{${1:cmd}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "luatexbanner",
+      "unusual": true
     },
-    "directlua{}": {
-      "snippet": "directlua{${1:lua code}}"
+    {
+      "name": "luatexversion",
+      "unusual": true
     },
-    "latelua{}": {
-      "snippet": "latelua{${1:lua code}}"
+    {
+      "name": "luatexrevision",
+      "unusual": true
     },
-    "luaescapestring{}": {
-      "snippet": "luaescapestring{${1:TeX code}}"
+    {
+      "name": "formatname",
+      "unusual": true
     },
-    "luadef{}": {
-      "snippet": "luadef{${1:cmd}}"
+    {
+      "name": "directlua",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lua code%definition}}"
+      }
     },
-    "fontid": {},
-    "setfontid": {},
-    "nospaces": {},
-    "scantextokens": {},
-    "csstring": {},
-    "begincsname": {},
-    "lastnamedcs": {},
-    "alignmark": {},
-    "aligntab": {},
-    "glet{}": {
-      "snippet": "glet{${1:cmd}}"
+    {
+      "name": "latelua",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lua code%definition}}"
+      }
     },
-    "immediateassignment": {},
-    "immediateassigned": {},
-    "ifcondition": {},
-    "vpack": {},
-    "hpack": {},
-    "tpack": {},
-    "saveboxresource": {},
-    "saveimageresource": {},
-    "useboxresource": {},
-    "useimageresource": {},
-    "lastsavedboxresourceindex": {},
-    "lastsavedimageresourceindex": {},
-    "lastsavedimageresourcepages": {},
-    "nohrule": {},
-    "novrule": {},
-    "gleaders": {},
-    "boundary": {},
-    "noboundary": {},
-    "protrusionboundary": {},
-    "wordboundary": {},
-    "pagebottomoffset": {},
-    "pagetopoffset": {},
-    "pagerightoffset": {},
-    "pageleftoffset": {},
-    "partokencontext": {},
-    "partokenname": {},
-    "showstream": {},
-    "eTeXgluestretchorder": {},
-    "eTeXglueshrinkorder": {},
-    "deferred": {},
-    "pagewidth": {},
-    "pageheight": {},
-    "adjustspacing": {},
-    "protrudechars": {},
-    "ignoreligaturesinfont": {},
-    "expandglyphsinfont": {},
-    "copyfont": {},
-    "savepos": {},
-    "lastxpos": {},
-    "lastypos": {},
-    "pxdimen": {},
-    "insertht": {},
-    "normaldeviate": {},
-    "uniformdeviate": {},
-    "setrandomseed": {},
-    "randomseed": {},
-    "primitive": {},
-    "ifprimitive": {},
-    "ifabsnum": {},
-    "ifabsdim": {},
-    "textdir": {},
-    "linedir": {},
-    "pardir": {},
-    "pagedir": {},
-    "bodydir": {},
-    "mathdir": {},
-    "boxdir": {},
-    "hjcode": {},
-    "hyphenationbounds": {},
-    "explicitdiscretionary": {},
-    "automaticdiscretionary": {},
-    "leftghost": {},
-    "rightghost": {},
-    "hyphenpenaltymode": {},
-    "automatichyphenpenalty": {},
-    "explicithyphenpenalty": {},
-    "exceptionpenalty": {},
-    "Umathchardef": {},
-    "Umathchardef{}": {
-      "snippet": "Umathchardef{${1:cmd}}"
+    {
+      "name": "luaescapestring",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TeX code}}"
+      }
     },
-    "Umathcharnumdef": {},
-    "Umathcharnumdef{}": {
-      "snippet": "Umathcharnumdef{${1:cmd}}"
+    {
+      "name": "fontid",
+      "unusual": true
     },
-    "Umathcode": {},
-    "Udelcode": {},
-    "Umathchar": {},
-    "Umathaccent": {},
-    "Udelimiter": {},
-    "Uradical": {},
-    "Umathcharnum": {},
-    "Umathcodenum": {},
-    "Udelcodenum": {},
-    "Uroot": {},
-    "Uoverdelimiter": {},
-    "Uunderdelimiter": {},
-    "Udelimiterover": {},
-    "Udelimiterunder": {},
-    "variablefam": {},
-    "mathstyle": {},
-    "Ustack": {},
-    "crampeddisplaystyle": {},
-    "crampedtextstyle": {},
-    "crampedscriptstyle": {},
-    "crampedscriptscriptstyle": {},
-    "Umathquad": {},
-    "Umathaxis": {},
-    "Umathoperatorsize": {},
-    "Umathoverbarkern": {},
-    "Umathoverbarrule": {},
-    "Umathoverbarvgap": {},
-    "Umathunderbarkern": {},
-    "Umathunderbarrule": {},
-    "Umathunderbarvgap": {},
-    "Umathradicalkern": {},
-    "Umathradicalrule": {},
-    "Umathradicalvgap": {},
-    "Umathradicaldegreebefore": {},
-    "Umathradicaldegreeafter": {},
-    "Umathradicaldegreeraise": {},
-    "Umathstackvgap": {},
-    "Umathstacknumup": {},
-    "Umathstackdenomdown": {},
-    "Umathfractionrule": {},
-    "Umathfractionnumvgap": {},
-    "Umathfractionnumup": {},
-    "Umathfractiondenomvgap": {},
-    "Umathfractiondenomdown": {},
-    "Umathfractiondelsize": {},
-    "Umathlimitabovevgap": {},
-    "Umathlimitabovebgap": {},
-    "Umathlimitabovekern": {},
-    "Umathlimitbelowvgap": {},
-    "Umathlimitbelowbgap": {},
-    "Umathlimitbelowkern": {},
-    "Umathoverdelimitervgap": {},
-    "Umathoverdelimiterbgap": {},
-    "Umathunderdelimitervgap": {},
-    "Umathunderdelimiterbgap": {},
-    "Umathsubshiftdrop": {},
-    "Umathsubshiftdown": {},
-    "Umathsupshiftdrop": {},
-    "Umathsupshiftup": {},
-    "Umathsubsupshiftdown": {},
-    "Umathsubtopmax": {},
-    "Umathsupbottommin": {},
-    "Umathsupsubbottommax": {},
-    "Umathsubsupvgap": {},
-    "Umathspaceafterscript": {},
-    "Umathconnectoroverlapmin": {},
-    "Umathskewedfractionhgap": {},
-    "Umathskewedfractionvgap": {},
-    "Umathordordspacing": {},
-    "Umathordopspacing": {},
-    "Umathordbinspacing": {},
-    "Umathordrelspacing": {},
-    "Umathordopenspacing": {},
-    "Umathordclosespacing": {},
-    "Umathordpunctspacing": {},
-    "Umathordinnerspacing": {},
-    "Umathopordspacing": {},
-    "Umathopopspacing": {},
-    "Umathopbinspacing": {},
-    "Umathoprelspacing": {},
-    "Umathopopenspacing": {},
-    "Umathopclosespacing": {},
-    "Umathoppunctspacing": {},
-    "Umathopinnerspacing": {},
-    "Umathbinordspacing": {},
-    "Umathbinopspacing": {},
-    "Umathbinbinspacing": {},
-    "Umathbinrelspacing": {},
-    "Umathbinopenspacing": {},
-    "Umathbinclosespacing": {},
-    "Umathbinpunctspacing": {},
-    "Umathbininnerspacing": {},
-    "Umathrelordspacing": {},
-    "Umathrelopspacing": {},
-    "Umathrelbinspacing": {},
-    "Umathrelrelspacing": {},
-    "Umathrelopenspacing": {},
-    "Umathrelclosespacing": {},
-    "Umathrelpunctspacing": {},
-    "Umathrelinnerspacing": {},
-    "Umathopenordspacing": {},
-    "Umathopenopspacing": {},
-    "Umathopenbinspacing": {},
-    "Umathopenrelspacing": {},
-    "Umathopenopenspacing": {},
-    "Umathopenclosespacing": {},
-    "Umathopenpunctspacing": {},
-    "Umathopeninnerspacing": {},
-    "Umathcloseordspacing": {},
-    "Umathcloseopspacing": {},
-    "Umathclosebinspacing": {},
-    "Umathcloserelspacing": {},
-    "Umathcloseopenspacing": {},
-    "Umathcloseclosespacing": {},
-    "Umathclosepunctspacing": {},
-    "Umathcloseinnerspacing": {},
-    "Umathpunctordspacing": {},
-    "Umathpunctopspacing": {},
-    "Umathpunctbinspacing": {},
-    "Umathpunctrelspacing": {},
-    "Umathpunctopenspacing": {},
-    "Umathpunctclosespacing": {},
-    "Umathpunctpunctspacing": {},
-    "Umathpunctinnerspacing": {},
-    "Umathinnerordspacing": {},
-    "Umathinneropspacing": {},
-    "Umathinnerbinspacing": {},
-    "Umathinnerrelspacing": {},
-    "Umathinneropenspacing": {},
-    "Umathinnerclosespacing": {},
-    "Umathinnerpunctspacing": {},
-    "Umathinnerinnerspacing": {},
-    "Umathnolimitsupfactor": {},
-    "Umathnolimitsubfactor": {},
-    "Uhextensible": {},
-    "Uvextensible": {},
-    "Uskewed": {},
-    "Uskewedwithdelims": {},
-    "Uleft": {},
-    "Umiddle": {},
-    "Uright": {},
-    "Usuperscript": {},
-    "Usubscript": {},
-    "Ustartmath": {},
-    "Ustopmath": {},
-    "Ustartdisplaymath": {},
-    "Ustopdisplaymath": {},
-    "Unosuperscript{}": {
-      "snippet": "Unosuperscript{${1:text}}"
+    {
+      "name": "setfontid",
+      "unusual": true
     },
-    "Unosubscript{}": {
-      "snippet": "Unosubscript{${1:text}}"
+    {
+      "name": "nospaces",
+      "unusual": true
     },
-    "mathoption": {},
-    "localinterlinepenalty": {},
-    "localbrokenpenalty": {},
-    "localleftbox": {},
-    "localrightbox": {},
-    "compoundhyphenmode": {},
-    "dviextension": {},
-    "dvifeedback": {},
-    "dvivariable": {},
-    "endlocalcontrol": {},
-    "eTeXminorversion": {},
-    "eTeXVersion": {},
-    "fixupboxesmode": {},
-    "luacopyinputnodes": {},
-    "mathrulesfam": {},
-    "mathrulesmode": {},
-    "mathrulethicknessmode": {},
-    "newattribute{}": {
-      "snippet": "newattribute{${1:attribute}}"
+    {
+      "name": "scantextokens",
+      "unusual": true
     },
-    "newcatcodetable{}": {
-      "snippet": "newcatcodetable{${1:catcodetable}}"
+    {
+      "name": "csstring",
+      "unusual": true
     },
-    "newluafunction{}": {
-      "snippet": "newluafunction{${1:function}}"
+    {
+      "name": "begincsname",
+      "unusual": true
     },
-    "newluacmd{}": {
-      "snippet": "newluacmd{${1:cmd}}"
+    {
+      "name": "lastnamedcs",
+      "unusual": true
     },
-    "newprotectedluacmd{}": {
-      "snippet": "newprotectedluacmd{${1:cmd}}"
+    {
+      "name": "alignmark",
+      "unusual": true
     },
-    "newwhatsit{}": {
-      "snippet": "newwhatsit{${1:whatsit}}"
+    {
+      "name": "aligntab",
+      "unusual": true
     },
-    "newluabytecode{}": {
-      "snippet": "newluabytecode{${1:bytecode}}"
+    {
+      "name": "immediateassignment",
+      "unusual": true
     },
-    "newluachunkname{}": {
-      "snippet": "newluachunkname{${1:chunkname}}"
+    {
+      "name": "immediateassigned",
+      "unusual": true
     },
-    "setattribute{}{}": {
-      "snippet": "setattribute{${1:attribute}}{${2:value}}"
+    {
+      "name": "ifcondition",
+      "unusual": true
     },
-    "unsetattribute{}": {
-      "snippet": "unsetattribute{${1:attribute}}"
+    {
+      "name": "vpack",
+      "unusual": true
+    },
+    {
+      "name": "hpack",
+      "unusual": true
+    },
+    {
+      "name": "tpack",
+      "unusual": true
+    },
+    {
+      "name": "saveboxresource",
+      "unusual": true
+    },
+    {
+      "name": "saveimageresource",
+      "unusual": true
+    },
+    {
+      "name": "useboxresource",
+      "unusual": true
+    },
+    {
+      "name": "useimageresource",
+      "unusual": true
+    },
+    {
+      "name": "lastsavedboxresourceindex",
+      "unusual": true
+    },
+    {
+      "name": "lastsavedimageresourceindex",
+      "unusual": true
+    },
+    {
+      "name": "lastsavedimageresourcepages",
+      "unusual": true
+    },
+    {
+      "name": "nohrule",
+      "unusual": true
+    },
+    {
+      "name": "novrule",
+      "unusual": true
+    },
+    {
+      "name": "gleaders",
+      "unusual": true
+    },
+    {
+      "name": "boundary",
+      "unusual": true
+    },
+    {
+      "name": "noboundary",
+      "unusual": true
+    },
+    {
+      "name": "protrusionboundary",
+      "unusual": true
+    },
+    {
+      "name": "wordboundary",
+      "unusual": true
+    },
+    {
+      "name": "pagebottomoffset",
+      "unusual": true
+    },
+    {
+      "name": "pagetopoffset",
+      "unusual": true
+    },
+    {
+      "name": "pagerightoffset",
+      "unusual": true
+    },
+    {
+      "name": "pageleftoffset",
+      "unusual": true
+    },
+    {
+      "name": "partokencontext",
+      "unusual": true
+    },
+    {
+      "name": "partokenname",
+      "unusual": true
+    },
+    {
+      "name": "showstream",
+      "unusual": true
+    },
+    {
+      "name": "eTeXgluestretchorder",
+      "unusual": true
+    },
+    {
+      "name": "eTeXglueshrinkorder",
+      "unusual": true
+    },
+    {
+      "name": "deferred",
+      "unusual": true
+    },
+    {
+      "name": "pagewidth",
+      "unusual": true
+    },
+    {
+      "name": "pageheight",
+      "unusual": true
+    },
+    {
+      "name": "adjustspacing",
+      "unusual": true
+    },
+    {
+      "name": "protrudechars",
+      "unusual": true
+    },
+    {
+      "name": "ignoreligaturesinfont",
+      "unusual": true
+    },
+    {
+      "name": "expandglyphsinfont",
+      "unusual": true
+    },
+    {
+      "name": "copyfont",
+      "unusual": true
+    },
+    {
+      "name": "savepos",
+      "unusual": true
+    },
+    {
+      "name": "lastxpos",
+      "unusual": true
+    },
+    {
+      "name": "lastypos",
+      "unusual": true
+    },
+    {
+      "name": "pxdimen",
+      "unusual": true
+    },
+    {
+      "name": "insertht",
+      "unusual": true
+    },
+    {
+      "name": "normaldeviate",
+      "unusual": true
+    },
+    {
+      "name": "uniformdeviate",
+      "unusual": true
+    },
+    {
+      "name": "setrandomseed",
+      "unusual": true
+    },
+    {
+      "name": "randomseed",
+      "unusual": true
+    },
+    {
+      "name": "primitive",
+      "unusual": true
+    },
+    {
+      "name": "ifprimitive",
+      "unusual": true
+    },
+    {
+      "name": "ifabsnum",
+      "unusual": true
+    },
+    {
+      "name": "ifabsdim",
+      "unusual": true
+    },
+    {
+      "name": "textdir",
+      "unusual": true
+    },
+    {
+      "name": "linedir",
+      "unusual": true
+    },
+    {
+      "name": "pardir",
+      "unusual": true
+    },
+    {
+      "name": "pagedir",
+      "unusual": true
+    },
+    {
+      "name": "pardir",
+      "unusual": true
+    },
+    {
+      "name": "bodydir",
+      "unusual": true
+    },
+    {
+      "name": "mathdir",
+      "unusual": true
+    },
+    {
+      "name": "boxdir",
+      "unusual": true
+    },
+    {
+      "name": "hjcode",
+      "unusual": true
+    },
+    {
+      "name": "hyphenationbounds",
+      "unusual": true
+    },
+    {
+      "name": "explicitdiscretionary",
+      "unusual": true
+    },
+    {
+      "name": "automaticdiscretionary",
+      "unusual": true
+    },
+    {
+      "name": "leftghost",
+      "unusual": true
+    },
+    {
+      "name": "rightghost",
+      "unusual": true
+    },
+    {
+      "name": "hyphenpenaltymode",
+      "unusual": true
+    },
+    {
+      "name": "automatichyphenpenalty",
+      "unusual": true
+    },
+    {
+      "name": "explicithyphenpenalty",
+      "unusual": true
+    },
+    {
+      "name": "exceptionpenalty",
+      "unusual": true
+    },
+    {
+      "name": "Umathchardef",
+      "unusual": true
+    },
+    {
+      "name": "Umathcharnumdef",
+      "unusual": true
+    },
+    {
+      "name": "Umathcode",
+      "unusual": true
+    },
+    {
+      "name": "Udelcode",
+      "unusual": true
+    },
+    {
+      "name": "Umathchar",
+      "unusual": true
+    },
+    {
+      "name": "Umathaccent",
+      "unusual": true
+    },
+    {
+      "name": "Udelimiter",
+      "unusual": true
+    },
+    {
+      "name": "Uradical",
+      "unusual": true
+    },
+    {
+      "name": "Umathcharnum",
+      "unusual": true
+    },
+    {
+      "name": "Umathcodenum",
+      "unusual": true
+    },
+    {
+      "name": "Udelcodenum",
+      "unusual": true
+    },
+    {
+      "name": "Uroot",
+      "unusual": true
+    },
+    {
+      "name": "Uoverdelimiter",
+      "unusual": true
+    },
+    {
+      "name": "Uunderdelimiter",
+      "unusual": true
+    },
+    {
+      "name": "Udelimiterover",
+      "unusual": true
+    },
+    {
+      "name": "Udelimiterunder",
+      "unusual": true
+    },
+    {
+      "name": "variablefam",
+      "unusual": true
+    },
+    {
+      "name": "mathstyle",
+      "unusual": true
+    },
+    {
+      "name": "Ustack",
+      "unusual": true
+    },
+    {
+      "name": "crampeddisplaystyle",
+      "unusual": true
+    },
+    {
+      "name": "crampedtextstyle",
+      "unusual": true
+    },
+    {
+      "name": "crampedscriptstyle",
+      "unusual": true
+    },
+    {
+      "name": "crampedscriptscriptstyle",
+      "unusual": true
+    },
+    {
+      "name": "Umathquad",
+      "unusual": true
+    },
+    {
+      "name": "Umathaxis",
+      "unusual": true
+    },
+    {
+      "name": "Umathoperatorsize",
+      "unusual": true
+    },
+    {
+      "name": "Umathoverbarkern",
+      "unusual": true
+    },
+    {
+      "name": "Umathoverbarrule",
+      "unusual": true
+    },
+    {
+      "name": "Umathoverbarvgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathunderbarkern",
+      "unusual": true
+    },
+    {
+      "name": "Umathunderbarrule",
+      "unusual": true
+    },
+    {
+      "name": "Umathunderbarvgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathradicalkern",
+      "unusual": true
+    },
+    {
+      "name": "Umathradicalrule",
+      "unusual": true
+    },
+    {
+      "name": "Umathradicalvgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathradicaldegreebefore",
+      "unusual": true
+    },
+    {
+      "name": "Umathradicaldegreeafter",
+      "unusual": true
+    },
+    {
+      "name": "Umathradicaldegreeraise",
+      "unusual": true
+    },
+    {
+      "name": "Umathstackvgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathstacknumup",
+      "unusual": true
+    },
+    {
+      "name": "Umathstackdenomdown",
+      "unusual": true
+    },
+    {
+      "name": "Umathfractionrule",
+      "unusual": true
+    },
+    {
+      "name": "Umathfractionnumvgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathfractionnumup",
+      "unusual": true
+    },
+    {
+      "name": "Umathfractiondenomvgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathfractiondenomdown",
+      "unusual": true
+    },
+    {
+      "name": "Umathfractiondelsize",
+      "unusual": true
+    },
+    {
+      "name": "Umathlimitabovevgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathlimitabovebgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathlimitabovekern",
+      "unusual": true
+    },
+    {
+      "name": "Umathlimitbelowvgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathlimitbelowbgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathlimitbelowkern",
+      "unusual": true
+    },
+    {
+      "name": "Umathoverdelimitervgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathoverdelimiterbgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathunderdelimitervgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathunderdelimiterbgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathsubshiftdrop",
+      "unusual": true
+    },
+    {
+      "name": "Umathsubshiftdown",
+      "unusual": true
+    },
+    {
+      "name": "Umathsupshiftdrop",
+      "unusual": true
+    },
+    {
+      "name": "Umathsupshiftup",
+      "unusual": true
+    },
+    {
+      "name": "Umathsubsupshiftdown",
+      "unusual": true
+    },
+    {
+      "name": "Umathsubtopmax",
+      "unusual": true
+    },
+    {
+      "name": "Umathsupbottommin",
+      "unusual": true
+    },
+    {
+      "name": "Umathsupsubbottommax",
+      "unusual": true
+    },
+    {
+      "name": "Umathsubsupvgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathspaceafterscript",
+      "unusual": true
+    },
+    {
+      "name": "Umathconnectoroverlapmin",
+      "unusual": true
+    },
+    {
+      "name": "Umathskewedfractionhgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathskewedfractionvgap",
+      "unusual": true
+    },
+    {
+      "name": "Umathordordspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathordopspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathordbinspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathordrelspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathordopenspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathordclosespacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathordpunctspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathordinnerspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathopordspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathopopspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathopbinspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathoprelspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathopopenspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathopclosespacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathoppunctspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathopinnerspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathbinordspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathbinopspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathbinbinspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathbinrelspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathbinopenspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathbinclosespacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathbinpunctspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathbininnerspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathrelordspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathrelopspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathrelbinspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathrelrelspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathrelopenspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathrelclosespacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathrelpunctspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathrelinnerspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathopenordspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathopenopspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathopenbinspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathopenrelspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathopenopenspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathopenclosespacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathopenpunctspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathopeninnerspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathcloseordspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathcloseopspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathclosebinspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathcloserelspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathcloseopenspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathcloseclosespacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathclosepunctspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathcloseinnerspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathpunctordspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathpunctopspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathpunctbinspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathpunctrelspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathpunctopenspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathpunctclosespacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathpunctpunctspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathpunctinnerspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathinnerordspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathinneropspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathinnerbinspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathinnerrelspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathinneropenspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathinnerclosespacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathinnerpunctspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathinnerinnerspacing",
+      "unusual": true
+    },
+    {
+      "name": "Umathnolimitsupfactor",
+      "unusual": true
+    },
+    {
+      "name": "Umathnolimitsubfactor",
+      "unusual": true
+    },
+    {
+      "name": "Uhextensible",
+      "unusual": true
+    },
+    {
+      "name": "Uvextensible",
+      "unusual": true
+    },
+    {
+      "name": "Uskewed",
+      "unusual": true
+    },
+    {
+      "name": "Uskewedwithdelims",
+      "unusual": true
+    },
+    {
+      "name": "Udelimiter",
+      "unusual": true
+    },
+    {
+      "name": "Uleft",
+      "unusual": true
+    },
+    {
+      "name": "Umiddle",
+      "unusual": true
+    },
+    {
+      "name": "Uright",
+      "unusual": true
+    },
+    {
+      "name": "Usuperscript",
+      "unusual": true
+    },
+    {
+      "name": "Usubscript",
+      "unusual": true
+    },
+    {
+      "name": "Ustartmath",
+      "unusual": true
+    },
+    {
+      "name": "Ustopmath",
+      "unusual": true
+    },
+    {
+      "name": "Ustartdisplaymath",
+      "unusual": true
+    },
+    {
+      "name": "Ustopdisplaymath",
+      "unusual": true
+    },
+    {
+      "name": "Unosuperscript",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "Unosubscript",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathoption",
+      "unusual": true
+    },
+    {
+      "name": "localinterlinepenalty",
+      "unusual": true
+    },
+    {
+      "name": "localbrokenpenalty",
+      "unusual": true
+    },
+    {
+      "name": "localleftbox",
+      "unusual": true
+    },
+    {
+      "name": "localrightbox",
+      "unusual": true
+    },
+    {
+      "name": "compoundhyphenmode",
+      "unusual": true
+    },
+    {
+      "name": "dviextension",
+      "unusual": true
+    },
+    {
+      "name": "dvifeedback",
+      "unusual": true
+    },
+    {
+      "name": "dvivariable",
+      "unusual": true
+    },
+    {
+      "name": "endlocalcontrol",
+      "unusual": true
+    },
+    {
+      "name": "eTeXminorversion",
+      "unusual": true
+    },
+    {
+      "name": "eTeXVersion",
+      "unusual": true
+    },
+    {
+      "name": "fixupboxesmode",
+      "unusual": true
+    },
+    {
+      "name": "luacopyinputnodes",
+      "unusual": true
+    },
+    {
+      "name": "mathrulesfam",
+      "unusual": true
+    },
+    {
+      "name": "mathrulesmode",
+      "unusual": true
+    },
+    {
+      "name": "mathrulethicknessmode",
+      "unusual": true
+    },
+    {
+      "name": "newattribute",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:attribute%cmd}}"
+      }
+    },
+    {
+      "name": "newcatcodetable",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:catcodetable%cmd}}"
+      }
+    },
+    {
+      "name": "newluafunction",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:function}}"
+      }
+    },
+    {
+      "name": "newluacmd",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "newprotectedluacmd",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "newwhatsit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:whatsit%cmd}}"
+      }
+    },
+    {
+      "name": "newluabytecode",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bytecode%cmd}}"
+      }
+    },
+    {
+      "name": "newluachunkname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:chunkname%cmd}}"
+      }
+    },
+    {
+      "name": "setattribute",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:attribute}}{${2:value}}"
+      }
+    },
+    {
+      "name": "unsetattribute",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:attribute}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

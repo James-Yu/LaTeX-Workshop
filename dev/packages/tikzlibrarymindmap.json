@@ -1,10 +1,40 @@
 {
-  "includes": {
-    "tikzlibrarytrees": [],
-    "tikzlibrarydecorations": []
+  "deps": [
+    {
+      "name": "tikzlibrarytrees"
+    },
+    {
+      "name": "tikzlibrarydecorations"
+    }
+  ],
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "mindmap",
+      "every mindmap/.style={${1:options}}",
+      "small mindmap",
+      "large mindmap",
+      "huge mindmap",
+      "every concept/.style={${1:options}}",
+      "concept color=",
+      "every extra concept/.style={${1:options}}",
+      "root concept/.append style={${1:options}}",
+      "level 1 concept/.append style={${1:options}}",
+      "level 2 concept/.append style={${1:options}}",
+      "level 3 concept/.append style={${1:options}}",
+      "level 4 concept/.append style={${1:options}}",
+      "every circle connection bar/.style={${1:options}}",
+      "every annotation/.style={${1:options}}"
+    ],
+    "\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c": [
+      "concept",
+      "extra concept",
+      "annotation"
+    ],
+    "\\path#c,\\draw#c,\\fill#c,\\filldraw#c,\\pattern#c,\\shade#c,\\shadedraw#c,\\clip#c": [
+      "concept connection"
+    ]
   },
-  "macros": {},
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

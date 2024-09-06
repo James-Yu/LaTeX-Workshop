@@ -1,59 +1,185 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "psfrag": [],
-    "floatrow": [],
-    "chemcompounds": [],
-    "bpchem": [
+  "deps": [
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "psfrag"
+    },
+    {
+      "name": "floatrow"
+    },
+    {
+      "name": "chemcompounds"
+    },
+    {
+      "name": "bpchem",
+      "if": "bpchem"
+    },
+    {
+      "name": "bpchem",
+      "if": "tracking=bpchem"
+    }
+  ],
+  "macros": [
+    {
+      "name": "schemerefsub",
+      "if": "bpchem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label%keyvals}}{${2:sublabel}}",
+        "keys": [
+          "\\schemeref#c,\\chemschemeref#c,\\schemerefsub#c,\\chemschemerefsub#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "schemerefsub",
+      "if": "bpchem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:marker}]{${1:label%keyvals}}{${2:sublabel}}",
+        "keys": [
+          "\\schemeref#c,\\chemschemeref#c,\\schemerefsub#c,\\chemschemerefsub#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "chemschemerefsub",
+      "if": "bpchem",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:marker}}{${2:label%keyvals}}{${3:sublabel}}",
+        "keys": [
+          "\\schemeref#c,\\chemschemeref#c,\\schemerefsub#c,\\chemschemerefsub#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "schemerefsub",
+      "if": "tracking=bpchem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:sublabel}}"
+      }
+    },
+    {
+      "name": "schemerefsub",
+      "if": "tracking=bpchem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:marker}]{${1:label}}{${2:sublabel}}"
+      }
+    },
+    {
+      "name": "chemschemerefsub",
+      "if": "tracking=bpchem",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:marker}}{${2:label}}{${3:sublabel}}"
+      }
+    },
+    {
+      "name": "schemename",
+      "unusual": true
+    },
+    {
+      "name": "listofschemes"
+    },
+    {
+      "name": "listschemename",
+      "unusual": true
+    },
+    {
+      "name": "schemeref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%keyvals}}",
+        "keys": [
+          "\\schemeref#c,\\chemschemeref#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "schemeref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:marker}]{${1:label%keyvals}}",
+        "keys": [
+          "\\schemeref#c,\\chemschemeref#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "chemschemeref",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:marker}}{${2:label%keyvals}}",
+        "keys": [
+          "\\schemeref#c,\\chemschemeref#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "schemerefmarker",
+      "unusual": true
+    },
+    {
+      "name": "schemerefformat",
+      "unusual": true
+    },
+    {
+      "name": "floatcontentscenter"
+    },
+    {
+      "name": "floatcontentscentre",
+      "unusual": true
+    },
+    {
+      "name": "floatcontentsleft"
+    },
+    {
+      "name": "floatcontentsright"
+    }
+  ],
+  "envs": [
+    {
+      "name": "scheme"
+    },
+    {
+      "name": "scheme",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:placement}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/chemscheme#c": [
+      "chemcompounds",
       "bpchem",
-      "tracking=bpchem"
+      "floatrow",
+      "tracking=${1|bpchem,chemcompounds|}",
+      "floats=${1|float,floatrow,memoir|}"
+    ],
+    "\\schemeref#c,\\chemschemeref#c,\\schemerefsub#c,\\chemschemerefsub#c": [
+      "%bpchemlabel",
+      "%bpchemlabel"
+    ],
+    "\\schemeref#c,\\chemschemeref#c": [
+      "%compound"
     ]
   },
-  "macros": {
-    "schemerefsub{}{}": {
-      "snippet": "schemerefsub{${1:label}}{${2:sublabel}}",
-      "option": "tracking=bpchem"
-    },
-    "schemerefsub[]{}{}": {
-      "snippet": "schemerefsub[${3:marker}]{${1:label}}{${2:sublabel}}",
-      "option": "tracking=bpchem"
-    },
-    "chemschemerefsub{}{}{}": {
-      "snippet": "chemschemerefsub{${1:marker}}{${2:label}}{${3:sublabel}}",
-      "option": "tracking=bpchem"
-    },
-    "schemename": {},
-    "listofschemes": {},
-    "listschemename": {},
-    "schemeref{}": {
-      "snippet": "schemeref{${1:label}}"
-    },
-    "schemeref[]{}": {
-      "snippet": "schemeref[${2:marker}]{${1:label}}"
-    },
-    "chemschemeref{}{}": {
-      "snippet": "chemschemeref{${1:marker}}{${2:label}}"
-    },
-    "schemerefmarker": {},
-    "schemerefformat": {},
-    "floatcontentscenter": {},
-    "floatcontentscentre": {},
-    "floatcontentsleft": {},
-    "floatcontentsright": {}
-  },
-  "envs": {
-    "scheme": {},
-    "scheme[]": {
-      "name": "scheme",
-      "snippet": "[${1:placement}]"
-    }
-  },
-  "options": [
-    "chemcompounds",
-    "bpchem",
-    "floatrow",
-    "tracking=${1|bpchem,chemcompounds|}",
-    "floats=${1|float,floatrow,memoir|}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/chemscheme#c"
+  ]
 }

@@ -1,20 +1,35 @@
 {
-  "includes": {
-    "longtable": [
-      "longtable",
-      "nolongtablepatch"
-    ],
-    "ltabptch": [
-      "longtable"
-    ]
-  },
-  "macros": {},
-  "envs": {
-    "edtable{}{}": {
-      "name": "edtable",
-      "snippet": "{${1:table envname}}{${2:preamble}}"
+  "deps": [
+    {
+      "name": "longtable",
+      "if": "longtable"
+    },
+    {
+      "name": "ltabptch",
+      "if": "longtable"
+    },
+    {
+      "name": "longtable",
+      "if": "nolongtablepatch"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [],
+  "envs": [
+    {
+      "name": "edtable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:table envname}}{${2:preamble}}"
+      }
+    },
+    {
+      "name": "edtable",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[$ or $$%plain]{${1:array envname}}{${2:preamble}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

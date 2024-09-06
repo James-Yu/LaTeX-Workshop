@@ -1,27 +1,50 @@
 {
-  "includes": {
-    "fnumprint": [],
-    "datenumber": [],
-    "fp": [],
-    "calc": [],
-    "xkeyval": [],
-    "kvoptions": [],
-    "xifthen": []
-  },
-  "macros": {
-    "calcage{}{}{}": {
-      "snippet": "calcage{${1:year}}{${2:month}}{${3:day}}"
+  "deps": [
+    {
+      "name": "fnumprint"
     },
-    "calcage[]{}{}{}": {
-      "snippet": "calcage[${4:options}]{${1:year}}{${2:month}}{${3:day}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "datenumber"
+    },
+    {
+      "name": "fp"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "xifthen"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "calcage",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:year}}{${2:month}}{${3:day}}"
+      }
+    },
+    {
+      "name": "calcage",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:year}}{${2:month}}{${3:day}}",
+        "keys": [
+          "\\calcage"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\calcage": [
       "year=",
       "month=",
       "day=",
@@ -31,5 +54,6 @@
       "yearsuffix",
       "numberstring"
     ]
-  ]
+  },
+  "args": []
 }

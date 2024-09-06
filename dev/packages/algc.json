@@ -1,30 +1,67 @@
 {
-  "includes": {
-    "algorithmicx": []
-  },
-  "macros": {
-    "For{}{}{}": {
-      "snippet": "For{${1:expr1}}{${2:expr2}}{${3:expr3}}"
-    },
-    "If{}": {
-      "snippet": "If{${1:expr}}"
-    },
-    "Else": {},
-    "While{}": {
-      "snippet": "While{${1:expr}}"
-    },
-    "Do": {},
-    "Function{}{}{}": {
-      "snippet": "Function{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "Return": {},
-    "algorithmicbegin": {},
-    "algorithmicend": {},
-    "textkeyword{}": {
-      "snippet": "textkeyword{${1:text}}"
+  "deps": [
+    {
+      "name": "algorithmicx"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "For",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:expr1%formula}}{${2:expr2%formula}}{${3:expr3%formula}}"
+      }
+    },
+    {
+      "name": "If",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr%formula}}"
+      }
+    },
+    {
+      "name": "Else"
+    },
+    {
+      "name": "While",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr%formula}}"
+      }
+    },
+    {
+      "name": "Do"
+    },
+    {
+      "name": "Function",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "Return",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicbegin",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicend",
+      "unusual": true
+    },
+    {
+      "name": "textkeyword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

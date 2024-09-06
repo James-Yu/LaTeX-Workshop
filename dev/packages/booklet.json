@@ -1,39 +1,91 @@
 {
-  "includes": {
-    "bkltprnt": []
-  },
-  "macros": {
-    "checkforlandscape": {},
-    "pagespersignature{}": {
-      "snippet": "pagespersignature{${1:number}}"
-    },
-    "thesigcount": {},
-    "thesignature": {},
-    "ifprintoption": {},
-    "printoptiontrue": {},
-    "printoptionfalse": {},
-    "ifuselandscape": {},
-    "uselandscapetrue": {},
-    "uselandscapefalse": {},
-    "ifsidebyside": {},
-    "sidebysidetrue": {},
-    "sidebysidefalse": {},
-    "pageseplength": {},
-    "pagesepoffset": {},
-    "pagesepwidth": {}
-  },
-  "envs": {},
-  "options": [
-    "print",
-    "noprint",
-    "four",
-    "eight",
-    "sixteen",
-    "thirtytwo",
-    "twouparticle",
-    "largetypeblock",
-    "1to1",
-    "landscape"
+  "deps": [
+    {
+      "name": "bkltprnt"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "checkforlandscape",
+      "unusual": true
+    },
+    {
+      "name": "pagespersignature",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "thesigcount",
+      "unusual": true
+    },
+    {
+      "name": "thesignature",
+      "unusual": true
+    },
+    {
+      "name": "ifprintoption"
+    },
+    {
+      "name": "printoptiontrue",
+      "unusual": true
+    },
+    {
+      "name": "printoptionfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifuselandscape"
+    },
+    {
+      "name": "uselandscapetrue",
+      "unusual": true
+    },
+    {
+      "name": "uselandscapefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsidebyside"
+    },
+    {
+      "name": "sidebysidetrue",
+      "unusual": true
+    },
+    {
+      "name": "sidebysidefalse",
+      "unusual": true
+    },
+    {
+      "name": "pageseplength",
+      "unusual": true
+    },
+    {
+      "name": "pagesepoffset",
+      "unusual": true
+    },
+    {
+      "name": "pagesepwidth",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/booklet#c": [
+      "print",
+      "noprint",
+      "four",
+      "eight",
+      "sixteen",
+      "thirtytwo",
+      "twouparticle",
+      "largetypeblock",
+      "1to1",
+      "landscape"
+    ]
+  },
+  "args": [
+    "\\usepackage/booklet#c"
+  ]
 }

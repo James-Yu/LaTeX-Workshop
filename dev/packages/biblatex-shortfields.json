@@ -1,18 +1,28 @@
 {
-  "includes": {},
-  "macros": {
-    "printbibshortfields": {},
-    "printbibshortfields[]": {
-      "snippet": "printbibshortfields[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [],
+  "macros": [
+    {
+      "name": "printbibshortfields"
     },
-    "shortfieldswidth": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "printbibshortfields",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\printbibshortfields"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "shortfieldswidth",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\printbibshortfields": [
       "heading=${1:name}",
       "title=${1:text}",
       "label=",
@@ -34,5 +44,6 @@
       "omitnumbers",
       "locallabelwidth"
     ]
-  ]
+  },
+  "args": []
 }

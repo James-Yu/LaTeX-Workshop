@@ -1,70 +1,137 @@
 {
-  "includes": {
-    "keyval": [],
-    "kvoptions": [],
-    "fancyvrb": [],
-    "color": [],
-    "listings": []
-  },
-  "macros": {
-    "checklistings{}": {
-      "snippet": "checklistings{${1:options}}"
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "chklistingcmd": {},
-    "chklistingmsg{}": {
-      "snippet": "chklistingmsg{${1:label}}"
+    {
+      "name": "kvoptions"
     },
-    "chklistingerr{}": {
-      "snippet": "chklistingerr{${1:label}}"
+    {
+      "name": "fancyvrb"
     },
-    "ChkListingErr": {},
-    "chklistingfalse": {},
-    "chklistingfile": {},
-    "ChkListingMsg": {},
-    "chklistingtrue": {},
-    "ifchklisting": {},
-    "setchklistingcmd{}": {
-      "snippet": "setchklistingcmd{${1:command}}"
+    {
+      "name": "color"
     },
-    "thechklisting": {}
-  },
-  "envs": {
-    "chklisting": {},
-    "chklisting[]": {
-      "name": "chklisting",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ChkListingErr": {},
-    "ChkListingMsg": {}
-  },
-  "options": [
-    "withresult",
-    "withoutresult",
-    "showproblems",
-    "hideproblems",
-    "skipone",
-    "skiptwo",
-    "codestyle={${1:fancyvrb options}}",
-    "msgstyle={${1:fancyvrb options}}",
-    "errstyle={${1:fancyvrb options}}",
-    "codelst={${1:listings options}}",
-    "msglst={${1:listings options}}",
-    "errlst={${1:listings options}}",
-    "emptyoption=${1:string}",
-    "subdir=${1:directory}",
-    "prefix=${1:prefix}",
-    "ext=${1:extension}",
-    "prompt=${1:prompt}",
-    "compiler=${1:path}",
-    "compilerflags=${1:flags}",
-    "lastflags=${1:flags}",
-    "includecmd=${1:command}",
-    "html=${1:path}"
+    {
+      "name": "listings"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "checklistings",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/checklistings#c,\\checklistings"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "chklistingcmd"
+    },
+    {
+      "name": "chklistingmsg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "chklistingerr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "ChkListingErr",
+      "unusual": true
+    },
+    {
+      "name": "chklistingfalse",
+      "unusual": true
+    },
+    {
+      "name": "chklistingfile",
+      "unusual": true
+    },
+    {
+      "name": "ChkListingMsg",
+      "unusual": true
+    },
+    {
+      "name": "chklistingtrue",
+      "unusual": true
+    },
+    {
+      "name": "ifchklisting",
+      "unusual": true
+    },
+    {
+      "name": "setchklistingcmd",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "thechklisting",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "chklisting"
+    },
+    {
+      "name": "chklisting",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{chklisting}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ChkListingErr",
+      "unusual": true
+    },
+    {
+      "name": "ChkListingMsg",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/checklistings#c,\\checklistings": [
+      "withresult",
+      "withoutresult",
+      "showproblems",
+      "hideproblems",
+      "skipone",
+      "skiptwo",
+      "codestyle={${1:fancyvrb options}}",
+      "msgstyle={${1:fancyvrb options}}",
+      "errstyle={${1:fancyvrb options}}",
+      "codelst={${1:listings options}}",
+      "msglst={${1:listings options}}",
+      "errlst={${1:listings options}}",
+      "emptyoption=${1:string}",
+      "subdir=${1:directory}",
+      "prefix=${1:prefix}",
+      "ext=${1:extension}",
+      "prompt=${1:prompt}",
+      "compiler=${1:path}",
+      "compilerflags=${1:flags}",
+      "lastflags=${1:flags}",
+      "includecmd=${1:command}",
+      "html=${1:path}"
+    ],
+    "\\begin{chklisting}": [
       "continue",
       "include=${1:label}",
       "fail",
@@ -78,5 +145,8 @@
       "showproblems",
       "hideproblems"
     ]
+  },
+  "args": [
+    "\\usepackage/checklistings#c,\\checklistings"
   ]
 }

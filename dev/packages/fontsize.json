@@ -1,69 +1,176 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "changefontsize{}": {
-      "snippet": "changefontsize{${1:fontsize}}"
-    },
-    "changefontsize[]{}": {
-      "snippet": "changefontsize[${2:baselineskip}]{${1:fontsize}}"
-    },
-    "generateclofile{}{}": {
-      "snippet": "generateclofile{${1:name}}{${2:fontsize}}"
-    },
-    "generateclofile{}[]{}": {
-      "snippet": "generateclofile{${1:name}}[${2:baselineskip}]{${3:fontsize}}"
-    },
-    "printsamples{}{}": {
-      "snippet": "printsamples{${1:baselineskip}}{${2:fontsize}}"
-    },
-    "printsamples{}{}[]": {
-      "snippet": "printsamples{${1:baselineskip}}{${2:fontsize}}[${3:sizes}]"
-    },
-    "sampletext{}": {
-      "snippet": "sampletext{${1:text}}"
-    },
-    "tinyr": {},
-    "tinyrr": {},
-    "tinyrrr": {},
-    "scriptsizer": {},
-    "scriptsizerr": {},
-    "scriptsizerrr": {},
-    "footnotesizer": {},
-    "footnotesizerr": {},
-    "footnotesizerrr": {},
-    "smallr": {},
-    "smallrr": {},
-    "smallrrr": {},
-    "normalsizer": {},
-    "normalsizerr": {},
-    "normalsizerrr": {},
-    "larger": {},
-    "largerr": {},
-    "largerrr": {},
-    "Larger": {},
-    "Largerr": {},
-    "Largerrr": {},
-    "LARGEr": {},
-    "LARGErr": {},
-    "LARGErrr": {},
-    "huger": {},
-    "hugerr": {},
-    "hugerrr": {},
-    "Huger": {},
-    "Hugerr": {},
-    "Hugerrr": {},
-    "HUGE": {},
-    "HUGEr": {},
-    "HUGErr": {},
-    "HUGErrr": {}
-  },
-  "envs": {},
-  "options": [
-    "fontsize=",
-    "parindent=",
-    "cloname=${1:name}"
+  "deps": [
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "changefontsize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:fontsize}}"
+      }
+    },
+    {
+      "name": "changefontsize",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:baselineskip}]{${1:fontsize}}"
+      }
+    },
+    {
+      "name": "generateclofile",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:fontsize}}"
+      }
+    },
+    {
+      "name": "generateclofile",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:baselineskip}]{${2:fontsize}}"
+      }
+    },
+    {
+      "name": "printsamples",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:baselineskip}}{${2:fontsize}}"
+      }
+    },
+    {
+      "name": "printsamples",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:baselineskip}}{${2:fontsize}}[${3:sizes}]"
+      }
+    },
+    {
+      "name": "sampletext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tinyr"
+    },
+    {
+      "name": "tinyrr"
+    },
+    {
+      "name": "tinyrrr"
+    },
+    {
+      "name": "scriptsizer"
+    },
+    {
+      "name": "scriptsizerr"
+    },
+    {
+      "name": "scriptsizerrr"
+    },
+    {
+      "name": "footnotesizer"
+    },
+    {
+      "name": "footnotesizerr"
+    },
+    {
+      "name": "footnotesizerrr"
+    },
+    {
+      "name": "smallr"
+    },
+    {
+      "name": "smallrr"
+    },
+    {
+      "name": "smallrrr"
+    },
+    {
+      "name": "normalsizer"
+    },
+    {
+      "name": "normalsizerr"
+    },
+    {
+      "name": "normalsizerrr"
+    },
+    {
+      "name": "larger"
+    },
+    {
+      "name": "largerr"
+    },
+    {
+      "name": "largerrr"
+    },
+    {
+      "name": "Larger"
+    },
+    {
+      "name": "Largerr"
+    },
+    {
+      "name": "Largerrr"
+    },
+    {
+      "name": "LARGEr"
+    },
+    {
+      "name": "LARGErr"
+    },
+    {
+      "name": "LARGErrr"
+    },
+    {
+      "name": "huger"
+    },
+    {
+      "name": "hugerr"
+    },
+    {
+      "name": "hugerrr"
+    },
+    {
+      "name": "Huger"
+    },
+    {
+      "name": "Hugerr"
+    },
+    {
+      "name": "Hugerrr"
+    },
+    {
+      "name": "HUGE"
+    },
+    {
+      "name": "HUGEr"
+    },
+    {
+      "name": "HUGErr"
+    },
+    {
+      "name": "HUGErrr"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/fontsize#c": [
+      "fontsize=",
+      "parindent=",
+      "cloname=${1:name}"
+    ]
+  },
+  "args": [
+    "\\usepackage/fontsize#c"
+  ]
 }

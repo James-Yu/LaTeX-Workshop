@@ -1,88 +1,194 @@
 {
-  "includes": {
-    "beamerbaseauxtemplates": []
-  },
-  "macros": {
-    "usebeamertemplate{}": {
-      "snippet": "usebeamertemplate{${1:element name}}"
-    },
-    "usebeamertemplate*{}": {
-      "snippet": "usebeamertemplate*{${1:element name}}"
-    },
-    "usebeamertemplate**{}": {
-      "snippet": "usebeamertemplate**{${1:element name}}"
-    },
-    "usebeamertemplate***{}": {
-      "snippet": "usebeamertemplate***{${1:element name}}"
-    },
-    "expandbeamertemplate{}": {
-      "snippet": "expandbeamertemplate{${1:beamer template name}}"
-    },
-    "ifbeamertemplateempty{}{}{}": {
-      "snippet": "ifbeamertemplateempty{${1:beamer template name}}{${2:executed if empty}}{${3:executed otherwise}}"
-    },
-    "defbeamertemplate<>*{}{}[][]{}[]{}": {
-      "snippet": "defbeamertemplate<${8:mode specification}>*{${1:element name}}{${2:predefined option}}[${3:argument number}][${4:default optional argument}]{${5:predefined text}}[${6:action}]{${7:action command}}"
-    },
-    "defbeamertemplate<>*{}{}[]{}[]{}": {
-      "snippet": "defbeamertemplate<${7:mode specification}>*{${1:element name}}{${2:predefined option}}[${3:default optional argument}]{${4:predefined text}}[${5:action}]{${6:action command}}"
-    },
-    "defbeamertemplate<>*{}{}{}[]{}": {
-      "snippet": "defbeamertemplate<${6:mode specification}>*{${1:element name}}{${2:predefined option}}{${3:predefined text}}[${4:action}]{${5:action command}}"
-    },
-    "defbeamertemplate<>*{}{}[][]{}": {
-      "snippet": "defbeamertemplate<${6:mode specification}>*{${1:element name}}{${2:predefined option}}[${3:argument number}][${4:default optional argument}]{${5:predefined text}}"
-    },
-    "defbeamertemplate<>*{}{}[]{}": {
-      "snippet": "defbeamertemplate<${5:mode specification}>*{${1:element name}}{${2:predefined option}}[${3:argument number}]{${4:predefined text}}"
-    },
-    "defbeamertemplate<>*{}{}{}": {
-      "snippet": "defbeamertemplate<${4:mode specification}>*{${1:element name}}{${2:predefined option}}{${3:predefined text}}"
-    },
-    "defbeamertemplate{}{}[][]{}[]{}": {
-      "snippet": "defbeamertemplate{${1:element name}}{${2:predefined option}}[${3:argument number}][${4:default optional argument}]{${5:predefined text}}[${6:action}]{${7:action command}}"
-    },
-    "defbeamertemplate{}{}[]{}[]{}": {
-      "snippet": "defbeamertemplate{${1:element name}}{${2:predefined option}}[${3:default optional argument}]{${4:predefined text}}[${5:action}]{${6:action command}}"
-    },
-    "defbeamertemplate{}{}{}[]{}": {
-      "snippet": "defbeamertemplate{${1:element name}}{${2:predefined option}}{${3:predefined text}}[${4:action}]{${5:action command}}"
-    },
-    "defbeamertemplate{}{}[][]{}": {
-      "snippet": "defbeamertemplate{${1:element name}}{${2:predefined option}}[${3:argument number}][${4:default optional argument}]{${5:predefined text}}"
-    },
-    "defbeamertemplate{}{}[]{}": {
-      "snippet": "defbeamertemplate{${1:element name}}{${2:predefined option}}[${3:argument number}]{${4:predefined text}}"
-    },
-    "defbeamertemplate{}{}{}": {
-      "snippet": "defbeamertemplate{${1:element name}}{${2:predefined option}}{${3:predefined text}}"
-    },
-    "defbeamertemplatealias{}{}{}": {
-      "snippet": "defbeamertemplatealias{${1:element name}}{${2:new predefined option name}}{${3:existing predefined option name}}"
-    },
-    "defbeamertemplateparent{}[]{}[][]{}": {
-      "snippet": "defbeamertemplateparent{${1:parent template}}[${2:predefined option}]{${3:child template list}}[${4:args}][${5:default}]{${6:arguments for children}}"
-    },
-    "defbeamertemplateparent{}{}[][]{}": {
-      "snippet": "defbeamertemplateparent{${1:parent template}}{${2:child template list}}[${3:args}][${4:default}]{${5:args for children}}"
-    },
-    "defbeamertemplateparent{}{}{}": {
-      "snippet": "defbeamertemplateparent{${1:parent template}}{${2:child template list}}{${3:args for children}}"
-    },
-    "setbeamertemplate{}{}": {
-      "snippet": "setbeamertemplate{${1:element name}}{${2:arguments}}"
-    },
-    "setbeamertemplate{}[]": {
-      "snippet": "setbeamertemplate{${1:element name}}[${2:predefined option}]"
-    },
-    "setbeamertemplate{}[]{}": {
-      "snippet": "setbeamertemplate{${1:element name}}[${2:predefined option}]{${3:arguments}}"
-    },
-    "addtobeamertemplate{}{}{}": {
-      "snippet": "addtobeamertemplate{${1:element name}}{${2:pre-text}}{${3:post-text}}"
+  "deps": [
+    {
+      "name": "beamerbaseauxtemplates"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "usebeamertemplate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:element name}}"
+      }
+    },
+    {
+      "name": "usebeamertemplate*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:element name}}"
+      }
+    },
+    {
+      "name": "usebeamertemplate**",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:element name}}"
+      }
+    },
+    {
+      "name": "usebeamertemplate***",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:element name}}"
+      }
+    },
+    {
+      "name": "expandbeamertemplate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beamer template name}}"
+      }
+    },
+    {
+      "name": "ifbeamertemplateempty",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:beamer template name}}{${2:executed if empty}}{${3:executed otherwise}}"
+      }
+    },
+    {
+      "name": "defbeamertemplate<mode specification>*",
+      "arg": {
+        "format": "{}{}[][]{}[]{}",
+        "snippet": "{${1:element name}}{${2:predefined option}}[${5:argument number}][${6:default optional argument}]{${3:predefined text}}[${7:action}]{${4:action command}}"
+      }
+    },
+    {
+      "name": "defbeamertemplate<mode specification>*",
+      "arg": {
+        "format": "{}{}[]{}[]{}",
+        "snippet": "{${1:element name}}{${2:predefined option}}[${5:default optional argument}]{${3:predefined text}}[${6:action}]{${4:action command}}"
+      }
+    },
+    {
+      "name": "defbeamertemplate<mode specification>*",
+      "arg": {
+        "format": "{}{}{}[]{}",
+        "snippet": "{${1:element name}}{${2:predefined option}}{${3:predefined text}}[${5:action}]{${4:action command}}"
+      }
+    },
+    {
+      "name": "defbeamertemplate<mode specification>*",
+      "arg": {
+        "format": "{}{}[][]{}",
+        "snippet": "{${1:element name}}{${2:predefined option}}[${4:argument number}][${5:default optional argument}]{${3:predefined text}}"
+      }
+    },
+    {
+      "name": "defbeamertemplate<mode specification>*",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:element name}}{${2:predefined option}}[${4:argument number}]{${3:predefined text}}"
+      }
+    },
+    {
+      "name": "defbeamertemplate<mode specification>*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:element name}}{${2:predefined option}}{${3:predefined text}}"
+      }
+    },
+    {
+      "name": "defbeamertemplate",
+      "arg": {
+        "format": "{}{}[][]{}[]{}",
+        "snippet": "{${1:element name}}{${2:predefined option}}[${5:argument number}][${6:default optional argument}]{${3:predefined text}}[${7:action}]{${4:action command}}"
+      }
+    },
+    {
+      "name": "defbeamertemplate",
+      "arg": {
+        "format": "{}{}[]{}[]{}",
+        "snippet": "{${1:element name}}{${2:predefined option}}[${5:default optional argument}]{${3:predefined text}}[${6:action}]{${4:action command}}"
+      }
+    },
+    {
+      "name": "defbeamertemplate",
+      "arg": {
+        "format": "{}{}{}[]{}",
+        "snippet": "{${1:element name}}{${2:predefined option}}{${3:predefined text}}[${5:action}]{${4:action command}}"
+      }
+    },
+    {
+      "name": "defbeamertemplate",
+      "arg": {
+        "format": "{}{}[][]{}",
+        "snippet": "{${1:element name}}{${2:predefined option}}[${4:argument number}][${5:default optional argument}]{${3:predefined text}}"
+      }
+    },
+    {
+      "name": "defbeamertemplate",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:element name}}{${2:predefined option}}[${4:argument number}]{${3:predefined text}}"
+      }
+    },
+    {
+      "name": "defbeamertemplate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:element name}}{${2:predefined option}}{${3:predefined text}}"
+      }
+    },
+    {
+      "name": "defbeamertemplatealias",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:element name}}{${2:new predefined option name}}{${3:existing predefined option name}}"
+      }
+    },
+    {
+      "name": "defbeamertemplateparent",
+      "arg": {
+        "format": "{}[]{}[][]{}",
+        "snippet": "{${1:parent template}}[${4:predefined option}]{${2:child template list}}[${5:args}][${6:default}]{${3:arguments for children}}"
+      }
+    },
+    {
+      "name": "defbeamertemplateparent",
+      "arg": {
+        "format": "{}{}[][]{}",
+        "snippet": "{${1:parent template}}{${2:child template list}}[${4:args}][${5:default}]{${3:args for children}}"
+      }
+    },
+    {
+      "name": "defbeamertemplateparent",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:parent template}}{${2:child template list}}{${3:args for children}}"
+      }
+    },
+    {
+      "name": "setbeamertemplate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:element name}}{${2:arguments}}"
+      }
+    },
+    {
+      "name": "setbeamertemplate",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:element name}}[${2:predefined option}]"
+      }
+    },
+    {
+      "name": "setbeamertemplate",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:element name}}[${3:predefined option}]{${2:arguments}}"
+      }
+    },
+    {
+      "name": "addtobeamertemplate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:element name}}{${2:pre-text%text}}{${3:post-text%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

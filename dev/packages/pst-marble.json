@@ -1,31 +1,53 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psMarble()": {
-      "snippet": "psMarble(${1:width},${2:height})"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psMarble()()": {
-      "snippet": "psMarble(${1:x0},${2:y0})(${3:x1},${4:y1})"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psMarble",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:width},${2:height})"
+      }
     },
-    "psMarble[]()": {
-      "snippet": "psMarble[${1:options}](${2:width},${3:height})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "psMarble",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
-    "psMarble[]()()": {
-      "snippet": "psMarble[${1:options}](${2:x0},${3:y0})(${4:x1},${5:y1})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "psMarble",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:width},${3:height})",
+        "keys": [
+          "\\psMarble#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "PSTMARBLELoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "psMarble",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x0},${3:y0})(${4:x1},${5:y1})",
+        "keys": [
+          "\\psMarble#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psMarble#c": [
       "actions={${1:marbling actions}}",
       "spractions={${1:spray actions}}",
       "shadings={${1:shading actions}}",
@@ -45,5 +67,6 @@
       "shapealpha=${1:number}",
       "opacity=${1:factor}"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,33 +1,64 @@
 {
-  "includes": {
-    "xcolor": [],
-    "pgfkeys": [],
-    "pgfplots": [],
-    "tikz": [],
-    "tikzlibraryshapes": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibrarydecorations.markings": [],
-    "tikzlibrarydecorations.pathmorphing": [],
-    "tikzlibrarydecorations.pathreplacing": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarypatterns": [],
-    "tikzlibraryshapes.geometric": []
-  },
-  "macros": {
-    "osci": {},
-    "osci[]": {
-      "snippet": "osci[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "raisedtext{}": {
-      "snippet": "raisedtext{${1:text}}"
+    {
+      "name": "pgfkeys"
+    },
+    {
+      "name": "pgfplots"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibraryshapes"
+    },
+    {
+      "name": "tikzlibrarypositioning"
+    },
+    {
+      "name": "tikzlibrarydecorations.markings"
+    },
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
+    },
+    {
+      "name": "tikzlibrarydecorations.pathreplacing"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tikzlibrarypatterns"
+    },
+    {
+      "name": "tikzlibraryshapes.geometric"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "osci"
+    },
+    {
+      "name": "osci",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\osci#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\osci#c": [
       "scale=${1:factor}",
       "rounded corners=${1:radius}",
       "second channel=${1|0,1|}",
@@ -64,5 +95,6 @@
       "smooth two=${1|0,1|}",
       "smooth three=${1|0,1|}"
     ]
-  ]
+  },
+  "args": []
 }

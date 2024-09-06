@@ -1,25 +1,54 @@
 {
-  "includes": {
-    "functional": []
-  },
-  "macros": {
-    "cellGetText{}{}": {
-      "snippet": "cellGetText{${1:rownum}}{${2:colnum}}"
-    },
-    "cellSetText{}{}{}": {
-      "snippet": "cellSetText{${1:rownum}}{${2:colnum}}{${3:text}}"
-    },
-    "cellSetStyle{}{}{}": {
-      "snippet": "cellSetStyle{${1:rownum}}{${2:colnum}}{${3:style}}"
-    },
-    "rowSetStyle{}{}": {
-      "snippet": "rowSetStyle{${1:rownum}}{${2:style}}"
-    },
-    "columnSetStyle{}": {
-      "snippet": "columnSetStyle{${1:style}}"
+  "deps": [
+    {
+      "name": "functional"
     }
+  ],
+  "macros": [
+    {
+      "name": "cellGetText",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:rownum}}{${2:colnum}}"
+      }
+    },
+    {
+      "name": "cellSetText",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:rownum}}{${2:colnum}}{${3:text}}"
+      }
+    },
+    {
+      "name": "cellSetStyle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:rownum}}{${2:colnum}}{${3:style}}"
+      }
+    },
+    {
+      "name": "rowSetStyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:rownum}}{${2:style}}"
+      }
+    },
+    {
+      "name": "columnSetStyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\begin{tblr}#c,\\SetTblrOuter#c": [
+      "evaluate=${1:function}"
+    ],
+    "\\SetTblrInner#c,\\begin{+matrix}#c,\\begin{+bmatrix}#c,\\begin{+Bmatrix}#c,\\begin{+pmatrix}#c,\\begin{+vmatrix}#c,\\begin{+Vmatrix}#c,\\begin{+cases}#c": [
+      "process=${1:function}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

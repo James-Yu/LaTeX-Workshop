@@ -1,174 +1,406 @@
 {
-  "includes": {
-    "graphicx": [],
-    "minibox": [],
-    "environ": [],
-    "currfile": [],
-    "pdfpages": [],
-    "varwidth": [],
-    "luaoptions": [],
-    "metalogo": []
-  },
-  "macros": {
-    "lyluatex": {},
-    "cm": {},
-    "mm": {},
-    "pt": {},
-    "lyFilename{}": {
-      "snippet": "lyFilename{${1:filename}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "lyIntertext{}": {
-      "snippet": "lyIntertext{${1:text}}"
+    {
+      "name": "minibox"
     },
-    "lyVersion{}": {
-      "snippet": "lyVersion{${1:version}}"
+    {
+      "name": "environ"
     },
-    "rmfamilyid": {},
-    "sffamilyid": {},
-    "ttfamilyid": {},
-    "includely{}": {
-      "snippet": "includely{${1:file}}"
+    {
+      "name": "currfile"
     },
-    "includely[]{}": {
-      "snippet": "includely[${2:options}]{${1:file}}"
+    {
+      "name": "pdfpages"
     },
-    "musicxmlfile{}": {
-      "snippet": "musicxmlfile{${1:file}}"
+    {
+      "name": "varwidth"
     },
-    "musicxmlfile[]{}": {
-      "snippet": "musicxmlfile[${2:options}]{${1:file}}"
+    {
+      "name": "luaoptions"
     },
-    "lyscorebegin": {},
-    "lyscoreend": {},
-    "lysetverbenv{}{}": {
-      "snippet": "lysetverbenv{${1:begdef}}{${2:enddef}}"
-    },
-    "filename": {},
-    "lyenv{}": {
-      "snippet": "lyenv{${1:envname}}"
-    },
-    "lynewenvironment{}{}{}": {
-      "snippet": "lynewenvironment{${1:envname}}{${2:begdef}}{${3:enddef}}"
-    },
-    "lynewenvironment{}[]{}{}": {
-      "snippet": "lynewenvironment{${1:envname}}[${2:args}]{${3:begdef}}{${4:enddef}}"
-    },
-    "lynewenvironment{}[][]{}{}": {
-      "snippet": "lynewenvironment{${1:envname}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
-    },
-    "options": {},
-    "lily{}": {
-      "snippet": "lily{${1:score}}"
-    },
-    "lily[]{}": {
-      "snippet": "lily[${2:options}]{${1:score}}"
-    },
-    "lyscore{}": {
-      "snippet": "lyscore{${1:option}}"
-    },
-    "lilypondfile{}": {
-      "snippet": "lilypondfile{${1:file}}"
-    },
-    "lilypondfile[]{}": {
-      "snippet": "lilypondfile[${2:options}]{${1:file}}"
-    },
-    "lilypond{}": {
-      "snippet": "lilypond{${1:score}}"
-    },
-    "lilypond[]{}": {
-      "snippet": "lilypond[${2:options}]{${1:score}}"
+    {
+      "name": "metalogo"
     }
-  },
-  "envs": {
-    "lysavefrag{}": {
-      "name": "lysavefrag",
-      "snippet": "{${1:filename}}"
-    },
-    "ly": {},
-    "ly[]": {
-      "name": "ly",
-      "snippet": "[${1:options}]"
-    },
-    "lilypond": {},
-    "lilypond[]": {
-      "name": "lilypond",
-      "snippet": "[${1:options}]"
-    }
-  },
-  "options": [
-    "insert=${1|systems,fullpage,inline,bare-inline|}",
-    "fullpagestyle=${1:pagestyle}",
-    "print-page-number",
-    "first-page-number",
-    "inline-staffsize=${1:pts}",
-    "valign=${1|center,top,bottom|}",
-    "voffset=",
-    "hpadding=",
-    "print-only",
-    "print-only={${1:number range(s)}}",
-    "line-width=",
-    "staffsize=${1:pts}",
-    "ragged-right",
-    "noragged-right",
-    "indent=",
-    "noindent",
-    "system-count=${1:integer}",
-    "quote",
-    "gutter=",
-    "leftgutter=",
-    "rightgutter=",
-    "exampleindent=",
-    "papersize=${1:paper size}",
-    "paperwidth=",
-    "paperheight=",
-    "twoside",
-    "max-protrusion=",
-    "max-left-protrusion=",
-    "max-right-protrusion=",
-    "autoindent",
-    "fullpagealign=${1|crop,staffline|}",
-    "extra-bottom-margin=${1:pts}",
-    "extra-top-margin=${1:pts}",
-    "fragment",
-    "pass-fonts",
-    "current-font-as-main",
-    "rmfamily=${1:font family}",
-    "sffamily=${1:font family}",
-    "ttfamily=${1:font family}",
-    "noclef",
-    "notimesig",
-    "nostaffsymbol",
-    "notiming",
-    "notime",
-    "nostaff",
-    "relative=${1:integer}",
-    "language=${1:language}",
-    "label=",
-    "labelprefix=${1:prefix}",
-    "printfilename",
-    "verbatim",
-    "addversion",
-    "intertext=${1:text}",
-    "includepaths={${1:path1,path2,...}}",
-    "program=${1:program}",
-    "ly-version=${1:version}",
-    "tmpdir=${1:directory}",
-    "cleantmp",
-    "write-headers",
-    "optimize-pdf",
-    "debug",
-    "showfailed",
-    "force-compilation",
-    "fix_badly_cropped_staffgroup_brackets",
-    "xml2ly=${1:program}",
-    "absolute",
-    "lxml",
-    "verbose",
-    "no-articulation-directions",
-    "no-beaming",
-    "no-page-layout",
-    "no-rest-positions",
-    "raw-pdf"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "lyluatex",
+      "unusual": true
+    },
+    {
+      "name": "lyFilename",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename}}"
+      }
+    },
+    {
+      "name": "lyIntertext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "lyVersion",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:version}}"
+      }
+    },
+    {
+      "name": "includely",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "includely",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\usepackage/lyluatex#c,\\includely#c,\\musicxmlfile#c,\\begin{ly}#c,\\lily#c,\\lilypondfile#c,\\begin{lilypond}#c,\\lilypond#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "musicxmlfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "musicxmlfile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\usepackage/lyluatex#c,\\includely#c,\\musicxmlfile#c,\\begin{ly}#c,\\lily#c,\\lilypondfile#c,\\begin{lilypond}#c,\\lilypond#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "lyscorebegin",
+      "unusual": true
+    },
+    {
+      "name": "lyscoreend",
+      "unusual": true
+    },
+    {
+      "name": "lysetverbenv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:begdef}}{${2:enddef}}"
+      }
+    },
+    {
+      "name": "lyenv",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "lynewenvironment",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "lynewenvironment",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "{${1:envname}}[${4:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "lynewenvironment",
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "{${1:envname}}[${4:args}][${5:default}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "lily",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:score}}"
+      }
+    },
+    {
+      "name": "lily",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:score}}",
+        "keys": [
+          "\\usepackage/lyluatex#c,\\includely#c,\\musicxmlfile#c,\\begin{ly}#c,\\lily#c,\\lilypondfile#c,\\begin{lilypond}#c,\\lilypond#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "lyscore",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option%keyvals}}",
+        "keys": [
+          "\\setluaoption#c,\\lyscore#c",
+          "\\lyscore#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "lilypondfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "lilypondfile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\usepackage/lyluatex#c,\\includely#c,\\musicxmlfile#c,\\begin{ly}#c,\\lily#c,\\lilypondfile#c,\\begin{lilypond}#c,\\lilypond#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "lilypond",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:score}}"
+      }
+    },
+    {
+      "name": "lilypond",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:score}}",
+        "keys": [
+          "\\usepackage/lyluatex#c,\\includely#c,\\musicxmlfile#c,\\begin{ly}#c,\\lily#c,\\lilypondfile#c,\\begin{lilypond}#c,\\lilypond#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "lysavefrag",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename%file}}"
+      }
+    },
+    {
+      "name": "ly",
+      "unusual": true
+    },
+    {
+      "name": "ly",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\usepackage/lyluatex#c,\\includely#c,\\musicxmlfile#c,\\begin{ly}#c,\\lily#c,\\lilypondfile#c,\\begin{lilypond}#c,\\lilypond#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "lilypond"
+    },
+    {
+      "name": "lilypond",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\usepackage/lyluatex#c,\\includely#c,\\musicxmlfile#c,\\begin{ly}#c,\\lily#c,\\lilypondfile#c,\\begin{lilypond}#c,\\lilypond#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/lyluatex#c,\\includely#c,\\musicxmlfile#c,\\begin{ly}#c,\\lily#c,\\lilypondfile#c,\\begin{lilypond}#c,\\lilypond#c": [
+      "insert=${1|systems,fullpage,inline,bare-inline|}",
+      "fullpagestyle=${1:pagestyle}",
+      "print-page-number",
+      "first-page-number",
+      "inline-staffsize=${1:pts}",
+      "valign=${1|center,top,bottom|}",
+      "voffset=",
+      "hpadding=",
+      "print-only",
+      "print-only={${1:number range(s)}}",
+      "line-width=",
+      "staffsize=${1:pts}",
+      "ragged-right",
+      "noragged-right",
+      "indent=",
+      "noindent",
+      "system-count=${1:integer}",
+      "quote",
+      "gutter=",
+      "leftgutter=",
+      "rightgutter=",
+      "exampleindent=",
+      "papersize=${1:paper size}",
+      "paperwidth=",
+      "paperheight=",
+      "twoside",
+      "max-protrusion=",
+      "max-left-protrusion=",
+      "max-right-protrusion=",
+      "autoindent",
+      "fullpagealign=${1|crop,staffline|}",
+      "extra-bottom-margin=${1:pts}",
+      "extra-top-margin=${1:pts}",
+      "fragment",
+      "pass-fonts",
+      "current-font-as-main",
+      "rmfamily=${1:font family}",
+      "sffamily=${1:font family}",
+      "ttfamily=${1:font family}",
+      "noclef",
+      "notimesig",
+      "nostaffsymbol",
+      "notiming",
+      "notime",
+      "nostaff",
+      "relative=${1:integer}",
+      "language=${1:language}",
+      "label=",
+      "labelprefix=${1:prefix}",
+      "printfilename",
+      "verbatim",
+      "addversion",
+      "intertext=${1:text}",
+      "includepaths={${1:path1,path2,...}}",
+      "program=${1:program}",
+      "ly-version=${1:version}",
+      "tmpdir=${1:directory}",
+      "cleantmp",
+      "write-headers",
+      "optimize-pdf",
+      "debug",
+      "showfailed",
+      "force-compilation",
+      "fix_badly_cropped_staffgroup_brackets",
+      "xml2ly=${1:program}",
+      "absolute",
+      "lxml",
+      "verbose",
+      "no-articulation-directions",
+      "no-beaming",
+      "no-page-layout",
+      "no-rest-positions",
+      "raw-pdf"
+    ],
+    "\\setluaoption#c,\\lyscore#c": [
+      "insert",
+      "fullpagestyle",
+      "print-page-number",
+      "first-page-number",
+      "inline-staffsize",
+      "valign",
+      "voffset",
+      "hpadding",
+      "print-only",
+      "line-width",
+      "staffsize",
+      "ragged-right",
+      "noragged-right",
+      "indent",
+      "system-count",
+      "quote",
+      "gutter",
+      "leftgutter",
+      "rightgutter",
+      "exampleindent",
+      "papersize",
+      "paperwidth",
+      "paperheight",
+      "twoside",
+      "max-protrusion",
+      "max-left-protrusion",
+      "max-right-protrusion",
+      "autoindent",
+      "fullpagealign",
+      "extra-bottom-margin",
+      "extra-top-margin",
+      "fragment",
+      "pass-fonts",
+      "current-font-as-main",
+      "rmfamily",
+      "sffamily",
+      "ttfamily",
+      "noclef",
+      "notimesig",
+      "nostaffsymbol",
+      "notiming",
+      "notime",
+      "nostaff",
+      "relative",
+      "language",
+      "label",
+      "labelprefix",
+      "printfilename",
+      "verbatim",
+      "addversion",
+      "intertext",
+      "includepaths",
+      "program",
+      "ly-version",
+      "tmpdir",
+      "cleantmp",
+      "write-headers",
+      "optimize-pdf",
+      "debug",
+      "showfailed",
+      "force-compilation",
+      "fix_badly_cropped_staffgroup_brackets",
+      "xml2ly",
+      "language",
+      "absolute",
+      "lxml",
+      "verbose",
+      "no-articulation-directions",
+      "no-beaming",
+      "no-page-layout",
+      "no-rest-positions",
+      "raw-pdf"
+    ],
+    "\\lyscore#c": [
+      "${1:number}",
+      "nsystems",
+      "hoffset"
+    ]
+  },
+  "args": [
+    "\\usepackage/lyluatex#c,\\includely#c,\\musicxmlfile#c,\\begin{ly}#c,\\lily#c,\\lilypondfile#c,\\begin{lilypond}#c,\\lilypond#c"
+  ]
 }

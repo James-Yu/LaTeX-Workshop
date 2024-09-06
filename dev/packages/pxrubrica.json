@@ -1,139 +1,407 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "ruby{}{}": {
-      "snippet": "ruby{${1:kanji}}{${2:ruby}}"
-    },
-    "ruby[]{}{}": {
-      "snippet": "ruby[${3:option}]{${1:kanji}}{${2:ruby}}"
-    },
-    "jruby{}{}": {
-      "snippet": "jruby{${1:kanji}}{${2:ruby}}"
-    },
-    "jruby[]{}{}": {
-      "snippet": "jruby[${3:option}]{${1:kanji}}{${2:ruby}}"
-    },
-    "aruby{}{}": {
-      "snippet": "aruby{${1:text}}{${2:ruby}}"
-    },
-    "aruby[]{}{rub": {
-      "snippet": "aruby[${2:option}]{${1:text}}{rub"
-    },
-    "truby{}{}{}": {
-      "snippet": "truby{${1:kanji}}{${2:upper ruby}}{${3:lower ruby}}"
-    },
-    "truby[]{}{}{}": {
-      "snippet": "truby[${4:option}]{${1:kanji}}{${2:upper ruby}}{${3:lower ruby}}"
-    },
-    "atruby{}{}{}": {
-      "snippet": "atruby{${1:text}}{${2:upper ruby}}{${3:lower ruby}}"
-    },
-    "atruby[]{}{}{}": {
-      "snippet": "atruby[${4:option}]{${1:text}}{${2:upper ruby}}{${3:lower ruby}}"
-    },
-    "rubysetup{}": {
-      "snippet": "rubysetup{${1:option}}"
-    },
-    "rubyfontsetup{}": {
-      "snippet": "rubyfontsetup{${1:font commands}}"
-    },
-    "rubybigintrusion{}": {
-      "snippet": "rubybigintrusion{${1:number}}"
-    },
-    "rubysmallintrusion{}": {
-      "snippet": "rubysmallintrusion{${1:number}}"
-    },
-    "rubymaxmargin{}": {
-      "snippet": "rubymaxmargin{${1:number}}"
-    },
-    "rubyintergap{}": {
-      "snippet": "rubyintergap{${1:number}}"
-    },
-    "rubyusejghost": {},
-    "rubynousejghost": {},
-    "rubyuseaghost": {},
-    "rubynouseaghost": {},
-    "rubysafemode": {},
-    "rubynosafemode": {},
-    "rubysizeratio{}": {
-      "snippet": "rubysizeratio{${1:number}}"
-    },
-    "rubystretchprop{}{}{}": {
-      "snippet": "rubystretchprop{${1:X}}{${2:Y}}{${3:Z}}"
-    },
-    "rubystretchprophead{}{}": {
-      "snippet": "rubystretchprophead{${1:Y}}{${2:Z}}"
-    },
-    "rubystretchpropend{}{}": {
-      "snippet": "rubystretchpropend{${1:X}}{${2:Y}}"
-    },
-    "rubyyheightratio{}": {
-      "snippet": "rubyyheightratio{${1:number}}"
-    },
-    "rubytheightratio{}": {
-      "snippet": "rubytheightratio{${1:number}}"
-    },
-    "kenten{}": {
-      "snippet": "kenten{${1:text}}"
-    },
-    "kenten[]{}": {
-      "snippet": "kenten[${2:option}]{${1:text}}"
-    },
-    "jkenten{}": {
-      "snippet": "jkenten{${1:text}}"
-    },
-    "jkenten[]{}": {
-      "snippet": "jkenten[${2:option}]{${1:text}}"
-    },
-    "kentensetup{}": {
-      "snippet": "kentensetup{${1:option}}"
-    },
-    "kspan{}": {
-      "snippet": "kspan{${1:text}}"
-    },
-    "kspan*{}": {
-      "snippet": "kspan*{${1:text}}"
-    },
-    "kentenmarkinyoko{}": {
-      "snippet": "kentenmarkinyoko{${1:symbol choice}}"
-    },
-    "kentensubmarkinyoko{}": {
-      "snippet": "kentensubmarkinyoko{${1:symbol choice}}"
-    },
-    "kentenmarkintate{}": {
-      "snippet": "kentenmarkintate{${1:symbol choice}}"
-    },
-    "kentensubmarkintate{}": {
-      "snippet": "kentensubmarkintate{${1:symbol choice}}"
-    },
-    "kentenfontsetup{}": {
-      "snippet": "kentenfontsetup{${1:font commands}}"
-    },
-    "kentenintergap{}": {
-      "snippet": "kentenintergap{${1:number}}"
-    },
-    "kentensizeratio{}": {
-      "snippet": "kentensizeratio{${1:number}}"
-    },
-    "kentenrubycombination{}": {
-      "snippet": "kentenrubycombination{${1:choice}}"
-    },
-    "kentenrubyintergap{}": {
-      "snippet": "kentenrubyintergap{${1:number}}"
-    },
-    "pdfstringdefPreHook": {},
-    "rubyadjustatlineedge": {},
-    "rubybreakjukugo": {},
-    "rubyfontsize": {},
-    "rubynoadjustatlineedge": {},
-    "rubynobreakjukugo": {},
-    "rubyuseextra{}": {
-      "snippet": "rubyuseextra{${1:arg}}"
+  "deps": [
+    {
+      "name": "keyval"
     }
+  ],
+  "macros": [
+    {
+      "name": "ruby",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:kanji}}{${2:ruby}}"
+      }
+    },
+    {
+      "name": "ruby",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:option%keyvals}]{${1:kanji}}{${2:ruby}}",
+        "keys": [
+          "\\ruby#c,\\jruby#c,\\aruby#c,\\truby#c,\\atruby#c,\\rubysetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "jruby",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:kanji}}{${2:ruby}}"
+      }
+    },
+    {
+      "name": "jruby",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:option%keyvals}]{${1:kanji}}{${2:ruby}}",
+        "keys": [
+          "\\ruby#c,\\jruby#c,\\aruby#c,\\truby#c,\\atruby#c,\\rubysetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "aruby",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:ruby}}"
+      }
+    },
+    {
+      "name": "aruby",
+      "arg": {
+        "format": "[]{}{rub",
+        "snippet": "[${2:option%keyvals}]{${1:text}}{rub",
+        "keys": [
+          "\\ruby#c,\\jruby#c,\\aruby#c,\\truby#c,\\atruby#c,\\rubysetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "truby",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:kanji}}{${2:upper ruby}}{${3:lower ruby}}"
+      }
+    },
+    {
+      "name": "truby",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:option%keyvals}]{${1:kanji}}{${2:upper ruby}}{${3:lower ruby}}",
+        "keys": [
+          "\\ruby#c,\\jruby#c,\\aruby#c,\\truby#c,\\atruby#c,\\rubysetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "atruby",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:text}}{${2:upper ruby}}{${3:lower ruby}}"
+      }
+    },
+    {
+      "name": "atruby",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:option%keyvals}]{${1:text}}{${2:upper ruby}}{${3:lower ruby}}",
+        "keys": [
+          "\\ruby#c,\\jruby#c,\\aruby#c,\\truby#c,\\atruby#c,\\rubysetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rubysetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option%keyvals}}",
+        "keys": [
+          "\\ruby#c,\\jruby#c,\\aruby#c,\\truby#c,\\atruby#c,\\rubysetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rubyfontsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "rubybigintrusion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "rubysmallintrusion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "rubymaxmargin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "rubyintergap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "rubyusejghost"
+    },
+    {
+      "name": "rubynousejghost"
+    },
+    {
+      "name": "rubyuseaghost"
+    },
+    {
+      "name": "rubynouseaghost"
+    },
+    {
+      "name": "rubysafemode"
+    },
+    {
+      "name": "rubynosafemode"
+    },
+    {
+      "name": "rubysizeratio",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "rubystretchprop",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:X}}{${2:Y}}{${3:Z}}"
+      }
+    },
+    {
+      "name": "rubystretchprophead",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:Y}}{${2:Z}}"
+      }
+    },
+    {
+      "name": "rubystretchpropend",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:X}}{${2:Y}}"
+      }
+    },
+    {
+      "name": "rubyyheightratio",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "rubytheightratio",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "kenten",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "kenten",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:text}}",
+        "keys": [
+          "\\kenten#c,\\jkenten#c,\\kentensetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "jkenten",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "jkenten",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:text}}",
+        "keys": [
+          "\\kenten#c,\\jkenten#c,\\kentensetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "kentensetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option%keyvals}}",
+        "keys": [
+          "\\kenten#c,\\jkenten#c,\\kentensetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "kspan",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "kspan*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "kentenmarkinyoko",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol choice}}"
+      }
+    },
+    {
+      "name": "kentensubmarkinyoko",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol choice}}"
+      }
+    },
+    {
+      "name": "kentenmarkintate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol choice}}"
+      }
+    },
+    {
+      "name": "kentensubmarkintate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol choice}}"
+      }
+    },
+    {
+      "name": "kentenfontsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "kentenintergap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "kentensizeratio",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "kentenrubycombination",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:choice%keyvals}}",
+        "keys": [
+          "\\kentenrubycombination#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "kentenrubyintergap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "rubyadjustatlineedge",
+      "unusual": true
+    },
+    {
+      "name": "rubybreakjukugo",
+      "unusual": true
+    },
+    {
+      "name": "rubyfontsize",
+      "unusual": true
+    },
+    {
+      "name": "rubynoadjustatlineedge",
+      "unusual": true
+    },
+    {
+      "name": "rubynobreakjukugo",
+      "unusual": true
+    },
+    {
+      "name": "rubyuseextra",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\ruby#c,\\jruby#c,\\aruby#c,\\truby#c,\\atruby#c,\\rubysetup#c": [
+      "-",
+      "c",
+      "h",
+      "H",
+      "m",
+      "g",
+      "j",
+      "M",
+      "J",
+      "P",
+      "S",
+      "e",
+      "E",
+      "f",
+      "F",
+      "|-|",
+      "(-)",
+      "<->",
+      "<-|",
+      "|->",
+      "-||",
+      "||-",
+      "<-||",
+      "||->"
+    ],
+    "\\kenten#c,\\jkenten#c,\\kentensetup#c": [
+      "p",
+      "s",
+      "f",
+      "F",
+      "P",
+      "S"
+    ],
+    "\\kentenrubycombination#c": [
+      "ruby",
+      "both"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,18 +1,49 @@
 {
-  "includes": {},
-  "macros": {
-    "printlength{}": {
-      "snippet": "printlength{${1:length}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "printlength",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "uselengthunit{}": {
-      "snippet": "uselengthunit{${1:unit}}"
+    {
+      "name": "uselengthunit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:unit%keyvals}}",
+        "keys": [
+          "\\uselengthunit"
+        ],
+        "keyPos": 0
+      }
     },
-    "unitspace": {},
-    "rndprintlength{}": {
-      "snippet": "rndprintlength{${1:length}}"
+    {
+      "name": "unitspace",
+      "unusual": true
+    },
+    {
+      "name": "rndprintlength",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\uselengthunit": [
+      "pt",
+      "pc",
+      "in",
+      "mm",
+      "cm",
+      "bp",
+      "dd",
+      "cc",
+      "PT"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

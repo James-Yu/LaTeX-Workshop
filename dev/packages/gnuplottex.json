@@ -1,78 +1,169 @@
 {
-  "includes": {
-    "graphicx": [],
-    "moreverb": [],
-    "keyval": [],
-    "ifthen": [],
-    "catchfile": []
-  },
-  "macros": {
-    "gnuplotloadfile{}": {
-      "snippet": "gnuplotloadfile{${1:file}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "gnuplotloadfile[]{}": {
-      "snippet": "gnuplotloadfile[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "moreverb"
     },
-    "ifShellEscape": {},
-    "ShellEscapetrue": {},
-    "ShellEscapefalse": {},
-    "ifmiktex": {},
-    "miktextrue": {},
-    "miktexfalse": {},
-    "ifusesiunitx": {},
-    "usesiunitxtrue": {},
-    "usesiunitxfalse": {},
-    "ifcleanup": {},
-    "cleanuptrue": {},
-    "cleanupfalse": {},
-    "ifusesubfolder": {},
-    "usesubfoldertrue": {},
-    "usesubfolderfalse": {},
-    "tmpfile": {},
-    "subfolder": {},
-    "thefignum": {},
-    "figname": {},
-    "usesiunitxingnuplot": {},
-    "gnuplotverbatimwrite{}": {
-      "snippet": "gnuplotverbatimwrite{${1:arg}}"
+    {
+      "name": "keyval"
     },
-    "endgnuplotverbatimwrite": {},
-    "BeforeStream": {},
-    "gnuplotterminal": {},
-    "gnuplotterminaloptions": {},
-    "gnuplotscale": {},
-    "gnuplotCutFile": {},
-    "extension": {},
-    "gnuplotgraphicsprocess": {},
-    "gnuplotgraphicsinclude": {},
-    "gnuplotloadfilewrite{}{}": {
-      "snippet": "gnuplotloadfilewrite{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "catchfile"
     }
-  },
-  "envs": {
-    "gnuplot": {},
-    "gnuplot[]": {
-      "name": "gnuplot",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    }
-  },
-  "options": [
-    "shell",
-    "noshell",
-    "miktex",
-    "siunitx",
-    "cleanup",
-    "subfolder"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "gnuplotloadfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "gnuplotloadfile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{gnuplot},\\gnuplotloadfile"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ifShellEscape",
+      "unusual": true
+    },
+    {
+      "name": "ShellEscapetrue",
+      "unusual": true
+    },
+    {
+      "name": "ShellEscapefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifmiktex",
+      "unusual": true
+    },
+    {
+      "name": "miktextrue",
+      "unusual": true
+    },
+    {
+      "name": "miktexfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifusesiunitx",
+      "unusual": true
+    },
+    {
+      "name": "usesiunitxtrue",
+      "unusual": true
+    },
+    {
+      "name": "usesiunitxfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifcleanup",
+      "unusual": true
+    },
+    {
+      "name": "cleanuptrue",
+      "unusual": true
+    },
+    {
+      "name": "cleanupfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifusesubfolder",
+      "unusual": true
+    },
+    {
+      "name": "usesubfoldertrue",
+      "unusual": true
+    },
+    {
+      "name": "usesubfolderfalse",
+      "unusual": true
+    },
+    {
+      "name": "usesiunitxingnuplot",
+      "unusual": true
+    },
+    {
+      "name": "gnuplotterminal",
+      "unusual": true
+    },
+    {
+      "name": "gnuplotterminaloptions",
+      "unusual": true
+    },
+    {
+      "name": "gnuplotscale",
+      "unusual": true
+    },
+    {
+      "name": "gnuplotCutFile",
+      "unusual": true
+    },
+    {
+      "name": "gnuplotgraphicsprocess",
+      "unusual": true
+    },
+    {
+      "name": "gnuplotgraphicsinclude",
+      "unusual": true
+    },
+    {
+      "name": "gnuplotloadfilewrite",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "gnuplot"
+    },
+    {
+      "name": "gnuplot",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{gnuplot},\\gnuplotloadfile"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/gnuplottex#c": [
+      "shell",
+      "noshell",
+      "miktex",
+      "siunitx",
+      "cleanup",
+      "subfolder"
+    ],
+    "\\begin{gnuplot},\\gnuplotloadfile": [
       "scale=${1:factor}",
       "terminal=${1|latex,epslatex,jpeg,cairolatex,eepic,emtex,tikz|}",
       "terminaloptions=${1:terminal options}"
     ]
+  },
+  "args": [
+    "\\usepackage/gnuplottex#c"
   ]
 }
