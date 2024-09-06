@@ -703,7 +703,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should append max print line arguments when enabled', async () => {
             await set.config('latex.option.maxPrintLine.enabled', true)
             await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
-            syncStub.returns('pdfTeX 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit)')
+            syncStub.returns({ stdout: 'pdfTeX 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit)' })
             const rootFile = set.root(fixture, 'main.tex')
 
             await build(rootFile, 'latex', async () => {})
@@ -764,7 +764,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should not execute compile program again to determine MikTeX if already executed and cached', async () => {
             const rootFile = set.root(fixture, 'main.tex')
-            syncStub.returns('pdfTeX 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit)')
+            syncStub.returns({ stdout: 'pdfTeX 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit)' })
 
             await build(rootFile, 'latex', async () => {})
             queue.clear()

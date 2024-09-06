@@ -382,7 +382,8 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
 function isMikTeX(): boolean {
     if (state.isMikTeX === undefined) {
         try {
-            if (lw.external.sync('pdflatex --version').toString().match(/MiKTeX/)) {
+            const log = lw.external.sync('pdflatex', ['--version']).stdout.toString()
+            if (log.includes('MiKTeX')) {
                 state.isMikTeX = true
                 logger.log('`pdflatex` is provided by MiKTeX.')
             } else {
