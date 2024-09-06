@@ -3,6 +3,13 @@ import * as fs from 'fs'
 import type { DependencyRaw, EnvironmentRaw, MacroRaw, PackageRaw } from '../src/types'
 
 let _defaultMacros: string[] = []
+/**
+ * Checks if a given macro is a default macro.
+ * @param macro - The macro to check.
+ * @param defaults - Optional. The list of default macros. If not provided, it
+ * will be loaded from '../data/macros.json'.
+ * @returns A boolean indicating whether the macro is a default macro.
+ */
 function isDefaultMacro(macro: string, defaults?: string[]): boolean {
     if (defaults === undefined && _defaultMacros.length === 0) {
         _defaultMacros = (JSON.parse(fs.readFileSync('../data/macros.json').toString()) as MacroRaw[]).map(
@@ -14,6 +21,15 @@ function isDefaultMacro(macro: string, defaults?: string[]): boolean {
 }
 
 let _unimathSymbols: { [key: string]: { command: string, detail: string, documentation: string } } = {}
+/**
+ * Retrieves the symbol information for a given macro from the unimathSymbols
+ * data. If the unimathSymbols data is not provided, it will be loaded from
+ * '../data/unimathsymbols.json'.
+ * @param macro - The macro for which to retrieve the symbol information.
+ * @param defaults - Optional. The default unimathSymbols data to use if not
+ * provided.
+ * @returns The symbol information for the given macro.
+ */
 function getUnimathSymbol(macro: string, defaults?: typeof _unimathSymbols) {
     if (defaults === undefined && Object.keys(_unimathSymbols).length === 0) {
         _unimathSymbols = JSON.parse(fs.readFileSync('../data/unimathsymbols.json').toString()) as {
@@ -24,6 +40,12 @@ function getUnimathSymbol(macro: string, defaults?: typeof _unimathSymbols) {
     return defaults[macro]
 }
 
+/**
+ * Checks if a line should be skipped.
+ *
+ * @param line - The line to check.
+ * @returns `true` if the line should be skipped, `false` otherwise.
+ */
 function isSkipLine(line: string): boolean {
     if (line === '') {
         return true
@@ -40,6 +62,13 @@ function isSkipLine(line: string): boolean {
     return false
 }
 
+/**
+ * Parses an array of lines and performs specific actions based on the content of each line.
+ *
+ * @param pkg - The package object objbe modifiedo be modified.
+ * @param lines - The array of lines to be be padrsed.
+ * @param ifCond - An optional condition to be be evaludated.
+ */
 function parseLines(pkg: PackageRaw, lines: string[], ifCond?: string): void {
     for (let index = 0; index < lines.length; index++) {
         const line = lines[index].trim()
@@ -53,7 +82,9 @@ function parseLines(pkg: PackageRaw, lines: string[], ifCond?: string): void {
             if (endIndex < index) {
                 endIndex = Number.MAX_SAFE_INTEGER
             }
-            parseKeys(pkg, lines.slice(index + 1, endIndex), line.slice(9).trim())
+            const tag = line.slice(9).trim()
+            parseKeys(pkg, lines.slice(index + 1, endIndex), tag)
+            assignKeys(pkg, tag)
             index = endIndex
         } else if (line.startsWith('#ifOption')) {
             let endIndex = lines.slice(index).findIndex((l) => l.startsWith('#endif')) + index
@@ -74,6 +105,13 @@ function parseLines(pkg: PackageRaw, lines: string[], ifCond?: string): void {
     }
 }
 
+/**
+ * Parses an include statement and adds the dependency to the package.
+ *
+ * @param pkg - The package to add the dependency to.
+ * @param line - The include statement.
+ * @param ifCond - Optional condition for the dependency.
+ */
 function parseInclude(pkg: PackageRaw, line: string, ifCond?: string): void {
     const dep: DependencyRaw = { name: line.slice(9).trim() }
     if (ifCond) {
@@ -82,6 +120,13 @@ function parseInclude(pkg: PackageRaw, line: string, ifCond?: string): void {
     pkg.deps.push(dep)
 }
 
+/**
+ * Parses the key-val keys from the given lines.
+ *
+ * @param pkg - The package object to add the keys to.
+ * @param lines - The lines to parse the keys from.
+ * @param tag - The tag to add the keys to in the package.
+ */
 function parseKeys(pkg: PackageRaw, lines: string[], tag: string): void {
     const keys: string[] = []
     for (const line of lines) {
@@ -110,9 +155,15 @@ function parseKeys(pkg: PackageRaw, lines: string[], tag: string): void {
         keys.push(snippet)
     }
     pkg.keys[tag] = [...(pkg.keys[tag] ?? []), ...keys]
-    assignKeys(pkg, tag)
 }
 
+/**
+ * Assigns keys to the specified package, macros, and environments with the
+ * given tag.
+ *
+ * @param pkg - The package to assign keys to.
+ * @param tag - The tag used to assign keys.
+ */
 function assignKeys(pkg: PackageRaw, tag: string) {
     for (let context of tag.split(',')) {
         if (context.startsWith('\\documentclass') || context.startsWith('\\usepackage')) {
@@ -141,6 +192,12 @@ function assignKeys(pkg: PackageRaw, tag: string) {
     }
 }
 
+/**
+ * Finds the position of a key in a given snippet.
+ *
+ * @param snippet - The snippet to search for the key position.
+ * @returns The position of the key in the snippet, or -1 if not found.
+ */
 function findKeyPos(snippet: string): number {
     const matches = snippet.matchAll(/\{\$\{([^{}]*)\}\}|\[\$([^[\]]*)\]|<\$([^<>]*)>|\|\$([^<>]*)\|/g)
     let index = 0
@@ -159,6 +216,24 @@ function findKeyPos(snippet: string): number {
     return -1
 }
 
+/**
+ * Parses an environment line and constructs an EnvironmentRaw object.
+ *
+ * @param pkg - The PackageRaw object to add the environment to.
+ * @param line - The environment line to parse.
+ * @param ifCond - Optional condition for the environment.
+ * @returns void
+ *
+ * @remarks
+ * This function takes a line of code representing an environment and parses it
+ * to construct an EnvironmentRaw object. The line should be in the format
+ * `\begin{environmentName}[options%keyvals]{language}#M`. If the line does not
+ * match this format, an error will be logged and the function will return. If
+ * the line includes the option `S`, the function will return without adding the
+ * environment to the package. Otherwise, the function will construct an
+ * EnvironmentRaw object using the `constructMacroEnv` function and add it to
+ * the `envs` array of the provided `pkg` object.
+ */
 function parseEnv(pkg: PackageRaw, line: string, ifCond?: string): void {
     // \begin{minted}[options%keyvals]#S
     // \begin{minted}{language}#MV
@@ -177,6 +252,30 @@ function parseEnv(pkg: PackageRaw, line: string, ifCond?: string): void {
     }
 }
 
+/**
+ * Parses a macro in a LaTeX document.
+ *
+ * @param pkg - The package object to store the parsed macro.
+ * @param line - The line of code containing the macro.
+ * @param ifCond - Optional condition for the macro.
+ * @returns void
+ *
+ * @remarks
+ * This function is responsible for parsing a macro in a LaTeX document. It
+ * takes the package object, the line of code containing the macro, and an
+ * optional condition for the macro. The parsed macro is then stored in the
+ * package object.
+ *
+ * The function handles special cases in the LaTeX document, such as macros
+ * starting with "\\left" and containing "\\right", or macros starting with
+ * "\\bigg". It also handles macros of the form
+ * "\\mint[keys]{language}{verbatimSymbol}#S" and
+ * "\\mintinline[keys]{language}{verbatimSymbol}#S".
+ *
+ * If the parsed macro is not a default macro, it checks if there is a
+ * corresponding Unicode math symbol for the macro. If a Unicode math symbol is
+ * found, the macro's detail and documentation are updated accordingly.
+ */
 function parseMacro(pkg: PackageRaw, line: string, ifCond?: string): void {
     // Special cases in latex-document
     if ((/\\left[^a-zA-Z]/.test(line) && line.includes('\\right')) || /\\right[^a-zA-Z]/.test(line)) {
@@ -223,6 +322,17 @@ function parseMacro(pkg: PackageRaw, line: string, ifCond?: string): void {
     }
 }
 
+/**
+ * Constructs a macro environment based on the provided context, match, and
+ * ifCond parameters.
+ *
+ * @param context - The context object representing a MacroRaw or
+ * EnvironmentRaw.
+ * @param match - The RegExpExecArray containing the matched values.
+ * @param ifCond - Optional. The if condition for the context.
+ * @returns The constructed macro environment or undefined if the name or
+ * argument format contains invalid characters.
+ */
 function constructMacroEnv(
     context: MacroRaw | EnvironmentRaw,
     match: RegExpExecArray,
@@ -251,6 +361,12 @@ function constructMacroEnv(
     return context
 }
 
+/**
+ * Creates a snippet based on the given argument.
+ *
+ * @param arg - The argument to create the snippet from.
+ * @returns The generated snippet.
+ */
 function createSnippet(arg: string): string {
     let index = 1
     // {} [] <> ||
@@ -296,6 +412,22 @@ function createSnippet(arg: string): string {
     return arg
 }
 
+/**
+ * Finds and replaces a specific argument in a string using a regular
+ * expression.
+ *
+ * @param arg - The string containing the argument to be replaced.
+ * @param regexp - The regular expression used to match the argument.
+ * @param index - The index used in the replacement string.
+ * @returns The modified string with the argument replaced, or `false` if the
+ * argument was not found.
+ *
+ * @remarks
+ * This function searches for a specific argument in the given string using the
+ * provided regular expression. If the argument is found, it replaces it with a
+ * modified version based on the provided index. The modified string is then
+ * returned. If the argument is not found, the function returns `false`.
+ */
 function findArg(arg: string, regexp: RegExp, index: number): string | false {
     const match = arg.match(regexp)
     if (match === null || match[2] === undefined) {
@@ -307,6 +439,12 @@ function findArg(arg: string, regexp: RegExp, index: number): string | false {
     )
 }
 
+/**
+ * Parses a package with the given package name.
+ *
+ * @param pkgName - The name of the package to parse.
+ * @returns The parsed package object.
+ */
 function parsePkg(pkgName: string): PackageRaw {
     const content = fs.readFileSync(`cwl/${pkgName}.cwl`).toString()
     const pkg: PackageRaw = { deps: [], macros: [], envs: [], keys: {}, args: [] }
@@ -314,6 +452,12 @@ function parsePkg(pkgName: string): PackageRaw {
     return pkg
 }
 
+/**
+ * Parses an array of file paths and converts CWL files to JSON format.
+ *
+ * @param files - An array of file paths to be parsed.
+ * @param folder - The folder where the JSON files will be saved.
+ */
 function parseFiles(files: string[], folder: string) {
     for (const file of files) {
         console.log(file)
@@ -326,6 +470,18 @@ function parseFiles(files: string[], folder: string) {
     }
 }
 
+/**
+ * Parses the expl3.cwl file and generates a JSON representation of the package.
+ *
+ * @remarks
+ * This function reads the content of the 'expl3.cwl' file, parses it line by
+ * line, and generates a JSON object representing the package. The generated
+ * package object includes dependencies, macros, environments, keys, and
+ * arguments. Additionally, it adds a macro named 'ExplSyntaxOn' to the
+ * package's macros array.
+ *
+ * @returns void
+ */
 function parseExpl3() {
     const content = fs.readFileSync('expl3.cwl').toString()
     const pkg: PackageRaw = { deps: [], macros: [], envs: [], keys: {}, args: [] }
@@ -338,12 +494,18 @@ function parseExpl3() {
     fs.writeFileSync('../data/packages/expl3.json', JSON.stringify(pkg, null, 2))
 }
 
+/**
+ * Parses the essential package files.
+ */
 function parseEssential() {
     const files = fs.readFileSync('cwl.list').toString().split('\n')
     parseFiles(files, '../data/packages')
     parseExpl3()
 }
 
+/**
+ * Parses all package files.
+ */
 function parseAll() {
     const files = fs.readdirSync('cwl')
     parseFiles(files, 'packages')
