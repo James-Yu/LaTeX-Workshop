@@ -144,36 +144,36 @@ export type TeXMathEnv = {
 }
 
 export type PackageRaw = {
-    deps: DependencyRaw[]
-    macros: MacroRaw[]
-    envs: EnvironmentRaw[]
-    keys: { [key: string]: string[] }
+    deps: DependencyRaw[],
+    macros: MacroRaw[],
+    envs: EnvironmentRaw[],
+    keys: { [key: string]: string[] },
     args: string[]
 }
 
 export type DependencyRaw = {
-    name: string
+    name: string,
     if?: string
 }
 
 export type EnvironmentRaw = {
-    name: string
-    arg?: { format: string; snippet: string; keys?: string[]; keyPos?: number }
-    if?: string
+    name: string,
+    arg?: { format: string, snippet: string, keys?: string[], keyPos?: number },
+    if?: string,
     unusual?: boolean
 }
 
 export type MacroRaw = {
-    name: string
-    arg?: { format: string; snippet: string; keys?: string[]; keyPos?: number }
-    if?: string
-    unusual?: boolean
-    detail?: string
+    name: string,
+    arg?: { format: string, snippet: string, keys?: string[], keyPos?: number },
+    if?: string,
+    unusual?: boolean,
+    detail?: string,
     doc?: string
 }
 
 export type EnvironmentInfo = EnvironmentRaw & {
-    package: string
+    package: string,
     detail: string
 }
 

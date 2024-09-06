@@ -19,7 +19,7 @@ export async function onMath(document: vscode.TextDocument, tex: TeXMathEnv, mac
     } catch(e) {
         if (macros !== '') {
             logger.log(`Failed rendering MathJax ${typesetArg} . Try removing macro definitions.`)
-            return await onMath(document, tex, '')
+            return onMath(document, tex, '')
         } else {
             logger.logError(`Failed rendering MathJax ${typesetArg} .`, e)
             throw e

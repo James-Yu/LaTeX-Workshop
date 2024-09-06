@@ -53,7 +53,7 @@ async function bib(s: string, options?: bibtexParser.ParserOptions): Promise<bib
 }
 
 function stringify(ast: Ast.Ast): string {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return
     return toString(ast)
 }
 

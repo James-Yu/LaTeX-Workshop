@@ -34,9 +34,9 @@ function initialize() {
     const excludeDefault = (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.exclude') as string[]).includes('lw-default')
     const macros = excludeDefault ? [] : JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/macros.json`, {encoding: 'utf8'})) as (MacroRaw & { action?: string })[]
     const mathMacros = excludeDefault ? [] : (JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/packages/tex.json`, {encoding: 'utf8'})) as PackageRaw).macros
-    let all: (MacroRaw & { package: string, action?: string })[] = [...macros, ...mathMacros].map(macro => {
+    let all: (MacroRaw & { package: string, action?: string })[] = [...macros, ...mathMacros].map(m => {
         const macroInfo = {
-            ...macro,
+            ...m,
             package: 'latex',
         }
         return macroInfo
@@ -46,13 +46,13 @@ function initialize() {
 
     const userCmds = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.command.user') as {[key: string]: string}
     Object.entries(userCmds).forEach(([key, snippet]) => {
-        const candidate = all.find(macro => macro.name + (macro.arg?.format ?? '') === key)
+        const candidate = all.find(m => m.name + (m.arg?.format ?? '') === key)
         if (candidate && snippet !== '') {
             candidate.name = ''
             candidate.arg = { format: snippet, snippet }
             candidate.package = 'user'
         } else if (candidate && snippet === '') {
-            all = all.filter(macro => macro !== candidate)
+            all = all.filter(m => m !== candidate)
         } else {
             all.push({ name: key, package: 'user', arg: { format: '', snippet } })
         }
@@ -61,7 +61,7 @@ function initialize() {
     data.defaultCmds = []
 
     // Initialize default macros and the ones in `tex.json`
-    all.forEach(macro => data.defaultCmds.push(entryCmdToCompletion(macro, macro.package, macro.action)))
+    all.forEach(m => data.defaultCmds.push(entryCmdToCompletion(m, m.package, m.action)))
 
     // Initialize default env begin-end pairs
     defaultEnvs.forEach(cmd => {
@@ -416,12 +416,12 @@ function entryCmdToCompletion(item: MacroRaw, packageName?: string, postAction?:
         suggestion.insertText = item.name
     }
     suggestion.filterText = item.detail ?? item.name
-    suggestion.detail = item.detail ?? `\\${item.arg?.snippet?.replace(/\$\{\d+:([^$}]*)\}/g, '$1')}` ?? `\\${item.name}`
+    suggestion.detail = item.detail ?? (item.arg?.snippet ? `\\${item.arg?.snippet?.replace(/\$\{\d+:([^$}]*)\}/g, '$1')}` : `\\${item.name}`)
     suggestion.documentation = item.doc ?? `Macro \\${item.name}${item.arg?.format ?? ''}.`
     if (packageName) {
         suggestion.documentation += ` From package: ${packageName}.`
     }
-    suggestion.sortText = (item.name + item.arg?.format ?? '').replace(/^[a-zA-Z]/, c => {
+    suggestion.sortText = (item.name + (item.arg?.format ?? '')).replace(/^[a-zA-Z]/, c => {
         const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
         return n !== undefined ? n.toString(16): c
     })
@@ -435,7 +435,7 @@ function entryCmdToCompletion(item: MacroRaw, packageName?: string, postAction?:
 }
 
 function setPackageCmds(packageName: string, macros: MacroRaw[]) {
-    data.packageCmds.set(packageName, macros.map(macro => entryCmdToCompletion(macro, packageName)))
+    data.packageCmds.set(packageName, macros.map(m => entryCmdToCompletion(m, packageName)))
 }
 
 function getPackageCmds(packageName: string) {

@@ -22,7 +22,7 @@ const webViewerLoaded = new Promise<void>((resolve) => {
     // https://github.com/James-Yu/LaTeX-Workshop/pull/4220#issuecomment-2034520751
     try {
         parent.document.addEventListener('webviewerloaded', () => resolve() )
-    } catch(err) { /* do nothing */ }
+    } catch(_) { /* do nothing */ }
 })
 
 // For the details of the initialization of PDF.js,

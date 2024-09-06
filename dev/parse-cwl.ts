@@ -5,16 +5,20 @@ import type { DependencyRaw, EnvironmentRaw, MacroRaw, PackageRaw } from '../src
 let _defaultMacros: string[] = []
 function isDefaultMacro(macro: string, defaults?: string[]): boolean {
     if (defaults === undefined && _defaultMacros.length === 0) {
-        _defaultMacros = Object.keys(JSON.parse(fs.readFileSync('../data/commands.json').toString()))
+        _defaultMacros = (JSON.parse(fs.readFileSync('../data/macros.json').toString()) as MacroRaw[]).map(
+            (m) => m.name + (m.arg?.format ?? '')
+        )
     }
     defaults = defaults ?? _defaultMacros
     return defaults.includes(macro)
 }
 
-let _unimathSymbols: { [key: string]: { detail?: string; documentation?: string } } = {}
+let _unimathSymbols: { [key: string]: { command: string, detail: string, documentation: string } } = {}
 function getUnimathSymbol(macro: string, defaults?: typeof _unimathSymbols) {
     if (defaults === undefined && Object.keys(_unimathSymbols).length === 0) {
-        defaults = JSON.parse(fs.readFileSync('../data/unimathsymbols.json').toString())
+        _unimathSymbols = JSON.parse(fs.readFileSync('../data/unimathsymbols.json').toString()) as {
+            [key: string]: { command: string, detail: string, documentation: string }
+        }
     }
     defaults = defaults ?? _unimathSymbols
     return defaults[macro]
@@ -92,13 +96,13 @@ function parseKeys(pkg: PackageRaw, lines: string[], tag: string): void {
             if (match === null) {
                 break
             }
-            snippet = snippet.replace(/%<([^%]*?)%>/, `$$\{${index}:${match[1]}\}`)
+            snippet = snippet.replace(/%<([^%]*?)%>/, `$$\{${index}:${match[1]}}`)
             index++
         }
         const match = /^([^#]*?)(=)?#([^%#]+)$/.exec(snippet)
         if (match) {
             // cache=#true,false => cache=${1|true,false|}
-            snippet = match[1] + (match[2] === '=' ? `=$\{${index}|${match[3]}|\}` : '')
+            snippet = match[1] + (match[2] === '=' ? `=$\{${index}|${match[3]}|}` : '')
         } else {
             // numbersep=##L => numbersep=
             snippet = snippet.split('#')[0]
@@ -121,7 +125,7 @@ function assignKeys(pkg: PackageRaw, tag: string) {
         }
         context = context.split('#')[0]
         const isEnv = context.startsWith('\\begin')
-        let name = context.startsWith('\\begin') ? context.slice(7, -1) : context.slice(1)
+        const name = context.startsWith('\\begin') ? context.slice(7, -1) : context.slice(1)
         for (const candidate of isEnv ? pkg.envs : pkg.macros) {
             if (candidate.name === name && candidate.arg) {
                 const keyPos = findKeyPos(candidate.arg.snippet)
@@ -138,10 +142,10 @@ function assignKeys(pkg: PackageRaw, tag: string) {
 }
 
 function findKeyPos(snippet: string): number {
-    const matches = snippet.matchAll(/\{\$\{([^\{\}]*)\}\}|\[\$([^\[\]]*)\]|\<\$([^\<\>]*)\>|\|\$([^\<\>]*)\|/g)
+    const matches = snippet.matchAll(/\{\$\{([^{}]*)\}\}|\[\$([^[\]]*)\]|<\$([^<>]*)>|\|\$([^<>]*)\|/g)
     let index = 0
     for (const match of matches) {
-        const context = (match[1] ?? match[2] ?? match[3] ?? match[4]).replace(/[\{\}0-9:]+/g, '')
+        const context = (match[1] ?? match[2] ?? match[3] ?? match[4]).replace(/[{}0-9:]+/g, '')
         if (
             context.startsWith('keys') ||
             context.startsWith('keyvals') ||
@@ -175,7 +179,7 @@ function parseEnv(pkg: PackageRaw, line: string, ifCond?: string): void {
 
 function parseMacro(pkg: PackageRaw, line: string, ifCond?: string): void {
     // Special cases in latex-document
-    if ((/\\left[^a-zA-Z]/.test(line) && /\\right/.test(line)) || /\\right[^a-zA-Z]/.test(line)) {
+    if ((/\\left[^a-zA-Z]/.test(line) && line.includes('\\right')) || /\\right[^a-zA-Z]/.test(line)) {
         return
     }
     // Special cases in latex-document
@@ -187,7 +191,7 @@ function parseMacro(pkg: PackageRaw, line: string, ifCond?: string): void {
         const pairs = { '(': ')', '[': ']', '|': '|' }
         const macro: MacroRaw = { name: match[1] + (match[2] ?? '') }
         if (match[2] === '(' || match[2] === '[' || match[2] === '|') {
-            macro.arg = { format: match[2] + pairs[match[2]], snippet: `$\{1\}${match[1]}${pairs[match[2]]}` }
+            macro.arg = { format: match[2] + pairs[match[2]], snippet: `$\{1}${match[1]}${pairs[match[2]]}` }
         }
         pkg.macros.push(macro)
         return
@@ -197,7 +201,7 @@ function parseMacro(pkg: PackageRaw, line: string, ifCond?: string): void {
     // \mint[%<options%>]{%<language%>}|%<code%>|#M
     // \mintinline[keys]{language}{verbatimSymbol}#S
     // \mintinline{%<language%>}|%<code%>|#M
-    const match = /\\([^[\{\n]*?)((?:\{|\[|\(|\|)[^#\n]*)?(?:#(.*))?$/.exec(line)
+    const match = /\\([^[{\n]*?)((?:\{|\[|\(|\|)[^#\n]*)?(?:#(.*))?$/.exec(line)
     if (match === null) {
         console.error('Unknown macro line: ' + line)
         return
@@ -232,16 +236,16 @@ function constructMacroEnv(
     }
     if (match[2]) {
         const arg = match[2]
-            .replace(/\{[^\{\}]*\}/g, '{}')
-            .replace(/\[[^\[\]]*\]/g, '[]')
-            .replace(/(?<![\{\s:\[])(\<)([a-zA-Z\s]*)(\>)/g, '<>')
-            .replace(/\|[^\|]*\|/g, '||')
-            .replace(/\([^\(\)]*\)/g, '()')
+            .replace(/\{[^{}]*\}/g, '{}')
+            .replace(/\[[^[\]]*\]/g, '[]')
+            .replace(/(?<![{\s:[])(<)([a-zA-Z\s]*)(>)/g, '<>')
+            .replace(/\|[^|]*\|/g, '||')
+            .replace(/\([^()]*\)/g, '()')
         if (arg !== '') {
             context.arg = { format: arg, snippet: createSnippet(match[2]) }
         }
     }
-    if (/[^A-Za-z0-9\{\}\[\]\<\>\|\(\)\*_^:,\s]/.test(context.name + context.arg?.format)) {
+    if (/[^A-Za-z0-9{}[\]<>|()*_^:,\s]/.test(context.name + context.arg?.format)) {
         return
     }
     return context
@@ -251,9 +255,9 @@ function createSnippet(arg: string): string {
     let index = 1
     // {} [] <> ||
     for (const regexp of [
-        /(\{)(?![\$0-9])([^\{\}]*)(\})/,
-        /(\[)(?!\$)([^\[\]]*)(\])/,
-        /(?<![\{\s:\[])(\<)(?!\$)([a-zA-Z\s]*)(\>)/,
+        /(\{)(?![$0-9])([^{}]*)(\})/,
+        /(\[)(?!\$)([^[\]]*)(\])/,
+        /(?<![{\s:[])(<)(?!\$)([a-zA-Z\s]*)(>)/,
         /(\|)(?!\$)([^|]*)(\|)/,
     ]) {
         while (true) {
@@ -276,7 +280,7 @@ function createSnippet(arg: string): string {
             '(' +
                 match[1]
                     .split(',')
-                    .map((val) => `$$\{${index++}:${val}\}`)
+                    .map((val) => `$$\{${index++}:${val}}`)
                     .join(',') +
                 ')'
         )
@@ -287,7 +291,7 @@ function createSnippet(arg: string): string {
         if (tabPos === -1) {
             break
         }
-        arg = arg.replace('%|', `$$\{${index++}\}`)
+        arg = arg.replace('%|', `$$\{${index++}}`)
     }
     return arg
 }
@@ -299,7 +303,7 @@ function findArg(arg: string, regexp: RegExp, index: number): string | false {
     }
     return arg.replace(
         regexp,
-        `${match[1]}$$\{${index}:${match[2].replaceAll('%<', '').replaceAll('%>', '')}\}${match[3]}`
+        `${match[1]}$$\{${index}:${match[2].replaceAll('%<', '').replaceAll('%>', '')}}${match[3]}`
     )
 }
 
@@ -323,15 +327,15 @@ function parseFiles(files: string[], folder: string) {
 }
 
 function parseExpl3() {
-    const content = fs.readFileSync(`expl3.cwl`).toString()
+    const content = fs.readFileSync('expl3.cwl').toString()
     const pkg: PackageRaw = { deps: [], macros: [], envs: [], keys: {}, args: [] }
     parseLines(pkg, content.split('\n'))
     pkg.macros.push({
         name: 'ExplSyntaxOn',
         arg: { format: '', snippet: '\n\t$0\n\\ExplSyntaxOff' },
-        doc: 'Insert an \\ExplSyntax block'
+        doc: 'Insert an \\ExplSyntax block',
     })
-    fs.writeFileSync(`../data/packages/expl3.json`, JSON.stringify(pkg, null, 2))
+    fs.writeFileSync('../data/packages/expl3.json', JSON.stringify(pkg, null, 2))
 }
 
 function parseEssential() {

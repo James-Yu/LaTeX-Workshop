@@ -17,7 +17,7 @@ function parseLaTeX(content: string): Ast.Root {
 }
 
 function parseArgs(ast: Ast.Root, macros: Ast.MacroInfoRecord) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     attachMacroArgs(ast, macros)
 }
 

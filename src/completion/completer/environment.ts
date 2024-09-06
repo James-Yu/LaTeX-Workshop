@@ -310,7 +310,7 @@ function entryEnvToCompletion(item: EnvironmentInfo, type: EnvSnippetType): CmdE
         if (item.detail) {
             suggestion.label = item.detail
         }
-        suggestion.filterText = item.detail, 
+        suggestion.filterText = item.detail
         suggestion.insertText = new vscode.SnippetString(`${prefix}${item.name}}${snippet}\\end{${item.name}}`)
         return suggestion
     }

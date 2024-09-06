@@ -64,8 +64,8 @@ function load(packageName: string) {
         lw.completion.macro.setPackageCmds(packageName, packageData.macros)
 
         data.loaded.push(packageName)
-    } catch (e) {
-        logger.log(`Cannot parse intellisense file: ${filePath}`)
+    } catch (err) {
+        logger.logError(`Cannot parse intellisense file: ${filePath}`, err)
     }
 }
 
