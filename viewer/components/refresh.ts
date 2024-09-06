@@ -113,7 +113,6 @@ export async function restoreState() {
 
 async function restoreDefault() {
     const params = await (await fetch('config.json')).json() as PdfViewerParams
-    await viewerStatePromise
 
     if (params.trim !== undefined) {
         setTrimValue(params.trim)
@@ -130,6 +129,11 @@ async function restoreDefault() {
         PDFViewerApplication.pdfViewer.spreadMode = params.spreadMode
     }
 
+    if (!utils.isEmbedded()) {
+        return
+    }
+
+    await viewerStatePromise
     const viewerContainer = document.getElementById('viewerContainer')!
     if (typeof viewerState.scrollTop === 'number' && viewerContainer.scrollTop !== viewerState.scrollTop) {
         viewerContainer.scrollTop = viewerState.scrollTop
