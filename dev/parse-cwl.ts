@@ -446,10 +446,22 @@ function findArg(arg: string, regexp: RegExp, index: number): string | false {
  * @returns The parsed package object.
  */
 function parsePkg(pkgName: string): PackageRaw {
-    const content = fs.readFileSync(`cwl/${pkgName}.cwl`).toString()
+    let content = fs.readFileSync(`cwl/${pkgName}.cwl`).toString()
+    content = handleKomaClasses(pkgName, content)
     const pkg: PackageRaw = { deps: [], macros: [], envs: [], keys: {}, args: [] }
     parseLines(pkg, content.split('\n'))
     return pkg
+}
+
+function handleKomaClasses(pkgName: string, content: string): string {
+    if (!['class-scrartcl', 'class-scrbook', 'class-scrreprt', 'class-scrartcl,scrreprt,scrbook'].includes(pkgName)) {
+        return content
+    }
+    if (pkgName === 'class-scrartcl,scrreprt,scrbook') {
+        return ''
+    }
+    const baseContent = fs.readFileSync('cwl/class-scrartcl,scrreprt,scrbook.cwl').toString()
+    return baseContent + '\n' + content
 }
 
 /**
