@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs'
 import Sinon, * as sinon from 'sinon'
 import { assert, get, log, mock, set, sleep } from './utils'
 import { lw } from '../../src/lw'
@@ -209,15 +208,13 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const rootFile = set.root(fixture, 'main.tex')
             const relativeOutDir = 'output'
             const expectedOutDir = path.resolve(path.dirname(rootFile), relativeOutDir)
-            const existsStub = sinon.stub(lw.external, 'existsSync').returns(false)
-            const statStub = sinon.stub(lw.external, 'statSync').returns(fs.statSync(get.path(fixture)))
             const mkdirStub = sinon.stub(lw.external, 'mkdirSync').returns(undefined)
+            const stub = sinon.stub(lw.file, 'exists').resolves(false)
             getOutDirStub.returns(relativeOutDir)
 
             await build(rootFile, 'latex', async () => {})
-            existsStub.restore()
-            statStub.restore()
             mkdirStub.restore()
+            stub.restore()
 
             assert.pathStrictEqual(mkdirStub.getCalls()[0].args[0].toString(), expectedOutDir)
             assert.deepStrictEqual(mkdirStub.getCalls()[0].args[1], { recursive: true })
@@ -226,8 +223,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should not create the output directory if it already exists', async () => {
             const rootFile = set.root(fixture, 'main.tex')
             const relativeOutDir = 'output'
-            const existsStub = sinon.stub(lw.external, 'existsSync').returns(true)
-            const statStub = sinon.stub(lw.external, 'statSync').returns(fs.statSync(get.path(fixture)))
+            const stub = sinon.stub(lw.file, 'exists').resolves({ type: vscode.FileType.Directory, ctime: 0, mtime: 0, size: 0 })
             const mkdirStub = sinon.stub(lw.external, 'mkdirSync').returns(undefined)
             getOutDirStub.returns(relativeOutDir)
 
@@ -235,9 +231,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             mkdirStub.resetHistory()
 
             await build(rootFile, 'latex', async () => {})
-            existsStub.restore()
-            statStub.restore()
             mkdirStub.restore()
+            stub.restore()
 
             assert.ok(!mkdirStub.called)
         })

@@ -50,9 +50,7 @@ export const lw = {
         spawn: wrapper(cs.spawn),
         sync: wrapper(cs.sync),
         stat: wrapper(vscode.workspace.fs.stat),
-        existsSync: wrapper(fs.existsSync),
         mkdirSync: wrapper(fs.mkdirSync),
-        statSync: wrapper(fs.statSync),
         chmodSync: wrapper(fs.chmodSync)
     },
     onConfigChange,

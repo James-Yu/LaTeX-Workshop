@@ -95,13 +95,19 @@ function createOutputSubFolders(rootFile: string) {
         outDir = path.resolve(rootDir, outDir)
     }
     logger.log(`outDir: ${outDir} .`)
-    lw.cache.getIncludedTeX(rootFile).forEach(file => {
+    lw.cache.getIncludedTeX(rootFile).forEach(async file => {
         const relativePath = path.dirname(file.replace(rootDir, '.'))
         const fullOutDir = path.resolve(outDir, relativePath)
         // To avoid issues when fullOutDir is the root dir
         // Using fs.mkdir() on the root directory even with recursion will result in an error
         try {
-            if (! (lw.external.existsSync(fullOutDir) && lw.external.statSync(fullOutDir)?.isDirectory())) {
+            const fileStat = await lw.file.exists(fullOutDir)
+            if (
+                !fileStat ||
+                ![vscode.FileType.Directory, vscode.FileType.Directory | vscode.FileType.SymbolicLink].includes(
+                    fileStat.type
+                )
+            ) {
                 lw.external.mkdirSync(fullOutDir, { recursive: true })
             }
         } catch (e) {

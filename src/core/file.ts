@@ -490,23 +490,22 @@ async function read(filePath: string, raise: boolean = false): Promise<string | 
  * the input is a string, it is converted to a file URI using
  * `vscode.Uri.file()`. The function then attempts to retrieve the status of the
  * file or directory at the given URI using `stat()` of VS Code workspace file
- * system API. If the status retrieval is successful, the function returns
- * `true`, indicating that the file or directory exists. If an error occurs
- * (e.g., the file or directory does not exist), the function catches the error
- * and returns `false`.
+ * system API. If the status retrieval is successful, the function returns the
+ * file stat, which can also be used to indicate that the file or directory
+ * exists. If an error occurs (e.g., the file or directory does not exist), the
+ * function catches the error and returns `false`.
  *
  * @param {vscode.Uri | string} uri - The URI or file path to check for
  * existence.
  * @returns {Promise<boolean>} - A promise that resolves to `true` if the file
  * or directory exists, and `false` otherwise.
  */
-async function exists(uri: vscode.Uri | string): Promise<boolean> {
+async function exists(uri: vscode.Uri | string): Promise<vscode.FileStat | false> {
     if (typeof(uri) === 'string') {
         uri = vscode.Uri.file(uri)
     }
     try {
-        await lw.external.stat(uri)
-        return true
+        return await lw.external.stat(uri)
     } catch {
         return false
     }
