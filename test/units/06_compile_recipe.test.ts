@@ -10,11 +10,13 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
     let getOutDirStub: sinon.SinonStub
     let getIncludedTeXStub: sinon.SinonStub
+    let mkdirStub: sinon.SinonStub
 
     before(() => {
         mock.object(lw, 'file', 'root')
         getOutDirStub = sinon.stub(lw.file, 'getOutDir').returns('.')
         getIncludedTeXStub = lw.cache.getIncludedTeX as sinon.SinonStub
+        mkdirStub = sinon.stub(lw.external, 'mkdirSync').returns(undefined)
     })
 
     beforeEach(async () => {
@@ -26,6 +28,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     afterEach(() => {
         getOutDirStub.resetHistory()
         getIncludedTeXStub.resetHistory()
+        mkdirStub.resetHistory()
         lw.root.subfiles.path = undefined
         lw.compile.compiledPDFPath = ''
     })
@@ -114,6 +117,16 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.compile->recipe.createBuildTools', () => {
+        let readStub: sinon.SinonStub
+
+        before(() => {
+            readStub = sinon.stub(lw.file, 'read')
+        })
+
+        after(() => {
+            readStub.restore()
+        })
+
         it('should do nothing but log an error if no recipe is found', async () => {
             const rootFile = set.root(fixture, 'main.tex')
             await set.config('latex.recipes', [])
@@ -125,6 +138,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should create build tools based on magic comments when enabled', async () => {
             const rootFile = set.root(fixture, 'magic.tex')
+            readStub.resolves('% !TEX program = pdflatex\n')
             await set.config('latex.recipes', [])
             await set.config('latex.build.forceRecipeUsage', false)
             await set.config('latex.magic.args', ['--shell-escape'])
@@ -175,6 +189,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.compile->recipe.createOutputSubFolders', () => {
+
         beforeEach(() => {
             getIncludedTeXStub.returns([ set.root(fixture, 'main.tex') ])
         })
@@ -208,30 +223,26 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const rootFile = set.root(fixture, 'main.tex')
             const relativeOutDir = 'output'
             const expectedOutDir = path.resolve(path.dirname(rootFile), relativeOutDir)
-            const mkdirStub = sinon.stub(lw.external, 'mkdirSync').returns(undefined)
             const stub = sinon.stub(lw.file, 'exists').resolves(false)
             getOutDirStub.returns(relativeOutDir)
 
             await build(rootFile, 'latex', async () => {})
-            mkdirStub.restore()
             stub.restore()
 
-            assert.pathStrictEqual(mkdirStub.getCalls()[0].args[0].toString(), expectedOutDir)
-            assert.deepStrictEqual(mkdirStub.getCalls()[0].args[1], { recursive: true })
+            assert.pathStrictEqual(mkdirStub.getCall(0).args[0] as string, expectedOutDir)
+            assert.deepStrictEqual(mkdirStub.getCall(0).args[1], { recursive: true })
         })
 
         it('should not create the output directory if it already exists', async () => {
             const rootFile = set.root(fixture, 'main.tex')
             const relativeOutDir = 'output'
             const stub = sinon.stub(lw.file, 'exists').resolves({ type: vscode.FileType.Directory, ctime: 0, mtime: 0, size: 0 })
-            const mkdirStub = sinon.stub(lw.external, 'mkdirSync').returns(undefined)
             getOutDirStub.returns(relativeOutDir)
 
             await build(rootFile, 'latex', async () => {})
             mkdirStub.resetHistory()
 
             await build(rootFile, 'latex', async () => {})
-            mkdirStub.restore()
             stub.restore()
 
             assert.ok(!mkdirStub.called)
