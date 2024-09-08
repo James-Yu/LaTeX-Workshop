@@ -12,7 +12,8 @@ type ExtendedAssert = typeof nodeAssert & {
     pathStrictEqual: (actual: string | undefined, expected: string | undefined, message?: string | Error) => void,
     pathNotStrictEqual: (actual: string | undefined, expected: string | undefined, message?: string | Error) => void,
     hasLog: (message: string | RegExp) => void,
-    notHasLog: (message: string | RegExp) => void
+    notHasLog: (message: string | RegExp) => void,
+    hasCompilerLog: (message: string | RegExp) => void
 }
 export const assert: ExtendedAssert = nodeAssert as ExtendedAssert
 assert.listStrictEqual = <T>(actual: T[] | undefined, expected: T[] | undefined, message?: string | Error) => {
@@ -32,21 +33,31 @@ function getPaths(actual: string | undefined, expected: string | undefined): [st
     return [actual, expected]
 }
 assert.pathStrictEqual = (actual: string | undefined, expected: string | undefined, message?: string | Error) => {
-    assert.strictEqual(path.relative(...getPaths(actual, expected)), '', message)
+    [actual, expected] = getPaths(actual, expected)
+    assert.strictEqual(path.relative(actual, expected), '', message ?? `Paths are not equal: ${actual} !== ${expected} .`)
 }
 assert.pathNotStrictEqual = (actual: string | undefined, expected: string | undefined, message?: string | Error) => {
-    assert.notStrictEqual(path.relative(...getPaths(actual, expected)), '', message)
+    [actual, expected] = getPaths(actual, expected)
+    assert.notStrictEqual(path.relative(actual, expected), '', message ?? `Paths are equal: ${actual} === ${expected} .`)
 }
 function hasLog(message: string | RegExp) {
     return typeof message === 'string'
         ? log.all().some(logMessage => logMessage.includes(lwLog.applyPlaceholders(message)))
         : log.all().some(logMessage => message.exec(logMessage))
 }
+function hasCompilerLog(message: string | RegExp) {
+    return typeof message === 'string'
+        ? lwLog.getCachedLog().CACHED_COMPILER.some(logMessage => logMessage.includes(message))
+        : lwLog.getCachedLog().CACHED_COMPILER.some(logMessage => message.exec(logMessage))
+}
 assert.hasLog = (message: string | RegExp) => {
-    assert.ok(hasLog(message), log.all().join('\n'))
+    assert.ok(hasLog(message), '\n' + log.all().join('\n'))
 }
 assert.notHasLog = (message: string | RegExp) => {
-    assert.ok(!hasLog(message), log.all().join('\n'))
+    assert.ok(!hasLog(message), '\n' + log.all().join('\n'))
+}
+assert.hasCompilerLog = (message: string | RegExp) => {
+    assert.ok(hasCompilerLog(message), '\n' + lwLog.getCachedLog().CACHED_COMPILER.join('\n'))
 }
 
 export const get = {
@@ -68,6 +79,7 @@ export const set = {
     root: (...paths: string[]) => {
         const rootFile = get.path(...paths)
         lw.root.file.path = rootFile
+        lw.root.file.langId = 'latex'
         lw.root.dir.path = path.dirname(rootFile)
         return rootFile
     },

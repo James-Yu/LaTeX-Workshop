@@ -7,7 +7,6 @@ import { build, initialize } from '../../src/compile/recipe'
 import { queue } from '../../src/compile/queue'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const fixture = path.basename(__filename).split('.')[0]
     let getOutDirStub: sinon.SinonStub
     let getIncludedTeXStub: sinon.SinonStub
     let mkdirStub: sinon.SinonStub
@@ -62,7 +61,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     describe('lw.compile->recipe.build', () => {
         it('should call `saveAll` before building', async () => {
             const stub = sinon.stub(vscode.workspace, 'saveAll') as sinon.SinonStub
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
 
             await build(rootFile, 'latex', async () => {})
             stub.restore()
@@ -71,8 +70,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should call `createOutputSubFolders` with correct args', async () => {
-            const rootFile = set.root(fixture, 'main.tex')
-            const subPath = get.path(fixture, 'sub', 'main.tex')
+            const rootFile = set.root('main.tex')
+            const subPath = get.path('sub', 'main.tex')
             await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
             await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
             lw.root.subfiles.path = subPath
@@ -83,8 +82,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should call `createOutputSubFolders` with correct args with subfiles package', async () => {
-            const rootFile = set.root(fixture, 'main.tex')
-            const subPath = get.path(fixture, 'sub', 'main.tex')
+            const rootFile = set.root('main.tex')
+            const subPath = get.path('sub', 'main.tex')
             await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
             await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
             lw.root.subfiles.path = subPath
@@ -95,7 +94,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should not call buildLoop if no tool is created', async () => {
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
             await set.config('latex.tools', [])
             await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool'] }])
 
@@ -106,7 +105,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should set lw.compile.compiledPDFPath', async () => {
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
             await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
             await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
 
@@ -128,7 +127,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should do nothing but log an error if no recipe is found', async () => {
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
             await set.config('latex.recipes', [])
 
             await build(rootFile, 'latex', async () => {})
@@ -137,7 +136,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should create build tools based on magic comments when enabled', async () => {
-            const rootFile = set.root(fixture, 'magic.tex')
+            const rootFile = set.root('magic.tex')
             readStub.resolves('% !TEX program = pdflatex\n')
             await set.config('latex.recipes', [])
             await set.config('latex.build.forceRecipeUsage', false)
@@ -153,7 +152,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should do nothing but log an error with magic comments but disabled', async () => {
-            const rootFile = set.root(fixture, 'magic.tex')
+            const rootFile = set.root('magic.tex')
             await set.config('latex.recipes', [])
             await set.config('latex.build.forceRecipeUsage', true)
 
@@ -163,7 +162,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should skip undefined tools in the recipe and log an error', async () => {
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
             await set.config('latex.tools', [{ name: 'existingTool', command: 'pdflatex' }])
             await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool', 'existingTool'] }])
 
@@ -178,7 +177,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should do nothing but log an error if no tools are prepared', async () => {
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
             await set.config('latex.tools', [])
             await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool'] }])
 
@@ -191,7 +190,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     describe('lw.compile->recipe.createOutputSubFolders', () => {
 
         beforeEach(() => {
-            getIncludedTeXStub.returns([ set.root(fixture, 'main.tex') ])
+            getIncludedTeXStub.returns([ set.root('main.tex') ])
         })
 
         afterEach(() => {
@@ -199,7 +198,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should resolve the output directory relative to the root directory if not absolute', async () => {
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
             const relativeOutDir = 'output'
             const expectedOutDir = path.resolve(path.dirname(rootFile), relativeOutDir)
             getOutDirStub.returns(relativeOutDir)
@@ -210,7 +209,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should use the absolute output directory as is', async () => {
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
             const absoluteOutDir = '/absolute/output'
             getOutDirStub.returns(absoluteOutDir)
 
@@ -220,7 +219,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should create the output directory if it does not exist', async () => {
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
             const relativeOutDir = 'output'
             const expectedOutDir = path.resolve(path.dirname(rootFile), relativeOutDir)
             const stub = sinon.stub(lw.file, 'exists').resolves(false)
@@ -234,7 +233,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should not create the output directory if it already exists', async () => {
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
             const relativeOutDir = 'output'
             const stub = sinon.stub(lw.file, 'exists').resolves({ type: vscode.FileType.Directory, ctime: 0, mtime: 0, size: 0 })
             getOutDirStub.returns(relativeOutDir)
@@ -659,7 +658,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should replace argument placeholders', async () => {
             await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk', args: ['%DOC%', '%DOC%', '%DIR%'], env: {} }])
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
 
             await build(rootFile, 'latex', async () => {})
 
@@ -667,7 +666,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(step)
             assert.pathStrictEqual(step.args?.[0], rootFile.replace('.tex', ''))
             assert.pathStrictEqual(step.args?.[1], rootFile.replace('.tex', ''))
-            assert.pathStrictEqual(step.args?.[2], get.path(fixture))
+            assert.pathStrictEqual(step.args?.[2], get.path(''))
         })
 
         it('should set TeX directories correctly', async () => {
@@ -679,7 +678,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
                     env: {},
                 },
             ])
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
 
             const stub = sinon.stub(lw.file, 'setTeXDirs')
             await build(rootFile, 'latex', async () => {})
@@ -697,7 +696,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
                     env: { DOC: '%DOC%' },
                 },
             ])
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
 
             await build(rootFile, 'latex', async () => {})
 
@@ -710,7 +709,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await set.config('latex.option.maxPrintLine.enabled', true)
             await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
             syncStub.returns({ stdout: 'pdfTeX 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit)' })
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
 
             await build(rootFile, 'latex', async () => {})
 
@@ -758,7 +757,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should not consider MikTeX logic when pdflatex command fails', async () => {
             syncStub.throws(new Error('Command failed'))
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
 
             await build(rootFile, 'latex', async () => {})
 
@@ -769,7 +768,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should not execute compile program again to determine MikTeX if already executed and cached', async () => {
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
             syncStub.returns({ stdout: 'pdfTeX 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit)' })
 
             await build(rootFile, 'latex', async () => {})
