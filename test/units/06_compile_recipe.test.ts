@@ -12,16 +12,16 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     let mkdirStub: sinon.SinonStub
 
     before(() => {
-        mock.object(lw, 'file', 'root')
+        mock.init(lw, 'file', 'root')
         getOutDirStub = sinon.stub(lw.file, 'getOutDir').returns('.')
         getIncludedTeXStub = lw.cache.getIncludedTeX as sinon.SinonStub
         mkdirStub = sinon.stub(lw.external, 'mkdirSync').returns(undefined)
     })
 
-    beforeEach(async () => {
+    beforeEach(() => {
         initialize()
         getIncludedTeXStub.returns([])
-        await set.config('latex.recipe.default', 'first')
+        set.config('latex.recipe.default', 'first')
     })
 
     afterEach(() => {
@@ -41,7 +41,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             this.slow(500)
             const expectedImageName = 'your-docker-image'
 
-            await set.config('docker.image.latex', expectedImageName)
+            await set.codeConfig('docker.image.latex', expectedImageName)
             await sleep(150)
 
             assert.strictEqual(process.env['LATEXWORKSHOP_DOCKER_LATEX'], expectedImageName)
@@ -51,7 +51,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             this.slow(500)
             const expectedDockerPath = '/usr/local/bin/docker'
 
-            await set.config('docker.path', expectedDockerPath)
+            await set.codeConfig('docker.path', expectedDockerPath)
             await sleep(150)
 
             assert.strictEqual(process.env['LATEXWORKSHOP_DOCKER_PATH'], expectedDockerPath)
@@ -72,8 +72,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should call `createOutputSubFolders` with correct args', async () => {
             const rootFile = set.root('main.tex')
             const subPath = get.path('sub', 'main.tex')
-            await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
-            await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
             lw.root.subfiles.path = subPath
             getIncludedTeXStub.returns([rootFile, subPath])
 
@@ -84,8 +84,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should call `createOutputSubFolders` with correct args with subfiles package', async () => {
             const rootFile = set.root('main.tex')
             const subPath = get.path('sub', 'main.tex')
-            await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
-            await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
             lw.root.subfiles.path = subPath
             getIncludedTeXStub.returns([rootFile, subPath])
 
@@ -95,8 +95,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should not call buildLoop if no tool is created', async () => {
             const rootFile = set.root('main.tex')
-            await set.config('latex.tools', [])
-            await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool'] }])
+            set.config('latex.tools', [])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool'] }])
 
             const stub = sinon.stub()
             await build(rootFile, 'latex', stub)
@@ -106,8 +106,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should set lw.compile.compiledPDFPath', async () => {
             const rootFile = set.root('main.tex')
-            await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
-            await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
 
             await build(rootFile, 'latex', async () => {})
 
@@ -128,7 +128,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should do nothing but log an error if no recipe is found', async () => {
             const rootFile = set.root('main.tex')
-            await set.config('latex.recipes', [])
+            set.config('latex.recipes', [])
 
             await build(rootFile, 'latex', async () => {})
 
@@ -138,9 +138,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should create build tools based on magic comments when enabled', async () => {
             const rootFile = set.root('magic.tex')
             readStub.resolves('% !TEX program = pdflatex\n')
-            await set.config('latex.recipes', [])
-            await set.config('latex.build.forceRecipeUsage', false)
-            await set.config('latex.magic.args', ['--shell-escape'])
+            set.config('latex.recipes', [])
+            set.config('latex.build.forceRecipeUsage', false)
+            set.config('latex.magic.args', ['--shell-escape'])
 
             await build(rootFile, 'latex', async () => {})
 
@@ -153,8 +153,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should do nothing but log an error with magic comments but disabled', async () => {
             const rootFile = set.root('magic.tex')
-            await set.config('latex.recipes', [])
-            await set.config('latex.build.forceRecipeUsage', true)
+            set.config('latex.recipes', [])
+            set.config('latex.build.forceRecipeUsage', true)
 
             await build(rootFile, 'latex', async () => {})
 
@@ -163,8 +163,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should skip undefined tools in the recipe and log an error', async () => {
             const rootFile = set.root('main.tex')
-            await set.config('latex.tools', [{ name: 'existingTool', command: 'pdflatex' }])
-            await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool', 'existingTool'] }])
+            set.config('latex.tools', [{ name: 'existingTool', command: 'pdflatex' }])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool', 'existingTool'] }])
 
             await build(rootFile, 'latex', async () => {})
 
@@ -178,8 +178,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should do nothing but log an error if no tools are prepared', async () => {
             const rootFile = set.root('main.tex')
-            await set.config('latex.tools', [])
-            await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool'] }])
+            set.config('latex.tools', [])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool'] }])
 
             await build(rootFile, 'latex', async () => {})
 
@@ -256,8 +256,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             queue.clear()
         })
 
-        beforeEach(async () => {
-            await set.config('latex.build.forceRecipeUsage', false)
+        beforeEach(() => {
+            set.config('latex.build.forceRecipeUsage', false)
         })
 
         afterEach(() => {
@@ -334,8 +334,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should detect only LW recipe comment', async () => {
-            await set.config('latex.tools', [{ name: 'Tool1', command: 'pdflatex' }, { name: 'Tool2', command: 'xelatex' }])
-            await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['Tool1'] }, { name: 'Recipe2', tools: ['Tool2'] }])
+            set.config('latex.tools', [{ name: 'Tool1', command: 'pdflatex' }, { name: 'Tool2', command: 'xelatex' }])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['Tool1'] }, { name: 'Recipe2', tools: ['Tool2'] }])
 
             readStub.resolves('% !LW recipe = Recipe2\n')
 
@@ -404,10 +404,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             queue.clear()
         })
 
-        beforeEach(async () => {
-            await set.config('latex.build.forceRecipeUsage', false)
-            await set.config('latex.magic.args', ['--shell-escape'])
-            await set.config('latex.magic.bib.args', ['--min-crossrefs=1000'])
+        beforeEach(() => {
+            set.config('latex.build.forceRecipeUsage', false)
+            set.config('latex.magic.args', ['--shell-escape'])
+            set.config('latex.magic.bib.args', ['--min-crossrefs=1000'])
         })
 
         afterEach(() => {
@@ -481,13 +481,13 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.compile->recipe.findRecipe', () => {
-        beforeEach(async () => {
-            await set.config('latex.tools', [{ name: 'Tool1', command: 'pdflatex' }, { name: 'Tool2', command: 'xelatex' }, { name: 'Tool3', command: 'lualatex' }])
-            await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['Tool1'] }, { name: 'Recipe2', tools: ['Tool2'] }, { name: 'Recipe3', tools: ['Tool3'] }])
+        beforeEach(() => {
+            set.config('latex.tools', [{ name: 'Tool1', command: 'pdflatex' }, { name: 'Tool2', command: 'xelatex' }, { name: 'Tool3', command: 'lualatex' }])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['Tool1'] }, { name: 'Recipe2', tools: ['Tool2'] }, { name: 'Recipe3', tools: ['Tool3'] }])
         })
 
         it('should do nothing but log an error if no recipes are defined', async () => {
-            await set.config('latex.recipes', [])
+            set.config('latex.recipes', [])
 
             await build('dummy.tex', 'latex', async () => {})
 
@@ -495,7 +495,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should use the default recipe name if recipeName is undefined', async () => {
-            await set.config('latex.recipe.default', 'Recipe2')
+            set.config('latex.recipe.default', 'Recipe2')
 
             await build('dummy.tex', 'latex', async () => {})
 
@@ -511,7 +511,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should return the last used recipe if defaultRecipeName is `lastUsed`', async () => {
-            await set.config('latex.recipe.default', 'lastUsed')
+            set.config('latex.recipe.default', 'lastUsed')
 
             await build('dummy.tex', 'latex', async () => {}, 'Recipe2')
             queue.clear()
@@ -522,8 +522,22 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(step.name, 'Tool2')
         })
 
+        it('should use the updated new tools in the last used recipe if defaultRecipeName is `lastUsed`', async () => {
+            set.config('latex.recipe.default', 'lastUsed')
+
+            await build('dummy.tex', 'latex', async () => {}, 'Recipe2')
+            queue.clear()
+
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['Tool1'] }, { name: 'Recipe2', tools: ['Tool3'] }, { name: 'Recipe3', tools: ['Tool3'] }])
+            await build('dummy.tex', 'latex', async () => {})
+
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.strictEqual(step.name, 'Tool3')
+        })
+
         it('should reset prevRecipe if the language ID changes', async () => {
-            await set.config('latex.recipe.default', 'lastUsed')
+            set.config('latex.recipe.default', 'lastUsed')
 
             await build('dummy.tex', 'latex', async () => {}, 'Recipe2')
             queue.clear()
@@ -535,7 +549,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should return the first matching recipe based on langId if no recipe is found', async () => {
-            await set.config('latex.recipes', [
+            set.config('latex.recipes', [
                 { name: 'recipe1', tools: [] },
                 { name: 'rsweave Recipe', tools: [] },
                 { name: 'weave.jl Recipe', tools: [] },
@@ -599,9 +613,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             extRoot = lw.extensionRoot
         })
 
-        beforeEach(async () => {
-            await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
-            await set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
+        beforeEach(() => {
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
         })
 
         afterEach(() => {
@@ -620,7 +634,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should modify command when Docker is enabled on Windows', async () => {
-            await set.config('docker.enabled', true)
+            set.config('docker.enabled', true)
             setPlatform('win32')
             lw.extensionRoot = '/path/to/extension'
 
@@ -632,7 +646,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should modify command and chmod when Docker is enabled on non-Windows', async () => {
-            await set.config('docker.enabled', true)
+            set.config('docker.enabled', true)
             setPlatform('linux')
             lw.extensionRoot = '/path/to/extension'
 
@@ -647,7 +661,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should not modify command when Docker is disabled', async () => {
-            await set.config('docker.enabled', false)
+            set.config('docker.enabled', false)
 
             await build('dummy.tex', 'latex', async () => {})
 
@@ -657,7 +671,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should replace argument placeholders', async () => {
-            await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk', args: ['%DOC%', '%DOC%', '%DIR%'], env: {} }])
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk', args: ['%DOC%', '%DOC%', '%DIR%'], env: {} }])
             const rootFile = set.root('main.tex')
 
             await build(rootFile, 'latex', async () => {})
@@ -670,7 +684,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should set TeX directories correctly', async () => {
-            await set.config('latex.tools', [
+            set.config('latex.tools', [
                 {
                     name: 'latexmk',
                     command: 'latexmk',
@@ -688,7 +702,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should process environment variables correctly', async () => {
-            await set.config('latex.tools', [
+            set.config('latex.tools', [
                 {
                     name: 'latexmk',
                     command: 'latexmk',
@@ -706,8 +720,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should append max print line arguments when enabled', async () => {
-            await set.config('latex.option.maxPrintLine.enabled', true)
-            await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
+            set.config('latex.option.maxPrintLine.enabled', true)
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
             syncStub.returns({ stdout: 'pdfTeX 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit)' })
             const rootFile = set.root('main.tex')
 
@@ -717,7 +731,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(step)
             assert.ok(step.args?.includes('--max-print-line=' + lw.constant.MAX_PRINT_LINE), step.args?.join(' '))
 
-            await set.config('latex.tools', [{ name: 'latexmk', command: 'pdflatex' }])
+            set.config('latex.tools', [{ name: 'latexmk', command: 'pdflatex' }])
             initialize()
             await build(rootFile, 'latex', async () => {})
 
@@ -725,7 +739,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(step)
             assert.ok(step.args?.includes('--max-print-line=' + lw.constant.MAX_PRINT_LINE), step.args?.join(' '))
 
-            await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk', args: ['--lualatex'] }])
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk', args: ['--lualatex'] }])
             initialize()
             await build(rootFile, 'latex', async () => {})
 
@@ -742,9 +756,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             syncStub = sinon.stub(lw.external, 'sync')
         })
 
-        beforeEach(async () => {
-            await set.config('latex.option.maxPrintLine.enabled', true)
-            await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
+        beforeEach(() => {
+            set.config('latex.option.maxPrintLine.enabled', true)
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
         })
 
         afterEach(() => {

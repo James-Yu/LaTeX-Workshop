@@ -18,7 +18,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     const getOnDeleteHandlers = () => _onDeleteHandlersSpy.call(lw.watcher.src) as Set<(uri: vscode.Uri) => void>
 
     before(() => {
-        mock.object(lw, 'file', 'watcher')
+        mock.init(lw, 'file', 'watcher')
         _onDidChangeSpy = sinon.spy(lw.watcher.src as any, 'onDidChange')
         _onDidDeleteSpy = sinon.spy(lw.watcher.src as any, 'onDidDelete')
         _watchersSpy = sinon.spy(lw.watcher.src as any, 'watchers', ['get']).get
@@ -210,10 +210,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         const stub = sinon.stub()
         const handler = (filePath: vscode.Uri) => { stub(filePath.fsPath) }
 
-        beforeEach(async () => {
+        beforeEach(() => {
             stub.reset()
             lw.watcher.src.onDelete(handler)
-            await set.config('latex.watch.delay', 100)
+            set.config('latex.watch.delay', 100)
         })
 
         afterEach(() => {

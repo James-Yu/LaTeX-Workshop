@@ -142,6 +142,7 @@ async function build(skipSelection: boolean = false, rootFile: string | undefine
  */
 async function buildLoop() {
     if (isBuilding) {
+        logger.log('Another build loop is already running.')
         return
     }
 
@@ -155,16 +156,15 @@ async function buildLoop() {
         if (step === undefined) {
             break
         }
-        lw.compile.lastSteps.push(step)
         const env = spawnProcess(step)
         const success = await monitorProcess(step, env)
-        skipped = skipped && !(step.isExternal || !step.isSkipped)
+        skipped = skipped && !step.isExternal && step.isSkipped
         if (success && queue.isLastStep(step)) {
             await afterSuccessfulBuilt(step, skipped)
         }
     }
     isBuilding = false
-    setTimeout(() => lw.compile.compiledPDFWriting--, 1000)
+    setTimeout(() => lw.compile.compiledPDFWriting--, vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number)
 }
 
 /**

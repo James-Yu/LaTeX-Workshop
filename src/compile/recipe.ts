@@ -303,8 +303,8 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
         }
     }
     // Find default recipe of last used
-    if (recipe === undefined && defaultRecipeName === 'lastUsed' && recipes.find(candidate => candidate.name === state.prevRecipe?.name)) {
-        recipe = state.prevRecipe
+    if (recipe === undefined && defaultRecipeName === 'lastUsed') {
+        recipe = recipes.find(candidate => candidate.name === state.prevRecipe?.name)
     }
     // If still not found, fallback to 'first'
     if (recipe === undefined) {

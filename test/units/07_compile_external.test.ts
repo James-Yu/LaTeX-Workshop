@@ -10,7 +10,7 @@ import type { ExternalStep } from '../../src/types'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     before(() => {
-        mock.object(lw, 'file', 'root')
+        mock.init(lw, 'file', 'root')
     })
 
     after(() => {

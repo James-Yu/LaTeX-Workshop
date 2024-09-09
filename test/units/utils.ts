@@ -74,6 +74,7 @@ export const get = {
     }
 }
 
+const configs: Map<string, any> = new Map()
 const changedConfigs: Set<string> = new Set()
 export const set = {
     root: (...paths: string[]) => {
@@ -83,9 +84,12 @@ export const set = {
         lw.root.dir.path = path.dirname(rootFile)
         return rootFile
     },
-    config: async (section: string, value: any) => {
-        await vscode.workspace.getConfiguration('latex-workshop').update(section, value)
+    config: (section: string, value: any) => {
+        configs.set(section, value)
+    },
+    codeConfig: async (section: string, value: any) => {
         changedConfigs.add(section)
+        await vscode.workspace.getConfiguration('latex-workshop').update(section, value)
     }
 }
 
@@ -99,9 +103,10 @@ export const reset = {
     },
     config: async () => {
         for (const section of changedConfigs.values()) {
-            await set.config(section, undefined)
+            await set.codeConfig(section, undefined)
         }
         changedConfigs.clear()
+        configs.clear()
     },
     log: () => {
         lwLog.resetCachedLog()
@@ -129,6 +134,10 @@ export function sleep(ms: number) {
 }
 
 export const mock = {
+    init: (obj: any, ...ignore: string[]) => {
+        mock.object(obj, ...ignore)
+        mock.config()
+    },
     object: (obj: any, ...ignore: string[]) => {
         const items = Object.getPrototypeOf(obj) === Object.prototype
             ? Object.getOwnPropertyNames(obj)
@@ -143,6 +152,25 @@ export const mock = {
             } else if (typeof obj[item] === 'function' && obj[item].callCount === undefined) {
                 sinon.stub(obj, item)
             }
+        })
+    },
+    config: () => {
+        const original = vscode.workspace.getConfiguration
+        sinon.stub(vscode.workspace, 'getConfiguration').callsFake((section?: string, scope?: vscode.ConfigurationScope | null) => {
+            function getConfig<T>(configName: string): T | undefined
+            function getConfig<T>(configName: string, defaultValue: T): T
+            function getConfig<T>(configName: string, defaultValue?: T): T | undefined {
+                if (configs.has(configName)) {
+                    return configs.get(configName) as T
+                }
+                return originalConfig.get(configName, defaultValue)
+            }
+            const originalConfig = original(section, scope)
+            const configItem: vscode.WorkspaceConfiguration = {
+                ...originalConfig,
+                get: getConfig
+            }
+            return configItem
         })
     },
     textDocument: (filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string } = {}) => {
