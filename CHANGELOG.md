@@ -1,5 +1,22 @@
 # Change Log
 
+## [10.3.0] - 2024-09-09
+
+### Added
+- (#4359) Support file watching on virtual file systems
+- (#4363) `RequirePackage` and `RequirePackageWithOptions` suggests package names.
+- (#4364) Suggestion `keyvals` provide possible values if defined in `.cwl` files.
+- (#4368) Include base KOMA macro/env in KOMA art, book, rept.
+
+### Changed
+- (#4367) Adopt a new package intellisense file format.
+  - This change is necessary to make package suggestions extensible.
+  - You may need to regenerate package intellisense `.json` files using the new `parse-cwl.ts` script in `dev/` folder.
+
+### Fixed
+- (#4360) Parse `pdflatex --version` output correctly for MikTeX detection.
+- (#4369) Browser viewer should not wait for vscode panel `'restore_state'`.
+
 ## [10.2.1] - 2024-08-30
 
 ### Fixed
