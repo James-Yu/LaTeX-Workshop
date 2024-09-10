@@ -18,7 +18,7 @@
       "name": "addtocounter",
       "arg": {
         "format": "{}{}[]",
-        "snippet": "{${1:counter}}{${2:value}}[${3:options%keyvals}]",
+        "snippet": "addtocounter{${1:counter}}{${2:value}}[${3:options%keyvals}]",
         "keys": [
           "\\addtocounter"
         ],
@@ -29,7 +29,7 @@
       "name": "NewDocumentCounter",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter1,counter2,...}}"
+        "snippet": "NewDocumentCounter{${1:counter1,counter2,...}}"
       }
     },
     {
@@ -37,14 +37,14 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:counter1,counter2,...}}[${2:resetting counter}]"
+        "snippet": "NewDocumentCounter{${1:counter1,counter2,...}}[${2:resetting counter}]"
       }
     },
     {
       "name": "NewDocumentCounter",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}",
+        "snippet": "NewDocumentCounter[${2:options%keyvals}]{${1:counter1,counter2,...}}",
         "keys": [
           "\\NewDocumentCounter,\\DeclareDocumentCounter"
         ],
@@ -56,7 +56,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}[${3:resetting counter}]",
+        "snippet": "NewDocumentCounter[${2:options%keyvals}]{${1:counter1,counter2,...}}[${3:resetting counter}]",
         "keys": [
           "\\NewDocumentCounter,\\DeclareDocumentCounter"
         ],
@@ -67,7 +67,7 @@
       "name": "DeclareDocumentCounter",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter1,counter2,...}}"
+        "snippet": "DeclareDocumentCounter{${1:counter1,counter2,...}}"
       }
     },
     {
@@ -75,14 +75,14 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:counter1,counter2,...}}[${2:resetting counter}]"
+        "snippet": "DeclareDocumentCounter{${1:counter1,counter2,...}}[${2:resetting counter}]"
       }
     },
     {
       "name": "DeclareDocumentCounter",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}",
+        "snippet": "DeclareDocumentCounter[${2:options%keyvals}]{${1:counter1,counter2,...}}",
         "keys": [
           "\\NewDocumentCounter,\\DeclareDocumentCounter"
         ],
@@ -94,7 +94,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}[${3:resetting counter}]",
+        "snippet": "DeclareDocumentCounter[${2:options%keyvals}]{${1:counter1,counter2,...}}[${3:resetting counter}]",
         "keys": [
           "\\NewDocumentCounter,\\DeclareDocumentCounter"
         ],
@@ -105,14 +105,14 @@
       "name": "SetDocumentCounter",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter}}{${2:value}}"
+        "snippet": "SetDocumentCounter{${1:counter}}{${2:value}}"
       }
     },
     {
       "name": "SetDocumentCounter",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:counter}}{${2:value}}",
+        "snippet": "SetDocumentCounter[${3:options%keyvals}]{${1:counter}}{${2:value}}",
         "keys": [
           "\\SetDocumentCounter"
         ],
@@ -123,56 +123,56 @@
       "name": "StepDownCounter",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter}}"
+        "snippet": "StepDownCounter{${1:counter}}"
       }
     },
     {
       "name": "SubtractFromCounter",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter}}{${2:delta value}}"
+        "snippet": "SubtractFromCounter{${1:counter}}{${2:delta value}}"
       }
     },
     {
       "name": "CopyDocumentCounters",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:source counter}}{${2:target counter}}"
+        "snippet": "CopyDocumentCounters{${1:source counter}}{${2:target counter}}"
       }
     },
     {
       "name": "SwapDocumentCounters",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter1}}{${2:counter2}}"
+        "snippet": "SwapDocumentCounters{${1:counter1}}{${2:counter2}}"
       }
     },
     {
       "name": "SyncCounters",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:driver counter}}"
+        "snippet": "SyncCounters{${1:driver counter}}"
       }
     },
     {
       "name": "IfIsDocumentCounterTF",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:true}}{${3:false}}"
+        "snippet": "IfIsDocumentCounterTF{${1:name}}{${2:true}}{${3:false}}"
       }
     },
     {
       "name": "IfIsDocumentCounterT",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:true}}"
+        "snippet": "IfIsDocumentCounterT{${1:name}}{${2:true}}"
       }
     },
     {
       "name": "IfIsDocumentCounterF",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:false}}"
+        "snippet": "IfIsDocumentCounterF{${1:name}}{${2:false}}"
       }
     },
     {
@@ -194,42 +194,42 @@
       "name": "RemoveFromReset",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter1,counter2,...}}{${2:driver counter}}"
+        "snippet": "RemoveFromReset{${1:counter1,counter2,...}}{${2:driver counter}}"
       }
     },
     {
       "name": "RemoveFromFullReset",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter1,counter2,...}}{${2:driver counter}}"
+        "snippet": "RemoveFromFullReset{${1:counter1,counter2,...}}{${2:driver counter}}"
       }
     },
     {
       "name": "ClearCounterResetList",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:driver counter}}"
+        "snippet": "ClearCounterResetList{${1:driver counter}}"
       }
     },
     {
       "name": "ClearCounterResetList*",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:driver counter}}"
+        "snippet": "ClearCounterResetList*{${1:driver counter}}"
       }
     },
     {
       "name": "AddToReset",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter1,counter2,...}}{${2:driver counter}}"
+        "snippet": "AddToReset{${1:counter1,counter2,...}}{${2:driver counter}}"
       }
     },
     {
       "name": "countersresetlistcount",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter}}"
+        "snippet": "countersresetlistcount{${1:counter}}"
       }
     },
     {
@@ -239,49 +239,49 @@
       "name": "CounterFullResetList",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter}}"
+        "snippet": "CounterFullResetList{${1:counter}}"
       }
     },
     {
       "name": "IfInResetListTF",
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:resetting counter}}{${2:counter}}{${3:true}}{${4:false}}"
+        "snippet": "IfInResetListTF{${1:resetting counter}}{${2:counter}}{${3:true}}{${4:false}}"
       }
     },
     {
       "name": "IfInResetListT",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:resetting counter}}{${2:counter}}{${3:true}}"
+        "snippet": "IfInResetListT{${1:resetting counter}}{${2:counter}}{${3:true}}"
       }
     },
     {
       "name": "IfInResetListF",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:resetting counter}}{${2:counter}}{${3:false}}"
+        "snippet": "IfInResetListF{${1:resetting counter}}{${2:counter}}{${3:false}}"
       }
     },
     {
       "name": "DisplayResetList",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:resetting counter}}"
+        "snippet": "DisplayResetList{${1:resetting counter}}"
       }
     },
     {
       "name": "DisplayResetList",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:separator}]{${1:resetting counter}}"
+        "snippet": "DisplayResetList[${2:separator}]{${1:resetting counter}}"
       }
     },
     {
       "name": "ShowResetList",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:resetting counter}}"
+        "snippet": "ShowResetList{${1:resetting counter}}"
       }
     },
     {
@@ -291,147 +291,147 @@
       "name": "GetParentCounter",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter}}"
+        "snippet": "GetParentCounter{${1:counter}}"
       }
     },
     {
       "name": "LoopAddtoCounters",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter1,counter2,...}}{${2:increment}}"
+        "snippet": "LoopAddtoCounters{${1:counter1,counter2,...}}{${2:increment}}"
       }
     },
     {
       "name": "LoopResetCounters",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter1,counter2,...}}"
+        "snippet": "LoopResetCounters{${1:counter1,counter2,...}}"
       }
     },
     {
       "name": "LoopRefstepCounters",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter1,counter2,...}}"
+        "snippet": "LoopRefstepCounters{${1:counter1,counter2,...}}"
       }
     },
     {
       "name": "LoopSetCounters",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter1,counter2,...}}{${2:value}}"
+        "snippet": "LoopSetCounters{${1:counter1,counter2,...}}{${2:value}}"
       }
     },
     {
       "name": "LoopStepCounters",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter1,counter2,...}}"
+        "snippet": "LoopStepCounters{${1:counter1,counter2,...}}"
       }
     },
     {
       "name": "LoopCountersFunction",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter1,counter2,...}}{${2:macro}}"
+        "snippet": "LoopCountersFunction{${1:counter1,counter2,...}}{${2:macro}}"
       }
     },
     {
       "name": "LoopCounterResetList",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter}}{${2:macro}}"
+        "snippet": "LoopCounterResetList{${1:counter}}{${2:macro}}"
       }
     },
     {
       "name": "LoopFullCounterResetList",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter}}{${2:macro}}"
+        "snippet": "LoopFullCounterResetList{${1:counter}}{${2:macro}}"
       }
     },
     {
       "name": "CounterWithin",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter1,counter2,...}}{${2:driver counter}}"
+        "snippet": "CounterWithin{${1:counter1,counter2,...}}{${2:driver counter}}"
       }
     },
     {
       "name": "CounterWithin*",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter1,counter2,...}}{${2:driver counter}}"
+        "snippet": "CounterWithin*{${1:counter1,counter2,...}}{${2:driver counter}}"
       }
     },
     {
       "name": "CounterWithout",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter1,counter2,...}}{${2:driver counter}}"
+        "snippet": "CounterWithout{${1:counter1,counter2,...}}{${2:driver counter}}"
       }
     },
     {
       "name": "CounterWithout*",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter1,counter2,...}}{${2:driver counter}}"
+        "snippet": "CounterWithout*{${1:counter1,counter2,...}}{${2:driver counter}}"
       }
     },
     {
       "name": "BinaryValue",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter}}"
+        "snippet": "BinaryValue{${1:counter}}"
       }
     },
     {
       "name": "hexValue",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter}}"
+        "snippet": "hexValue{${1:counter}}"
       }
     },
     {
       "name": "HexValue",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter}}"
+        "snippet": "HexValue{${1:counter}}"
       }
     },
     {
       "name": "OctalValue",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter}}"
+        "snippet": "OctalValue{${1:counter}}"
       }
     },
     {
       "name": "xalphalph",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter}}"
+        "snippet": "xalphalph{${1:counter}}"
       }
     },
     {
       "name": "xAlphAlph",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter}}"
+        "snippet": "xAlphAlph{${1:counter}}"
       }
     },
     {
       "name": "CounterFormat",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter1!format1,counter2!format2,...}}"
+        "snippet": "CounterFormat{${1:counter1!format1,counter2!format2,...}}"
       }
     },
     {
       "name": "CounterFormat",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:counter1!format1,counter2!format2,...}}",
+        "snippet": "CounterFormat[${2:options%keyvals}]{${1:counter1!format1,counter2!format2,...}}",
         "keys": [
           "\\CounterFormat"
         ],
@@ -442,14 +442,14 @@
       "name": "StoreCounterFormats",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:shorthand1!macro1,shorthand2!macro2,...}}"
+        "snippet": "StoreCounterFormats{${1:shorthand1!macro1,shorthand2!macro2,...}}"
       }
     },
     {
       "name": "StoreCounterFormats",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:shorthand1!macro1,shorthand2!macro2,...}}",
+        "snippet": "StoreCounterFormats[${2:options%keyvals}]{${1:shorthand1!macro1,shorthand2!macro2,...}}",
         "keys": [
           "\\StoreCounterFormats,\\AddCounterFormats"
         ],
@@ -460,14 +460,14 @@
       "name": "AddCounterFormats",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:shorthand1!macro1,shorthand2!macro2,...}}"
+        "snippet": "AddCounterFormats{${1:shorthand1!macro1,shorthand2!macro2,...}}"
       }
     },
     {
       "name": "AddCounterFormats",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:shorthand1!macro1,shorthand2!macro2,...}}",
+        "snippet": "AddCounterFormats[${2:options%keyvals}]{${1:shorthand1!macro1,shorthand2!macro2,...}}",
         "keys": [
           "\\StoreCounterFormats,\\AddCounterFormats"
         ],
@@ -478,21 +478,21 @@
       "name": "RemoveCounterFormats",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:shorthand1,shorthand2,...}}"
+        "snippet": "RemoveCounterFormats{${1:shorthand1,shorthand2,...}}"
       }
     },
     {
       "name": "DeclareAssociatedCounters",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:driver counter}}{${2:assoc counter list}}"
+        "snippet": "DeclareAssociatedCounters{${1:driver counter}}{${2:assoc counter list}}"
       }
     },
     {
       "name": "DeclareAssociatedCounters",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:driver counter}}{${2:assoc counter list}}",
+        "snippet": "DeclareAssociatedCounters[${3:options%keyvals}]{${1:driver counter}}{${2:assoc counter list}}",
         "keys": [
           "\\DeclareAssociatedCounters,\\AddAssociatedCounters"
         ],
@@ -503,14 +503,14 @@
       "name": "AddAssociatedCounters",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:driver counter}}{${2:assoc counter list}}"
+        "snippet": "AddAssociatedCounters{${1:driver counter}}{${2:assoc counter list}}"
       }
     },
     {
       "name": "AddAssociatedCounters",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:driver counter}}{${2:assoc counter list}}",
+        "snippet": "AddAssociatedCounters[${3:options%keyvals}]{${1:driver counter}}{${2:assoc counter list}}",
         "keys": [
           "\\DeclareAssociatedCounters,\\AddAssociatedCounters"
         ],
@@ -521,42 +521,42 @@
       "name": "RemoveAssociatedCounter",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:driver counter}}{${2:assoc counter}}"
+        "snippet": "RemoveAssociatedCounter{${1:driver counter}}{${2:assoc counter}}"
       }
     },
     {
       "name": "RemoveAssociatedCounters",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:driver counter}}{${2:assoc counter list}}"
+        "snippet": "RemoveAssociatedCounters{${1:driver counter}}{${2:assoc counter list}}"
       }
     },
     {
       "name": "ClearAssociatedCounters",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:driver counter}}"
+        "snippet": "ClearAssociatedCounters{${1:driver counter}}"
       }
     },
     {
       "name": "DeclareTotalAssociatedCounters",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:driver counter}}{${2:assoc counter list}}"
+        "snippet": "DeclareTotalAssociatedCounters{${1:driver counter}}{${2:assoc counter list}}"
       }
     },
     {
       "name": "AddDriverCounter",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:driver counter}}"
+        "snippet": "AddDriverCounter{${1:driver counter}}"
       }
     },
     {
       "name": "RemoveDriverCounter",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:driver counter}}"
+        "snippet": "RemoveDriverCounter{${1:driver counter}}"
       }
     },
     {
@@ -566,42 +566,42 @@
       "name": "IsAssociatedToCounter",
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:driver counter}}{${2:assoc counter}}{${3:true}}{${4:false}}"
+        "snippet": "IsAssociatedToCounter{${1:driver counter}}{${2:assoc counter}}{${3:true}}{${4:false}}"
       }
     },
     {
       "name": "GetDriverCounter",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter}}"
+        "snippet": "GetDriverCounter{${1:counter}}"
       }
     },
     {
       "name": "IsAssociatedCounter",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:counter}}{${2:true}}{${3:false}}"
+        "snippet": "IsAssociatedCounter{${1:counter}}{${2:true}}{${3:false}}"
       }
     },
     {
       "name": "IsDriverCounter",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:driver counter}}{${2:true}}{${3:false}}"
+        "snippet": "IsDriverCounter{${1:driver counter}}{${2:true}}{${3:false}}"
       }
     },
     {
       "name": "DeclareCoupledCounters",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter1,counter2,...}}"
+        "snippet": "DeclareCoupledCounters{${1:counter1,counter2,...}}"
       }
     },
     {
       "name": "DeclareCoupledCounters",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}",
+        "snippet": "DeclareCoupledCounters[${2:options%keyvals}]{${1:counter1,counter2,...}}",
         "keys": [
           "\\DeclareCoupledCounters,\\AddCoupledCounters"
         ],
@@ -612,21 +612,21 @@
       "name": "DeclareCoupledCountersGroup",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:group name}}"
+        "snippet": "DeclareCoupledCountersGroup{${1:group name}}"
       }
     },
     {
       "name": "RemoveCoupledCounters",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter1,counter2,...}}"
+        "snippet": "RemoveCoupledCounters{${1:counter1,counter2,...}}"
       }
     },
     {
       "name": "RemoveCoupledCounters",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}",
+        "snippet": "RemoveCoupledCounters[${2:options%keyvals}]{${1:counter1,counter2,...}}",
         "keys": [
           "\\RemoveCoupledCounters,\\ClearCoupledCounters"
         ],
@@ -637,21 +637,21 @@
       "name": "AddCoupledCounters",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter1,counter2,...}}"
+        "snippet": "AddCoupledCounters{${1:counter1,counter2,...}}"
       }
     },
     {
       "name": "AddCoupledCounters",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}"
+        "snippet": "AddCoupledCounters[${2:options%keyvals}]{${1:counter1,counter2,...}}"
       }
     },
     {
       "name": "ClearCoupledCounters",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "ClearCoupledCounters{${1:options%keyvals}}"
       }
     },
     {
@@ -661,49 +661,49 @@
       "name": "IsCoupledCounterTF",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:counter}}{${2:true}}{${3:false}}"
+        "snippet": "IsCoupledCounterTF{${1:counter}}{${2:true}}{${3:false}}"
       }
     },
     {
       "name": "IsCoupledCounterT",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter}}{${2:true}}"
+        "snippet": "IsCoupledCounterT{${1:counter}}{${2:true}}"
       }
     },
     {
       "name": "IsCoupledCounterF",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter}}{${2:false}}"
+        "snippet": "IsCoupledCounterF{${1:counter}}{${2:false}}"
       }
     },
     {
       "name": "DeclarePeriodicCounter",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter}}{${2:threshold value}}"
+        "snippet": "DeclarePeriodicCounter{${1:counter}}{${2:threshold value}}"
       }
     },
     {
       "name": "AddPeriodicCounter",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter}}{${2:threshold value}}"
+        "snippet": "AddPeriodicCounter{${1:counter}}{${2:threshold value}}"
       }
     },
     {
       "name": "RemovePeriodicCounter",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter}}"
+        "snippet": "RemovePeriodicCounter{${1:counter}}"
       }
     },
     {
       "name": "RemovePeriodicCounter",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter}}"
+        "snippet": "RemovePeriodicCounter{${1:counter}}"
       }
     },
     {
@@ -713,7 +713,7 @@
       "name": "RemoveAllPeriodicCounters",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]",
+        "snippet": "RemoveAllPeriodicCounters[${1:options%keyvals}]",
         "keys": [
           "\\RemovePeriodicCounter,\\RemoveAllPeriodicCounters,\\ChangePeriodicCounterCondition"
         ],
@@ -724,14 +724,14 @@
       "name": "ChangePeriodicCounterCondition",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter}}{${2:threshold value}}"
+        "snippet": "ChangePeriodicCounterCondition{${1:counter}}{${2:threshold value}}"
       }
     },
     {
       "name": "ChangePeriodicCounterCondition",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:counter}}{${2:threshold value}}",
+        "snippet": "ChangePeriodicCounterCondition[${3:options%keyvals}]{${1:counter}}{${2:threshold value}}",
         "keys": [
           "\\RemovePeriodicCounter,\\RemoveAllPeriodicCounters,\\ChangePeriodicCounterCondition"
         ],
@@ -742,42 +742,42 @@
       "name": "IsPeriodicCounterTF",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:counter}}{${2:true}}{${3:false}}"
+        "snippet": "IsPeriodicCounterTF{${1:counter}}{${2:true}}{${3:false}}"
       }
     },
     {
       "name": "IsPeriodicCounterT",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter}}{${2:true}}"
+        "snippet": "IsPeriodicCounterT{${1:counter}}{${2:true}}"
       }
     },
     {
       "name": "IsPeriodicCounterF",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter}}{${2:false}}"
+        "snippet": "IsPeriodicCounterF{${1:counter}}{${2:false}}"
       }
     },
     {
       "name": "SuspendCounters",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter1,counter2,...}}"
+        "snippet": "SuspendCounters{${1:counter1,counter2,...}}"
       }
     },
     {
       "name": "CascadeSuspendCounters",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter1,counter2,...}}"
+        "snippet": "CascadeSuspendCounters{${1:counter1,counter2,...}}"
       }
     },
     {
       "name": "ResumeSuspendedCounters",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter1,counter2,...}}"
+        "snippet": "ResumeSuspendedCounters{${1:counter1,counter2,...}}"
       }
     },
     {
@@ -787,21 +787,21 @@
       "name": "IsSuspendedCounter",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:counter}}{${2:true}}{${3:false}}"
+        "snippet": "IsSuspendedCounter{${1:counter}}{${2:true}}{${3:false}}"
       }
     },
     {
       "name": "RegisterTotalDocumentCounter",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:total counter}}"
+        "snippet": "RegisterTotalDocumentCounter{${1:total counter}}"
       }
     },
     {
       "name": "RegisterTotalDocumentCounter",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:total counter}}",
+        "snippet": "RegisterTotalDocumentCounter[${2:options%keyvals}]{${1:total counter}}",
         "keys": [
           "\\RegisterTotalDocumentCounter,\\NewTotalDocumentCounter,\\DeclareTotalDocumentCounter"
         ],
@@ -812,91 +812,91 @@
       "name": "TotalCounterInternalName",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter}}"
+        "snippet": "TotalCounterInternalName{${1:counter}}"
       }
     },
     {
       "name": "TotalCounterInternalNameExp",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter}}"
+        "snippet": "TotalCounterInternalNameExp{${1:counter}}"
       }
     },
     {
       "name": "TotalValue",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter}}"
+        "snippet": "TotalValue{${1:counter}}"
       }
     },
     {
       "name": "IsTotalCounterTF",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:counter}}{${2:true}}{${3:false}}"
+        "snippet": "IsTotalCounterTF{${1:counter}}{${2:true}}{${3:false}}"
       }
     },
     {
       "name": "IsTotalCounterT",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter}}{${2:true}}"
+        "snippet": "IsTotalCounterT{${1:counter}}{${2:true}}"
       }
     },
     {
       "name": "IsTotalCounterF",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter}}{${2:false}}"
+        "snippet": "IsTotalCounterF{${1:counter}}{${2:false}}"
       }
     },
     {
       "name": "NewTotalDocumentCounter",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:total-counter1,total-counter2,...}}"
+        "snippet": "NewTotalDocumentCounter{${1:total-counter1,total-counter2,...}}"
       }
     },
     {
       "name": "NewTotalDocumentCounter",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:total-counter1,total-counter2,...}}"
+        "snippet": "NewTotalDocumentCounter[${2:options%keyvals}]{${1:total-counter1,total-counter2,...}}"
       }
     },
     {
       "name": "DeclareTotalDocumentCounter",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:total-counter1,total-counter2,...}}"
+        "snippet": "DeclareTotalDocumentCounter{${1:total-counter1,total-counter2,...}}"
       }
     },
     {
       "name": "DeclareTotalDocumentCounter",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:total-counter1,total-counter2,...}}"
+        "snippet": "DeclareTotalDocumentCounter[${2:options%keyvals}]{${1:total-counter1,total-counter2,...}}"
       }
     },
     {
       "name": "IsSuperTotalCounterTF",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:counter}}{${2:true}}{${3:false}}"
+        "snippet": "IsSuperTotalCounterTF{${1:counter}}{${2:true}}{${3:false}}"
       }
     },
     {
       "name": "IsSuperTotalCounterT",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter}}{${2:true}}"
+        "snippet": "IsSuperTotalCounterT{${1:counter}}{${2:true}}"
       }
     },
     {
       "name": "IsSuperTotalCounterF",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter}}{${2:false}}"
+        "snippet": "IsSuperTotalCounterF{${1:counter}}{${2:false}}"
       }
     },
     {
@@ -904,7 +904,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:key}}[${2:options%keyvals}]",
+        "snippet": "label{${1:key}}[${2:options%keyvals}]",
         "keys": [
           "\\label#c"
         ],
@@ -916,7 +916,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:cleveref overrule}]{${1:key}}[${3:options%keyvals}]",
+        "snippet": "label[${2:cleveref overrule}]{${1:key}}[${3:options%keyvals}]",
         "keys": [
           "\\label#c"
         ],
@@ -928,7 +928,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:key}}"
+        "snippet": "LaTeXLabel{${1:key}}"
       }
     },
     {
@@ -936,7 +936,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:cleveref overrule}]{${1:key}}"
+        "snippet": "LaTeXLabel[${2:cleveref overrule}]{${1:key}}"
       }
     },
     {
@@ -944,7 +944,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:cmd1,cmd2,...}}"
+        "snippet": "RegisterPreLabelHook{${1:cmd1,cmd2,...}}"
       }
     },
     {
@@ -952,7 +952,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:cmd1,cmd2,...}}"
+        "snippet": "RegisterPostLabelHook{${1:cmd1,cmd2,...}}"
       }
     },
     {
@@ -968,7 +968,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:arg}}"
+        "snippet": "AddBackupCounters[${2:options}]{${1:arg}}"
       }
     },
     {
@@ -976,7 +976,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:arg}}"
+        "snippet": "AddFeature[${2:options}]{${1:arg}}"
       }
     },
     {
@@ -984,7 +984,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "AddLanguageMappings{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -992,7 +992,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:arg}}"
+        "snippet": "AssignBackupCounters[${2:options}]{${1:arg}}"
       }
     },
     {
@@ -1004,7 +1004,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:arg}}"
+        "snippet": "BackupCounterGroup[${2:options}]{${1:arg}}"
       }
     },
     {
@@ -1012,7 +1012,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:arg}}"
+        "snippet": "BackupCounterValues[${2:options}]{${1:arg}}"
       }
     },
     {
@@ -1020,7 +1020,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:arg}}"
+        "snippet": "ClearBackupCounterGroups[${2:options}]{${1:arg}}"
       }
     },
     {
@@ -1028,7 +1028,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:arg}}"
+        "snippet": "ClearBackupState[${2:options}]{${1:arg}}"
       }
     },
     {
@@ -1036,7 +1036,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options}]{${1:arg1}}{${2:arg2}}"
+        "snippet": "ClearCounterBackupState[${3:options}]{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -1048,7 +1048,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "DeclareBackupCountersGroupName{${1:arg}}"
       }
     },
     {
@@ -1056,7 +1056,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "DeclareLanguageMappings{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -1064,7 +1064,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "DeclareLanguageMap{${1:arg}}"
       }
     },
     {
@@ -1072,7 +1072,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:arg}}"
+        "snippet": "DeleteBackupCounterGroups[${2:options}]{${1:arg}}"
       }
     },
     {
@@ -1084,7 +1084,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "EnableNumberofrunsTF{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -1096,7 +1096,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "GetParentCounterChain{${1:arg}}"
       }
     },
     {
@@ -1104,7 +1104,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:true}}{${3:false}}"
+        "snippet": "IfExistsDriverCounterList{${1:name}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -1112,7 +1112,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:false}}"
+        "snippet": "IsBackupCounterF{${1:name}}{${2:false}}"
       }
     },
     {
@@ -1120,7 +1120,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:false}}"
+        "snippet": "IsBackupCounterGroupF{${1:name}}{${2:false}}"
       }
     },
     {
@@ -1128,7 +1128,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:true}}{${3:false}}"
+        "snippet": "IsBackupCounterGroupTF{${1:name}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -1136,7 +1136,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:true}}"
+        "snippet": "IsBackupCounterGroupT{${1:name}}{${2:true}}"
       }
     },
     {
@@ -1144,7 +1144,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:true}}{${3:false}}"
+        "snippet": "IsBackupCounterTF{${1:name}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -1152,7 +1152,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:true}}"
+        "snippet": "IsBackupCounterT{${1:name}}{${2:true}}"
       }
     },
     {
@@ -1160,7 +1160,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:false}}"
+        "snippet": "IsBackupStateF{${1:name}}{${2:false}}"
       }
     },
     {
@@ -1168,7 +1168,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:true}}{${3:false}}"
+        "snippet": "IsBackupStateTF{${1:name}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -1176,7 +1176,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:true}}"
+        "snippet": "IsBackupStateT{${1:name}}{${2:true}}"
       }
     },
     {
@@ -1184,7 +1184,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "NewContainer{${1:name}}"
       }
     },
     {
@@ -1192,7 +1192,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:name}}"
+        "snippet": "NewCounterHierarchy[${2:options}]{${1:name}}"
       }
     },
     {
@@ -1200,7 +1200,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "PrettyPrintCounterName{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -1216,7 +1216,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:arg}}"
+        "snippet": "RemoveCountersFromBackupGroup[${2:options}]{${1:arg}}"
       }
     },
     {
@@ -1224,7 +1224,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:arg}}"
+        "snippet": "RemoveFeature[${2:options}]{${1:arg}}"
       }
     },
     {
@@ -1232,7 +1232,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:arg}}"
+        "snippet": "RestoreBackupCounterGroup[${2:options}]{${1:arg}}"
       }
     },
     {
@@ -1240,7 +1240,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "RunLabelHooks{${1:arg}}"
       }
     },
     {
@@ -1248,7 +1248,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "RunPostLabelHooks{${1:arg}}"
       }
     },
     {
@@ -1256,7 +1256,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "RunPreLabelHooks{${1:arg}}"
       }
     },
     {
@@ -1268,7 +1268,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "ShowAssociatedCountersList{${1:arg}}"
       }
     },
     {
@@ -1284,7 +1284,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "ShowLanguageMappings{${1:arg}}"
       }
     },
     {
@@ -1304,7 +1304,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "showresetlist{${1:arg}}"
       }
     }
   ],

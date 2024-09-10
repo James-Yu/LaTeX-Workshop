@@ -27,7 +27,7 @@
       "name": "ganttset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "ganttset{${1:options%keyvals}}",
         "keys": [
           "\\ganttset#c,\\begin{ganttchart}#c,\\gantttitle#c,\\gantttitlelist#c,\\gantttitlecalendar#c,\\gantttitlecalendar*#c,\\ganttvrule#c,\\ganttbar#c,\\ganttgroup#c,\\ganttmilestone#c,\\ganttlinkedbar#c,\\ganttlinkedgroup#c,\\ganttlinkedmilestone#c,\\ganttlink#c"
         ],
@@ -39,7 +39,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:converter code}}"
+        "snippet": "newgantttimeslotformat{${1:name}}{${2:converter code}}"
       }
     },
     {
@@ -49,7 +49,7 @@
       "name": "ganttnewline",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:TikZ options}]"
+        "snippet": "ganttnewline[${1:TikZ options}]"
       }
     },
     {
@@ -59,14 +59,14 @@
       "name": "gantttitle",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:label}}{${2:number of time slots}}"
+        "snippet": "gantttitle{${1:label}}{${2:number of time slots}}"
       }
     },
     {
       "name": "gantttitle",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:label}}{${2:number of time slots}}",
+        "snippet": "gantttitle[${3:options%keyvals}]{${1:label}}{${2:number of time slots}}",
         "keys": [
           "\\ganttset#c,\\begin{ganttchart}#c,\\gantttitle#c,\\gantttitlelist#c,\\gantttitlecalendar#c,\\gantttitlecalendar*#c,\\ganttvrule#c,\\ganttbar#c,\\ganttgroup#c,\\ganttmilestone#c,\\ganttlinkedbar#c,\\ganttlinkedgroup#c,\\ganttlinkedmilestone#c,\\ganttlink#c"
         ],
@@ -77,14 +77,14 @@
       "name": "gantttitlelist",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:pgffor list}}{${2:length of each element}}"
+        "snippet": "gantttitlelist{${1:pgffor list}}{${2:length of each element}}"
       }
     },
     {
       "name": "gantttitlelist",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:pgffor list}}{${2:length of each element}}",
+        "snippet": "gantttitlelist[${3:options%keyvals}]{${1:pgffor list}}{${2:length of each element}}",
         "keys": [
           "\\ganttset#c,\\begin{ganttchart}#c,\\gantttitle#c,\\gantttitlelist#c,\\gantttitlecalendar#c,\\gantttitlecalendar*#c,\\ganttvrule#c,\\ganttbar#c,\\ganttgroup#c,\\ganttmilestone#c,\\ganttlinkedbar#c,\\ganttlinkedgroup#c,\\ganttlinkedmilestone#c,\\ganttlink#c"
         ],
@@ -95,14 +95,14 @@
       "name": "gantttitlecalendar",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:calendar lines}}"
+        "snippet": "gantttitlecalendar{${1:calendar lines}}"
       }
     },
     {
       "name": "gantttitlecalendar",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:calendar lines}}",
+        "snippet": "gantttitlecalendar[${2:options%keyvals}]{${1:calendar lines}}",
         "keys": [
           "\\ganttset#c,\\begin{ganttchart}#c,\\gantttitle#c,\\gantttitlelist#c,\\gantttitlecalendar#c,\\gantttitlecalendar*#c,\\ganttvrule#c,\\ganttbar#c,\\ganttgroup#c,\\ganttmilestone#c,\\ganttlinkedbar#c,\\ganttlinkedgroup#c,\\ganttlinkedmilestone#c,\\ganttlink#c"
         ],
@@ -113,14 +113,14 @@
       "name": "gantttitlecalendar*",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:start tss}}{${2:end tss}}{${3:calendar lines}}"
+        "snippet": "gantttitlecalendar*{${1:start tss}}{${2:end tss}}{${3:calendar lines}}"
       }
     },
     {
       "name": "gantttitlecalendar*",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:start tss}}{${2:end tss}}{${3:calendar lines}}",
+        "snippet": "gantttitlecalendar*[${4:options%keyvals}]{${1:start tss}}{${2:end tss}}{${3:calendar lines}}",
         "keys": [
           "\\ganttset#c,\\begin{ganttchart}#c,\\gantttitle#c,\\gantttitlelist#c,\\gantttitlecalendar#c,\\gantttitlecalendar*#c,\\ganttvrule#c,\\ganttbar#c,\\ganttgroup#c,\\ganttmilestone#c,\\ganttlinkedbar#c,\\ganttlinkedgroup#c,\\ganttlinkedmilestone#c,\\ganttlink#c"
         ],
@@ -143,14 +143,14 @@
       "name": "ganttvrule",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:label%text}}{${2:tss}}"
+        "snippet": "ganttvrule{${1:label%text}}{${2:tss}}"
       }
     },
     {
       "name": "ganttvrule",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:label%text}}{${2:tss}}",
+        "snippet": "ganttvrule[${3:options%keyvals}]{${1:label%text}}{${2:tss}}",
         "keys": [
           "\\ganttset#c,\\begin{ganttchart}#c,\\gantttitle#c,\\gantttitlelist#c,\\gantttitlecalendar#c,\\gantttitlecalendar*#c,\\ganttvrule#c,\\ganttbar#c,\\ganttgroup#c,\\ganttmilestone#c,\\ganttlinkedbar#c,\\ganttlinkedgroup#c,\\ganttlinkedmilestone#c,\\ganttlink#c"
         ],
@@ -161,14 +161,14 @@
       "name": "ganttbar",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:label%text}}{${2:start tss}}{${3:end tss}}"
+        "snippet": "ganttbar{${1:label%text}}{${2:start tss}}{${3:end tss}}"
       }
     },
     {
       "name": "ganttbar",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:label%text}}{${2:start tss}}{${3:end tss}}",
+        "snippet": "ganttbar[${4:options%keyvals}]{${1:label%text}}{${2:start tss}}{${3:end tss}}",
         "keys": [
           "\\ganttset#c,\\begin{ganttchart}#c,\\gantttitle#c,\\gantttitlelist#c,\\gantttitlecalendar#c,\\gantttitlecalendar*#c,\\ganttvrule#c,\\ganttbar#c,\\ganttgroup#c,\\ganttmilestone#c,\\ganttlinkedbar#c,\\ganttlinkedgroup#c,\\ganttlinkedmilestone#c,\\ganttlink#c"
         ],
@@ -179,14 +179,14 @@
       "name": "ganttgroup",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:label%text}}{${2:start tss}}{${3:end tss}}"
+        "snippet": "ganttgroup{${1:label%text}}{${2:start tss}}{${3:end tss}}"
       }
     },
     {
       "name": "ganttgroup",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:label%text}}{${2:start tss}}{${3:end tss}}",
+        "snippet": "ganttgroup[${4:options%keyvals}]{${1:label%text}}{${2:start tss}}{${3:end tss}}",
         "keys": [
           "\\ganttset#c,\\begin{ganttchart}#c,\\gantttitle#c,\\gantttitlelist#c,\\gantttitlecalendar#c,\\gantttitlecalendar*#c,\\ganttvrule#c,\\ganttbar#c,\\ganttgroup#c,\\ganttmilestone#c,\\ganttlinkedbar#c,\\ganttlinkedgroup#c,\\ganttlinkedmilestone#c,\\ganttlink#c"
         ],
@@ -197,14 +197,14 @@
       "name": "ganttmilestone",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:label%text}}{${2:tss}}"
+        "snippet": "ganttmilestone{${1:label%text}}{${2:tss}}"
       }
     },
     {
       "name": "ganttmilestone",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:label%text}}{${2:tss}}",
+        "snippet": "ganttmilestone[${3:options%keyvals}]{${1:label%text}}{${2:tss}}",
         "keys": [
           "\\ganttset#c,\\begin{ganttchart}#c,\\gantttitle#c,\\gantttitlelist#c,\\gantttitlecalendar#c,\\gantttitlecalendar*#c,\\ganttvrule#c,\\ganttbar#c,\\ganttgroup#c,\\ganttmilestone#c,\\ganttlinkedbar#c,\\ganttlinkedgroup#c,\\ganttlinkedmilestone#c,\\ganttlink#c"
         ],
@@ -215,14 +215,14 @@
       "name": "ganttlinkedbar",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:label%text}}{${2:start tss}}{${3:end tss}}"
+        "snippet": "ganttlinkedbar{${1:label%text}}{${2:start tss}}{${3:end tss}}"
       }
     },
     {
       "name": "ganttlinkedbar",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:label%text}}{${2:start tss}}{${3:end tss}}",
+        "snippet": "ganttlinkedbar[${4:options%keyvals}]{${1:label%text}}{${2:start tss}}{${3:end tss}}",
         "keys": [
           "\\ganttset#c,\\begin{ganttchart}#c,\\gantttitle#c,\\gantttitlelist#c,\\gantttitlecalendar#c,\\gantttitlecalendar*#c,\\ganttvrule#c,\\ganttbar#c,\\ganttgroup#c,\\ganttmilestone#c,\\ganttlinkedbar#c,\\ganttlinkedgroup#c,\\ganttlinkedmilestone#c,\\ganttlink#c"
         ],
@@ -233,14 +233,14 @@
       "name": "ganttlinkedgroup",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:label%text}}{${2:start tss}}{${3:end tss}}"
+        "snippet": "ganttlinkedgroup{${1:label%text}}{${2:start tss}}{${3:end tss}}"
       }
     },
     {
       "name": "ganttlinkedgroup",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:label%text}}{${2:start tss}}{${3:end tss}}",
+        "snippet": "ganttlinkedgroup[${4:options%keyvals}]{${1:label%text}}{${2:start tss}}{${3:end tss}}",
         "keys": [
           "\\ganttset#c,\\begin{ganttchart}#c,\\gantttitle#c,\\gantttitlelist#c,\\gantttitlecalendar#c,\\gantttitlecalendar*#c,\\ganttvrule#c,\\ganttbar#c,\\ganttgroup#c,\\ganttmilestone#c,\\ganttlinkedbar#c,\\ganttlinkedgroup#c,\\ganttlinkedmilestone#c,\\ganttlink#c"
         ],
@@ -251,14 +251,14 @@
       "name": "ganttlinkedmilestone",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:label%text}}{${2:tss}}"
+        "snippet": "ganttlinkedmilestone{${1:label%text}}{${2:tss}}"
       }
     },
     {
       "name": "ganttlinkedmilestone",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:label%text}}{${2:tss}}",
+        "snippet": "ganttlinkedmilestone[${3:options%keyvals}]{${1:label%text}}{${2:tss}}",
         "keys": [
           "\\ganttset#c,\\begin{ganttchart}#c,\\gantttitle#c,\\gantttitlelist#c,\\gantttitlecalendar#c,\\gantttitlecalendar*#c,\\ganttvrule#c,\\ganttbar#c,\\ganttgroup#c,\\ganttmilestone#c,\\ganttlinkedbar#c,\\ganttlinkedgroup#c,\\ganttlinkedmilestone#c,\\ganttlink#c"
         ],
@@ -269,28 +269,28 @@
       "name": "newganttchartelement",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:new default keyvals}}"
+        "snippet": "newganttchartelement{${1:name}}{${2:new default keyvals}}"
       }
     },
     {
       "name": "newganttchartelement*",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:new default keyvals}}"
+        "snippet": "newganttchartelement*{${1:name}}{${2:new default keyvals}}"
       }
     },
     {
       "name": "ganttlink",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:start element name}}{${2:end element name}}"
+        "snippet": "ganttlink{${1:start element name}}{${2:end element name}}"
       }
     },
     {
       "name": "ganttlink",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:start element name}}{${2:end element name}}",
+        "snippet": "ganttlink[${3:options%keyvals}]{${1:start element name}}{${2:end element name}}",
         "keys": [
           "\\ganttset#c,\\begin{ganttchart}#c,\\gantttitle#c,\\gantttitlelist#c,\\gantttitlecalendar#c,\\gantttitlecalendar*#c,\\ganttvrule#c,\\ganttbar#c,\\ganttgroup#c,\\ganttmilestone#c,\\ganttlinkedbar#c,\\ganttlinkedgroup#c,\\ganttlinkedmilestone#c,\\ganttlink#c"
         ],
@@ -301,21 +301,21 @@
       "name": "newganttlinktype",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:type%specialDef}}{${2:TikZ code}}"
+        "snippet": "newganttlinktype{${1:type%specialDef}}{${2:TikZ code}}"
       }
     },
     {
       "name": "ganttsetstartanchor",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:anchor}}"
+        "snippet": "ganttsetstartanchor{${1:anchor}}"
       }
     },
     {
       "name": "ganttsetendanchor",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:anchor}}"
+        "snippet": "ganttsetendanchor{${1:anchor}}"
       }
     },
     {
@@ -337,21 +337,21 @@
       "name": "ganttvalueof",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:key%plain}}"
+        "snippet": "ganttvalueof{${1:key%plain}}"
       }
     },
     {
       "name": "newganttlinktypealias",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:new type%specialDef}}{${2:existing type}}"
+        "snippet": "newganttlinktypealias{${1:new type%specialDef}}{${2:existing type}}"
       }
     },
     {
       "name": "setganttlinklabel",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:type%keyvals}}{${2:label%text}}",
+        "snippet": "setganttlinklabel{${1:type%keyvals}}{${2:label%text}}",
         "keys": [
           "\\setganttlinklabel#c"
         ],

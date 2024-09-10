@@ -33,7 +33,7 @@
       "name": "kernsetup",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "kernsetup{${1:options%keyvals}}",
         "keys": [
           "\\documentclass/kerntest#c,\\kernsetup"
         ],
@@ -44,21 +44,21 @@
       "name": "testkern",
       "arg": {
         "format": "{}{}{}{}{}",
-        "snippet": "{${1:glyph1}}{${2:kerning1}}{${3:glyph2}}{${4:kerning2}}{${5:glyph3}}"
+        "snippet": "testkern{${1:glyph1}}{${2:kerning1}}{${3:glyph2}}{${4:kerning2}}{${5:glyph3}}"
       }
     },
     {
       "name": "mtxcomment",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:comment}}"
+        "snippet": "mtxcomment{${1:comment}}"
       }
     },
     {
       "name": "encodingsetup",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "encodingsetup{${1:options%keyvals}}",
         "keys": [
           "\\encodingsetup"
         ],
@@ -69,28 +69,28 @@
       "name": "defglyphclass",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:side}}{${2:name}}{${3:glyphlist}}"
+        "snippet": "defglyphclass{${1:side}}{${2:name}}{${3:glyphlist}}"
       }
     },
     {
       "name": "newglyphclass",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:side}}{${2:name}}{${3:glyphlist}}"
+        "snippet": "newglyphclass{${1:side}}{${2:name}}{${3:glyphlist}}"
       }
     },
     {
       "name": "renewglyphclass",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:side}}{${2:name}}{${3:glyphlist}}"
+        "snippet": "renewglyphclass{${1:side}}{${2:name}}{${3:glyphlist}}"
       }
     },
     {
       "name": "provideglyphclass",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:side}}{${2:name}}{${3:glyphlist}}"
+        "snippet": "provideglyphclass{${1:side}}{${2:name}}{${3:glyphlist}}"
       }
     },
     {
@@ -98,7 +98,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:side}}{${2:glyph class}}{${3:action}}"
+        "snippet": "forallclasses{${1:side}}{${2:glyph class}}{${3:action}}"
       }
     },
     {
@@ -106,7 +106,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:side}}{${2:name}}{${3:glyph}}{${4:action}}"
+        "snippet": "forallinclass{${1:side}}{${2:name}}{${3:glyph}}{${4:action}}"
       }
     },
     {
@@ -114,7 +114,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:side}}{${2:glyph name}}"
+        "snippet": "getclassofglyph{${1:side}}{${2:glyph name}}"
       }
     },
     {
@@ -122,7 +122,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "getkern{${1:arg}}"
       }
     },
     {
@@ -130,7 +130,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "getpsname{${1:arg}}"
       }
     },
     {
@@ -138,7 +138,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "getpsunit{${1:arg}}"
       }
     },
     {
@@ -146,7 +146,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "getslotnumber{${1:arg}}"
       }
     },
     {
@@ -154,7 +154,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}{}",
-        "snippet": "{${1:side}}{${2:name}}{${3:glyph}}{${4:true}}{${5:false}}"
+        "snippet": "ifglyphinclass{${1:side}}{${2:name}}{${3:glyph}}{${4:true}}{${5:false}}"
       }
     },
     {
@@ -170,7 +170,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "printglyph{${1:arg}}"
       }
     },
     {
@@ -182,7 +182,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "round{${1:arg}}"
       }
     },
     {
@@ -190,7 +190,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "saveslotnumber{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -202,7 +202,7 @@
       "unusual": true,
       "arg": {
         "format": "[]",
-        "snippet": "[${1:var}]"
+        "snippet": "stoploop[${1:var}]"
       }
     },
     {
@@ -210,7 +210,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+        "snippet": "writemtxkern[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
       }
     },
     {
@@ -218,7 +218,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+        "snippet": "writemtxkern{${1:arg1}}{${2:arg2}}{${3:arg3}}"
       }
     },
     {
@@ -263,7 +263,7 @@
       "name": "k",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "k{${1:arg}}"
       }
     },
     {
@@ -282,7 +282,7 @@
       "name": "textogonekcentered",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "textogonekcentered{${1:arg}}"
       }
     },
     {

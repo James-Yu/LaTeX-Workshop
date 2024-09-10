@@ -12,7 +12,7 @@
       "name": "slide",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:attributes%keyvals}]",
+        "snippet": "slide[${1:attributes%keyvals}]",
         "keys": [
           "\\slide"
         ],
@@ -29,7 +29,7 @@
       "name": "step",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:attributes%keyvals}]",
+        "snippet": "step[${1:attributes%keyvals}]",
         "keys": [
           "\\step"
         ],
@@ -46,42 +46,42 @@
       "name": "presentationonly",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:material}}"
+        "snippet": "presentationonly{${1:material}}"
       }
     },
     {
       "name": "handoutonly",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:material}}"
+        "snippet": "handoutonly{${1:material}}"
       }
     },
     {
       "name": "presentationorhandout",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:presentation}}{${2:handout}}"
+        "snippet": "presentationorhandout{${1:presentation}}{${2:handout}}"
       }
     },
     {
       "name": "setslide",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:list of slides}}"
+        "snippet": "setslide{${1:list of slides}}"
       }
     },
     {
       "name": "setstep",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:list of steps}}"
+        "snippet": "setstep{${1:list of steps}}"
       }
     },
     {
       "name": "showgrid",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:increment%l}}"
+        "snippet": "showgrid{${1:increment%l}}"
       }
     },
     {
@@ -89,7 +89,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:increment%l}}[${2:color}]"
+        "snippet": "showgrid{${1:increment%l}}[${2:color}]"
       }
     },
     {
@@ -97,7 +97,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[][]",
-        "snippet": "{${1:increment%l}}[${2:color}][${3:line width}]"
+        "snippet": "showgrid{${1:increment%l}}[${2:color}][${3:line width}]"
       }
     },
     {
@@ -105,7 +105,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:left,top}]{${1:increment%l}}"
+        "snippet": "showgrid[${2:left,top}]{${1:increment%l}}"
       }
     },
     {
@@ -113,14 +113,14 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:left,top}]{${1:increment%l}}[${3:color}]"
+        "snippet": "showgrid[${2:left,top}]{${1:increment%l}}[${3:color}]"
       }
     },
     {
       "name": "showgrid",
       "arg": {
         "format": "[]{}[][]",
-        "snippet": "[${2:left,top}]{${1:increment%l}}[${3:color}][${4:line width}]"
+        "snippet": "showgrid[${2:left,top}]{${1:increment%l}}[${3:color}][${4:line width}]"
       }
     },
     {
@@ -130,35 +130,35 @@
       "name": "position",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:area}}{${2:material}}"
+        "snippet": "position{${1:area}}{${2:material}}"
       }
     },
     {
       "name": "position",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:area}}[${3:left,top}]{${2:material}}"
+        "snippet": "position{${1:area}}[${3:left,top}]{${2:material}}"
       }
     },
     {
       "name": "setarea",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:list of areas}}"
+        "snippet": "setarea{${1:list of areas}}"
       }
     },
     {
       "name": "createbookmark",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:level}}{${2:text}}"
+        "snippet": "createbookmark{${1:level}}{${2:text}}"
       }
     },
     {
       "name": "createbookmark",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:level}}{${2:text}}",
+        "snippet": "createbookmark[${3:options%keyvals}]{${1:level}}{${2:text}}",
         "keys": [
           "\\createbookmark#c"
         ],
@@ -169,14 +169,14 @@
       "name": "createbookmark",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:level}}[${3:anchor}]{${2:text}}"
+        "snippet": "createbookmark{${1:level}}[${3:anchor}]{${2:text}}"
       }
     },
     {
       "name": "createbookmark",
       "arg": {
         "format": "[]{}[]{}",
-        "snippet": "[${3:options%keyvals}]{${1:level}}[${4:anchor}]{${2:text}}",
+        "snippet": "createbookmark[${3:options%keyvals}]{${1:level}}[${4:anchor}]{${2:text}}",
         "keys": [
           "\\createbookmark#c"
         ],
@@ -187,14 +187,14 @@
       "name": "showbookmarks",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "showbookmarks{${1:text}}"
       }
     },
     {
       "name": "showbookmarks",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:optional style%keyvals}]{${1:text}}",
+        "snippet": "showbookmarks[${2:optional style%keyvals}]{${1:text}}",
         "keys": [
           "\\showbookmarks,\\goto,\\gotoA,\\gotoB,\\firstslide,\\lastslide,\\prevslide,\\nextslide,\\prevstep,\\nextstep,\\showorhide"
         ],
@@ -205,21 +205,21 @@
       "name": "anchor",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "anchor{${1:name}}"
       }
     },
     {
       "name": "goto",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:text}}"
+        "snippet": "goto{${1:name}}{${2:text}}"
       }
     },
     {
       "name": "goto",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:optional style%keyvals}]{${1:name}}{${2:text}}",
+        "snippet": "goto[${3:optional style%keyvals}]{${1:name}}{${2:text}}",
         "keys": [
           "\\showbookmarks,\\goto,\\gotoA,\\gotoB,\\firstslide,\\lastslide,\\prevslide,\\nextslide,\\prevstep,\\nextstep,\\showorhide"
         ],
@@ -230,14 +230,14 @@
       "name": "gotoA",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:text}}"
+        "snippet": "gotoA{${1:name}}{${2:text}}"
       }
     },
     {
       "name": "gotoA",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:optional style%keyvals}]{${1:name}}{${2:text}}",
+        "snippet": "gotoA[${3:optional style%keyvals}]{${1:name}}{${2:text}}",
         "keys": [
           "\\showbookmarks,\\goto,\\gotoA,\\gotoB,\\firstslide,\\lastslide,\\prevslide,\\nextslide,\\prevstep,\\nextstep,\\showorhide"
         ],
@@ -248,14 +248,14 @@
       "name": "gotoB",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:text}}"
+        "snippet": "gotoB{${1:name}}{${2:text}}"
       }
     },
     {
       "name": "gotoB",
       "arg": {
         "format": "[]{}{}A",
-        "snippet": "[${3:optional style%keyvals}]{${1:name}}{${2:text}}A",
+        "snippet": "gotoB[${3:optional style%keyvals}]{${1:name}}{${2:text}}A",
         "keys": [
           "\\showbookmarks,\\goto,\\gotoA,\\gotoB,\\firstslide,\\lastslide,\\prevslide,\\nextslide,\\prevstep,\\nextstep,\\showorhide"
         ],
@@ -266,14 +266,14 @@
       "name": "firstslide",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "firstslide{${1:text}}"
       }
     },
     {
       "name": "firstslide",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:optional style%keyvals}]{${1:text}}",
+        "snippet": "firstslide[${2:optional style%keyvals}]{${1:text}}",
         "keys": [
           "\\showbookmarks,\\goto,\\gotoA,\\gotoB,\\firstslide,\\lastslide,\\prevslide,\\nextslide,\\prevstep,\\nextstep,\\showorhide"
         ],
@@ -284,14 +284,14 @@
       "name": "lastslide",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "lastslide{${1:text}}"
       }
     },
     {
       "name": "lastslide",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:optional style%keyvals}]{${1:text}}",
+        "snippet": "lastslide[${2:optional style%keyvals}]{${1:text}}",
         "keys": [
           "\\showbookmarks,\\goto,\\gotoA,\\gotoB,\\firstslide,\\lastslide,\\prevslide,\\nextslide,\\prevstep,\\nextstep,\\showorhide"
         ],
@@ -302,14 +302,14 @@
       "name": "prevslide",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "prevslide{${1:text}}"
       }
     },
     {
       "name": "prevslide",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:optional style%keyvals}]{${1:text}}",
+        "snippet": "prevslide[${2:optional style%keyvals}]{${1:text}}",
         "keys": [
           "\\showbookmarks,\\goto,\\gotoA,\\gotoB,\\firstslide,\\lastslide,\\prevslide,\\nextslide,\\prevstep,\\nextstep,\\showorhide"
         ],
@@ -320,14 +320,14 @@
       "name": "nextslide",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "nextslide{${1:text}}"
       }
     },
     {
       "name": "nextslide",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:optional style%keyvals}]{${1:text}}",
+        "snippet": "nextslide[${2:optional style%keyvals}]{${1:text}}",
         "keys": [
           "\\showbookmarks,\\goto,\\gotoA,\\gotoB,\\firstslide,\\lastslide,\\prevslide,\\nextslide,\\prevstep,\\nextstep,\\showorhide"
         ],
@@ -338,14 +338,14 @@
       "name": "prevstep",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "prevstep{${1:text}}"
       }
     },
     {
       "name": "prevstep",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:optional style%keyvals}]{${1:text}}",
+        "snippet": "prevstep[${2:optional style%keyvals}]{${1:text}}",
         "keys": [
           "\\showbookmarks,\\goto,\\gotoA,\\gotoB,\\firstslide,\\lastslide,\\prevslide,\\nextslide,\\prevstep,\\nextstep,\\showorhide"
         ],
@@ -356,14 +356,14 @@
       "name": "nextstep",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "nextstep{${1:text}}"
       }
     },
     {
       "name": "nextstep",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:optional style%keyvals}]{${1:text}}",
+        "snippet": "nextstep[${2:optional style%keyvals}]{${1:text}}",
         "keys": [
           "\\showbookmarks,\\goto,\\gotoA,\\gotoB,\\firstslide,\\lastslide,\\prevslide,\\nextslide,\\prevstep,\\nextstep,\\showorhide"
         ],
@@ -374,14 +374,14 @@
       "name": "showorhide",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:actions}}{${2:text}}"
+        "snippet": "showorhide{${1:actions}}{${2:text}}"
       }
     },
     {
       "name": "showorhide",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:optional style%keyvals}]{${1:actions}}{${2:text}}",
+        "snippet": "showorhide[${3:optional style%keyvals}]{${1:actions}}{${2:text}}",
         "keys": [
           "\\showbookmarks,\\goto,\\gotoA,\\gotoB,\\firstslide,\\lastslide,\\prevslide,\\nextslide,\\prevstep,\\nextstep,\\showorhide"
         ],
@@ -392,63 +392,63 @@
       "name": "newcolor",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name%specialDef}}{${2:color model}}{${3:values}}"
+        "snippet": "newcolor{${1:name%specialDef}}{${2:color model}}{${3:values}}"
       }
     },
     {
       "name": "newcolor",
       "arg": {
         "format": "{}{}[]{}",
-        "snippet": "{${1:name%specialDef}}{${2:color model}}[${4:opacity}]{${3:values}}"
+        "snippet": "newcolor{${1:name%specialDef}}{${2:color model}}[${4:opacity}]{${3:values}}"
       }
     },
     {
       "name": "usecolor",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:color}}"
+        "snippet": "usecolor{${1:color}}"
       }
     },
     {
       "name": "newshade",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name%specialDef}}"
+        "snippet": "newshade{${1:name%specialDef}}"
       }
     },
     {
       "name": "newimage",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:file}}"
+        "snippet": "newimage{${1:name}}{${2:file}}"
       }
     },
     {
       "name": "newimage",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:name}}[${3:width,height}]{${2:file}}"
+        "snippet": "newimage{${1:name}}[${3:width,height}]{${2:file}}"
       }
     },
     {
       "name": "useimage",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "useimage{${1:name}}"
       }
     },
     {
       "name": "newsymbol",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:cmd}}{${2:drawing}}"
+        "snippet": "newsymbol{${1:cmd}}{${2:drawing}}"
       }
     },
     {
       "name": "newsymbol",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:cmd}}[${3:settings%keyvals}]{${2:drawing}}",
+        "snippet": "newsymbol{${1:cmd}}[${3:settings%keyvals}]{${2:drawing}}",
         "keys": [
           "\\newsymbol#c"
         ],
@@ -459,84 +459,84 @@
       "name": "symbolwidth",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:symbol cmd}}"
+        "snippet": "symbolwidth{${1:symbol cmd}}"
       }
     },
     {
       "name": "symbolheight",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:symbol cmd}}"
+        "snippet": "symbolheight{${1:symbol cmd}}"
       }
     },
     {
       "name": "symboldepth",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:symbol cmd}}"
+        "snippet": "symboldepth{${1:symbol cmd}}"
       }
     },
     {
       "name": "newtransition",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "newtransition{${1:name}}"
       }
     },
     {
       "name": "addtopageobject",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "addtopageobject{${1:code}}"
       }
     },
     {
       "name": "addtoeachpageobject",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "addtoeachpageobject{${1:code}}"
       }
     },
     {
       "name": "addtopageresources",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "addtopageresources{${1:code}}"
       }
     },
     {
       "name": "addproperties",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:object number}}"
+        "snippet": "addproperties{${1:name}}{${2:object number}}"
       }
     },
     {
       "name": "addshading",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:object number}}"
+        "snippet": "addshading{${1:name}}{${2:object number}}"
       }
     },
     {
       "name": "addgstate",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:object number}}"
+        "snippet": "addgstate{${1:name}}{${2:object number}}"
       }
     },
     {
       "name": "addOCG",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:object number}}"
+        "snippet": "addOCG{${1:object number}}"
       }
     },
     {
       "name": "addvisibleOCG",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:object number}}"
+        "snippet": "addvisibleOCG{${1:object number}}"
       }
     }
   ],

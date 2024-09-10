@@ -12,28 +12,28 @@
       "name": "include",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:prehook}]{${1:file}}"
+        "snippet": "include[${2:prehook}]{${1:file}}"
       }
     },
     {
       "name": "include",
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:prehook}]{${1:file}}[${3:posthook}]"
+        "snippet": "include[${2:prehook}]{${1:file}}[${3:posthook}]"
       }
     },
     {
       "name": "include*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:prehook}]{${1:file}}"
+        "snippet": "include*[${2:prehook}]{${1:file}}"
       }
     },
     {
       "name": "include*",
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:prehook}]{${1:file}}[${3:posthook}]"
+        "snippet": "include*[${2:prehook}]{${1:file}}[${3:posthook}]"
       }
     },
     {
@@ -41,7 +41,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:tokens}}"
+        "snippet": "AtBeginInclude{${1:tokens}}"
       }
     },
     {
@@ -49,7 +49,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:tokens}}"
+        "snippet": "AtEndInclude{${1:tokens}}"
       }
     },
     {
@@ -68,7 +68,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:file}}{${2:envname}}{${3:instance}}"
+        "snippet": "IncludeEnv{${1:file}}{${2:envname}}{${3:instance}}"
       }
     },
     {
@@ -76,7 +76,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:prehook}]{${1:file}}{${2:envname}}{${3:instance}}"
+        "snippet": "IncludeEnv[${4:prehook}]{${1:file}}{${2:envname}}{${3:instance}}"
       }
     },
     {
@@ -84,7 +84,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}{}[]",
-        "snippet": "[${4:prehook}]{${1:file}}{${2:envname}}{${3:instance}}[${5:posthook}]"
+        "snippet": "IncludeEnv[${4:prehook}]{${1:file}}{${2:envname}}{${3:instance}}[${5:posthook}]"
       }
     },
     {
@@ -92,7 +92,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:file}}{${2:envname}}{${3:instance}}"
+        "snippet": "IncludeEnv*{${1:file}}{${2:envname}}{${3:instance}}"
       }
     },
     {
@@ -100,7 +100,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:prehook}]{${1:file}}{${2:envname}}{${3:instance}}"
+        "snippet": "IncludeEnv*[${4:prehook}]{${1:file}}{${2:envname}}{${3:instance}}"
       }
     },
     {
@@ -108,35 +108,35 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}{}[]",
-        "snippet": "[${4:prehook}]{${1:file}}{${2:envname}}{${3:instance}}[${5:posthook}]"
+        "snippet": "IncludeEnv*[${4:prehook}]{${1:file}}{${2:envname}}{${3:instance}}[${5:posthook}]"
       }
     },
     {
       "name": "includedoc",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:prehook}]{${1:file}}"
+        "snippet": "includedoc[${2:prehook}]{${1:file}}"
       }
     },
     {
       "name": "includedoc",
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:prehook}]{${1:file}}[${3:posthook}]"
+        "snippet": "includedoc[${2:prehook}]{${1:file}}[${3:posthook}]"
       }
     },
     {
       "name": "includedoc*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:prehook}]{${1:file}}"
+        "snippet": "includedoc*[${2:prehook}]{${1:file}}"
       }
     },
     {
       "name": "includedoc*",
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:prehook}]{${1:file}}[${3:posthook}]"
+        "snippet": "includedoc*[${2:prehook}]{${1:file}}[${3:posthook}]"
       }
     },
     {
@@ -144,7 +144,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:prehook}]{${1:file}}[${3:posthook}]"
+        "snippet": "includedocskip[${2:prehook}]{${1:file}}[${3:posthook}]"
       }
     },
     {
@@ -152,7 +152,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:prehook}]{${1:file}}[${3:posthook}]"
+        "snippet": "includedocskip*[${2:prehook}]{${1:file}}[${3:posthook}]"
       }
     },
     {
@@ -160,7 +160,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:part name}}{${2:true}}{${3:false}}"
+        "snippet": "IfAllowed{${1:part name}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -176,7 +176,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:package name}}"
+        "snippet": "DeclareFormattingPackage{${1:package name}}"
       }
     },
     {
@@ -196,7 +196,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:tokens}}"
+        "snippet": "Disable{${1:tokens}}"
       }
     },
     {
@@ -219,7 +219,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:number of streams}}"
+        "snippet": "StaticAux{${1:number of streams}}"
       }
     },
     {
@@ -228,7 +228,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:cmd}}"
+        "snippet": "InitWheel{${1:cmd}}"
       }
     },
     {
@@ -237,7 +237,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:cmd}}{${2:spokes}}"
+        "snippet": "DefWheel{${1:cmd}}{${2:spokes}}"
       }
     },
     {
@@ -246,7 +246,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:wheel}}"
+        "snippet": "Roll{${1:wheel}}"
       }
     },
     {
@@ -255,7 +255,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:wheel}}"
+        "snippet": "Top{${1:wheel}}"
       }
     },
     {
@@ -264,7 +264,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:wheel}}{${2:spokes}}"
+        "snippet": "AddSpokes{${1:wheel}}{${2:spokes}}"
       }
     },
     {
@@ -273,7 +273,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:wheel}}{${2:spoke}}{${3:true}}{${4:false}}"
+        "snippet": "IfTop{${1:wheel}}{${2:spoke}}{${3:true}}{${4:false}}"
       }
     }
   ],

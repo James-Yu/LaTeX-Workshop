@@ -56,14 +56,14 @@
       "name": "mint",
       "arg": {
         "format": "{}||",
-        "snippet": "{${1:language}}|${2:code}|"
+        "snippet": "mint{${1:language}}|${2:code}|"
       }
     },
     {
       "name": "mint",
       "arg": {
         "format": "[]{}||",
-        "snippet": "[${2:options}]{${1:language}}|${3:code}|",
+        "snippet": "mint[${2:options}]{${1:language}}|${3:code}|",
         "keys": [
           "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
         ],
@@ -74,14 +74,14 @@
       "name": "mintinline",
       "arg": {
         "format": "{}||",
-        "snippet": "{${1:language}}|${2:code}|"
+        "snippet": "mintinline{${1:language}}|${2:code}|"
       }
     },
     {
       "name": "mintinline",
       "arg": {
         "format": "[]{}||",
-        "snippet": "[${2:options}]{${1:language}}|${3:code}|",
+        "snippet": "mintinline[${2:options}]{${1:language}}|${3:code}|",
         "keys": [
           "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
         ],
@@ -92,14 +92,14 @@
       "name": "inputminted",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:language}}{${2:file}}"
+        "snippet": "inputminted{${1:language}}{${2:file}}"
       }
     },
     {
       "name": "inputminted",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:language}}{${2:file}}",
+        "snippet": "inputminted[${3:options%keyvals}]{${1:language}}{${2:file}}",
         "keys": [
           "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
         ],
@@ -111,7 +111,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:pygments style}}"
+        "snippet": "usemintedstyle{${1:pygments style}}"
       }
     },
     {
@@ -119,14 +119,14 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:language}]{${1:pygments style}}"
+        "snippet": "usemintedstyle[${2:language}]{${1:pygments style}}"
       }
     },
     {
       "name": "setminted",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "setminted{${1:options%keyvals}}",
         "keys": [
           "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
         ],
@@ -137,7 +137,7 @@
       "name": "setminted",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:language}]{${1:options%keyvals}}",
+        "snippet": "setminted[${2:language}]{${1:options%keyvals}}",
         "keys": [
           "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
         ],
@@ -148,7 +148,7 @@
       "name": "setmintedinline",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "setmintedinline{${1:options%keyvals}}",
         "keys": [
           "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
         ],
@@ -159,7 +159,7 @@
       "name": "setmintedinline",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:language}]{${1:options%keyvals}}",
+        "snippet": "setmintedinline[${2:language}]{${1:options%keyvals}}",
         "keys": [
           "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
         ],
@@ -181,7 +181,7 @@
       "name": "newminted",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:language}}{${2:options%keyvals}}",
+        "snippet": "newminted{${1:language}}{${2:options%keyvals}}",
         "keys": [
           "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
         ],
@@ -192,7 +192,7 @@
       "name": "newminted",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:envname}]{${1:language}}{${2:options%keyvals}}",
+        "snippet": "newminted[${3:envname}]{${1:language}}{${2:options%keyvals}}",
         "keys": [
           "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
         ],
@@ -203,7 +203,7 @@
       "name": "newmint",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:language}}{${2:options%keyvals}}",
+        "snippet": "newmint{${1:language}}{${2:options%keyvals}}",
         "keys": [
           "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
         ],
@@ -214,7 +214,7 @@
       "name": "newmint",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:macro name}]{${1:language}}{${2:options%keyvals}}",
+        "snippet": "newmint[${3:macro name}]{${1:language}}{${2:options%keyvals}}",
         "keys": [
           "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
         ],
@@ -225,7 +225,7 @@
       "name": "newmintinline",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:language}}{${2:options%keyvals}}",
+        "snippet": "newmintinline{${1:language}}{${2:options%keyvals}}",
         "keys": [
           "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
         ],
@@ -236,7 +236,7 @@
       "name": "newmintinline",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:macro name}]{${1:language}}{${2:options%keyvals}}",
+        "snippet": "newmintinline[${3:macro name}]{${1:language}}{${2:options%keyvals}}",
         "keys": [
           "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
         ],
@@ -247,7 +247,7 @@
       "name": "newmintedfile",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:language}}{${2:options%keyvals}}",
+        "snippet": "newmintedfile{${1:language}}{${2:options%keyvals}}",
         "keys": [
           "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
         ],
@@ -258,7 +258,7 @@
       "name": "newmintedfile",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:macro name}]{${1:language}}{${2:options%keyvals}}",
+        "snippet": "newmintedfile[${3:macro name}]{${1:language}}{${2:options%keyvals}}",
         "keys": [
           "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile"
         ],
@@ -270,7 +270,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "DeleteFile{${1:file}}"
       }
     },
     {
@@ -278,7 +278,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:directory}]{${1:file}}"
+        "snippet": "DeleteFile[${2:directory}]{${1:file}}"
       }
     },
     {
@@ -286,7 +286,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:directory}}"
+        "snippet": "ProvideDirectory{${1:directory}}"
       }
     },
     {
@@ -298,7 +298,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:application}}"
+        "snippet": "TestAppExists{${1:application}}"
       }
     },
     {

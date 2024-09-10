@@ -406,7 +406,6 @@ function entryCmdToCompletion(item: MacroRaw, packageName?: string, postAction?:
         item.unusual)
 
     if (item.arg?.snippet) {
-        item.arg.snippet = item.name + item.arg.snippet
         // Wrap the selected text when there is a single placeholder
         if (! (item.arg.snippet.match(/\$\{?2/) || (item.arg.snippet.match(/\$\{?0/) && item.arg.snippet.match(/\$\{?1/)))) {
             item.arg.snippet = item.arg.snippet.replace(/\$1|\$\{1\}/, '$${1:$${TM_SELECTED_TEXT}}').replace(/\$\{1:([^$}]+)\}/, '$${1:$${TM_SELECTED_TEXT:$1}}')

@@ -48,14 +48,14 @@
       "name": "runExtCmd",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:command with arguments%definition}}{${2:filename%file}}"
+        "snippet": "runExtCmd{${1:command with arguments%definition}}{${2:filename%file}}"
       }
     },
     {
       "name": "runExtCmd",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:command with arguments%definition}}{${2:filename%file}}",
+        "snippet": "runExtCmd[${3:options%keyvals}]{${1:command with arguments%definition}}{${2:filename%file}}",
         "keys": [
           "\\begin{externalDocument},\\runExtCmd,\\hvExternSetKeys"
         ],
@@ -66,7 +66,7 @@
       "name": "hvExternSetKeys",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "hvExternSetKeys{${1:options%keyvals}}",
         "keys": [
           "\\begin{externalDocument},\\runExtCmd,\\hvExternSetKeys"
         ],
@@ -77,7 +77,7 @@
       "name": "defMarkerType",
       "arg": {
         "format": "{}{}{}{}{}",
-        "snippet": "{${1:name}}{${2:start-main}}{${3:stop-main}}{${4:start-preamble}}{${5:stop-preamble}}"
+        "snippet": "defMarkerType{${1:name}}{${2:start-main}}{${3:stop-main}}{${4:start-preamble}}{${5:stop-preamble}}"
       }
     },
     {
@@ -88,7 +88,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "PreambleVerbatim{${1:file}}"
       }
     },
     {
@@ -96,7 +96,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "snippet": "PreambleVerbatim[${2:options%keyvals}]{${1:file}}",
         "keys": [
           "\\PreambleVerbatim,\\BodyVerbatim"
         ],
@@ -108,7 +108,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "BodyVerbatim{${1:file}}"
       }
     },
     {
@@ -116,7 +116,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "snippet": "BodyVerbatim[${2:options%keyvals}]{${1:file}}",
         "keys": [
           "\\PreambleVerbatim,\\BodyVerbatim"
         ],
@@ -128,7 +128,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "PreambleListing{${1:file}}"
       }
     },
     {
@@ -136,7 +136,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "snippet": "PreambleListing[${2:options%keyvals}]{${1:file}}",
         "keys": [
           "\\PreambleListing,\\BodyListing"
         ],
@@ -148,7 +148,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "BodyListing{${1:file}}"
       }
     },
     {
@@ -156,7 +156,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "snippet": "BodyListing[${2:options%keyvals}]{${1:file}}",
         "keys": [
           "\\PreambleListing,\\BodyListing"
         ],

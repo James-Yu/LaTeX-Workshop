@@ -9,7 +9,7 @@
       "name": "lstloadlanguages",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:lang1,lang2,...%keyvals}}",
+        "snippet": "lstloadlanguages{${1:lang1,lang2,...%keyvals}}",
         "keys": [
           "\\lstloadlanguages#c"
         ],
@@ -20,7 +20,7 @@
       "name": "lstset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}",
+        "snippet": "lstset{${1:keyvals}}",
         "keys": [
           "\\lstset,\\lstinline,\\begin{lstlisting},\\lstinputlisting,\\lstMakeShortInline,\\lstdefinelanguage,\\lstdefinestyle"
         ],
@@ -31,14 +31,14 @@
       "name": "lstinline",
       "arg": {
         "format": "||",
-        "snippet": "|${1:code}|"
+        "snippet": "lstinline|${1:code}|"
       }
     },
     {
       "name": "lstinline",
       "arg": {
         "format": "[]||",
-        "snippet": "[${1:options}]|${2:code}|",
+        "snippet": "lstinline[${1:options}]|${2:code}|",
         "keys": [
           "\\lstset,\\lstinline,\\begin{lstlisting},\\lstinputlisting,\\lstMakeShortInline,\\lstdefinelanguage,\\lstdefinestyle"
         ],
@@ -49,14 +49,14 @@
       "name": "lstinputlisting",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "lstinputlisting{${1:file}}"
       }
     },
     {
       "name": "lstinputlisting",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "snippet": "lstinputlisting[${2:options%keyvals}]{${1:file}}",
         "keys": [
           "\\lstset,\\lstinline,\\begin{lstlisting},\\lstinputlisting,\\lstMakeShortInline,\\lstdefinelanguage,\\lstdefinestyle"
         ],
@@ -68,7 +68,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:style name}}{${2:keyvals}}",
+        "snippet": "lstdefinestyle{${1:style name}}{${2:keyvals}}",
         "keys": [
           "\\lstset,\\lstinline,\\begin{lstlisting},\\lstinputlisting,\\lstMakeShortInline,\\lstdefinelanguage,\\lstdefinestyle"
         ],
@@ -115,7 +115,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "lstindexmacro{${1:arg}}"
       }
     },
     {
@@ -123,7 +123,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[][]{}{}",
-        "snippet": "{${1:envname}}[${4:args}][${5:default}]{${2:begdef}}{${3:enddef}}"
+        "snippet": "lstnewenvironment{${1:envname}}[${4:args}][${5:default}]{${2:begdef}}{${3:enddef}}"
       }
     },
     {
@@ -131,7 +131,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]{}{}",
-        "snippet": "{${1:envname}}[${4:args}]{${2:begdef}}{${3:enddef}}"
+        "snippet": "lstnewenvironment{${1:envname}}[${4:args}]{${2:begdef}}{${3:enddef}}"
       }
     },
     {
@@ -139,7 +139,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:envname}}{${2:begdef}}{${3:enddef}}"
+        "snippet": "lstnewenvironment{${1:envname}}{${2:begdef}}{${3:enddef}}"
       }
     },
     {
@@ -147,7 +147,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:language name}}{${2:keyvals}}",
+        "snippet": "lstdefinelanguage{${1:language name}}{${2:keyvals}}",
         "keys": [
           "\\lstset,\\lstinline,\\begin{lstlisting},\\lstinputlisting,\\lstMakeShortInline,\\lstdefinelanguage,\\lstdefinestyle"
         ],
@@ -159,7 +159,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}[]",
-        "snippet": "{${1:language name}}{${2:keyvals}}[${3:required aspects}]",
+        "snippet": "lstdefinelanguage{${1:language name}}{${2:keyvals}}[${3:required aspects}]",
         "keys": [
           "\\lstset,\\lstinline,\\begin{lstlisting},\\lstinputlisting,\\lstMakeShortInline,\\lstdefinelanguage,\\lstdefinestyle"
         ],
@@ -171,7 +171,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:dialect}]{${1:language name}}{${2:keyvals}}",
+        "snippet": "lstdefinelanguage[${3:dialect}]{${1:language name}}{${2:keyvals}}",
         "keys": [
           "\\lstset,\\lstinline,\\begin{lstlisting},\\lstinputlisting,\\lstMakeShortInline,\\lstdefinelanguage,\\lstdefinestyle"
         ],
@@ -183,7 +183,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}[]",
-        "snippet": "[${3:dialect}]{${1:language name}}{${2:keyvals}}[${4:required aspects}]",
+        "snippet": "lstdefinelanguage[${3:dialect}]{${1:language name}}{${2:keyvals}}[${4:required aspects}]",
         "keys": [
           "\\lstset,\\lstinline,\\begin{lstlisting},\\lstinputlisting,\\lstMakeShortInline,\\lstdefinelanguage,\\lstdefinestyle"
         ],
@@ -195,7 +195,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]{}{}[]",
-        "snippet": "[${4:dialect}]{${1:language name}}[${5:base dialect}]{${2:base language}}{${3:keyvals}}[${6:required aspects}]",
+        "snippet": "lstdefinelanguage[${4:dialect}]{${1:language name}}[${5:base dialect}]{${2:base language}}{${3:keyvals}}[${6:required aspects}]",
         "keys": [
           "\\lstset,\\lstinline,\\begin{lstlisting},\\lstinputlisting,\\lstMakeShortInline,\\lstdefinelanguage,\\lstdefinestyle"
         ],
@@ -207,7 +207,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:alias}}{${2:language}}"
+        "snippet": "lstalias{${1:alias}}{${2:language}}"
       }
     },
     {
@@ -223,7 +223,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:aspects}}"
+        "snippet": "lstloadaspects{${1:aspects}}"
       }
     },
     {
@@ -239,7 +239,7 @@
       "if": "formats",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:format}}"
+        "snippet": "lstdefineformat{${1:name}}{${2:format}}"
       }
     },
     {

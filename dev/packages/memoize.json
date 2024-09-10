@@ -15,7 +15,7 @@
       "name": "mmzset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "mmzset{${1:options%keyvals}}",
         "keys": [
           "\\usepackage/memoize#c,\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c",
           "\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c"
@@ -27,7 +27,7 @@
       "name": "mmznext",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "mmznext{${1:options%keyvals}}",
         "keys": [
           "\\usepackage/memoize#c,\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c",
           "\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c"
@@ -40,7 +40,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "nommzkeys{${1:options%keyvals}}",
         "keys": [
           "\\usepackage/memoize#c,\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c",
           "\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c"
@@ -52,14 +52,14 @@
       "name": "mmz",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code%text}}"
+        "snippet": "mmz{${1:code%text}}"
       }
     },
     {
       "name": "mmz",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:code%text}}",
+        "snippet": "mmz[${2:options%keyvals}]{${1:code%text}}",
         "keys": [
           "\\usepackage/memoize#c,\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c",
           "\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c"
@@ -71,14 +71,14 @@
       "name": "nommz",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code%text}}"
+        "snippet": "nommz{${1:code%text}}"
       }
     },
     {
       "name": "nommz",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:code%text}}",
+        "snippet": "nommz[${2:options%keyvals}]{${1:code%text}}",
         "keys": [
           "\\usepackage/memoize#c,\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c",
           "\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c"
@@ -99,7 +99,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "mmzNoRef{${1:label}}"
       }
     },
     {
@@ -107,7 +107,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "mmzForceNoRef{${1:label}}"
       }
     },
     {
@@ -125,7 +125,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:key%plain}}{${2:code}}"
+        "snippet": "Memoize{${1:key%plain}}{${2:code}}"
       }
     },
     {
@@ -181,7 +181,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "mmzSingleExternDriver{${1:code}}"
       }
     },
     {
@@ -189,7 +189,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:box}}{${2:token register}}"
+        "snippet": "mmzExternalizeBox{${1:box}}{${2:token register}}"
       }
     },
     {
@@ -209,7 +209,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:true code}}{${3:false code}}"
+        "snippet": "IfMemoizing{${1:name}}{${2:true code}}{${3:false code}}"
       }
     },
     {
@@ -217,7 +217,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:offset}]{${1:name}}{${2:true code}}{${3:false code}}"
+        "snippet": "IfMemoizing[${4:offset}]{${1:name}}{${2:true code}}{${3:false code}}"
       }
     },
     {
@@ -261,7 +261,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "mmzResource{${1:file}}"
       }
     },
     {
@@ -269,7 +269,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}{}{}{}{}{}",
-        "snippet": "{${1:seq}}{${2:\\hbox|\\vbox}}{${3:width}}{${4:height}}{${5:depth}}{${6:left}}{${7:bot}}{${8:right}}{${9:top}}"
+        "snippet": "mmzIncludeExtern{${1:seq}}{${2:\\hbox|\\vbox}}{${3:width}}{${4:height}}{${5:depth}}{${6:left}}{${7:bot}}{${8:right}}{${9:top}}"
       }
     },
     {
@@ -277,7 +277,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:key%plain}}{${2:value}}"
+        "snippet": "mmzLabel{${1:key%plain}}{${2:value}}"
       }
     },
     {
@@ -293,7 +293,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:filename}}"
+        "snippet": "mmzUsedCMemo{${1:filename}}"
       }
     },
     {
@@ -301,7 +301,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:filename}}"
+        "snippet": "mmzUsedCCMemo{${1:filename}}"
       }
     },
     {
@@ -309,7 +309,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:filename}}"
+        "snippet": "mmzUsedExtern{${1:filename}}"
       }
     },
     {
@@ -317,7 +317,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:filename}}"
+        "snippet": "mmzNewCMemo{${1:filename}}"
       }
     },
     {
@@ -325,7 +325,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:filename}}"
+        "snippet": "mmzNewCCMemo{${1:filename}}"
       }
     },
     {
@@ -333,14 +333,14 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:filename}}{${2:page num}}{${3:width}}{${4:height}}"
+        "snippet": "mmzNewExtern{${1:filename}}{${2:page num}}{${3:width}}{${4:height}}"
       }
     },
     {
       "name": "mmzPrefix",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:path prefix}}"
+        "snippet": "mmzPrefix{${1:path prefix}}"
       }
     },
     {

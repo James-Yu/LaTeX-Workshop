@@ -18,14 +18,14 @@
       "name": "axesIIID",
       "arg": {
         "format": "()()",
-        "snippet": "(${1:x1},${2:y1},${3:z1})(${4:x2},${5:y2},${6:z2})"
+        "snippet": "axesIIID(${1:x1},${2:y1},${3:z1})(${4:x2},${5:y2},${6:z2})"
       }
     },
     {
       "name": "axesIIID",
       "arg": {
         "format": "[]()()",
-        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1},${4:z1})(${5:x2},${6:y2},${7:z2})",
+        "snippet": "axesIIID[${1:options%keyvals}](${2:x1},${3:y1},${4:z1})(${5:x2},${6:y2},${7:z2})",
         "keys": [
           "\\axesIIID#c"
         ],
@@ -36,63 +36,63 @@
       "name": "psSolid",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:object=name}]"
+        "snippet": "psSolid[${1:object=name}]"
       }
     },
     {
       "name": "psSolid",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:object=name,options}]"
+        "snippet": "psSolid[${1:object=name,options}]"
       }
     },
     {
       "name": "psSolid",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:object=name}](${2:x},${3:y},${4:z})"
+        "snippet": "psSolid[${1:object=name}](${2:x},${3:y},${4:z})"
       }
     },
     {
       "name": "psSolid",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:object=name,options}](${2:x},${3:y},${4:z})"
+        "snippet": "psSolid[${1:object=name,options}](${2:x},${3:y},${4:z})"
       }
     },
     {
       "name": "codejps",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:jps code}}"
+        "snippet": "codejps{${1:jps code}}"
       }
     },
     {
       "name": "defFunction",
       "arg": {
         "format": "{}(){}{}{}",
-        "snippet": "{${1:name%specialDef}}(${5:var}){${2:x}}{${3:y}}{${4:z}}"
+        "snippet": "defFunction{${1:name%specialDef}}(${5:var}){${2:x}}{${3:y}}{${4:z}}"
       }
     },
     {
       "name": "defFunction",
       "arg": {
         "format": "[]{}(){}{}{}",
-        "snippet": "[${5:options%keyvals}]{${1:name%specialDef}}(${6:var}){${2:x}}{${3:y}}{${4:z}}"
+        "snippet": "defFunction[${5:options%keyvals}]{${1:name%specialDef}}(${6:var}){${2:x}}{${3:y}}{${4:z}}"
       }
     },
     {
       "name": "psSurface",
       "arg": {
         "format": "()(){}",
-        "snippet": "(${2:xmin},${3:ymin})(${4:xmax},${5:ymax}){${1:surface definition%definition}}"
+        "snippet": "psSurface(${2:xmin},${3:ymin})(${4:xmax},${5:ymax}){${1:surface definition%definition}}"
       }
     },
     {
       "name": "psSurface",
       "arg": {
         "format": "[]()(){}",
-        "snippet": "[${2:options%keyvals}](${3:xmin},${4:ymin})(${5:xmax},${6:ymax}){${1:surface definition%definition}}",
+        "snippet": "psSurface[${2:options%keyvals}](${3:xmin},${4:ymin})(${5:xmax},${6:ymax}){${1:surface definition%definition}}",
         "keys": [
           "\\psSurface#c,\\psImplicitSurface#c"
         ],
@@ -103,7 +103,7 @@
       "name": "psImplicitSurface",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]",
+        "snippet": "psImplicitSurface[${1:options%keyvals}]",
         "keys": [
           "\\psSurface#c,\\psImplicitSurface#c",
           "\\psImplicitSurface#c"
@@ -115,7 +115,7 @@
       "name": "psImplicitSurface",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:options%keyvals}](${2:x},${3:y},${4:z})",
+        "snippet": "psImplicitSurface[${1:options%keyvals}](${2:x},${3:y},${4:z})",
         "keys": [
           "\\psSurface#c,\\psImplicitSurface#c",
           "\\psImplicitSurface#c"
@@ -130,21 +130,21 @@
       "name": "psPoint",
       "arg": {
         "format": "(){}",
-        "snippet": "(${2:x},${3:y},${4:z}){${1:name}}"
+        "snippet": "psPoint(${2:x},${3:y},${4:z}){${1:name}}"
       }
     },
     {
       "name": "psTransformPoint",
       "arg": {
         "format": "()(){}",
-        "snippet": "(${2:x},${3:y},${4:z})(${5:vx},${6:vy},${7:vz}){${1:name}}"
+        "snippet": "psTransformPoint(${2:x},${3:y},${4:z})(${5:vx},${6:vy},${7:vz}){${1:name}}"
       }
     },
     {
       "name": "psTransformPoint",
       "arg": {
         "format": "[]()(){}",
-        "snippet": "[${2:options%keyvals}](${3:x},${4:y},${5:z})(${6:vx},${7:vy},${8:vz}){${1:name}}",
+        "snippet": "psTransformPoint[${2:options%keyvals}](${3:x},${4:y},${5:z})(${6:vx},${7:vy},${8:vz}){${1:name}}",
         "keys": [
           "\\psTransformPoint#c"
         ],
@@ -155,28 +155,28 @@
       "name": "psProjection",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:object=name}]"
+        "snippet": "psProjection[${1:object=name}]"
       }
     },
     {
       "name": "psProjection",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:object=name,options}]"
+        "snippet": "psProjection[${1:object=name,options}]"
       }
     },
     {
       "name": "psProjection",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:object=name}](${2:x},${3:y},${4:z})"
+        "snippet": "psProjection[${1:object=name}](${2:x},${3:y},${4:z})"
       }
     },
     {
       "name": "psProjection",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:object=name,options}](${2:x},${3:y},${4:z})"
+        "snippet": "psProjection[${1:object=name,options}](${2:x},${3:y},${4:z})"
       }
     },
     {
@@ -187,14 +187,14 @@
       "name": "gridIIID",
       "arg": {
         "format": "()()",
-        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+        "snippet": "gridIIID(${1:x1},${2:y1})(${3:x2},${4:y2})"
       }
     },
     {
       "name": "gridIIID",
       "arg": {
         "format": "[]()()",
-        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})",
+        "snippet": "gridIIID[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})",
         "keys": [
           "\\gridIIID#c"
         ],
@@ -205,28 +205,28 @@
       "name": "psImage",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:filename=imagefile}]"
+        "snippet": "psImage[${1:filename=imagefile}]"
       }
     },
     {
       "name": "psImage",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:filename=imagefile,options}]"
+        "snippet": "psImage[${1:filename=imagefile,options}]"
       }
     },
     {
       "name": "psImage",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:filename=imagefile}](${2:x},${3:y})"
+        "snippet": "psImage[${1:filename=imagefile}](${2:x},${3:y})"
       }
     },
     {
       "name": "psImage",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:filename=imagefile,options}](${2:x},${3:y})"
+        "snippet": "psImage[${1:filename=imagefile,options}](${2:x},${3:y})"
       }
     },
     {
@@ -234,14 +234,14 @@
       "unusual": true,
       "arg": {
         "format": "()",
-        "snippet": "(${1:radius},${2:longitude},${3:latitude})"
+        "snippet": "Normale(${1:radius},${2:longitude},${3:latitude})"
       }
     },
     {
       "name": "addtosolideslistobject",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "addtosolideslistobject{${1:name}}"
       }
     }
   ],

@@ -90,7 +90,7 @@
       "if": "destlabel",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:destination}}{${2:newname}}"
+        "snippet": "HyperDestRename{${1:destination}}{${2:newname}}"
       }
     },
     {
@@ -98,7 +98,7 @@
       "if": "destlabel=true",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:destination}}{${2:newname}}"
+        "snippet": "HyperDestRename{${1:destination}}{${2:newname}}"
       }
     },
     {
@@ -107,7 +107,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "hyperindexformat{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -116,14 +116,14 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "hyperindexformat{${1:arg1}}{${2:arg2}}"
       }
     },
     {
       "name": "hypersetup",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}",
+        "snippet": "hypersetup{${1:keyvals}}",
         "keys": [
           "\\hypersetup,\\usepackage/hyperref#c"
         ],
@@ -134,7 +134,7 @@
       "name": "href",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:URL}}{${2:text%plain}}",
+        "snippet": "href[${3:options%keyvals}]{${1:URL}}{${2:text%plain}}",
         "keys": [
           "\\href"
         ],
@@ -145,7 +145,7 @@
       "name": "href",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:URL}}{${2:text%plain}}"
+        "snippet": "href{${1:URL}}{${2:text%plain}}"
       }
     },
     {
@@ -153,7 +153,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:property}}{${2:value}}"
+        "snippet": "AddToDocumentProperties{${1:property}}{${2:value}}"
       }
     },
     {
@@ -161,7 +161,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:category}]{${1:property}}{${2:value}}"
+        "snippet": "AddToDocumentProperties[${3:category}]{${1:property}}{${2:value}}"
       }
     },
     {
@@ -169,91 +169,91 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:property}}"
+        "snippet": "GetDocumentProperties{${1:property}}"
       }
     },
     {
       "name": "SetLinkTargetFilter",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:filter code}}"
+        "snippet": "SetLinkTargetFilter{${1:filter code}}"
       }
     },
     {
       "name": "url",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:URL}}"
+        "snippet": "url{${1:URL}}"
       }
     },
     {
       "name": "nolinkurl",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:URL}}"
+        "snippet": "nolinkurl{${1:URL}}"
       }
     },
     {
       "name": "hyperbaseurl",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:URL}}"
+        "snippet": "hyperbaseurl{${1:URL}}"
       }
     },
     {
       "name": "hyperimage",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:imageURL%URL}}{${2:text}}"
+        "snippet": "hyperimage{${1:imageURL%URL}}{${2:text}}"
       }
     },
     {
       "name": "hyperdef",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:category}}{${2:name}}{${3:text}}"
+        "snippet": "hyperdef{${1:category}}{${2:name}}{${3:text}}"
       }
     },
     {
       "name": "hyperref",
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:URL}}{${2:category}}{${3:name}}{${4:text}}"
+        "snippet": "hyperref{${1:URL}}{${2:category}}{${3:name}}{${4:text}}"
       }
     },
     {
       "name": "hyperref",
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:label%ref}]{${1:URL}}{${2:category}}{${3:name}}{${4:text}}"
+        "snippet": "hyperref[${5:label%ref}]{${1:URL}}{${2:category}}{${3:name}}{${4:text}}"
       }
     },
     {
       "name": "hyperref",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:label%ref}]{${1:text}}"
+        "snippet": "hyperref[${2:label%ref}]{${1:text}}"
       }
     },
     {
       "name": "hyperref",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "hyperref{${1:text}}"
       }
     },
     {
       "name": "hyperlink",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:target name}}{${2:link text%text}}"
+        "snippet": "hyperlink{${1:target name}}{${2:link text%text}}"
       }
     },
     {
       "name": "hypertarget",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:target name}}{${2:anchor text%text}}"
+        "snippet": "hypertarget{${1:target name}}{${2:anchor text%text}}"
       }
     },
     {
@@ -263,35 +263,35 @@
       "name": "hyperget",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:anchor}}{${2:label}}"
+        "snippet": "hyperget{${1:anchor}}{${2:label}}"
       }
     },
     {
       "name": "autopageref",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "autopageref{${1:label}}"
       }
     },
     {
       "name": "autopageref*",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "autopageref*{${1:label}}"
       }
     },
     {
       "name": "autoref",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "autoref{${1:label}}"
       }
     },
     {
       "name": "autoref*",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "autoref*{${1:label}}"
       }
     },
     {
@@ -301,84 +301,84 @@
       "name": "pdfstringdef",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:macroname%cmd}}{${2:TeXstring}}"
+        "snippet": "pdfstringdef{${1:macroname%cmd}}{${2:TeXstring}}"
       }
     },
     {
       "name": "pdfbookmark",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:text}}{${2:name}}"
+        "snippet": "pdfbookmark{${1:text}}{${2:name}}"
       }
     },
     {
       "name": "pdfbookmark",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:level}]{${1:text}}{${2:name}}"
+        "snippet": "pdfbookmark[${3:level}]{${1:text}}{${2:name}}"
       }
     },
     {
       "name": "currentpdfbookmark",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:text}}{${2:name}}"
+        "snippet": "currentpdfbookmark{${1:text}}{${2:name}}"
       }
     },
     {
       "name": "subpdfbookmark",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:text}}{${2:name}}"
+        "snippet": "subpdfbookmark{${1:text}}{${2:name}}"
       }
     },
     {
       "name": "belowpdfbookmark",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:text}}{${2:name}}"
+        "snippet": "belowpdfbookmark{${1:text}}{${2:name}}"
       }
     },
     {
       "name": "texorpdfstring",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:TEXstring}}{${2:PDFstring}}"
+        "snippet": "texorpdfstring{${1:TEXstring}}{${2:PDFstring}}"
       }
     },
     {
       "name": "pdfstringdefDisableCommands",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:hooks}}"
+        "snippet": "pdfstringdefDisableCommands{${1:hooks}}"
       }
     },
     {
       "name": "hypercalcbp",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:dimen specification}}"
+        "snippet": "hypercalcbp{${1:dimen specification}}"
       }
     },
     {
       "name": "Acrobatmenu",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:menuoption}}{${2:text}}"
+        "snippet": "Acrobatmenu{${1:menuoption}}{${2:text}}"
       }
     },
     {
       "name": "TextField",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "TextField{${1:label}}"
       }
     },
     {
       "name": "TextField",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:parameters%keyvals}]{${1:label}}",
+        "snippet": "TextField[${2:parameters%keyvals}]{${1:label}}",
         "keys": [
           "\\TextField,\\CheckBox,\\ChoiceMenu,\\PushButton,\\Submit,\\Reset"
         ],
@@ -389,14 +389,14 @@
       "name": "CheckBox",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "CheckBox{${1:label}}"
       }
     },
     {
       "name": "CheckBox",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:parameters%keyvals}]{${1:label}}",
+        "snippet": "CheckBox[${2:parameters%keyvals}]{${1:label}}",
         "keys": [
           "\\TextField,\\CheckBox,\\ChoiceMenu,\\PushButton,\\Submit,\\Reset"
         ],
@@ -407,14 +407,14 @@
       "name": "ChoiceMenu",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:label}}{${2:choices}}"
+        "snippet": "ChoiceMenu{${1:label}}{${2:choices}}"
       }
     },
     {
       "name": "ChoiceMenu",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:parameters%keyvals}]{${1:label}}{${2:choices}}",
+        "snippet": "ChoiceMenu[${3:parameters%keyvals}]{${1:label}}{${2:choices}}",
         "keys": [
           "\\TextField,\\CheckBox,\\ChoiceMenu,\\PushButton,\\Submit,\\Reset"
         ],
@@ -425,14 +425,14 @@
       "name": "PushButton",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "PushButton{${1:label}}"
       }
     },
     {
       "name": "PushButton",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:parameters%keyvals}]{${1:label}}",
+        "snippet": "PushButton[${2:parameters%keyvals}]{${1:label}}",
         "keys": [
           "\\TextField,\\CheckBox,\\ChoiceMenu,\\PushButton,\\Submit,\\Reset"
         ],
@@ -443,14 +443,14 @@
       "name": "Submit",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "Submit{${1:label}}"
       }
     },
     {
       "name": "Submit",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:parameters%keyvals}]{${1:label}}",
+        "snippet": "Submit[${2:parameters%keyvals}]{${1:label}}",
         "keys": [
           "\\TextField,\\CheckBox,\\ChoiceMenu,\\PushButton,\\Submit,\\Reset"
         ],
@@ -461,14 +461,14 @@
       "name": "Reset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "Reset{${1:label}}"
       }
     },
     {
       "name": "Reset",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:parameters%keyvals}]{${1:label}}",
+        "snippet": "Reset[${2:parameters%keyvals}]{${1:label}}",
         "keys": [
           "\\TextField,\\CheckBox,\\ChoiceMenu,\\PushButton,\\Submit,\\Reset"
         ],
@@ -480,7 +480,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:label}}{${2:field}}"
+        "snippet": "LayoutTextField{${1:label}}{${2:field}}"
       }
     },
     {
@@ -488,7 +488,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:label}}{${2:field}}"
+        "snippet": "LayoutChoiceField{${1:label}}{${2:field}}"
       }
     },
     {
@@ -496,7 +496,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:label}}{${2:field}}"
+        "snippet": "LayoutCheckField{${1:label}}{${2:field}}"
       }
     },
     {
@@ -504,7 +504,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:width}}{${2:height}}"
+        "snippet": "MakeRadioField{${1:width}}{${2:height}}"
       }
     },
     {
@@ -512,7 +512,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:width}}{${2:height}}"
+        "snippet": "MakeCheckField{${1:width}}{${2:height}}"
       }
     },
     {
@@ -520,7 +520,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:width}}{${2:height}}"
+        "snippet": "MakeTextField{${1:width}}{${2:height}}"
       }
     },
     {
@@ -528,7 +528,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:width}}{${2:height}}"
+        "snippet": "MakeChoiceField{${1:width}}{${2:height}}"
       }
     },
     {
@@ -536,7 +536,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "MakeButtonField{${1:text}}"
       }
     },
     {
@@ -624,7 +624,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "AfterBeginDocument{${1:code}}"
       }
     },
     {
@@ -664,7 +664,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:URL}}"
+        "snippet": "Hurl{${1:URL}}"
       }
     },
     {
@@ -672,7 +672,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:dest}}"
+        "snippet": "HyperDestLabelReplace{${1:dest}}"
       }
     },
     {
@@ -680,7 +680,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "HyperDestNameFilter{${1:arg}}"
       }
     },
     {
@@ -688,7 +688,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "hypergetpageref{${1:label}}"
       }
     },
     {
@@ -696,7 +696,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "hypergetref{${1:label}}"
       }
     },
     {
@@ -704,7 +704,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:prefix}}"
+        "snippet": "hyperlinkfileprefix{${1:prefix}}"
       }
     },
     {
@@ -712,7 +712,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "hyperpage{${1:arg}}"
       }
     },
     {
@@ -728,7 +728,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:options}}{${2:true}}{${3:false}}"
+        "snippet": "IfHyperBoolean{${1:options}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -736,7 +736,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:option}}{${2:true}}{${3:false}}"
+        "snippet": "IfHyperBooleanExists{${1:option}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -744,7 +744,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:unicode chars}}{${2:chars}}"
+        "snippet": "ifpdfstringunicode{${1:unicode chars}}{${2:chars}}"
       }
     },
     {
@@ -760,7 +760,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "MakeLowercaseUnsupportedInPdfStrings{${1:text}}"
       }
     },
     {
@@ -768,7 +768,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "MakeUppercaseUnsupportedInPdfStrings{${1:text}}"
       }
     },
     {
@@ -784,7 +784,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "nohyperpage{${1:arg}}"
       }
     },
     {
@@ -812,7 +812,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "pdfstringdefWarn{${1:arg}}"
       }
     },
     {
@@ -824,7 +824,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:length}}"
+        "snippet": "setpdflinkmargin{${1:length}}"
       }
     },
     {
@@ -932,7 +932,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:char num}}"
+        "snippet": "unichar{${1:char num}}"
       }
     },
     {
@@ -940,7 +940,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:contents}}"
+        "snippet": "XeTeXLinkBox{${1:contents}}"
       }
     },
     {

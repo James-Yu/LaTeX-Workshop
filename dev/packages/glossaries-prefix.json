@@ -34,7 +34,7 @@
       "if": "symbols",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "printsymbols[${1:options%keyvals}]"
       }
     },
     {
@@ -46,7 +46,7 @@
       "if": "numbers",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "printnumbers[${1:options%keyvals}]"
       }
     },
     {
@@ -54,7 +54,7 @@
       "if": "index",
       "arg": {
         "format": "{term{",
-        "snippet": "{term{"
+        "snippet": "newterm{term{"
       }
     },
     {
@@ -62,7 +62,7 @@
       "if": "index",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:term}}",
+        "snippet": "newterm[${2:options%keyvals}]{${1:term}}",
         "keys": [
           "\\newglossaryentry#c,\\longnewglossaryentry#c,\\provideglossaryentry#c,\\longprovideglossaryentry#c,\\newacronym#c,\\newterm#c,\\longnewglossaryentry*#c,\\newentry#c,\\newabbr#c,\\newsym#c,\\newnum#c,\\glsxtrnewsymbol#c,\\glsxtrnewnumber#c,\\newabbreviation#c"
         ],
@@ -78,7 +78,7 @@
       "if": "index",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "printindex[${1:options%keyvals}]"
       }
     },
     {
@@ -90,7 +90,7 @@
       "if": "acronym",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "printacronyms[${1:options%keyvals}]"
       }
     },
     {
@@ -102,7 +102,7 @@
       "if": "acronym=true",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "printacronyms[${1:options%keyvals}]"
       }
     },
     {
@@ -114,7 +114,7 @@
       "if": "acronyms",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "printacronyms[${1:options%keyvals}]"
       }
     },
     {
@@ -122,7 +122,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "acs{${1:label}}"
       }
     },
     {
@@ -130,7 +130,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "acs[${2:options%keyvals}]{${1:label}}"
       }
     },
     {
@@ -139,7 +139,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "acs{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -148,7 +148,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "acs[${2:options%keyvals}]{${1:label}}[${3:insert}]"
       }
     },
     {
@@ -156,7 +156,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "Acs{${1:label}}"
       }
     },
     {
@@ -164,7 +164,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "Acs[${2:options%keyvals}]{${1:label}}"
       }
     },
     {
@@ -173,7 +173,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "Acs{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -182,7 +182,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "Acs[${2:options%keyvals}]{${1:label}}[${3:insert}]"
       }
     },
     {
@@ -191,7 +191,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "acsp{${1:label}}"
       }
     },
     {
@@ -200,7 +200,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "acsp[${2:options%keyvals}]{${1:label}}"
       }
     },
     {
@@ -209,7 +209,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "acsp{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -218,7 +218,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "acsp[${2:options%keyvals}]{${1:label}}[${3:insert}]"
       }
     },
     {
@@ -227,7 +227,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "Acsp{${1:label}}"
       }
     },
     {
@@ -236,7 +236,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "Acsp[${2:options%keyvals}]{${1:label}}"
       }
     },
     {
@@ -245,7 +245,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "Acsp{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -254,7 +254,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "Acsp[${2:options%keyvals}]{${1:label}}[${3:insert}]"
       }
     },
     {
@@ -262,7 +262,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "acl{${1:label}}"
       }
     },
     {
@@ -270,7 +270,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "acl[${2:options%keyvals}]{${1:label}}"
       }
     },
     {
@@ -279,7 +279,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "acl{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -288,7 +288,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "acl[${2:options%keyvals}]{${1:label}}[${3:insert}]"
       }
     },
     {
@@ -296,7 +296,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "Acl{${1:label}}"
       }
     },
     {
@@ -304,7 +304,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "Acl[${2:options%keyvals}]{${1:label}}"
       }
     },
     {
@@ -313,7 +313,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "Acl{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -322,7 +322,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "Acl[${2:options%keyvals}]{${1:label}}[${3:insert}]"
       }
     },
     {
@@ -331,7 +331,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "aclp{${1:label}}"
       }
     },
     {
@@ -340,7 +340,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "aclp[${2:options%keyvals}]{${1:label}}"
       }
     },
     {
@@ -349,7 +349,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "aclp{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -358,7 +358,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "aclp[${2:options%keyvals}]{${1:label}}[${3:insert}]"
       }
     },
     {
@@ -367,7 +367,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "Aclp{${1:label}}"
       }
     },
     {
@@ -376,7 +376,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "Aclp[${2:options%keyvals}]{${1:label}}"
       }
     },
     {
@@ -385,7 +385,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "Aclp{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -394,7 +394,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "Aclp[${2:options%keyvals}]{${1:label}}[${3:insert}]"
       }
     },
     {
@@ -402,7 +402,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "acf{${1:label}}"
       }
     },
     {
@@ -410,7 +410,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "acf[${2:options%keyvals}]{${1:label}}"
       }
     },
     {
@@ -419,7 +419,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "acf{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -428,7 +428,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "acf[${2:options%keyvals}]{${1:label}}[${3:insert}]"
       }
     },
     {
@@ -436,7 +436,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "Acf{${1:label}}"
       }
     },
     {
@@ -444,7 +444,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "Acf[${2:options%keyvals}]{${1:label}}"
       }
     },
     {
@@ -453,7 +453,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "Acf{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -462,7 +462,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "Acf[${2:options%keyvals}]{${1:label}}[${3:insert}]"
       }
     },
     {
@@ -471,7 +471,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "acfp{${1:label}}"
       }
     },
     {
@@ -480,7 +480,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "acfp[${2:options%keyvals}]{${1:label}}"
       }
     },
     {
@@ -489,7 +489,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "acfp{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -498,7 +498,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "acfp[${2:options%keyvals}]{${1:label}}[${3:insert}]"
       }
     },
     {
@@ -507,7 +507,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "Acfp{${1:label}}"
       }
     },
     {
@@ -516,7 +516,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "Acfp[${2:options%keyvals}]{${1:label}}"
       }
     },
     {
@@ -525,7 +525,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "Acfp{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -534,7 +534,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "Acfp[${2:options%keyvals}]{${1:label}}[${3:insert}]"
       }
     },
     {
@@ -542,7 +542,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "ac{${1:label}}"
       }
     },
     {
@@ -550,7 +550,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "ac[${2:options%keyvals}]{${1:label}}"
       }
     },
     {
@@ -559,7 +559,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "ac{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -568,7 +568,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "ac[${2:options%keyvals}]{${1:label}}[${3:insert}]"
       }
     },
     {
@@ -576,7 +576,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "Ac{${1:label}}"
       }
     },
     {
@@ -584,7 +584,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "Ac[${2:options%keyvals}]{${1:label}}"
       }
     },
     {
@@ -593,7 +593,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "Ac{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -602,7 +602,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "Ac[${2:options%keyvals}]{${1:label}}[${3:insert}]"
       }
     },
     {
@@ -610,7 +610,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "acp{${1:label}}"
       }
     },
     {
@@ -618,7 +618,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "acp[${2:options%keyvals}]{${1:label}}"
       }
     },
     {
@@ -627,7 +627,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "acp{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -636,7 +636,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "acp[${2:options%keyvals}]{${1:label}}[${3:insert}]"
       }
     },
     {
@@ -644,7 +644,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "Acp{${1:label}}"
       }
     },
     {
@@ -652,7 +652,7 @@
       "if": "shortcuts",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "Acp[${2:options%keyvals}]{${1:label}}"
       }
     },
     {
@@ -661,7 +661,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "Acp{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -670,7 +670,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "Acp[${2:options%keyvals}]{${1:label}}[${3:insert}]"
       }
     },
     {
@@ -678,7 +678,7 @@
       "if": "xindy",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:style-name}}"
+        "snippet": "GlsAddXdyStyle{${1:style-name}}"
       }
     },
     {
@@ -686,7 +686,7 @@
       "if": "xindy",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:style name list}}"
+        "snippet": "GlsSetXdyStyles{${1:style name list}}"
       }
     },
     {
@@ -694,7 +694,7 @@
       "if": "xindy",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:language}}"
+        "snippet": "GlsSetXdyLanguage{${1:language}}"
       }
     },
     {
@@ -702,7 +702,7 @@
       "if": "xindy",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:glossary-type}]{${1:language}}"
+        "snippet": "GlsSetXdyLanguage[${2:glossary-type}]{${1:language}}"
       }
     },
     {
@@ -710,7 +710,7 @@
       "if": "xindy",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:codepage}}"
+        "snippet": "GlsSetXdyCodePage{${1:codepage}}"
       }
     },
     {
@@ -718,7 +718,7 @@
       "if": "xindy",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter list}}"
+        "snippet": "GlsAddXdyCounters{${1:counter list}}"
       }
     },
     {
@@ -726,7 +726,7 @@
       "if": "xindy",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "GlsAddXdyAttribute{${1:name}}"
       }
     },
     {
@@ -734,7 +734,7 @@
       "if": "xindy",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:definition}}"
+        "snippet": "GlsAddXdyLocation{${1:name}}{${2:definition}}"
       }
     },
     {
@@ -742,7 +742,7 @@
       "if": "xindy",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:H-prefix}]{${1:name}}{${2:definition}}"
+        "snippet": "GlsAddXdyLocation[${3:H-prefix}]{${1:name}}{${2:definition}}"
       }
     },
     {
@@ -750,7 +750,7 @@
       "if": "xindy",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:location names}}"
+        "snippet": "GlsSetXdyLocationClassOrder{${1:location names}}"
       }
     },
     {
@@ -758,7 +758,7 @@
       "if": "xindy",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:integer}}"
+        "snippet": "GlsSetXdyMinRangeLength{${1:integer}}"
       }
     },
     {
@@ -766,7 +766,7 @@
       "if": "xindy",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:letter}}"
+        "snippet": "GlsSetXdyFirstLetterAfterDigits{${1:letter}}"
       }
     },
     {
@@ -774,7 +774,7 @@
       "if": "xindy",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:relative location}}"
+        "snippet": "GlsSetXdyNumberGroupOrder{${1:relative location}}"
       }
     },
     {
@@ -783,7 +783,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:xindy code}}"
+        "snippet": "GlsAddLetterGroup{${1:name}}{${2:xindy code}}"
       }
     },
     {
@@ -792,7 +792,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "GlsAddSortRule{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -801,7 +801,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:definition}}"
+        "snippet": "GlsAddXdyAlphabet{${1:name}}{${2:definition}}"
       }
     },
     {
@@ -812,14 +812,14 @@
       "name": "pgls",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "pgls{${1:label}}"
       }
     },
     {
       "name": "pgls",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "snippet": "pgls[${2:options%keyvals}]{${1:label}}",
         "keys": [
           "\\pgls#c,\\Pgls#c,\\PGLS#c,\\pglspl#c,\\Pglspl#c,\\PGLSpl#c"
         ],
@@ -831,7 +831,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "pgls{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -839,7 +839,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "snippet": "pgls[${2:options%keyvals}]{${1:label}}[${3:insert}]",
         "keys": [
           "\\pgls#c,\\Pgls#c,\\PGLS#c,\\pglspl#c,\\Pglspl#c,\\PGLSpl#c"
         ],
@@ -850,14 +850,14 @@
       "name": "Pgls",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "Pgls{${1:label}}"
       }
     },
     {
       "name": "Pgls",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "snippet": "Pgls[${2:options%keyvals}]{${1:label}}",
         "keys": [
           "\\pgls#c,\\Pgls#c,\\PGLS#c,\\pglspl#c,\\Pglspl#c,\\PGLSpl#c"
         ],
@@ -869,7 +869,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "Pgls{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -877,7 +877,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "snippet": "Pgls[${2:options%keyvals}]{${1:label}}[${3:insert}]",
         "keys": [
           "\\pgls#c,\\Pgls#c,\\PGLS#c,\\pglspl#c,\\Pglspl#c,\\PGLSpl#c"
         ],
@@ -888,14 +888,14 @@
       "name": "PGLS",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "PGLS{${1:label}}"
       }
     },
     {
       "name": "PGLS",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "snippet": "PGLS[${2:options%keyvals}]{${1:label}}",
         "keys": [
           "\\pgls#c,\\Pgls#c,\\PGLS#c,\\pglspl#c,\\Pglspl#c,\\PGLSpl#c"
         ],
@@ -907,7 +907,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "PGLS{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -915,7 +915,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "snippet": "PGLS[${2:options%keyvals}]{${1:label}}[${3:insert}]",
         "keys": [
           "\\pgls#c,\\Pgls#c,\\PGLS#c,\\pglspl#c,\\Pglspl#c,\\PGLSpl#c"
         ],
@@ -926,14 +926,14 @@
       "name": "pglspl",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "pglspl{${1:label}}"
       }
     },
     {
       "name": "pglspl",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "snippet": "pglspl[${2:options%keyvals}]{${1:label}}",
         "keys": [
           "\\pgls#c,\\Pgls#c,\\PGLS#c,\\pglspl#c,\\Pglspl#c,\\PGLSpl#c"
         ],
@@ -945,7 +945,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "pglspl{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -953,7 +953,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "snippet": "pglspl[${2:options%keyvals}]{${1:label}}[${3:insert}]",
         "keys": [
           "\\pgls#c,\\Pgls#c,\\PGLS#c,\\pglspl#c,\\Pglspl#c,\\PGLSpl#c"
         ],
@@ -964,14 +964,14 @@
       "name": "Pglspl",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "Pglspl{${1:label}}"
       }
     },
     {
       "name": "Pglspl",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "snippet": "Pglspl[${2:options%keyvals}]{${1:label}}",
         "keys": [
           "\\pgls#c,\\Pgls#c,\\PGLS#c,\\pglspl#c,\\Pglspl#c,\\PGLSpl#c"
         ],
@@ -983,7 +983,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "Pglspl{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -991,7 +991,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "snippet": "Pglspl[${2:options%keyvals}]{${1:label}}[${3:insert}]",
         "keys": [
           "\\pgls#c,\\Pgls#c,\\PGLS#c,\\pglspl#c,\\Pglspl#c,\\PGLSpl#c"
         ],
@@ -1002,14 +1002,14 @@
       "name": "PGLSpl",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "PGLSpl{${1:label}}"
       }
     },
     {
       "name": "PGLSpl",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "snippet": "PGLSpl[${2:options%keyvals}]{${1:label}}",
         "keys": [
           "\\pgls#c,\\Pgls#c,\\PGLS#c,\\pglspl#c,\\Pglspl#c,\\PGLSpl#c"
         ],
@@ -1021,7 +1021,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:label}}[${2:insert}]"
+        "snippet": "PGLSpl{${1:label}}[${2:insert}]"
       }
     },
     {
@@ -1029,7 +1029,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "snippet": "PGLSpl[${2:options%keyvals}]{${1:label}}[${3:insert}]",
         "keys": [
           "\\pgls#c,\\Pgls#c,\\PGLS#c,\\pglspl#c,\\Pglspl#c,\\PGLSpl#c"
         ],
@@ -1041,7 +1041,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:label}}{${2:true}}{${3:false}}"
+        "snippet": "ifglshasprefix{${1:label}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -1049,7 +1049,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:label}}{${2:true}}{${3:false}}"
+        "snippet": "ifglshasprefixplural{${1:label}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -1057,7 +1057,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:label}}{${2:true}}{${3:false}}"
+        "snippet": "ifglshasprefixfirst{${1:label}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -1065,7 +1065,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:label}}{${2:true}}{${3:false}}"
+        "snippet": "ifglshasprefixfirstplural{${1:label}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -1073,7 +1073,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "glsentryprefix{${1:label}}"
       }
     },
     {
@@ -1081,7 +1081,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "glsentryprefixfirst{${1:label}}"
       }
     },
     {
@@ -1089,7 +1089,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "glsentryprefixplural{${1:label}}"
       }
     },
     {
@@ -1097,7 +1097,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "glsentryprefixfirstplural{${1:label}}"
       }
     },
     {
@@ -1105,7 +1105,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "Glsentryprefix{${1:label}}"
       }
     },
     {
@@ -1113,7 +1113,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "Glsentryprefixfirst{${1:label}}"
       }
     },
     {
@@ -1121,7 +1121,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "Glsentryprefixplural{${1:label}}"
       }
     },
     {
@@ -1129,7 +1129,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "Glsentryprefixfirstplural{${1:label}}"
       }
     }
   ],

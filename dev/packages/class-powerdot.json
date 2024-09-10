@@ -119,7 +119,7 @@
       "name": "pdsetup",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "pdsetup{${1:options%keyvals}}",
         "keys": [
           "\\pdsetup",
           "\\pdsetup,\\maketitle,\\begin{titleslide},\\begin{basic},\\begin{wideslide},\\begin{slide},\\begin{sectionslide},\\begin{sectionwideslide},\\section"
@@ -131,7 +131,7 @@
       "name": "maketitle",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "maketitle[${1:options%keyvals}]"
       }
     },
     {
@@ -141,7 +141,7 @@
       "name": "pause",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:number}]"
+        "snippet": "pause[${1:number}]"
       }
     },
     {
@@ -151,28 +151,28 @@
       "name": "item",
       "arg": {
         "format": "[]<>",
-        "snippet": "[${1:label}]<${2:overlays}>"
+        "snippet": "item[${1:label}]<${2:overlays}>"
       }
     },
     {
       "name": "onslide",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:overlays}}{${2:text}}"
+        "snippet": "onslide{${1:overlays}}{${2:text}}"
       }
     },
     {
       "name": "onslide*",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:overlays}}{${2:text}}"
+        "snippet": "onslide*{${1:overlays}}{${2:text}}"
       }
     },
     {
       "name": "tableofcontents",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]",
+        "snippet": "tableofcontents[${1:options%keyvals}]",
         "keys": [
           "\\tableofcontents"
         ],
@@ -197,14 +197,14 @@
       "name": "twocolumn",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:left%text}}{${2:right%text}}"
+        "snippet": "twocolumn{${1:left%text}}{${2:right%text}}"
       }
     },
     {
       "name": "twocolumn",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:left%text}}{${2:right%text}}",
+        "snippet": "twocolumn[${3:options%keyvals}]{${1:left%text}}{${2:right%text}}",
         "keys": [
           "\\twocolumn"
         ],
@@ -216,7 +216,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:envname}}{${2:options}}{${3:commands}}"
+        "snippet": "pddefinetemplate{${1:envname}}{${2:options}}{${3:commands}}"
       }
     },
     {
@@ -224,7 +224,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:basis}]{${1:envname}}{${2:options}}{${3:commands}}"
+        "snippet": "pddefinetemplate[${4:basis}]{${1:envname}}{${2:options}}{${3:commands}}"
       }
     },
     {
@@ -232,7 +232,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:desired}}{${2:true}}{${3:false}}"
+        "snippet": "pdifsetup{${1:desired}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -240,7 +240,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+        "snippet": "pdbookmark{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
       }
     },
     {
@@ -248,7 +248,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+        "snippet": "pdcontentsline{${1:arg1}}{${2:arg2}}{${3:arg3}}"
       }
     }
   ],

@@ -43,7 +43,7 @@
       "name": "CheckListSet",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "CheckListSet{${1:options%keyvals}}",
         "keys": [
           "\\begin{CheckList},\\CheckListSet"
         ],
@@ -54,14 +54,14 @@
       "name": "Goal",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:status}}{${2:description%text}}"
+        "snippet": "Goal{${1:status}}{${2:description%text}}"
       }
     },
     {
       "name": "Goal",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:status}}{${2:description%text}}",
+        "snippet": "Goal[${3:options%keyvals}]{${1:status}}{${2:description%text}}",
         "keys": [
           "\\Goal,\\Task,\\Artifact,\\Milestone"
         ],
@@ -72,14 +72,14 @@
       "name": "Task",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:status}}{${2:description%text}}"
+        "snippet": "Task{${1:status}}{${2:description%text}}"
       }
     },
     {
       "name": "Task",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:status}}{${2:description%text}}",
+        "snippet": "Task[${3:options%keyvals}]{${1:status}}{${2:description%text}}",
         "keys": [
           "\\Goal,\\Task,\\Artifact,\\Milestone"
         ],
@@ -90,14 +90,14 @@
       "name": "Artifact",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:status}}{${2:description%text}}"
+        "snippet": "Artifact{${1:status}}{${2:description%text}}"
       }
     },
     {
       "name": "Artifact",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:status}}{${2:description%text}}",
+        "snippet": "Artifact[${3:options%keyvals}]{${1:status}}{${2:description%text}}",
         "keys": [
           "\\Goal,\\Task,\\Artifact,\\Milestone"
         ],
@@ -108,14 +108,14 @@
       "name": "Milestone",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:status}}{${2:description%text}}"
+        "snippet": "Milestone{${1:status}}{${2:description%text}}"
       }
     },
     {
       "name": "Milestone",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:status}}{${2:description%text}}",
+        "snippet": "Milestone[${3:options%keyvals}]{${1:status}}{${2:description%text}}",
         "keys": [
           "\\Goal,\\Task,\\Artifact,\\Milestone"
         ],
@@ -127,7 +127,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:type}}{${2:symbol}}"
+        "snippet": "CheckListAddType{${1:type}}{${2:symbol}}"
       }
     },
     {
@@ -135,7 +135,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:types}}{${2:status}}{${3:is-closed}}{${4:symbol}}"
+        "snippet": "CheckListAddStatus{${1:types}}{${2:status}}{${3:is-closed}}{${4:symbol}}"
       }
     },
     {
@@ -143,7 +143,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:name}}{${2:fields}}{${3:begindef}}{${4:enddef}}"
+        "snippet": "CheckListDeclareLayout{${1:name}}{${2:fields}}{${3:begindef}}{${4:enddef}}"
       }
     },
     {
@@ -151,7 +151,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:layout}}{${2:field}}{${3:code}}"
+        "snippet": "CheckListDefineFieldFormat{${1:layout}}{${2:field}}{${3:code}}"
       }
     },
     {
@@ -159,7 +159,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:base}}{${3:fields}}"
+        "snippet": "CheckListExtendLayout{${1:name}}{${2:base}}{${3:fields}}"
       }
     },
     {
@@ -167,7 +167,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:status}}"
+        "snippet": "CheckListStatusSymbol{${1:status}}"
       }
     },
     {
@@ -175,7 +175,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "CheckListSigned{${1:text}}"
       }
     },
     {
@@ -183,7 +183,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:core}]{${1:text}}"
+        "snippet": "CheckListSigned[${2:core}]{${1:text}}"
       }
     },
     {
@@ -191,7 +191,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "CheckListDefaultLabel{${1:label}}"
       }
     },
     {
@@ -199,7 +199,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:status}}{${2:deadline}}"
+        "snippet": "CheckListDisplayDeadline{${1:status}}{${2:deadline}}"
       }
     },
     {
@@ -207,7 +207,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:is-closed}}{${2:is-passed}}{${3:deadline}}"
+        "snippet": "CheckListHighlightDeadline{${1:is-closed}}{${2:is-passed}}{${3:deadline}}"
       }
     },
     {
@@ -215,7 +215,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name%specialDef}}{${2:default}}"
+        "snippet": "CheckListAddEntryOption{${1:name%specialDef}}{${2:default}}"
       }
     },
     {
@@ -225,35 +225,35 @@
       "name": "CheckListFilterClosed",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:types}]"
+        "snippet": "CheckListFilterClosed[${1:types}]"
       }
     },
     {
       "name": "CheckListFilterValue",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:field}}{${2:value}}"
+        "snippet": "CheckListFilterValue{${1:field}}{${2:value}}"
       }
     },
     {
       "name": "CheckListFilterValue",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:types}]{${1:field}}{${2:value}}"
+        "snippet": "CheckListFilterValue[${3:types}]{${1:field}}{${2:value}}"
       }
     },
     {
       "name": "CheckListFilterDeadline",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:comp}}{${2:date}}{${3:filter-inv}}"
+        "snippet": "CheckListFilterDeadline{${1:comp}}{${2:date}}{${3:filter-inv}}"
       }
     },
     {
       "name": "CheckListFilterDeadline",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:types}]{${1:comp}}{${2:date}}{${3:filter-inv}}"
+        "snippet": "CheckListFilterDeadline[${4:types}]{${1:comp}}{${2:date}}{${3:filter-inv}}"
       }
     },
     {
@@ -263,7 +263,7 @@
       "name": "CheckListFilterReset",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:types}]"
+        "snippet": "CheckListFilterReset[${1:types}]"
       }
     },
     {
@@ -271,7 +271,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:fields}}{${2:filter code}}"
+        "snippet": "CheckListSetFilter{${1:fields}}{${2:filter code}}"
       }
     },
     {
@@ -279,7 +279,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:types}]{${1:fields}}{${2:filter code}}"
+        "snippet": "CheckListSetFilter[${3:types}]{${1:fields}}{${2:filter code}}"
       }
     },
     {
@@ -287,7 +287,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}{}{}",
-        "snippet": "{${1:date}}{${2:comp}}{${3:refdate}}{${4:true}}{${5:false}}{${6:fail}}"
+        "snippet": "CheckListDateCompare{${1:date}}{${2:comp}}{${3:refdate}}{${4:true}}{${5:false}}{${6:fail}}"
       }
     },
     {
@@ -295,7 +295,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:layout}}"
+        "snippet": "CheckListDefaultLayout{${1:layout}}"
       }
     },
     {
@@ -303,7 +303,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:status}}{${2:true}}{${3:false}}"
+        "snippet": "CheckListIfClosed{${1:status}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -311,7 +311,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:date}}{${2:cmd}}{${3:fail}}"
+        "snippet": "CheckListParseDate{${1:date}}{${2:cmd}}{${3:fail}}"
       }
     }
   ],

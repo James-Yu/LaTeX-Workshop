@@ -5,28 +5,28 @@
       "name": "shadowbox",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "shadowbox{${1:text}}"
       }
     },
     {
       "name": "doublebox",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "doublebox{${1:text}}"
       }
     },
     {
       "name": "ovalbox",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "ovalbox{${1:text}}"
       }
     },
     {
       "name": "Ovalbox",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "Ovalbox{${1:text}}"
       }
     },
     {
@@ -46,7 +46,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:number}}"
+        "snippet": "cornersize{${1:number}}"
       }
     },
     {
@@ -54,21 +54,21 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:dimen%l}}"
+        "snippet": "cornersize*{${1:dimen%l}}"
       }
     },
     {
       "name": "fancyoval",
       "arg": {
         "format": "()",
-        "snippet": "(${1:width},${2:height})"
+        "snippet": "fancyoval(${1:width},${2:height})"
       }
     },
     {
       "name": "fancyoval",
       "arg": {
         "format": "()[]",
-        "snippet": "(${2:width},${3:height})[${1:portion%keyvals}]",
+        "snippet": "fancyoval(${2:width},${3:height})[${1:portion%keyvals}]",
         "keys": [
           "\\fancyoval"
         ],
@@ -84,7 +84,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "GenericCaption{${1:text}}"
       }
     },
     {
@@ -92,7 +92,7 @@
       "unusual": true,
       "arg": {
         "format": "()",
-        "snippet": "(${1:vspace%l})"
+        "snippet": "item(${1:vspace%l})"
       }
     },
     {
@@ -100,63 +100,63 @@
       "unusual": true,
       "arg": {
         "format": "()[]",
-        "snippet": "(${2:vspace%l})[${1:label%plain}]"
+        "snippet": "item(${2:vspace%l})[${1:label%plain}]"
       }
     },
     {
       "name": "boxput",
       "arg": {
         "format": "(){}{}",
-        "snippet": "(${3:x},${4:y}){${1:contents1}}{${2:contents2}}"
+        "snippet": "boxput(${3:x},${4:y}){${1:contents1}}{${2:contents2}}"
       }
     },
     {
       "name": "boxput*",
       "arg": {
         "format": "(){}{}",
-        "snippet": "(${3:x},${4:y}){${1:contents1}}{${2:contents2}}"
+        "snippet": "boxput*(${3:x},${4:y}){${1:contents1}}{${2:contents2}}"
       }
     },
     {
       "name": "fancyput",
       "arg": {
         "format": "(){}",
-        "snippet": "(${2:x},${3:y}){${1:contents}}"
+        "snippet": "fancyput(${2:x},${3:y}){${1:contents}}"
       }
     },
     {
       "name": "fancyput*",
       "arg": {
         "format": "(){}",
-        "snippet": "(${2:x},${3:y}){${1:contents}}"
+        "snippet": "fancyput*(${2:x},${3:y}){${1:contents}}"
       }
     },
     {
       "name": "thisfancyput*",
       "arg": {
         "format": "(){}",
-        "snippet": "(${2:x},${3:y}){${1:contents}}"
+        "snippet": "thisfancyput*(${2:x},${3:y}){${1:contents}}"
       }
     },
     {
       "name": "thisfancyput*",
       "arg": {
         "format": "(){}",
-        "snippet": "(${2:x},${3:y}){${1:contents}}"
+        "snippet": "thisfancyput*(${2:x},${3:y}){${1:contents}}"
       }
     },
     {
       "name": "fancypage",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:cmds1}}{${2:cmds2}}"
+        "snippet": "fancypage{${1:cmds1}}{${2:cmds2}}"
       }
     },
     {
       "name": "thisfancypage",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:cmds1}}{${2:cmds2}}"
+        "snippet": "thisfancypage{${1:cmds1}}{${2:cmds2}}"
       }
     },
     {
@@ -164,7 +164,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:cmd}}"
+        "snippet": "LandScape{${1:cmd}}"
       }
     },
     {
@@ -172,7 +172,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:paperwidth%l}}{${2:paperheight%l}}{${3:cmd}}"
+        "snippet": "Landscape{${1:paperwidth%l}}{${2:paperheight%l}}{${3:cmd}}"
       }
     },
     {
@@ -180,7 +180,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:paperwidth%l}}{${2:paperheight%l}}{${3:cmd}}"
+        "snippet": "Landscape*{${1:paperwidth%l}}{${2:paperheight%l}}{${3:cmd}}"
       }
     },
     {
@@ -192,7 +192,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:cmd}}{${2:contents}}"
+        "snippet": "VerbBox{${1:cmd}}{${2:contents}}"
       }
     },
     {
@@ -216,7 +216,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "VerbatimInput{${1:file}}"
       }
     },
     {
@@ -224,7 +224,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "LVerbatimInput{${1:file}}"
       }
     },
     {
@@ -232,7 +232,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "BVerbatimInput{${1:file}}"
       }
     },
     {
@@ -240,7 +240,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:alignment%keyvals}]{${1:file}}"
+        "snippet": "BVerbatimInput[${2:alignment%keyvals}]{${1:file}}"
       }
     },
     {
@@ -248,7 +248,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:cmd}}"
+        "snippet": "UseVerbatim{${1:cmd}}"
       }
     },
     {
@@ -256,7 +256,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:cmd}}"
+        "snippet": "LUseVerbatim{${1:cmd}}"
       }
     },
     {
@@ -264,7 +264,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:cmd}}"
+        "snippet": "BUseVerbatim{${1:cmd}}"
       }
     },
     {
@@ -272,14 +272,14 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:alignment%keyvals}]{${1:cmd}}"
+        "snippet": "BUseVerbatim[${2:alignment%keyvals}]{${1:cmd}}"
       }
     },
     {
       "name": "Verb",
       "arg": {
         "format": "||",
-        "snippet": "|${1:code}|"
+        "snippet": "Verb|${1:code}|"
       }
     },
     {
@@ -287,7 +287,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:cmd}}"
+        "snippet": "UseVerb{${1:cmd}}"
       }
     },
     {
@@ -295,7 +295,7 @@
       "unusual": true,
       "arg": {
         "format": "{}||",
-        "snippet": "{${1:cmd}}|${2:code}|"
+        "snippet": "SaveVerb{${1:cmd}}|${2:code}|"
       }
     },
     {
@@ -303,7 +303,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}||",
-        "snippet": "[${2:default}]{${1:cmd}}|${3:code}|"
+        "snippet": "SaveVerb[${2:default}]{${1:cmd}}|${3:code}|"
       }
     },
     {

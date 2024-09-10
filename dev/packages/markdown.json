@@ -67,14 +67,14 @@
       "name": "markinline",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:markdown text}}"
+        "snippet": "markinline{${1:markdown text}}"
       }
     },
     {
       "name": "markinline",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:markdown text}}",
+        "snippet": "markinline[${2:options%keyvals}]{${1:markdown text}}",
         "keys": [
           "\\usepackage/markdown#c,\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c",
           "\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c"
@@ -86,14 +86,14 @@
       "name": "markdownInput",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "markdownInput{${1:file}}"
       }
     },
     {
       "name": "markdownInput",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "snippet": "markdownInput[${2:options%keyvals}]{${1:file}}",
         "keys": [
           "\\usepackage/markdown#c,\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c",
           "\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c"
@@ -105,7 +105,7 @@
       "name": "markdownSetup",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "markdownSetup{${1:options%keyvals}}",
         "keys": [
           "\\usepackage/markdown#c,\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c",
           "\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c"
@@ -117,7 +117,7 @@
       "name": "markdownSetupSnippet",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name%specialDef}}{${2:options%keyvals}}",
+        "snippet": "markdownSetupSnippet{${1:name%specialDef}}{${2:options%keyvals}}",
         "keys": [
           "\\usepackage/markdown#c,\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c",
           "\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c"
@@ -130,7 +130,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:true}}{${3:false}}"
+        "snippet": "markdownIfSnippetExists{${1:name}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -170,7 +170,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "markdownEscape{${1:file}}"
       }
     },
     {
@@ -178,7 +178,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "markdownExecute{${1:code}}"
       }
     },
     {
@@ -186,7 +186,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "markdownExecuteDirect{${1:code}}"
       }
     },
     {
@@ -198,7 +198,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:option}}{${2:true}}{${3:false}}"
+        "snippet": "markdownIfOption{${1:option}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -206,7 +206,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "markdownLuaExecute{${1:code}}"
       }
     },
     {
@@ -382,7 +382,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+        "snippet": "markdownReadAndConvertProcessLine{${1:arg1}}{${2:arg2}}{${3:arg3}}"
       }
     },
     {
@@ -390,7 +390,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownReadAndConvertStripPercentSign{${1:arg1}}"
       }
     },
     {
@@ -490,7 +490,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownRendererCitePrototype{${1:arg1}}"
       }
     },
     {
@@ -518,7 +518,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownRendererCodeSpanPrototype{${1:arg1}}"
       }
     },
     {
@@ -534,7 +534,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+        "snippet": "markdownRendererContentBlockCodePrototype{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
       }
     },
     {
@@ -550,7 +550,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+        "snippet": "markdownRendererContentBlockOnlineImagePrototype{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
       }
     },
     {
@@ -558,7 +558,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+        "snippet": "markdownRendererContentBlockPrototype{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
       }
     },
     {
@@ -634,7 +634,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownRendererDlItemPrototype{${1:arg1}}"
       }
     },
     {
@@ -670,7 +670,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownRendererEmphasisPrototype{${1:arg1}}"
       }
     },
     {
@@ -802,7 +802,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownRendererHeadingFivePrototype{${1:arg1}}"
       }
     },
     {
@@ -814,7 +814,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownRendererHeadingFourPrototype{${1:arg1}}"
       }
     },
     {
@@ -826,7 +826,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownRendererHeadingOnePrototype{${1:arg1}}"
       }
     },
     {
@@ -838,7 +838,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownRendererHeadingSixPrototype{${1:arg1}}"
       }
     },
     {
@@ -850,7 +850,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownRendererHeadingThreePrototype{${1:arg1}}"
       }
     },
     {
@@ -862,7 +862,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownRendererHeadingTwoPrototype{${1:arg1}}"
       }
     },
     {
@@ -890,7 +890,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+        "snippet": "markdownRendererImagePrototype{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
       }
     },
     {
@@ -902,7 +902,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownRendererInlineHtmlCommentPrototype{${1:arg1}}"
       }
     },
     {
@@ -930,7 +930,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "markdownRendererInputFencedCodePrototype{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -938,7 +938,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:file}}{${2:attribute}}"
+        "snippet": "markdownRendererInputRawBlock{${1:file}}{${2:attribute}}"
       }
     },
     {
@@ -946,7 +946,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:file}}{${2:attribute}}"
+        "snippet": "markdownRendererInputRawInlinePrototype{${1:file}}{${2:attribute}}"
       }
     },
     {
@@ -954,7 +954,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:file}}{${2:attribute}}"
+        "snippet": "markdownRendererInputRawInline{${1:file}}{${2:attribute}}"
       }
     },
     {
@@ -962,7 +962,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:file}}{${2:attribute}}"
+        "snippet": "markdownRendererInputRawBlockPrototype{${1:file}}{${2:attribute}}"
       }
     },
     {
@@ -974,7 +974,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownRendererInputVerbatimPrototype{${1:arg1}}"
       }
     },
     {
@@ -1002,7 +1002,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "markdownRendererJekyllDataBooleanPrototype{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -1014,7 +1014,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownRendererJekyllDataEmptyPrototype{${1:arg1}}"
       }
     },
     {
@@ -1030,7 +1030,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:key%plain}}{${2:number}}"
+        "snippet": "markdownRendererJekyllDataMappingBegin{${1:key%plain}}{${2:number}}"
       }
     },
     {
@@ -1038,7 +1038,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:key%plain}}{${2:number}}"
+        "snippet": "markdownRendererJekyllDataMappingBeginPrototype{${1:key%plain}}{${2:number}}"
       }
     },
     {
@@ -1058,7 +1058,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "markdownRendererJekyllDataNumberPrototype{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -1070,7 +1070,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "markdownRendererJekyllDataSequenceBeginPrototype{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -1090,7 +1090,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "markdownRendererJekyllDataStringPrototype{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -1150,7 +1150,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+        "snippet": "markdownRendererLinkPrototype{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
       }
     },
     {
@@ -1166,7 +1166,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "markdownRendererNote{${1:text}}"
       }
     },
     {
@@ -1174,7 +1174,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "markdownRendererNotePrototype{${1:text}}"
       }
     },
     {
@@ -1234,7 +1234,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownRendererOlItemWithNumberPrototype{${1:arg1}}"
       }
     },
     {
@@ -1302,7 +1302,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownRendererStrongEmphasisPrototype{${1:arg1}}"
       }
     },
     {
@@ -1330,7 +1330,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+        "snippet": "markdownRendererTablePrototype{${1:arg1}}{${2:arg2}}{${3:arg3}}"
       }
     },
     {
@@ -1342,7 +1342,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg1}}"
+        "snippet": "markdownRendererTextCitePrototype{${1:arg1}}"
       }
     },
     {
@@ -1438,7 +1438,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:markdown text}}"
+        "snippet": "markinlinePlainTeX{${1:markdown text}}"
       }
     }
   ],

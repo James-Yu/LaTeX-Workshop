@@ -30,7 +30,7 @@
       "name": "ctikzset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "ctikzset{${1:options%keyvals}}"
       }
     },
     {
@@ -38,14 +38,14 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:option}}"
+        "snippet": "ctikzvalof{${1:option}}"
       }
     },
     {
       "name": "ctikzsetvalof",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:option}}{${2:value}}"
+        "snippet": "ctikzsetvalof{${1:option}}{${2:value}}"
       }
     },
     {
@@ -57,7 +57,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:option}}"
+        "snippet": "unexpandedvalueof{${1:option}}"
       }
     },
     {
@@ -65,7 +65,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}{}{}",
-        "snippet": "{${1:anchors}}{${2:lower ysize}}{${3:shape}}{${4:upper ysize}}{${5:width}}{${6:code}}"
+        "snippet": "pgfcircdeclarebipole{${1:anchors}}{${2:lower ysize}}{${3:shape}}{${4:upper ysize}}{${5:width}}{${6:code}}"
       }
     },
     {
@@ -73,7 +73,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}{}{}{}",
-        "snippet": "{${1:scale}}{${2:anchors}}{${3:lower ysize}}{${4:shape}}{${5:upper ysize}}{${6:width}}{${7:code}}"
+        "snippet": "pgfcircdeclarebipolescaled{${1:scale}}{${2:anchors}}{${3:lower ysize}}{${4:shape}}{${5:upper ysize}}{${6:width}}{${7:code}}"
       }
     },
     {
@@ -88,7 +88,7 @@
       "name": "ctikzloadstyle",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:style%keyvals}}",
+        "snippet": "ctikzloadstyle{${1:style%keyvals}}",
         "keys": [
           "\\ctikzloadstyle#c,\\ctikzsetstyle#c"
         ],
@@ -99,7 +99,7 @@
       "name": "ctikzsetstyle",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:style%keyvals}}",
+        "snippet": "ctikzsetstyle{${1:style%keyvals}}",
         "keys": [
           "\\ctikzloadstyle#c,\\ctikzsetstyle#c"
         ],
@@ -110,70 +110,70 @@
       "name": "ctikzgetanchor",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:anchor}}"
+        "snippet": "ctikzgetanchor{${1:name}}{${2:anchor}}"
       }
     },
     {
       "name": "ctikzgetdirection",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "ctikzgetdirection{${1:name}}"
       }
     },
     {
       "name": "ctikzflipx",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text%plain}}"
+        "snippet": "ctikzflipx{${1:text%plain}}"
       }
     },
     {
       "name": "ctikzflipy",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text%plain}}"
+        "snippet": "ctikzflipy{${1:text%plain}}"
       }
     },
     {
       "name": "ctikzflipxy",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text%plain}}"
+        "snippet": "ctikzflipxy{${1:text%plain}}"
       }
     },
     {
       "name": "ctikztextnot",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text%plain}}"
+        "snippet": "ctikztextnot{${1:text%plain}}"
       }
     },
     {
       "name": "ctikzsubcircuitdef",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:anchor1,anchor2,...}}{${3:definition}}"
+        "snippet": "ctikzsubcircuitdef{${1:name}}{${2:anchor1,anchor2,...}}{${3:definition}}"
       }
     },
     {
       "name": "ctikzsubcircuitactivate",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "ctikzsubcircuitactivate{${1:name}}"
       }
     },
     {
       "name": "ctikztunablearrow",
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:thickness}}{${2:length}}{${3:angle}}{${4:name}}"
+        "snippet": "ctikztunablearrow{${1:thickness}}{${2:length}}{${3:angle}}{${4:name}}"
       }
     },
     {
       "name": "ctikztunablearrow",
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:options}]{${1:thickness}}{${2:length}}{${3:angle}}{${4:name}}"
+        "snippet": "ctikztunablearrow[${5:options}]{${1:thickness}}{${2:length}}{${3:angle}}{${4:name}}"
       }
     },
     {
@@ -196,7 +196,7 @@
       "name": "pgfcircdeclarethyristor",
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:name}}{${2:fill}}{${3:gate pos}}{${4:extra code}}"
+        "snippet": "pgfcircdeclarethyristor{${1:name}}{${2:fill}}{${3:gate pos}}{${4:extra code}}"
       }
     },
     {
@@ -204,7 +204,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:fill}}"
+        "snippet": "pgfcircdeclaretriac{${1:name}}{${2:fill}}"
       }
     },
     {
@@ -216,7 +216,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:bar pos}}{${3:arrow code}}"
+        "snippet": "pgfcircdeclarecutesw{${1:name}}{${2:bar pos}}{${3:arrow code}}"
       }
     },
     {
@@ -224,7 +224,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:bar pos}}{${3:arrow code}}"
+        "snippet": "pgfcircdeclarecutespdt{${1:name}}{${2:bar pos}}{${3:arrow code}}"
       }
     },
     {
@@ -236,7 +236,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:link arc height}}"
+        "snippet": "pgfcircdeclarejumper{${1:name}}{${2:link arc height}}"
       }
     },
     {
@@ -244,7 +244,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{0|1}"
+        "snippet": "pgfcircdeclaresolderjumper{${1:name}}{0|1}"
       }
     },
     {
@@ -252,7 +252,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{0|${2:1}{0}|1}"
+        "snippet": "pgfcircdeclaredoublesolderjumper{${1:name}}{0|${2:1}{0}|1}"
       }
     },
     {
@@ -260,7 +260,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:number}}{${3:code}}"
+        "snippet": "pgfcircdeclarelogicport{${1:name}}{${2:number}}{${3:code}}"
       }
     },
     {
@@ -268,7 +268,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:name}}{${2:symbol}}{${3:number}}{${4:code}}"
+        "snippet": "pgfcircdeclareeurologicport{${1:name}}{${2:symbol}}{${3:number}}{${4:code}}"
       }
     },
     {
@@ -276,7 +276,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:name}}{${2:type}}{${3:polarity}}{${4:code}}"
+        "snippet": "pgfcircdeclareieeeport{${1:name}}{${2:type}}{${3:polarity}}{${4:code}}"
       }
     },
     {
@@ -284,7 +284,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:name}}{${2:negated name}}{${3:type}}{${4:code}}"
+        "snippet": "pgfcircdeclareieeeportpair{${1:name}}{${2:negated name}}{${3:type}}{${4:code}}"
       }
     },
     {
@@ -292,7 +292,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:polarity}}{${3:code}}"
+        "snippet": "pgfcircdeclareieeebufferport{${1:name}}{${2:polarity}}{${3:code}}"
       }
     },
     {
@@ -300,7 +300,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:negated name}}{${3:code}}"
+        "snippet": "pgfcircdeclareieeebufferportpair{${1:name}}{${2:negated name}}{${3:code}}"
       }
     },
     {
@@ -308,7 +308,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{1 or 2}{${2:code}}"
+        "snippet": "pgfcircdeclareieeetgate{${1:name}}{1 or 2}{${2:code}}"
       }
     },
     {
@@ -316,7 +316,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:code1}}{${3:code2}}"
+        "snippet": "pgfcircdeclaretransistor{${1:name}}{${2:code1}}{${3:code2}}"
       }
     },
     {
@@ -324,7 +324,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:arg}}"
+        "snippet": "drawdobydiodedot{${1:name}}{${2:arg}}"
       }
     },
     {
@@ -332,7 +332,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "drawbodydiode{${1:name}}"
       }
     },
     {
@@ -340,7 +340,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "declarebpt{${1:name}}"
       }
     },
     {
@@ -348,7 +348,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "declarebjt{${1:name}}"
       }
     },
     {
@@ -356,7 +356,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "declareigbt{${1:name}}"
       }
     },
     {
@@ -364,7 +364,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "declaregfet{${1:name}}"
       }
     },
     {
@@ -372,7 +372,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "drawfetcore{${1:name}}"
       }
     },
     {
@@ -380,7 +380,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:code1}}{${3:code2}}"
+        "snippet": "pgfdeclaretransistorwrapperaddbulk{${1:name}}{${2:code1}}{${3:code2}}"
       }
     },
     {
@@ -388,7 +388,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:code1}}{${3:code2}}"
+        "snippet": "pgfcircdeclarejunctiontransistor{${1:name}}{${2:code1}}{${3:code2}}"
       }
     },
     {
@@ -396,7 +396,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:grid anchors}}{${3:grid code}}"
+        "snippet": "pgfcircdeclaretube{${1:name}}{${2:grid anchors}}{${3:grid code}}"
       }
     },
     {
@@ -404,7 +404,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name}}{${2:code1}}{${3:code2}}"
+        "snippet": "pgfcircdeclarequadpole{${1:name}}{${2:code1}}{${3:code2}}"
       }
     },
     {
@@ -416,7 +416,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:code}}"
+        "snippet": "pgfcircdeclarefourport{${1:name}}{${2:code}}"
       }
     },
     {
@@ -424,7 +424,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+        "snippet": "pgfcircdeclaredbipole{${1:arg1}}{${2:arg2}}{${3:arg3}}"
       }
     },
     {

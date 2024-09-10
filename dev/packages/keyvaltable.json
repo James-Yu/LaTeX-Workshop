@@ -24,14 +24,14 @@
       "name": "NewKeyValTable",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:table name}}{${2:colspecs}}"
+        "snippet": "NewKeyValTable{${1:table name}}{${2:colspecs}}"
       }
     },
     {
       "name": "NewKeyValTable",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:table name}}{${2:colspecs}}",
+        "snippet": "NewKeyValTable[${3:options%keyvals}]{${1:table name}}{${2:colspecs}}",
         "keys": [
           "\\NewKeyValTable,\\begin{KeyValTable},\\ShowCollectedTable,\\ShowKeyValTableFile,\\ShowKeyValTable,\\kvtSet,\\kvtNewTableStyle,\\kvtRenewTableStyle"
         ],
@@ -43,7 +43,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}[]",
-        "snippet": "{${1:table name}}{${2:colspecs}}[${3:layout}]"
+        "snippet": "NewKeyValTable{${1:table name}}{${2:colspecs}}[${3:layout}]"
       }
     },
     {
@@ -51,7 +51,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}[]",
-        "snippet": "[${3:options%keyvals}]{${1:table name}}{${2:colspecs}}[${4:layout}]",
+        "snippet": "NewKeyValTable[${3:options%keyvals}]{${1:table name}}{${2:colspecs}}[${4:layout}]",
         "keys": [
           "\\NewKeyValTable,\\begin{KeyValTable},\\ShowCollectedTable,\\ShowKeyValTableFile,\\ShowKeyValTable,\\kvtSet,\\kvtNewTableStyle,\\kvtRenewTableStyle"
         ],
@@ -62,14 +62,14 @@
       "name": "Row",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:col=text,...}}"
+        "snippet": "Row{${1:col=text,...}}"
       }
     },
     {
       "name": "Row",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:col=text,...}}",
+        "snippet": "Row[${2:options%keyvals}]{${1:col=text,...}}",
         "keys": [
           "\\Row,\\CollectRow,\\AddKeyValRow,\\kvtNewRowStyle,\\kvtRenewRowStyle"
         ],
@@ -80,21 +80,21 @@
       "name": "NewCollectedTable",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:collection name}}{${2:table name}}"
+        "snippet": "NewCollectedTable{${1:collection name}}{${2:table name}}"
       }
     },
     {
       "name": "CollectRow",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:collection name}}{${2:col=text,...}}"
+        "snippet": "CollectRow{${1:collection name}}{${2:col=text,...}}"
       }
     },
     {
       "name": "CollectRow",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:collection name}}{${2:col=text,...}}",
+        "snippet": "CollectRow[${3:options%keyvals}]{${1:collection name}}{${2:col=text,...}}",
         "keys": [
           "\\Row,\\CollectRow,\\AddKeyValRow,\\kvtNewRowStyle,\\kvtRenewRowStyle"
         ],
@@ -105,14 +105,14 @@
       "name": "ShowCollectedTable",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:collection name}}"
+        "snippet": "ShowCollectedTable{${1:collection name}}"
       }
     },
     {
       "name": "ShowCollectedTable",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:collection name}}",
+        "snippet": "ShowCollectedTable[${2:options%keyvals}]{${1:collection name}}",
         "keys": [
           "\\NewKeyValTable,\\begin{KeyValTable},\\ShowCollectedTable,\\ShowKeyValTableFile,\\ShowKeyValTable,\\kvtSet,\\kvtNewTableStyle,\\kvtRenewTableStyle"
         ],
@@ -123,14 +123,14 @@
       "name": "ShowKeyValTableFile",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:table name}}{${2:file}}"
+        "snippet": "ShowKeyValTableFile{${1:table name}}{${2:file}}"
       }
     },
     {
       "name": "ShowKeyValTableFile",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:table name}}{${2:file}}",
+        "snippet": "ShowKeyValTableFile[${3:options%keyvals}]{${1:table name}}{${2:file}}",
         "keys": [
           "\\NewKeyValTable,\\begin{KeyValTable},\\ShowCollectedTable,\\ShowKeyValTableFile,\\ShowKeyValTable,\\kvtSet,\\kvtNewTableStyle,\\kvtRenewTableStyle"
         ],
@@ -142,7 +142,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:table name}}{${2:col=text,...}}"
+        "snippet": "AddKeyValRow{${1:table name}}{${2:col=text,...}}"
       }
     },
     {
@@ -150,7 +150,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:table name}}[${3:options%keyvals}]{${2:col=text,...}}",
+        "snippet": "AddKeyValRow{${1:table name}}[${3:options%keyvals}]{${2:col=text,...}}",
         "keys": [
           "\\Row,\\CollectRow,\\AddKeyValRow,\\kvtNewRowStyle,\\kvtRenewRowStyle"
         ],
@@ -162,7 +162,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:table name}}"
+        "snippet": "ShowKeyValTable{${1:table name}}"
       }
     },
     {
@@ -170,7 +170,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:table name}}",
+        "snippet": "ShowKeyValTable[${2:options%keyvals}]{${1:table name}}",
         "keys": [
           "\\NewKeyValTable,\\begin{KeyValTable},\\ShowCollectedTable,\\ShowKeyValTableFile,\\ShowKeyValTable,\\kvtSet,\\kvtNewTableStyle,\\kvtRenewTableStyle"
         ],
@@ -190,7 +190,7 @@
       "name": "kvtLabel",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:counter}}{${2:label}}"
+        "snippet": "kvtLabel{${1:counter}}{${2:label}}"
       }
     },
     {
@@ -198,35 +198,35 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options}]{${1:counter}}{${2:label}}"
+        "snippet": "kvtLabel[${3:options}]{${1:counter}}{${2:label}}"
       }
     },
     {
       "name": "kvtDeclareTableMacros",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:macro list}}"
+        "snippet": "kvtDeclareTableMacros{${1:macro list}}"
       }
     },
     {
       "name": "kvtDeclareTableCounters",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:counter list}}"
+        "snippet": "kvtDeclareTableCounters{${1:counter list}}"
       }
     },
     {
       "name": "kvtDeclareCtrFormatters",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:macro list}}"
+        "snippet": "kvtDeclareCtrFormatters{${1:macro list}}"
       }
     },
     {
       "name": "kvtNewTableStyle",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:options%keyvals}}",
+        "snippet": "kvtNewTableStyle{${1:name}}{${2:options%keyvals}}",
         "keys": [
           "\\NewKeyValTable,\\begin{KeyValTable},\\ShowCollectedTable,\\ShowKeyValTableFile,\\ShowKeyValTable,\\kvtSet,\\kvtNewTableStyle,\\kvtRenewTableStyle"
         ],
@@ -237,7 +237,7 @@
       "name": "kvtRenewTableStyle",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:options%keyvals}}",
+        "snippet": "kvtRenewTableStyle{${1:name}}{${2:options%keyvals}}",
         "keys": [
           "\\NewKeyValTable,\\begin{KeyValTable},\\ShowCollectedTable,\\ShowKeyValTableFile,\\ShowKeyValTable,\\kvtSet,\\kvtNewTableStyle,\\kvtRenewTableStyle"
         ],
@@ -248,21 +248,21 @@
       "name": "kvtStrutted",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "kvtStrutted{${1:arg}}"
       }
     },
     {
       "name": "kvtStrutted",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:inner}]{${1:arg}}"
+        "snippet": "kvtStrutted[${2:inner}]{${1:arg}}"
       }
     },
     {
       "name": "kvtNewRowStyle",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:options%keyvals}}",
+        "snippet": "kvtNewRowStyle{${1:name}}{${2:options%keyvals}}",
         "keys": [
           "\\Row,\\CollectRow,\\AddKeyValRow,\\kvtNewRowStyle,\\kvtRenewRowStyle"
         ],
@@ -273,7 +273,7 @@
       "name": "kvtRenewRowStyle",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:options%keyvals}}",
+        "snippet": "kvtRenewRowStyle{${1:name}}{${2:options%keyvals}}",
         "keys": [
           "\\Row,\\CollectRow,\\AddKeyValRow,\\kvtNewRowStyle,\\kvtRenewRowStyle"
         ],
@@ -287,98 +287,98 @@
       "name": "MidRule",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:width}]"
+        "snippet": "MidRule[${1:width}]"
       }
     },
     {
       "name": "CMidRule",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:columns}}"
+        "snippet": "CMidRule{${1:columns}}"
       }
     },
     {
       "name": "CMidRule",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:width}]{${1:columns}}"
+        "snippet": "CMidRule[${2:width}]{${1:columns}}"
       }
     },
     {
       "name": "kvtRuleTop",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:color}}"
+        "snippet": "kvtRuleTop{${1:color}}"
       }
     },
     {
       "name": "kvtRuleTop",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:width}]{${1:color}}"
+        "snippet": "kvtRuleTop[${2:width}]{${1:color}}"
       }
     },
     {
       "name": "kvtRuleBottom",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:color}}"
+        "snippet": "kvtRuleBottom{${1:color}}"
       }
     },
     {
       "name": "kvtRuleBottom",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:width}]{${1:color}}"
+        "snippet": "kvtRuleBottom[${2:width}]{${1:color}}"
       }
     },
     {
       "name": "kvtRuleMid",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:color1}}{${2:color2}}"
+        "snippet": "kvtRuleMid{${1:color1}}{${2:color2}}"
       }
     },
     {
       "name": "kvtRuleMid",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:width}]{${1:color1}}{${2:color2}}"
+        "snippet": "kvtRuleMid[${3:width}]{${1:color1}}{${2:color2}}"
       }
     },
     {
       "name": "kvtRuleCMid",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:a-b}}{${2:color1}}{${3:color2}}"
+        "snippet": "kvtRuleCMid{${1:a-b}}{${2:color1}}{${3:color2}}"
       }
     },
     {
       "name": "kvtRuleCMid",
       "arg": {
         "format": "(){}{}{}",
-        "snippet": "(${4:trim}){${1:a-b}}{${2:color1}}{${3:color2}}"
+        "snippet": "kvtRuleCMid(${4:trim}){${1:a-b}}{${2:color1}}{${3:color2}}"
       }
     },
     {
       "name": "kvtRuleCMid",
       "arg": {
         "format": "[](){}{}{}",
-        "snippet": "[${4:width}](${5:trim}){${1:a-b}}{${2:color1}}{${3:color2}}"
+        "snippet": "kvtRuleCMid[${4:width}](${5:trim}){${1:a-b}}{${2:color1}}{${3:color2}}"
       }
     },
     {
       "name": "kvtRulesCMid",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:rlist}}{${2:color1}}{${3:color2}}"
+        "snippet": "kvtRulesCMid{${1:rlist}}{${2:color1}}{${3:color2}}"
       }
     },
     {
       "name": "kvtRulesCMid",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:width}]{${1:rlist}}{${2:color1}}{${3:color2}}"
+        "snippet": "kvtRulesCMid[${4:width}]{${1:rlist}}{${2:color1}}{${3:color2}}"
       }
     },
     {
@@ -386,14 +386,14 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:option}}"
+        "snippet": "kvtTableOpt{${1:option}}"
       }
     },
     {
       "name": "kvtSet",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "kvtSet{${1:options%keyvals}}",
         "keys": [
           "\\kvtSet",
           "\\NewKeyValTable,\\begin{KeyValTable},\\ShowCollectedTable,\\ShowKeyValTableFile,\\ShowKeyValTable,\\kvtSet,\\kvtNewTableStyle,\\kvtRenewTableStyle"
@@ -406,7 +406,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:envname}}{${2:properties}}"
+        "snippet": "metatblRegisterEnv{${1:envname}}{${2:properties}}"
       }
     },
     {
@@ -414,7 +414,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:envname}}{${2:true}}{${3:false}}"
+        "snippet": "metatblRegistered{${1:envname}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -422,7 +422,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:envname}}{${2:true}}{${3:false}}"
+        "snippet": "metatblIsLong{${1:envname}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -430,7 +430,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:envname}}{${2:true}}{${3:false}}"
+        "snippet": "metatblIsTabu{${1:envname}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -438,7 +438,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:envname}}{${2:true}}{${3:false}}"
+        "snippet": "metatblHasWidth{${1:envname}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -446,7 +446,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:envname}}{${2:true}}{${3:false}}"
+        "snippet": "metatblHasCaption{${1:envname}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -454,7 +454,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:envname}}{${2:true}}{${3:false}}"
+        "snippet": "metatblCanVAlign{${1:envname}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -462,7 +462,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:envname}}{${2:true}}{${3:false}}"
+        "snippet": "metatblCanHAlign{${1:envname}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -470,7 +470,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:envnames}}"
+        "snippet": "metatblUsePackage{${1:envnames}}"
       }
     },
     {
@@ -478,7 +478,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:envnames}}"
+        "snippet": "metatblRequire{${1:envnames}}"
       }
     },
     {
@@ -486,7 +486,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:envname}}{${2:code}}"
+        "snippet": "metatblAtEnd{${1:envname}}{${2:code}}"
       }
     }
   ],

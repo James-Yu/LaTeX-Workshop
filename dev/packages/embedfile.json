@@ -27,14 +27,14 @@
       "name": "embedfile",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "embedfile{${1:file}}"
       }
     },
     {
       "name": "embedfile",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "snippet": "embedfile[${2:options%keyvals}]{${1:file}}",
         "keys": [
           "\\embedfile#c,\\embedfilesetup#c"
         ],
@@ -45,7 +45,7 @@
       "name": "embedfilesetup",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "embedfilesetup{${1:options%keyvals}}",
         "keys": [
           "\\embedfile#c,\\embedfilesetup#c",
           "\\embedfilesetup#c"
@@ -61,7 +61,7 @@
       "name": "embedfilefield",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:key%plain}}{${2:options%keyvals}}",
+        "snippet": "embedfilefield{${1:key%plain}}{${2:options%keyvals}}",
         "keys": [
           "\\embedfilefield"
         ],
@@ -72,14 +72,14 @@
       "name": "embedfilesort",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:key-sort-list}}"
+        "snippet": "embedfilesort{${1:key-sort-list}}"
       }
     },
     {
       "name": "embedfileifobjectexists",
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:id}}{${2:type%keyvals}}{${3:then}}{${4:else}}",
+        "snippet": "embedfileifobjectexists{${1:id}}{${2:type%keyvals}}{${3:then}}{${4:else}}",
         "keys": [
           "\\embedfileifobjectexists,\\embedfilegetobject"
         ],
@@ -90,7 +90,7 @@
       "name": "embedfilegetobject",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:id}}{${2:type%keyvals}}",
+        "snippet": "embedfilegetobject{${1:id}}{${2:type%keyvals}}",
         "keys": [
           "\\embedfileifobjectexists,\\embedfilegetobject"
         ],

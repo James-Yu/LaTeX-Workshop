@@ -18,7 +18,7 @@
       "name": "fvinlineset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "fvinlineset{${1:options%keyvals}}",
         "keys": [
           "\\fvinlineset,\\EscVerb,\\EscVerb*,\\begin{VerbEnv},\\VerbatimInsertBuffer,\\VerbatimClearBuffer,\\RobustVerb,\\RobustVerb*,\\RobustUseVerb,\\RobustUseVerb*,\\RobustEscVerb,\\RobustEscVerb*",
           "\\fvinlineset"
@@ -31,7 +31,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text%plain}}"
+        "snippet": "FancyVerbFormatInline{${1:text%plain}}"
       }
     },
     {
@@ -42,28 +42,28 @@
       "name": "EscVerb",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:backslash-escaped text}}"
+        "snippet": "EscVerb{${1:backslash-escaped text}}"
       }
     },
     {
       "name": "EscVerb",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:backslash-escaped text}}"
+        "snippet": "EscVerb[${2:options%keyvals}]{${1:backslash-escaped text}}"
       }
     },
     {
       "name": "EscVerb*",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:backslash-escaped text}}"
+        "snippet": "EscVerb*{${1:backslash-escaped text}}"
       }
     },
     {
       "name": "EscVerb*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:backslash-escaped text}}"
+        "snippet": "EscVerb*[${2:options%keyvals}]{${1:backslash-escaped text}}"
       }
     },
     {
@@ -89,7 +89,7 @@
       "name": "VerbatimInsertBuffer",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]",
+        "snippet": "VerbatimInsertBuffer[${1:options%keyvals}]",
         "keys": [
           "\\begin{VerbatimBuffer},\\VerbatimInsertBuffer,\\VerbatimClearBuffer"
         ],
@@ -103,7 +103,7 @@
       "name": "VerbatimClearBuffer",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]",
+        "snippet": "VerbatimClearBuffer[${1:options%keyvals}]",
         "keys": [
           "\\begin{VerbatimBuffer},\\VerbatimInsertBuffer,\\VerbatimClearBuffer"
         ],
@@ -139,7 +139,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:literal macro%cmd}}{${2:actual macro%cmd}}"
+        "snippet": "VerbatimPygments{${1:literal macro%cmd}}{${2:actual macro%cmd}}"
       }
     },
     {
@@ -151,7 +151,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FVExtraReadOArgBeforeVArg{${1:arg}}"
       }
     },
     {
@@ -159,7 +159,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:opt}]{${1:arg}}"
+        "snippet": "FVExtraReadOArgBeforeVArg[${2:opt}]{${1:arg}}"
       }
     },
     {
@@ -167,7 +167,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FVExtraReadOArgBeforeVEnv{${1:arg}}"
       }
     },
     {
@@ -175,7 +175,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:opt}]{${1:arg}}"
+        "snippet": "FVExtraReadOArgBeforeVEnv[${2:opt}]{${1:arg}}"
       }
     },
     {
@@ -183,7 +183,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FVExtraReadVArg{${1:arg}}"
       }
     },
     {
@@ -191,7 +191,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "FVExtrapdfstringdef{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -203,7 +203,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FVExtraAlwaysUnexpanded{${1:arg}}"
       }
     },
     {
@@ -211,7 +211,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "FVExtraRobustCommand{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -219,7 +219,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FVExtraUnexpandedReadStarOArgMArg{${1:arg}}"
       }
     },
     {
@@ -227,7 +227,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FVExtraUseVerbUnexpandedReadStarOArgMArg{${1:arg}}"
       }
     },
     {
@@ -235,7 +235,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FVExtraUnexpandedReadStarOArgBVArg{${1:arg}}"
       }
     },
     {
@@ -243,7 +243,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FVExtraUnexpandedReadStarOArgBEscVArg{${1:arg}}"
       }
     },
     {
@@ -251,7 +251,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FVExtraPDFStringEscapeChar{${1:arg}}"
       }
     },
     {
@@ -259,7 +259,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FVExtraPDFStringEscapeChars{${1:arg}}"
       }
     },
     {
@@ -267,7 +267,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FVExtraVerbatimDetokenize{${1:arg}}"
       }
     },
     {
@@ -275,7 +275,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FVExtraPDFStringVerbatimDetokenize{${1:arg}}"
       }
     },
     {
@@ -283,7 +283,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FVExtraEscapedVerbatimDetokenize{${1:arg}}"
       }
     },
     {
@@ -291,7 +291,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FVExtraPDFStringEscapedVerbatimDetokenize{${1:arg}}"
       }
     },
     {
@@ -299,7 +299,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "FVExtraDetokenizeVArg{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -307,7 +307,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "FVExtraDetokenizeEscVArg{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -315,7 +315,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "FVExtraDetokenizeREscVArg{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -323,7 +323,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:macro%cmd}}{${2:code}}{${3:chars}}"
+        "snippet": "FVExtraRetokenizeVArg{${1:macro%cmd}}{${2:code}}{${3:chars}}"
       }
     },
     {
@@ -331,7 +331,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FVExtraUnexpandedReadStarOArgMArgBVArg{${1:arg}}"
       }
     },
     {
@@ -339,7 +339,7 @@
       "unusual": true,
       "arg": {
         "format": "||",
-        "snippet": "|${1:code}|"
+        "snippet": "RobustVerb|${1:code}|"
       }
     },
     {
@@ -347,7 +347,7 @@
       "unusual": true,
       "arg": {
         "format": "[]||",
-        "snippet": "[${1:options}]|${2:code}|"
+        "snippet": "RobustVerb[${1:options}]|${2:code}|"
       }
     },
     {
@@ -355,7 +355,7 @@
       "unusual": true,
       "arg": {
         "format": "||",
-        "snippet": "|${1:code}|"
+        "snippet": "RobustVerb*|${1:code}|"
       }
     },
     {
@@ -363,7 +363,7 @@
       "unusual": true,
       "arg": {
         "format": "[]||",
-        "snippet": "[${1:options}]|${2:code}|"
+        "snippet": "RobustVerb*[${1:options}]|${2:code}|"
       }
     },
     {
@@ -371,7 +371,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "RobustUseVerb{${1:name}}"
       }
     },
     {
@@ -379,7 +379,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:name}}"
+        "snippet": "RobustUseVerb[${2:options%keyvals}]{${1:name}}"
       }
     },
     {
@@ -387,7 +387,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "RobustUseVerb*{${1:name}}"
       }
     },
     {
@@ -395,7 +395,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:name}}"
+        "snippet": "RobustUseVerb*[${2:options%keyvals}]{${1:name}}"
       }
     },
     {
@@ -403,7 +403,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:backslash-escaped text}}"
+        "snippet": "RobustEscVerb{${1:backslash-escaped text}}"
       }
     },
     {
@@ -411,7 +411,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:backslash-escaped text}}"
+        "snippet": "RobustEscVerb[${2:options%keyvals}]{${1:backslash-escaped text}}"
       }
     },
     {
@@ -419,7 +419,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:backslash-escaped text}}"
+        "snippet": "RobustEscVerb*{${1:backslash-escaped text}}"
       }
     },
     {
@@ -427,7 +427,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:backslash-escaped text}}"
+        "snippet": "RobustEscVerb*[${2:options%keyvals}]{${1:backslash-escaped text}}"
       }
     },
     {
@@ -459,7 +459,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FancyVerbHighlightLine{${1:arg}}"
       }
     },
     {
@@ -467,7 +467,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FancyVerbHighlightLineNormal{${1:arg}}"
       }
     },
     {
@@ -475,7 +475,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FancyVerbHighlightLineFirst{${1:arg}}"
       }
     },
     {
@@ -483,7 +483,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FancyVerbHighlightLineMiddle{${1:arg}}"
       }
     },
     {
@@ -491,7 +491,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FancyVerbHighlightLineLast{${1:arg}}"
       }
     },
     {
@@ -499,7 +499,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FancyVerbHighlightLineSingle{${1:arg}}"
       }
     },
     {
@@ -515,7 +515,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FancyVerbBreakSymbolLeftLogic{${1:arg}}"
       }
     },
     {
@@ -527,7 +527,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "FancyVerbBreakSymbolRightLogic{${1:arg}}"
       }
     },
     {

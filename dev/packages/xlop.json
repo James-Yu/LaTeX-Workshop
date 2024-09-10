@@ -5,7 +5,7 @@
       "name": "opset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "opset{${1:options%keyvals}}",
         "keys": [
           "\\opset#c,\\opadd#c,\\opmanyadd#c,\\opsub#c,\\opmul#c,\\opdiv#c,\\opidiv#c",
           "\\opadd#c,\\opset#c",
@@ -22,14 +22,14 @@
       "name": "opadd",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:num1}}{${2:num2}}"
+        "snippet": "opadd{${1:num1}}{${2:num2}}"
       }
     },
     {
       "name": "opadd",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:num1}}{${2:num2}}",
+        "snippet": "opadd[${3:options%keyvals}]{${1:num1}}{${2:num2}}",
         "keys": [
           "\\opset#c,\\opadd#c,\\opmanyadd#c,\\opsub#c,\\opmul#c,\\opdiv#c,\\opidiv#c",
           "\\opadd#c,\\opset#c"
@@ -41,14 +41,14 @@
       "name": "opsub",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:num1}}{${2:num2}}"
+        "snippet": "opsub{${1:num1}}{${2:num2}}"
       }
     },
     {
       "name": "opsub",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:num1}}{${2:num2}}",
+        "snippet": "opsub[${3:options%keyvals}]{${1:num1}}{${2:num2}}",
         "keys": [
           "\\opset#c,\\opadd#c,\\opmanyadd#c,\\opsub#c,\\opmul#c,\\opdiv#c,\\opidiv#c",
           "\\opsub#c,\\opset#c"
@@ -60,14 +60,14 @@
       "name": "opmul",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:num1}}{${2:num2}}"
+        "snippet": "opmul{${1:num1}}{${2:num2}}"
       }
     },
     {
       "name": "opmul",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:num1}}{${2:num2}}",
+        "snippet": "opmul[${3:options%keyvals}]{${1:num1}}{${2:num2}}",
         "keys": [
           "\\opset#c,\\opadd#c,\\opmanyadd#c,\\opsub#c,\\opmul#c,\\opdiv#c,\\opidiv#c",
           "\\opmul#c,\\opset#c"
@@ -79,14 +79,14 @@
       "name": "opdiv",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:num1}}{${2:num2}}"
+        "snippet": "opdiv{${1:num1}}{${2:num2}}"
       }
     },
     {
       "name": "opdiv",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:num1}}{${2:num2}}",
+        "snippet": "opdiv[${3:options%keyvals}]{${1:num1}}{${2:num2}}",
         "keys": [
           "\\opset#c,\\opadd#c,\\opmanyadd#c,\\opsub#c,\\opmul#c,\\opdiv#c,\\opidiv#c",
           "\\opdiv#c,\\opidiv#c,\\opset#c"
@@ -98,14 +98,14 @@
       "name": "opidiv",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:num1}}{${2:num2}}"
+        "snippet": "opidiv{${1:num1}}{${2:num2}}"
       }
     },
     {
       "name": "opidiv",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:num1}}{${2:num2}}",
+        "snippet": "opidiv[${3:options%keyvals}]{${1:num1}}{${2:num2}}",
         "keys": [
           "\\opset#c,\\opadd#c,\\opmanyadd#c,\\opsub#c,\\opmul#c,\\opdiv#c,\\opidiv#c",
           "\\opdiv#c,\\opidiv#c,\\opset#c"
@@ -125,35 +125,35 @@
       "name": "opadd*",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:num1}}{${2:num2}}{${3:variable}}"
+        "snippet": "opadd*{${1:num1}}{${2:num2}}{${3:variable}}"
       }
     },
     {
       "name": "opsub*",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:num1}}{${2:num2}}{${3:variable}}"
+        "snippet": "opsub*{${1:num1}}{${2:num2}}{${3:variable}}"
       }
     },
     {
       "name": "opmul*",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:num1}}{${2:num2}}{${3:variable}}"
+        "snippet": "opmul*{${1:num1}}{${2:num2}}{${3:variable}}"
       }
     },
     {
       "name": "opdiv*",
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:num1}}{${2:num2}}{${3:quotient var}}{${4:remainder var}}"
+        "snippet": "opdiv*{${1:num1}}{${2:num2}}{${3:quotient var}}{${4:remainder var}}"
       }
     },
     {
       "name": "opdiv*",
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:options%keyvals}]{${1:num1}}{${2:num2}}{${3:quotient var}}{${4:remainder var}}",
+        "snippet": "opdiv*[${5:options%keyvals}]{${1:num1}}{${2:num2}}{${3:quotient var}}{${4:remainder var}}",
         "keys": [
           "\\opdiv*#c,\\opexpr#c,\\opset#c"
         ],
@@ -164,161 +164,161 @@
       "name": "opidiv*",
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:num1}}{${2:num2}}{${3:quotient var}}{${4:remainder var}}"
+        "snippet": "opidiv*{${1:num1}}{${2:num2}}{${3:quotient var}}{${4:remainder var}}"
       }
     },
     {
       "name": "opcopy",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:number}}{${2:variable}}"
+        "snippet": "opcopy{${1:number}}{${2:variable}}"
       }
     },
     {
       "name": "opprint",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "opprint{${1:arg}}"
       }
     },
     {
       "name": "opdisplay",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:style%keyvals}}{${2:number}}"
+        "snippet": "opdisplay{${1:style%keyvals}}{${2:number}}"
       }
     },
     {
       "name": "opdisplay",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:specs}]{${1:style}}{${2:number}}"
+        "snippet": "opdisplay[${3:specs}]{${1:style}}{${2:number}}"
       }
     },
     {
       "name": "oplput",
       "arg": {
         "format": "(){}",
-        "snippet": "(${2:x},${3:y}){${1:text}}"
+        "snippet": "oplput(${2:x},${3:y}){${1:text}}"
       }
     },
     {
       "name": "oprput",
       "arg": {
         "format": "(){}",
-        "snippet": "(${2:x},${3:y}){${1:text}}"
+        "snippet": "oprput(${2:x},${3:y}){${1:text}}"
       }
     },
     {
       "name": "ophline",
       "arg": {
         "format": "(){}",
-        "snippet": "(${2:x},${3:y}){${1:length}}"
+        "snippet": "ophline(${2:x},${3:y}){${1:length}}"
       }
     },
     {
       "name": "opvline",
       "arg": {
         "format": "(){}",
-        "snippet": "(${2:x},${3:y}){${1:length}}"
+        "snippet": "opvline(${2:x},${3:y}){${1:length}}"
       }
     },
     {
       "name": "opexport",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:number}}{${2:cmd}}"
+        "snippet": "opexport{${1:number}}{${2:cmd}}"
       }
     },
     {
       "name": "opwidth",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:number}}{${2:variable}}"
+        "snippet": "opwidth{${1:number}}{${2:variable}}"
       }
     },
     {
       "name": "opintegerwidth",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:number}}{${2:variable}}"
+        "snippet": "opintegerwidth{${1:number}}{${2:variable}}"
       }
     },
     {
       "name": "opdecimalwidth",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:number}}{${2:variable}}"
+        "snippet": "opdecimalwidth{${1:number}}{${2:variable}}"
       }
     },
     {
       "name": "opunzero",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:number}}"
+        "snippet": "opunzero{${1:number}}"
       }
     },
     {
       "name": "opinteger",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:number}}{${2:variable}}"
+        "snippet": "opinteger{${1:number}}{${2:variable}}"
       }
     },
     {
       "name": "opdecimal",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:number}}{${2:variable}}"
+        "snippet": "opdecimal{${1:number}}{${2:variable}}"
       }
     },
     {
       "name": "opgetdigit",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:number}}{${2:index}}{${3:variable}}"
+        "snippet": "opgetdigit{${1:number}}{${2:index}}{${3:variable}}"
       }
     },
     {
       "name": "opsetdigit",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:number}}{${2:index}}{${3:variable}}"
+        "snippet": "opsetdigit{${1:number}}{${2:index}}{${3:variable}}"
       }
     },
     {
       "name": "opgetintegerdigit",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:number}}{${2:index}}{${3:variable}}"
+        "snippet": "opgetintegerdigit{${1:number}}{${2:index}}{${3:variable}}"
       }
     },
     {
       "name": "opsetintegerdigit",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:number}}{${2:index}}{${3:variable}}"
+        "snippet": "opsetintegerdigit{${1:number}}{${2:index}}{${3:variable}}"
       }
     },
     {
       "name": "opgetdecimaldigit",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:number}}{${2:index}}{${3:variable}}"
+        "snippet": "opgetdecimaldigit{${1:number}}{${2:index}}{${3:variable}}"
       }
     },
     {
       "name": "opsetdecimaldigit",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:number}}{${2:index}}{${3:variable}}"
+        "snippet": "opsetdecimaldigit{${1:number}}{${2:index}}{${3:variable}}"
       }
     },
     {
       "name": "opcmp",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:num1}}{${2:num2}}"
+        "snippet": "opcmp{${1:num1}}{${2:num2}}"
       }
     },
     {
@@ -343,70 +343,70 @@
       "name": "opgcd",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:num1}}{${2:num2}}{${3:variable}}"
+        "snippet": "opgcd{${1:num1}}{${2:num2}}{${3:variable}}"
       }
     },
     {
       "name": "opdivperiod",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:num1}}{${2:num2}}{${3:variable}}"
+        "snippet": "opdivperiod{${1:num1}}{${2:num2}}{${3:variable}}"
       }
     },
     {
       "name": "opcastingoutnines",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:number}}{${2:variable}}"
+        "snippet": "opcastingoutnines{${1:number}}{${2:variable}}"
       }
     },
     {
       "name": "opcastingoutelevens",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:number}}{${2:variable}}"
+        "snippet": "opcastingoutelevens{${1:number}}{${2:variable}}"
       }
     },
     {
       "name": "oppower",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:number}}{${2:power}}{${3:variable}}"
+        "snippet": "oppower{${1:number}}{${2:power}}{${3:variable}}"
       }
     },
     {
       "name": "opfloor",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:number}}{${2:approx rank}}{${3:variable}}"
+        "snippet": "opfloor{${1:number}}{${2:approx rank}}{${3:variable}}"
       }
     },
     {
       "name": "opceil",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:number}}{${2:approx rank}}{${3:variable}}"
+        "snippet": "opceil{${1:number}}{${2:approx rank}}{${3:variable}}"
       }
     },
     {
       "name": "opround",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:number}}{${2:approx rank}}{${3:variable}}"
+        "snippet": "opround{${1:number}}{${2:approx rank}}{${3:variable}}"
       }
     },
     {
       "name": "opsqrt",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:number}}{${2:variable}}"
+        "snippet": "opsqrt{${1:number}}{${2:variable}}"
       }
     },
     {
       "name": "opsqrt",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:number}}{${2:variable}}",
+        "snippet": "opsqrt[${3:options%keyvals}]{${1:number}}{${2:variable}}",
         "keys": [
           "\\opsqrt#c,\\opgfsqrt#c"
         ],
@@ -417,14 +417,14 @@
       "name": "opgfsqrt",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:number}}"
+        "snippet": "opgfsqrt{${1:number}}"
       }
     },
     {
       "name": "opgfsqrt",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:number}}",
+        "snippet": "opgfsqrt[${2:options%keyvals}]{${1:number}}",
         "keys": [
           "\\opsqrt#c,\\opgfsqrt#c"
         ],
@@ -435,28 +435,28 @@
       "name": "opexpr",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:expression}}{${2:variable}}"
+        "snippet": "opexpr{${1:expression}}{${2:variable}}"
       }
     },
     {
       "name": "opexpr",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:expression}}{${2:variable}}"
+        "snippet": "opexpr[${3:options%keyvals}]{${1:expression}}{${2:variable}}"
       }
     },
     {
       "name": "opabs",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:number}}{${2:variable}}"
+        "snippet": "opabs{${1:number}}{${2:variable}}"
       }
     },
     {
       "name": "opneg",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:number}}{${2:variable}}"
+        "snippet": "opneg{${1:number}}{${2:variable}}"
       }
     }
   ],

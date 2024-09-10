@@ -15,7 +15,7 @@
       "name": "setupluaindex",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "setupluaindex{${1:options%keyvals}}",
         "keys": [
           "\\usepackage/luaindex#c,\\setupluaindex,\\newindex"
         ],
@@ -27,7 +27,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:text}}{${2:page}}"
+        "snippet": "see{${1:text}}{${2:page}}"
       }
     },
     {
@@ -35,7 +35,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:text}}{${2:page}}"
+        "snippet": "seealso{${1:text}}{${2:page}}"
       }
     },
     {
@@ -50,14 +50,14 @@
       "name": "newindex",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:index name}}"
+        "snippet": "newindex{${1:index name}}"
       }
     },
     {
       "name": "newindex",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:index name}}"
+        "snippet": "newindex[${2:options%keyvals}]{${1:index name}}"
       }
     },
     {
@@ -65,7 +65,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:index name}}{${2:entry}}"
+        "snippet": "luaindex{${1:index name}}{${2:entry}}"
       }
     },
     {
@@ -73,7 +73,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:index name}}[${3:options%keyvals}]{${2:entry}}",
+        "snippet": "luaindex{${1:index name}}[${3:options%keyvals}]{${2:entry}}",
         "keys": [
           "\\luaindex,\\luasubindex,\\luasubsubindex,\\index,\\subindex,\\subsubindex"
         ],
@@ -85,7 +85,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:index name}}{${2:entry}}{${3:subentry}}"
+        "snippet": "luasubindex{${1:index name}}{${2:entry}}{${3:subentry}}"
       }
     },
     {
@@ -93,7 +93,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]{}{}",
-        "snippet": "{${1:index name}}[${4:options%keyvals}]{${2:entry}}{${3:subentry}}",
+        "snippet": "luasubindex{${1:index name}}[${4:options%keyvals}]{${2:entry}}{${3:subentry}}",
         "keys": [
           "\\luaindex,\\luasubindex,\\luasubsubindex,\\index,\\subindex,\\subsubindex"
         ],
@@ -105,7 +105,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]{}[]{}",
-        "snippet": "{${1:index name}}[${4:options%keyvals}]{${2:entry}}[${5:options}]{${3:subentry}}",
+        "snippet": "luasubindex{${1:index name}}[${4:options%keyvals}]{${2:entry}}[${5:options}]{${3:subentry}}",
         "keys": [
           "\\luaindex,\\luasubindex,\\luasubsubindex,\\index,\\subindex,\\subsubindex"
         ],
@@ -117,7 +117,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:index name}}{${2:entry}}{${3:subentry}}{${4:subsubentry}}"
+        "snippet": "luasubsubindex{${1:index name}}{${2:entry}}{${3:subentry}}{${4:subsubentry}}"
       }
     },
     {
@@ -125,7 +125,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]{}{}{}",
-        "snippet": "{${1:index name}}[${5:options%keyvals}]{${2:entry}}{${3:subentry}}{${4:subsubentry}}",
+        "snippet": "luasubsubindex{${1:index name}}[${5:options%keyvals}]{${2:entry}}{${3:subentry}}{${4:subsubentry}}",
         "keys": [
           "\\luaindex,\\luasubindex,\\luasubsubindex,\\index,\\subindex,\\subsubindex"
         ],
@@ -137,7 +137,7 @@
       "unusual": true,
       "arg": {
         "format": "{}[]{}[]{}[]{}",
-        "snippet": "{${1:index name}}[${5:options%keyvals}]{${2:entry}}[${6:options}]{${3:subentry}}[${7:options}]{${4:subsubentry}}",
+        "snippet": "luasubsubindex{${1:index name}}[${5:options%keyvals}]{${2:entry}}[${6:options}]{${3:subentry}}[${7:options}]{${4:subsubentry}}",
         "keys": [
           "\\luaindex,\\luasubindex,\\luasubsubindex,\\index,\\subindex,\\subsubindex"
         ],
@@ -148,7 +148,7 @@
       "name": "index",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:entry}}",
+        "snippet": "index[${2:options%keyvals}]{${1:entry}}",
         "keys": [
           "\\luaindex,\\luasubindex,\\luasubsubindex,\\index,\\subindex,\\subsubindex"
         ],
@@ -159,14 +159,14 @@
       "name": "subindex",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:entry}}{${2:subentry}}"
+        "snippet": "subindex{${1:entry}}{${2:subentry}}"
       }
     },
     {
       "name": "subindex",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:entry}}{${2:subentry}}",
+        "snippet": "subindex[${3:options%keyvals}]{${1:entry}}{${2:subentry}}",
         "keys": [
           "\\luaindex,\\luasubindex,\\luasubsubindex,\\index,\\subindex,\\subsubindex"
         ],
@@ -177,7 +177,7 @@
       "name": "subindex",
       "arg": {
         "format": "[]{}[]{}",
-        "snippet": "[${3:options%keyvals}]{${1:entry}}[${4:options}]{${2:subentry}}",
+        "snippet": "subindex[${3:options%keyvals}]{${1:entry}}[${4:options}]{${2:subentry}}",
         "keys": [
           "\\luaindex,\\luasubindex,\\luasubsubindex,\\index,\\subindex,\\subsubindex"
         ],
@@ -188,14 +188,14 @@
       "name": "subsubindex",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:entry}}{${2:subentry}}{${3:subsubentry}}"
+        "snippet": "subsubindex{${1:entry}}{${2:subentry}}{${3:subsubentry}}"
       }
     },
     {
       "name": "subsubindex",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:entry}}{${2:subentry}}{${3:subsubentry}}",
+        "snippet": "subsubindex[${4:options%keyvals}]{${1:entry}}{${2:subentry}}{${3:subsubentry}}",
         "keys": [
           "\\luaindex,\\luasubindex,\\luasubsubindex,\\index,\\subindex,\\subsubindex"
         ],
@@ -206,7 +206,7 @@
       "name": "subsubindex",
       "arg": {
         "format": "[]{}[]{}[]{}",
-        "snippet": "[${4:options%keyvals}]{${1:entry}}[${5:options}]{${2:subentry}}[${6:options}]{${3:subsubentry}}",
+        "snippet": "subsubindex[${4:options%keyvals}]{${1:entry}}[${5:options}]{${2:subentry}}[${6:options}]{${3:subsubentry}}",
         "keys": [
           "\\luaindex,\\luasubindex,\\luasubsubindex,\\index,\\subindex,\\subsubindex"
         ],
@@ -220,7 +220,7 @@
       "name": "printindex",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]",
+        "snippet": "printindex[${1:options%keyvals}]",
         "keys": [
           "\\printindex"
         ],
@@ -231,7 +231,7 @@
       "name": "indexgroup",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:group}}"
+        "snippet": "indexgroup{${1:group}}"
       }
     },
     {
@@ -250,7 +250,7 @@
       "name": "indexpagenumbers",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:page number}}"
+        "snippet": "indexpagenumbers{${1:page number}}"
       }
     },
     {
@@ -258,7 +258,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:page number}}"
+        "snippet": "indexpagenumber{${1:page number}}"
       }
     },
     {
