@@ -1,5 +1,11 @@
 # Change Log
 
+## [10.3.1] - 2024-09-10
+
+### Fixed
+- (#4372) Include macro name back into .json file snippets.
+  - This change may require re-generation of `.json` files using the new `parse-cwl.ts` script in `dev/` folder, even already done in version `10.3.0`.
+
 ## [10.3.0] - 2024-09-09
 
 ### Added
