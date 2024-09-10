@@ -24,7 +24,7 @@
       "name": "useyquantlanguage",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:language%keyvals}}",
+        "snippet": "useyquantlanguage{${1:language%keyvals}}",
         "keys": [
           "\\useyquantlanguage#c"
         ],
@@ -36,7 +36,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:path code}}"
+        "snippet": "clippathhorz{${1:path code}}"
       }
     },
     {
@@ -44,7 +44,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:path code}}"
+        "snippet": "clippathvert{${1:path code}}"
       }
     },
     {
@@ -52,7 +52,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:path code}}"
+        "snippet": "clippath{${1:path code}}"
       }
     },
     {
@@ -60,7 +60,7 @@
       "unusual": true,
       "arg": {
         "format": "[]",
-        "snippet": "[${1:from=shape}]"
+        "snippet": "inheritclippath[${1:from=shape}]"
       }
     },
     {
@@ -68,7 +68,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:shape}}{${2:options}}"
+        "snippet": "pgfshapeclippath{${1:shape}}{${2:options}}"
       }
     },
     {
@@ -92,7 +92,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:true}}{${2:false}}"
+        "snippet": "ifhorz{${1:true}}{${2:false}}"
       }
     },
     {
@@ -103,7 +103,7 @@
       "name": "ifyquanthorz",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:if horz}}{${2:if vert}}"
+        "snippet": "ifyquanthorz{${1:if horz}}{${2:if vert}}"
       }
     },
     {
@@ -130,7 +130,7 @@
       "name": "registers",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:registers}}"
+        "snippet": "registers{${1:registers}}"
       }
     },
     {
@@ -149,7 +149,7 @@
       "name": "yquantset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "yquantset{${1:options%keyvals}}",
         "keys": [
           "\\begin{yquant}#c,\\begin{yquant*}#c,\\yquantset#c,\\yquantimport#c,\\yquantimport*#c,\\begin{yquantgroup}#c,\\begin{yquantgroup*}#c",
           "\\yquantset#c,\\begin{yquantgroup}#c,\\begin{yquantgroup*}#c",
@@ -162,28 +162,28 @@
       "name": "yquantsecondpass",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "yquantsecondpass{${1:code}}"
       }
     },
     {
       "name": "yquantesecondpass",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "yquantesecondpass{${1:code}}"
       }
     },
     {
       "name": "yquantescape",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "yquantescape{${1:code}}"
       }
     },
     {
       "name": "yquanteescape",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "yquanteescape{${1:code}}"
       }
     },
     {
@@ -191,7 +191,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "yquantimportcommand{${1:file}}"
       }
     },
     {
@@ -202,14 +202,14 @@
       "name": "yquantimport",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "yquantimport{${1:file}}"
       }
     },
     {
       "name": "yquantimport",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "snippet": "yquantimport[${2:options%keyvals}]{${1:file}}",
         "keys": [
           "\\begin{yquant}#c,\\begin{yquant*}#c,\\yquantset#c,\\yquantimport#c,\\yquantimport*#c,\\begin{yquantgroup}#c,\\begin{yquantgroup*}#c"
         ],
@@ -220,14 +220,14 @@
       "name": "yquantimport*",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "yquantimport*{${1:file}}"
       }
     },
     {
       "name": "yquantimport*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "snippet": "yquantimport*[${2:options%keyvals}]{${1:file}}",
         "keys": [
           "\\begin{yquant}#c,\\begin{yquant*}#c,\\yquantset#c,\\yquantimport#c,\\yquantimport*#c,\\begin{yquantgroup}#c,\\begin{yquantgroup*}#c"
         ],
@@ -291,98 +291,98 @@
       "name": "yquantdefinegate",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:content}}"
+        "snippet": "yquantdefinegate{${1:name}}{${2:content}}"
       }
     },
     {
       "name": "yquantdefinegate",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:name}}[${3:style}]{${2:content}}"
+        "snippet": "yquantdefinegate{${1:name}}[${3:style}]{${2:content}}"
       }
     },
     {
       "name": "yquantredefinegate",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:content}}"
+        "snippet": "yquantredefinegate{${1:name}}{${2:content}}"
       }
     },
     {
       "name": "yquantredefinegate",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:name}}[${3:style}]{${2:content}}"
+        "snippet": "yquantredefinegate{${1:name}}[${3:style}]{${2:content}}"
       }
     },
     {
       "name": "yquantdefinebox",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:content}}"
+        "snippet": "yquantdefinebox{${1:name}}{${2:content}}"
       }
     },
     {
       "name": "yquantdefinebox",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:name}}[${3:style}]{${2:content}}"
+        "snippet": "yquantdefinebox{${1:name}}[${3:style}]{${2:content}}"
       }
     },
     {
       "name": "yquantdefinemultibox",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:content}}"
+        "snippet": "yquantdefinemultibox{${1:name}}{${2:content}}"
       }
     },
     {
       "name": "yquantdefinemultibox",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:name}}[${3:style}]{${2:content}}"
+        "snippet": "yquantdefinemultibox{${1:name}}[${3:style}]{${2:content}}"
       }
     },
     {
       "name": "yquantredefinebox",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:content}}"
+        "snippet": "yquantredefinebox{${1:name}}{${2:content}}"
       }
     },
     {
       "name": "yquantredefinebox",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:name}}[${3:style}]{${2:content}}"
+        "snippet": "yquantredefinebox{${1:name}}[${3:style}]{${2:content}}"
       }
     },
     {
       "name": "yquantredefinemultibox",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:content}}"
+        "snippet": "yquantredefinemultibox{${1:name}}{${2:content}}"
       }
     },
     {
       "name": "yquantredefinemultibox",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:name}}[${3:style}]{${2:content}}"
+        "snippet": "yquantredefinemultibox{${1:name}}[${3:style}]{${2:content}}"
       }
     },
     {
       "name": "circuit",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:content}}"
+        "snippet": "circuit{${1:content}}"
       }
     },
     {
       "name": "circuit",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:style}]{${1:content}}"
+        "snippet": "circuit[${2:style}]{${1:content}}"
       }
     },
     {
@@ -392,7 +392,7 @@
       "name": "equals",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:content}]"
+        "snippet": "equals[${1:content}]"
       }
     },
     {
@@ -402,7 +402,7 @@
       "name": "equals*",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:content}]"
+        "snippet": "equals*[${1:content}]"
       }
     },
     {
@@ -412,7 +412,7 @@
       "name": "shiftright",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:where}]"
+        "snippet": "shiftright[${1:where}]"
       }
     },
     {
@@ -422,7 +422,7 @@
       "name": "shiftright*",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:where}]"
+        "snippet": "shiftright*[${1:where}]"
       }
     },
     {
@@ -444,7 +444,7 @@
       "name": "qasmimport",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "qasmimport{${1:file}}"
       }
     },
     {
@@ -452,7 +452,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "qasmname{${1:arg}}"
       }
     }
   ],

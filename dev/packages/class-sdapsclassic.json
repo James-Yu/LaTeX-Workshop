@@ -69,7 +69,7 @@
       "name": "addinfo",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:key%plain}}{${2:value}}"
+        "snippet": "addinfo{${1:key%plain}}{${2:value}}"
       }
     },
     {
@@ -108,14 +108,14 @@
       "name": "singlemark",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:question%text}}{${2:lower%text}}{${3:upper%text}}"
+        "snippet": "singlemark{${1:question%text}}{${2:lower%text}}{${3:upper%text}}"
       }
     },
     {
       "name": "singlemark",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:question%text}}{${2:lower%text}}{${3:upper%text}}",
+        "snippet": "singlemark[${4:options%keyvals}]{${1:question%text}}{${2:lower%text}}{${3:upper%text}}",
         "keys": [
           "\\singlemark,\\singlemarkother"
         ],
@@ -126,14 +126,14 @@
       "name": "singlemarkother",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:question%text}}{${2:lower%text}}{${3:upper%text}}"
+        "snippet": "singlemarkother{${1:question%text}}{${2:lower%text}}{${3:upper%text}}"
       }
     },
     {
       "name": "singlemarkother",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:question%text}}{${2:lower%text}}{${3:upper%text}}",
+        "snippet": "singlemarkother[${4:options%keyvals}]{${1:question%text}}{${2:lower%text}}{${3:upper%text}}",
         "keys": [
           "\\singlemark,\\singlemarkother"
         ],
@@ -144,14 +144,14 @@
       "name": "textbox",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:height}}{${2:question}}"
+        "snippet": "textbox{${1:height}}{${2:question}}"
       }
     },
     {
       "name": "textbox",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:height}}{${2:question}}",
+        "snippet": "textbox[${3:options%keyvals}]{${1:height}}{${2:question}}",
         "keys": [
           "\\textbox,\\textbox*"
         ],
@@ -162,14 +162,14 @@
       "name": "textbox*",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:height}}{${2:question}}"
+        "snippet": "textbox*{${1:height}}{${2:question}}"
       }
     },
     {
       "name": "textbox*",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:height}}{${2:question}}",
+        "snippet": "textbox*[${3:options%keyvals}]{${1:height}}{${2:question}}",
         "keys": [
           "\\textbox,\\textbox*"
         ],
@@ -180,14 +180,14 @@
       "name": "choiceitem",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "choiceitem{${1:text}}"
       }
     },
     {
       "name": "choiceitem",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "snippet": "choiceitem[${2:options%keyvals}]{${1:text}}",
         "keys": [
           "\\choiceitem,\\choicemulticolitem"
         ],
@@ -198,14 +198,14 @@
       "name": "choicemulticolitem",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:cols}}{${2:text}}"
+        "snippet": "choicemulticolitem{${1:cols}}{${2:text}}"
       }
     },
     {
       "name": "choicemulticolitem",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:cols}}{${2:text}}",
+        "snippet": "choicemulticolitem[${3:options%keyvals}]{${1:cols}}{${2:text}}",
         "keys": [
           "\\choiceitem,\\choicemulticolitem"
         ],
@@ -216,14 +216,14 @@
       "name": "choiceitemtext",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:height}}{${2:cols}}{${3:text}}"
+        "snippet": "choiceitemtext{${1:height}}{${2:cols}}{${3:text}}"
       }
     },
     {
       "name": "choiceitemtext",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:height}}{${2:cols}}{${3:text}}",
+        "snippet": "choiceitemtext[${4:options%keyvals}]{${1:height}}{${2:cols}}{${3:text}}",
         "keys": [
           "\\choiceitemtext"
         ],
@@ -234,14 +234,14 @@
       "name": "markline",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:question}}{${2:lower}}{${3:upper}}"
+        "snippet": "markline{${1:question}}{${2:lower}}{${3:upper}}"
       }
     },
     {
       "name": "markline",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:question}}{${2:lower}}{${3:upper}}"
+        "snippet": "markline[${4:options%keyvals}]{${1:question}}{${2:lower}}{${3:upper}}"
       }
     },
     {
@@ -249,7 +249,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "groupaddchoice{${1:text}}"
       }
     },
     {
@@ -257,7 +257,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "snippet": "groupaddchoice[${2:options%keyvals}]{${1:text}}",
         "keys": [
           "\\groupaddchoice"
         ],
@@ -269,7 +269,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "choiceline{${1:text}}"
       }
     },
     {
@@ -277,7 +277,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "snippet": "choiceline[${2:options%keyvals}]{${1:text}}",
         "keys": [
           "\\choiceline"
         ],
@@ -293,7 +293,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "sectbox{${1:arg}}"
       }
     },
     {
@@ -316,7 +316,7 @@
       "name": "k",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "k{${1:arg}}"
       }
     },
     {
@@ -367,7 +367,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "textogonekcentered{${1:arg}}"
       }
     },
     {

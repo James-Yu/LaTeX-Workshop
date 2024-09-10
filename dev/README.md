@@ -91,7 +91,7 @@ An example is:
   "name": "DeclareAcronym",
   "arg": {
     "format": "{}{}",
-    "snippet": "{${1:id}}{${2:properties%keyvals}}",
+    "snippet": "DeclareAcronym{${1:id}}{${2:properties%keyvals}}",
     "keys": [
       "\\DeclareAcronym#c,..."
     ],
@@ -120,7 +120,7 @@ An example is:
   "name": "acronym",
   "arg": {
     "format": "[]",
-    "snippet": "[${1:longest}]"
+    "snippet": "acronym[${1:longest}]"
   }
 }
 ```

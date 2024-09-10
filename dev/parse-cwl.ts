@@ -246,7 +246,7 @@ function parseEnv(pkg: PackageRaw, line: string, ifCond?: string): void {
     if (match.length === 4 && match[3] && match[3].includes('S')) {
         return
     }
-    const env: EnvironmentRaw | undefined = constructMacroEnv({ name: match[1] }, match, ifCond)
+    const env: EnvironmentRaw | undefined = constructMacroEnv({ name: match[1] }, match, false, ifCond)
     if (env) {
         pkg.envs.push(env)
     }
@@ -290,7 +290,7 @@ function parseMacro(pkg: PackageRaw, line: string, ifCond?: string): void {
         const pairs = { '(': ')', '[': ']', '|': '|' }
         const macro: MacroRaw = { name: match[1] + (match[2] ?? '') }
         if (match[2] === '(' || match[2] === '[' || match[2] === '|') {
-            macro.arg = { format: match[2] + pairs[match[2]], snippet: `$\{1}${match[1]}${pairs[match[2]]}` }
+            macro.arg = { format: match[2] + pairs[match[2]], snippet: `${match[1]}${match[2]}$\{1}\\${match[1]}${pairs[match[2]]}` }
         }
         pkg.macros.push(macro)
         return
@@ -308,7 +308,7 @@ function parseMacro(pkg: PackageRaw, line: string, ifCond?: string): void {
     if (match.length === 4 && match[3] && match[3].includes('S')) {
         return
     }
-    const macro: MacroRaw | undefined = constructMacroEnv({ name: match[1] }, match, ifCond)
+    const macro: MacroRaw | undefined = constructMacroEnv({ name: match[1] }, match, true, ifCond)
 
     if (macro && !isDefaultMacro(macro.name + (macro.arg?.format ?? ''))) {
         const unimath = getUnimathSymbol(macro.name)
@@ -336,6 +336,7 @@ function parseMacro(pkg: PackageRaw, line: string, ifCond?: string): void {
 function constructMacroEnv(
     context: MacroRaw | EnvironmentRaw,
     match: RegExpExecArray,
+    isMacro: boolean,
     ifCond?: string
 ): typeof context | undefined {
     if (ifCond) {
@@ -352,7 +353,7 @@ function constructMacroEnv(
             .replace(/\|[^|]*\|/g, '||')
             .replace(/\([^()]*\)/g, '()')
         if (arg !== '') {
-            context.arg = { format: arg, snippet: createSnippet(match[2]) }
+            context.arg = { format: arg, snippet: (isMacro ? match[1] : '') + createSnippet(match[2]) }
         }
     }
     if (/[^A-Za-z0-9{}[\]<>|()*_^:,\s]/.test(context.name + context.arg?.format)) {
@@ -500,7 +501,7 @@ function parseExpl3() {
     parseLines(pkg, content.split('\n'))
     pkg.macros.push({
         name: 'ExplSyntaxOn',
-        arg: { format: '', snippet: '\n\t$0\n\\ExplSyntaxOff' },
+        arg: { format: '', snippet: 'ExplSyntaxOn\n\t$0\n\\ExplSyntaxOff' },
         doc: 'Insert an \\ExplSyntax block',
     })
     fs.writeFileSync('../data/packages/expl3.json', JSON.stringify(pkg, null, 2))

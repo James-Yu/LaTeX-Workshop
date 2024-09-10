@@ -48,7 +48,7 @@
       "if": "useui",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}",
+        "snippet": "ui{${1:keyvals}}",
         "keys": [
           "\\ui"
         ],
@@ -79,7 +79,7 @@
       "if": "allowrandomize",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:number}}"
+        "snippet": "useRandomSeed{${1:number}}"
       }
     },
     {
@@ -113,7 +113,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:count register}}{${2:min}}{${3:max}}"
+        "snippet": "setrannum{${1:count register}}{${2:min}}{${3:max}}"
       }
     },
     {
@@ -122,7 +122,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:dimen register}}{${2:min}}{${3:max}}"
+        "snippet": "setrandim{${1:dimen register}}{${2:min}}{${3:max}}"
       }
     },
     {
@@ -140,7 +140,7 @@
       "if": "usesumrytbls",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:quiz name}}"
+        "snippet": "displaySumryTbl{${1:quiz name}}"
       }
     },
     {
@@ -148,7 +148,7 @@
       "if": "usesumrytbls",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:quiz name}}",
+        "snippet": "displaySumryTbl[${2:options%keyvals}]{${1:quiz name}}",
         "keys": [
           "\\displaySumryTbl"
         ],
@@ -161,7 +161,7 @@
       "unusual": true,
       "arg": {
         "format": "()",
-        "snippet": "(${1:arg})"
+        "snippet": "ccatCurrQzWith(${1:arg})"
       }
     },
     {
@@ -215,7 +215,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "sumrytbllinkHook{${1:code}}"
       }
     },
     {
@@ -224,7 +224,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "sumryTblProbFmt{${1:text}}"
       }
     },
     {
@@ -307,7 +307,7 @@
       "if": "userbmintrvl",
       "arg": {
         "format": "{}{}{}{}{}",
-        "snippet": "{${1:[${6:a,b}]}}{${2:answer}}{${3:samples}}{${4:precision}}{${5:[${7:a1,b1}]x[${8:a2,b2}]x...}}"
+        "snippet": "rbmIntrvl{${1:[${6:a,b}]}}{${2:answer}}{${3:samples}}{${4:precision}}{${5:[${7:a1,b1}]x[${8:a2,b2}]x...}}"
       }
     },
     {
@@ -315,7 +315,7 @@
       "if": "userbmintrvl",
       "arg": {
         "format": "{}{}(){}{}{}",
-        "snippet": "{${1:[${6:a,b}]}}{${2:answer}}(${9:%<variables%>}){${3:samples}}{${4:precision}}{${5:[${7:a1,b1}]x[${8:a2,b2}]x...}}"
+        "snippet": "rbmIntrvl{${1:[${6:a,b}]}}{${2:answer}}(${9:%<variables%>}){${3:samples}}{${4:precision}}{${5:[${7:a1,b1}]x[${8:a2,b2}]x...}}"
       }
     },
     {
@@ -323,7 +323,7 @@
       "if": "userbmintrvl",
       "arg": {
         "format": "{}{}()[]{}{}{}",
-        "snippet": "{${1:[${6:a,b}]}}{${2:answer}}(${10:%<variables%>})[${7:dest}]{${3:samples}}{${4:precision}}{${5:[${8:a1,b1}]x[${9:a2,b2}]x...}}"
+        "snippet": "rbmIntrvl{${1:[${6:a,b}]}}{${2:answer}}(${10:%<variables%>})[${7:dest}]{${3:samples}}{${4:precision}}{${5:[${8:a1,b1}]x[${9:a2,b2}]x...}}"
       }
     },
     {
@@ -331,7 +331,7 @@
       "if": "userbmintrvl",
       "arg": {
         "format": "{}{}()[]{}{}{}[]",
-        "snippet": "{${1:[${6:a,b}]}}{${2:answer}}(${11:%<variables%>})[${7:dest}]{${3:samples}}{${4:precision}}{${5:[${8:a1,b1}]x[${9:a2,b2}]x...}}[${10:comp func}]"
+        "snippet": "rbmIntrvl{${1:[${6:a,b}]}}{${2:answer}}(${11:%<variables%>})[${7:dest}]{${3:samples}}{${4:precision}}{${5:[${8:a1,b1}]x[${9:a2,b2}]x...}}[${10:comp func}]"
       }
     },
     {
@@ -339,7 +339,7 @@
       "if": "userbmintrvl",
       "arg": {
         "format": "{}[]{}{}{}{}",
-        "snippet": "{${1:[${6:a,b}]}}[${7:eforms params}]{${2:answer}}{${3:samples}}{${4:precision}}{${5:[${8:a1,b1}]x[${9:a2,b2}]x...}}"
+        "snippet": "rbmIntrvl{${1:[${6:a,b}]}}[${7:eforms params}]{${2:answer}}{${3:samples}}{${4:precision}}{${5:[${8:a1,b1}]x[${9:a2,b2}]x...}}"
       }
     },
     {
@@ -347,7 +347,7 @@
       "if": "userbmintrvl",
       "arg": {
         "format": "{}[]{}(){}{}{}",
-        "snippet": "{${1:[${6:a,b}]}}[${7:eforms params}]{${2:answer}}(${10:%<variables%>}){${3:samples}}{${4:precision}}{${5:[${8:a1,b1}]x[${9:a2,b2}]x...}}"
+        "snippet": "rbmIntrvl{${1:[${6:a,b}]}}[${7:eforms params}]{${2:answer}}(${10:%<variables%>}){${3:samples}}{${4:precision}}{${5:[${8:a1,b1}]x[${9:a2,b2}]x...}}"
       }
     },
     {
@@ -355,7 +355,7 @@
       "if": "userbmintrvl",
       "arg": {
         "format": "{}[]{}()[]{}{}{}",
-        "snippet": "{${1:[${6:a,b}]}}[${7:eforms params}]{${2:answer}}(${11:%<variables%>})[${8:dest}]{${3:samples}}{${4:precision}}{${5:[${9:a1,b1}]x[${10:a2,b2}]x...}}"
+        "snippet": "rbmIntrvl{${1:[${6:a,b}]}}[${7:eforms params}]{${2:answer}}(${11:%<variables%>})[${8:dest}]{${3:samples}}{${4:precision}}{${5:[${9:a1,b1}]x[${10:a2,b2}]x...}}"
       }
     },
     {
@@ -363,70 +363,70 @@
       "if": "userbmintrvl",
       "arg": {
         "format": "{}[]{}()[]{}{}{}[]",
-        "snippet": "{${1:[${6:a,b}]}}[${7:eforms params}]{${2:answer}}(${12:%<variables%>})[${8:dest}]{${3:samples}}{${4:precision}}{${5:[${9:a1,b1}]x[${10:a2,b2}]x...}}[${11:comp func}]"
+        "snippet": "rbmIntrvl{${1:[${6:a,b}]}}[${7:eforms params}]{${2:answer}}(${12:%<variables%>})[${8:dest}]{${3:samples}}{${4:precision}}{${5:[${9:a1,b1}]x[${10:a2,b2}]x...}}[${11:comp func}]"
       }
     },
     {
       "name": "RespBoxMath",
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:answer}}{${2:samples}}{${3:precision}}{${4:[${5:a1,b1}]x[${6:a2,b2}]x...}}"
+        "snippet": "RespBoxMath{${1:answer}}{${2:samples}}{${3:precision}}{${4:[${5:a1,b1}]x[${6:a2,b2}]x...}}"
       }
     },
     {
       "name": "RespBoxMath",
       "arg": {
         "format": "{}(){}{}{}",
-        "snippet": "{${1:answer}}(${7:%<variables%>}){${2:samples}}{${3:precision}}{${4:[${5:a1,b1}]x[${6:a2,b2}]x...}}"
+        "snippet": "RespBoxMath{${1:answer}}(${7:%<variables%>}){${2:samples}}{${3:precision}}{${4:[${5:a1,b1}]x[${6:a2,b2}]x...}}"
       }
     },
     {
       "name": "RespBoxMath",
       "arg": {
         "format": "{}()[]{}{}{}",
-        "snippet": "{${1:answer}}(${8:%<variables%>})[${5:dest}]{${2:samples}}{${3:precision}}{${4:[${6:a1,b1}]x[${7:a2,b2}]x...}}"
+        "snippet": "RespBoxMath{${1:answer}}(${8:%<variables%>})[${5:dest}]{${2:samples}}{${3:precision}}{${4:[${6:a1,b1}]x[${7:a2,b2}]x...}}"
       }
     },
     {
       "name": "RespBoxMath",
       "arg": {
         "format": "{}()[]{}{}{}[]",
-        "snippet": "{${1:answer}}(${9:%<variables%>})[${5:dest}]{${2:samples}}{${3:precision}}{${4:[${6:a1,b1}]x[${7:a2,b2}]x...}}[${8:comp func}]"
+        "snippet": "RespBoxMath{${1:answer}}(${9:%<variables%>})[${5:dest}]{${2:samples}}{${3:precision}}{${4:[${6:a1,b1}]x[${7:a2,b2}]x...}}[${8:comp func}]"
       }
     },
     {
       "name": "RespBoxMath",
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:eforms params}]{${1:answer}}{${2:samples}}{${3:precision}}{${4:[${6:a1,b1}]x[${7:a2,b2}]x...}}"
+        "snippet": "RespBoxMath[${5:eforms params}]{${1:answer}}{${2:samples}}{${3:precision}}{${4:[${6:a1,b1}]x[${7:a2,b2}]x...}}"
       }
     },
     {
       "name": "RespBoxMath",
       "arg": {
         "format": "[]{}(){}{}{}",
-        "snippet": "[${5:eforms params}]{${1:answer}}(${8:%<variables%>}){${2:samples}}{${3:precision}}{${4:[${6:a1,b1}]x[${7:a2,b2}]x...}}"
+        "snippet": "RespBoxMath[${5:eforms params}]{${1:answer}}(${8:%<variables%>}){${2:samples}}{${3:precision}}{${4:[${6:a1,b1}]x[${7:a2,b2}]x...}}"
       }
     },
     {
       "name": "RespBoxMath",
       "arg": {
         "format": "[]{}()[]{}{}{}",
-        "snippet": "[${5:eforms params}]{${1:answer}}(${9:%<variables%>})[${6:dest}]{${2:samples}}{${3:precision}}{${4:[${7:a1,b1}]x[${8:a2,b2}]x...}}"
+        "snippet": "RespBoxMath[${5:eforms params}]{${1:answer}}(${9:%<variables%>})[${6:dest}]{${2:samples}}{${3:precision}}{${4:[${7:a1,b1}]x[${8:a2,b2}]x...}}"
       }
     },
     {
       "name": "RespBoxMath",
       "arg": {
         "format": "[]{}()[]{}{}{}[]",
-        "snippet": "[${5:eforms params}]{${1:answer}}(${10:%<variables%>})[${6:dest}]{${2:samples}}{${3:precision}}{${4:[${7:a1,b1}]x[${8:a2,b2}]x...}}[${9:comp func}]"
+        "snippet": "RespBoxMath[${5:eforms params}]{${1:answer}}(${10:%<variables%>})[${6:dest}]{${2:samples}}{${3:precision}}{${4:[${7:a1,b1}]x[${8:a2,b2}]x...}}[${9:comp func}]"
       }
     },
     {
       "name": "everyRespBoxTxt",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everyRespBoxTxt{${1:eforms params}}"
       }
     },
     {
@@ -437,42 +437,42 @@
       "name": "AddAAFormat",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "AddAAFormat{${1:code}}"
       }
     },
     {
       "name": "AddAAKeystroke",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "AddAAKeystroke{${1:code}}"
       }
     },
     {
       "name": "AddAAMouseUpMC",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "AddAAMouseUpMC{${1:code}}"
       }
     },
     {
       "name": "AddAAMouseUpMS",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "AddAAMouseUpMS{${1:code}}"
       }
     },
     {
       "name": "addToAction*",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:key%plain}}{${2:code}}"
+        "snippet": "addToAction*{${1:key%plain}}{${2:code}}"
       }
     },
     {
       "name": "addToAction",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:key%plain}}{${2:code}}"
+        "snippet": "addToAction{${1:key%plain}}{${2:code}}"
       }
     },
     {
@@ -494,7 +494,7 @@
       "name": "afterSplChkActn",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:action}}"
+        "snippet": "afterSplChkActn{${1:action}}"
       }
     },
     {
@@ -507,42 +507,42 @@
       "name": "Ans",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${1:partial pts}]{0 or 1}"
+        "snippet": "Ans[${1:partial pts}]{0 or 1}"
       }
     },
     {
       "name": "AnswerField",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:eforms params}]{${1:base name}}"
+        "snippet": "AnswerField[${2:eforms params}]{${1:base name}}"
       }
     },
     {
       "name": "AnswerField",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:base name}}"
+        "snippet": "AnswerField{${1:base name}}"
       }
     },
     {
       "name": "answersEndHook",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:content}}"
+        "snippet": "answersEndHook{${1:content}}"
       }
     },
     {
       "name": "Array",
       "arg": {
         "format": "()",
-        "snippet": "(${1:JS funcs})"
+        "snippet": "Array(${1:JS funcs})"
       }
     },
     {
       "name": "autoAnsFldRaiseBox",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:length}}"
+        "snippet": "autoAnsFldRaiseBox{${1:length}}"
       }
     },
     {
@@ -552,7 +552,7 @@
       "name": "autoAnswerField",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:eforms params}]"
+        "snippet": "autoAnswerField[${1:eforms params}]"
       }
     },
     {
@@ -565,7 +565,7 @@
       "name": "bChoices",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]",
+        "snippet": "bChoices[${1:options%keyvals}]",
         "keys": [
           "\\bChoices#c"
         ],
@@ -586,35 +586,35 @@
       "name": "CorrAnsButton",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:display answer%definition}}"
+        "snippet": "CorrAnsButton{${1:display answer%definition}}"
       }
     },
     {
       "name": "CorrAnsButton",
       "arg": {
         "format": "{}*{}",
-        "snippet": "{${1:display answer%definition}}*{${2:JS function}}"
+        "snippet": "CorrAnsButton{${1:display answer%definition}}*{${2:JS function}}"
       }
     },
     {
       "name": "CorrAnsButtonGrp",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:n1,n2,...}}"
+        "snippet": "CorrAnsButtonGrp{${1:n1,n2,...}}"
       }
     },
     {
       "name": "CorrButton",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:eforms params}]{${1:field}}"
+        "snippet": "CorrButton[${2:eforms params}]{${1:field}}"
       }
     },
     {
       "name": "CorrButton",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:field}}"
+        "snippet": "CorrButton{${1:field}}"
       }
     },
     {
@@ -630,14 +630,14 @@
       "name": "databaseName",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "databaseName{${1:name}}"
       }
     },
     {
       "name": "DeclareQuiz",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "DeclareQuiz{${1:name}}"
       }
     },
     {
@@ -651,7 +651,7 @@
       "name": "defaultRDPrecision",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:precision}}"
+        "snippet": "defaultRDPrecision{${1:precision}}"
       }
     },
     {
@@ -680,7 +680,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:eforms params}]{${1:field}}"
+        "snippet": "eqButton[${2:eforms params}]{${1:field}}"
       }
     },
     {
@@ -688,14 +688,14 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:field}}"
+        "snippet": "eqButton{${1:field}}"
       }
     },
     {
       "name": "eqCGI",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:URL}}"
+        "snippet": "eqCGI{${1:URL}}"
       }
     },
     {
@@ -731,133 +731,133 @@
       "name": "eqSubmit",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:URL}}{${2:db name}}{${3:table name%text}}"
+        "snippet": "eqSubmit{${1:URL}}{${2:db name}}{${3:table name%text}}"
       }
     },
     {
       "name": "everyAnswerField",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everyAnswerField{${1:eforms params}}"
       }
     },
     {
       "name": "everyBeginQuizButton",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everyBeginQuizButton{${1:eforms params}}"
       }
     },
     {
       "name": "everyCorrAnsButton",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everyCorrAnsButton{${1:eforms params}}"
       }
     },
     {
       "name": "everyCorrButton",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everyCorrButton{${1:eforms params}}"
       }
     },
     {
       "name": "everyEndQuizButton",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everyEndQuizButton{${1:eforms params}}"
       }
     },
     {
       "name": "everyeqButtonField",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everyeqButtonField{${1:eforms params}}"
       }
     },
     {
       "name": "everyeqTextField",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everyeqTextField{${1:eforms params}}"
       }
     },
     {
       "name": "everyeqTextField",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everyeqTextField{${1:eforms params}}"
       }
     },
     {
       "name": "everyGradeField",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everyGradeField{${1:eforms params}}"
       }
     },
     {
       "name": "everyPercentField",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everyPercentField{${1:eforms params}}"
       }
     },
     {
       "name": "everyPointsField",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everyPointsField{${1:eforms params}}"
       }
     },
     {
       "name": "everyqRadioButton",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everyqRadioButton{${1:eforms params}}"
       }
     },
     {
       "name": "everyRespBoxMath",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everyRespBoxMath{${1:eforms params}}"
       }
     },
     {
       "name": "everyScoreField",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everyScoreField{${1:eforms params}}"
       }
     },
     {
       "name": "everysqClearButton",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everysqClearButton{${1:eforms params}}"
       }
     },
     {
       "name": "everysqRadioButton",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everysqRadioButton{${1:eforms params}}"
       }
     },
     {
       "name": "everysqTallyBox",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everysqTallyBox{${1:eforms params}}"
       }
     },
     {
       "name": "everysqTallyTotal",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "everysqTallyTotal{${1:eforms params}}"
       }
     },
     {
@@ -880,7 +880,7 @@
       "name": "expdfbookmark",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:bookmark title%text}}"
+        "snippet": "expdfbookmark{${1:bookmark title%text}}"
       }
     },
     {
@@ -922,14 +922,14 @@
       "name": "GradeField",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:eforms params}]{${1:base name}}"
+        "snippet": "GradeField[${2:eforms params}]{${1:base name}}"
       }
     },
     {
       "name": "GradeField",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:base name}}"
+        "snippet": "GradeField{${1:base name}}"
       }
     },
     {
@@ -957,14 +957,14 @@
       "name": "ifQuizType",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:quiz code}}{${2:shortquiz code}}"
+        "snippet": "ifQuizType{${1:quiz code}}{${2:shortquiz code}}"
       }
     },
     {
       "name": "ifstaroption",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:code if \\titlequiz*}}{${2:otherwise}}"
+        "snippet": "ifstaroption{${1:code if \\titlequiz*}}{${2:otherwise}}"
       }
     },
     {
@@ -1004,7 +1004,7 @@
       "name": "manualAnswerField",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:eforms params}]"
+        "snippet": "manualAnswerField[${1:eforms params}]"
       }
     },
     {
@@ -1049,28 +1049,28 @@
       "name": "PercentField",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:eforms params}]{${1:base name}}"
+        "snippet": "PercentField[${2:eforms params}]{${1:base name}}"
       }
     },
     {
       "name": "PercentField",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:base name}}"
+        "snippet": "PercentField{${1:base name}}"
       }
     },
     {
       "name": "PointsField",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:eforms params}]{${1:base name}}"
+        "snippet": "PointsField[${2:eforms params}]{${1:base name}}"
       }
     },
     {
       "name": "PointsField",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:base name}}"
+        "snippet": "PointsField{${1:base name}}"
       }
     },
     {
@@ -1083,7 +1083,7 @@
       "name": "promoteNewPageHere",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:height}]"
+        "snippet": "promoteNewPageHere[${1:height}]"
       }
     },
     {
@@ -1094,28 +1094,28 @@
       "name": "ptLabel",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "ptLabel{${1:text}}"
       }
     },
     {
       "name": "PTs",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:number}}"
+        "snippet": "PTs{${1:number}}"
       }
     },
     {
       "name": "PTsHook",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "PTsHook{${1:code}}"
       }
     },
     {
       "name": "ptsLabel",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "ptsLabel{${1:text}}"
       }
     },
     {
@@ -1125,21 +1125,21 @@
       "name": "quesNumColor",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:color}}"
+        "snippet": "quesNumColor{${1:color}}"
       }
     },
     {
       "name": "quizpdfbookmark",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:bookmark title%text}}"
+        "snippet": "quizpdfbookmark{${1:bookmark title%text}}"
       }
     },
     {
       "name": "quiztype",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:f|l}}"
+        "snippet": "quiztype{${1:f|l}}"
       }
     },
     {
@@ -1153,28 +1153,28 @@
       "name": "rbMarkup",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:eforms params}]"
+        "snippet": "rbMarkup[${1:eforms params}]"
       }
     },
     {
       "name": "REF*",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "REF*{${1:label}}"
       }
     },
     {
       "name": "REF",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "REF{${1:label}}"
       }
     },
     {
       "name": "renameSolnAfterTo",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "renameSolnAfterTo{${1:text}}"
       }
     },
     {
@@ -1190,14 +1190,14 @@
       "name": "RespBoxEssay*",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:width}}{${2:height}}"
+        "snippet": "RespBoxEssay*{${1:width}}{${2:height}}"
       }
     },
     {
       "name": "RespBoxEssay",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:width}}{${2:height}}"
+        "snippet": "RespBoxEssay{${1:width}}{${2:height}}"
       }
     },
     {
@@ -1214,70 +1214,70 @@
       "name": "rowsep",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:length}}"
+        "snippet": "rowsep{${1:length}}"
       }
     },
     {
       "name": "rowsepDefault",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:length}}"
+        "snippet": "rowsepDefault{${1:length}}"
       }
     },
     {
       "name": "rpl",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text->symbol}}"
+        "snippet": "rpl{${1:text->symbol}}"
       }
     },
     {
       "name": "saveDest",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:dest}}"
+        "snippet": "saveDest{${1:dest}}"
       }
     },
     {
       "name": "ScoreField",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:eforms params}]{${1:base name}}"
+        "snippet": "ScoreField[${2:eforms params}]{${1:base name}}"
       }
     },
     {
       "name": "ScoreField",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:base name}}"
+        "snippet": "ScoreField{${1:base name}}"
       }
     },
     {
       "name": "setActionKeys",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:eforms params}}"
+        "snippet": "setActionKeys{${1:eforms params}}"
       }
     },
     {
       "name": "setAnsEnvLinewidth",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:length}}"
+        "snippet": "setAnsEnvLinewidth{${1:length}}"
       }
     },
     {
       "name": "setMClabelsep",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:space cmd}}"
+        "snippet": "setMClabelsep{${1:space cmd}}"
       }
     },
     {
       "name": "setsolnspace",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:space cmd}}"
+        "snippet": "setsolnspace{${1:space cmd}}"
       }
     },
     {
@@ -1296,7 +1296,7 @@
       "name": "SpellCheck",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:eforms params}]"
+        "snippet": "SpellCheck[${1:eforms params}]"
       }
     },
     {
@@ -1310,7 +1310,7 @@
       "name": "sqClearButton",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:eforms params}]"
+        "snippet": "sqClearButton[${1:eforms params}]"
       }
     },
     {
@@ -1336,7 +1336,7 @@
       "name": "sqSolnBtn",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:eforms params}]"
+        "snippet": "sqSolnBtn[${1:eforms params}]"
       }
     },
     {
@@ -1358,7 +1358,7 @@
       "name": "sqTallyBox",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:eforms params}]"
+        "snippet": "sqTallyBox[${1:eforms params}]"
       }
     },
     {
@@ -1368,7 +1368,7 @@
       "name": "sqTallyTotal",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:eforms params}]"
+        "snippet": "sqTallyTotal[${1:eforms params}]"
       }
     },
     {
@@ -1388,14 +1388,14 @@
       "name": "strongpass",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:n}}"
+        "snippet": "strongpass{${1:n}}"
       }
     },
     {
       "name": "symbolchoice",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:choice%keyvals}}",
+        "snippet": "symbolchoice{${1:choice%keyvals}}",
         "keys": [
           "\\symbolchoice"
         ],
@@ -1406,7 +1406,7 @@
       "name": "tableName",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "tableName{${1:name}}"
       }
     },
     {
@@ -1425,14 +1425,14 @@
       "name": "titleQuiz*",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "titleQuiz*{${1:text}}"
       }
     },
     {
       "name": "titleQuiz",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "titleQuiz{${1:text}}"
       }
     },
     {
@@ -1443,7 +1443,7 @@
       "name": "TUChoice",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "TUChoice{${1:text}}"
       }
     },
     {
@@ -1456,7 +1456,7 @@
       "name": "useBeginQuizButton",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:eforms params}]"
+        "snippet": "useBeginQuizButton[${1:eforms params}]"
       }
     },
     {
@@ -1472,7 +1472,7 @@
       "name": "useEndQuizButton",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:eforms params}]"
+        "snippet": "useEndQuizButton[${1:eforms params}]"
       }
     },
     {
@@ -1494,14 +1494,14 @@
       "name": "weakpass",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:n}}"
+        "snippet": "weakpass{${1:n}}"
       }
     },
     {
       "name": "word",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "word{${1:text}}"
       }
     },
     {
@@ -1555,28 +1555,28 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "noPeekArgs{${1:arg}}"
       }
     },
     {
       "name": "postDenyForm",
       "arg": {
         "format": "()",
-        "snippet": "(${1:regexp})"
+        "snippet": "postDenyForm(${1:regexp})"
       }
     },
     {
       "name": "preDenyForm",
       "arg": {
         "format": "()",
-        "snippet": "(${1:regexp},${2:cMsg})"
+        "snippet": "preDenyForm(${1:regexp},${2:cMsg})"
       }
     },
     {
       "name": "preReqForm",
       "arg": {
         "format": "()",
-        "snippet": "(${1:regexp},${2:cMsg})"
+        "snippet": "preReqForm(${1:regexp},${2:cMsg})"
       }
     },
     {
@@ -1589,7 +1589,7 @@
       "name": "rechrclass",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "rechrclass{${1:arg}}"
       }
     },
     {
@@ -1608,14 +1608,14 @@
       "name": "refac",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "refac{${1:arg}}"
       }
     },
     {
       "name": "regrp",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "regrp{${1:arg}}"
       }
     },
     {
@@ -1625,7 +1625,7 @@
       "name": "replaceExclPt",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:true|false}}"
+        "snippet": "replaceExclPt{${1:true|false}}"
       }
     },
     {
@@ -1655,7 +1655,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "eqModelInfo{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -1663,7 +1663,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "jsColor{${1:arg1}}{${2:arg2}}"
       }
     }
   ],

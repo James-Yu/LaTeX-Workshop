@@ -13,7 +13,7 @@
       "if": "braket",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg%formula}}"
+        "snippet": "bra{${1:arg%formula}}"
       }
     },
     {
@@ -21,7 +21,7 @@
       "if": "braket",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg%formula}}"
+        "snippet": "ket{${1:arg%formula}}"
       }
     },
     {
@@ -29,7 +29,7 @@
       "if": "qm",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1%formula}}{${2:arg2%formula}}"
+        "snippet": "ip{${1:arg1%formula}}{${2:arg2%formula}}"
       }
     },
     {
@@ -37,7 +37,7 @@
       "if": "qm",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:arg1%formula}}{${2:arg2%formula}}{${3:arg3%formula}}"
+        "snippet": "melem{${1:arg1%formula}}{${2:arg2%formula}}{${3:arg3%formula}}"
       }
     },
     {
@@ -45,7 +45,7 @@
       "if": "qm",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg%formula}}"
+        "snippet": "expval{${1:arg%formula}}"
       }
     },
     {
@@ -53,56 +53,56 @@
       "if": "qm",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1%formula}}{${2:arg2%formula}}"
+        "snippet": "op{${1:arg1%formula}}{${2:arg2%formula}}"
       }
     },
     {
       "name": "Qcircuit ",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:matrix}}"
+        "snippet": "Qcircuit {${1:matrix}}"
       }
     },
     {
       "name": "barrier",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:length}]{${1:integer}}"
+        "snippet": "barrier[${2:length}]{${1:integer}}"
       }
     },
     {
       "name": "barrier",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:integer}}"
+        "snippet": "barrier{${1:integer}}"
       }
     },
     {
       "name": "cctrl",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:integer}}"
+        "snippet": "cctrl{${1:integer}}"
       }
     },
     {
       "name": "cctrlo",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:integer}}"
+        "snippet": "cctrlo{${1:integer}}"
       }
     },
     {
       "name": "cds",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:integer}}{${2:label}}"
+        "snippet": "cds{${1:integer}}{${2:label}}"
       }
     },
     {
       "name": "cghost",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "cghost{${1:arg}}"
       }
     },
     {
@@ -115,14 +115,14 @@
       "name": "ctrl",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:integer}}"
+        "snippet": "ctrl{${1:integer}}"
       }
     },
     {
       "name": "ctrlo",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:integer}}"
+        "snippet": "ctrlo{${1:integer}}"
       }
     },
     {
@@ -132,7 +132,7 @@
       "name": "cw",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:integer}]"
+        "snippet": "cw[${1:integer}]"
       }
     },
     {
@@ -142,7 +142,7 @@
       "name": "cwa",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:integer}]"
+        "snippet": "cwa[${1:integer}]"
       }
     },
     {
@@ -152,91 +152,91 @@
       "name": "cwx",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:integer}]"
+        "snippet": "cwx[${1:integer}]"
       }
     },
     {
       "name": "dstick",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "dstick{${1:label}}"
       }
     },
     {
       "name": "gate",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "gate{${1:label}}"
       }
     },
     {
       "name": "gategroup",
       "arg": {
         "format": "{}{}{}{}{}{}",
-        "snippet": "{${1:row1}}{${2:col1}}{${3:row2}}{${4:col2}}{${5:length}}{${6:hl-type}}"
+        "snippet": "gategroup{${1:row1}}{${2:col1}}{${3:row2}}{${4:col2}}{${5:length}}{${6:hl-type}}"
       }
     },
     {
       "name": "ghost",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "ghost{${1:arg}}"
       }
     },
     {
       "name": "inputgroup",
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:row1}}{${2:row2}}{${3:length}}{${4:label}}"
+        "snippet": "inputgroup{${1:row1}}{${2:row2}}{${3:length}}{${4:label}}"
       }
     },
     {
       "name": "inputgrouph",
       "arg": {
         "format": "{}{}{}{}{}",
-        "snippet": "{${1:row1}}{${2:row2}}{${3:length1}}{${4:label}}{${5:length2}}"
+        "snippet": "inputgrouph{${1:row1}}{${2:row2}}{${3:length1}}{${4:label}}{${5:length2}}"
       }
     },
     {
       "name": "inputgroupv",
       "arg": {
         "format": "{}{}{}{}{}",
-        "snippet": "{${1:row1}}{${2:row2}}{${3:length1}}{${4:length2}}{${5:label}}"
+        "snippet": "inputgroupv{${1:row1}}{${2:row2}}{${3:length1}}{${4:length2}}{${5:label}}"
       }
     },
     {
       "name": "link",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:integer1}}{${2:integer2}}"
+        "snippet": "link{${1:integer1}}{${2:integer2}}"
       }
     },
     {
       "name": "lstick",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "lstick{${1:label}}"
       }
     },
     {
       "name": "measure",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "measure{${1:label}}"
       }
     },
     {
       "name": "measureD",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "measureD{${1:label}}"
       }
     },
     {
       "name": "measuretab",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "measuretab{${1:label}}"
       }
     },
     {
@@ -246,7 +246,7 @@
       "name": "meterB",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "meterB{${1:label}}"
       }
     },
     {
@@ -256,42 +256,42 @@
       "name": "multigate",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:integer}}{${2:label}}"
+        "snippet": "multigate{${1:integer}}{${2:label}}"
       }
     },
     {
       "name": "multimeasure",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:integer}}{${2:label}}"
+        "snippet": "multimeasure{${1:integer}}{${2:label}}"
       }
     },
     {
       "name": "multimeasureD",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:integer}}{${2:label}}"
+        "snippet": "multimeasureD{${1:integer}}{${2:label}}"
       }
     },
     {
       "name": "nghost",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "nghost{${1:arg}}"
       }
     },
     {
       "name": "pureghost",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "pureghost{${1:arg}}"
       }
     },
     {
       "name": "push",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "push{${1:label}}"
       }
     },
     {
@@ -304,7 +304,7 @@
       "name": "qw",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:integer}]"
+        "snippet": "qw[${1:integer}]"
       }
     },
     {
@@ -314,7 +314,7 @@
       "name": "qwa",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:integer}]"
+        "snippet": "qwa[${1:integer}]"
       }
     },
     {
@@ -324,28 +324,28 @@
       "name": "qwx",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:integer}]"
+        "snippet": "qwx[${1:integer}]"
       }
     },
     {
       "name": "rstick",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "rstick{${1:label}}"
       }
     },
     {
       "name": "sgate",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:label}}{${2:integer}}"
+        "snippet": "sgate{${1:label}}{${2:integer}}"
       }
     },
     {
       "name": "smeterB",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:label}}{${2:integer}}"
+        "snippet": "smeterB{${1:label}}{${2:integer}}"
       }
     },
     {
@@ -355,7 +355,7 @@
       "name": "ustick",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label}}"
+        "snippet": "ustick{${1:label}}"
       }
     }
   ],

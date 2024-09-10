@@ -15,7 +15,7 @@
       "name": "scoped",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]",
+        "snippet": "scoped[${1:options%keyvals}]",
         "keys": [
           "\\begin{scope}#c,\\tikzset#c,\\scoped#c",
           "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c",
@@ -30,7 +30,7 @@
       "name": "tikzset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "tikzset{${1:options%keyvals}}",
         "keys": [
           "\\tikzset#c",
           "\\begin{tikzpicture}#c,\\tikz#c,\\tikzset#c",
@@ -48,7 +48,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:key%plain}}{${2:value}}"
+        "snippet": "tikzoption{${1:key%plain}}{${2:value}}"
       }
     },
     {
@@ -74,7 +74,7 @@
       "name": "tikz",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]",
+        "snippet": "tikz[${1:options%keyvals}]",
         "keys": [
           "\\begin{tikzpicture}#c,\\tikz#c,\\tikzset#c",
           "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c",
@@ -90,7 +90,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:code}}"
+        "snippet": "tikzdeclarecoordinatesystem{${1:name}}{${2:code}}"
       }
     },
     {
@@ -98,7 +98,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:new name}}{${2:old name}}"
+        "snippet": "tikzaliascoordinatesystem{${1:new name}}{${2:old name}}"
       }
     },
     {
@@ -106,7 +106,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:in code}}{${2:out code}}"
+        "snippet": "tikzifinpicture{${1:in code}}{${2:out code}}"
       }
     },
     {
@@ -114,7 +114,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:short cmd%cmd}}{${2:cmd}}"
+        "snippet": "tikzaddtikzonlycommandshortcutlet{${1:short cmd%cmd}}{${2:cmd}}"
       }
     },
     {
@@ -122,21 +122,21 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:short cmd%cmd}}{${2:def}}"
+        "snippet": "tikzaddtikzonlycommandshortcutdef{${1:short cmd%cmd}}{${2:def}}"
       }
     },
     {
       "name": "nodepart",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:part name}}"
+        "snippet": "nodepart{${1:part name}}"
       }
     },
     {
       "name": "nodepart",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:part name}}",
+        "snippet": "nodepart[${2:options%keyvals}]{${1:part name}}",
         "keys": [
           "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\path#c,\\draw#c,\\fill#c,\\filldraw#c,\\pattern#c,\\shade#c,\\shadedraw#c,\\clip#c,\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c,\\matrix#c,\\calendar#c,\\chainin#c,\\arrow#c,\\arrowreversed#c",
           "\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c"
@@ -149,7 +149,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "pgfextra{${1:code}}"
       }
     },
     {
@@ -204,7 +204,7 @@
       "name": "usetikzlibrary",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:library list%keyvals}}",
+        "snippet": "usetikzlibrary{${1:library list%keyvals}}",
         "keys": [
           "\\usetikzlibrary#c"
         ],
@@ -220,7 +220,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:tension}}"
+        "snippet": "pgfsetplottension{${1:tension}}"
       }
     },
     {
@@ -264,7 +264,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:dimen%l}}"
+        "snippet": "pgfplotxzerolevelstreamconstant{${1:dimen%l}}"
       }
     },
     {
@@ -272,7 +272,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:dimen%l}}"
+        "snippet": "pgfplotyzerolevelstreamconstant{${1:dimen%l}}"
       }
     },
     {
@@ -332,7 +332,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:mark code}}"
+        "snippet": "pgfplothandlermark{${1:mark code}}"
       }
     },
     {
@@ -340,7 +340,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:repeat count}}"
+        "snippet": "pgfsetplotmarkrepeat{${1:repeat count}}"
       }
     },
     {
@@ -348,7 +348,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:index}}"
+        "snippet": "pgfsetplotmarkphase{${1:index}}"
       }
     },
     {
@@ -356,7 +356,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:code}}{${2:positions}}"
+        "snippet": "pgfplothandlermarklisted{${1:code}}{${2:positions}}"
       }
     },
     {
@@ -364,7 +364,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:code}}"
+        "snippet": "pgfdeclareplotmark{${1:name}}{${2:code}}"
       }
     },
     {
@@ -372,7 +372,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:size%l}}"
+        "snippet": "pgfsetplotmarksize{${1:size%l}}"
       }
     },
     {
@@ -384,7 +384,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "pgfuseplotmark{${1:name}}"
       }
     },
     {
@@ -408,7 +408,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:code}}"
+        "snippet": "pgfmatrixbeforeassemblenode{${1:code}}"
       }
     },
     {
@@ -416,7 +416,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:sep list}}"
+        "snippet": "pgfsetmatrixrowsep{${1:sep list}}"
       }
     },
     {
@@ -424,7 +424,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:sep list}}"
+        "snippet": "pgfsetmatrixcolumnsep{${1:sep list}}"
       }
     },
     {
@@ -440,7 +440,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}{}{}{}",
-        "snippet": "{${1:shape}}{${2:anchor}}{${3:name}}{${4:usage}}{${5:shift}}{${6:precode}}{${7:matrix cells}}"
+        "snippet": "pgfmatrix{${1:shape}}{${2:anchor}}{${3:name}}{${4:usage}}{${5:shift}}{${6:precode}}{${7:matrix cells}}"
       }
     },
     {
@@ -452,7 +452,7 @@
       "unusual": true,
       "arg": {
         "format": "[]",
-        "snippet": "[${1:additional sep list}]"
+        "snippet": "pgfmatrixnextcell[${1:additional sep list}]"
       }
     },
     {
@@ -476,7 +476,7 @@
       "unusual": true,
       "arg": {
         "format": "[]",
-        "snippet": "[${1:additional sep list}]"
+        "snippet": "pgfmatrixendrow[${1:additional sep list}]"
       }
     }
   ],

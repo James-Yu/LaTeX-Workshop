@@ -5,14 +5,14 @@
       "name": "JSONParse",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:token variable%cmd}}{${2:JSON string}}"
+        "snippet": "JSONParse{${1:token variable%cmd}}{${2:JSON string}}"
       }
     },
     {
       "name": "JSONParse",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:token variable%cmd}}{${2:JSON string}}",
+        "snippet": "JSONParse[${3:options%keyvals}]{${1:token variable%cmd}}{${2:JSON string}}",
         "keys": [
           "\\usepackage/jsonparse#c,\\JSONParseSet,\\JSONParse,\\JSONParseFromFile",
           "\\JSONParseSet,\\JSONParse,\\JSONParseFromFile"
@@ -24,14 +24,14 @@
       "name": "JSONParseFromFile",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:token variable%cmd}}{${2:JSON file%file}}"
+        "snippet": "JSONParseFromFile{${1:token variable%cmd}}{${2:JSON file%file}}"
       }
     },
     {
       "name": "JSONParseFromFile",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:token variable%cmd}}{${2:JSON file%file}}",
+        "snippet": "JSONParseFromFile[${3:options%keyvals}]{${1:token variable%cmd}}{${2:JSON file%file}}",
         "keys": [
           "\\usepackage/jsonparse#c,\\JSONParseSet,\\JSONParse,\\JSONParseFromFile",
           "\\JSONParseSet,\\JSONParse,\\JSONParseFromFile"
@@ -43,21 +43,21 @@
       "name": "JSONParseKeys",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:token variable}}{${2:token variable%cmd}}"
+        "snippet": "JSONParseKeys{${1:token variable}}{${2:token variable%cmd}}"
       }
     },
     {
       "name": "JSONParseValue",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:token variable}}{${2:key%plain}}"
+        "snippet": "JSONParseValue{${1:token variable}}{${2:key%plain}}"
       }
     },
     {
       "name": "JSONParseValue",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:token variable}}{${2:key%plain}}",
+        "snippet": "JSONParseValue[${3:options%keyvals}]{${1:token variable}}{${2:key%plain}}",
         "keys": [
           "\\JSONParseSet,\\JSONParseValue,\\JSONParseArrayValues,\\JSONParseArrayValuesMap"
         ],
@@ -68,28 +68,28 @@
       "name": "JSONParseExpandableValue",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:token variable}}{${2:key%plain}}"
+        "snippet": "JSONParseExpandableValue{${1:token variable}}{${2:key%plain}}"
       }
     },
     {
       "name": "JSONParseArrayValues",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:token variable}}{${2:key%plain}}{${3:string}}"
+        "snippet": "JSONParseArrayValues{${1:token variable}}{${2:key%plain}}{${3:string}}"
       }
     },
     {
       "name": "JSONParseArrayValues",
       "arg": {
         "format": "{}{}[]{}",
-        "snippet": "{${1:token variable}}{${2:key%plain}}[${4:subkey}]{${3:string}}"
+        "snippet": "JSONParseArrayValues{${1:token variable}}{${2:key%plain}}[${4:subkey}]{${3:string}}"
       }
     },
     {
       "name": "JSONParseArrayValues",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:token variable}}{${2:key%plain}}{${3:string}}",
+        "snippet": "JSONParseArrayValues[${4:options%keyvals}]{${1:token variable}}{${2:key%plain}}{${3:string}}",
         "keys": [
           "\\JSONParseSet,\\JSONParseValue,\\JSONParseArrayValues,\\JSONParseArrayValuesMap"
         ],
@@ -100,7 +100,7 @@
       "name": "JSONParseArrayValues",
       "arg": {
         "format": "[]{}{}[]{}",
-        "snippet": "[${4:options%keyvals}]{${1:token variable}}{${2:key%plain}}[${5:subkey}]{${3:string}}",
+        "snippet": "JSONParseArrayValues[${4:options%keyvals}]{${1:token variable}}{${2:key%plain}}[${5:subkey}]{${3:string}}",
         "keys": [
           "\\JSONParseSet,\\JSONParseValue,\\JSONParseArrayValues,\\JSONParseArrayValuesMap"
         ],
@@ -111,21 +111,21 @@
       "name": "JSONParseArrayValuesMap",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:token variable}}{${2:key%plain}}{${3:command name}}"
+        "snippet": "JSONParseArrayValuesMap{${1:token variable}}{${2:key%plain}}{${3:command name}}"
       }
     },
     {
       "name": "JSONParseArrayValuesMap",
       "arg": {
         "format": "{}{}[]{}",
-        "snippet": "{${1:token variable}}{${2:key%plain}}[${4:subkey}]{${3:command name}}"
+        "snippet": "JSONParseArrayValuesMap{${1:token variable}}{${2:key%plain}}[${4:subkey}]{${3:command name}}"
       }
     },
     {
       "name": "JSONParseArrayValuesMap",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:token variable}}{${2:key%plain}}{${3:command name}}",
+        "snippet": "JSONParseArrayValuesMap[${4:options%keyvals}]{${1:token variable}}{${2:key%plain}}{${3:command name}}",
         "keys": [
           "\\JSONParseSet,\\JSONParseValue,\\JSONParseArrayValues,\\JSONParseArrayValuesMap"
         ],
@@ -136,7 +136,7 @@
       "name": "JSONParseArrayValuesMap",
       "arg": {
         "format": "[]{}{}[]{}",
-        "snippet": "[${4:options%keyvals}]{${1:token variable}}{${2:key%plain}}[${5:subkey}]{${3:command name}}",
+        "snippet": "JSONParseArrayValuesMap[${4:options%keyvals}]{${1:token variable}}{${2:key%plain}}[${5:subkey}]{${3:command name}}",
         "keys": [
           "\\JSONParseSet,\\JSONParseValue,\\JSONParseArrayValues,\\JSONParseArrayValuesMap"
         ],
@@ -156,14 +156,14 @@
       "name": "JSONParseArrayCount",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:token variable}}{${2:key%plain}}"
+        "snippet": "JSONParseArrayCount{${1:token variable}}{${2:key%plain}}"
       }
     },
     {
       "name": "JSONParseSet",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}",
+        "snippet": "JSONParseSet{${1:keyvals}}",
         "keys": [
           "\\usepackage/jsonparse#c,\\JSONParseSet,\\JSONParse,\\JSONParseFromFile",
           "\\JSONParseSet,\\JSONParse,\\JSONParseFromFile",

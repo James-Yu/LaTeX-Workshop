@@ -15,7 +15,7 @@
       "name": "defgroupfmt",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:format-group}}{${2:format-keys%keyvals}}",
+        "snippet": "defgroupfmt{${1:format-group}}{${2:format-keys%keyvals}}",
         "keys": [
           "\\defgroupfmt#c,\\defobjectfmt#c"
         ],
@@ -26,7 +26,7 @@
       "name": "defobjectfmt",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:obj-type}}{${2:format-group}}{${3:format-keys%keyvals}}",
+        "snippet": "defobjectfmt{${1:obj-type}}{${2:format-group}}{${3:format-keys%keyvals}}",
         "keys": [
           "\\defgroupfmt#c,\\defobjectfmt#c"
         ],
@@ -37,7 +37,7 @@
       "name": "describe",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:item-name}}{${2:item-description%text}}"
+        "snippet": "describe{${1:item-name}}{${2:item-description%text}}"
       }
     },
     {
@@ -45,7 +45,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:csv-list}}"
+        "snippet": "typesetobj{${1:csv-list}}"
       }
     },
     {
@@ -53,7 +53,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:obj-type%keyvals}]{${1:csv-list}}",
+        "snippet": "typesetobj[${2:obj-type%keyvals}]{${1:csv-list}}",
         "keys": [
           "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c",
           "\\typesetobj#c,\\tsobj#c"
@@ -65,14 +65,14 @@
       "name": "tsobj",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:csv-list}}"
+        "snippet": "tsobj{${1:csv-list}}"
       }
     },
     {
       "name": "tsobj",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:obj-type%keyvals}]{${1:csv-list}}",
+        "snippet": "tsobj[${2:obj-type%keyvals}]{${1:csv-list}}",
         "keys": [
           "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c",
           "\\typesetobj#c,\\tsobj#c"
@@ -85,7 +85,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:csv-list}}"
+        "snippet": "typesetargs{${1:csv-list}}"
       }
     },
     {
@@ -93,7 +93,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:obj-type%keyvals}]{${1:csv-list}}",
+        "snippet": "typesetargs[${2:obj-type%keyvals}]{${1:csv-list}}",
         "keys": [
           "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
         ],
@@ -104,14 +104,14 @@
       "name": "tsargs",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:csv-list}}"
+        "snippet": "tsargs{${1:csv-list}}"
       }
     },
     {
       "name": "tsargs",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:obj-type%keyvals}]{${1:csv-list}}",
+        "snippet": "tsargs[${2:obj-type%keyvals}]{${1:csv-list}}",
         "keys": [
           "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
         ],
@@ -123,7 +123,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:macro-list}}{${2:csv-list}}"
+        "snippet": "typesetmacro{${1:macro-list}}{${2:csv-list}}"
       }
     },
     {
@@ -131,21 +131,21 @@
       "unusual": true,
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:macro-list}}[${3:oargs-list}]{${2:margs-list}}"
+        "snippet": "typesetmacro{${1:macro-list}}[${3:oargs-list}]{${2:margs-list}}"
       }
     },
     {
       "name": "tsmacro",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:macro-list%definition}}{${2:csv-list}}"
+        "snippet": "tsmacro{${1:macro-list%definition}}{${2:csv-list}}"
       }
     },
     {
       "name": "tsmacro",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:macro-list%definition}}[${3:oargs-list}]{${2:margs-list}}"
+        "snippet": "tsmacro{${1:macro-list%definition}}[${3:oargs-list}]{${2:margs-list}}"
       }
     },
     {
@@ -153,14 +153,14 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "typesetmeta{${1:name}}"
       }
     },
     {
       "name": "tsmeta",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "tsmeta{${1:name}}"
       }
     },
     {
@@ -168,7 +168,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:verbatim text%definition}}"
+        "snippet": "typesetverb{${1:verbatim text%definition}}"
       }
     },
     {
@@ -176,7 +176,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:obj-type%keyvals}]{${1:verbatim text%definition}}",
+        "snippet": "typesetverb[${2:obj-type%keyvals}]{${1:verbatim text%definition}}",
         "keys": [
           "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
         ],
@@ -187,14 +187,14 @@
       "name": "tsverb",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:verbatim text%definition}}"
+        "snippet": "tsverb{${1:verbatim text%definition}}"
       }
     },
     {
       "name": "tsverb",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:obj-type%keyvals}]{${1:verbatim text%definition}}",
+        "snippet": "tsverb[${2:obj-type%keyvals}]{${1:verbatim text%definition}}",
         "keys": [
           "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
         ],
@@ -206,14 +206,14 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:note%text}}"
+        "snippet": "typesetmarginnote{${1:note%text}}"
       }
     },
     {
       "name": "tsmarginnote",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:note%text}}"
+        "snippet": "tsmarginnote{${1:note%text}}"
       }
     },
     {
@@ -221,7 +221,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:title-keys%keyvals}}",
+        "snippet": "typesettitle{${1:title-keys%keyvals}}",
         "keys": [
           "\\typesettitle,\\tstitle"
         ],
@@ -232,7 +232,7 @@
       "name": "tstitle",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:title-keys%keyvals}}",
+        "snippet": "tstitle{${1:title-keys%keyvals}}",
         "keys": [
           "\\typesettitle,\\tstitle"
         ],

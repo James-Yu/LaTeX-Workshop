@@ -15,7 +15,7 @@
       "name": "SetPatternCodes",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:commands}}"
+        "snippet": "SetPatternCodes{${1:commands}}"
       }
     },
     {
@@ -28,7 +28,7 @@
       "name": "Delimiters",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:delim1}}{${2:delim2}}"
+        "snippet": "Delimiters{${1:delim1}}{${2:delim2}}"
       }
     },
     {
@@ -44,14 +44,14 @@
       "name": "ResultFile",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:output}}"
+        "snippet": "ResultFile{${1:output}}"
       }
     },
     {
       "name": "WriteResult",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:balanced}}"
+        "snippet": "WriteResult{${1:balanced}}"
       }
     },
     {
@@ -64,14 +64,14 @@
       "name": "ProcessFileWith",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:file}}{${2:loop-body}}"
+        "snippet": "ProcessFileWith{${1:file}}{${2:loop-body}}"
       }
     },
     {
       "name": "ProcessFileWith",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:changes}]{${1:file}}{${2:loop-body}}"
+        "snippet": "ProcessFileWith[${3:changes}]{${1:file}}{${2:loop-body}}"
       }
     },
     {
@@ -81,28 +81,28 @@
       "name": "CopyFile",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "CopyFile{${1:file}}"
       }
     },
     {
       "name": "CopyFile",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:changes}]{${1:file}}"
+        "snippet": "CopyFile[${2:changes}]{${1:file}}"
       }
     },
     {
       "name": "CopyFile*",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:file}}"
+        "snippet": "CopyFile*{${1:file}}"
       }
     },
     {
       "name": "CopyFile*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:changes}]{${1:file}}"
+        "snippet": "CopyFile*[${2:changes}]{${1:file}}"
       }
     },
     {
@@ -121,28 +121,28 @@
       "name": "ProcessFinalFileWith",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:file}}{${2:loop-body}}"
+        "snippet": "ProcessFinalFileWith{${1:file}}{${2:loop-body}}"
       }
     },
     {
       "name": "ProcessFinalFileWith",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:changes}]{${1:file}}{${2:loop-body}}"
+        "snippet": "ProcessFinalFileWith[${3:changes}]{${1:file}}{${2:loop-body}}"
       }
     },
     {
       "name": "StartFDsetup",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:do-setup}}{${2:job-id}}"
+        "snippet": "StartFDsetup{${1:do-setup}}{${2:job-id}}"
       }
     },
     {
       "name": "StartFDsetup",
       "arg": {
         "format": "{}{}[]",
-        "snippet": "{${1:do-setup}}{${2:job-id}}[${3:changes}]"
+        "snippet": "StartFDsetup{${1:do-setup}}{${2:job-id}}[${3:changes}]"
       }
     },
     {
@@ -152,42 +152,42 @@
       "name": "MakeSetupCommand",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:setup-cmd%cmd}}{${2:do-setup}}{${3:action}}"
+        "snippet": "MakeSetupCommand{${1:setup-cmd%cmd}}{${2:do-setup}}{${3:action}}"
       }
     },
     {
       "name": "MakeSetupCommand",
       "arg": {
         "format": "{}{}[]{}",
-        "snippet": "{${1:setup-cmd%cmd}}{${2:do-setup}}[${4:args}]{${3:action}}"
+        "snippet": "MakeSetupCommand{${1:setup-cmd%cmd}}{${2:do-setup}}[${4:args}]{${3:action}}"
       }
     },
     {
       "name": "MakeSubstringConditional",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:id}}{${2:pattern}}"
+        "snippet": "MakeSubstringConditional{${1:id}}{${2:pattern}}"
       }
     },
     {
       "name": "MakeSubstringConditional",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:id}}[${3:changes}]{${2:pattern}}"
+        "snippet": "MakeSubstringConditional{${1:id}}[${3:changes}]{${2:pattern}}"
       }
     },
     {
       "name": "MakeSetupSubstringCondition",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:id}}{${2:pattern}}{${3:more-args}}"
+        "snippet": "MakeSetupSubstringCondition{${1:id}}{${2:pattern}}{${3:more-args}}"
       }
     },
     {
       "name": "MakeSetupSubstringCondition",
       "arg": {
         "format": "{}[]{}{}",
-        "snippet": "{${1:id}}[${4:changes}]{${2:pattern}}{${3:more-args}}"
+        "snippet": "MakeSetupSubstringCondition{${1:id}}[${4:changes}]{${2:pattern}}{${3:more-args}}"
       }
     },
     {
@@ -199,7 +199,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "TildeGobbles{${1:arg}}"
       }
     },
     {
@@ -209,7 +209,7 @@
       "name": "RemoveDummyPatternArg",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:macro}}{${2:arg}}"
+        "snippet": "RemoveDummyPatternArg{${1:macro}}{${2:arg}}"
       }
     },
     {
@@ -219,7 +219,7 @@
       "name": "RemoveTildeArg",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:macro}}{${2:arg}}"
+        "snippet": "RemoveTildeArg{${1:macro}}{${2:arg}}"
       }
     },
     {
@@ -232,56 +232,56 @@
       "name": "ProcessStringWith",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:target-string}}{${2:id}}"
+        "snippet": "ProcessStringWith{${1:target-string}}{${2:id}}"
       }
     },
     {
       "name": "ProcessExpandedWith",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:string-macro}}{${2:id}}"
+        "snippet": "ProcessExpandedWith{${1:string-macro}}{${2:id}}"
       }
     },
     {
       "name": "ProcessInputWith",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:id}}"
+        "snippet": "ProcessInputWith{${1:id}}"
       }
     },
     {
       "name": "CopyFDconditionFromTo",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:id1}}{${2:id2}}"
+        "snippet": "CopyFDconditionFromTo{${1:id1}}{${2:id2}}"
       }
     },
     {
       "name": "IfFDempty",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:arg}}{${2:when-empty}}{${3:when-not-empty}}"
+        "snippet": "IfFDempty{${1:arg}}{${2:when-empty}}{${3:when-not-empty}}"
       }
     },
     {
       "name": "IfFDinputEmpty",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:when-empty}}{${2:when-not-empty}}"
+        "snippet": "IfFDinputEmpty{${1:when-empty}}{${2:when-not-empty}}"
       }
     },
     {
       "name": "IfFDdollar",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:arg}}{${2:when-dollar}}{${3:when-not-dollar}}"
+        "snippet": "IfFDdollar{${1:arg}}{${2:when-dollar}}{${3:when-not-dollar}}"
       }
     },
     {
       "name": "IfFDpreviousInputEmpty",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:when-empty}}{${2:when-not-empty}}"
+        "snippet": "IfFDpreviousInputEmpty{${1:when-empty}}{${2:when-not-empty}}"
       }
     },
     {
@@ -295,35 +295,35 @@
       "name": "IfInputLine",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:<relation><${4:number}>}}{${2:true}}{${3:false}}"
+        "snippet": "IfInputLine{${1:<relation><${4:number}>}}{${2:true}}{${3:false}}"
       }
     },
     {
       "name": "MakeExpandableAllReplacer",
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:id}}{${2:find}}{${3:replace}}{${4:id-next}}"
+        "snippet": "MakeExpandableAllReplacer{${1:id}}{${2:find}}{${3:replace}}{${4:id-next}}"
       }
     },
     {
       "name": "MakeExpandableAllReplacer",
       "arg": {
         "format": "{}[]{}{}{}",
-        "snippet": "{${1:id}}[${5:changes}]{${2:find}}{${3:replace}}{${4:id-next}}"
+        "snippet": "MakeExpandableAllReplacer{${1:id}}[${5:changes}]{${2:find}}{${3:replace}}{${4:id-next}}"
       }
     },
     {
       "name": "PrependExpandableAllReplacer",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:id}}{${2:find}}{${3:replace}}"
+        "snippet": "PrependExpandableAllReplacer{${1:id}}{${2:find}}{${3:replace}}"
       }
     },
     {
       "name": "PrependExpandableAllReplacer",
       "arg": {
         "format": "{}[]{}{}",
-        "snippet": "{${1:id}}[${4:changes}]{${2:find}}{${3:replace}}"
+        "snippet": "PrependExpandableAllReplacer{${1:id}}[${4:changes}]{${2:find}}{${3:replace}}"
       }
     },
     {
@@ -333,14 +333,14 @@
       "name": "SetCorrectHookJob",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:job-id}}"
+        "snippet": "SetCorrectHookJob{${1:job-id}}"
       }
     },
     {
       "name": "MakeDocCorrectHook",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:string}}"
+        "snippet": "MakeDocCorrectHook{${1:string}}"
       }
     },
     {
@@ -353,21 +353,21 @@
       "name": "ApplySubstringConditional",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:id}}"
+        "snippet": "ApplySubstringConditional{${1:id}}"
       }
     },
     {
       "name": "ApplySubstringConditionalToExpanded",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:id}}"
+        "snippet": "ApplySubstringConditionalToExpanded{${1:id}}"
       }
     },
     {
       "name": "ApplySubstringConditionalToInputString",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:id}}"
+        "snippet": "ApplySubstringConditionalToInputString{${1:id}}"
       }
     }
   ],

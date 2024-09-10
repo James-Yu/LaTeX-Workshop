@@ -10,7 +10,7 @@
       "if": "luamplib",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:choice%keyvals}}",
+        "snippet": "mplibtextextlabel{${1:choice%keyvals}}",
         "keys": [
           "\\mplibtextextlabel#c,\\mplibshowlog#c,\\mplibcodeinherit#c"
         ],
@@ -22,7 +22,7 @@
       "if": "luamplib",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:choice%keyvals}}",
+        "snippet": "mplibshowlog{${1:choice%keyvals}}",
         "keys": [
           "\\mplibtextextlabel#c,\\mplibshowlog#c,\\mplibcodeinherit#c"
         ],
@@ -34,7 +34,7 @@
       "if": "luamplib",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:choice%keyvals}}",
+        "snippet": "mplibcodeinherit{${1:choice%keyvals}}",
         "keys": [
           "\\mplibtextextlabel#c,\\mplibshowlog#c,\\mplibcodeinherit#c"
         ],
@@ -46,7 +46,7 @@
       "if": "luamplib",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:format name%keyvals}}",
+        "snippet": "mplibsetformat{${1:format name%keyvals}}",
         "keys": [
           "\\mplibsetformat#c"
         ],
@@ -58,7 +58,7 @@
       "if": "luamplib",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:type%keyvals}}",
+        "snippet": "mplibnumbersystem{${1:type%keyvals}}",
         "keys": [
           "\\mplibnumbersystem#c"
         ],
@@ -70,7 +70,7 @@
       "if": "luamplib",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:metapost code}}"
+        "snippet": "everymplib{${1:metapost code}}"
       }
     },
     {
@@ -78,7 +78,7 @@
       "if": "luamplib",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:instance name}]{${1:metapost code}}"
+        "snippet": "everymplib[${2:instance name}]{${1:metapost code}}"
       }
     },
     {
@@ -86,7 +86,7 @@
       "if": "luamplib",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:metapost code%definition}}"
+        "snippet": "everyendmplib{${1:metapost code%definition}}"
       }
     },
     {
@@ -94,56 +94,56 @@
       "if": "luamplib",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:instance name}]{${1:metapost code}}"
+        "snippet": "everyendmplib[${2:instance name}]{${1:metapost code}}"
       }
     },
     {
       "name": "newmetapostenvironment",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:envname}}"
+        "snippet": "newmetapostenvironment{${1:envname}}"
       }
     },
     {
       "name": "newmetapostenvironment",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:envname}}"
+        "snippet": "newmetapostenvironment[${2:options}]{${1:envname}}"
       }
     },
     {
       "name": "mpcolor",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:color}}"
+        "snippet": "mpcolor{${1:color}}"
       }
     },
     {
       "name": "directmetapost",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:metapost code}}"
+        "snippet": "directmetapost{${1:metapost code}}"
       }
     },
     {
       "name": "directmetapost",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:metapost code}}"
+        "snippet": "directmetapost[${2:options}]{${1:metapost code}}"
       }
     },
     {
       "name": "newmetapostinstance",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:cmd}}"
+        "snippet": "newmetapostinstance{${1:cmd}}"
       }
     },
     {
       "name": "newmetapostinstance",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:cmd}}"
+        "snippet": "newmetapostinstance[${2:options}]{${1:cmd}}"
       }
     },
     {
@@ -155,7 +155,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "ignore{${1:arg}}"
       }
     },
     {
@@ -163,7 +163,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:arg}}"
+        "snippet": "unbrace{${1:arg}}"
       }
     },
     {
@@ -171,7 +171,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "firstoftwo{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -179,7 +179,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "secondoftwo{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -199,7 +199,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:default}]{${1:code}}"
+        "snippet": "withoptions[${2:default}]{${1:code}}"
       }
     },
     {
@@ -207,7 +207,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:code}}{${2:list}}"
+        "snippet": "splitcommalist{${1:code}}{${2:list}}"
       }
     },
     {
@@ -219,7 +219,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:cmd}}{${2:actual name}}"
+        "snippet": "setluachunkname{${1:cmd}}{${2:actual name}}"
       }
     }
   ],

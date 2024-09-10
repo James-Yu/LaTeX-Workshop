@@ -24,7 +24,7 @@
       "name": "pgfmolbioset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "pgfmolbioset{${1:options%keyvals}}",
         "keys": [
           "\\pgfmolbioset#c",
           "\\pmbchromatogram#c,\\pgfmolbioset#c",
@@ -37,7 +37,7 @@
       "name": "pgfmolbioset",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:module}]{${1:options%keyvals}}",
+        "snippet": "pgfmolbioset[${2:module}]{${1:options%keyvals}}",
         "keys": [
           "\\pgfmolbioset#c",
           "\\pmbchromatogram#c,\\pgfmolbioset#c",
@@ -51,7 +51,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:x}}{${2:y}}"
+        "snippet": "pmbprotocolsizes{${1:x}}{${2:y}}"
       }
     },
     {
@@ -59,7 +59,7 @@
       "if": "chromatogram",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:scf file%file}}"
+        "snippet": "pmbchromatogram{${1:scf file%file}}"
       }
     },
     {
@@ -67,7 +67,7 @@
       "if": "chromatogram",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:scf file%file}}",
+        "snippet": "pmbchromatogram[${2:options%keyvals}]{${1:scf file%file}}",
         "keys": [
           "\\pmbchromatogram#c,\\pgfmolbioset#c"
         ],
@@ -79,7 +79,7 @@
       "if": "domains",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:type}}{${2:start}}{${3:stop}}"
+        "snippet": "addfeature{${1:type}}{${2:start}}{${3:stop}}"
       }
     },
     {
@@ -87,7 +87,7 @@
       "if": "domains",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:type}}{${2:start}}{${3:stop}}",
+        "snippet": "addfeature[${4:options%keyvals}]{${1:type}}{${2:start}}{${3:stop}}",
         "keys": [
           "\\begin{pmbdomains}#c,\\addfeature#c,\\pgfmolbioset#c"
         ],
@@ -99,7 +99,7 @@
       "if": "domains",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:type}}{${2:style list}}"
+        "snippet": "setfeaturestyle{${1:type}}{${2:style list}}"
       }
     },
     {
@@ -107,7 +107,7 @@
       "if": "domains",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:new type}}{${2:existing type}}"
+        "snippet": "setfeaturestylealias{${1:new type}}{${2:existing type}}"
       }
     },
     {
@@ -115,7 +115,7 @@
       "if": "domains",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:type}}{${2:TikZ code}}"
+        "snippet": "setfeatureshape{${1:type}}{${2:TikZ code}}"
       }
     },
     {
@@ -139,7 +139,7 @@
       "if": "domains",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:key%plain}}"
+        "snippet": "pmbdomvalueof{${1:key%plain}}"
       }
     },
     {
@@ -159,7 +159,7 @@
       "if": "domains",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:new type}}{${2:existing type}}"
+        "snippet": "setfeatureshapealias{${1:new type}}{${2:existing type}}"
       }
     },
     {
@@ -167,7 +167,7 @@
       "if": "domains",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:new type}}{${2:existing type}}"
+        "snippet": "setfeaturealias{${1:new type}}{${2:existing type}}"
       }
     },
     {
@@ -175,7 +175,7 @@
       "if": "domains",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:key list}}"
+        "snippet": "setdisulfidefeatures{${1:key list}}"
       }
     },
     {
@@ -183,7 +183,7 @@
       "if": "domains",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:key list}}"
+        "snippet": "adddisulfidefeatures{${1:key list}}"
       }
     },
     {
@@ -191,7 +191,7 @@
       "if": "domains",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:key list}}"
+        "snippet": "removedisulfidefeatures{${1:key list}}"
       }
     },
     {
@@ -199,7 +199,7 @@
       "if": "domains",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:key list}}{${2:Lua function}}"
+        "snippet": "setfeatureprintfunction{${1:key list}}{${2:Lua function}}"
       }
     },
     {
@@ -207,7 +207,7 @@
       "if": "domains",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:key list}}"
+        "snippet": "removefeatureprintfunction{${1:key list}}"
       }
     },
     {
@@ -215,7 +215,7 @@
       "if": "domains",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:type}}"
+        "snippet": "pmbdomdrawfeature{${1:type}}"
       }
     },
     {
@@ -223,7 +223,7 @@
       "if": "domains",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:Uniprot file%file}}"
+        "snippet": "inputuniprot{${1:Uniprot file%file}}"
       }
     },
     {
@@ -231,7 +231,7 @@
       "if": "domains",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:gff file%file}}"
+        "snippet": "inputgff{${1:gff file%file}}"
       }
     }
   ],

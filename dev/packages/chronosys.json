@@ -14,7 +14,7 @@
       "unusual": true,
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]",
+        "snippet": "startchronology[${1:options%keyvals}]",
         "keys": [
           "\\begin{chronology},\\chronology,\\startchronology,\\setupchronology,\\setupchronology"
         ],
@@ -29,28 +29,28 @@
       "name": "chronoevent",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:year}}{${2:label text}}"
+        "snippet": "chronoevent{${1:year}}{${2:label text}}"
       }
     },
     {
       "name": "chronoevent",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:month/year}}{${2:label text}}"
+        "snippet": "chronoevent{${1:month/year}}{${2:label text}}"
       }
     },
     {
       "name": "chronoevent",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:day/month/year}}{${2:label text}}"
+        "snippet": "chronoevent{${1:day/month/year}}{${2:label text}}"
       }
     },
     {
       "name": "chronoevent",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options}]{${1:year}}{${2:label text}}",
+        "snippet": "chronoevent[${3:options}]{${1:year}}{${2:label text}}",
         "keys": [
           "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation"
         ],
@@ -61,7 +61,7 @@
       "name": "chronoevent",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options}]{${1:month/year}}{${2:label text}}",
+        "snippet": "chronoevent[${3:options}]{${1:month/year}}{${2:label text}}",
         "keys": [
           "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation"
         ],
@@ -72,7 +72,7 @@
       "name": "chronoevent",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options}]{${1:day/month/year}}{${2:label text}}",
+        "snippet": "chronoevent[${3:options}]{${1:day/month/year}}{${2:label text}}",
         "keys": [
           "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation"
         ],
@@ -83,14 +83,14 @@
       "name": "chronoperiode",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:start-year}}{${2:end-year}}{${3:label text%text}}"
+        "snippet": "chronoperiode{${1:start-year}}{${2:end-year}}{${3:label text%text}}"
       }
     },
     {
       "name": "chronoperiode",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:start-year}}{${2:end-year}}{${3:label text%text}}",
+        "snippet": "chronoperiode[${4:options%keyvals}]{${1:start-year}}{${2:end-year}}{${3:label text%text}}",
         "keys": [
           "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"
         ],
@@ -101,7 +101,7 @@
       "name": "chronoperiodecoloralternation",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:color1,color2,...}}"
+        "snippet": "chronoperiodecoloralternation{${1:color1,color2,...}}"
       }
     },
     {
@@ -111,14 +111,14 @@
       "name": "restartchronoperiodecolor",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:color}]"
+        "snippet": "restartchronoperiodecolor[${1:color}]"
       }
     },
     {
       "name": "chronograduation",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:integer}}"
+        "snippet": "chronograduation{${1:integer}}"
       }
     },
     {
@@ -126,14 +126,14 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:periode|event}]{${1:integer}}"
+        "snippet": "chronograduation[${2:periode|event}]{${1:integer}}"
       }
     },
     {
       "name": "chronograduation",
       "arg": {
         "format": "[][]{}",
-        "snippet": "[${2:periode|event}][${3:options%keyvals}]{${1:integer}}",
+        "snippet": "chronograduation[${2:periode|event}][${3:options%keyvals}]{${1:integer}}",
         "keys": [
           "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation",
           "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"
@@ -145,14 +145,14 @@
       "name": "definechronoevent",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "definechronoevent{${1:name}}"
       }
     },
     {
       "name": "definechronoevent",
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:name}}[${2:options%keyvals}]",
+        "snippet": "definechronoevent{${1:name}}[${2:options%keyvals}]",
         "keys": [
           "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation"
         ],
@@ -163,14 +163,14 @@
       "name": "definechronoperiode",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:name}}"
+        "snippet": "definechronoperiode{${1:name}}"
       }
     },
     {
       "name": "definechronoperiode",
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:name}}[${2:options%keyvals}]",
+        "snippet": "definechronoperiode{${1:name}}[${2:options%keyvals}]",
         "keys": [
           "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"
         ],
@@ -181,7 +181,7 @@
       "name": "setupchronology",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "setupchronology{${1:options%keyvals}}",
         "keys": [
           "\\begin{chronology},\\chronology,\\startchronology,\\setupchronology,\\setupchronology"
         ],
@@ -192,7 +192,7 @@
       "name": "setupchronoevent",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "setupchronoevent{${1:options%keyvals}}",
         "keys": [
           "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation"
         ],
@@ -203,7 +203,7 @@
       "name": "setupchronoevent",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:name}]{${1:options%keyvals}}",
+        "snippet": "setupchronoevent[${2:name}]{${1:options%keyvals}}",
         "keys": [
           "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation"
         ],
@@ -214,7 +214,7 @@
       "name": "setupchronoperiode",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "setupchronoperiode{${1:options%keyvals}}",
         "keys": [
           "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"
         ],
@@ -225,7 +225,7 @@
       "name": "setupchronoperiode",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:name}]{${1:options%keyvals}}",
+        "snippet": "setupchronoperiode[${2:name}]{${1:options%keyvals}}",
         "keys": [
           "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"
         ],
@@ -236,7 +236,7 @@
       "name": "setupchronograduation",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "setupchronograduation{${1:options%keyvals}}",
         "keys": [
           "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation",
           "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"
@@ -248,7 +248,7 @@
       "name": "setupchronograduation",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:periode|event}]{${1:options%keyvals}}",
+        "snippet": "setupchronograduation[${2:periode|event}]{${1:options%keyvals}}",
         "keys": [
           "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation",
           "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"

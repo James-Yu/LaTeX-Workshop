@@ -24,7 +24,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:date}}{${2:command}}{${3:description}}"
+        "snippet": "plIncludeInRelease{${1:date}}{${2:command}}{${3:description}}"
       }
     },
     {
@@ -108,7 +108,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:encoding}}{${2:text-settings}}{${3:math-settings}}"
+        "snippet": "DeclareYokoKanjiEncoding{${1:encoding}}{${2:text-settings}}{${3:math-settings}}"
       }
     },
     {
@@ -116,7 +116,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:encoding}}{${2:text-settings}}{${3:math-settings}}"
+        "snippet": "DeclareTateKanjiEncoding{${1:encoding}}{${2:text-settings}}{${3:math-settings}}"
       }
     },
     {
@@ -124,7 +124,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:text-settings}}{${2:math-settings}}"
+        "snippet": "DeclareKanjiEncodingDefaults{${1:text-settings}}{${2:math-settings}}"
       }
     },
     {
@@ -132,7 +132,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:encoding1}}{${2:encoding2}}"
+        "snippet": "KanjiEncodingPair{${1:encoding1}}{${2:encoding2}}"
       }
     },
     {
@@ -140,7 +140,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:encoding}}{${2:family}}{${3:loading-settings}}"
+        "snippet": "DeclareKanjiFamily{${1:encoding}}{${2:family}}{${3:loading-settings}}"
       }
     },
     {
@@ -148,7 +148,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
+        "snippet": "DeclareKanjiSubstitution{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
       }
     },
     {
@@ -156,7 +156,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}{}",
-        "snippet": "{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:size}}"
+        "snippet": "DeclareErrorKanjiFont{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:size}}"
       }
     },
     {
@@ -164,7 +164,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:math-alph%cmd}}{${2:latin-math-alph%definition}}{${3:japanese-math-alph%definition}}"
+        "snippet": "reDeclareMathAlphabet{${1:math-alph%cmd}}{${2:latin-math-alph%definition}}{${3:japanese-math-alph%definition}}"
       }
     },
     {
@@ -172,7 +172,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}{}{}{}{}",
-        "snippet": "{${1:enc1}}{${2:fam1}}{${3:series1}}{${4:shape1}}{${5:enc2}}{${6:fam2}}{${7:series2}}{${8:shape2}}"
+        "snippet": "DeclareRelationFont{${1:enc1}}{${2:fam1}}{${3:series1}}{${4:shape1}}{${5:enc2}}{${6:fam2}}{${7:series2}}{${8:shape2}}"
       }
     },
     {
@@ -180,7 +180,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}{}{}{}{}",
-        "snippet": "{${1:enc1}}{${2:fam1}}{${3:series1}}{${4:shape1}}{${5:enc2}}{${6:fam2}}{${7:series2}}{${8:shape2}}"
+        "snippet": "SetRelationFont{${1:enc1}}{${2:fam1}}{${3:series1}}{${4:shape1}}{${5:enc2}}{${6:fam2}}{${7:series2}}{${8:shape2}}"
       }
     },
     {
@@ -193,42 +193,42 @@
       "name": "romanencoding",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:encoding}}"
+        "snippet": "romanencoding{${1:encoding}}"
       }
     },
     {
       "name": "kanjiencoding",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:encoding}}"
+        "snippet": "kanjiencoding{${1:encoding}}"
       }
     },
     {
       "name": "romanfamily",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:family}}"
+        "snippet": "romanfamily{${1:family}}"
       }
     },
     {
       "name": "kanjifamily",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:family}}"
+        "snippet": "kanjifamily{${1:family}}"
       }
     },
     {
       "name": "romanseries",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:series}}"
+        "snippet": "romanseries{${1:series}}"
       }
     },
     {
       "name": "kanjiseries",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:series}}"
+        "snippet": "kanjiseries{${1:series}}"
       }
     },
     {
@@ -236,7 +236,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:series}}"
+        "snippet": "romanseriesforce{${1:series}}"
       }
     },
     {
@@ -244,21 +244,21 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:series}}"
+        "snippet": "kanjiseriesforce{${1:series}}"
       }
     },
     {
       "name": "romanshape",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:shape}}"
+        "snippet": "romanshape{${1:shape}}"
       }
     },
     {
       "name": "kanjishape",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:shape}}"
+        "snippet": "kanjishape{${1:shape}}"
       }
     },
     {
@@ -266,7 +266,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:shape}}"
+        "snippet": "romanshapeforce{${1:shape}}"
       }
     },
     {
@@ -274,7 +274,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:shape}}"
+        "snippet": "kanjishapeforce{${1:shape}}"
       }
     },
     {
@@ -282,7 +282,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
+        "snippet": "usekanji{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
       }
     },
     {
@@ -290,7 +290,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
+        "snippet": "useroman{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
       }
     },
     {
@@ -307,28 +307,28 @@
       "name": "mathmc",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text%plain}}"
+        "snippet": "mathmc{${1:text%plain}}"
       }
     },
     {
       "name": "mathgt",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text%plain}}"
+        "snippet": "mathgt{${1:text%plain}}"
       }
     },
     {
       "name": "textmc",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "textmc{${1:text}}"
       }
     },
     {
       "name": "textgt",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "textgt{${1:text}}"
       }
     },
     {

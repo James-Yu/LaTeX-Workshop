@@ -69,14 +69,14 @@
       "name": "newmdenv",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:envname}}"
+        "snippet": "newmdenv{${1:envname}}"
       }
     },
     {
       "name": "newmdenv",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:envname}}",
+        "snippet": "newmdenv[${2:options%keyvals}]{${1:envname}}",
         "keys": [
           "\\begin{mdframed},\\newmdenv,\\renewmdenv,\\surroundwithmdframed,\\mdfsetup,\\mmdfdefinestyle,\\mdfapptodefinestyle,\\mdfsubtitle,\\mdfsubsubtitle,\\newmdtheoremenv,\\mdtheorem"
         ],
@@ -87,14 +87,14 @@
       "name": "renewmdenv",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:envname}}"
+        "snippet": "renewmdenv{${1:envname}}"
       }
     },
     {
       "name": "renewmdenv",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:envname}}",
+        "snippet": "renewmdenv[${2:options%keyvals}]{${1:envname}}",
         "keys": [
           "\\begin{mdframed},\\newmdenv,\\renewmdenv,\\surroundwithmdframed,\\mdfsetup,\\mmdfdefinestyle,\\mdfapptodefinestyle,\\mdfsubtitle,\\mdfsubsubtitle,\\newmdtheoremenv,\\mdtheorem"
         ],
@@ -105,14 +105,14 @@
       "name": "surroundwithmdframed",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:env}}"
+        "snippet": "surroundwithmdframed{${1:env}}"
       }
     },
     {
       "name": "surroundwithmdframed",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:env}}",
+        "snippet": "surroundwithmdframed[${2:options%keyvals}]{${1:env}}",
         "keys": [
           "\\begin{mdframed},\\newmdenv,\\renewmdenv,\\surroundwithmdframed,\\mdfsetup,\\mmdfdefinestyle,\\mdfapptodefinestyle,\\mdfsubtitle,\\mdfsubsubtitle,\\newmdtheoremenv,\\mdtheorem"
         ],
@@ -124,7 +124,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "mdflength{${1:options%keyvals}}",
         "keys": [
           "\\mdflength"
         ],
@@ -135,7 +135,7 @@
       "name": "mdfsetup",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "mdfsetup{${1:options%keyvals}}",
         "keys": [
           "\\begin{mdframed},\\newmdenv,\\renewmdenv,\\surroundwithmdframed,\\mdfsetup,\\mmdfdefinestyle,\\mdfapptodefinestyle,\\mdfsubtitle,\\mdfsubsubtitle,\\newmdtheoremenv,\\mdtheorem"
         ],
@@ -147,7 +147,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:style name}}{${2:options%keyvals}}"
+        "snippet": "mdfdefinestyle{${1:style name}}{${2:options%keyvals}}"
       }
     },
     {
@@ -155,7 +155,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:style name}}{${2:options%keyvals}}",
+        "snippet": "mdfapptodefinestyle{${1:style name}}{${2:options%keyvals}}",
         "keys": [
           "\\begin{mdframed},\\newmdenv,\\renewmdenv,\\surroundwithmdframed,\\mdfsetup,\\mmdfdefinestyle,\\mdfapptodefinestyle,\\mdfsubtitle,\\mdfsubsubtitle,\\newmdtheoremenv,\\mdtheorem"
         ],
@@ -166,14 +166,14 @@
       "name": "mdfsubtitle",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:subtitle}}"
+        "snippet": "mdfsubtitle{${1:subtitle}}"
       }
     },
     {
       "name": "mdfsubtitle",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:subtitle}}",
+        "snippet": "mdfsubtitle[${2:options%keyvals}]{${1:subtitle}}",
         "keys": [
           "\\begin{mdframed},\\newmdenv,\\renewmdenv,\\surroundwithmdframed,\\mdfsetup,\\mmdfdefinestyle,\\mdfapptodefinestyle,\\mdfsubtitle,\\mdfsubsubtitle,\\newmdtheoremenv,\\mdtheorem"
         ],
@@ -184,14 +184,14 @@
       "name": "mdfsubsubtitle",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:subtitle}}"
+        "snippet": "mdfsubsubtitle{${1:subtitle}}"
       }
     },
     {
       "name": "mdfsubsubtitle",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:subtitle}}",
+        "snippet": "mdfsubsubtitle[${2:options%keyvals}]{${1:subtitle}}",
         "keys": [
           "\\begin{mdframed},\\newmdenv,\\renewmdenv,\\surroundwithmdframed,\\mdfsetup,\\mmdfdefinestyle,\\mdfapptodefinestyle,\\mdfsubtitle,\\mdfsubsubtitle,\\newmdtheoremenv,\\mdtheorem"
         ],
@@ -202,7 +202,7 @@
       "name": "newmdtheoremenv",
       "arg": {
         "format": "[]{}[]{}",
-        "snippet": "[${3:options%keyvals}]{${1:envname}}[${4:numbered like}]{${2:caption}}",
+        "snippet": "newmdtheoremenv[${3:options%keyvals}]{${1:envname}}[${4:numbered like}]{${2:caption}}",
         "keys": [
           "\\begin{mdframed},\\newmdenv,\\renewmdenv,\\surroundwithmdframed,\\mdfsetup,\\mmdfdefinestyle,\\mdfapptodefinestyle,\\mdfsubtitle,\\mdfsubsubtitle,\\newmdtheoremenv,\\mdtheorem"
         ],
@@ -213,7 +213,7 @@
       "name": "newmdtheoremenv",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:envname}}{${2:caption}}",
+        "snippet": "newmdtheoremenv[${3:options%keyvals}]{${1:envname}}{${2:caption}}",
         "keys": [
           "\\begin{mdframed},\\newmdenv,\\renewmdenv,\\surroundwithmdframed,\\mdfsetup,\\mmdfdefinestyle,\\mdfapptodefinestyle,\\mdfsubtitle,\\mdfsubsubtitle,\\newmdtheoremenv,\\mdtheorem"
         ],
@@ -224,7 +224,7 @@
       "name": "newmdtheoremenv",
       "arg": {
         "format": "[]{}{}[]",
-        "snippet": "[${3:options%keyvals}]{${1:envname}}{${2:caption}}[${4:within}]",
+        "snippet": "newmdtheoremenv[${3:options%keyvals}]{${1:envname}}{${2:caption}}[${4:within}]",
         "keys": [
           "\\begin{mdframed},\\newmdenv,\\renewmdenv,\\surroundwithmdframed,\\mdfsetup,\\mmdfdefinestyle,\\mdfapptodefinestyle,\\mdfsubtitle,\\mdfsubsubtitle,\\newmdtheoremenv,\\mdtheorem"
         ],
@@ -235,28 +235,28 @@
       "name": "newmdtheoremenv",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:envname}}[${3:numbered like}]{${2:caption}}"
+        "snippet": "newmdtheoremenv{${1:envname}}[${3:numbered like}]{${2:caption}}"
       }
     },
     {
       "name": "newmdtheoremenv",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:envname}}{${2:caption}}"
+        "snippet": "newmdtheoremenv{${1:envname}}{${2:caption}}"
       }
     },
     {
       "name": "newmdtheoremenv",
       "arg": {
         "format": "{}{}[]",
-        "snippet": "{${1:envname}}{${2:caption}}[${3:within}]"
+        "snippet": "newmdtheoremenv{${1:envname}}{${2:caption}}[${3:within}]"
       }
     },
     {
       "name": "mdtheorem",
       "arg": {
         "format": "[]{}[]{}",
-        "snippet": "[${3:options%keyvals}]{${1:envname}}[${4:numbered like}]{${2:caption}}",
+        "snippet": "mdtheorem[${3:options%keyvals}]{${1:envname}}[${4:numbered like}]{${2:caption}}",
         "keys": [
           "\\begin{mdframed},\\newmdenv,\\renewmdenv,\\surroundwithmdframed,\\mdfsetup,\\mmdfdefinestyle,\\mdfapptodefinestyle,\\mdfsubtitle,\\mdfsubsubtitle,\\newmdtheoremenv,\\mdtheorem"
         ],
@@ -267,7 +267,7 @@
       "name": "mdtheorem",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:envname}}{${2:caption}}",
+        "snippet": "mdtheorem[${3:options%keyvals}]{${1:envname}}{${2:caption}}",
         "keys": [
           "\\begin{mdframed},\\newmdenv,\\renewmdenv,\\surroundwithmdframed,\\mdfsetup,\\mmdfdefinestyle,\\mdfapptodefinestyle,\\mdfsubtitle,\\mdfsubsubtitle,\\newmdtheoremenv,\\mdtheorem"
         ],
@@ -278,7 +278,7 @@
       "name": "mdtheorem",
       "arg": {
         "format": "[]{}{}[]",
-        "snippet": "[${3:options%keyvals}]{${1:envname}}{${2:caption}}[${4:within}]",
+        "snippet": "mdtheorem[${3:options%keyvals}]{${1:envname}}{${2:caption}}[${4:within}]",
         "keys": [
           "\\begin{mdframed},\\newmdenv,\\renewmdenv,\\surroundwithmdframed,\\mdfsetup,\\mmdfdefinestyle,\\mdfapptodefinestyle,\\mdfsubtitle,\\mdfsubsubtitle,\\newmdtheoremenv,\\mdtheorem"
         ],
@@ -289,21 +289,21 @@
       "name": "mdtheorem",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:envname}}[${3:numbered like}]{${2:caption}}"
+        "snippet": "mdtheorem{${1:envname}}[${3:numbered like}]{${2:caption}}"
       }
     },
     {
       "name": "mdtheorem",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:envname}}{${2:caption}}"
+        "snippet": "mdtheorem{${1:envname}}{${2:caption}}"
       }
     },
     {
       "name": "mdtheorem",
       "arg": {
         "format": "{}{}[]",
-        "snippet": "{${1:envname}}{${2:caption}}[${3:within}]"
+        "snippet": "mdtheorem{${1:envname}}{${2:caption}}[${3:within}]"
       }
     },
     {
@@ -407,7 +407,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:text}}"
+        "snippet": "mdfframedtitleenv{${1:text}}"
       }
     }
   ],

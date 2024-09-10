@@ -12,14 +12,14 @@
       "name": "LPTNewTable",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name%specialDef}}{${2:num cols}}{${3:preamble}}"
+        "snippet": "LPTNewTable{${1:name%specialDef}}{${2:num cols}}{${3:preamble}}"
       }
     },
     {
       "name": "LPTNewTable",
       "arg": {
         "format": "{}{}{}[]",
-        "snippet": "{${1:name%specialDef}}{${2:num cols}}{${3:preamble}}[${4:options%keyvals}]",
+        "snippet": "LPTNewTable{${1:name%specialDef}}{${2:num cols}}{${3:preamble}}[${4:options%keyvals}]",
         "keys": [
           "\\LPTNewTable"
         ],
@@ -30,7 +30,7 @@
       "name": "LPTSetCurrentTable",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:table name%keyvals}}",
+        "snippet": "LPTSetCurrentTable{${1:table name%keyvals}}",
         "keys": [
           "\\LPTSetCurrentTable#c,\\LPTDeleteTable#c"
         ],
@@ -47,7 +47,7 @@
       "name": "LPTAddRow",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]",
+        "snippet": "LPTAddRow[${1:options%keyvals}]",
         "keys": [
           "\\LPTAddRow,\\LPTSetRowProp"
         ],
@@ -58,7 +58,7 @@
       "name": "LPTSetRowProp",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:index expr}}{${2:row options%keyvals}}",
+        "snippet": "LPTSetRowProp{${1:index expr}}{${2:row options%keyvals}}",
         "keys": [
           "\\LPTAddRow,\\LPTSetRowProp"
         ],
@@ -72,28 +72,28 @@
       "name": "LPTDeleteTable",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:table name%keyvals}}"
+        "snippet": "LPTDeleteTable{${1:table name%keyvals}}"
       }
     },
     {
       "name": "LPTSetCell",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:index expr}}{${2:content}}"
+        "snippet": "LPTSetCell{${1:index expr}}{${2:content}}"
       }
     },
     {
       "name": "LPTSetCell",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:index expr}}[${3:shape}]{${2:content}}"
+        "snippet": "LPTSetCell{${1:index expr}}[${3:shape}]{${2:content}}"
       }
     },
     {
       "name": "LPTFill",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:index expr}}{${2:content}}"
+        "snippet": "LPTFill{${1:index expr}}{${2:content}}"
       }
     },
     {
@@ -106,21 +106,21 @@
       "name": "LPTGetCellData",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:index expr}}"
+        "snippet": "LPTGetCellData{${1:index expr}}"
       }
     },
     {
       "name": "LPTGetCellShape",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:index expr}}"
+        "snippet": "LPTGetCellShape{${1:index expr}}"
       }
     },
     {
       "name": "LPTGetCellParent",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:index expr}}"
+        "snippet": "LPTGetCellParent{${1:index expr}}"
       }
     },
     {
@@ -128,7 +128,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:arg1}}{${2:arg2}}"
+        "snippet": "LPTGetCellMetaIndex{${1:arg1}}{${2:arg2}}"
       }
     }
   ],

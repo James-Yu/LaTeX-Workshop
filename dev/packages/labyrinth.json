@@ -19,7 +19,7 @@
       "name": "labyrinthset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "labyrinthset{${1:options%keyvals}}",
         "keys": [
           "\\begin{labyrinth},\\labyrinthset"
         ],
@@ -30,7 +30,7 @@
       "name": "putsymbol",
       "arg": {
         "format": "(){}",
-        "snippet": "(${2:x},${3:y}){${1:symbol}}"
+        "snippet": "putsymbol(${2:x},${3:y}){${1:symbol}}"
       }
     },
     {
@@ -55,14 +55,14 @@
       "name": "labyrinthsolution",
       "arg": {
         "format": "(){}",
-        "snippet": "(${2:x},${3:y}){${1:solution code}}"
+        "snippet": "labyrinthsolution(${2:x},${3:y}){${1:solution code}}"
       }
     },
     {
       "name": "labyrinthsolution",
       "arg": {
         "format": "[](){}",
-        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:solution code}}",
+        "snippet": "labyrinthsolution[${2:options%keyvals}](${3:x},${4:y}){${1:solution code}}",
         "keys": [
           "\\labyrinthsolution,\\solutionset,\\autosolution"
         ],
@@ -73,7 +73,7 @@
       "name": "solutionset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}",
+        "snippet": "solutionset{${1:options%keyvals}}",
         "keys": [
           "\\labyrinthsolution,\\solutionset,\\autosolution"
         ],
@@ -84,14 +84,14 @@
       "name": "autosolution",
       "arg": {
         "format": "()(){}",
-        "snippet": "(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:first direction}}"
+        "snippet": "autosolution(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:first direction}}"
       }
     },
     {
       "name": "autosolution",
       "arg": {
         "format": "[]()(){}",
-        "snippet": "[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:first direction}}",
+        "snippet": "autosolution[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:first direction}}",
         "keys": [
           "\\labyrinthsolution,\\solutionset,\\autosolution"
         ],
@@ -107,7 +107,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:num1}}{${2:num2}}"
+        "snippet": "truncdiv{${1:num1}}{${2:num2}}"
       }
     }
   ],

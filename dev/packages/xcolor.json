@@ -50,7 +50,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:source model}}{${2:target model-list}}"
+        "snippet": "substitutecolormodel{${1:source model}}{${2:target model-list}}"
       }
     },
     {
@@ -58,7 +58,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:num model}}"
+        "snippet": "selectcolormodel{${1:num model}}"
       }
     },
     {
@@ -89,56 +89,56 @@
       "name": "definecolor",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name%specialDef}}{${2:model-list}}{${3:spec-list}}"
+        "snippet": "definecolor{${1:name%specialDef}}{${2:model-list}}{${3:spec-list}}"
       }
     },
     {
       "name": "definecolor",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:type}]{${1:name%specialDef}}{${2:model-list}}{${3:spec-list}}"
+        "snippet": "definecolor[${4:type}]{${1:name%specialDef}}{${2:model-list}}{${3:spec-list}}"
       }
     },
     {
       "name": "providecolor",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name%specialDef}}{${2:model-list}}{${3:spec-list}}"
+        "snippet": "providecolor{${1:name%specialDef}}{${2:model-list}}{${3:spec-list}}"
       }
     },
     {
       "name": "providecolor",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:type}]{${1:name%specialDef}}{${2:model-list}}{${3:spec-list}}"
+        "snippet": "providecolor[${4:type}]{${1:name%specialDef}}{${2:model-list}}{${3:spec-list}}"
       }
     },
     {
       "name": "colorlet",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name%specialDef}}{${2:color}}"
+        "snippet": "colorlet{${1:name%specialDef}}{${2:color}}"
       }
     },
     {
       "name": "colorlet",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:name%specialDef}}[${3:num-model}]{${2:color}}"
+        "snippet": "colorlet{${1:name%specialDef}}[${3:num-model}]{${2:color}}"
       }
     },
     {
       "name": "colorlet",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:type}]{${1:name%specialDef}}{${2:color}}"
+        "snippet": "colorlet[${3:type}]{${1:name%specialDef}}{${2:color}}"
       }
     },
     {
       "name": "colorlet",
       "arg": {
         "format": "[]{}[]{}",
-        "snippet": "[${3:type}]{${1:name%specialDef}}[${4:num-model}]{${2:color}}"
+        "snippet": "colorlet[${3:type}]{${1:name%specialDef}}[${4:num-model}]{${2:color}}"
       }
     },
     {
@@ -146,7 +146,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:type}]{${1:model-list}}{${2:head}}{${3:tail}}{${4:set-spec}}"
+        "snippet": "definecolorset[${5:type}]{${1:model-list}}{${2:head}}{${3:tail}}{${4:set-spec}}"
       }
     },
     {
@@ -154,7 +154,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:type}]{${1:model-list}}{${2:head}}{${3:tail}}{${4:set-spec}}"
+        "snippet": "providecolorset[${5:type}]{${1:model-list}}{${2:head}}{${3:tail}}{${4:set-spec}}"
       }
     },
     {
@@ -162,7 +162,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:type}]{${1:name%specialDef}}{${2:model-list}}{${3:spec-list}}"
+        "snippet": "preparecolor[${4:type}]{${1:name%specialDef}}{${2:model-list}}{${3:spec-list}}"
       }
     },
     {
@@ -170,7 +170,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:type}]{${1:model-list}}{${2:head}}{${3:tail}}{${4:set-spec}}"
+        "snippet": "preparecolorset[${5:type}]{${1:model-list}}{${2:head}}{${3:tail}}{${4:set-spec}}"
       }
     },
     {
@@ -190,7 +190,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:id-list}}"
+        "snippet": "definecolors{${1:id-list}}"
       }
     },
     {
@@ -198,7 +198,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:id-list}}"
+        "snippet": "providecolors{${1:id-list}}"
       }
     },
     {
@@ -222,7 +222,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:width}}{${2:height}}{${3:depth}}"
+        "snippet": "boxframe{${1:width}}{${2:height}}{${3:depth}}"
       }
     },
     {
@@ -230,7 +230,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:color}}"
+        "snippet": "testcolor{${1:color}}"
       }
     },
     {
@@ -238,21 +238,21 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:model-list}]{${1:spec-list}}"
+        "snippet": "testcolor[${2:model-list}]{${1:spec-list}}"
       }
     },
     {
       "name": "blendcolors",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:mix-expr}}"
+        "snippet": "blendcolors{${1:mix-expr}}"
       }
     },
     {
       "name": "blendcolors*",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:mix-expr}}"
+        "snippet": "blendcolors*{${1:mix-expr}}"
       }
     },
     {
@@ -260,7 +260,7 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:color}}"
+        "snippet": "maskcolors{${1:color}}"
       }
     },
     {
@@ -268,7 +268,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:num-model}]{${1:color}}"
+        "snippet": "maskcolors[${2:num-model}]{${1:color}}"
       }
     },
     {
@@ -292,7 +292,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}{}",
-        "snippet": "{${1:name}}{${2:core-model}}{${3:method%keyvals}}{${4:b-spec}}{${5:s-spec}}",
+        "snippet": "definecolorseries{${1:name}}{${2:core-model}}{${3:method%keyvals}}{${4:b-spec}}{${5:s-spec}}",
         "keys": [
           "\\definecolorseries"
         ],
@@ -304,7 +304,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}[]{}[]{}",
-        "snippet": "{${1:name}}{${2:core-model}}{${3:method%keyvals}}[${6:b-model}]{${4:b-spec}}[${7:s-model}]{${5:s-spec}}",
+        "snippet": "definecolorseries{${1:name}}{${2:core-model}}{${3:method%keyvals}}[${6:b-model}]{${4:b-spec}}[${7:s-model}]{${5:s-spec}}",
         "keys": [
           "\\definecolorseries"
         ],
@@ -315,7 +315,7 @@
       "name": "resetcolorseries",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:div}]{${1:name}}"
+        "snippet": "resetcolorseries[${2:div}]{${1:name}}"
       }
     },
     {
@@ -327,7 +327,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:color}}{${2:cmd}}"
+        "snippet": "extractcolorspec{${1:color}}{${2:cmd}}"
       }
     },
     {
@@ -335,7 +335,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:color}}{${2:model-cmd%cmd}}{${3:color-cmd%cmd}}"
+        "snippet": "extractcolorspecs{${1:color}}{${2:model-cmd%cmd}}{${3:color-cmd%cmd}}"
       }
     },
     {
@@ -343,7 +343,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:model}}{${2:spec}}{${3:target-model}}{${4:cmd}}"
+        "snippet": "convertcolorspec{${1:model}}{${2:spec}}{${3:target-model}}{${4:cmd}}"
       }
     }
   ],
