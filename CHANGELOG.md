@@ -1,5 +1,10 @@
 # Change Log
 
+## [10.3.2] - 2024-09-11
+
+### Fixed
+- (#4374) Extra brace in default macros.
+
 ## [10.3.1] - 2024-09-10
 
 ### Fixed
