@@ -290,7 +290,7 @@ function parseMacro(pkg: PackageRaw, line: string, ifCond?: string): void {
         const pairs = { '(': ')', '[': ']', '|': '|' }
         const macro: MacroRaw = { name: match[1] + (match[2] ?? '') }
         if (match[2] === '(' || match[2] === '[' || match[2] === '|') {
-            macro.arg = { format: match[2] + pairs[match[2]], snippet: `${match[1]}${match[2]}$\{1}\\${match[1]}${pairs[match[2]]}` }
+            macro.arg = { format: '', snippet: `${match[1]}${match[2]}$\{1}\\${match[1]}${pairs[match[2]]}` }
         }
         pkg.macros.push(macro)
         return
