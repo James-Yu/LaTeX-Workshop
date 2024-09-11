@@ -278,7 +278,7 @@ function parseEnv(pkg: PackageRaw, line: string, ifCond?: string): void {
  */
 function parseMacro(pkg: PackageRaw, line: string, ifCond?: string): void {
     // Special cases in latex-document
-    if ((/\\left[^a-zA-Z]/.test(line) && line.includes('\\right')) || /\\right[^a-zA-Z]/.test(line)) {
+    if (/(?:\\left|\\right)[^a-zA-Z]/.test(line)) {
         return
     }
     // Special cases in latex-document
