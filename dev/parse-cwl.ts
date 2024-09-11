@@ -281,19 +281,9 @@ function parseMacro(pkg: PackageRaw, line: string, ifCond?: string): void {
     if (/(?:\\left|\\right)[^a-zA-Z]/.test(line)) {
         return
     }
-    // Special cases in latex-document
-    if (line.toLowerCase().startsWith('\\bigg')) {
-        const match = /^\\([Bb]igg)([([|])?.*?(?:#(.*))?$/.exec(line)
-        if (match === null) {
-            return
-        }
-        const pairs = { '(': ')', '[': ']', '|': '|' }
-        const macro: MacroRaw = { name: match[1] + (match[2] ?? '') }
-        if (match[2] === '(' || match[2] === '[' || match[2] === '|') {
-            macro.arg = { format: '', snippet: `${match[1]}${match[2]}$\{1}\\${match[1]}${pairs[match[2]]}` }
-        }
-        pkg.macros.push(macro)
-        return
+    // Special cases in latex-document and tex, e.g., \Bigg(%|\Bigg)#mM
+    if (line.toLowerCase().split('\\big').length === 3) {
+        return handleBigMacros(pkg, line)
     }
     // \mint[keys]{language}{verbatimSymbol}#S
     // \mint{%<language%>}|%<code%>|#M
@@ -320,6 +310,23 @@ function parseMacro(pkg: PackageRaw, line: string, ifCond?: string): void {
         }
         pkg.macros.push(macro)
     }
+}
+
+function handleBigMacros(pkg: PackageRaw, line: string): void {
+    let snippet = line.slice(1, line.lastIndexOf('#')) // Remove leading backslash and type indicator
+    snippet = snippet
+        .replaceAll('%|', '${1}') // Replace %| with cursor position
+        .replaceAll('%<..%>', '${1}') // Remove %<..%> with cursor position
+        .replaceAll('\\}', '\\\\}') // Right curly brace needs double escape
+    const macro: MacroRaw = {
+        name: line.slice(1, line.indexOf('%')),
+        arg: {
+            format: '',
+            snippet
+        }
+    }
+    pkg.macros.push(macro)
+    return
 }
 
 /**
