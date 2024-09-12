@@ -49,7 +49,7 @@ export const lw = {
     external: {
         spawn: wrapper(cs.spawn),
         sync: wrapper(cs.sync),
-        stat: wrapper(vscode.workspace.fs.stat),
+        stat: wrapper(vscode.workspace.fs.stat.bind(vscode.workspace.fs)),
         mkdirSync: wrapper(fs.mkdirSync),
         chmodSync: wrapper(fs.chmodSync)
     },
