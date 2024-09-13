@@ -283,10 +283,7 @@ function entryEnvToCompletion(item: EnvironmentInfo, type: EnvSnippetType): CmdE
     if (item.package) {
         suggestion.documentation += ` From package: ${item.package}.`
     }
-    suggestion.sortText = label.replace(/^[a-zA-Z]/, c => {
-        const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
-        return n !== undefined ? n.toString(16): c
-    })
+    suggestion.sortText = label.replace(/([A-Z])/g, '$10').toLowerCase()
 
     if (type === EnvSnippetType.AsName) {
         return suggestion

@@ -420,10 +420,8 @@ function entryCmdToCompletion(item: MacroRaw, packageName?: string, postAction?:
     if (packageName) {
         suggestion.documentation += ` From package: ${packageName}.`
     }
-    suggestion.sortText = (item.name + (item.arg?.format ?? '')).replace(/^[a-zA-Z]/, c => {
-        const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
-        return n !== undefined ? n.toString(16): c
-    })
+    suggestion.sortText = (item.name + (item.arg?.format ?? ''))
+    .replace(/([A-Z])/g, '$10').toLowerCase()
     if (postAction) {
         suggestion.command = { title: 'Post-Action', command: postAction }
     } else if (isTriggerSuggestNeeded(item.name)) {
