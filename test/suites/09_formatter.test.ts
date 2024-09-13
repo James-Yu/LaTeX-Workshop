@@ -4,7 +4,7 @@ import * as assert from 'assert'
 import * as test from './utils'
 import { readFileSync } from 'fs'
 
-suite.only('Formatter test suite', () => {
+suite('Formatter test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
     test.suite.fixture = 'testground'
 
@@ -53,7 +53,7 @@ suite.only('Formatter test suite', () => {
         ], {open: 0, skipCache: true})
         const original = readFileSync(path.resolve(fixture, 'main.tex')).toString()
         // echo add a new \n to the end of stdin
-        await vscode.workspace.getConfiguration('latex-workshop').update('latexindent.args', [original?.slice(0, -1)])
+        await vscode.workspace.getConfiguration('latex-workshop').update('formatting.latexindent.args', [original?.slice(0, -1)])
         await vscode.commands.executeCommand('editor.action.formatDocument')
         await test.sleep(250) // wait for echo finish
         const echoed = vscode.window.activeTextEditor?.document.getText()
