@@ -123,6 +123,10 @@ export interface LaTeXLinter {
     parseLog(log: string, filePath?: string): void
 }
 
+export interface LaTeXFormatter {
+    formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit[]>
+}
+
 export enum TeXElementType { Environment, Macro, Section, SectionAst, SubFile, BibItem, BibField }
 
 export type TeXElement = {

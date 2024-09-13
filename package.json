@@ -2121,7 +2121,7 @@
           "scope": "window",
           "type": "string",
           "default": "latexindent",
-          "markdownDescription": "Define the location of the latexindent executable file."
+          "markdownDeprecationMessage": "This config is renamed to `#latex-workshop.formatting.latexindent.path#`."
         },
         "latex-workshop.latexindent.args": {
           "scope": "resource",
@@ -2135,7 +2135,55 @@
             "%TMPFILE%",
             "-y=defaultIndent: '%INDENT%'"
           ],
+          "markdownDeprecationMessage": "This config is renamed to `#latex-workshop.formatting.latexindent.args#`."
+        },
+        "latex-workshop.formatting.latex": {
+          "scope": "window",
+          "type": "string",
+          "enum": [
+            "none",
+            "latexindent",
+            "tex-fmt"
+          ],
+          "enumDescriptions": [
+            "Do not use any formatter.",
+            "Use `latexindent` to format the LaTeX document.",
+            "Use `tex-fmt` to format the LaTeX document."
+          ],
+          "default": "none",
+          "markdownDescription": "Define the program to format the LaTeX document."
+        },
+        "latex-workshop.formatting.latexindent.path": {
+          "scope": "window",
+          "type": "string",
+          "default": "latexindent",
+          "markdownDescription": "Define the location of the latexindent executable file."
+        },
+        "latex-workshop.formatting.latexindent.args": {
+          "scope": "resource",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "-c",
+            "%DIR%/",
+            "%TMPFILE%",
+            "-y=defaultIndent: '%INDENT%'"
+          ],
           "markdownDescription": "Define the command line arguments for latexindent. In the addition to the placeholders defined at https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders, the following placeholders are accepted\n- %TMPFILE%: The full path of the raw TeX file to be formatted. At this moment you need to use it as an input file of `latexindent`.\n- %INDENT%: The indent character of the file, typically `\t`, `' '`, `' '`.\n\nNote that the option `-c` requires a trailing slash."
+        },
+        "latex-workshop.formatting.tex-fmt.path": {
+          "scope": "window",
+          "type": "string",
+          "default": "tex-fmt",
+          "markdownDescription": "Define the location of the tex-fmt executable file."
+        },
+        "latex-workshop.formatting.tex-fmt.doNotWrap": {
+          "scope": "window",
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Do not wrap the output of `tex-fmt`. This setting adds `--keep` flag to `tex-fmt`. Turning this off may wrap magic comments, and/or has unintended side effects."
         },
         "latex-workshop.docker.enabled": {
           "scope": "window",
