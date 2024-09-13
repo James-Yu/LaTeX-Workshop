@@ -228,6 +228,7 @@ function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext
         vscode.commands.registerCommand('latex-workshop.bibsort', () => lw.lint.bibtex.format(true, false)),
         vscode.commands.registerCommand('latex-workshop.bibalign', () => lw.lint.bibtex.format(false, true)),
         vscode.commands.registerCommand('latex-workshop.bibalignsort', () => lw.lint.bibtex.format(true, true)),
+        vscode.commands.registerCommand('latex-workshop.checkcitations', () => lw.commands.checkCitations()),
 
         vscode.commands.registerCommand('latex-workshop.openMathPreviewPanel', () => lw.commands.openMathPreviewPanel()),
         vscode.commands.registerCommand('latex-workshop.closeMathPreviewPanel', () => lw.commands.closeMathPreviewPanel()),

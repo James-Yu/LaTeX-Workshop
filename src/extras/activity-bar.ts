@@ -71,7 +71,8 @@ async function buildCommandTree(): Promise<LaTeXCommand[]> {
     node = buildNode(bibtexCommand, [
         new LaTeXCommand(await lw.language.getLocaleString('command.bibalign'), {command: 'latex-workshop.bibalign'}),
         new LaTeXCommand(await lw.language.getLocaleString('command.bibsort'), {command: 'latex-workshop.bibsort'}, 'sort-precedence'),
-        new LaTeXCommand(await lw.language.getLocaleString('command.bibalignsort'), {command: 'latex-workshop.bibalignsort'})
+        new LaTeXCommand(await lw.language.getLocaleString('command.bibalignsort'), {command: 'latex-workshop.bibalignsort'}),
+        new LaTeXCommand(await lw.language.getLocaleString('command.checkcitations'), {command: 'latex-workshop.checkcitations'})
     ])
     commands.push(node)
     return commands
