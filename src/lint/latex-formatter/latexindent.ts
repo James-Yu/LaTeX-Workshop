@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import * as os from 'os'
 import * as cs from 'cross-spawn'
 import * as path from 'path'
 import * as fs from 'fs'
@@ -12,13 +13,12 @@ export const latexindent: LaTeXFormatter = {
     formatDocument
 }
 
-type OperatingSystem = {
-    name: string,
-    fileExt: string,
-    checker: string
-}
+const currentOs = [
+    { name: 'win32', fileExt: '.exe', checker: 'where' },
+    { name: 'linux', fileExt: '.pl', checker: 'which' },
+    { name: 'darwin', fileExt: '.pl', checker: 'which' }
+].find(system => system.name === os.platform())
 
-let currentOs: OperatingSystem | undefined
 let formatter: string = ''
 let formatterArgs: string[] = []
 let formatting: boolean = false
