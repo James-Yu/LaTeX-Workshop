@@ -12,7 +12,11 @@ export const texfmt: LaTeXFormatter = {
 async function formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit[]> {
     const config = vscode.workspace.getConfiguration('latex-workshop')
     const program = config.get('formatting.tex-fmt.path') as string
-    const process = lw.external.spawn(program, ['--stdin'], { cwd: path.dirname(document.uri.fsPath) })
+    const args = ['--stdin']
+    if (config.get('formatting.tex-fmt.doNotWrap') as boolean) {
+        args.push('--keep')
+    }
+    const process = lw.external.spawn(program, args, { cwd: path.dirname(document.uri.fsPath) })
 
     let stdout: string = ''
     process.stdout?.on('data', (msg: Buffer | string) => {
@@ -32,6 +36,11 @@ async function formatDocument(document: vscode.TextDocument, range?: vscode.Rang
                 logger.showErrorMessage(`${program} returned ${code} . Be cautious on the edits.`)
                 resolve([])
             }
+            // tex-fmt adds an extra newline at the end
+            if (stdout.endsWith('\n\n')) {
+                stdout = stdout.slice(0, -1)
+            }
+            logger.log(`Formatted using ${program} .`)
             resolve([ vscode.TextEdit.replace(range ?? document.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE)), stdout) ])
         })
     })
