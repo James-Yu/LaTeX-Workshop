@@ -20,8 +20,8 @@ suite('Formatter test suite', () => {
     teardown(async () => {
         await test.reset()
 
-        await vscode.workspace.getConfiguration('latex-workshop').update('latexindent.path', undefined)
-        await vscode.workspace.getConfiguration('latex-workshop').update('latexindent.args', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('formatting.latexindent.path', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('formatting.latexindent.args', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.tab', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.surround', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.case', undefined)
@@ -44,8 +44,8 @@ suite('Formatter test suite', () => {
         assert.notStrictEqual(original, formatted)
     })
 
-    test.run('change latexindent.path on the fly', async (fixture: string) => {
-        await vscode.workspace.getConfiguration('latex-workshop').update('latexindent.path', 'echo')
+    test.run('change formatting.latexindent.path on the fly', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('formatting.latexindent.path', 'echo')
         await test.load(fixture, [
             {src: 'formatter/latex_base.tex', dst: 'main.tex'}
         ], {open: 0, skipCache: true})
@@ -57,8 +57,8 @@ suite('Formatter test suite', () => {
         const echoed = vscode.window.activeTextEditor?.document.getText()
         assert.strictEqual(original, echoed)
 
-        await vscode.workspace.getConfiguration('latex-workshop').update('latexindent.path', 'latexindent')
-        await vscode.workspace.getConfiguration('latex-workshop').update('latexindent.args', ['-c', '%DIR%/', '%TMPFILE%', '-y=defaultIndent: \'%INDENT%\''])
+        await vscode.workspace.getConfiguration('latex-workshop').update('formatting.latexindent.path', 'latexindent')
+        await vscode.workspace.getConfiguration('latex-workshop').update('formatting.latexindent.args', ['-c', '%DIR%/', '%TMPFILE%', '-y=defaultIndent: \'%INDENT%\''])
         const formatted = await test.format()
         assert.notStrictEqual(original, formatted)
     })

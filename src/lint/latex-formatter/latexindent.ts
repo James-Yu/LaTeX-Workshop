@@ -25,7 +25,7 @@ let formatter: string = ''
 let formatterArgs: string[] = []
 let formatting: boolean = false
 
-lw.onConfigChange('latexindent.path', () => formatter = '')
+lw.onConfigChange('formatting.latexindent.path', () => formatter = '')
 
 async function formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit[]> {
     if (formatting) {
@@ -33,8 +33,8 @@ async function formatDocument(document: vscode.TextDocument, range?: vscode.Rang
     }
     formatting = true
     const configuration = vscode.workspace.getConfiguration('latex-workshop', document.uri)
-    const pathMeta = configuration.get('latexindent.path') as string
-    formatterArgs = configuration.get('latexindent.args') as string[]
+    const pathMeta = configuration.get('formatting.latexindent.path') as string
+    formatterArgs = configuration.get('formatting.latexindent.args') as string[]
     logger.log('Start formatting with latexindent.')
     try {
         if (formatter === '') {

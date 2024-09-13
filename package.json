@@ -2121,9 +2121,45 @@
           "scope": "window",
           "type": "string",
           "default": "latexindent",
-          "markdownDescription": "Define the location of the latexindent executable file."
+          "markdownDeprecationMessage": "This config is renamed to `#latex-workshop.formatting.latexindent.path#`."
         },
         "latex-workshop.latexindent.args": {
+          "scope": "resource",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "-c",
+            "%DIR%/",
+            "%TMPFILE%",
+            "-y=defaultIndent: '%INDENT%'"
+          ],
+          "markdownDeprecationMessage": "This config is renamed to `#latex-workshop.formatting.latexindent.args#`."
+        },
+        "latex-workshop.formatting.latex": {
+          "scope": "window",
+          "type": "string",
+          "enum": [
+            "none",
+            "latexindent",
+            "tex-fmt"
+          ],
+          "enumDescriptions": [
+            "Do not use any formatter.",
+            "Use `latexindent` to format the LaTeX document.",
+            "Use `tex-fmt` to format the LaTeX document."
+          ],
+          "default": "none",
+          "markdownDescription": "Define the program to format the LaTeX document."
+        },
+        "latex-workshop.formatting.latexindent.path": {
+          "scope": "window",
+          "type": "string",
+          "default": "latexindent",
+          "markdownDescription": "Define the location of the latexindent executable file."
+        },
+        "latex-workshop.formatting.latexindent.args": {
           "scope": "resource",
           "type": "array",
           "items": {
