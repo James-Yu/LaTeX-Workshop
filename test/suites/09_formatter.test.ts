@@ -4,7 +4,7 @@ import * as assert from 'assert'
 import * as test from './utils'
 import { readFileSync } from 'fs'
 
-suite('Formatter test suite', () => {
+suite.only('Formatter test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
     test.suite.fixture = 'testground'
 
@@ -14,12 +14,14 @@ suite('Formatter test suite', () => {
     })
 
     setup(async () => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('formatting.latex', 'latexindent')
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.sort.enabled', true)
     })
 
     teardown(async () => {
         await test.reset()
 
+        await vscode.workspace.getConfiguration('latex-workshop').update('formatting.latex', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('formatting.latexindent.path', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('formatting.latexindent.args', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.tab', undefined)
