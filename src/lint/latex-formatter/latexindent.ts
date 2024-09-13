@@ -12,8 +12,6 @@ export const latexindent: LaTeXFormatter = {
     formatDocument
 }
 
-const fullRange = (doc: vscode.TextDocument) => doc.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE))
-
 type OperatingSystem = {
     name: string,
     fileExt: string,
@@ -179,7 +177,7 @@ function format(document: vscode.TextDocument, range?: vscode.Range): Thenable<v
             }
             const stdout = stdoutBuffer.join('')
             if (stdout !== '') {
-                const edit = [vscode.TextEdit.replace(range || fullRange(document), stdout)]
+                const edit = [vscode.TextEdit.replace(range ?? document.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE)), stdout)]
                 logger.log('Formatted ' + document.fileName)
                 return resolve(edit)
             }
