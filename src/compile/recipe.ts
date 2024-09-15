@@ -365,14 +365,23 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
         })
         if (configuration.get('latex.option.maxPrintLine.enabled')) {
             tool.args = tool.args ?? []
-            const isLuaLatex = tool.args.includes('-lualatex') ||
-                               tool.args.includes('-pdflua') ||
-                               tool.args.includes('-pdflualatex') ||
-                               tool.args.includes('--lualatex') ||
-                               tool.args.includes('--pdflua') ||
-                               tool.args.includes('--pdflualatex')
-            if (((tool.command === 'latexmk' && !isLuaLatex) || tool.command === 'pdflatex') && isMikTeX()) {
-                tool.args.unshift('--max-print-line=' + lw.constant.MAX_PRINT_LINE)
+            const isLaTeXmk =
+                tool.command === 'latexmk' &&
+                !(
+                    tool.args.includes('-lualatex') ||
+                    tool.args.includes('-pdflua') ||
+                    tool.args.includes('-pdflualatex') ||
+                    tool.args.includes('--lualatex') ||
+                    tool.args.includes('--pdflua') ||
+                    tool.args.includes('--pdflualatex')
+                )
+            if ((isLaTeXmk || tool.command === 'pdflatex') && isMikTeX()) {
+                if (tool.name === lw.constant.TEX_MAGIC_PROGRAM_NAME) {
+                    // %!TeX options is present. All args are provided in a string and { shell: true }
+                    tool.args = [ `--max-print-line=${lw.constant.MAX_PRINT_LINE} ${tool.args.join(' ')}` ]
+                } else {
+                    tool.args.unshift('--max-print-line=' + lw.constant.MAX_PRINT_LINE)
+                }
             }
         }
     })

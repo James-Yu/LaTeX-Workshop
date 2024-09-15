@@ -734,6 +734,22 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(step)
             assert.ok(!step.args?.includes('--max-print-line=' + lw.constant.MAX_PRINT_LINE), step.args?.join(' '))
         })
+
+        it('should add --max-print-line argument to the arg string with MikTeX and %!TeX options', async () => {
+            await set.config('latex.option.maxPrintLine.enabled', true)
+            await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
+            await set.config('latex.build.forceRecipeUsage', false)
+            syncStub.returns({ stdout: 'pdfTeX 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit)' })
+            readStub.resolves('% !TEX program = latexmk\n% !TEX options = -synctex=1 -interaction=nonstopmode -file-line-error\n')
+            const rootFile = set.root('main.tex')
+            initialize()
+
+            await build(rootFile, 'latex', async () => {})
+
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.strictEqual(step.args?.[0], '--max-print-line=10000 -synctex=1 -interaction=nonstopmode -file-line-error', JSON.stringify(step.args))
+        })
     })
 
     describe('lw.compile->recipe.isMikTeX', () => {
