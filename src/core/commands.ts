@@ -429,7 +429,7 @@ export async function devParseBib() {
 }
 
 export async function checkCitations() {
-    const unused = lw.lint.bibtex.checkCitations()
+    const unused = lw.extra.checkCitations()
     if (unused.length === 0){
         return
     }
