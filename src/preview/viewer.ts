@@ -70,16 +70,6 @@ function refresh(pdfUri?: vscode.Uri): void {
     })
 }
 
-async function getUrl(pdfFile: string): Promise<string | undefined> {
-    const pdfUri = vscode.Uri.file(pdfFile)
-    if (!await lw.file.exists(pdfUri)) {
-        logger.log(`Cannot find PDF file ${pdfUri}`)
-        logger.refreshStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfUri}`, 'warning')
-        return
-    }
-    return (await lw.server.getUrl(pdfUri)).url
-}
-
 async function view(pdfFile: vscode.Uri, mode?: 'tab' | 'browser' | 'external'): Promise<void> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
