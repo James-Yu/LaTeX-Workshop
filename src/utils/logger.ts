@@ -127,6 +127,7 @@ function initStatusBarItem() {
 
 function clearCompilerMessage() {
     COMPILER_PANEL.clear()
+    CACHED_COMPILER.length = 0
 }
 
 function showLog() {

@@ -9,7 +9,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
 
     before(() => {
-        mock.object(lw, 'file', 'watcher', 'cache')
+        mock.init(lw, 'file', 'watcher', 'cache')
     })
 
     after(() => {
@@ -38,7 +38,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should excluded files with config set ', async () => {
-            await set.config('latex.watch.files.ignore', ['**/*.bbl'])
+            set.config('latex.watch.files.ignore', ['**/*.bbl'])
 
             log.start()
             await lw.cache.refreshCache(bblPath)
@@ -53,8 +53,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.cache.canCache', () => {
-        beforeEach(async () => {
-            await set.config('latex.watch.files.ignore', [])
+        beforeEach(() => {
+            set.config('latex.watch.files.ignore', [])
         })
 
         it('should cache supported TeX files', async () => {
@@ -284,9 +284,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.cache.refreshCacheAggressive', () => {
-        beforeEach(async () => {
-            await set.config('intellisense.update.aggressive.enabled', true)
-            await set.config('intellisense.update.delay', 100)
+        beforeEach(() => {
+            set.config('intellisense.update.aggressive.enabled', true)
+            set.config('intellisense.update.delay', 100)
         })
 
         it('should not aggressively cache non-cached files', async function (this: Mocha.Context) {
@@ -335,7 +335,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             this.slow(350)
             const texPath = get.path(fixture, 'main.tex')
 
-            await set.config('intellisense.update.aggressive.enabled', false)
+            set.config('intellisense.update.aggressive.enabled', false)
             lw.cache.add(texPath)
             await lw.cache.refreshCache(texPath)
             const stub = mock.textDocument(texPath, '', { isDirty: true })
@@ -550,7 +550,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should add a child if it is defined in `latex.texDirs`', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
-            await set.config('latex.texDirs', [ get.path(fixture, 'update_children_xr', 'sub') ])
+            set.config('latex.texDirs', [ get.path(fixture, 'update_children_xr', 'sub') ])
 
             set.root(texPath)
             lw.cache.add(texPath)
@@ -775,7 +775,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should not add \\bibdata if the bib is excluded', async () => {
-            await set.config('latex.watch.files.ignore', ['**/main.bib'])
+            set.config('latex.watch.files.ignore', ['**/main.bib'])
             const toParse = get.path(fixture, 'load_aux_file', 'main.tex')
             set.root(fixture, 'load_aux_file', 'main.tex')
             await lw.cache.refreshCache(toParse)

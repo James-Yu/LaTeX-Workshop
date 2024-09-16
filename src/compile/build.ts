@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as cs from 'cross-spawn'
 import { pickRootPath } from '../utils/quick-pick'
 import { lw } from '../lw'
 import type { ProcessEnv, RecipeStep, Step } from '../types'
@@ -143,6 +142,7 @@ async function build(skipSelection: boolean = false, rootFile: string | undefine
  */
 async function buildLoop() {
     if (isBuilding) {
+        logger.log('Another build loop is already running.')
         return
     }
 
@@ -156,16 +156,15 @@ async function buildLoop() {
         if (step === undefined) {
             break
         }
-        lw.compile.lastSteps.push(step)
         const env = spawnProcess(step)
         const success = await monitorProcess(step, env)
-        skipped = skipped && !(step.isExternal || !step.isSkipped)
+        skipped = skipped && !step.isExternal && step.isSkipped
         if (success && queue.isLastStep(step)) {
             await afterSuccessfulBuilt(step, skipped)
         }
     }
     isBuilding = false
-    setTimeout(() => lw.compile.compiledPDFWriting--, 1000)
+    setTimeout(() => lw.compile.compiledPDFWriting--, vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number)
 }
 
 /**
@@ -208,9 +207,9 @@ function spawnProcess(step: Step): ProcessEnv {
         const args = step.args
         if (args && !step.name.endsWith(lw.constant.MAGIC_PROGRAM_ARGS_SUFFIX)) {
             // All optional arguments are given as a unique string (% !TeX options) if any, so we use {shell: true}
-            lw.compile.process = cs.spawn(`${step.command} ${args[0]}`, [], {cwd: path.dirname(step.rootFile), env, shell: true})
+            lw.compile.process = lw.external.spawn(`${step.command} ${args[0]}`, [], {cwd: path.dirname(step.rootFile), env, shell: true})
         } else {
-            lw.compile.process = cs.spawn(step.command, args, {cwd: path.dirname(step.rootFile), env})
+            lw.compile.process = lw.external.spawn(step.command, args ?? [], {cwd: path.dirname(step.rootFile), env})
         }
     } else if (!step.isExternal) {
         let cwd = path.dirname(step.rootFile)
@@ -218,10 +217,10 @@ function spawnProcess(step: Step): ProcessEnv {
             cwd = lw.root.dir.path
         }
         logger.log(`cwd: ${cwd}`)
-        lw.compile.process = cs.spawn(step.command, step.args, {cwd, env})
+        lw.compile.process = lw.external.spawn(step.command, step.args ?? [], {cwd, env})
     } else {
         logger.log(`cwd: ${step.cwd}`)
-        lw.compile.process = cs.spawn(step.command, step.args, {cwd: step.cwd})
+        lw.compile.process = lw.external.spawn(step.command, step.args ?? [], {cwd: step.cwd})
     }
     logger.log(`LaTeX build process spawned with PID ${lw.compile.process.pid}.`)
     return env
@@ -245,13 +244,13 @@ async function monitorProcess(step: Step, env: ProcessEnv): Promise<boolean> {
         return false
     }
     let stdout = ''
-    lw.compile.process.stdout.on('data', (msg: Buffer | string) => {
+    lw.compile.process.stdout?.on('data', (msg: Buffer | string) => {
         stdout += msg
         logger.logCompiler(msg.toString())
     })
 
     let stderr = ''
-    lw.compile.process.stderr.on('data', (msg: Buffer | string) => {
+    lw.compile.process.stderr?.on('data', (msg: Buffer | string) => {
         stderr += msg
         logger.logCompiler(msg.toString())
     })
@@ -384,7 +383,7 @@ function handleNoRetryError(configuration: vscode.WorkspaceConfiguration, step: 
  * shows an error message to the user and clears the BuildToolQueue.
  */
 function handleExternalCommandError() {
-    logger.log(`Build returns with error on PID ${lw.compile.process?.pid}.`)
+    logger.log(`Build with external command returns error on PID ${lw.compile.process?.pid}.`)
     logger.refreshStatus('x', 'errorForeground', undefined, 'warning')
     void logger.showErrorMessageWithCompilerLogButton('Build terminated with error.')
     queue.clear()
