@@ -14,7 +14,6 @@ jobs:
     - uses: actions/checkout@v4
     - name: Set up PATH
       run: |
-        echo "/Users/runner/texlive/bin/x86_64-darwin" >> $GITHUB_PATH
         echo "/Users/runner/texlive/bin/universal-darwin" >> $GITHUB_PATH
     - name: Cache TeX Live
       id: cache-texlive
@@ -43,7 +42,7 @@ jobs:
     - name: Download latexindent binary
       run: |
         curl -s -O -L http://mirrors.ctan.org/support/latexindent/bin/macos/latexindent
-        [ -d /Users/runner/texlive/bin/x86_64-darwin/ ] && mv -f latexindent /Users/runner/texlive/bin/x86_64-darwin/latexindent && chmod +x /Users/runner/texlive/bin/x86_64-darwin/latexindent || [ -d /Users/runner/texlive/bin/universal-darwin/ ] && mv -f latexindent /Users/runner/texlive/bin/universal-darwin/latexindent && chmod +x /Users/runner/texlive/bin/universal-darwin/latexindent
+        mv -f latexindent /Users/runner/texlive/bin/universal-darwin/latexindent && chmod +x /Users/runner/texlive/bin/universal-darwin/latexindent
       if: steps.cache-texlive.outputs.cache-hit != 'true'
     - uses: actions/setup-node@v4
       with:
@@ -55,7 +54,7 @@ jobs:
         latex -v
         latexmk -v
     - run: |
-        ls -al /Users/runner/texlive/bin/
+        ls -al /Users/runner/texlive/bin/universal-darwin
         echo "$PATH"
     - run: |
         npm ci
