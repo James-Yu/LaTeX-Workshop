@@ -2,7 +2,7 @@ import * as cp from 'child_process'
 import { lw } from '../lw'
 import { queue } from './queue'
 
-const logger = lw.log('Build', 'Recipe')
+const logger = lw.log('Build', 'Terminate')
 
 /**
  * Terminate the current process of LaTeX building. This OS-specific function

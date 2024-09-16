@@ -383,7 +383,7 @@ function handleNoRetryError(configuration: vscode.WorkspaceConfiguration, step: 
  * shows an error message to the user and clears the BuildToolQueue.
  */
 function handleExternalCommandError() {
-    logger.log(`Build returns with error on PID ${lw.compile.process?.pid}.`)
+    logger.log(`Build with external command returns error on PID ${lw.compile.process?.pid}.`)
     logger.refreshStatus('x', 'errorForeground', undefined, 'warning')
     void logger.showErrorMessageWithCompilerLogButton('Build terminated with error.')
     queue.clear()

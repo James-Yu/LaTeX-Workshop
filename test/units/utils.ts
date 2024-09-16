@@ -71,6 +71,9 @@ export const get = {
         } else {
             return result
         }
+    },
+    compiler: {
+        log: () => lwLog.getCachedLog().CACHED_COMPILER.join('')
     }
 }
 
