@@ -1,7 +1,7 @@
 name: TeX Live on macOS
 env:
   cache-version: v12
-on: [push, pull_request]
+on: push
 
 permissions:
   contents: read
@@ -54,6 +54,9 @@ jobs:
     - run: |
         latex -v
         latexmk -v
+    - run: |
+        ls -al /Users/runner/texlive/bin/
+        echo "$PATH"
     - run: |
         npm ci
         npm run compile
