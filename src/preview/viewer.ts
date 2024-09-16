@@ -80,7 +80,7 @@ async function getUrl(pdfFile: string): Promise<string | undefined> {
     return (await lw.server.getUrl(pdfUri)).url
 }
 
-async function view(pdfFile: string, mode?: 'tab' | 'browser' | 'external'): Promise<void> {
+async function view(pdfFile: vscode.Uri, mode?: 'tab' | 'browser' | 'external'): Promise<void> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
     let viewerMode: ViewerMode = mode ?? configuration.get<ViewerMode>('view.pdf.viewer', 'tab')
@@ -105,24 +105,19 @@ async function view(pdfFile: string, mode?: 'tab' | 'browser' | 'external'): Pro
  *
  * @param pdfFile The path of a PDF file.
  */
-async function viewInBrowser(pdfFile: string): Promise<void> {
-    const url = await getUrl(pdfFile)
-    if (!url) {
-        return
-    }
-    const pdfUri = vscode.Uri.file(pdfFile)
-    manager.create(pdfUri)
-    lw.watcher.pdf.add(pdfUri)
+async function viewInBrowser(pdfFile: vscode.Uri): Promise<void> {
+    manager.create(pdfFile)
+    lw.watcher.pdf.add(pdfFile)
     try {
-        logger.log(`Serving PDF file at ${url}`)
-        await vscode.env.openExternal(vscode.Uri.parse(url, true))
-        logger.log(`Open PDF viewer for ${pdfUri.toString(true)}`)
+        logger.log(`Serving PDF file at ${pdfFile.fsPath}`)
+        await vscode.env.openExternal(pdfFile)
+        logger.log(`Open PDF viewer for ${pdfFile.toString(true)}`)
     } catch (e: unknown) {
         void vscode.window.showInputBox({
             prompt: 'Unable to open browser. Please copy and visit this link.',
-            value: url
+            value: pdfFile.fsPath
         })
-        logger.logError(`Failed opening PDF viewer for ${pdfUri.toString(true)}`, e)
+        logger.logError(`Failed opening PDF viewer for ${pdfFile.toString(true)}`, e)
     }
 }
 
@@ -133,23 +128,13 @@ async function viewInBrowser(pdfFile: string): Promise<void> {
  * @param tabEditorGroup
  * @param preserveFocus
  */
-async function viewInTab(pdfFile: string, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
-    const url = await getUrl(pdfFile)
-    if (!url) {
-        return
-    }
-    const pdfUri = vscode.Uri.file(pdfFile)
-    return viewInWebviewPanel(pdfUri, tabEditorGroup, preserveFocus)
+async function viewInTab(pdfFile: vscode.Uri, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
+    return viewInWebviewPanel(pdfFile, tabEditorGroup, preserveFocus)
 }
 
-async function viewInCustomEditor(pdfFile: string): Promise<void> {
-    const url = await getUrl(pdfFile)
-    if (!url) {
-        return
-    }
+async function viewInCustomEditor(pdfFile: vscode.Uri): Promise<void> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const editorGroup = configuration.get('view.pdf.tab.editorGroup') as string
-    const pdfUri = vscode.Uri.file(pdfFile)
     const showOptions: vscode.TextDocumentShowOptions = {
         viewColumn: vscode.ViewColumn.Active,
         preserveFocus: true
@@ -158,10 +143,10 @@ async function viewInCustomEditor(pdfFile: string): Promise<void> {
         const currentColumn = vscode.window.activeTextEditor?.viewColumn
         if (currentColumn && currentColumn > 1) {
             showOptions.viewColumn = currentColumn - 1
-            await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
+            await vscode.commands.executeCommand('vscode.openWith', pdfFile, 'latex-workshop-pdf-hook', showOptions)
             await vscode.commands.executeCommand('workbench.action.focusRightGroup')
         } else {
-            await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
+            await vscode.commands.executeCommand('vscode.openWith', pdfFile, 'latex-workshop-pdf-hook', showOptions)
             if (currentColumn === vscode.ViewColumn.One) {
                 await moveActiveEditor('left', true)
             } else {
@@ -171,13 +156,13 @@ async function viewInCustomEditor(pdfFile: string): Promise<void> {
     } else if (editorGroup === 'right') {
         const currentColumn = vscode.window.activeTextEditor?.viewColumn
         showOptions.viewColumn = (currentColumn ?? 0) + 1
-        await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
+        await vscode.commands.executeCommand('vscode.openWith', pdfFile, 'latex-workshop-pdf-hook', showOptions)
         await vscode.commands.executeCommand('workbench.action.focusLeftGroup')
     } else {
-        await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
+        await vscode.commands.executeCommand('vscode.openWith', pdfFile, 'latex-workshop-pdf-hook', showOptions)
         await moveActiveEditor(editorGroup, true)
     }
-    logger.log(`Open PDF tab for ${pdfUri.toString(true)}`)
+    logger.log(`Open PDF tab for ${pdfFile.toString(true)}`)
 }
 
 async function viewInWebviewPanel(pdfUri: vscode.Uri, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
@@ -215,7 +200,7 @@ async function viewInWebviewPanel(pdfUri: vscode.Uri, tabEditorGroup: string, pr
  *
  * @param pdfFile The path of a PDF file.
  */
-function viewInExternal(pdfFile: string): void {
+function viewInExternal(pdfFile: vscode.Uri): void {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     let command = configuration.get('view.pdf.external.viewer.command') as string
     let args = configuration.get('view.pdf.external.viewer.args') as string[]
@@ -238,11 +223,11 @@ function viewInExternal(pdfFile: string): void {
         }
     }
     if (args) {
-        args = args.map(arg => arg.replace('%PDF%', pdfFile))
+        args = args.map(arg => arg.replace('%PDF%', pdfFile.fsPath))
     }
     logger.log(`Open external viewer for ${pdfFile}`)
     logger.logCommand('Execute the external PDF viewer command', command, args)
-    const proc = cs.spawn(command, args, {cwd: path.dirname(pdfFile), detached: true})
+    const proc = cs.spawn(command, args, {cwd: path.dirname(pdfFile.fsPath), detached: true})
     let stdout = ''
     proc.stdout.on('data', newStdout => {
         stdout += newStdout
@@ -290,13 +275,13 @@ function handler(websocket: ws, msg: string): void {
             if (configuration.get('synctex.afterBuild.enabled') as boolean) {
                 logger.log('SyncTex after build invoked.')
                 const uri = vscode.Uri.parse(data.pdfFileUri, true)
-                lw.locate.synctex.toPDF(undefined, undefined, uri.fsPath)
+                lw.locate.synctex.toPDF(undefined, undefined, uri)
             }
             break
         }
         case 'reverse_synctex': {
             const uri = vscode.Uri.parse(data.pdfFileUri, true)
-            void lw.locate.synctex.toTeX(data, uri.fsPath)
+            void lw.locate.synctex.toTeX(data, uri)
             break
         }
         case 'external_link': {
@@ -391,19 +376,18 @@ function getParams(): PdfViewerParams {
  * @param pdfFile The path of a PDF file.
  * @param record The position to be revealed.
  */
-async function locate(pdfFile: string, record: SyncTeXRecordToPDF | SyncTeXRecordToPDFAll[]): Promise<void> {
-    const pdfUri = vscode.Uri.file(pdfFile)
-    let clientSet = manager.getClients(pdfUri)
+async function locate(pdfFile: vscode.Uri, record: SyncTeXRecordToPDF | SyncTeXRecordToPDFAll[]): Promise<void> {
+    let clientSet = manager.getClients(pdfFile)
     if (clientSet === undefined || clientSet.size === 0) {
         logger.log(`PDF is not opened: ${pdfFile} , try opening.`)
         await view(pdfFile)
-        clientSet = manager.getClients(pdfUri)
+        clientSet = manager.getClients(pdfFile)
     }
     if (clientSet === undefined || clientSet.size === 0) {
         logger.log(`PDF cannot be opened: ${pdfFile} .`)
         return
     }
-    const needDelay = showInvisibleWebviewPanel(pdfUri)
+    const needDelay = showInvisibleWebviewPanel(pdfFile)
     for (const client of clientSet) {
         setTimeout(() => {
             client.send({type: 'synctex', data: record})
