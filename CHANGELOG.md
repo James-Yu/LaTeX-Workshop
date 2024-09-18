@@ -1,5 +1,16 @@
 # Change Log
 
+## [10.4.0] - 2024-09-18
+
+### Added
+- (#4379) Support `tex-fmt` as another LaTeX formatter.
+  - There are a few config item changes related to `latexindent`.
+
+### Fixed
+- Macro suggestions filtered and sorted by both label and argument signature.
+- (#4347) `--max-print-line` should be added to string when magic tex argument is present under MikTeX.
+- (#4380) Wrong auto-completion after typing `\{`.
+
 ## [10.3.2] - 2024-09-11
 
 ### Fixed
