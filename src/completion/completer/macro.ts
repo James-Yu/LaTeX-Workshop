@@ -414,14 +414,17 @@ function entryCmdToCompletion(item: MacroRaw, packageName?: string, postAction?:
     } else {
         suggestion.insertText = item.name
     }
-    suggestion.filterText = item.detail ?? item.name
+    suggestion.filterText = item.name + (item.arg?.format ?? '') + (item.detail ?? '')
     suggestion.detail = item.detail ?? (item.arg?.snippet ? `\\${item.arg?.snippet?.replace(/\$\{\d+:([^$}]*)\}/g, '$1')}` : `\\${item.name}`)
     suggestion.documentation = item.doc ?? `Macro \\${item.name}${item.arg?.format ?? ''}.`
     if (packageName) {
         suggestion.documentation += ` From package: ${packageName}.`
     }
     suggestion.sortText = (item.name + (item.arg?.format ?? ''))
-    .replace(/([A-Z])/g, '$10').toLowerCase()
+        .replace(/([A-Z])/g, '$10').toLowerCase()
+        .replaceAll('{', '0')
+        .replaceAll('[', '1')
+        .replaceAll('(', '2')
     if (postAction) {
         suggestion.command = { title: 'Post-Action', command: postAction }
     } else if (isTriggerSuggestNeeded(item.name)) {
