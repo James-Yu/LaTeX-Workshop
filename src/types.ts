@@ -124,7 +124,7 @@ export interface LaTeXLinter {
 }
 
 export interface LaTeXFormatter {
-    formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit[]>
+    formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit | undefined>
 }
 
 export enum TeXElementType { Environment, Macro, Section, SectionAst, SubFile, BibItem, BibField }

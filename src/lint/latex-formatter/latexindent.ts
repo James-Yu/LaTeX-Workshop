@@ -25,7 +25,7 @@ let formatting: boolean = false
 
 lw.onConfigChange('formatting.latexindent.path', () => formatter = '')
 
-async function formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit[]> {
+async function formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit | undefined> {
     if (formatting) {
         logger.log('Formatting in progress. Aborted.')
     }
@@ -42,7 +42,7 @@ async function formatDocument(document: vscode.TextDocument, range?: vscode.Rang
                 formatter = ''
                 logger.log(`Can not find ${formatter} in PATH: ${process.env.PATH}`)
                 void logger.showErrorMessage('Can not find latexindent in PATH.')
-                return []
+                return undefined
             }
         }
         const edit = await format(document, range)
@@ -113,7 +113,7 @@ function checkPath(): Thenable<boolean> {
     })
 }
 
-function format(document: vscode.TextDocument, range?: vscode.Range): Thenable<vscode.TextEdit[]> {
+function format(document: vscode.TextDocument, range?: vscode.Range): Thenable<vscode.TextEdit | undefined> {
     return new Promise((resolve, _reject) => {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useDocker = configuration.get('docker.enabled') as boolean
@@ -165,7 +165,7 @@ function format(document: vscode.TextDocument, range?: vscode.Range): Thenable<v
             void logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
             logger.log(`Formatting failed: ${err.message}`)
             logger.log(`stderr: ${stderrBuffer.join('')}`)
-            resolve([])
+            resolve(undefined)
         })
         worker.on('close', code => {
             removeTemporaryFiles()
@@ -173,16 +173,16 @@ function format(document: vscode.TextDocument, range?: vscode.Range): Thenable<v
                 void logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
                 logger.log(`Formatting failed with exit code ${code}`)
                 logger.log(`stderr: ${stderrBuffer.join('')}`)
-                return resolve([])
+                return resolve(undefined)
             }
             const stdout = stdoutBuffer.join('')
             if (stdout !== '') {
-                const edit = [vscode.TextEdit.replace(range ?? document.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE)), stdout)]
+                const edit = vscode.TextEdit.replace(range ?? document.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE)), stdout)
                 logger.log('Formatted ' + document.fileName)
                 return resolve(edit)
             }
 
-            return resolve([])
+            return resolve(undefined)
         })
     })
 }
