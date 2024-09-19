@@ -51,12 +51,6 @@ pdfjs-download-button-label = Sækja
 pdfjs-bookmark-button =
     .title = Núverandi síða (Skoða vefslóð frá núverandi síðu)
 pdfjs-bookmark-button-label = Núverandi síða
-# Used in Firefox for Android.
-pdfjs-open-in-app-button =
-    .title = Opna í smáforriti
-# Used in Firefox for Android.
-# Length of the translation matters since we are in a mobile context, with limited screen estate.
-pdfjs-open-in-app-button-label = Opna í smáforriti
 
 ##  Secondary toolbar and context menu
 
@@ -284,7 +278,7 @@ pdfjs-text-annotation-type =
 
 ## Password
 
-pdfjs-password-label = Sláðu inn lykilorð til að opna þessa PDF skrá.
+pdfjs-password-label = Settu inn lykilorð til að opna þessa PDF-skrá.
 pdfjs-password-invalid = Ógilt lykilorð. Reyndu aftur.
 pdfjs-password-ok-button = Í lagi
 pdfjs-password-cancel-button = Hætta við
@@ -304,8 +298,6 @@ pdfjs-editor-stamp-button-label = Bæta við eða breyta myndum
 pdfjs-editor-highlight-button =
     .title = Áherslulita
 pdfjs-editor-highlight-button-label = Áherslulita
-pdfjs-highlight-floating-button =
-    .title = Áherslulita
 pdfjs-highlight-floating-button1 =
     .title = Áherslulita
     .aria-label = Áherslulita
@@ -400,3 +392,60 @@ pdfjs-editor-colorpicker-red =
 pdfjs-editor-highlight-show-all-button-label = Birta allt
 pdfjs-editor-highlight-show-all-button =
     .title = Birta allt
+
+## New alt-text dialog
+## Group note for entire feature: Alternative text (alt text) helps when people can't see the image. This feature includes a tool to create alt text automatically using an AI model that works locally on the user's device to preserve privacy.
+
+# Modal header positioned above a text box where users can edit the alt text.
+pdfjs-editor-new-alt-text-dialog-edit-label = Breyta alt-myndatexta (lýsingu á mynd)
+# Modal header positioned above a text box where users can add the alt text.
+pdfjs-editor-new-alt-text-dialog-add-label = Bæta við alt-myndatexta (lýsingu á mynd)
+pdfjs-editor-new-alt-text-textarea =
+    .placeholder = Skrifaðu lýsinguna þína hér…
+# This text refers to the alt text box above this description. It offers a definition of alt text.
+pdfjs-editor-new-alt-text-description = Stutt lýsing fyrir fólk sem getur ekki séð myndina eða þegar myndin hleðst ekki inn.
+# This is a required legal disclaimer that refers to the automatically created text inside the alt text box above this text. It disappears if the text is edited by a human.
+pdfjs-editor-new-alt-text-disclaimer1 = Þessi alt-myndatexti var búinn til sjálfvirkt og gæti verið ónákvæmur.
+pdfjs-editor-new-alt-text-disclaimer-learn-more-url = Kanna nánar
+pdfjs-editor-new-alt-text-create-automatically-button-label = Útbúa alt-myndatexta sjálfvirkt
+pdfjs-editor-new-alt-text-not-now-button = Ekki núna
+pdfjs-editor-new-alt-text-error-title = Gat ekki búið til alt-myndatexta sjálfkrafa
+pdfjs-editor-new-alt-text-error-description = Skrifaðu þinn eiginn alt-myndatexta eða reyndu aftur síðar.
+pdfjs-editor-new-alt-text-error-close-button = Loka
+# Variables:
+#   $totalSize (Number) - the total size (in MB) of the AI model.
+#   $downloadedSize (Number) - the downloaded size (in MB) of the AI model.
+#   $percent (Number) - the percentage of the downloaded size.
+pdfjs-editor-new-alt-text-ai-model-downloading-progress = Sækir gervigreindarlíkan með alt-myndatextum ({ $downloadedSize } af { $totalSize } MB)
+    .aria-valuetext = Sækir gervigreindarlíkan með alt-myndatextum ({ $downloadedSize } af { $totalSize } MB)
+# This is a button that users can click to edit the alt text they have already added.
+pdfjs-editor-new-alt-text-added-button-label = Alt-myndatexta bætt við
+# This is a button that users can click to open the alt text editor and add alt text when it is not present.
+pdfjs-editor-new-alt-text-missing-button-label = Vantar alt-myndatexta
+# This is a button that opens up the alt text modal where users should review the alt text that was automatically generated.
+pdfjs-editor-new-alt-text-to-review-button-label = Yfirfara myndatexta
+# "Created automatically" is a prefix that will be added to the beginning of any alt text that has been automatically generated. After the colon, the user will see/hear the actual alt text description. If the alt text has been edited by a human, this prefix will not appear.
+# Variables:
+#   $generatedAltText (String) - the generated alt-text.
+pdfjs-editor-new-alt-text-generated-alt-text-with-disclaimer = Útbúið sjálfvirkt: { $generatedAltText }
+
+## Image alt-text settings
+
+pdfjs-image-alt-text-settings-button =
+    .title = Stillingar fyrir alt-texta myndar
+pdfjs-image-alt-text-settings-button-label = Stillingar fyrir alt-texta myndar
+pdfjs-editor-alt-text-settings-dialog-label = Stillingar fyrir alt-texta myndar
+pdfjs-editor-alt-text-settings-automatic-title = Sjálfvirkur alt-myndatexti
+pdfjs-editor-alt-text-settings-create-model-button-label = Útbúa alt-myndatexta sjálfvirkt
+pdfjs-editor-alt-text-settings-create-model-description = Stingur upp á lýsingum til að hjálpa fólki sem getur ekki séð myndina eða þegar myndin hleðst ekki inn.
+# Variables:
+#   $totalSize (Number) - the total size (in MB) of the AI model.
+pdfjs-editor-alt-text-settings-download-model-label = Gervigreindarlíkan alt-myndatexta ({ $totalSize } MB)
+pdfjs-editor-alt-text-settings-ai-model-description = Keyrir staðbundið á tækinu þínu svo gögnin þín haldast undir þinni stjórn. Nauðsynlegt fyrir sjálfvirka alt-myndatexta.
+pdfjs-editor-alt-text-settings-delete-model-button = Eyða
+pdfjs-editor-alt-text-settings-download-model-button = Sækja
+pdfjs-editor-alt-text-settings-downloading-model-button = Sæki…
+pdfjs-editor-alt-text-settings-editor-title = Ritill fyrir alt-myndatexta
+pdfjs-editor-alt-text-settings-show-dialog-button-label = Sýna alt-myndatextaritil strax þegar mynd er bætt við
+pdfjs-editor-alt-text-settings-show-dialog-description = Hjálpar þér að tryggja að allar myndirnar þínar séu með alt-myndatexta.
+pdfjs-editor-alt-text-settings-close-button = Loka

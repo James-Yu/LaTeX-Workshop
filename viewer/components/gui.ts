@@ -27,15 +27,15 @@ export function patchViewerUI() {
 
     const template = document.createElement('template')
     template.innerHTML =
-`<button id="TrimButton" class="secondaryToolbarButton" title="${getL10n('trimMargin')}" tabindex="70">
+`<button id="TrimButton" class="toolbarButton labeled" type="button" title="${getL10n('trimMargin')}" tabindex="70">
     <label for="trimPct">${getL10n('trimMargin')}</label>
     <input type="number" id="trimPct" name="trimPct" min="0" max="99" value="0">
     <label for="trimPct">%</label>
 </button>
-<button id="synctexOnButton" class="secondaryToolbarButton" title="${getL10n('enableSyncTeX')}" tabindex="71">
+<button id="synctexOnButton" class="toolbarButton labeled" type="button" title="${getL10n('enableSyncTeX')}" tabindex="71">
     <input id="synctexOn" type="checkbox" checked><span>${getL10n('enableSyncTeX')}</span>
 </button>
-<button id="autoRefreshOnButton" class="secondaryToolbarButton" title="${getL10n('enableRefresh')}" tabindex="72">
+<button id="autoRefreshOnButton" class="toolbarButton labeled" type="button" title="${getL10n('enableRefresh')}" tabindex="72">
     <input id="autoRefreshOn" type="checkbox" checked><span>${getL10n('enableRefresh')}</span>
 </button>
 <div class="horizontalToolbarSeparator"></div>`
