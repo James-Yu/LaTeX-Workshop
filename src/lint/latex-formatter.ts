@@ -29,12 +29,30 @@ class FormattingProvider implements vscode.DocumentFormattingEditProvider, vscod
         return undefined
     }
 
-    public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
-        return this.formatter?.formatDocument(document) ?? []
+    public async provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): Promise<vscode.TextEdit[]> {
+        const edit = await this.formatter?.formatDocument(document)
+        if (edit === undefined) {
+            return []
+        }
+        return [ edit ]
     }
 
-    public provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
-        return this.formatter?.formatDocument(document, range) ?? []
+    public async provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): Promise<vscode.TextEdit[]> {
+        const edit = await this.formatter?.formatDocument(document, range)
+        if (edit === undefined) {
+            return []
+        }
+        const useSpaces = vscode.window.activeTextEditor?.options.insertSpaces ?? true
+        const firstLine = document.lineAt(range.start.line)
+        // Replace all new line characters with new line and spaces, so that
+        // the indentations are added from the second line.
+        edit.newText = edit.newText.replaceAll('\n', '\n' + (useSpaces ? ' ' : '\\t').repeat(firstLine.firstNonWhitespaceCharacterIndex))
+        if (firstLine.firstNonWhitespaceCharacterIndex > range.start.character) {
+            // \s\s\s|\sf(x)=ax+b
+            // In this case, the first line need some leading whitespaces.
+            edit.newText = ' '.repeat(firstLine.firstNonWhitespaceCharacterIndex - range.start.character) + edit.newText
+        }
+        return [ edit ]
     }
 }
 
