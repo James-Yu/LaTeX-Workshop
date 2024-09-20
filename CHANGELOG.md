@@ -1,5 +1,14 @@
 # Change Log
 
+## [10.4.1] - 2024-09-20
+
+### Fixed
+- (#4397) When formatting a selection of `latex`, consider the leading spaces.
+- (#4401) Tweaked macro suggestion order, prioritize `\(` and degrade starred macros.
+
+### Upgraded
+- Upgrade to PDF.js 4.6.82
+
 ## [10.4.0] - 2024-09-18
 
 ### Added
