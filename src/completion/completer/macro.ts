@@ -421,10 +421,12 @@ function entryCmdToCompletion(item: MacroRaw, packageName?: string, postAction?:
         suggestion.documentation += ` From package: ${packageName}.`
     }
     suggestion.sortText = (item.name + (item.arg?.format ?? ''))
-        .replace(/([A-Z])/g, '$10').toLowerCase()
+        .replace(/([a-z])/g, '$10').toLowerCase()
         .replaceAll('{', '0')
         .replaceAll('[', '1')
-        .replaceAll('(', '2')
+        .replace(/^(.+?)\(/g, '$12') // Skip \(
+        .replaceAll('|', '3')
+        .replaceAll('*', '9')
     if (postAction) {
         suggestion.command = { title: 'Post-Action', command: postAction }
     } else if (isTriggerSuggestNeeded(item.name)) {
