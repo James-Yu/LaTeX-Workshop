@@ -424,7 +424,8 @@ function entryCmdToCompletion(item: MacroRaw, packageName?: string, postAction?:
         .replace(/([a-z])/g, '$10').toLowerCase()
         .replaceAll('{', '0')
         .replaceAll('[', '1')
-        .replaceAll('(', '2')
+        .replace(/^(.+?)\(/g, '$12') // Skip \(
+        .replaceAll('|', '3')
         .replaceAll('*', '9')
     if (postAction) {
         suggestion.command = { title: 'Post-Action', command: postAction }
