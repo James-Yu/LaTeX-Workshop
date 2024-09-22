@@ -83,6 +83,15 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
     }
 }
 
+function chooseCaption(...args: (Ast.Argument | undefined)[]): string {
+    for (const arg of args) {
+        if ((arg?.content?.length ?? 0) > 0) {
+            return argContentToStr(arg?.content ?? [])
+        }
+    }
+    return ''
+}
+
 async function parseNode(
         node: Ast.Node,
         rnwSub: ReturnType<typeof parseRnwChildMacro>,
@@ -105,7 +114,7 @@ async function parseNode(
         element = {
             type: node.args?.[0]?.content[0] ? TeXElementType.SectionAst : TeXElementType.Section,
             name: node.content,
-            label: argContentToStr(((node.args?.[1]?.content?.length ?? 0) > 0 ? node.args?.[1]?.content : node.args?.[2]?.content) || []),
+            label: chooseCaption(node.args?.[1], node.args?.[2]),
             appendix: inAppendix,
             ...attributes
         }
@@ -121,7 +130,7 @@ async function parseNode(
         inAppendix = true
     } else if ((node.type === 'environment') && node.env === 'frame') {
         const frameTitleMacro: Ast.Macro | undefined = node.content.find(sub => sub.type === 'macro' && sub.content === 'frametitle') as Ast.Macro | undefined
-        const caption = argContentToStr(node.args?.[3]?.content || []) || argContentToStr(frameTitleMacro?.args?.[2]?.content || [])
+        const caption = chooseCaption(node.args?.[3], frameTitleMacro?.args?.[2])
         element = {
             type: TeXElementType.Environment,
             name: node.env,
@@ -132,7 +141,7 @@ async function parseNode(
                 (node.env === 'figure' || node.env === 'figure*') && config.macros.envs.includes('figure') ||
                 (node.env === 'table' || node.env === 'table*') && config.macros.envs.includes('table'))) {
         const captionMacro: Ast.Macro | undefined = node.content.find(sub => sub.type === 'macro' && sub.content === 'caption') as Ast.Macro | undefined
-        const caption = argContentToStr(captionMacro?.args?.[1]?.content || [])
+        const caption = chooseCaption(captionMacro?.args?.[0], captionMacro?.args?.[1])
         if (node.env.endsWith('*')) {
             node.env = node.env.slice(0, -1)
         }
