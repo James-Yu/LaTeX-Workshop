@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import * as http from 'http'
 import type { AddressInfo } from 'net'
 import ws from 'ws'
-import * as fs from 'fs'
 import * as path from 'path'
 import { lw } from '../lw'
 
@@ -96,11 +95,14 @@ function getValidOrigin(): string {
 function initialize(hostname?: string): http.Server {
     if (hostname) { // We must have created one.
         state.httpServer.close()
+        state.address = undefined
     }
     const httpServer = http.createServer((request, response) => handler(request, response))
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const viewerPort = configuration.get('viewer.pdf.internal.port') as number
     httpServer.listen(viewerPort, hostname ?? '127.0.0.1', undefined, async () => {
+        // Double set state to ensure the server is set
+        state.httpServer = httpServer
         const address = state.httpServer.address()
         if (address && typeof address !== 'string') {
             state.address = address
@@ -164,7 +166,7 @@ function checkHttpOrigin(req: http.IncomingMessage, response: http.ServerRespons
     }
 }
 
-function sendOkResponse(response: http.ServerResponse, content: Buffer, contentType: string, cors: boolean = true) {
+function sendOkResponse(response: http.ServerResponse, content: string, contentType: string, cors: boolean = true) {
     //
     // Headers to enable site isolation.
     // - https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header
@@ -197,11 +199,13 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
         const fileUri = decodePathWithPrefix(s)
         if (!lw.viewer.isViewing(fileUri)) {
             logger.log(`Invalid PDF request: ${fileUri.toString(true)}`)
+            response.writeHead(404)
+            response.end()
             return
         }
         try {
-            const buf: Buffer = Buffer.from(await vscode.workspace.fs.readFile(fileUri))
-            sendOkResponse(response, buf, 'application/pdf')
+            const content = await lw.file.read(fileUri, true)
+            sendOkResponse(response, content ?? '', 'application/pdf')
             logger.log(`Preview PDF file: ${fileUri.toString(true)}`)
         } catch (e) {
             logger.logError(`Error reading PDF ${fileUri.toString(true)}`, e)
@@ -212,8 +216,7 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
     }
     if (request.url.endsWith('/config.json')) {
         const params = lw.viewer.getParams()
-        const content = JSON.stringify(params)
-        sendOkResponse(response, Buffer.from(content), 'application/json')
+        sendOkResponse(response, JSON.stringify(params), 'application/json')
         return
     }
     let root: string
@@ -283,18 +286,17 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
             break
         }
     }
-    fs.readFile(fileName, (err, content) => {
-        if (err) {
-            if (err.code === 'ENOENT') {
-                response.writeHead(404)
-            } else {
-                response.writeHead(500)
-            }
-            response.end()
+    try {
+        const content = await lw.file.read(fileName, true)
+        sendOkResponse(response, content ?? '', contentType, false)
+    } catch (err) {
+        if (typeof (err as any).code === 'string' && (err as any).code === 'FileNotFound') {
+            response.writeHead(404)
         } else {
-            sendOkResponse(response, content, contentType, false)
+            response.writeHead(500)
         }
-    })
+        response.end()
+    }
 }
 
 /**
