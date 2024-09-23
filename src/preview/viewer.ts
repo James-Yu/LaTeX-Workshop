@@ -162,11 +162,7 @@ async function viewInCustomEditor(pdfFile: string): Promise<void> {
             await vscode.commands.executeCommand('workbench.action.focusRightGroup')
         } else {
             await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
-            if (currentColumn === vscode.ViewColumn.One) {
-                await moveActiveEditor('left', true)
-            } else {
-                await vscode.commands.executeCommand('workbench.action.focusRightGroup')
-            }
+            await moveActiveEditor('left', true)
         }
     } else if (editorGroup === 'right') {
         const currentColumn = vscode.window.activeTextEditor?.viewColumn
@@ -444,6 +440,7 @@ function showInvisibleWebviewPanel(pdfUri: vscode.Uri): boolean {
 }
 
 /**
+ * !! Test only
  * Returns the state of the internal PDF viewer of `pdfFilePath`.
  *
  * @param pdfUri The path of a PDF file.

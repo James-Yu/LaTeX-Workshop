@@ -18,6 +18,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         await connectWs()
     })
 
+    after(() => {
+        sinon.restore()
+    })
+
     async function connectWs() {
         const serverPath = `ws://127.0.0.1:${lw.server.getPort()}`
         websocket = new ws.WebSocket(serverPath)
@@ -27,26 +31,24 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     }
 
-    async function waitMessage(msg: ClientRequest, timeout = 1000) {
-        const msgString = JSON.stringify(msg)
-        let elapsed = 0
-        while(true) {
-            if (handlerStub.called && (handlerStub.lastCall.args?.[1] as Uint8Array).toString() === msgString) {
-                break
-            }
-            await sleep(10)
-            elapsed += 10
-            if (elapsed >= timeout) {
-                assert.fail(`Timed out waiting for message ${msgString}`)
-            }
-        }
-    }
-
     describe('lw.viewer->server.WsServer', () => {
         it('should handle websocket messages', async () => {
             handlerStub.resetHistory()
             websocket.send(JSON.stringify({ type: 'ping' }))
-            await waitMessage({ type: 'ping' })
+            let elapsed = 0
+            while (true) {
+                if (
+                    handlerStub.called &&
+                    (JSON.parse((handlerStub.lastCall.args?.[1] as Uint8Array).toString()) as ClientRequest).type === 'ping'
+                ) {
+                    break
+                }
+                await sleep(10)
+                elapsed += 10
+                if (elapsed >= 1000) {
+                    assert.fail('Timed out waiting for message "ping"')
+                }
+            }
         })
     })
 

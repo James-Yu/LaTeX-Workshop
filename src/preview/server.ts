@@ -73,7 +73,7 @@ function getPort(): number {
 
 async function getUrl(pdfUri?: vscode.Uri): Promise<{url: string, uri: vscode.Uri}> {
     // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
-    const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${lw.server.getPort()}`, true))
+    const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${getPort()}`, true))
     const url =
         (origUrl.toString().endsWith('/') ? origUrl.toString().slice(0, -1) : origUrl.toString()) +
         (pdfUri ? ('/viewer.html?file=' + encodePathWithPrefix(pdfUri)) : '')
@@ -166,7 +166,7 @@ function checkHttpOrigin(req: http.IncomingMessage, response: http.ServerRespons
     }
 }
 
-function sendOkResponse(response: http.ServerResponse, content: string, contentType: string, cors: boolean = true) {
+function sendOkResponse(response: http.ServerResponse, content: Buffer, contentType: string, cors: boolean = true) {
     //
     // Headers to enable site isolation.
     // - https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header
@@ -204,8 +204,8 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
             return
         }
         try {
-            const content = await lw.file.read(fileUri, true)
-            sendOkResponse(response, content ?? '', 'application/pdf')
+            const content = await vscode.workspace.fs.readFile(fileUri)
+            sendOkResponse(response, Buffer.from(content), 'application/pdf')
             logger.log(`Preview PDF file: ${fileUri.toString(true)}`)
         } catch (e) {
             logger.logError(`Error reading PDF ${fileUri.toString(true)}`, e)
@@ -216,7 +216,7 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
     }
     if (request.url.endsWith('/config.json')) {
         const params = lw.viewer.getParams()
-        sendOkResponse(response, JSON.stringify(params), 'application/json')
+        sendOkResponse(response, Buffer.from(JSON.stringify(params)), 'application/json')
         return
     }
     let root: string
@@ -287,8 +287,8 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
         }
     }
     try {
-        const content = await lw.file.read(fileName, true)
-        sendOkResponse(response, content ?? '', contentType, false)
+        const content = await vscode.workspace.fs.readFile(vscode.Uri.file(fileName))
+        sendOkResponse(response, Buffer.from(content), contentType, false)
     } catch (err) {
         if (typeof (err as any).code === 'string' && (err as any).code === 'FileNotFound') {
             response.writeHead(404)
