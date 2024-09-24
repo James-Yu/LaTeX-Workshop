@@ -39,7 +39,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             while (true) {
                 if (
                     handlerStub.called &&
-                    (JSON.parse((handlerStub.lastCall?.args?.[1] as Uint8Array).toString()) as ClientRequest).type === 'ping'
+                    (JSON.parse((handlerStub.lastCall.args?.[1] as Uint8Array)?.toString()) as ClientRequest).type === 'ping'
                 ) {
                     break
                 }

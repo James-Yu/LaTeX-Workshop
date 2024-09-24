@@ -35,7 +35,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             while (true) {
                 if (
                     handlerSpy.called &&
-                    (JSON.parse((handlerSpy.lastCall?.args?.[1] as Uint8Array).toString()) as ClientRequest).type === type
+                    (JSON.parse((handlerSpy.lastCall.args?.[1] as Uint8Array)?.toString()) as ClientRequest).type === type
                 ) {
                     break
                 }
@@ -207,7 +207,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             stub.restore()
 
             assert.strictEqual(stub.callCount, 1)
-            assert.strictEqual((stub.firstCall?.args?.[0] as vscode.InputBoxOptions).value, (await lw.server.getUrl(pdfUri)).url)
+            assert.strictEqual((stub.firstCall.args?.[0] as vscode.InputBoxOptions)?.value, (await lw.server.getUrl(pdfUri)).url)
         })
     })
 
