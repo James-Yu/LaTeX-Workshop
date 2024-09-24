@@ -179,7 +179,7 @@ export const mock = {
     textDocument: (filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string } = {}) => {
         return sinon.stub(vscode.workspace, 'textDocuments').value([ new TextDocument(filePath, content, params) ])
     },
-    activeTextEditor: (filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string } = {}) => {
+    activeTextEditor: (filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string, viewColumn?: vscode.ViewColumn } = {}) => {
         return sinon.stub(vscode.window, 'activeTextEditor').value(new TextEditor(filePath, content, params))
     }
 }
@@ -255,8 +255,11 @@ class TextEditor implements vscode.TextEditor {
     options: vscode.TextEditorOptions = {}
     viewColumn: vscode.ViewColumn | undefined = vscode.ViewColumn.Active
 
-    constructor(filePath: string, content: string, { languageId = 'latex', isDirty = false, isClosed = false, scheme = 'file' }: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string }) {
+    constructor(filePath: string, content: string, { languageId = 'latex', isDirty = false, isClosed = false, scheme = 'file', viewColumn = undefined }: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string, viewColumn?: vscode.ViewColumn }) {
         this.document = new TextDocument(filePath, content, { languageId, isDirty, isClosed, scheme })
+        if (viewColumn !== undefined) {
+            this.viewColumn = viewColumn
+        }
     }
 
     edit(_: (_: vscode.TextEditorEdit) => void): Thenable<boolean> { throw new Error('Not implemented.') }

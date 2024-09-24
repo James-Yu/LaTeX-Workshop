@@ -58,8 +58,7 @@ export type PdfViewerParams = {
 
 export type ClientRequest = {
     type: 'open',
-    pdfFileUri: string,
-    viewer: 'browser' | 'tab'
+    pdfFileUri: string
 } | {
     type: 'loaded',
     pdfFileUri: string

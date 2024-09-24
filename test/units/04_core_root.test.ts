@@ -24,8 +24,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             lw.watcher.src.reset()
         })
 
-        it('should remove root info and refind', async function (this: Mocha.Context) {
-            this.slow(250)
+        it('should remove root info and refind', async () => {
             const texPath = get.path(fixture, 'another.tex')
 
             lw.root.file.path = texPath
@@ -517,8 +516,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual((lw.lint.label.reset as sinon.SinonStub).callCount, 1)
         })
 
-        it('should watch, cache, and parse fls of the new root', async function (this: Mocha.Context) {
-            this.slow(300)
+        it('should watch, cache, and parse fls of the new root', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             const stub = mock.activeTextEditor(texPath, '%!TeX root=main.tex')

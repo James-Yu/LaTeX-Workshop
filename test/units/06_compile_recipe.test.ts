@@ -37,8 +37,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.compile->recipe', () => {
-        it('should set the LATEXWORKSHOP_DOCKER_LATEX environment variable based on the configuration', async function (this: Mocha.Context) {
-            this.slow(500)
+        it('should set the LATEXWORKSHOP_DOCKER_LATEX environment variable based on the configuration', async () => {
             const expectedImageName = 'your-docker-image'
 
             await set.codeConfig('docker.image.latex', expectedImageName)
@@ -47,8 +46,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(process.env['LATEXWORKSHOP_DOCKER_LATEX'], expectedImageName)
         })
 
-        it('should set the LATEXWORKSHOP_DOCKER_PATH environment variable based on the configuration', async function (this: Mocha.Context) {
-            this.slow(500)
+        it('should set the LATEXWORKSHOP_DOCKER_PATH environment variable based on the configuration', async () => {
             const expectedDockerPath = '/usr/local/bin/docker'
 
             await set.codeConfig('docker.path', expectedDockerPath)

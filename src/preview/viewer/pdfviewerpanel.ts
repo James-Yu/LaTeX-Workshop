@@ -97,7 +97,7 @@ async function populate(pdfUri: vscode.Uri, panel: vscode.WebviewPanel): Promise
 
 function getKeyboardEventConfig(): boolean {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const setting: 'auto' | 'force' | 'never' = configuration.get('viewer.pdf.internal.keyboardEvent', 'auto')
+    const setting: 'auto' | 'force' | 'never' = configuration.get('view.pdf.internal.keyboardEvent', 'auto')
     if (setting === 'auto') {
         return true
     } else if (setting === 'force') {

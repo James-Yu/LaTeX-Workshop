@@ -182,14 +182,14 @@ function parseToPDFList(result: string): SyncTeXRecordToPDFAll[] {
  * document and cursor position. The forward SyncTeX can be executed with a
  * specific PDF viewer, and the PDF file can be specified.
  *
+ * @param pdfFile - The path of a PDF File compiled from the filePath of args.
+ * If undefined, it is automatically detected.
  * @param args - The arguments of forward SyncTeX. If undefined, the document
  * and cursor position of activeTextEditor are used.
  * @param forcedViewer - Indicates a PDF viewer with which SyncTeX is executed
  * ('auto', 'tabOrBrowser', or 'external').
- * @param pdfFile - The path of a PDF File compiled from the filePath of args.
- * If undefined, it is automatically detected.
  */
-function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | 'tabOrBrowser' | 'external' = 'auto', pdfFile?: string) {
+function toPDF(pdfFile?: string, args?: {line: number, filePath: string}, forcedViewer: 'auto' | 'tabOrBrowser' | 'external' = 'auto') {
     let line: number
     let filePath: string
     let character = 0
@@ -338,9 +338,9 @@ function toPDFFromRef(args: {line: number, filePath: string}) {
     const viewer = configuration.get('view.pdf.ref.viewer') as 'auto' | 'tabOrBrowser' | 'external'
     args.line += 1
     if (viewer) {
-        toPDF(args, viewer)
+        toPDF(undefined, args, viewer)
     } else {
-        toPDF(args)
+        toPDF(undefined, args)
     }
 }
 
