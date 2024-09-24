@@ -512,5 +512,33 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.hasLog(`Building root file: ${get.path('main.tex')}`)
             assert.notHasLog(`Building root file: ${get.path('subfile.tex')}`)
         })
+
+        it.only('should auto-build when watched source is changed', () => {
+            set.config('latex.autoBuild.run', 'onFileChange')
+
+            log.start()
+            for (const handler of lw.watcher.src['onChangeHandlers']) {
+                try {
+                    handler(vscode.Uri.file(get.path('main.tex')))
+                } catch (_) { }
+            }
+            log.stop()
+
+            assert.hasLog(`Auto build started detecting the change of a file: ${get.path('main.tex')}`)
+        })
+
+        it.only('should auto-build when watched bib file is changed', () => {
+            set.config('latex.autoBuild.run', 'onFileChange')
+
+            log.start()
+            for (const handler of lw.watcher.bib['onChangeHandlers']) {
+                try {
+                    handler(vscode.Uri.file(get.path('main.bib')))
+                } catch (_) { }
+            }
+            log.stop()
+
+            assert.hasLog(`Auto build started detecting the change of a file: ${get.path('main.bib')}`)
+        })
     })
 })
