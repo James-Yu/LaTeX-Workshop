@@ -25,7 +25,6 @@ async function render(pdfFileUri: vscode.Uri, opts: { height: number, width: num
         return
     }
     const uri = state.view.webview.asWebviewUri(pdfFileUri).toString()
-    let disposable: { dispose: () => void } | undefined
     const promise = new Promise<RenderResult | undefined>((resolve) => {
         const rendered = (e: SnippetViewResult) => {
             if (e.type !== 'png') {
@@ -49,9 +48,7 @@ async function render(pdfFileUri: vscode.Uri, opts: { height: number, width: num
     try {
         const renderResult = await promise
         return renderResult?.data
-    } finally {
-        disposable?.dispose()
-    }
+    } catch (_) { }
 }
 
 function receive(message: SnippetViewResult) {
