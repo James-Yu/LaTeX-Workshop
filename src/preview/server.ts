@@ -99,7 +99,7 @@ function initialize(hostname?: string): http.Server {
     }
     const httpServer = http.createServer((request, response) => handler(request, response))
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const viewerPort = configuration.get('viewer.pdf.internal.port') as number
+    const viewerPort = configuration.get('view.pdf.internal.port') as number
     httpServer.listen(viewerPort, hostname ?? '127.0.0.1', undefined, async () => {
         // Double set state to ensure the server is set
         state.httpServer = httpServer

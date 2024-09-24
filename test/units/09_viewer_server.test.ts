@@ -58,7 +58,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             if (newPort === undefined || newPort === originalPort) {
                 newPort = (newPort ?? originalPort) + 1
             }
-            set.config('viewer.pdf.internal.port', newPort)
+            set.config('view.pdf.internal.port', newPort)
             lw.server.initialize(hostname)
 
             let elapsed = 0
@@ -77,7 +77,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             }
         }
 
-        it('should create a server at port defined by `viewer.pdf.internal.port` ', async () => {
+        it('should create a server at port defined by `view.pdf.internal.port` ', async () => {
             const newPort = 34567 !== lw.server.getPort() ? 34567 : 45678
             await waitInitialize(undefined, newPort)
 

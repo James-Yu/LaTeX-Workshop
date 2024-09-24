@@ -182,8 +182,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(stub.callCount, 0)
         })
 
-        it('should call onChangeHandlers once when quickly changing watched binary file', async function (this: Mocha.Context) {
-            this.slow(1050)
+        it('should call onChangeHandlers once when quickly changing watched binary file', async () => {
             const binPath = get.path(fixture, 'main.bin')
 
             lw.watcher.src.add(vscode.Uri.file(binPath))
@@ -193,8 +192,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(stub.callCount, 1)
         })
 
-        it('should call onChangeHandlers multiple times when slowly changing watched binary file', async function (this: Mocha.Context) {
-            this.slow(2050)
+        it('should call onChangeHandlers multiple times when slowly changing watched binary file', async () => {
             const binPath = get.path(fixture, 'main.bin')
 
             lw.watcher.src.add(vscode.Uri.file(binPath))
@@ -221,8 +219,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             getOnDeleteHandlers().delete(handler)
         })
 
-        it('should call onDeleteHandlers when deleting watched file', async function (this: Mocha.Context) {
-            this.slow(250)
+        it('should call onDeleteHandlers when deleting watched file', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             lw.watcher.src.add(vscode.Uri.file(texPath))
@@ -231,8 +228,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.listStrictEqual(stub.getCall(0).args, [ texPath ])
         })
 
-        it('should not call onChangeHandlers when watched file is deleted then created in a short time', async function (this: Mocha.Context) {
-            this.slow(250)
+        it('should not call onChangeHandlers when watched file is deleted then created in a short time', async () => {
             const binPath = get.path(fixture, 'main.bin')
 
             lw.watcher.src.add(vscode.Uri.file(binPath))

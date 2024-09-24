@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as Mocha from 'mocha'
 import * as path from 'path'
 import * as sinon from 'sinon'
 import { assert, get, log, mock, set, sleep } from './utils'
@@ -289,8 +288,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.config('intellisense.update.delay', 100)
         })
 
-        it('should not aggressively cache non-cached files', async function (this: Mocha.Context) {
-            this.slow(350)
+        it('should not aggressively cache non-cached files', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             lw.cache.refreshCacheAggressive(texPath)
@@ -298,8 +296,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.listStrictEqual(lw.cache.paths(), [ ])
         })
 
-        it('should aggressively cache cached files', async function (this: Mocha.Context) {
-            this.slow(350)
+        it('should aggressively cache cached files', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             lw.cache.add(texPath)
@@ -317,8 +314,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '')
         })
 
-        it('should reload .fls file when aggressively caching cached files', async function (this: Mocha.Context) {
-            this.slow(350)
+        it('should reload .fls file when aggressively caching cached files', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             lw.cache.add(texPath)
@@ -331,8 +327,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.hasLog('Parsing .fls ')
         })
 
-        it('should not aggressively cache cached files without `intellisense.update.aggressive.enabled`', async function (this: Mocha.Context) {
-            this.slow(350)
+        it('should not aggressively cache cached files without `intellisense.update.aggressive.enabled`', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             set.config('intellisense.update.aggressive.enabled', false)
@@ -345,8 +340,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '%')
         })
 
-        it('should aggressively cache cached files once on quick changes', async function (this: Mocha.Context) {
-            this.slow(450)
+        it('should aggressively cache cached files once on quick changes', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             lw.cache.add(texPath)
@@ -370,8 +364,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(lw.cache.get(lw.cache.paths()[0])?.content, '%%')
         })
 
-        it('should aggressively cache cached files multiple times on slow changes', async function (this: Mocha.Context) {
-            this.slow(650)
+        it('should aggressively cache cached files multiple times on slow changes', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             lw.cache.add(texPath)

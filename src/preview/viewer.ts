@@ -273,7 +273,7 @@ function handler(websocket: ws, msg: string): void {
             if (clientSet === undefined) {
                 break
             }
-            const client = new Client(data.viewer, websocket)
+            const client = new Client(websocket)
             clientSet.add(client)
             client.onDidDispose(() => {
                 clientSet.delete(client)
@@ -286,7 +286,7 @@ function handler(websocket: ws, msg: string): void {
             if (configuration.get('synctex.afterBuild.enabled') as boolean) {
                 logger.log('SyncTex after build invoked.')
                 const uri = vscode.Uri.parse(data.pdfFileUri, true)
-                lw.locate.synctex.toPDF(undefined, undefined, uri.fsPath)
+                lw.locate.synctex.toPDF(uri.fsPath)
             }
             break
         }
@@ -296,24 +296,14 @@ function handler(websocket: ws, msg: string): void {
             break
         }
         case 'external_link': {
-            void vscode.env.clipboard.writeText(data.url)
             const uri = vscode.Uri.parse(data.url)
             if (['http', 'https'].includes(uri.scheme)) {
                 void vscode.env.openExternal(uri)
             } else {
-                vscode.window.showInformationMessage(`The link ${data.url} has been copied to clipboard.`, 'Open link', 'Dismiss').then(
-                    option => {
-                        switch (option) {
-                            case 'Open link':
-                                void vscode.env.openExternal(uri)
-                                break
-                            default:
-                                break
-                        }
-                    },
-                    reason => {
-                        logger.log(`Unknown error when opening URI. Error: ${JSON.stringify(reason)}, URI: ${data.url}`)
-                    })
+                void vscode.window.showInputBox({
+                    prompt: 'For security reasons, please copy and visit this link manually.',
+                    value: data.url
+                })
             }
             break
         }
@@ -342,9 +332,10 @@ function handler(websocket: ws, msg: string): void {
 function getParams(): PdfViewerParams {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const invertType = configuration.get('view.pdf.invertMode.enabled') as string
-    const invertEnabled = (invertType === 'auto' && vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Dark) ||
-    invertType === 'always' ||
-    (invertType === 'compat' && ((configuration.get('view.pdf.invert') as number) > 0))
+    const invertEnabled =
+        (invertType === 'auto' && vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Dark) ||
+        invertType === 'always' ||
+        (invertType === 'compat' && (configuration.get('view.pdf.invert') as number) > 0)
     const pack: PdfViewerParams = {
         scale: configuration.get('view.pdf.zoom') as string,
         trim: configuration.get('view.pdf.trim') as number,
@@ -364,19 +355,19 @@ function getParams(): PdfViewerParams {
                 pageColorsForeground: configuration.get('view.pdf.color.light.pageColorsForeground') || 'CanvasText',
                 pageColorsBackground: configuration.get('view.pdf.color.light.pageColorsBackground') || 'Canvas',
                 backgroundColor: configuration.get('view.pdf.color.light.backgroundColor', '#ffffff'),
-                pageBorderColor: configuration.get('view.pdf.color.light.pageBorderColor', 'lightgrey')
+                pageBorderColor: configuration.get('view.pdf.color.light.pageBorderColor', 'lightgrey'),
             },
             dark: {
                 pageColorsForeground: configuration.get('view.pdf.color.dark.pageColorsForeground') || 'CanvasText',
                 pageColorsBackground: configuration.get('view.pdf.color.dark.pageColorsBackground') || 'Canvas',
                 backgroundColor: configuration.get('view.pdf.color.dark.backgroundColor', '#ffffff'),
-                pageBorderColor: configuration.get('view.pdf.color.dark.pageBorderColor', 'lightgrey')
-            }
+                pageBorderColor: configuration.get('view.pdf.color.dark.pageBorderColor', 'lightgrey'),
+            },
         },
         codeColorTheme: vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Light ? 'light' : 'dark',
         keybindings: {
-            synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click'
-        }
+            synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click',
+        },
     }
     return pack
 }
