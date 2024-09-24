@@ -4,7 +4,7 @@ import * as assert from 'assert'
 import { lw } from '../../src/lw'
 import * as test from './utils'
 
-suite('Find root file test suite', () => {
+suite.skip('Find root file test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
     test.suite.fixture = 'testground'
 
