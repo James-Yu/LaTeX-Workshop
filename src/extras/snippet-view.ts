@@ -49,6 +49,7 @@ async function render(pdfFileUri: vscode.Uri, opts: { height: number, width: num
         const renderResult = await promise
         return renderResult?.data
     } catch (_) { }
+    return
 }
 
 function receive(message: SnippetViewResult) {
