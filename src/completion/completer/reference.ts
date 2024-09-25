@@ -15,6 +15,8 @@ export const reference = {
     setNumbersFromAuxFile
 }
 
+lw.onConfigChange(['intellisense.label.command'], lw.parser.parse.reset)
+
 const data = {
     suggestions: new Map<string, ReferenceItem>(),
     prevIndexObj: new Map<string, {refNumber: string, pageNumber: string}>()
