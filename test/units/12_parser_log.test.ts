@@ -182,7 +182,7 @@ TEXIFY LOG
         })
     })
 
-    describe.only('lw.parser->latex', () => {
+    describe('lw.parser->latex', () => {
         beforeEach(() => {
             set.config('message.badbox.show', 'both')
         })
@@ -328,9 +328,123 @@ Test message`
 
             assert.strictEqual(warnings.length, 1)
         })
+
+        it('should parse class/package/module/LaTeX3 warnings/infos', () => {
+            const logs = [
+                'Class MyClass Warning: This is a warning message on input line 42.',
+                'Package MyPackage Info: All systems operational.',
+                'Module MyModule Warning: Something went wrong.',
+                'LaTeX Info: Compilation successful.',
+                'LaTeX3 Warning: Deprecated feature used on line 10.',
+                'LaTeX3 Info: No issues found.',
+            ]
+
+            for (const log of logs) {
+                const warning = latexLogParser.parse(log, get.path('main.tex'))?.[0]
+                assert.strictEqual(warning.type, 'warning')
+            }
+        })
+
+        it('should parse line number of class/package/module/LaTeX3 warnings/infos', () => {
+            assert.strictEqual(latexLogParser.parse('Class MyClass Warning: This is a warning message on input line 42.', get.path('main.tex'))?.[0].line, 42)
+            assert.strictEqual(latexLogParser.parse('Module MyModule Warning: Something went wrong.', get.path('main.tex'))?.[0].line, 1)
+        })
+
+        it('should parse line number of class/package/module/LaTeX3 warnings/infos if appeared in the next line', () => {
+            assert.strictEqual(latexLogParser.parse('Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):\n(hyperref)                removing `math shift\' on input line 42.', get.path('main.tex'))?.[0].line, 42)
+        })
+
+        it('should parse missing character warnings', () => {
+            const log = 'Missing character: There is no ⫫ (U+2AEB) in font [latinmodern-math.otf]:mode=base;script=math;language=dflt;mathfontdimen=xetex;!'
+            const warning = latexLogParser.parse(log, get.path('main.tex'))?.[0]
+            assert.strictEqual(warning.type, 'warning')
+        })
+
+        it('should ignore empty bibliography env warning', () => {
+            const log = 'Empty `thebibliography\' environment'
+            const warnings = latexLogParser.parse(log, get.path('main.tex'))
+            assert.strictEqual(warnings.length, 0)
+        })
+
+        it('should parse bib entry not found warning', () => {
+            const log = 'Biber warning: WARN - I didn\'t find a database entry for \'nonexisting\' (section 0)'
+            const warning = latexLogParser.parse(log, get.path('main.tex'))?.[0]
+            assert.strictEqual(warning.type, 'warning')
+            assert.strictEqual(warning.text, 'No bib entry found for \'nonexisting\'')
+        })
     })
 
-    describe('lw.parser->bibtex', () => {})
+    describe('lw.parser->bibtex', () => {
+        it('should parse multi-line bibtex warning', () => {
+            const log = 'Warning--duplicate entry\n--line 45 of file sample.bib'
+            const warning = bibtexLogParser.parse(log, get.path('main.tex'))?.[0]
+            assert.strictEqual(warning.type, 'warning')
+        })
 
-    describe('lw.parser->biber', () => {})
+        it('should parse single line bibtex warning', () => {
+            const stub = lw.completion.citation.getItem as sinon.SinonStub
+            stub.returns({ file: 'main.bib', position: { line: 1 } })
+            const log = 'Warning--empty field in article1.bib'
+            const warning = bibtexLogParser.parse(log, get.path('main.tex'))?.[0]
+            stub.reset()
+            assert.strictEqual(warning.type, 'warning')
+            assert.strictEqual(warning.line, 2)
+        })
+
+        it('should parse multi-line bibtex error', () => {
+            const log = 'Error---line 23 of file references.bib\nThere\'s a problem with the syntax\nI\'m skipping whatever remains of this entry'
+            const error = bibtexLogParser.parse(log, get.path('main.tex'))?.[0]
+            assert.strictEqual(error.type, 'error')
+        })
+
+        it('should parse bad cross-reference error', () => {
+            const log = 'A bad cross reference---entry "article1"\nrefers to entry "article2", which doesn\'t exist'
+            const error = bibtexLogParser.parse(log, get.path('main.tex'))?.[0]
+            assert.strictEqual(error.type, 'error')
+        })
+
+        it('should parse multi-line macro error', () => {
+            const log = 'Macro definition error\n---line 37 of file macros.bib\nUndefined macro \\cite\nI\'m skipping whatever remains of this command'
+            const error = bibtexLogParser.parse(log, get.path('main.tex'))?.[0]
+            assert.strictEqual(error.type, 'error')
+            assert.strictEqual(error.line, 37)
+        })
+
+        it('should parse `.aux` file error', () => {
+            const log = 'Error in the bibliography file---while reading file citations.aux'
+            const error = bibtexLogParser.parse(log, get.path('main.tex'))?.[0]
+            assert.strictEqual(error.type, 'error')
+        })
+    })
+
+    describe('lw.parser->biber', () => {
+        it('should log the bibtex file discovered', () => {
+            const log = 'INFO - Found BibTeX data source \'ref.bib\''
+            biberLogParser.parse(log, get.path('main.tex'))
+            assert.hasLog('Found BibTeX file ref.bib')
+        })
+
+        it('should parse biber line error', () => {
+            const log = 'ERROR - BibTeX subsystem encountered an unexpected token, line 42, missing closing brace'
+            const error = biberLogParser.parse(log, get.path('main.tex'))?.[0]
+            assert.strictEqual(error.type, 'error')
+            assert.strictEqual(error.line, 42)
+        })
+
+        it('should parse entry not found warning', () => {
+            const log = 'WARN - I didn\'t find a database entry for \'article123\'.'
+            const warning = biberLogParser.parse(log, get.path('main.tex'))?.[0]
+            assert.strictEqual(warning.type, 'warning')
+        })
+
+        it('should parse other line error', () => {
+            const stub = lw.completion.citation.getItem as sinon.SinonStub
+            stub.returns({ file: 'main.bib', position: { line: 1 } })
+            const log = 'WARN - Duplicate entry \'article456\' found in the database.'
+            const warning = biberLogParser.parse(log, get.path('main.tex'))?.[0]
+            stub.reset()
+            assert.strictEqual(warning.type, 'warning')
+            assert.strictEqual(warning.line, 2)
+        })
+    })
 })
