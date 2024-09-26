@@ -224,7 +224,7 @@ l.4         \\draw
             `
 
             const error = latexLogParser.parse(log, get.path('main.tex'))?.[0]
-            assert.strictEqual(error.errorPosText, '        \\draw')
+            assert.strictEqual(error?.errorPosText, '        \\draw')
         })
 
         it('should handle multi-line LaTeX errors without line number', () => {
@@ -232,7 +232,7 @@ l.4         \\draw
 Test message`
 
             const error = latexLogParser.parse(log, get.path('main.tex'))?.[0]
-            assert.strictEqual(error.text, 'Undefined control sequence.\nTest message')
+            assert.strictEqual(error?.text, 'Undefined control sequence.\nTest message')
         })
 
         const badboxLogs = [
@@ -370,7 +370,7 @@ Test message`
             const log = 'Biber warning: WARN - I didn\'t find a database entry for \'nonexisting\' (section 0)'
             const warning = latexLogParser.parse(log, get.path('main.tex'))?.[0]
             assert.strictEqual(warning?.type, 'warning')
-            assert.strictEqual(warning.text, 'No bib entry found for \'nonexisting\'')
+            assert.strictEqual(warning?.text, 'No bib entry found for \'nonexisting\'')
         })
     })
 
