@@ -207,7 +207,7 @@ TEXIFY LOG
 
             for (const log of errorLogs) {
                 const error = latexLogParser.parse(log, get.path('main.tex'))?.[0]
-                assert.strictEqual(error.type, 'error', log)
+                assert.strictEqual(error?.type, 'error', log)
             }
         })
 
@@ -253,7 +253,7 @@ Test message`
         it('should parse over/underfull hbox/vbox warnings', () => {
             for (const log of badboxLogs) {
                 const warning = latexLogParser.parse(log, get.path('main.tex'))?.[0]
-                assert.strictEqual(warning.type, 'typesetting', log)
+                assert.strictEqual(warning?.type, 'typesetting', log)
             }
         })
 
@@ -271,7 +271,7 @@ Test message`
 
             for (const log of badboxLogs.slice(0, badboxLogs.length / 2)) {
                 const warning = latexLogParser.parse(log, get.path('main.tex'))?.[0]
-                assert.strictEqual(warning.type, 'typesetting')
+                assert.strictEqual(warning?.type, 'typesetting')
             }
 
             for (const log of badboxLogs.slice(badboxLogs.length / 2)) {
@@ -290,7 +290,7 @@ Test message`
 
             for (const log of badboxLogs.slice(badboxLogs.length / 2)) {
                 const warning = latexLogParser.parse(log, get.path('main.tex'))?.[0]
-                assert.strictEqual(warning.type, 'typesetting')
+                assert.strictEqual(warning?.type, 'typesetting')
             }
         })
 
@@ -341,7 +341,7 @@ Test message`
 
             for (const log of logs) {
                 const warning = latexLogParser.parse(log, get.path('main.tex'))?.[0]
-                assert.strictEqual(warning.type, 'warning')
+                assert.strictEqual(warning?.type, 'warning')
             }
         })
 
@@ -357,7 +357,7 @@ Test message`
         it('should parse missing character warnings', () => {
             const log = 'Missing character: There is no ⫫ (U+2AEB) in font [latinmodern-math.otf]:mode=base;script=math;language=dflt;mathfontdimen=xetex;!'
             const warning = latexLogParser.parse(log, get.path('main.tex'))?.[0]
-            assert.strictEqual(warning.type, 'warning')
+            assert.strictEqual(warning?.type, 'warning')
         })
 
         it('should ignore empty bibliography env warning', () => {
@@ -369,7 +369,7 @@ Test message`
         it('should parse bib entry not found warning', () => {
             const log = 'Biber warning: WARN - I didn\'t find a database entry for \'nonexisting\' (section 0)'
             const warning = latexLogParser.parse(log, get.path('main.tex'))?.[0]
-            assert.strictEqual(warning.type, 'warning')
+            assert.strictEqual(warning?.type, 'warning')
             assert.strictEqual(warning.text, 'No bib entry found for \'nonexisting\'')
         })
     })
@@ -378,7 +378,7 @@ Test message`
         it('should parse multi-line bibtex warning', () => {
             const log = 'Warning--duplicate entry\n--line 45 of file sample.bib'
             const warning = bibtexLogParser.parse(log, get.path('main.tex'))?.[0]
-            assert.strictEqual(warning.type, 'warning')
+            assert.strictEqual(warning?.type, 'warning')
         })
 
         it('should parse single line bibtex warning', () => {
@@ -387,33 +387,33 @@ Test message`
             const log = 'Warning--empty field in article1.bib'
             const warning = bibtexLogParser.parse(log, get.path('main.tex'))?.[0]
             stub.reset()
-            assert.strictEqual(warning.type, 'warning')
-            assert.strictEqual(warning.line, 2)
+            assert.strictEqual(warning?.type, 'warning')
+            assert.strictEqual(warning?.line, 2)
         })
 
         it('should parse multi-line bibtex error', () => {
             const log = 'Error---line 23 of file references.bib\nThere\'s a problem with the syntax\nI\'m skipping whatever remains of this entry'
             const error = bibtexLogParser.parse(log, get.path('main.tex'))?.[0]
-            assert.strictEqual(error.type, 'error')
+            assert.strictEqual(error?.type, 'error')
         })
 
         it('should parse bad cross-reference error', () => {
             const log = 'A bad cross reference---entry "article1"\nrefers to entry "article2", which doesn\'t exist'
             const error = bibtexLogParser.parse(log, get.path('main.tex'))?.[0]
-            assert.strictEqual(error.type, 'error')
+            assert.strictEqual(error?.type, 'error')
         })
 
         it('should parse multi-line macro error', () => {
             const log = 'Macro definition error\n---line 37 of file macros.bib\nUndefined macro \\cite\nI\'m skipping whatever remains of this command'
             const error = bibtexLogParser.parse(log, get.path('main.tex'))?.[0]
-            assert.strictEqual(error.type, 'error')
-            assert.strictEqual(error.line, 37)
+            assert.strictEqual(error?.type, 'error')
+            assert.strictEqual(error?.line, 37)
         })
 
         it('should parse `.aux` file error', () => {
             const log = 'Error in the bibliography file---while reading file citations.aux'
             const error = bibtexLogParser.parse(log, get.path('main.tex'))?.[0]
-            assert.strictEqual(error.type, 'error')
+            assert.strictEqual(error?.type, 'error')
         })
     })
 
@@ -427,14 +427,14 @@ Test message`
         it('should parse biber line error', () => {
             const log = 'ERROR - BibTeX subsystem encountered an unexpected token, line 42, missing closing brace'
             const error = biberLogParser.parse(log, get.path('main.tex'))?.[0]
-            assert.strictEqual(error.type, 'error')
-            assert.strictEqual(error.line, 42)
+            assert.strictEqual(error?.type, 'error')
+            assert.strictEqual(error?.line, 42)
         })
 
         it('should parse entry not found warning', () => {
             const log = 'WARN - I didn\'t find a database entry for \'article123\'.'
             const warning = biberLogParser.parse(log, get.path('main.tex'))?.[0]
-            assert.strictEqual(warning.type, 'warning')
+            assert.strictEqual(warning?.type, 'warning')
         })
 
         it('should parse other line error', () => {
@@ -443,8 +443,8 @@ Test message`
             const log = 'WARN - Duplicate entry \'article456\' found in the database.'
             const warning = biberLogParser.parse(log, get.path('main.tex'))?.[0]
             stub.reset()
-            assert.strictEqual(warning.type, 'warning')
-            assert.strictEqual(warning.line, 2)
+            assert.strictEqual(warning?.type, 'warning')
+            assert.strictEqual(warning?.line, 2)
         })
     })
 })
