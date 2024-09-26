@@ -101,26 +101,26 @@ async function parseSyncTexForPdf(pdfFile: vscode.Uri): Promise<PdfSyncObject | 
     try {
         await vscode.workspace.fs.stat(synctexFile);
         try {
-            logger.log(`Parsing .synctex ${synctexFile} .`)
+            logger.log(`Parsing .synctex ${synctexFile.toString(true)} .`)
             const s = await vscode.workspace.fs.readFile(synctexFile)
             return parseSyncTex(new TextDecoder().decode(s))
         } catch (e: unknown) {
-            logger.logError(`Failed parsing .synctex ${synctexFile}:`, e)
+            logger.logError(`Failed parsing .synctex ${synctexFile.toString(true)}:`, e)
         }
     } catch (error) {
         try {
             await lw.external.stat(synctexFileGz);
             try {
-                logger.log(`Parsing .synctex.gz ${synctexFileGz} .`)
+                logger.log(`Parsing .synctex.gz ${synctexFileGz.toString(true)} .`)
                 const data = await vscode.workspace.fs.readFile(synctexFileGz)
                 const b = zlib.gunzipSync(data)
                 const s = b.toString('binary')
                 return parseSyncTex(s)
             } catch (e: unknown) {
-                logger.logError(`Failed parsing .synctex.gz ${synctexFileGz}:`, e)
+                logger.logError(`Failed parsing .synctex.gz ${synctexFileGz.toString(true)}:`, e)
             }
         } catch (error) {
-            logger.log(`${synctexFile}, ${synctexFileGz} not found.`)
+            logger.log(`${synctexFile}, ${synctexFileGz.toString(true)} not found.`)
         }
     }
     return undefined
