@@ -109,7 +109,7 @@ async function parseSyncTexForPdf(pdfFile: vscode.Uri): Promise<PdfSyncObject | 
         }
     } catch (error) {
         try {
-            await vscode.workspace.fs.stat(synctexFileGz);
+            await lw.external.stat(synctexFileGz);
             try {
                 logger.log(`Parsing .synctex.gz ${synctexFileGz} .`)
                 const data = await vscode.workspace.fs.readFile(synctexFileGz)
