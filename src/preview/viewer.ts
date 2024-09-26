@@ -70,7 +70,7 @@ function refresh(pdfUri?: vscode.Uri): void {
     })
 }
 
-async function view(pdfFile: vscode.Uri, mode?: 'tab' | 'browser' | 'external'): Promise<void> {
+async function view(pdfUri: vscode.Uri, mode?: 'tab' | 'browser' | 'external'): Promise<void> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
     let viewerMode: ViewerMode = mode ?? configuration.get<ViewerMode>('view.pdf.viewer', 'tab')
@@ -78,51 +78,40 @@ async function view(pdfFile: vscode.Uri, mode?: 'tab' | 'browser' | 'external'):
         viewerMode = 'legacy'
     }
     if (viewerMode === 'browser') {
-        return viewInBrowser(pdfFile)
+        return viewInBrowser(pdfUri)
     } else if (viewerMode === 'tab') {
-        return viewInCustomEditor(pdfFile)
+        return viewInCustomEditor(pdfUri)
     } else if (viewerMode === 'legacy' || viewerMode === 'singleton') {
-        return viewInTab(pdfFile, tabEditorGroup, true)
+        return viewInWebviewPanel(pdfUri, tabEditorGroup, true)
     } else if (viewerMode === 'external') {
-        return viewInExternal(pdfFile)
+        return viewInExternal(pdfUri)
     } else {
-        return viewInCustomEditor(pdfFile)
+        return viewInCustomEditor(pdfUri)
     }
 }
 
 /**
- * Opens the PDF file in the browser.
+ * Opens the PDF uri in the browser.
  *
- * @param pdfFile The path of a PDF file.
+ * @param pdfUri The path of a PDF file.
  */
-async function viewInBrowser(pdfFile: vscode.Uri): Promise<void> {
-    manager.create(pdfFile)
-    lw.watcher.pdf.add(pdfFile)
+async function viewInBrowser(pdfUri: vscode.Uri): Promise<void> {
+    manager.create(pdfUri)
+    lw.watcher.pdf.add(pdfUri)
     try {
-        logger.log(`Serving PDF file at ${pdfFile.fsPath}`)
-        await vscode.env.openExternal(pdfFile)
-        logger.log(`Open PDF viewer for ${pdfFile.toString(true)}`)
+        logger.log(`Serving PDF file at ${pdfUri.toString()}`)
+        await vscode.env.openExternal(pdfUri)
+        logger.log(`Open PDF viewer for ${pdfUri.toString(true)}`)
     } catch (e: unknown) {
         void vscode.window.showInputBox({
             prompt: 'Unable to open browser. Please copy and visit this link.',
-            value: pdfFile.fsPath
+            value: pdfUri.toString()
         })
-        logger.logError(`Failed opening PDF viewer for ${pdfFile.toString(true)}`, e)
+        logger.logError(`Failed opening PDF viewer for ${pdfUri.toString(true)}`, e)
     }
 }
 
-/**
- * Opens the PDF file in the internal PDF viewer.
- *
- * @param pdfFile The path of a PDF file.
- * @param tabEditorGroup
- * @param preserveFocus
- */
-async function viewInTab(pdfFile: vscode.Uri, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
-    return viewInWebviewPanel(pdfFile, tabEditorGroup, preserveFocus)
-}
-
-async function viewInCustomEditor(pdfFile: vscode.Uri): Promise<void> {
+async function viewInCustomEditor(pdfUri: vscode.Uri): Promise<void> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const editorGroup = configuration.get('view.pdf.tab.editorGroup') as string
     const showOptions: vscode.TextDocumentShowOptions = {
@@ -133,10 +122,10 @@ async function viewInCustomEditor(pdfFile: vscode.Uri): Promise<void> {
         const currentColumn = vscode.window.activeTextEditor?.viewColumn
         if (currentColumn && currentColumn > 1) {
             showOptions.viewColumn = currentColumn - 1
-            await vscode.commands.executeCommand('vscode.openWith', pdfFile, 'latex-workshop-pdf-hook', showOptions)
+            await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
             await vscode.commands.executeCommand('workbench.action.focusRightGroup')
         } else {
-            await vscode.commands.executeCommand('vscode.openWith', pdfFile, 'latex-workshop-pdf-hook', showOptions)
+            await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
             if (currentColumn === vscode.ViewColumn.One) {
                 await moveActiveEditor('left', true)
             } else {
@@ -146,13 +135,13 @@ async function viewInCustomEditor(pdfFile: vscode.Uri): Promise<void> {
     } else if (editorGroup === 'right') {
         const currentColumn = vscode.window.activeTextEditor?.viewColumn
         showOptions.viewColumn = (currentColumn ?? 0) + 1
-        await vscode.commands.executeCommand('vscode.openWith', pdfFile, 'latex-workshop-pdf-hook', showOptions)
+        await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
         await vscode.commands.executeCommand('workbench.action.focusLeftGroup')
     } else {
-        await vscode.commands.executeCommand('vscode.openWith', pdfFile, 'latex-workshop-pdf-hook', showOptions)
+        await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
         await moveActiveEditor(editorGroup, true)
     }
-    logger.log(`Open PDF tab for ${pdfFile.toString(true)}`)
+    logger.log(`Open PDF tab for ${pdfUri.toString(true)}`)
 }
 
 async function viewInWebviewPanel(pdfUri: vscode.Uri, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
@@ -188,9 +177,9 @@ async function viewInWebviewPanel(pdfUri: vscode.Uri, tabEditorGroup: string, pr
 /**
  * Opens the PDF file of in the external PDF viewer.
  *
- * @param pdfFile The path of a PDF file.
+ * @param pdfUri The path of a PDF file.
  */
-function viewInExternal(pdfFile: vscode.Uri): void {
+function viewInExternal(pdfUri: vscode.Uri): void {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     let command = configuration.get('view.pdf.external.viewer.command') as string
     let args = configuration.get('view.pdf.external.viewer.args') as string[]
@@ -213,11 +202,11 @@ function viewInExternal(pdfFile: vscode.Uri): void {
         }
     }
     if (args) {
-        args = args.map(arg => arg.replace('%PDF%', pdfFile.fsPath))
+        args = args.map(arg => arg.replace('%PDF%', pdfUri.fsPath))
     }
-    logger.log(`Open external viewer for ${pdfFile}`)
+    logger.log(`Open external viewer for ${pdfUri}`)
     logger.logCommand('Execute the external PDF viewer command', command, args)
-    const proc = cs.spawn(command, args, {cwd: path.dirname(pdfFile.fsPath), detached: true})
+    const proc = cs.spawn(command, args, {cwd: path.dirname(pdfUri.fsPath), detached: true})
     let stdout = ''
     proc.stdout.on('data', newStdout => {
         stdout += newStdout
