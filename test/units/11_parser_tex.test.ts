@@ -7,7 +7,7 @@ import type * as Ast from '@unified-latex/unified-latex-types'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     before(() => {
-        mock.init(lw, 'file', 'root', 'parser')
+        mock.init(lw, 'parser')
     })
 
     after(() => {

@@ -13,7 +13,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     let websocket: ws.WebSocket
 
     before(async () => {
-        mock.init(lw, 'file', 'root', 'server')
+        mock.init(lw, 'server')
         handlerStub = lw.viewer.handler as sinon.SinonStub
         await connectWs()
     })

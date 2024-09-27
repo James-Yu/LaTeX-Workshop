@@ -16,7 +16,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     let handlerSpy: sinon.SinonSpy
 
     before(() => {
-        mock.init(lw, 'file', 'root', 'server', 'viewer')
+        mock.init(lw, 'server', 'viewer')
         handlerSpy = sinon.spy(lw.viewer, 'handler')
     })
 

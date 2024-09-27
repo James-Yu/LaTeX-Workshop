@@ -18,7 +18,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     const getOnDeleteHandlers = () => _onDeleteHandlersSpy.call(lw.watcher.src) as Set<(uri: vscode.Uri) => void>
 
     before(() => {
-        mock.init(lw, 'file', 'watcher')
+        mock.init(lw, 'watcher')
         _onDidChangeSpy = sinon.spy(lw.watcher.src as any, 'onDidChange')
         _onDidDeleteSpy = sinon.spy(lw.watcher.src as any, 'onDidDelete')
         _watchersSpy = sinon.spy(lw.watcher.src as any, 'watchers', ['get']).get

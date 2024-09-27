@@ -12,7 +12,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     let mkdirStub: sinon.SinonStub
 
     before(() => {
-        mock.init(lw, 'file', 'root')
+        mock.init(lw)
         getOutDirStub = sinon.stub(lw.file, 'getOutDir').returns('.')
         getIncludedTeXStub = lw.cache.getIncludedTeX as sinon.SinonStub
         mkdirStub = sinon.stub(lw.external, 'mkdirSync').returns(undefined)

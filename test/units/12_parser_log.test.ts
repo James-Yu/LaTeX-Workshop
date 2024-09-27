@@ -9,7 +9,7 @@ import { latexLogParser } from '../../src/parse/parser/latexlog'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     before(() => {
-        mock.init(lw, 'file', 'root', 'parser')
+        mock.init(lw, 'parser')
     })
 
     after(() => {

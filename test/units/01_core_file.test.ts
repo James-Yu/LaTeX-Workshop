@@ -10,7 +10,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
 
     before(() => {
-        mock.init(lw, 'file')
+        mock.init(lw)
     })
 
     after(() => {
