@@ -93,13 +93,13 @@ export function synctex() {
         return
     }
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
-    let pdfFile: vscode.Uri | undefined = undefined
+    let pdfUri: vscode.Uri | undefined = undefined
     if (lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
-        pdfFile = vscode.Uri.parse(lw.file.getPdfPath(lw.root.subfiles.path))
+        pdfUri = vscode.Uri.parse(lw.file.getPdfPath(lw.root.subfiles.path))
     } else if (lw.root.file.path !== undefined) {
-        pdfFile = vscode.Uri.parse(lw.file.getPdfPath(lw.root.file.path))
+        pdfUri = vscode.Uri.parse(lw.file.getPdfPath(lw.root.file.path))
     }
-    lw.locate.synctex.toPDF(undefined, undefined, pdfFile)
+    lw.locate.synctex.toPDF(undefined, undefined, pdfUri)
 }
 
 export function synctexonref(line: number, filePath: string) {
