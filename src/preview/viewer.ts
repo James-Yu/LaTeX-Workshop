@@ -204,7 +204,7 @@ function viewInExternal(pdfUri: vscode.Uri): void {
     if (args) {
         args = args.map(arg => arg.replace('%PDF%', pdfUri.fsPath))
     }
-    logger.log(`Open external viewer for ${pdfUri}`)
+    logger.log(`Open external viewer for ${pdfUri.toString(true)}`)
     logger.logCommand('Execute the external PDF viewer command', command, args)
     const proc = cs.spawn(command, args, {cwd: path.dirname(pdfUri.fsPath), detached: true})
     let stdout = ''
@@ -371,7 +371,7 @@ async function locate(pdfUri: vscode.Uri, record: SyncTeXRecordToPDF | SyncTeXRe
         setTimeout(() => {
             client.send({type: 'synctex', data: record})
         }, needDelay ? 200 : 0)
-        logger.log(`Try to synctex ${pdfUri}`)
+        logger.log(`Try to synctex ${pdfUri.toString()}`)
     }
 }
 
