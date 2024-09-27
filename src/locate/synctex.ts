@@ -418,9 +418,9 @@ function toPDFFromRef(args: {line: number, filePath: string}) {
  *
  * @param data - ClientRequest data containing the type ('reverse_synctex') and
  * position information.
- * @param pdfPath - The path of the PDF file.
+ * @param pdfUri - The path of the PDF file.
  */
-async function toTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfPath: vscode.Uri) {
+async function toTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfUri: vscode.Uri) {
     let record: SyncTeXRecordToTeX
 
     // We only use synctex.js for backward sync as the binary cannot handle CJK encodings #4239.
@@ -428,15 +428,15 @@ async function toTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pd
     // const configuration = vscode.workspace.getConfiguration('latex-workshop')
     // const docker = configuration.get('docker.enabled')
     // try {
-    //     record = await callSyncTeXToTeX(data.page, data.pos[0], data.pos[1], pdfPath)
+    //     record = await callSyncTeXToTeX(data.page, data.pos[0], data.pos[1], pdfUri)
     //     if (docker && process.platform === 'win32') {
-    //         record.input = path.join(path.dirname(pdfPath), record.input.replace('/data/', ''))
+    //         record.input = path.join(path.dirname(pdfUri), record.input.replace('/data/', ''))
     //     }
     // } catch {
     // }
     try {
-        logger.log(`Backward from ${pdfPath} at x=${data.pos[0]}, y=${data.pos[1]} on page ${data.page}.`)
-        const temp = await syncTeXToTeX(data.page, data.pos[0], data.pos[1], pdfPath)
+        logger.log(`Backward from ${pdfUri.toString(true)} at x=${data.pos[0]}, y=${data.pos[1]} on page ${data.page}.`)
+        const temp = await syncTeXToTeX(data.page, data.pos[0], data.pos[1], pdfUri)
         if (!temp) {
             return
         }
