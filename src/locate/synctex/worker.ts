@@ -118,7 +118,7 @@ async function parseSyncTexForPdf(pdfUri: vscode.Uri): Promise<PdfSyncObject | u
             logger.logError(`Failed parsing .synctex.gz ${synctexUriGz.toString(true)}:`, e)
         }
     }
-    logger.log(`${synctexUri}, ${synctexUriGz.toString(true)} not found.`)
+    logger.log(`${synctexUri.toString(true)}, ${synctexUriGz.toString(true)} not found.`)
     return undefined
 }
 
