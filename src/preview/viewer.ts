@@ -352,26 +352,26 @@ function getParams(): PdfViewerParams {
 /**
  * Reveals the position of `record` on the internal PDF viewers.
  *
- * @param pdfFile The path of a PDF file.
+ * @param pdfUri The path of a PDF file.
  * @param record The position to be revealed.
  */
-async function locate(pdfFile: vscode.Uri, record: SyncTeXRecordToPDF | SyncTeXRecordToPDFAll[]): Promise<void> {
-    let clientSet = manager.getClients(pdfFile)
+async function locate(pdfUri: vscode.Uri, record: SyncTeXRecordToPDF | SyncTeXRecordToPDFAll[]): Promise<void> {
+    let clientSet = manager.getClients(pdfUri)
     if (clientSet === undefined || clientSet.size === 0) {
-        logger.log(`PDF is not opened: ${pdfFile} , try opening.`)
-        await view(pdfFile)
-        clientSet = manager.getClients(pdfFile)
+        logger.log(`PDF is not opened: ${pdfUri.toString(true)} , try opening.`)
+        await view(pdfUri)
+        clientSet = manager.getClients(pdfUri)
     }
     if (clientSet === undefined || clientSet.size === 0) {
-        logger.log(`PDF cannot be opened: ${pdfFile} .`)
+        logger.log(`PDF cannot be opened: ${pdfUri} .`)
         return
     }
-    const needDelay = showInvisibleWebviewPanel(pdfFile)
+    const needDelay = showInvisibleWebviewPanel(pdfUri)
     for (const client of clientSet) {
         setTimeout(() => {
             client.send({type: 'synctex', data: record})
         }, needDelay ? 200 : 0)
-        logger.log(`Try to synctex ${pdfFile}`)
+        logger.log(`Try to synctex ${pdfUri}`)
     }
 }
 
