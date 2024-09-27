@@ -179,8 +179,8 @@ async function syncTeXToPDF(line: number, filePath: string, pdfUri: vscode.Uri):
     return { page: blocks1[0].page, x: c1.left + pdfSyncObject.offset.x, y: bottom + pdfSyncObject.offset.y, indicator: true }
 }
 
-async function syncTeXToTeX(page: number, x: number, y: number, pdfPath: vscode.Uri): Promise<SyncTeXRecordToTeX | undefined> {
-    const pdfSyncObject = await parseSyncTexForPdf(pdfPath)
+async function syncTeXToTeX(page: number, x: number, y: number, pdfUri: vscode.Uri): Promise<SyncTeXRecordToTeX | undefined> {
+    const pdfSyncObject = await parseSyncTexForPdf(pdfUri)
     if (!pdfSyncObject) {
         return undefined
     }
