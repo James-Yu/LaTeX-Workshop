@@ -463,7 +463,8 @@ function getBibPath(bib: string, baseDir: string): string[] {
  * function will rethrow the caught error, making the calling code responsible
  * for handling the exception.
  *
- * @param {string} filePath - The path to the file to be read.
+ * @param {string | vscode.Uri} filePath - The path / Uri to the file to be
+ * read.
  * @param {boolean} [raise=false] - A flag indicating whether to rethrow an
  * error if the file read operation fails.
  * @returns {Promise<string | undefined>} - A promise that resolves to the file
@@ -472,11 +473,17 @@ function getBibPath(bib: string, baseDir: string): string[] {
  * @throws Will throw an error if the file read operation fails and `raise` is
  * `true`.
  */
-async function read(filePath: string, raise: boolean = false): Promise<string | undefined> {
+async function read(fileUri: vscode.Uri, raise?: boolean): Promise<string | undefined>
+async function read(filePath: string, raise?: boolean): Promise<string | undefined>
+async function read(filePathOrUri: string | vscode.Uri, raise?: boolean): Promise<string | undefined> {
     try {
-        return (await vscode.workspace.fs.readFile(vscode.Uri.file(filePath))).toString()
+        if (filePathOrUri instanceof vscode.Uri) {
+            return (await vscode.workspace.fs.readFile(filePathOrUri)).toString()
+        } else {
+            return (await vscode.workspace.fs.readFile(vscode.Uri.file(filePathOrUri))).toString()
+        }
     } catch (err) {
-        if (raise === false) {
+        if (raise === undefined || raise === false) {
             return undefined
         }
         throw err

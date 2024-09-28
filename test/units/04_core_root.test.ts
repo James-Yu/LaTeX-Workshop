@@ -8,7 +8,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
 
     before(() => {
-        mock.object(lw, 'file', 'watcher', 'cache', 'root')
+        mock.init(lw, 'file', 'watcher', 'cache', 'root')
     })
 
     after(() => {
@@ -16,16 +16,15 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('on root file deletion', () => {
-        beforeEach(async () => {
-            await set.config('latex.watch.delay', 100)
+        beforeEach(() => {
+            set.config('latex.watch.delay', 100)
         })
 
         afterEach(() => {
             lw.watcher.src.reset()
         })
 
-        it('should remove root info and refind', async function (this: Mocha.Context) {
-            this.slow(250)
+        it('should remove root info and refind', async () => {
             const texPath = get.path(fixture, 'another.tex')
 
             lw.root.file.path = texPath
@@ -271,8 +270,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.root.findFromActive', () => {
-        beforeEach(async () => {
-            await set.config('latex.rootFile.indicator', '\\documentclass[]{}')
+        beforeEach(() => {
+            set.config('latex.rootFile.indicator', '\\documentclass[]{}')
         })
 
         it('should do nothing if there is no active editor', async () => {
@@ -341,7 +340,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.root.getIndicator', () => {
         it('should use \\begin{document} indicator on selecting `\\begin{document}`', async () => {
-            await set.config('latex.rootFile.indicator', '\\begin{document}')
+            set.config('latex.rootFile.indicator', '\\begin{document}')
 
             const texPath = get.path(fixture, 'main.tex')
 
@@ -354,7 +353,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should return \\documentclass indicator on other values', async () => {
-            await set.config('latex.rootFile.indicator', 'invalid value')
+            set.config('latex.rootFile.indicator', 'invalid value')
 
             const texPath = get.path(fixture, 'main.tex')
 
@@ -368,19 +367,19 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.root.findInWorkspace', () => {
-        beforeEach(async () => {
-            await set.config('latex.rootFile.indicator', '\\begin{document}') // avoid active editor check
+        beforeEach(() => {
+            set.config('latex.rootFile.indicator', '\\begin{document}') // avoid active editor check
         })
 
         it('should follow `latex.search.rootFiles.include` config', async () => {
-            await set.config('latex.search.rootFiles.include', [ 'absolutely-nothing.tex' ])
+            set.config('latex.search.rootFiles.include', [ 'absolutely-nothing.tex' ])
             await lw.root.find()
 
             assert.strictEqual(lw.root.file.path, undefined)
         })
 
         it('should follow `latex.search.rootFiles.exclude` config', async () => {
-            await set.config('latex.search.rootFiles.exclude', [ '**/*' ])
+            set.config('latex.search.rootFiles.exclude', [ '**/*' ])
             await lw.root.find()
 
             assert.strictEqual(lw.root.file.path, undefined)
@@ -389,8 +388,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should find the correct root from workspace', async () => {
             const texPath = get.path(fixture, 'find_workspace', 'main.tex')
 
-            await set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
-            await set.config('latex.search.rootFiles.exclude', [ `${fixture}/find_workspace/**/parent.tex` ])
+            set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
+            set.config('latex.search.rootFiles.exclude', [ `${fixture}/find_workspace/**/parent.tex` ])
             await lw.root.find()
 
             assert.hasLog('Try finding root from current workspaceRootDir:')
@@ -398,7 +397,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should ignore root file indicators in comments', async () => {
-            await set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/comment.tex` ])
+            set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/comment.tex` ])
             await lw.root.find()
 
             assert.strictEqual(lw.root.file.path, undefined)
@@ -408,7 +407,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const texPath = get.path(fixture, 'find_workspace', 'main.tex')
             const texPathAnother = get.path(fixture, 'find_workspace', 'another.tex')
 
-            await set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
+            set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
             const stub = mock.activeTextEditor(texPathAnother, '\\documentclass{article}\n')
             await lw.root.find()
             stub.restore()
@@ -421,8 +420,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const texPath = get.path(fixture, 'find_workspace', 'parent.tex')
             const texPathAnother = get.path(fixture, 'find_workspace', 'another.tex')
 
-            await set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
-            await set.config('latex.search.rootFiles.exclude', [ `${fixture}/find_workspace/main.tex` ])
+            set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
+            set.config('latex.search.rootFiles.exclude', [ `${fixture}/find_workspace/main.tex` ])
             await lw.cache.refreshCache(texPath)
             const stub = mock.activeTextEditor(texPathAnother, '\\documentclass{article}\n')
             await lw.root.find()
@@ -436,7 +435,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const texPath = get.path(fixture, 'find_workspace', 'parent.tex')
             const texPathAnother = get.path(fixture, 'find_workspace', 'another.tex')
 
-            await set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
+            set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
             await lw.cache.refreshCache(texPath)
             const stub = mock.activeTextEditor(texPathAnother, '\\documentclass{article}\n')
             await lw.root.find()
@@ -449,7 +448,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should find the correct root if current root is in the candidates', async () => {
             const texPath = get.path(fixture, 'find_workspace', 'main.tex')
 
-            await set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
+            set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
             set.root(fixture, 'find_workspace', 'main.tex')
             const stub = mock.activeTextEditor(texPath, '\\documentclass{article}\n')
             await lw.root.find()
@@ -468,7 +467,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should not change root if no new root can be found, only refresh outline', async () => {
-            await set.config('latex.search.rootFiles.exclude', [ '**/*.*' ])
+            set.config('latex.search.rootFiles.exclude', [ '**/*.*' ])
 
             await lw.root.find()
 
@@ -517,8 +516,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual((lw.lint.label.reset as sinon.SinonStub).callCount, 1)
         })
 
-        it('should watch, cache, and parse fls of the new root', async function (this: Mocha.Context) {
-            this.slow(300)
+        it('should watch, cache, and parse fls of the new root', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
             const stub = mock.activeTextEditor(texPath, '%!TeX root=main.tex')

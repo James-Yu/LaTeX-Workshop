@@ -1,14 +1,14 @@
 name: TeX Live on macOS
 env:
   cache-version: v12
-on: [push, pull_request]
+on: push
 
 permissions:
   contents: read
 
 jobs:
   macosx:
-    runs-on: macos-latest
+    runs-on: macos-13
     timeout-minutes: 30
     steps:
     - uses: actions/checkout@v4

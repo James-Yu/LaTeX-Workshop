@@ -43,13 +43,13 @@ async function reset() {
 }
 
 async function bib(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst | undefined> {
-    let ast = undefined
-    try {
-        ast = (await proxy).parseBibTeX(s, options)
-    } catch (err) {
-        logger.logError('Error when parsing bib file.', err)
+    const ast = await (await proxy).parseBibTeX(s, options)
+    if (ast instanceof Error) {
+        logger.logError('Error when parsing bib file.', ast)
+        return undefined
+    } else {
+        return ast
     }
-    return ast
 }
 
 function stringify(ast: Ast.Ast): string {

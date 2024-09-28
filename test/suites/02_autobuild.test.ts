@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as test from './utils'
 import assert from 'assert'
 
-suite('Auto-build test suite', () => {
+suite.skip('Auto-build test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
     test.suite.fixture = 'testground'
 

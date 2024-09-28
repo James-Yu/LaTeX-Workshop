@@ -99,7 +99,7 @@ export function synctex() {
     } else if (lw.root.file.path !== undefined) {
         pdfUri = vscode.Uri.parse("file://" + lw.file.getPdfPath(lw.root.file.path))
     }
-    lw.locate.synctex.toPDF(undefined, undefined, pdfUri)
+    lw.locate.synctex.toPDF(pdfUri)
 }
 
 export function synctexonref(line: number, filePath: string) {
@@ -176,7 +176,7 @@ export async function gotoSection(filePath: string, lineNumber: number) {
     if (vscode.window.activeTextEditor) {
         vscode.window.activeTextEditor.selection = new vscode.Selection(new vscode.Position(lineNumber, 0), new vscode.Position(lineNumber, 0))
         if (vscode.workspace.getConfiguration('latex-workshop').get('view.outline.sync.viewer') as boolean) {
-            lw.locate.synctex.toPDF({ line: lineNumber, filePath: doc.fileName })
+            lw.locate.synctex.toPDF(undefined, { line: lineNumber, filePath: doc.fileName })
         }
     }
 }

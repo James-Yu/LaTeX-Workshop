@@ -31,7 +31,7 @@ with open(args.web + '/viewer.mjs', 'rt', encoding='utf-8') as fin:
                 .replace('''this.removePageBorders = options.removePageBorders || false;''', '''this.removePageBorders = options.removePageBorders || true;''') \
                 .replace('''localStorage.setItem("pdfjs.history", databaseStr);''', '''// localStorage.setItem("pdfjs.history", databaseStr);''') \
                 .replace('''return localStorage.getItem("pdfjs.history");''', '''return // localStorage.getItem("pdfjs.history");''') \
-                .replace('''this.setTitle(title);''', '''// this.setTitle(title);''') \
+                .replace('''this.setTitle(title || url);''', '''// this.setTitle(title || url);''') \
                 .replace('''localStorage.setItem("pdfjs.preferences", JSON.stringify(prefObj));''', '''// localStorage.setItem("pdfjs.preferences", JSON.stringify(prefObj));''') \
                 .replace('''prefs: JSON.parse(localStorage.getItem("pdfjs.preferences"))''', '''prefs: undefined // JSON.parse(localStorage.getItem("pdfjs.preferences"))''') \
                 .replace('''(!event.shiftKey || window.chrome || window.opera)) {''', '''(!event.shiftKey || window.chrome || window.opera)) {\n    if (window.parent !== window) {\n      return;\n    }''') \

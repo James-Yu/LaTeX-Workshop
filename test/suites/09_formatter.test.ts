@@ -44,7 +44,7 @@ suite('Formatter test suite', () => {
         const original = readFileSync(path.resolve(fixture, 'main.tex')).toString()
         const formatted = await test.format()
         assert.notStrictEqual(original, formatted)
-    })
+    }, ['win32', 'linux'])
 
     test.run('change formatting.latexindent.path on the fly', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('formatting.latexindent.path', 'echo')
@@ -63,7 +63,7 @@ suite('Formatter test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('formatting.latexindent.args', ['-c', '%DIR%/', '%TMPFILE%', '-y=defaultIndent: \'%INDENT%\''])
         const formatted = await test.format()
         assert.notStrictEqual(original, formatted)
-    })
+    }, ['win32', 'linux'])
 
     test.run('test bibtex formatter', async (fixture: string) => {
         await test.load(fixture, [

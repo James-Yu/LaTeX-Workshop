@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icons/icon.png",
-  "version": "10.3.2",
+  "version": "10.4.1",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -1040,6 +1040,7 @@
               "args": [
                 "--synctex",
                 "--keep-logs",
+                "--print",
                 "%DOC%.tex"
               ],
               "env": {}
@@ -1503,7 +1504,7 @@
           ],
           "markdownDescription": "PDF viewer used for [View on PDF] link on \\ref."
         },
-        "latex-workshop.viewer.pdf.internal.port": {
+        "latex-workshop.view.pdf.internal.port": {
           "scope": "window",
           "type": "number",
           "default": 0,
@@ -1519,7 +1520,7 @@
           ],
           "markdownDescription": " Which keybinding to use for the internal viewer for reverse synctex. `ctrl`/`cmd` + click (default) or double click."
         },
-        "latex-workshop.viewer.pdf.internal.keyboardEvent": {
+        "latex-workshop.view.pdf.internal.keyboardEvent": {
           "scope": "window",
           "type": "string",
           "default": "auto",
@@ -1596,6 +1597,12 @@
           "default": false,
           "markdownDescription": "Define if the hand tool is enabled by default in the PDF viewer."
         },
+        "latex-workshop.view.pdf.invert": {
+          "scope": "window",
+          "type": "number",
+          "default": 0,
+          "markdownDescription": " Define the CSS invert filter level of the PDF viewer. This config can invert the color of PDF. Possible values are from 0 to 1."
+        },
         "latex-workshop.view.pdf.invertMode.enabled": {
           "scope": "window",
           "type": "string",
@@ -1613,12 +1620,6 @@
             "Enable the invert filter only if `invert > 0`.",
             "Disable the invert filter"
           ]
-        },
-        "latex-workshop.view.pdf.invert": {
-          "scope": "window",
-          "type": "number",
-          "default": 0,
-          "markdownDescription": " Define the CSS invert filter level of the PDF viewer. This config can invert the color of PDF. Possible values are from 0 to 1."
         },
         "latex-workshop.view.pdf.invertMode.brightness": {
           "scope": "window",
@@ -2634,44 +2635,46 @@
     "update-grammar": "node ./dev/update-grammar.mjs"
   },
   "dependencies": {
-    "cross-spawn": "7.0.3",
-    "glob": "11.0.0",
-    "iconv-lite": "0.6.3",
-    "latex-utensils": "6.2.0",
-    "mathjax-full": "3.2.2",
-    "micromatch": "4.0.8",
-    "pdfjs-dist": "4.3.136",
-    "tmp": "0.2.3",
-    "workerpool": "9.1.3",
-    "ws": "8.18.0"
+    "cross-spawn": "^7.0.3",
+    "glob": "^11.0.0",
+    "iconv-lite": "^0.6.3",
+    "latex-utensils": "^6.2.0",
+    "mathjax-full": "^3.2.2",
+    "micromatch": "^4.0.8",
+    "pdfjs-dist": "4.6.82",
+    "tmp": "^0.2.3",
+    "workerpool": "^9.1.3",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin": "2.7.2",
-    "@types/cross-spawn": "6.0.6",
-    "@types/glob": "8.1.0",
-    "@types/micromatch": "4.0.9",
-    "@types/mocha": "10.0.7",
-    "@types/node": "18.15.3",
-    "@types/sinon": "17.0.3",
-    "@types/tmp": "0.2.6",
-    "@types/vscode": "1.88.0",
-    "@types/ws": "8.5.12",
-    "@typescript-eslint/eslint-plugin": "8.4.0",
-    "@typescript-eslint/parser": "8.4.0",
+    "@stylistic/eslint-plugin": "^2.8.0",
+    "@types/cross-spawn": "^6.0.6",
+    "@types/glob": "^8.1.0",
+    "@types/micromatch": "^4.0.9",
+    "@types/mocha": "^10.0.8",
+    "@types/node": "^18.15.3",
+    "@types/node-fetch": "^2.6.11",
+    "@types/sinon": "^17.0.3",
+    "@types/tmp": "^0.2.6",
+    "@types/vscode": "^1.88.0",
+    "@types/ws": "^8.5.12",
+    "@typescript-eslint/eslint-plugin": "^8.6.0",
+    "@typescript-eslint/parser": "^8.6.0",
     "@unified-latex/unified-latex-types": "1.8.0",
     "@unified-latex/unified-latex-util-arguments": "1.8.0",
     "@unified-latex/unified-latex-util-parse": "1.8.0",
     "@unified-latex/unified-latex-util-to-string": "1.8.0",
-    "@vscode/test-electron": "2.4.1",
-    "@vscode/vsce": "3.1.0",
-    "c8": "10.1.2",
-    "esbuild": "0.23.1",
-    "eslint": "9.9.1",
-    "mocha": "10.7.3",
-    "rimraf": "6.0.1",
-    "sinon": "18.0.0",
-    "textmate-bailout": "1.1.0",
-    "typescript": "5.5.4",
-    "vscode-extend-language": "0.2.2"
+    "@vscode/test-electron": "^2.4.1",
+    "@vscode/vsce": "^3.1.0",
+    "c8": "^10.1.2",
+    "esbuild": "^0.23.1",
+    "eslint": "^9.10.0",
+    "mocha": "^10.7.3",
+    "node-fetch": "^2.7.0",
+    "rimraf": "^6.0.1",
+    "sinon": "^19.0.2",
+    "textmate-bailout": "^1.1.0",
+    "typescript": "^5.6.2",
+    "vscode-extend-language": "^0.2.2"
   }
 }

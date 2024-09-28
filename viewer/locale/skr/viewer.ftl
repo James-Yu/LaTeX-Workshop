@@ -105,6 +105,14 @@ pdfjs-document-properties-button-label = دستاویز خواص …
 pdfjs-document-properties-file-name = فائل دا ناں:
 pdfjs-document-properties-file-size = فائل دا سائز:
 # Variables:
+#   $kb (Number) - the PDF file size in kilobytes
+#   $b (Number) - the PDF file size in bytes
+pdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } KB ({ $b } بائٹاں)
+# Variables:
+#   $mb (Number) - the PDF file size in megabytes
+#   $b (Number) - the PDF file size in bytes
+pdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } MB ({ $b } بائٹاں)
+# Variables:
 #   $size_kb (Number) - the PDF file size in kilobytes
 #   $size_b (Number) - the PDF file size in bytes
 pdfjs-document-properties-kb = { $size_kb } کے بی ({ $size_b } بائٹس)
@@ -118,6 +126,9 @@ pdfjs-document-properties-subject = موضوع:
 pdfjs-document-properties-keywords = کلیدی الفاظ:
 pdfjs-document-properties-creation-date = تخلیق دی تاریخ:
 pdfjs-document-properties-modification-date = ترمیم دی تاریخ:
+# Variables:
+#   $dateObj (Date) - the creation/modification date and time of the PDF file
+pdfjs-document-properties-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
 # Variables:
 #   $date (Date) - the creation/modification date of the PDF file
 #   $time (Time) - the creation/modification time of the PDF file
@@ -275,6 +286,9 @@ pdfjs-annotation-date-string = { $date }, { $time }
 # Some common types are e.g.: "Check", "Text", "Comment", "Note"
 pdfjs-text-annotation-type =
     .alt = [{ $type } تشریح]
+# Variables:
+#   $dateObj (Date) - the modification date and time of the annotation
+pdfjs-annotation-date-time-string = { DATETIME($dateObj, dateStyle: "short", timeStyle: "medium") }
 
 ## Password
 
@@ -298,8 +312,6 @@ pdfjs-editor-stamp-button-label = تصویراں کوں شامل کرو یا ت�
 pdfjs-editor-highlight-button =
     .title = نمایاں کرو
 pdfjs-editor-highlight-button-label = نمایاں کرو
-pdfjs-highlight-floating-button =
-    .title = نمایاں کرو
 pdfjs-highlight-floating-button1 =
     .title = نمایاں کرو
     .aria-label = نمایاں کرو
@@ -394,3 +406,38 @@ pdfjs-editor-colorpicker-red =
 pdfjs-editor-highlight-show-all-button-label = سارے ݙکھاؤ
 pdfjs-editor-highlight-show-all-button =
     .title = سارے ݙکھاؤ
+
+## New alt-text dialog
+## Group note for entire feature: Alternative text (alt text) helps when people can't see the image. This feature includes a tool to create alt text automatically using an AI model that works locally on the user's device to preserve privacy.
+
+pdfjs-editor-new-alt-text-textarea =
+    .placeholder = اتھ آپݨی وضاحت لکھو۔۔۔
+pdfjs-editor-new-alt-text-disclaimer-learn-more-url = ٻیا سِکھو
+pdfjs-editor-new-alt-text-create-automatically-button-label = آلٹ عبارت خودکار بݨاؤ
+pdfjs-editor-new-alt-text-not-now-button = ہݨ کائناں
+pdfjs-editor-new-alt-text-error-title = آلٹ عبارت خودکار نہ بݨاؤ
+pdfjs-editor-new-alt-text-error-close-button = بند کرو
+# This is a button that users can click to edit the alt text they have already added.
+pdfjs-editor-new-alt-text-added-button-label = آلٹ عبارت شامل تھی ڳئی
+# This is a button that users can click to open the alt text editor and add alt text when it is not present.
+pdfjs-editor-new-alt-text-missing-button-label = متبادل عبارت غائب ہے
+# This is a button that opens up the alt text modal where users should review the alt text that was automatically generated.
+pdfjs-editor-new-alt-text-to-review-button-label = alt متن تے نظرثانی کرو
+# "Created automatically" is a prefix that will be added to the beginning of any alt text that has been automatically generated. After the colon, the user will see/hear the actual alt text description. If the alt text has been edited by a human, this prefix will not appear.
+# Variables:
+#   $generatedAltText (String) - the generated alt-text.
+pdfjs-editor-new-alt-text-generated-alt-text-with-disclaimer = خودکار تخلیق تھئی: { $generatedAltText }
+
+## Image alt-text settings
+
+pdfjs-image-alt-text-settings-button =
+    .title = تصویر آلٹ عبارت ترتیباں
+pdfjs-image-alt-text-settings-button-label = تصویر آلٹ عبارت ترتیباں
+pdfjs-editor-alt-text-settings-dialog-label = تصویر آلٹ عبارت ترتیباں
+pdfjs-editor-alt-text-settings-automatic-title = خودکار آلٹ عبارت
+pdfjs-editor-alt-text-settings-create-model-button-label = آلٹ عبارت خودکار بݨاؤ
+pdfjs-editor-alt-text-settings-delete-model-button = مٹاؤ
+pdfjs-editor-alt-text-settings-download-model-button = ڈاؤن لوڈ
+pdfjs-editor-alt-text-settings-downloading-model-button = ڈاؤن لوڈ تھیندا پئے …
+pdfjs-editor-alt-text-settings-editor-title = متبادل ٹیکسٹ ایڈیٹر
+pdfjs-editor-alt-text-settings-close-button = بند کرو
