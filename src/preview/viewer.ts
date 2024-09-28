@@ -99,7 +99,7 @@ async function viewInBrowser(pdfUri: vscode.Uri): Promise<void> {
     manager.create(pdfUri)
     lw.watcher.pdf.add(pdfUri)
     try {
-        logger.log(`Serving PDF file at ${pdfUri.toString()}`)
+        logger.log(`Serving PDF file at ${pdfUri.toString(true)}`)
         await vscode.env.openExternal(pdfUri)
         logger.log(`Open PDF viewer for ${pdfUri.toString(true)}`)
     } catch (e: unknown) {
@@ -358,7 +358,7 @@ async function locate(pdfUri: vscode.Uri, record: SyncTeXRecordToPDF | SyncTeXRe
         setTimeout(() => {
             client.send({type: 'synctex', data: record})
         }, needDelay ? 200 : 0)
-        logger.log(`Try to synctex ${pdfUri.toString()}`)
+        logger.log(`Try to synctex ${pdfUri.toString(true)}`)
     }
 }
 
