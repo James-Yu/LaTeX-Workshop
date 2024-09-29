@@ -18,7 +18,6 @@ import assert from 'assert'
 
 describe.only(path.basename(__filename).split('.')[0] + ':', () => {
     let document: TextDocument
-    let getIncludedTeXStub: sinon.SinonStub
     let citationSpy: sinon.SinonSpy
     let referenceSpy: sinon.SinonSpy
     let environmentSpy: sinon.SinonSpy
@@ -34,11 +33,10 @@ describe.only(path.basename(__filename).split('.')[0] + ':', () => {
     let closeenvSpy: sinon.SinonSpy
 
     before(() => {
-        mock.init(lw, 'root', 'completion')
+        mock.init(lw, 'root', 'cache', 'completion')
         mock.activeTextEditor(get.path('main.tex'), '', {
             languageId: 'latex',
         })
-        getIncludedTeXStub = lw.cache.getIncludedTeX as sinon.SinonStub
         document = vscode.window.activeTextEditor?.document as TextDocument
         citationSpy = sinon.spy(citationProvider, 'from')
         referenceSpy = sinon.spy(referenceProvider, 'from')
@@ -53,14 +51,6 @@ describe.only(path.basename(__filename).split('.')[0] + ':', () => {
         glossarySpy = sinon.spy(glossaryProvider, 'from')
         subsuperscriptSpy = sinon.spy(subsuperscriptProvider, 'from')
         closeenvSpy = sinon.spy(closeenvProvider, 'from')
-    })
-
-    beforeEach(() => {
-        getIncludedTeXStub.returns([])
-    })
-
-    afterEach(() => {
-        getIncludedTeXStub.reset()
     })
 
     after(() => {
@@ -193,6 +183,12 @@ describe.only(path.basename(__filename).split('.')[0] + ':', () => {
                 provide(line)
                 assert.strictEqual(argumentSpy.callCount, 1, line)
             }
+        })
+
+        it('should remove all existing completed arguments before passing to argument provider', () => {
+            argumentSpy.resetHistory()
+            provide('\\command[arg]{arg}{')
+            assert.strictEqual(argumentSpy.getCall(0)?.args[0]?.[0], '\\command{')
         })
 
         it('should invoke package provider', () => {
