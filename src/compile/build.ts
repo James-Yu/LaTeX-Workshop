@@ -425,9 +425,9 @@ async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(lastStep.rootFile))
     // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.
     if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
-        const pdfFUri = vscode.Uri.file(lw.file.getPdfPath(lastStep.rootFile))
+        const pdfUri = vscode.Uri.file(lw.file.getPdfPath(lastStep.rootFile))
         logger.log('SyncTex after build invoked.')
-        lw.locate.synctex.toPDF(pdfFUri)
+        lw.locate.synctex.toPDF(pdfUri)
     }
     if (['onSucceeded', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
         logger.log('Auto Clean invoked.')
