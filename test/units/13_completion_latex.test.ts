@@ -16,7 +16,7 @@ import { provider as subsuperscriptProvider } from '../../src/completion/complet
 import { provider as closeenvProvider } from '../../src/completion/completer/closeenv'
 import assert from 'assert'
 
-describe.only(path.basename(__filename).split('.')[0] + ':', () => {
+describe(path.basename(__filename).split('.')[0] + ':', () => {
     let document: TextDocument
     let citationSpy: sinon.SinonSpy
     let referenceSpy: sinon.SinonSpy
