@@ -257,9 +257,9 @@ async function refreshCache(filePath: string, rootPath?: string): Promise<Promis
 
     promises.set(
         filePath,
-        updateAST(fileCache).then(() => {
-            updateElements(fileCache)
-        }).finally(() => {
+        updateAST(fileCache)
+        .then(() => updateElements(fileCache))
+        .finally(() => {
             lw.lint.label.check()
             cachingFilesCount--
             promises.delete(filePath)
@@ -375,7 +375,7 @@ async function updateChildren(fileCache: FileCache, rootPath: string | undefined
 async function updateChildrenInput(fileCache: FileCache, rootPath: string) {
     const inputFileRegExp = new InputFileRegExp()
     while (true) {
-        const result = inputFileRegExp.exec(fileCache.contentTrimmed, fileCache.filePath, rootPath)
+        const result = await inputFileRegExp.exec(fileCache.contentTrimmed, fileCache.filePath, rootPath)
         if (!result) {
             break
         }
@@ -428,7 +428,7 @@ async function updateChildrenXr(fileCache: FileCache, rootPath: string) {
         }
 
         const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
-        const externalPath = utils.resolveFile([path.dirname(fileCache.filePath), path.dirname(rootPath), ...texDirs], result[2])
+        const externalPath = await utils.resolveFile([path.dirname(fileCache.filePath), path.dirname(rootPath), ...texDirs], result[2])
         if (!externalPath || !await lw.file.exists(externalPath) || path.relative(externalPath, rootPath) === '') {
             logger.log(`Failed resolving external ${result[2]} . Tried ${externalPath} ` +
                 (externalPath && path.relative(externalPath, rootPath) === '' ? ', which is root.' : '.'))
@@ -462,7 +462,7 @@ async function updateChildrenXr(fileCache: FileCache, rootPath: string) {
  * @param {FileCache} fileCache - The cache object containing the file data and
  * metadata to be updated.
  */
-function updateElements(fileCache: FileCache): void {
+async function updateElements(fileCache: FileCache): Promise<void> {
     const start = performance.now()
     lw.completion.citation.parse(fileCache)
     // Package parsing must be before command and environment.
@@ -473,7 +473,7 @@ function updateElements(fileCache: FileCache): void {
     lw.completion.macro.parse(fileCache)
     lw.completion.subsuperscript.parse(fileCache)
     lw.completion.input.parseGraphicsPath(fileCache)
-    updateBibfiles(fileCache)
+    await updateBibfiles(fileCache)
     const elapsed = performance.now() - start
     logger.log(`Updated elements in ${elapsed.toFixed(2)} ms: ${fileCache.filePath} .`)
 }
@@ -492,7 +492,7 @@ function updateElements(fileCache: FileCache): void {
  * @param {FileCache} fileCache - The file cache object to update with
  * bibliography files.
  */
-function updateBibfiles(fileCache: FileCache) {
+async function updateBibfiles(fileCache: FileCache) {
     const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(?:\\subfix{)?([\s\S]+?)(?:\})?}|(?:\\putbib)\[(?:\\subfix{)?([\s\S]+?)(?:\})?\]/gm
 
     let result: RegExpExecArray | null
@@ -500,7 +500,7 @@ function updateBibfiles(fileCache: FileCache) {
         const bibs = (result[1] ? result[1] : result[2]).split(',').map(bib => bib.trim())
 
         for (const bib of bibs) {
-            const bibPaths = lw.file.getBibPath(bib, path.dirname(fileCache.filePath))
+            const bibPaths = await lw.file.getBibPath(bib, path.dirname(fileCache.filePath))
             for (const bibPath of bibPaths) {
                 if (isExcluded(bibPath)) {
                     continue
@@ -666,7 +666,7 @@ async function parseAuxFile(filePath: string, srcDir: string) {
         }
         const bibs = (result[1] ? result[1] : result[2]).split(',').map((bib) => { return bib.trim() })
         for (const bib of bibs) {
-            const bibPaths = lw.file.getBibPath(bib, srcDir)
+            const bibPaths = await lw.file.getBibPath(bib, srcDir)
             for (const bibPath of bibPaths) {
                 if (isExcluded(bibPath)) {
                     continue

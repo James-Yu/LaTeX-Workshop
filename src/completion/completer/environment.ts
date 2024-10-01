@@ -150,15 +150,15 @@ function provideEnvsAsMacroInPkg(packageName: string, options: string[], suggest
     }
 
     // Load environments from the package if not already done
-    const entry = getEnvFromPkg(packageName, EnvSnippetType.AsMacro)
+    const envs = getEnvFromPkg(packageName, EnvSnippetType.AsMacro)
     // No environment defined in package
-    if (!entry || entry.length === 0) {
+    if (!envs || envs.length === 0) {
         return
     }
 
     const unusual = configuration.get('intellisense.package.unusual') as boolean
     // Insert env snippets
-    for (const env of entry) {
+    envs.forEach(env => {
         if (!useOptionalArgsEntries && env.hasOptionalArgs()) {
             return
         }
@@ -172,7 +172,7 @@ function provideEnvsAsMacroInPkg(packageName: string, options: string[], suggest
             suggestions.push(env)
             defined.add(env.signatureAsString())
         }
-    }
+    })
 }
 
 function parse(cache: FileCache) {
