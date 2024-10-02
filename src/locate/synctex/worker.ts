@@ -110,7 +110,7 @@ async function parseSyncTexForPdf(pdfUri: vscode.Uri): Promise<PdfSyncObject | u
     } else if (await lw.file.exists(synctexUriGz)) {
         try {
             logger.log(`Parsing .synctex.gz ${synctexUriGz.toString(true)} .`)
-            const data = await lw.file.read(synctexUriGz)
+            const data = await vscode.workspace.fs.readFile(synctexUriGz)
             const b = zlib.gunzipSync(data)
             const s = b.toString('binary')
             return parseSyncTex(s)
