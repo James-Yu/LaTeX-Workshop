@@ -42,12 +42,15 @@ export function setTrimCSS() {
     // Add new rules
     for (const [pageNum, page] of PDFViewerApplication.pdfViewer._pages.entries()) {
         let { pageHeight, pageWidth } = page.viewport.rawDims
+
+        css.insertRule(getCanvasRule('textLayer', pageNum, pageHeight, pageWidth), css.cssRules.length)
+
         if ([90, 270].includes(page.viewport.rotation)) {
             [ pageHeight, pageWidth ] = [ pageWidth, pageHeight ]
         }
-        const { pageRule, canvasRule } = getCSSRules(pageNum, pageHeight, pageWidth)
-        css.insertRule(pageRule, css.cssRules.length)
-        css.insertRule(canvasRule, css.cssRules.length)
+        css.insertRule(getPageRule(pageNum, pageHeight, pageWidth), css.cssRules.length)
+        css.insertRule(getCanvasRule('canvasWrapper', pageNum, pageHeight, pageWidth), css.cssRules.length)
+        css.insertRule(getCanvasRule('annotationLayer', pageNum, pageHeight, pageWidth), css.cssRules.length)
     }
 
     // Remove previous rules
@@ -59,20 +62,20 @@ export function setTrimCSS() {
     }
 }
 
-function getCSSRules(pageNum: number, pageHeight: number, pageWidth: number): { pageRule: string, canvasRule: string } {
-    const pageRule = `
+function getPageRule(pageNum: number, pageHeight: number, pageWidth: number): string {
+    return `
         .page[data-page-number="${pageNum + 1}"] {
             width: calc(var(--scale-factor) * ${pageWidth}px * (1 - var(--trim-factor) / 100)) !important;
             height: calc(var(--scale-factor) * ${pageHeight}px * (1 - var(--trim-factor) / 100)) !important;
         }`
-    const canvasRule = `
-        .page[data-page-number="${pageNum + 1}"] .canvasWrapper,
-        .page[data-page-number="${pageNum + 1}"] .textLayer,
-        .page[data-page-number="${pageNum + 1}"] .annotationLayer {
+}
+
+function getCanvasRule(className: string, pageNum: number, pageHeight: number, pageWidth: number): string {
+    return `
+        .page[data-page-number="${pageNum + 1}"] .${className} {
             width: calc(var(--scale-factor) * ${pageWidth}px) !important;
             height: calc(var(--scale-factor) * ${pageHeight}px) !important;
             margin-left: calc(var(--scale-factor) * ${pageWidth}px * var(--trim-factor) / -200) !important;
             margin-top: calc(var(--scale-factor) * ${pageHeight}px * var(--trim-factor) / -200) !important;
         }`
-    return { pageRule, canvasRule }
 }
