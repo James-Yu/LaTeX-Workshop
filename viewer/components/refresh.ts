@@ -156,27 +156,32 @@ export function patchViewerRefresh() {
         return oldScale
     }
     ;(globalThis as any).lwRenderSync = async (pdfViewer: any, pdfDocument: any, pagesCount: number) => {
-        await Array.from(oldVisiblePages)
-            .filter(pageNum => pageNum <= pagesCount)
-            .map(pageNum => pdfDocument.getPage(pageNum)
-                .then((pdfPage: [number, any]) => [pageNum, pdfPage])
-            )
-            .reduce((accPromise, currPromise) => accPromise.then(() =>
-                // This forces all visible pages to be rendered synchronously rather than asynchronously to avoid race condition involving this.renderingQueue.highestPriorityPage
-                currPromise.then(([pageNum, pdfPage]: [number, any]) => {
-                    const pageView = pdfViewer._pages[pageNum - 1]
-                    if (!pageView.pdfPage) {
-                        pageView.setPdfPage(pdfPage)
-                    }
-                    pdfViewer.renderingQueue.highestPriorityPage = pageView.renderingId
-                    return pdfViewer._pages[pageNum - 1].draw().finally(() => {
-                        pdfViewer.renderingQueue.renderHighestPriority()
-                    })
-                })), Promise.resolve()
-            )
+        // Only do flicker-free refresh when spread is off #4415
+        if (pdfViewer.spreadMode === 0) {
+            await Array.from(oldVisiblePages)
+                .filter(pageNum => pageNum <= pagesCount)
+                .map(pageNum => pdfDocument.getPage(pageNum)
+                    .then((pdfPage: [number, any]) => [pageNum, pdfPage])
+                )
+                .reduce((accPromise, currPromise) => accPromise.then(() =>
+                    // This forces all visible pages to be rendered synchronously rather than asynchronously to avoid race condition involving this.renderingQueue.highestPriorityPage
+                    currPromise.then(([pageNum, pdfPage]: [number, any]) => {
+                        const pageView = pdfViewer._pages[pageNum - 1]
+                        if (!pageView.pdfPage) {
+                            pageView.setPdfPage(pdfPage)
+                        }
+                        pdfViewer.renderingQueue.highestPriorityPage = pageView.renderingId
+                        return pdfViewer._pages[pageNum - 1].draw().finally(() => {
+                            pdfViewer.renderingQueue.renderHighestPriority()
+                        })
+                    })), Promise.resolve()
+                )
+        }
         document.getElementById('viewerContainer')!.scrollTop += oldScrollHeight
-        for (let i = 1; i <= oldPageCount; i++) {
-            pdfViewer.viewer.removeChild(pdfViewer.viewer.firstChild)
+        if (pdfViewer.spreadMode === 0) {
+            for (let i = 1; i <= oldPageCount; i++) {
+                pdfViewer.viewer.removeChild(pdfViewer.viewer.firstChild)
+            }
         }
     }
     /* eslint-enable */
