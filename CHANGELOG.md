@@ -1,5 +1,14 @@
 # Change Log
 
+## [10.4.2] - 2024-10-02
+
+### Fixed
+- (#4404) Use short titles of `\caption` in outline.
+- (#4406) Add `--print` to `tectonic` tool to generate compile message.
+- (#4414) TextLayer in pdf viewer is rotated by pdf.js, so no further rotation.
+- (#4415) Disable flicker-free PDF refresh when spread mode is on.
+- (#4416) PDF viewer uses a l10n lang selector to determine translation.
+
 ## [10.4.1] - 2024-09-20
 
 ### Fixed
