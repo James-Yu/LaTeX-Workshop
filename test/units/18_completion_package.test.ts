@@ -2,9 +2,10 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
 import { lw } from '../../src/lw'
-import { get, mock, set } from './utils'
-import { provider } from '../../src/completion/completer/macro'
-import assert from 'assert'
+import { assert, get, mock, set } from './utils'
+import { provider as macroProvider } from '../../src/completion/completer/macro'
+import { provider as packageProvider } from '../../src/completion/completer/package'
+import type { CompletionProvider } from '../../src/types'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
@@ -27,7 +28,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.completion->package', () => {
-        function getSuggestions() {
+        function getSuggestions(provider: CompletionProvider) {
             return provider.from(['', ''], {
                 uri: vscode.Uri.file(texPath),
                 langId: 'latex',
@@ -37,8 +38,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         }
 
         function getMacros() {
-            return getSuggestions().map((s) => s.label)
+            return getSuggestions(macroProvider).map((s) => s.label)
         }
+
+        it('should provide \\usepackage suggestions', () => {
+            const labels = getSuggestions(packageProvider).map((s) => s.label)
+
+            assert.ok(labels.includes('amsmath'))
+        })
 
         it('should follow `intellisense.package.exclude` to exclude a particular package', async () => {
             await set.codeConfig('intellisense.package.exclude', ['import'])

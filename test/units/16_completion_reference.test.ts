@@ -2,9 +2,8 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
 import { lw } from '../../src/lw'
-import { get, mock, set } from './utils'
+import { assert, get, mock, set } from './utils'
 import { provider } from '../../src/completion/completer/reference'
-import assert from 'assert'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]

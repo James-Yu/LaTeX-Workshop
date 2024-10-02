@@ -154,8 +154,11 @@ export class Provider implements vscode.CompletionItemProvider {
                 return []
         }
         let lineToPos = args.line.substring(0, args.position.character)
-        if (type === 'argument') {
-            lineToPos = lineToPos.replace(/(?<!\\begin){[^[\]{}]*}/g, '').replace(/\[[^[\]{}]*\]/g, '')
+        if (type === 'argument' && (lineToPos.includes('\\documentclass') || lineToPos.includes('\\usepackage'))) {
+            // Remove braced values from documentclass and usepackage
+            // This is to allow argument regexp to match the following type of lines:
+            // \documentclass[aspectratio=169,t,fontset=none,xcolor={x11names},|]{ctexbeamer}
+            lineToPos = lineToPos.replace(/{[^[\]{}]*}/g, '').replace(/\[[^[\]{}]*\]/g, '')
         }
         const result = lineToPos.match(reg)
         let suggestions: vscode.CompletionItem[] = []

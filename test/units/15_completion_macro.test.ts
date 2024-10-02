@@ -2,9 +2,8 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
 import { lw } from '../../src/lw'
-import { get, mock, set } from './utils'
+import { assert, get, mock, set } from './utils'
 import { provider } from '../../src/completion/completer/macro'
-import assert from 'assert'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
@@ -109,6 +108,16 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(macros.includes('\\testA{}'))
             assert.ok(macros.includes('\\testB[]{}'))
             assert.ok(macros.includes('\\testC{}[][]{}{}'))
+        })
+
+        it('should remove `%keyvals` from macro argument hints', async () => {
+            readStub.resolves('\\usepackage{acro}')
+            await lw.cache.refreshCache(texPath)
+
+            const suggestion = getSuggestions().find(s => s.label === '\\RenewAcroPreset{}{}')
+            const snippet = suggestion?.insertText
+            assert.ok(typeof snippet !== 'string')
+            assert.ok(!snippet?.value.includes('%keyvals'), snippet?.value)
         })
 
         it('should not provide argument hints if `intellisense.argumentHint.enabled` is false', async () => {

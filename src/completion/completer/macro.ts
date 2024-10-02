@@ -410,6 +410,8 @@ function entryCmdToCompletion(item: MacroRaw, packageName?: string, postAction?:
         if (! (item.arg.snippet.match(/\$\{?2/) || (item.arg.snippet.match(/\$\{?0/) && item.arg.snippet.match(/\$\{?1/)))) {
             item.arg.snippet = item.arg.snippet.replace(/\$1|\$\{1\}/, '$${1:$${TM_SELECTED_TEXT}}').replace(/\$\{1:([^$}]+)\}/, '$${1:$${TM_SELECTED_TEXT:$1}}')
         }
+        // Remove the %keyvals component
+        item.arg.snippet = item.arg.snippet.replace(/%keyvals/g, '')
         suggestion.insertText = new vscode.SnippetString(item.arg.snippet)
     } else {
         suggestion.insertText = item.name

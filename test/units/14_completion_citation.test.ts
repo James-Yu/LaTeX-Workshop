@@ -2,9 +2,8 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
 import { lw } from '../../src/lw'
-import { get, mock, set } from './utils'
+import { assert, get, mock, set } from './utils'
 import { citation, provider } from '../../src/completion/completer/citation'
-import assert from 'assert'
 import type { CitationItem, FileCache } from '../../src/types'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {

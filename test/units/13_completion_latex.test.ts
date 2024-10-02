@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
 import { lw } from '../../src/lw'
-import { get, mock, type TextDocument } from './utils'
+import { assert, get, mock, type TextDocument } from './utils'
 import { provider as citationProvider } from '../../src/completion/completer/citation'
 import { provider as referenceProvider } from '../../src/completion/completer/reference'
 import { provider as environmentProvider } from '../../src/completion/completer/environment'
@@ -14,7 +14,6 @@ import { inputProvider, importProvider, subimportProvider } from '../../src/comp
 import { provider as glossaryProvider } from '../../src/completion/completer/glossary'
 import { provider as subsuperscriptProvider } from '../../src/completion/completer/subsuperscript'
 import { provider as closeenvProvider } from '../../src/completion/completer/closeenv'
-import assert from 'assert'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     let document: TextDocument
@@ -185,10 +184,18 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             }
         })
 
-        it('should remove all existing completed arguments before passing to argument provider', () => {
+        it('should invoke argument provider even when curly braces already exists in \\documentclass arguments', () => {
+            const line = '\\documentclass[aspectratio=169,t,fontset=none,xcolor={x11names},]{ctexbeamer}'
             argumentSpy.resetHistory()
-            provide('\\command[arg]{arg}{')
-            assert.strictEqual(argumentSpy.getCall(0)?.args[0]?.[0], '\\command{')
+            provide(line, 64)
+            assert.strictEqual(argumentSpy.callCount, 1, line)
+        })
+
+        it('should invoke argument provider even when curly braces already exists in \\usepackage arguments', () => {
+            const line = '\\usepackage[xcolor={x11names},]{listings}'
+            argumentSpy.resetHistory()
+            provide(line, 30)
+            assert.strictEqual(argumentSpy.callCount, 1, line)
         })
 
         it('should invoke package provider', () => {
