@@ -196,6 +196,7 @@ function addMasks() {
         const img = new Image()
         img.src = canvas.toDataURL() ?? ''
         img.style.left = canvas.offsetLeft + 'px'
+        img.style.top = canvas.offsetTop + 'px'
         img.style.width = canvas.clientWidth + 'px'
         img.style.height = canvas.clientHeight + 'px'
 
