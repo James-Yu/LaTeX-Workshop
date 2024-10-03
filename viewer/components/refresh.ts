@@ -178,27 +178,28 @@ function addMasks() {
 
     const visiblePages = PDFViewerApplication.pdfViewer._getVisiblePages()
     for (const visiblePage of visiblePages.views) {
-        const page = visiblePage.view.div
         const canvas = visiblePage.view.canvas
         if (!canvas) {
             continue
         }
 
+        const pageBound = visiblePage.view.div.getBoundingClientRect()
+        const canvasBound = canvas.getBoundingClientRect()
         const div = document.createElement('div')
         div.className = 'page-loading-mask'
         masks.push(div)
         div.style.display = 'none'
-        div.style.top = page.offsetTop + 'px'
-        div.style.left = page.offsetLeft + 'px'
-        div.style.width = Math.min(viewerDom.clientWidth, page.clientWidth) + 'px'
-        div.style.height = page.clientHeight + 'px'
+        div.style.left = pageBound.x + 'px'
+        div.style.top = pageBound.y + 'px'
+        div.style.width = Math.min(viewerDom.getBoundingClientRect().width, pageBound.width) + 'px'
+        div.style.height = pageBound.height + 'px'
 
         const img = new Image()
         img.src = canvas.toDataURL() ?? ''
-        img.style.left = canvas.offsetLeft + 'px'
-        img.style.top = canvas.offsetTop + 'px'
-        img.style.width = canvas.clientWidth + 'px'
-        img.style.height = canvas.clientHeight + 'px'
+        img.style.left = canvasBound.x - pageBound.x + 'px'
+        img.style.top = canvasBound.y - pageBound.y + 'px'
+        img.style.width = canvasBound.width + 'px'
+        img.style.height = canvasBound.height + 'px'
 
         div.appendChild(img)
         viewerContainer.appendChild(div)
