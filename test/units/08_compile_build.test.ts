@@ -152,7 +152,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await new Promise((resolve) =>
                 setTimeout(
                     resolve,
-                    (vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number) + 100
+                    (vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number) * 2 + 100
                 )
             )
 
