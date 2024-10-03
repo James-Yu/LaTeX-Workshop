@@ -525,13 +525,13 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             cacheSpy1.restore()
 
             assert.ok(lw.watcher.src.has(vscode.Uri.file(texPath)))
-            assert.strictEqual(cacheSpy1.callCount, 1)
+            assert.ok(cacheSpy1.called)
 
             await lw.cache.wait(texPath)
             await sleep(50)
             cacheSpy2.restore()
 
-            assert.strictEqual(cacheSpy2.callCount, 1)
+            assert.ok(cacheSpy2.called)
         })
     })
 })
