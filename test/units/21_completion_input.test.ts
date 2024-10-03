@@ -6,20 +6,16 @@ import { assert, get, mock, set } from './utils'
 import { inputProvider, importProvider, subimportProvider } from '../../src/completion/completer/input'
 import type { CompletionProvider } from '../../src/types'
 
-describe.only(path.basename(__filename).split('.')[0] + ':', () => {
+describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
     const texPath = get.path(fixture, 'main.tex')
-    let readStub: sinon.SinonStub
 
     before(() => {
         mock.init(lw, 'root', 'cache', 'parser', 'completion')
-        readStub = sinon.stub(lw.file, 'read')
     })
 
-    beforeEach(async () => {
+    beforeEach(() => {
         set.root(texPath)
-        readStub.resolves('\\usepackage{import}\n\\usepackage[savemem]{listings}')
-        await lw.cache.refreshCache(texPath)
     })
 
     after(() => {
@@ -79,7 +75,7 @@ describe.only(path.basename(__filename).split('.')[0] + ':', () => {
         it('should provide \\subimport subfile suggestions with extension-less inserted text', () => {
             const suggestions = getSuggestions(subimportProvider, ['\\subimport{sub}{', 'import', 'sub', ''])
 
-            assert.ok(!suggestions.some(s => typeof s.insertText !== 'string' && s.insertText?.value.includes('.tex')))
+            assert.ok(!suggestions.some(s => s.insertText instanceof vscode.SnippetString && s.insertText?.value.includes('.tex')))
         })
     })
 })

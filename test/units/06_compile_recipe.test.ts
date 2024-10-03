@@ -25,6 +25,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     afterEach(() => {
+        queue.clear()
         getOutDirStub.resetHistory()
         getIncludedTeXStub.resetHistory()
         mkdirStub.resetHistory()
@@ -186,7 +187,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.compile->recipe.createOutputSubFolders', () => {
-
         beforeEach(() => {
             getIncludedTeXStub.returns([ set.root('main.tex') ])
         })
@@ -226,6 +226,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await build(rootFile, 'latex', async () => {})
             stub.restore()
 
+            assert.strictEqual(mkdirStub.callCount, 1)
             assert.pathStrictEqual(mkdirStub.getCall(0).args[0] as string, expectedOutDir)
             assert.deepStrictEqual(mkdirStub.getCall(0).args[1], { recursive: true })
         })

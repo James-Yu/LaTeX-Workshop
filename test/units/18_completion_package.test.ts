@@ -73,5 +73,15 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(labels.includes('\\import{}{}'))
             assert.ok(labels.includes('\\lstinputlisting{}'))
         })
+
+        it('should provide base KOMAScript macros/envs in KOMAScript class', async () => {
+            readStub.resolves('\\documentclass{scrartcl}')
+            await lw.cache.refreshCache(texPath)
+            const labels = getMacros()
+            // in class-scrartcl.cwl
+            assert.ok(labels.includes('\\addpart{}'))
+            // in base
+            assert.ok(labels.includes('\\addchap{}'))
+        })
     })
 })

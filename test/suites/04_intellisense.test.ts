@@ -139,7 +139,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('\\includefrom{}{}'))
         let snippet = suggestions.items.filter(item => item.label === '\\includefrom{}{}')[0].insertText
         assert.ok(snippet)
-        assert.ok(typeof snippet !== 'string')
+        assert.ok(snippet instanceof vscode.SnippetString)
         assert.ok(snippet.value.includes('${1:'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', false)
@@ -151,7 +151,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('\\includefrom{}{}'))
         snippet = suggestions.items.filter(item => item.label === '\\includefrom{}{}')[0].insertText
         assert.ok(snippet)
-        assert.ok(typeof snippet !== 'string')
+        assert.ok(snippet instanceof vscode.SnippetString)
         assert.ok(!snippet.value.includes('${1:'))
     })
 

@@ -8,8 +8,8 @@ export function run(): Promise<void> {
     const mocha = new Mocha({
         ui: 'bdd',
         color: true,
-        timeout: process.env['LATEXWORKSHOP_CITEST'] ? 10000 : 8000,
-        retries: process.env['LATEXWORKSHOP_CITEST'] ? 8 : 2
+        timeout: process.env['LATEXWORKSHOP_CITEST'] ? 10000 : 5000,
+        retries: process.env['LATEXWORKSHOP_CITEST'] ? 2 : 0
     })
 
     mocha.suite.on('pre-require', (context) => {

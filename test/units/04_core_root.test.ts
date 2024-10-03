@@ -450,9 +450,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
             set.root(fixture, 'find_workspace', 'main.tex')
-            const stub = mock.activeTextEditor(texPath, '\\documentclass{article}\n')
             await lw.root.find()
-            stub.restore()
 
             assert.hasLog('Try finding root from current workspaceRootDir:')
             assert.strictEqual(lw.root.file.path, texPath)
