@@ -117,7 +117,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const suggestion = getSuggestions().find(s => s.label === '\\RenewAcroPreset{}{}')
             const snippet = suggestion?.insertText
             assert.ok(snippet instanceof vscode.SnippetString)
-            assert.ok(!snippet.value.includes('%keyvals'), snippet?.value)
+            assert.ok(!snippet.value.includes('%keyvals'), snippet.value)
         })
 
         it('should not provide argument hints if `intellisense.argumentHint.enabled` is false', async () => {
