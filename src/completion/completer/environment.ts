@@ -77,15 +77,15 @@ function getPackageEnvs(type?: EnvSnippetType): Map<string, CmdEnvSuggestion[]> 
 }
 
 function from(result: RegExpMatchArray, args: CompletionArgs) {
-    const suggestions = provide(args.langId, args.line, args.position)
+    const suggestions = provide(args.langId, args.line)
     // Macros starting with a non letter character are not filtered properly because of wordPattern definition.
     return filterNonLetterSuggestions(suggestions, result[1], args.position)
 }
 
-function provide(langId: string, line: string, position: vscode.Position): CompletionItem[] {
-    let snippetType: EnvSnippetType = EnvSnippetType.ForBegin
-    if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.selections.length > 1 || line.slice(position.character).match(/[a-zA-Z*]*}/)) {
-        snippetType = EnvSnippetType.AsName
+function provide(langId: string, line: string): CompletionItem[] {
+    let snippetType: EnvSnippetType = EnvSnippetType.AsName
+    if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.selections.length === 1 && line.indexOf('\\begin') > line.indexOf('\\end')) {
+        snippetType = EnvSnippetType.ForBegin
     }
 
     // Extract cached envs and add to default ones
