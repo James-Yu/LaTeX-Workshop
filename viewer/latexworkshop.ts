@@ -4,7 +4,7 @@ import * as utils from './components/utils.js'
 import type { PdfjsEventName, PDFViewerApplicationType, PDFViewerApplicationOptionsType } from './components/interface.js'
 import type { PdfViewerParams } from '../types/latex-workshop-protocol-types/index'
 import { initTrim, setTrimCSS } from './components/trimming.js'
-import { doneRefresh, patchViewerRefresh, restoreState } from './components/refresh.js'
+import { doneRefresh, restoreState } from './components/refresh.js'
 import { initUploadState, setParams, uploadState } from './components/state.js'
 import { initConnect, send } from './components/connection.js'
 import { registerSyncTeX } from './components/synctex.js'
@@ -68,7 +68,6 @@ async function initialization() {
 
     initConnect()
     patchViewerUI()
-    patchViewerRefresh()
     registerKeyBind()
 }
 

@@ -185,3 +185,27 @@ html[dir='rtl'] .findbar {
 .annotationLayer .popup {
     margin: 0 calc(5px * var(--scale-factor));
 }
+
+.page-loading-mask {
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-shadow: 0px 0px 0px 1px lightgrey;
+    outline: none;
+    position: absolute;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.page-loading-mask img {
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    position: relative;
+}
+
+.page-loading-mask.remove {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
