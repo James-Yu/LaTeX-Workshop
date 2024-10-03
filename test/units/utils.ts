@@ -266,7 +266,7 @@ export class TextDocument implements vscode.TextDocument {
     validatePosition(_: vscode.Position): vscode.Position { throw new Error('Not implemented.') }
 }
 
-class TextEditor implements vscode.TextEditor {
+export class TextEditor implements vscode.TextEditor {
     document: TextDocument
     selection: vscode.Selection = new vscode.Selection(new vscode.Position(0, 0), new vscode.Position(0, 0))
     selections: vscode.Selection[] = [ this.selection ]
@@ -281,6 +281,10 @@ class TextEditor implements vscode.TextEditor {
         }
     }
 
+    setSelections(selections: vscode.Selection[]) {
+        this.selection = selections[0]
+        this.selections = selections
+    }
     edit(_: (_: vscode.TextEditorEdit) => void): Thenable<boolean> { throw new Error('Not implemented.') }
     insertSnippet(_: vscode.SnippetString): Thenable<boolean> { throw new Error('Not implemented.') }
     setDecorations(_d: vscode.TextEditorDecorationType, _r: vscode.Range[] | vscode.DecorationOptions[]): void { throw new Error('Not implemented.') }

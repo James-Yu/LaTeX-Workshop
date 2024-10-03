@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
 import { lw } from '../../src/lw'
-import { assert, get, mock, set } from './utils'
+import { assert, get, mock, set, TextEditor } from './utils'
 import { provider } from '../../src/completion/completer/environment'
 import { provider as macro } from '../../src/completion/completer/macro'
 
@@ -45,7 +45,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should provide environments in the form of macros', () => {
-            const labels = macro
+            const labels = provider
                 .from(['', ''], {
                     uri: vscode.Uri.file(texPath),
                     langId: 'latex',
@@ -55,6 +55,76 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
                 .map((s) => s.label)
 
             assert.ok(labels.includes('document'))
+        })
+
+        it('should provide environment snippet when the cursor is `\\begin{|`', () => {
+            const stub = mock.activeTextEditor(texPath, '\\begin{')
+            const suggestion = provider
+                .from(['\\begin{', ''], {
+                    uri: vscode.Uri.file(texPath),
+                    langId: 'latex',
+                    line: '\\begin{',
+                    position: new vscode.Position(0, 7),
+                })
+                .find(s => s.label === 'itemize')
+            stub.restore()
+
+            assert.ok(suggestion)
+            assert.ok(suggestion.insertText instanceof vscode.SnippetString)
+            assert.ok(suggestion.insertText.value.startsWith('itemize}\n'), suggestion.insertText.value)
+        })
+
+        it('should provide environment name when the cursor is `\\begin{|}`', () => {
+            const stub = mock.activeTextEditor(texPath, '\\begin{}')
+            const suggestion = provider
+                .from(['\\begin{', ''], {
+                    uri: vscode.Uri.file(texPath),
+                    langId: 'latex',
+                    line: '\\begin{}',
+                    position: new vscode.Position(0, 7),
+                })
+                .find(s => s.label === 'itemize')
+            stub.restore()
+
+            assert.ok(suggestion)
+            assert.strictEqual(suggestion.insertText, undefined)
+        })
+
+        it('should provide environment name when the cursor is `\\begin{|}\\end{|}`', () => {
+            const editor = new TextEditor(texPath, '\\begin{}\\end{}', {})
+            editor.setSelections([
+                new vscode.Selection(new vscode.Position(0, 7), new vscode.Position(0, 7)),
+                new vscode.Selection(new vscode.Position(0, 13), new vscode.Position(0, 13))
+            ])
+            const stub = sinon.stub(vscode.window, 'activeTextEditor').value(editor)
+            const suggestion = provider
+                .from(['\\begin{', ''], {
+                    uri: vscode.Uri.file(texPath),
+                    langId: 'latex',
+                    line: '\\begin{',
+                    position: new vscode.Position(0, 7),
+                })
+                .find(s => s.label === 'itemize')
+            stub.restore()
+
+            assert.ok(suggestion)
+            assert.strictEqual(suggestion.insertText, undefined)
+        })
+
+        it('should provide environment name when the cursor is `\\end{|`', () => {
+            const stub = mock.activeTextEditor(texPath, '\\begin{itemize}\\end{')
+            const suggestion = provider
+                .from(['\\end{', ''], {
+                    uri: vscode.Uri.file(texPath),
+                    langId: 'latex',
+                    line: '\\begin{itemize}\\end{',
+                    position: new vscode.Position(0, 20),
+                })
+                .find(s => s.label === 'itemize')
+            stub.restore()
+
+            assert.ok(suggestion)
+            assert.strictEqual(suggestion.insertText, undefined)
         })
 
         it('should provide environments defined in packages', async () => {
