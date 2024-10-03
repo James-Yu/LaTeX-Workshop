@@ -74,6 +74,22 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(suggestion.insertText.value.startsWith('itemize}\n'), suggestion.insertText.value)
         })
 
+        it('should provide environment name when the cursor is `\\begin{|}`', () => {
+            const stub = mock.activeTextEditor(texPath, '\\begin{}')
+            const suggestion = provider
+                .from(['\\begin{', ''], {
+                    uri: vscode.Uri.file(texPath),
+                    langId: 'latex',
+                    line: '\\begin{}',
+                    position: new vscode.Position(0, 7),
+                })
+                .find(s => s.label === 'itemize')
+            stub.restore()
+
+            assert.ok(suggestion)
+            assert.strictEqual(suggestion.insertText, undefined)
+        })
+
         it('should provide environment name when the cursor is `\\begin{|}\\end{|}`', () => {
             const editor = new TextEditor(texPath, '\\begin{}\\end{}', {})
             editor.setSelections([
