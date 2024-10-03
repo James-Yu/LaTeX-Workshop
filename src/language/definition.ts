@@ -6,7 +6,7 @@ import { tokenizer } from '../utils/tokenizer'
 import * as utils from '../utils/utils'
 
 export class DefinitionProvider implements vscode.DefinitionProvider {
-    private onAFilename(document: vscode.TextDocument, position: vscode.Position, token: string): string|undefined {
+    private async onAFilename(document: vscode.TextDocument, position: vscode.Position, token: string): Promise<string | undefined> {
         const line = document.lineAt(position.line).text
         const escapedToken = utils.escapeRegExp(token)
         const regexInput = new RegExp(`\\\\(?:include|input|subfile)\\{${escapedToken}\\}`)
@@ -40,7 +40,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         return
     }
 
-    provideDefinition(document: vscode.TextDocument, position: vscode.Position): vscode.Location | undefined {
+    async provideDefinition(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.Location | undefined> {
         if (document.uri.scheme !== 'file') {
             return
         }
@@ -81,7 +81,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
             }
         }
 
-        const filename = this.onAFilename(document, position, token)
+        const filename = await this.onAFilename(document, position, token)
         if (filename) {
             return new vscode.Location( vscode.Uri.file(filename), new vscode.Position(0, 0) )
         }

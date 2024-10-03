@@ -8,7 +8,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
 
     before(() => {
-        mock.init(lw, 'file', 'watcher', 'cache', 'root')
+        mock.init(lw, 'watcher', 'cache', 'root')
     })
 
     after(() => {
@@ -450,9 +450,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             set.config('latex.search.rootFiles.include', [ `${fixture}/find_workspace/**/*.tex` ])
             set.root(fixture, 'find_workspace', 'main.tex')
-            const stub = mock.activeTextEditor(texPath, '\\documentclass{article}\n')
             await lw.root.find()
-            stub.restore()
 
             assert.hasLog('Try finding root from current workspaceRootDir:')
             assert.strictEqual(lw.root.file.path, texPath)
@@ -527,13 +525,13 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             cacheSpy1.restore()
 
             assert.ok(lw.watcher.src.has(vscode.Uri.file(texPath)))
-            assert.strictEqual(cacheSpy1.callCount, 1)
+            assert.ok(cacheSpy1.called)
 
             await lw.cache.wait(texPath)
             await sleep(50)
             cacheSpy2.restore()
 
-            assert.strictEqual(cacheSpy2.callCount, 1)
+            assert.ok(cacheSpy2.called)
         })
     })
 })

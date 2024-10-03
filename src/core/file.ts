@@ -419,7 +419,7 @@ function kpsewhich(target: string, isBib: boolean = false): string | undefined {
  * @returns {string[]} An array containing the resolved file path(s) for the
  * bibliography file, or an empty array if the file could not be resolved.
  */
-function getBibPath(bib: string, baseDir: string): string[] {
+async function getBibPath(bib: string, baseDir: string): Promise<string[]> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const bibDirs = configuration.get('latex.bibDirs') as string[]
     let searchDirs: string[] = [baseDir, ...bibDirs]
@@ -428,7 +428,7 @@ function getBibPath(bib: string, baseDir: string): string[] {
     if (lw.root.dir.path) {
         searchDirs = [lw.root.dir.path, ...searchDirs]
     }
-    const bibPath = bib.includes('*') ? utils.resolveFileGlob(searchDirs, bib, '.bib') : utils.resolveFile(searchDirs, bib, '.bib')
+    const bibPath = bib.includes('*') ? utils.resolveFileGlob(searchDirs, bib, '.bib') : await utils.resolveFile(searchDirs, bib, '.bib')
 
     if (bibPath === undefined || bibPath.length === 0) {
         if (configuration.get('kpsewhich.bibtex.enabled')) {

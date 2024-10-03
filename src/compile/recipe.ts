@@ -62,9 +62,9 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
 
     // Create output subdirectories for included files
     if (tools?.map(tool => tool.command).includes('latexmk') && rootFile === lw.root.subfiles.path && lw.root.file.path) {
-        createOutputSubFolders(lw.root.file.path)
+        await createOutputSubFolders(lw.root.file.path)
     } else {
-        createOutputSubFolders(rootFile)
+        await createOutputSubFolders(rootFile)
     }
 
     // Check for invalid toolchain
@@ -88,14 +88,14 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
  *
  * @param {string} rootFile - Path to the root LaTeX file.
  */
-function createOutputSubFolders(rootFile: string) {
+async function createOutputSubFolders(rootFile: string) {
     const rootDir = path.dirname(rootFile)
     let outDir = lw.file.getOutDir(rootFile)
     if (!path.isAbsolute(outDir)) {
         outDir = path.resolve(rootDir, outDir)
     }
     logger.log(`outDir: ${outDir} .`)
-    lw.cache.getIncludedTeX(rootFile).forEach(async file => {
+    for (const file of lw.cache.getIncludedTeX(rootFile)) {
         const relativePath = path.dirname(file.replace(rootDir, '.'))
         const fullOutDir = path.resolve(outDir, relativePath)
         // To avoid issues when fullOutDir is the root dir
@@ -120,7 +120,7 @@ function createOutputSubFolders(rootFile: string) {
                 throw(e)
             }
         }
-    })
+    }
 }
 
 

@@ -27,7 +27,7 @@ export class InputFileRegExp {
      * @param currentFile is the name of file in which the regex is executed
      * @param rootFile
      */
-    execInput(content: string, currentFile: string, rootFile: string): {path: string, match: MatchPath} | undefined {
+    async execInput(content: string, currentFile: string, rootFile: string): Promise<{path: string, match: MatchPath} | undefined> {
         const result = this.inputReg.exec(content)
         if (result) {
             const match = {
@@ -37,7 +37,7 @@ export class InputFileRegExp {
                 matchedString: result[0],
                 index: result.index
             }
-            const filePath = InputFileRegExp.parseInputFilePath(match, currentFile, rootFile)
+            const filePath = await InputFileRegExp.parseInputFilePath(match, currentFile, rootFile)
             return filePath ? {path: filePath, match} : undefined
         }
         return
@@ -50,7 +50,7 @@ export class InputFileRegExp {
      * @param currentFile is the name of file in which the regex is executed
      * @param rootFile
      */
-    execChild(content: string, currentFile: string, rootFile: string): {path: string, match: MatchPath} | undefined {
+    async execChild(content: string, currentFile: string, rootFile: string): Promise<{path: string, match: MatchPath} | undefined> {
         const result = this.childReg.exec(content)
         if (result) {
             const match = {
@@ -60,7 +60,7 @@ export class InputFileRegExp {
                 matchedString: result[0],
                 index: result.index
             }
-            const filePath = InputFileRegExp.parseInputFilePath(match, currentFile, rootFile)
+            const filePath = await InputFileRegExp.parseInputFilePath(match, currentFile, rootFile)
             return filePath ? {path: filePath, match} : undefined
         }
         return
@@ -74,9 +74,9 @@ export class InputFileRegExp {
      * @param currentFile is the name of file in which the regex is executed
      * @param rootFile
      */
-    exec(content: string, currentFile: string, rootFile: string): {path: string, match: MatchPath} | undefined {
-        return this.execInput(content, currentFile, rootFile)
-               || this.execChild(content, currentFile, rootFile)
+    async exec(content: string, currentFile: string, rootFile: string): Promise<{path: string, match: MatchPath} | undefined> {
+        return await this.execInput(content, currentFile, rootFile)
+               || await this.execChild(content, currentFile, rootFile)
     }
 
     /**
@@ -86,7 +86,7 @@ export class InputFileRegExp {
      * @param currentFile is the name of file in which the match has been obtained
      * @param rootFile
      */
-    static parseInputFilePath(match: MatchPath, currentFile: string, rootFile: string): string | undefined {
+    static async parseInputFilePath(match: MatchPath, currentFile: string, rootFile: string): Promise<string | undefined> {
 
         const rawTexDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
         const texDirs = rawTexDirs.map((texDir) => {return replaceArgumentPlaceholders('', '')(texDir)})

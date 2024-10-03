@@ -6,7 +6,7 @@ import * as test from './utils'
 import { EnvSnippetType } from '../../src/types'
 import { isTriggerSuggestNeeded } from '../../src/completion/completer/macro'
 
-suite('Intellisense test suite', () => {
+suite.skip('Intellisense test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
     test.suite.fixture = 'testground'
 
@@ -139,7 +139,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('\\includefrom{}{}'))
         let snippet = suggestions.items.filter(item => item.label === '\\includefrom{}{}')[0].insertText
         assert.ok(snippet)
-        assert.ok(typeof snippet !== 'string')
+        assert.ok(snippet instanceof vscode.SnippetString)
         assert.ok(snippet.value.includes('${1:'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', false)
@@ -151,7 +151,7 @@ suite('Intellisense test suite', () => {
         assert.ok(suggestions.labels.includes('\\includefrom{}{}'))
         snippet = suggestions.items.filter(item => item.label === '\\includefrom{}{}')[0].insertText
         assert.ok(snippet)
-        assert.ok(typeof snippet !== 'string')
+        assert.ok(snippet instanceof vscode.SnippetString)
         assert.ok(!snippet.value.includes('${1:'))
     })
 

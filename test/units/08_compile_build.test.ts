@@ -14,9 +14,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     let findStub: sinon.SinonStub
 
     before(() => {
-        mock.init(lw, 'file', 'root')
+        mock.init(lw)
         ;(lw.cache.getIncludedTeX as sinon.SinonStub).returns([get.path('main.tex')])
-        findStub = sinon.stub(lw.root, 'find')
+        findStub = lw.root.find as sinon.SinonStub
         ;(lw.extra.clean as sinon.SinonStub).resolves(Promise.resolve())
     })
 
@@ -529,6 +529,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should auto-build when watched bib file is changed', () => {
             set.config('latex.autoBuild.run', 'onFileChange')
+            // Prevent an uncaught promise rejection at citation.parseBibFile
+            const stub = sinon.stub(lw.external, 'stat').resolves({ type: vscode.FileType.File, ctime: 0, mtime: 0, size: Number.MAX_SAFE_INTEGER })
 
             log.start()
             for (const handler of lw.watcher.bib['onChangeHandlers']) {
@@ -538,6 +540,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             }
             log.stop()
 
+            stub.restore()
             assert.hasLog(`Auto build started detecting the change of a file: ${get.path('main.bib')}`)
         })
     })

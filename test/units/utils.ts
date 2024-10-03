@@ -147,7 +147,7 @@ export const mock = {
             : Object.getOwnPropertyNames(Object.getPrototypeOf(obj))
         items.forEach(item => {
             // Don't stub the unit to be tested or the logging/external functions.
-            if (ignore.includes(item) || ['log', 'external', 'constant'].includes(item)) {
+            if (ignore.includes(item) || ['file', 'log', 'external', 'constant'].includes(item)) {
                 return
             }
             if (typeof obj[item] === 'object') {
@@ -214,7 +214,7 @@ function cacheLog(context: Mocha.Context) {
     fs.writeFileSync(path.resolve(logFolder, `${name}.log`), cachedLog.CACHED_EXTLOG.join('\n'))
 }
 
-class TextDocument implements vscode.TextDocument {
+export class TextDocument implements vscode.TextDocument {
     content: string
     lines: string[]
     uri: vscode.Uri
@@ -237,8 +237,27 @@ class TextDocument implements vscode.TextDocument {
         this.isClosed = isClosed
         this.lineCount = this.lines.length
     }
+    setContent(content: string) {
+        this.content = content
+        this.lines = content.split('\n')
+        this.lineCount = this.lines.length
+    }
+    setLanguage(languageId: string) {
+        this.languageId = languageId
+    }
     save(): Thenable<boolean> { throw new Error('Not implemented.') }
-    lineAt(_: number | vscode.Position): vscode.TextLine { throw new Error('Not implemented.') }
+    lineAt(lineOrPos: number | vscode.Position): vscode.TextLine {
+        const lineNumber = lineOrPos instanceof vscode.Position ? lineOrPos.line : lineOrPos
+        const text = this.content.split('\n')[lineNumber]
+        return {
+            lineNumber,
+            text,
+            range: new vscode.Range(new vscode.Position(lineNumber, 0), new vscode.Position(lineNumber, text.length)),
+            rangeIncludingLineBreak: new vscode.Range(new vscode.Position(lineNumber, 0), new vscode.Position(lineNumber, text.length + 1)),
+            firstNonWhitespaceCharacterIndex: text.length - text.trimStart().length,
+            isEmptyOrWhitespace: text.trim() === ''
+        }
+    }
     offsetAt(_: vscode.Position): number { throw new Error('Not implemented.') }
     positionAt(_: number): vscode.Position { throw new Error('Not implemented.') }
     getText(_?: vscode.Range): string { return this.content }

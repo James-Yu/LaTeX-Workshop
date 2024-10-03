@@ -221,7 +221,7 @@ function findFromRoot(): string | undefined {
  *
  * @returns {string | undefined} The root file path, or undefined if not found.
  */
-function findFromActive(): string | undefined {
+async function findFromActive(): Promise<string | undefined> {
     if (!vscode.window.activeTextEditor) {
         return
     }
@@ -233,7 +233,7 @@ function findFromActive(): string | undefined {
     const content = utils.stripCommentsAndVerbatim(vscode.window.activeTextEditor.document.getText())
     const result = content.match(getIndicator())
     if (result) {
-        const rootFilePath = findSubfiles(content)
+        const rootFilePath = await findSubfiles(content)
         const activeFilePath = vscode.window.activeTextEditor.document.fileName
         if (rootFilePath) {
             root.subfiles.path = activeFilePath
@@ -257,13 +257,13 @@ function findFromActive(): string | undefined {
  * @returns {string | undefined} The root file path for subfiles, or undefined
  * if not found.
  */
-function findSubfiles(content: string): string | undefined {
+async function findSubfiles(content: string): Promise<string | undefined> {
     const regex = /(?:\\documentclass\[(.*)\]{subfiles})/s
     const result = content.match(regex)
     if (!result) {
         return
     }
-    const filePath = utils.resolveFile([path.dirname(vscode.window.activeTextEditor!.document.fileName)], result[1])
+    const filePath = await utils.resolveFile([path.dirname(vscode.window.activeTextEditor!.document.fileName)], result[1])
     if (filePath) {
         logger.log(`Found subfile root ${filePath} from active.`)
     }

@@ -10,7 +10,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
 
     before(() => {
-        mock.init(lw, 'file')
+        mock.init(lw)
     })
 
     after(() => {
@@ -217,72 +217,72 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.file.getBibPath', () => {
-        it('should correctly find BibTeX files', () => {
+        it('should correctly find BibTeX files', async () => {
             set.root(fixture, 'main.tex')
-            const result = lw.file.getBibPath('main.bib', lw.root.dir.path ?? '')
+            const result = await lw.file.getBibPath('main.bib', lw.root.dir.path ?? '')
             assert.listStrictEqual(result, [
                 path.resolve(lw.root.dir.path ?? '', 'main.bib')
             ])
         })
 
-        it('should correctly find BibTeX files in basedir', () => {
+        it('should correctly find BibTeX files in basedir', async () => {
             set.root(fixture, 'main.tex')
-            const result = lw.file.getBibPath('sub.bib', path.resolve(lw.root.dir.path ?? '', 'subdir'))
+            const result = await lw.file.getBibPath('sub.bib', path.resolve(lw.root.dir.path ?? '', 'subdir'))
             assert.listStrictEqual(result, [
                 path.resolve(lw.root.dir.path ?? '', 'subdir', 'sub.bib')
             ])
         })
 
-        it('should correctly find BibTeX files in `latex.bibDirs`', () => {
+        it('should correctly find BibTeX files in `latex.bibDirs`', async () => {
             set.root(fixture, 'main.tex')
             set.config('latex.bibDirs', [ path.resolve(lw.root.dir.path ?? '', 'subdir') ])
-            const result = lw.file.getBibPath('sub.bib', lw.root.dir.path ?? '')
+            const result = await lw.file.getBibPath('sub.bib', lw.root.dir.path ?? '')
             assert.listStrictEqual(result, [
                 path.resolve(lw.root.dir.path ?? '', 'subdir', 'sub.bib')
             ])
         })
 
-        it('should return an empty array when no BibTeX file is found', () => {
+        it('should return an empty array when no BibTeX file is found', async () => {
             set.root(fixture, 'main.tex')
             set.config('latex.bibDirs', [ path.resolve(lw.root.dir.path ?? '', 'subdir') ])
-            const result = lw.file.getBibPath('nonexistent.bib', path.resolve(lw.root.dir.path ?? '', 'output'))
+            const result = await lw.file.getBibPath('nonexistent.bib', path.resolve(lw.root.dir.path ?? '', 'output'))
             assert.listStrictEqual(result, [ ])
         })
 
-        it('should correctly handle wildcard in BibTeX file name', () => {
+        it('should correctly handle wildcard in BibTeX file name', async () => {
             set.root(fixture, 'main.tex')
-            const result = lw.file.getBibPath('*.bib', lw.root.dir.path ?? '')
+            const result = await lw.file.getBibPath('*.bib', lw.root.dir.path ?? '')
             assert.listStrictEqual(result, [
                 path.resolve(lw.root.dir.path ?? '', 'main.bib'),
                 path.resolve(lw.root.dir.path ?? '', 'another.bib')
             ])
         })
 
-        it('should handle case when kpsewhich is disabled and BibTeX file not found', () => {
+        it('should handle case when kpsewhich is disabled and BibTeX file not found', async () => {
             const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: get.path(fixture, 'nonexistent.bib'), output: [''], stderr: '', signal: 'SIGTERM' })
             set.config('kpsewhich.bibtex.enabled', false)
             set.root(fixture, 'main.tex')
-            const result = lw.file.getBibPath('nonexistent.bib', lw.root.dir.path ?? '')
+            const result = await lw.file.getBibPath('nonexistent.bib', lw.root.dir.path ?? '')
             stub.restore()
             assert.listStrictEqual(result, [ ])
         })
 
-        it('should handle case when kpsewhich is enabled and BibTeX file not found', () => {
+        it('should handle case when kpsewhich is enabled and BibTeX file not found', async () => {
             const nonPath = get.path(fixture, 'nonexistent.bib')
 
             const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: get.path(fixture, 'nonexistent.bib'), output: [''], stderr: '', signal: 'SIGTERM' })
             set.config('kpsewhich.bibtex.enabled', true)
             set.root(fixture, 'main.tex')
-            const result = lw.file.getBibPath('nonexistent.bib', lw.root.dir.path ?? '')
+            const result = await lw.file.getBibPath('nonexistent.bib', lw.root.dir.path ?? '')
             stub.restore()
             assert.listStrictEqual(result, [ nonPath ])
         })
 
-        it('should return an empty array when kpsewhich is enabled but file is not found', () => {
+        it('should return an empty array when kpsewhich is enabled but file is not found', async () => {
             const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: '', output: [''], stderr: '', signal: 'SIGTERM' })
             set.config('kpsewhich.bibtex.enabled', true)
             set.root(fixture, 'main.tex')
-            const result = lw.file.getBibPath('another-nonexistent.bib', lw.root.dir.path ?? '')
+            const result = await lw.file.getBibPath('another-nonexistent.bib', lw.root.dir.path ?? '')
             stub.restore()
             assert.listStrictEqual(result, [ ])
         })

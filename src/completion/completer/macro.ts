@@ -410,6 +410,8 @@ function entryCmdToCompletion(item: MacroRaw, packageName?: string, postAction?:
         if (! (item.arg.snippet.match(/\$\{?2/) || (item.arg.snippet.match(/\$\{?0/) && item.arg.snippet.match(/\$\{?1/)))) {
             item.arg.snippet = item.arg.snippet.replace(/\$1|\$\{1\}/, '$${1:$${TM_SELECTED_TEXT}}').replace(/\$\{1:([^$}]+)\}/, '$${1:$${TM_SELECTED_TEXT:$1}}')
         }
+        // Remove the %keyvals component
+        item.arg.snippet = item.arg.snippet.replace(/%keyvals/g, '')
         suggestion.insertText = new vscode.SnippetString(item.arg.snippet)
     } else {
         suggestion.insertText = item.name
@@ -452,26 +454,26 @@ function provideCmdInPkg(packageName: string, options: string[], suggestions: Cm
     lw.completion.usepackage.load(packageName)
 
     // No package macro defined
-    const pkgCmds = data.packageCmds.get(packageName)
-    if (!pkgCmds || pkgCmds.length === 0) {
+    const macros = data.packageCmds.get(packageName)
+    if (!macros || macros.length === 0) {
         return
     }
 
     const unusual = configuration.get('intellisense.package.unusual') as boolean
     // Insert macros
-    pkgCmds.forEach(cmd => {
-        if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
+    macros.forEach(mac => {
+        if (!useOptionalArgsEntries && mac.hasOptionalArgs()) {
             return
         }
-        if (!defined.has(cmd.signatureAsString())) {
-            if (cmd.ifCond && !options.includes(cmd.ifCond)) {
+        if (!defined.has(mac.signatureAsString())) {
+            if (mac.ifCond && !options.includes(mac.ifCond)) {
                 return
             }
-            if (cmd.unusual && !unusual) {
+            if (mac.unusual && !unusual) {
                 return
             }
-            suggestions.push(cmd)
-            defined.add(cmd.signatureAsString())
+            suggestions.push(mac)
+            defined.add(mac.signatureAsString())
         }
     })
 }
