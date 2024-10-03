@@ -11031,7 +11031,6 @@ class PDFViewer {
     }
   }
   setDocument(pdfDocument) {
-    const oldScale = lwRecordRender(this);
     if (this.pdfDocument) {
       this.eventBus.dispatch("pagesdestroy", {
         source: this
@@ -11098,7 +11097,7 @@ class PDFViewer {
     eventBus._on("pagerendered", onAfterDraw, {
       signal
     });
-    Promise.all([firstPagePromise, permissionsPromise]).then(async ([firstPdfPage, permissions]) => {
+    Promise.all([firstPagePromise, permissionsPromise]).then(([firstPdfPage, permissions]) => {
       if (pdfDocument !== this.pdfDocument) {
         return;
       }
@@ -11135,7 +11134,7 @@ class PDFViewer {
         }
       }
       const viewerElement = this._scrollMode === ScrollMode.PAGE ? null : viewer;
-      this._currentScale = oldScale; const scale = oldScale ? oldScale : this.currentScale;
+      const scale = this.currentScale;
       const viewport = firstPdfPage.getViewport({
         scale: scale * PixelsPerInch.PDF_TO_CSS_UNITS
       });
@@ -11165,7 +11164,6 @@ class PDFViewer {
         this._pages.push(pageView);
       }
       this._pages[0]?.setPdfPage(firstPdfPage);
-      await lwRenderSync(this, pdfDocument, pagesCount);
       if (this._scrollMode === ScrollMode.PAGE) {
         this.#ensurePageViewVisible();
       } else if (this._spreadMode !== SpreadMode.NONE) {
@@ -11258,7 +11256,7 @@ class PDFViewer {
     this._pages = [];
     this._currentPageNumber = 1;
     this._currentScale = UNKNOWN_SCALE;
-    // this._currentScaleValue = null;
+    this._currentScaleValue = null;
     this._pageLabels = null;
     this.#buffer = new PDFPageViewBuffer(DEFAULT_CACHE_SIZE);
     this._location = null;
@@ -11277,7 +11275,7 @@ class PDFViewer {
     };
     this.#eventAbortController?.abort();
     this.#eventAbortController = null;
-    // this.viewer.textContent = "";
+    this.viewer.textContent = "";
     this._updateScrollMode();
     this.viewer.removeAttribute("lang");
     this.#hiddenCopyElement?.remove();

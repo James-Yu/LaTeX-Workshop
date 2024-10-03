@@ -1,5 +1,4 @@
 import os
-import re
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -22,9 +21,6 @@ with open(args.web + '/viewer.mjs', 'rt', encoding='utf-8') as fin:
     with open(args.viewer + '/viewer.mjs', 'wt', encoding='utf-8') as fout:
         currentClass = ''
         for line in fin:
-            r = re.match(r'class (.*?) \{', line)
-            if r:
-                currentClass = r[1]
             line = line.replace('''const MATCH_SCROLL_OFFSET_TOP = -50;''', '''const MATCH_SCROLL_OFFSET_TOP = -100;''') \
                 .replace('''this.switchView(view, true);''', '''this.switchView(view, false);''') \
                 .replace('''console.warn(`[fluent] Missing translations in ${locale}: ${ids}`);''', '''// console.warn(`[fluent] Missing translations in ${locale}: ${ids}`);''') \
@@ -46,15 +42,6 @@ with open(args.web + '/viewer.mjs', 'rt', encoding='utf-8') as fin:
                 .replace('''(this.container.clientHeight - vPadding) / currentPage.height * currentPage.scale;''', '''(this.container.clientHeight - vPadding) / Math.max(...this._pages.map(p => p.height)) * currentPage.scale * (1 / (1 - (viewerTrim ?? 0) / 100));''') \
                 .replace('''setRotation(this.initialRotation);''', '''// setRotation(this.initialRotation);''') \
                 .replace('''this.pdfLinkService.setHash(this.initialBookmark);''', '''// this.pdfLinkService.setHash(this.initialBookmark);''') \
-                .replace('''.then(([firstPdfPage, permissions])''', '''.then(async ([firstPdfPage, permissions])''') \
-                .replace('''const scale = this.currentScale;''', '''this._currentScale = oldScale; const scale = oldScale ? oldScale : this.currentScale;''') \
-                .replace('''this._pages[0]?.setPdfPage(firstPdfPage);''', '''this._pages[0]?.setPdfPage(firstPdfPage);\n      await lwRenderSync(this, pdfDocument, pagesCount);''') \
-                .replace('''this._currentScaleValue = null;''', '''// this._currentScaleValue = null;''') \
-                .replace('''this.viewer.textContent = "";''', '''// this.viewer.textContent = "";''')
-        
-            if currentClass == 'PDFViewer':
-                line = line.replace('''setDocument(pdfDocument) {''', '''setDocument(pdfDocument) {\n    const oldScale = lwRecordRender(this);''')
-                
                 # .replace('''parent.document.dispatchEvent(event);''', '''parent.document.dispatchEvent(event); \n    document.dispatchEvent(event);''')
             fout.write(line)
 
