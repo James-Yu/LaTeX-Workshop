@@ -103,7 +103,7 @@ async function parseSyncTexForPdf(pdfUri: vscode.Uri): Promise<PdfSyncObject | u
         try {
             logger.log(`Parsing .synctex ${synctexUri.toString(true)} .`)
             const s = await lw.file.read(synctexUri)
-            return parseSyncTex(s as string)
+            return parseSyncTex(s ?? '')
         } catch (e: unknown) {
             logger.logError(`Failed parsing .synctex ${synctexUri.toString(true)}:`, e)
         }
