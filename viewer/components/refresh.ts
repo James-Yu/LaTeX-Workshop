@@ -183,15 +183,17 @@ function addMasks() {
             continue
         }
 
+        const viewerBound = viewerDom.getBoundingClientRect()
         const pageBound = visiblePage.view.div.getBoundingClientRect()
         const canvasBound = canvas.getBoundingClientRect()
+
         const div = document.createElement('div')
         div.className = 'page-loading-mask'
         masks.push(div)
         div.style.display = 'none'
-        div.style.left = pageBound.x + 'px'
-        div.style.top = pageBound.y + 'px'
-        div.style.width = Math.min(viewerDom.getBoundingClientRect().width, pageBound.width) + 'px'
+        div.style.left = pageBound.x - viewerBound.x + 'px'
+        div.style.top = pageBound.y - viewerBound.y + 'px'
+        div.style.width = pageBound.width + 'px'
         div.style.height = pageBound.height + 'px'
 
         const img = new Image()
