@@ -11452,7 +11452,7 @@ class PDFViewer {
           hPadding *= 2;
         }
       } else if (this.removePageBorders) {
-        hPadding = vPadding = 0;
+        if (this._scrollMode === ScrollMode.HORIZONTAL || this._spreadMode === SpreadMode.NONE) { hPadding = vPadding = 0; } else { hPadding = 10; vPadding = 0; }
       } else if (this._scrollMode === ScrollMode.HORIZONTAL) {
         [hPadding, vPadding] = [vPadding, hPadding];
       }
@@ -11568,7 +11568,7 @@ class PDFViewer {
         let hPadding = SCROLLBAR_PADDING,
           vPadding = VERTICAL_PADDING;
         if (this.removePageBorders) {
-          hPadding = vPadding = 0;
+          if (this._scrollMode === ScrollMode.HORIZONTAL || this._spreadMode === SpreadMode.NONE) { hPadding = vPadding = 0; } else { hPadding = 10; vPadding = 0; }
         }
         widthScale = (this.container.clientWidth - hPadding) / width / PixelsPerInch.PDF_TO_CSS_UNITS;
         heightScale = (this.container.clientHeight - vPadding) / height / PixelsPerInch.PDF_TO_CSS_UNITS;

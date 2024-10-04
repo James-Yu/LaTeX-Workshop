@@ -42,6 +42,7 @@ with open(args.web + '/viewer.mjs', 'rt', encoding='utf-8') as fin:
                 .replace('''(this.container.clientHeight - vPadding) / currentPage.height * currentPage.scale;''', '''(this.container.clientHeight - vPadding) / Math.max(...this._pages.map(p => p.height)) * currentPage.scale * (1 / (1 - (viewerTrim ?? 0) / 100));''') \
                 .replace('''setRotation(this.initialRotation);''', '''// setRotation(this.initialRotation);''') \
                 .replace('''this.pdfLinkService.setHash(this.initialBookmark);''', '''// this.pdfLinkService.setHash(this.initialBookmark);''') \
+                .replace('''hPadding = vPadding = 0;''', '''if (this._scrollMode === ScrollMode.HORIZONTAL || this._spreadMode === SpreadMode.NONE) { hPadding = vPadding = 0; } else { hPadding = 10; vPadding = 0; }''') \
                 # .replace('''parent.document.dispatchEvent(event);''', '''parent.document.dispatchEvent(event); \n    document.dispatchEvent(event);''')
             fout.write(line)
 

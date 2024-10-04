@@ -46,6 +46,8 @@ html[dir='rtl'] .findbar {
 
 #synctex-indicator {
     position: absolute;
+    top: 0;
+    left: 0;
     z-index: 100000;
     border: 0.2em solid red;
     border-radius: 50%;
@@ -103,10 +105,38 @@ html[dir='rtl'] .findbar {
     mask-image:var(--secondaryToolbarButton-spreadNone-icon);
 }
 
+.spread {
+    margin-inline: 0 !important;
+}
+
 .pdfViewer.removePageBorders .page {
     border: none;
     overflow: hidden;
     box-shadow: 0px 0px 0px 1px lightgrey;
+}
+
+.pdfViewer.removePageBorders .spread .page:first-of-type {
+    margin-inline-start: 0px;
+    margin-inline-end: 5px;
+}
+
+.pdfViewer.removePageBorders .spread .page:last-of-type {
+    margin-inline-start: 5px;
+    margin-inline-end: 0px;
+}
+
+.pdfViewer.removePageBorders.scrollHorizontal .page {
+    margin-bottom: 0px;
+}
+
+.pdfViewer.removePageBorders.scrollHorizontal .page:first-of-type {
+    margin-inline-start: 0px;
+    margin-inline-end: 5px;
+}
+
+.pdfViewer.removePageBorders.scrollHorizontal .page:last-of-type {
+    margin-inline-start: 5px;
+    margin-inline-end: 0px;
 }
 
 .notransition {
