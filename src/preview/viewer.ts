@@ -363,7 +363,7 @@ async function locate(pdfUri: vscode.Uri, record: SyncTeXRecordToPDF | SyncTeXRe
         clientSet = manager.getClients(pdfUri)
     }
     if (clientSet === undefined || clientSet.size === 0) {
-        logger.log(`PDF cannot be opened: ${pdfUri} .`)
+        logger.log(`PDF cannot be opened: ${pdfUri.toString(true)} .`)
         return
     }
     const needDelay = showInvisibleWebviewPanel(pdfUri)
