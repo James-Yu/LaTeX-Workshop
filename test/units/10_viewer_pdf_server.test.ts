@@ -89,7 +89,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should create a custom editor', async () => {
             const promise = waitMessage('loaded')
-            await view(pdfPath)
+            await view(pdfUri)
             await promise
 
             assert.hasLog(`Open PDF tab for ${pdfUri.toString(true)}`)
@@ -97,7 +97,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should register the created panel in the viewer manager', async () => {
             const promise = waitMessage('loaded')
-            await view(pdfPath)
+            await view(pdfUri)
             await promise
 
             assert.strictEqual(manager.getPanels(pdfUri)?.size, 1)
@@ -108,7 +108,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.config('view.pdf.tab.editorGroup', 'left')
             mock.activeTextEditor('main.tex', '', { viewColumn: vscode.ViewColumn.Two })
 
-            await view(pdfPath)
+            await view(pdfUri)
 
             assert.strictEqual(execSpy.callCount, 2)
             assert.strictEqual(execSpy.firstCall.args[0], 'vscode.openWith')
@@ -120,7 +120,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.config('view.pdf.tab.editorGroup', 'left')
             mock.activeTextEditor('main.tex', '', { viewColumn: vscode.ViewColumn.One })
 
-            await view(pdfPath)
+            await view(pdfUri)
 
             assert.strictEqual(execSpy.callCount, 3)
             assert.strictEqual(execSpy.firstCall.args[0], 'vscode.openWith')
@@ -133,7 +133,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.config('view.pdf.tab.editorGroup', 'right')
             mock.activeTextEditor('main.tex', '', { viewColumn: vscode.ViewColumn.One })
 
-            await view(pdfPath)
+            await view(pdfUri)
 
             assert.strictEqual(execSpy.callCount, 2)
             assert.strictEqual(execSpy.firstCall.args[0], 'vscode.openWith')
@@ -145,7 +145,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.config('view.pdf.tab.editorGroup', 'above')
             mock.activeTextEditor('main.tex', '', { viewColumn: vscode.ViewColumn.One })
 
-            await view(pdfPath)
+            await view(pdfUri)
 
             assert.strictEqual(execSpy.callCount, 3)
             assert.strictEqual(execSpy.firstCall.args[0], 'vscode.openWith')
@@ -154,7 +154,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             execSpy.resetHistory()
             set.config('view.pdf.tab.editorGroup', 'below')
-            await view(pdfPath)
+            await view(pdfUri)
             assert.strictEqual(execSpy.callCount, 3)
             assert.strictEqual(execSpy.firstCall.args[0], 'vscode.openWith')
             assert.strictEqual(execSpy.secondCall.args[0], 'workbench.action.moveEditorToBelowGroup')
@@ -179,13 +179,13 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should open the viewer link with vscode.env.openExternal', async () => {
-            await view(pdfPath)
+            await view(pdfUri)
 
             assert.strictEqual(openStub.callCount, 1)
         })
 
         it('should register the created client sets in the viewer manager', async () => {
-            await view(pdfPath)
+            await view(pdfUri)
 
             assert.notStrictEqual(manager.getPanels(pdfUri), undefined)
             assert.notStrictEqual(manager.getClients(pdfUri), undefined)
@@ -194,7 +194,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should watch the opened pdf', async () => {
             const stub = lw.watcher.pdf['add'] as sinon.SinonStub
             stub.resetHistory()
-            await view(pdfPath)
+            await view(pdfUri)
 
             assert.strictEqual(stub.callCount, 1)
         })
@@ -203,7 +203,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             openStub.rejects(new Error('Failed to open'))
             const stub = sinon.stub(vscode.window, 'showInputBox').resolves()
 
-            await view(pdfPath)
+            await view(pdfUri)
             stub.restore()
 
             assert.strictEqual(stub.callCount, 1)
@@ -296,7 +296,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should create a webview panel', async () => {
             set.config('view.pdf.viewer', 'legacy')
             const promise = waitMessage('loaded')
-            await view(pdfPath, 'tab')
+            await view(pdfUri, 'tab')
             await promise
 
             assert.hasLog(`Open PDF tab for ${pdfUri.toString(true)}`)
@@ -579,16 +579,16 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should perform SyncTeX', async () => {
             const promise = waitMsg(JSON.stringify({ type: 'synctex', data: [] }).repeat(2))
-            await locate(pdfPath, [])
+            await locate(pdfUri, [])
             await promise
         })
 
         it('should try opening the PDF if not already viewing', async () => {
-            const altPath = pdfPath.replaceAll('main.pdf', 'alt.pdf')
-            await locate(altPath, [])
+            const altUri = pdfUri.with({ path: pdfUri.path.replaceAll('main.pdf', 'alt.pdf') })
+            await locate(altUri, [])
 
-            assert.hasLog(`PDF is not opened: ${altPath} , try opening.`)
-            assert.hasLog(`PDF cannot be opened: ${altPath} .`)
+            assert.hasLog(`PDF is not opened: ${altUri.toString(true)} , try opening.`)
+            assert.hasLog(`PDF cannot be opened: ${altUri.toString(true)} .`)
         })
     })
 })
