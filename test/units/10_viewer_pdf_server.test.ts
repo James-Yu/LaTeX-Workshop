@@ -584,11 +584,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should try opening the PDF if not already viewing', async () => {
-            const altPath = pdfPath.replaceAll('main.pdf', 'alt.pdf')
-            await locate(vscode.Uri.parse(altPath), [])
+            const altUri = pdfUri.with({ path: pdfUri.path.replaceAll('main.pdf', 'alt.pdf') })
+            await locate(altUri, [])
 
-            assert.hasLog(`PDF is not opened: ${altPath} , try opening.`)
-            assert.hasLog(`PDF cannot be opened: ${altPath} .`)
+            assert.hasLog(`PDF is not opened: ${altUri.toString(true)} , try opening.`)
+            assert.hasLog(`PDF cannot be opened: ${altUri.toString(true)} .`)
         })
     })
 })

@@ -70,6 +70,15 @@ function refresh(pdfUri?: vscode.Uri): void {
     })
 }
 
+async function getUrl(pdfUri: vscode.Uri): Promise<string | undefined> {
+    if (!await lw.file.exists(pdfUri)) {
+        logger.log(`Cannot find PDF file ${pdfUri}`)
+        logger.refreshStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfUri}`, 'warning')
+        return
+    }
+    return (await lw.server.getUrl(pdfUri)).url
+}
+
 async function view(pdfUri: vscode.Uri, mode?: 'tab' | 'browser' | 'external'): Promise<void> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
@@ -96,16 +105,20 @@ async function view(pdfUri: vscode.Uri, mode?: 'tab' | 'browser' | 'external'): 
  * @param pdfUri The path of a PDF file.
  */
 async function viewInBrowser(pdfUri: vscode.Uri): Promise<void> {
+    const url = await getUrl(pdfUri)
+    if (!url) {
+        return
+    }
     manager.create(pdfUri)
     lw.watcher.pdf.add(pdfUri)
     try {
-        logger.log(`Serving PDF file at ${pdfUri.toString(true)}`)
-        await vscode.env.openExternal(pdfUri)
+        logger.log(`Serving PDF file at ${url}`)
+        await vscode.env.openExternal(vscode.Uri.parse(url, true))
         logger.log(`Open PDF viewer for ${pdfUri.toString(true)}`)
     } catch (e: unknown) {
         void vscode.window.showInputBox({
             prompt: 'Unable to open browser. Please copy and visit this link.',
-            value: pdfUri.toString()
+            value: url
         })
         logger.logError(`Failed opening PDF viewer for ${pdfUri.toString(true)}`, e)
     }

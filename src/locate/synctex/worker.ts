@@ -95,11 +95,11 @@ function toRect(blocks: any): Rectangle {
 async function parseSyncTexForPdf(pdfUri: vscode.Uri): Promise<PdfSyncObject | undefined> {
     const filename = path.basename(pdfUri.fsPath, path.extname(pdfUri.fsPath))
     const dir = path.dirname(pdfUri.fsPath)
-    const synctexUri = pdfUri.with({ path: path.resolve(dir, filename + '.synctex') });
-    const synctexUriGz = synctexUri.with({ path: synctexUri.path + '.gz' });
+    const synctexUri = pdfUri.with({ path: path.resolve(dir, filename + '.synctex') })
+    const synctexUriGz = synctexUri.with({ path: synctexUri.path + '.gz' })
 
     if (await lw.file.exists(synctexUri)) {
-        await vscode.workspace.fs.stat(synctexUri);
+        await vscode.workspace.fs.stat(synctexUri)
         try {
             logger.log(`Parsing .synctex ${synctexUri.toString(true)} .`)
             const s = await lw.file.read(synctexUri)
