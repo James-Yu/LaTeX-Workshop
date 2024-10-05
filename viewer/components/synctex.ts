@@ -36,7 +36,10 @@ function callSynctex(e: MouseEvent, page: number, pageDom: HTMLElement, viewerCo
     const canvas = document.getElementsByClassName('canvasWrapper')[0] as HTMLElement
     const left = e.pageX - pageDom.offsetLeft + viewerContainer.scrollLeft - canvas.offsetLeft
     const top = e.pageY - pageDom.offsetTop + viewerContainer.scrollTop - canvas.offsetTop
-    const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvasDom.offsetHeight - top)
+    const pos = PDFViewerApplication.pdfViewer._pages[page-1]?.getPagePoint(left, canvasDom.offsetHeight - top)
+    if (pos === undefined) {
+        return
+    }
     void send({ type: 'reverse_synctex', pdfFileUri: utils.parseURL().pdfFileUri, pos, page, textBeforeSelection, textAfterSelection })
 }
 

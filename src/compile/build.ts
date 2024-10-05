@@ -164,7 +164,7 @@ async function buildLoop() {
         }
     }
     isBuilding = false
-    setTimeout(() => lw.compile.compiledPDFWriting--, vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number)
+    setTimeout(() => lw.compile.compiledPDFWriting--, vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number * 2)
 }
 
 /**
