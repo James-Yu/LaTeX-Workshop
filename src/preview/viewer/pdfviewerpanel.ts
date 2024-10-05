@@ -120,7 +120,7 @@ async function getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
     logger.log(`Internal PDF viewer at ${iframeSrcUrl} .`)
     const rebroadcast: boolean = getKeyboardEventConfig()
     return `
-    <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; frame-src ${iframeSrcOrigin}; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>
+    <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>
     <body><iframe id="preview-panel" class="preview-panel" src="${iframeSrcUrl}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
     </iframe>
     <script>
