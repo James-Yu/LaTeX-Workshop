@@ -10,6 +10,7 @@ export const language = {
     projectSymbol: new ProjectSymbolProvider(),
     definition: new DefinitionProvider(),
     folding: new FoldingProvider(),
+    doctexFolding: new FoldingProvider(true),
     weaveFolding: new WeaveFoldingProvider(),
     selectionRage: new SelectionRangeProvider(),
     getLocaleString
