@@ -12,10 +12,7 @@ export const texfmt: LaTeXFormatter = {
 async function formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit | undefined> {
     const config = vscode.workspace.getConfiguration('latex-workshop')
     const program = config.get('formatting.tex-fmt.path') as string
-    const args = ['--stdin']
-    if (config.get('formatting.tex-fmt.doNotWrap') as boolean) {
-        args.push('--keep')
-    }
+    const args = [...(config.get('formatting.tex-fmt.args') as string[]), '--stdin']
     const process = lw.external.spawn(program, args, { cwd: path.dirname(document.uri.fsPath) })
 
     let stdout: string = ''
