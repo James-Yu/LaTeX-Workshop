@@ -2184,7 +2184,18 @@
           "scope": "window",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Do not wrap the output of `tex-fmt`. This setting adds `--keep` flag to `tex-fmt`. Turning this off may wrap magic comments, and/or has unintended side effects."
+          "markdownDeprecationMessage": "This configuration has been extended to `#latex-workshop.formatting.tex-fmt.args#` and has no effect."
+        },
+        "latex-workshop.formatting.tex-fmt.args": {
+          "scope": "resource",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "--keep"
+          ],
+          "markdownDescription": "Define the command line arguments for tex-fmt. Refer to https://github.com/WGUNDERWOOD/tex-fmt?tab=readme-ov-file#usage for more information about the arguments. Note that `--stdin` is added by the extension, so no need to add it again. For key-value arguments, separate the key and value in two strings, e.g., [\"--tab\", \"4\"]."
         },
         "latex-workshop.docker.enabled": {
           "scope": "window",
