@@ -129,10 +129,11 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
             const lastItem = opStack[opStack.length - 1]
 
             if ((match[4] || match[6] || match[8] || match[10] || match[12]) && lastItem && lastItem.keyword === item.keyword) { // match 'end' with its 'begin'
+                const lastLineTune: number = match[10] || match[12] ? 0 : -1
                 opStack.pop()
                 ranges.push(new vscode.FoldingRange(
                     document.positionAt(lastItem.index).line,
-                    document.positionAt(item.index).line - 1
+                    document.positionAt(item.index).line + lastLineTune
                 ))
             } else {
                 opStack.push(item)
