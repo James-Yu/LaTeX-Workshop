@@ -2,10 +2,11 @@ import * as vscode from 'vscode'
 
 export class FoldingProvider implements vscode.FoldingRangeProvider {
     private readonly sectionRegex: RegExp[] = []
+    protected readonly envRegex = /\\(begin){(.*?)}|\\(begingroup)[%\s\\]|\\(end){(.*?)}|\\(endgroup)[%\s\\]|^%\s*#?([rR]egion)|^%\s*#?([eE]ndregion)|^%\s*<\*([|_()\-a-zA-Z0-9]+)>|^%\s*<\/([|_()\-a-zA-Z0-9]+)>|^%\s*\\iffalse\s*(meta-comment)|^%\s*\\(fi)/gm
 
     constructor() {
         const sections = vscode.workspace.getConfiguration('latex-workshop').get('view.outline.sections') as string[]
-        this.sectionRegex = sections.map(section => RegExp(`\\\\(?:${section})(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}`, 'm'))
+        this.sectionRegex = this.buildSectionRegex(sections)
     }
 
     public provideFoldingRanges(
@@ -14,6 +15,10 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
         _token: vscode.CancellationToken
     ): vscode.ProviderResult<vscode.FoldingRange[]> {
         return [...this.getSectionFoldingRanges(document), ...this.getEnvironmentFoldingRanges(document)]
+    }
+
+    protected buildSectionRegex(sections: string[]) {
+        return sections.map(section => RegExp(`\\\\(?:${section})(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}`, 'm'))
     }
 
     private getSectionFoldingRanges(document: vscode.TextDocument) {
@@ -82,10 +87,9 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
         const ranges: vscode.FoldingRange[] = []
         const opStack: { keyword: string, index: number }[] = []
         const text: string = document.getText()
-        const envRegex = /\\(begin){(.*?)}|\\(begingroup)[%\s\\]|\\(end){(.*?)}|\\(endgroup)[%\s\\]|^%\s*#?([rR]egion)|^%\s*#?([eE]ndregion)/gm //to match one 'begin' OR 'end'
 
         while (true) {
-            const match = envRegex.exec(text)
+            const match = this.envRegex.exec(text)
             if (match === null) {
                 //TODO: if opStack still not empty
                 return ranges
@@ -96,6 +100,11 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
             //for 'endgroup': match[6] contains 'endgroup', keyword is 'group'
             //for '% region': match[7] contains 'region', keyword is 'region'
             //for '% endregion': match[8] contains 'endregion', keyword is 'region'
+            //DocTeX folding support
+            //for '%<*abc>': match[9] contains '%<*abc>', keyword is '%<abc>'
+            //for '%</abc>': match[10] contains '%</abc>', keyword is '%<abc>'
+            //for '% \iffalse meta-comment': match[11] contains '% \iffalse meta-comment', keyword is '%\\iffalse meta-comment'
+            //for '% \fi': match[12] contains '% \fi', keyword is '%\\iffalse meta-comment'
             let keyword: string = ''
             if (match[1]) {
                 keyword = match[2]
@@ -105,6 +114,12 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
                 keyword = 'group'
             } else if (match[7] || match[8]) {
                 keyword = 'region'
+            } else if (match[9]) {
+                keyword = '%<' + match[9] + '>'
+            } else if (match[10]) {
+                keyword = '%<' + match[10] + '>'
+            } else if (match[11] || match[12]) {
+                keyword = '%\\iffalse meta-comment'
             }
 
             const item = {
@@ -113,16 +128,25 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
             }
             const lastItem = opStack[opStack.length - 1]
 
-            if ((match[4] || match[6] || match[8]) && lastItem && lastItem.keyword === item.keyword) { // match 'end' with its 'begin'
+            if ((match[4] || match[6] || match[8] || match[10] || match[12]) && lastItem && lastItem.keyword === item.keyword) { // match 'end' with its 'begin'
+                const lastLineTune: number = match[10] || match[12] ? 0 : -1
                 opStack.pop()
                 ranges.push(new vscode.FoldingRange(
                     document.positionAt(lastItem.index).line,
-                    document.positionAt(item.index).line - 1
+                    document.positionAt(item.index).line + lastLineTune
                 ))
             } else {
                 opStack.push(item)
             }
         }
+    }
+}
+
+export class DoctexFoldingProvider extends FoldingProvider {
+    protected readonly envRegex: RegExp = /\\(begin){(.*?)}|\\(begingroup)[%\s\\]|\\(end){(.*?)}|\\(endgroup)[%\s\\]|^%\s*#?([rR]egion)|^%\s*#?([eE]ndregion)|^%\s*<\*([|_()\-a-zA-Z0-9]+)>|^%\s*<\/([|_()\-a-zA-Z0-9]+)>|^%\s*\\iffalse\s*(meta-comment)|^%\s*\\(fi)/gm
+
+    protected buildSectionRegex(sections: string[]) {
+        return sections.map(section => RegExp(`%\\s*\\\\(?:${section})(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}`, 'm'))
     }
 }
 

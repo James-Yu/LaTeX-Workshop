@@ -311,7 +311,8 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     extensionContext.subscriptions.push(
         vscode.languages.registerCodeActionsProvider(latexSelector, lw.lint.latex.actionprovider),
         vscode.languages.registerFoldingRangeProvider(latexSelector, lw.language.folding),
-        vscode.languages.registerFoldingRangeProvider(weaveSelector, lw.language.weaveFolding)
+        vscode.languages.registerFoldingRangeProvider(weaveSelector, lw.language.weaveFolding),
+        vscode.languages.registerFoldingRangeProvider(latexDoctexSelector, lw.language.doctexFolding)
     )
 
     const selectionLatex = configuration.get('selection.smart.latex.enabled', true)
