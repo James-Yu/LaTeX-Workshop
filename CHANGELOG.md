@@ -1,5 +1,16 @@
 # Change Log
 
+## [10.5.0] - 2024-10-08
+
+### Added
+- (#4423) A new flicker-free pdf refresh solution inspired by tamuratak/latex-toybox.
+- (#4427) Define tex-fmt arguments in `formatting.tex-fmt.args`
+  - This config replaces the previous `formatting.tex-fmt.doNotWrap`.
+
+### Fixed
+- (#3783) Fix a bug of incorrect suggestion when auto-completing inside `\\end{}`.
+- (#4420) Add `\left|..\right|` snippet.
+
 ## [10.4.2] - 2024-10-02
 
 ### Fixed
