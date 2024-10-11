@@ -234,5 +234,5 @@ function removeMasks(masks: HTMLDivElement[]) {
         for (const mask of masks) {
             mask.remove()
         }
-    }, 1000)
+    }, 250)
 }
