@@ -187,12 +187,12 @@ function surround(cmdItems?: CompletionItem[]) {
         }
         void editor.edit( editBuilder => {
             for (const selection of editor.selections) {
-                const selectedContent = editor.document.getText(selection)
+                const selectedContent = editor.document.getText(selection).replaceAll('$', '$$$$')
                 const selectedMacro = '\\' + selected.macro
                 editBuilder.replace(new vscode.Range(selection.start, selection.end),
-                    selectedMacro.replace(/(.*)(\${\d.*?})/, `$1${selectedContent}`) // Replace text
-                                 .replace(/\${\d:?(.*?)}/g, '$1')                    // Remove snippet placeholders
-                                 .replace(/\$\d/, ''))                               // Remove $2 etc
+                    selectedMacro.replace(/\$\d/g, '')                                // Remove $2 etc
+                                 .replace(/(.*)(\${\d.*?})/g, `$1${selectedContent}`) // Replace text
+                                 .replace(/\${\d:?(.*?)}/g, '$1'))                   // Remove snippet placeholders
             }
         })
     })
