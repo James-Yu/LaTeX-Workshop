@@ -1,6 +1,6 @@
 import * as utils from './utils.js'
 import type { PDFViewerApplicationType } from './interface'
-import type { PanelManagerResponse, PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index.js'
+import type { PanelManagerResponse, PdfViewerState } from '../../types/latex-workshop-protocol-types/index.js'
 import { getTrimValue } from './trimming.js'
 import { isSyncTeXEnabled, registerSyncTeX, setSyncTeXKey } from './synctex.js'
 import { IsAutoRefreshEnabled } from './refresh.js'
@@ -53,7 +53,7 @@ export function uploadState() {
 }
 
 export async function setParams() {
-    const params = await (await fetch('config.json')).json() as PdfViewerParams
+    const params = await utils.getParams()
 
     const htmlElement = document.querySelector('html') as HTMLHtmlElement
     const viewerContainer = document.querySelector('#viewerContainer') as HTMLHtmlElement

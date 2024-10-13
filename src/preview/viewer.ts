@@ -33,7 +33,7 @@ lw.watcher.pdf.onChange(pdfUri => {
         refresh(pdfUri)
     }
 })
-lw.onConfigChange(['view.pdf.invert', 'view.pdf.invertMode', 'view.pdf.color', 'view.pdf.internal'], () => {
+lw.onConfigChange(['view.pdf.toolbar.hide.timeout', 'view.pdf.invert', 'view.pdf.invertMode', 'view.pdf.color', 'view.pdf.internal'], () => {
     reload()
 })
 
@@ -314,6 +314,7 @@ function getParams(): PdfViewerParams {
         invertType === 'always' ||
         (invertType === 'compat' && (configuration.get('view.pdf.invert') as number) > 0)
     const pack: PdfViewerParams = {
+        toolbar: configuration.get('view.pdf.toolbar.hide.timeout') as number,
         scale: configuration.get('view.pdf.zoom') as string,
         trim: configuration.get('view.pdf.trim') as number,
         scrollMode: configuration.get('view.pdf.scrollMode') as number,

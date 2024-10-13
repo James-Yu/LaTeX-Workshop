@@ -105,6 +105,14 @@ pdfjs-document-properties-button-label = Уласцівасці дакумент
 pdfjs-document-properties-file-name = Назва файла:
 pdfjs-document-properties-file-size = Памер файла:
 # Variables:
+#   $kb (Number) - the PDF file size in kilobytes
+#   $b (Number) - the PDF file size in bytes
+pdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } КБ ({ $b } байтаў)
+# Variables:
+#   $mb (Number) - the PDF file size in megabytes
+#   $b (Number) - the PDF file size in bytes
+pdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } МБ ({ $b } байтаў)
+# Variables:
 #   $size_kb (Number) - the PDF file size in kilobytes
 #   $size_b (Number) - the PDF file size in bytes
 pdfjs-document-properties-kb = { $size_kb } КБ ({ $size_b } байт)
@@ -374,6 +382,22 @@ pdfjs-editor-resizer-label-bottom-right = Правы ніжні кут — зм�
 pdfjs-editor-resizer-label-bottom-middle = Пасярэдзіне ўнізе — змяніць памер
 pdfjs-editor-resizer-label-bottom-left = Левы ніжні кут — змяніць памер
 pdfjs-editor-resizer-label-middle-left = Пасярэдзіне злева — змяніць памер
+pdfjs-editor-resizer-top-left =
+    .aria-label = Верхні левы кут — змяніць памер
+pdfjs-editor-resizer-top-middle =
+    .aria-label = Уверсе пасярэдзіне — змяніць памер
+pdfjs-editor-resizer-top-right =
+    .aria-label = Верхні правы кут — змяніць памер
+pdfjs-editor-resizer-middle-right =
+    .aria-label = Пасярэдзіне справа — змяніць памер
+pdfjs-editor-resizer-bottom-right =
+    .aria-label = Правы ніжні кут — змяніць памер
+pdfjs-editor-resizer-bottom-middle =
+    .aria-label = Пасярэдзіне ўнізе — змяніць памер
+pdfjs-editor-resizer-bottom-left =
+    .aria-label = Левы ніжні кут — змяніць памер
+pdfjs-editor-resizer-middle-left =
+    .aria-label = Пасярэдзіне злева — змяніць памер
 
 ## Color picker
 
