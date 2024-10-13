@@ -15,9 +15,9 @@ async function formatDocument(document: vscode.TextDocument, range?: vscode.Rang
     const args = [...(config.get('formatting.tex-fmt.args') as string[]), '--stdin']
     const process = lw.external.spawn(program, args, { cwd: path.dirname(document.uri.fsPath) })
 
-    let stdout: string = ''
+    let stdout: Buffer = Buffer.alloc(0)
     process.stdout?.on('data', (msg: Buffer | string) => {
-        stdout += msg
+        stdout = Buffer.concat([stdout, Buffer.isBuffer(msg) ? msg : Buffer.from(msg)])
     })
 
     const promise = new Promise<vscode.TextEdit | undefined>(resolve => {
@@ -33,12 +33,13 @@ async function formatDocument(document: vscode.TextDocument, range?: vscode.Rang
                 logger.showErrorMessage(`${program} returned ${code} . Be cautious on the edits.`)
                 resolve(undefined)
             }
+            let stdoutStr = stdout.toString()
             // tex-fmt adds an extra newline at the end
-            if (stdout.endsWith('\n\n')) {
-                stdout = stdout.slice(0, -1)
+            if (stdoutStr.endsWith('\n\n')) {
+                stdoutStr = stdoutStr.slice(0, -1)
             }
             logger.log(`Formatted using ${program} .`)
-            resolve(vscode.TextEdit.replace(range ?? document.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE)), stdout))
+            resolve(vscode.TextEdit.replace(range ?? document.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE)), stdoutStr))
         })
     })
 
