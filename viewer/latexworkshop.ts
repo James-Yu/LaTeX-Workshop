@@ -2,7 +2,6 @@ import { patchViewerUI, registerKeyBind, repositionAnnotation } from './componen
 import * as utils from './components/utils.js'
 
 import type { PdfjsEventName, PDFViewerApplicationType, PDFViewerApplicationOptionsType } from './components/interface.js'
-import type { PdfViewerParams } from '../types/latex-workshop-protocol-types/index'
 import { initTrim, setTrimCSS } from './components/trimming.js'
 import { doneRefresh, restoreState } from './components/refresh.js'
 import { initUploadState, setParams, uploadState } from './components/state.js'
@@ -47,8 +46,8 @@ function onPDFViewerEvent(event: PdfjsEventName, cb: (evt?: any) => unknown, opt
 async function initialization() {
     document.title = utils.parseURL().docTitle
 
+    const params = await utils.getParams()
     const worker = new Worker('build/pdf.worker.mjs', { type: 'module' })
-    const params = await (await fetch('config.json')).json() as PdfViewerParams
     document.addEventListener('webviewerloaded', () => {
         const color = utils.isPrefersColorSchemeDark(params.codeColorTheme) ? params.color.dark : params.color.light
         const options = {
@@ -67,7 +66,7 @@ async function initialization() {
     })
 
     initConnect()
-    patchViewerUI()
+    await patchViewerUI()
     registerKeyBind()
 }
 

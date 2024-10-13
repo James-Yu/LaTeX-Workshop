@@ -23,6 +23,7 @@ export type ServerResponse = {
 }
 
 export type PdfViewerParams = {
+    toolbar: number,
     scale: string,
     trim: number,
     scrollMode: number,

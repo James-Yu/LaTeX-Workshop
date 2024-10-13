@@ -524,6 +524,12 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             manager.getClients(pdfUri)?.clear()
         })
 
+        it('should reload all viewers if config `view.pdf.toolbar.hide.timeout` is changed', async () => {
+            const promise = waitMsg(JSON.stringify({ type: 'reload' }).repeat(2))
+            await set.codeConfig('view.pdf.toolbar.hide.timeout', 0)
+            await promise
+        })
+
         it('should reload all viewers if config `view.pdf.invert` is changed', async () => {
             const promise = waitMsg(JSON.stringify({ type: 'reload' }).repeat(2))
             await set.codeConfig('view.pdf.invert', 1)

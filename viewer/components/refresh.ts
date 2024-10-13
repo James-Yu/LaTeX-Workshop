@@ -3,7 +3,6 @@ import { getTrimValue, setTrimValue } from './trimming.js'
 import { sendLog } from './connection.js'
 import { viewerState, viewerStatePromise } from './state.js'
 import { type PDFViewerApplicationType, type PDFViewerApplicationOptionsType, RenderingStates } from './interface.js'
-import type { PdfViewerParams } from '../../types/latex-workshop-protocol-types/index.js'
 
 declare const pdfjsLib: any
 declare const PDFViewerApplication: PDFViewerApplicationType
@@ -137,7 +136,7 @@ export async function restoreState() {
 }
 
 async function restoreDefault() {
-    const params = await (await fetch('config.json')).json() as PdfViewerParams
+    const params = await utils.getParams()
 
     if (params.trim !== undefined) {
         setTrimValue(params.trim)
