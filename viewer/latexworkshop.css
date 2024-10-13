@@ -16,7 +16,8 @@
 }
 
 .visibleLargeView,
-.visibleMediumView {
+.visibleMediumView,
+.visibleMediumView + .horizontalToolbarSeparator {
   display: none !important;
 }
 
@@ -145,26 +146,29 @@ html[dir='rtl'] .findbar {
 
 .toolbar {
     position: absolute;
+    width: 100%;
     top: 0;
     transition: all 0.2s cubic-bezier(.23,.96,.57,.99);
 }
 
 .toolbar.hide {
     top: -32px;
-    transition-duration: 0.4s;
 }
 
 .toolbar.hide:hover {
     top: 0;
 }
 
-#numPages.toolbarLabel {
-    font-size: 16px;
-    margin-top: 3px;
+#viewerContainer {
+    transition: all 0.2s cubic-bezier(.23,.96,.57,.99) !important;
 }
 
-#viewerContainer {
-    top: 0;
+#viewerContainer.topped {
+    top: 0 !important;
+}
+
+#pageNumber {
+    font-size: 12px !important;
 }
 
 #viewBookmark {
@@ -175,7 +179,7 @@ html[dir='rtl'] .findbar {
     display: none  !important;
 }
 
-#download {
+#downloadButton {
     display: none  !important;
 }
 
@@ -205,11 +209,15 @@ html[dir='rtl'] .findbar {
 }
 
 #synctexOnButton, #autoRefreshOnButton {
-    padding-left: 14px;
+    padding-left: 12px;
+}
+
+#synctexOnButton > input, #autoRefreshOnButton > input {
+    margin: 1px;
 }
 
 #synctexOnButton > span, #autoRefreshOnButton > span {
-    padding-left: 9px;
+    padding-left: 1px;
 }
 
 .annotationLayer .popup {

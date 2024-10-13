@@ -8,21 +8,37 @@ import type { PDFViewerApplicationType } from './interface.js'
 
 declare const PDFViewerApplication: PDFViewerApplicationType
 
+let hideToolbar: number | undefined
 export function patchViewerUI() {
     if (utils.isEmbedded()) {
         // Cannot simply remove this element, as pdf.js indeed require it to
         // bind listeners.
-        document.getElementById('print')!.style.display = 'none'
+        document.getElementById('printButton')!.style.display = 'none'
     }
 
     document.getElementById('outerContainer')!.onmousemove = (e) => {
         if (e.clientY <= 64) {
+            if (hideToolbar) {
+                clearTimeout(hideToolbar)
+                hideToolbar = undefined
+            }
             showToolbar()
+        } else {
+            if (hideToolbar === undefined && !PDFViewerApplication.findBar.opened && !PDFViewerApplication.pdfSidebar.isOpen && !PDFViewerApplication.secondaryToolbar.isOpen) {
+                hideToolbar = setTimeout(() => {
+                    const toolbarDom = document.getElementsByClassName('toolbar')[0]
+                    toolbarDom.classList.add('hide')
+                    const containerDom = document.getElementById('viewerContainer')!
+                    containerDom.classList.add('topped')
+                    hideToolbar = undefined
+                }, 1000)
+            }
         }
     }
 
     document.getElementById('sidebarResizer')?.classList.add('hidden')
     document.getElementsByClassName('toolbar')[0]?.classList.add('hide')
+    document.getElementById('viewerContainer')!.classList.add('topped')
     document.getElementById('firstPage')?.previousElementSibling?.classList.add('visibleLargeView')
 
     const template = document.createElement('template')
@@ -55,7 +71,7 @@ export function patchViewerUI() {
 <button class="toolbarButton findNext" title="${getL10n('navForward')} (⇧←)" id="historyForward">
   <span>Forward</span>
 </button>`
-    anchor = document.getElementById('sidebarToggle')!.nextElementSibling!
+    anchor = document.getElementById('sidebarToggleButton')!.nextElementSibling!
     for (const node of template.content.childNodes) {
         anchor.parentNode?.insertBefore(node, anchor)
     }
@@ -212,18 +228,16 @@ export function repositionAnnotation() {
     }
 }
 
-let hideToolbarInterval: number | undefined
-function showToolbar(animate: boolean=true) {
-    if (hideToolbarInterval) {
-        clearInterval(hideToolbarInterval)
-    }
-    const d = document.getElementsByClassName('toolbar')[0]
-    d.className = d.className.replace(' hide', '') + (animate ? '' : ' notransition')
+function showToolbar() {
+    const toolbarDom = document.getElementsByClassName('toolbar')[0]
+    toolbarDom.classList.remove('hide')
+    const containerDom = document.getElementById('viewerContainer')!
+    containerDom.classList.remove('topped')
 
-    hideToolbarInterval = setInterval(() => {
-        if(!PDFViewerApplication.findBar.opened && !PDFViewerApplication.pdfSidebar.isOpen && !PDFViewerApplication.secondaryToolbar.isOpen) {
-            d.className = d.className.replace(' notransition', '') + ' hide'
-            clearInterval(hideToolbarInterval)
-        }
-    }, 3000)
+    // hideToolbarInterval = setInterval(() => {
+    //     if(!PDFViewerApplication.findBar.opened && !PDFViewerApplication.pdfSidebar.isOpen && !PDFViewerApplication.secondaryToolbar.isOpen) {
+    //         d.className = d.className.replace(' notransition', '') + ' hide'
+    //         clearInterval(hideToolbarInterval)
+    //     }
+    // }, 3000)
 }

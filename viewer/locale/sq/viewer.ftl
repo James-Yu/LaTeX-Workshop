@@ -96,6 +96,14 @@ pdfjs-document-properties-button-label = Veti Dokumenti…
 pdfjs-document-properties-file-name = Emër kartele:
 pdfjs-document-properties-file-size = Madhësi kartele:
 # Variables:
+#   $kb (Number) - the PDF file size in kilobytes
+#   $b (Number) - the PDF file size in bytes
+pdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } KB ({ $b } bajte)
+# Variables:
+#   $mb (Number) - the PDF file size in megabytes
+#   $b (Number) - the PDF file size in bytes
+pdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } MB ({ $b } bajte)
+# Variables:
 #   $size_kb (Number) - the PDF file size in kilobytes
 #   $size_b (Number) - the PDF file size in bytes
 pdfjs-document-properties-kb = { $size_kb } KB ({ $size_b } bajte)
@@ -357,6 +365,22 @@ pdfjs-editor-resizer-label-bottom-right = Cepi i poshtëm djathtas — ripërmas
 pdfjs-editor-resizer-label-bottom-middle = Mesi i pjesës poshtë — ripërmasojeni
 pdfjs-editor-resizer-label-bottom-left = Cepi i poshtëm — ripërmasojeni
 pdfjs-editor-resizer-label-middle-left = Majtas në mes — ripërmasojeni
+pdfjs-editor-resizer-top-left =
+    .aria-label = Cepi i sipërm majtas — ripërmasojeni
+pdfjs-editor-resizer-top-middle =
+    .aria-label = Mesi i pjesës sipër — ripërmasojeni
+pdfjs-editor-resizer-top-right =
+    .aria-label = Cepi i sipërm djathtas — ripërmasojeni
+pdfjs-editor-resizer-middle-right =
+    .aria-label = Djathtas në mes — ripërmasojeni
+pdfjs-editor-resizer-bottom-right =
+    .aria-label = Cepi i poshtëm djathtas — ripërmasojeni
+pdfjs-editor-resizer-bottom-middle =
+    .aria-label = Mesi i pjesës poshtë — ripërmasojeni
+pdfjs-editor-resizer-bottom-left =
+    .aria-label = Cepi i poshtëm — ripërmasojeni
+pdfjs-editor-resizer-middle-left =
+    .aria-label = Majtas në mes — ripërmasojeni
 
 ## Color picker
 
