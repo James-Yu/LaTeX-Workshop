@@ -156,15 +156,19 @@ function format(document: vscode.TextDocument, range?: vscode.Range): Thenable<v
         logger.logCommand('Formatting LaTeX.', formatter, args)
         const worker = cs.spawn(formatter, args, { stdio: 'pipe', cwd: documentDirectory })
         // handle stdout/stderr
-        const stdoutBuffer: string[] = []
-        const stderrBuffer: string[] = []
-        worker.stdout.on('data', (chunk: Buffer | string) => stdoutBuffer.push(chunk.toString()))
-        worker.stderr.on('data', (chunk: Buffer | string) => stderrBuffer.push(chunk.toString()))
+        const stdoutBuffer: Buffer[] = []
+        const stderrBuffer: Buffer[] = []
+        worker.stdout.on('data', (chunk: Buffer | string) => {
+            stdoutBuffer.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk))
+        })
+        worker.stderr.on('data', (chunk: Buffer | string) => {
+            stderrBuffer.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk))
+        })
         worker.on('error', err => {
             removeTemporaryFiles()
             void logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
             logger.log(`Formatting failed: ${err.message}`)
-            logger.log(`stderr: ${stderrBuffer.join('')}`)
+            logger.log(`stderr: ${Buffer.concat(stderrBuffer).toString()}`)
             resolve(undefined)
         })
         worker.on('close', code => {
@@ -172,10 +176,10 @@ function format(document: vscode.TextDocument, range?: vscode.Range): Thenable<v
             if (code !== 0) {
                 void logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
                 logger.log(`Formatting failed with exit code ${code}`)
-                logger.log(`stderr: ${stderrBuffer.join('')}`)
+                logger.log(`stderr: ${Buffer.concat(stderrBuffer).toString()}`)
                 return resolve(undefined)
             }
-            const stdout = stdoutBuffer.join('')
+            const stdout = Buffer.concat(stdoutBuffer).toString()
             if (stdout !== '') {
                 const edit = vscode.TextEdit.replace(range ?? document.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE)), stdout)
                 logger.log('Formatted ' + document.fileName)
