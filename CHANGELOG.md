@@ -1,5 +1,10 @@
 # Change Log
 
+## [10.5.2] - 2024-10-14
+
+### Fixed
+- (#4436) Tweaked toolbar showing/hiding logic.
+
 ## [10.5.1] - 2024-10-14
 
 ### Fixed
