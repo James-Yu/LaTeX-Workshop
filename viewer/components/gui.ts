@@ -31,11 +31,15 @@ export async function patchViewerUI() {
     const params = await utils.getParams()
 
     if (params.toolbar === 0) {
-        const containerDom = document.getElementById('viewerContainer')!
-        containerDom.style.top = '32px'
+        document.getElementsByClassName('toolbar')[0]?.classList.remove('hide')
+        document.getElementById('viewerContainer')!.style.top = '32px'
     }
 
-    document.getElementById('outerContainer')!.onmouseleave = () => { hideToolbar(params) }
+    document.getElementById('outerContainer')!.onmouseleave = () => {
+        if (params.toolbar !== 0) {
+            hideToolbar(params)
+        }
+    }
 
     document.getElementById('outerContainer')!.onmousemove = (e) => {
         if (params.toolbar === 0) {
@@ -54,9 +58,6 @@ export async function patchViewerUI() {
 
     document.getElementById('sidebarResizer')?.classList.add('hidden')
     document.getElementById('firstPage')?.previousElementSibling?.classList.add('visibleLargeView')
-    if (params.toolbar !== 0) {
-        document.getElementsByClassName('toolbar')[0]?.classList.add('hide')
-    }
 
     const template = document.createElement('template')
     template.innerHTML =
