@@ -18,6 +18,11 @@ export async function patchViewerUI() {
 
     const params = await utils.getParams()
 
+    if (params.toolbar === 0) {
+        const containerDom = document.getElementById('viewerContainer')!
+        containerDom.style.top = '32px'
+    }
+
     document.getElementById('outerContainer')!.onmousemove = (e) => {
         if (params.toolbar === 0) {
             return
@@ -36,8 +41,6 @@ export async function patchViewerUI() {
                 hideToolbar = setTimeout(() => {
                     const toolbarDom = document.getElementsByClassName('toolbar')[0]
                     toolbarDom.classList.add('hide')
-                    const containerDom = document.getElementById('viewerContainer')!
-                    containerDom.classList.add('topped')
                     hideToolbar = undefined
                 }, params.toolbar * 1000)
             }
@@ -48,7 +51,6 @@ export async function patchViewerUI() {
     document.getElementById('firstPage')?.previousElementSibling?.classList.add('visibleLargeView')
     if (params.toolbar !== 0) {
         document.getElementsByClassName('toolbar')[0]?.classList.add('hide')
-        document.getElementById('viewerContainer')!.classList.add('topped')
     }
 
     const template = document.createElement('template')
@@ -241,6 +243,4 @@ export function repositionAnnotation() {
 function showToolbar() {
     const toolbarDom = document.getElementsByClassName('toolbar')[0]
     toolbarDom.classList.remove('hide')
-    const containerDom = document.getElementById('viewerContainer')!
-    containerDom.classList.remove('topped')
 }
