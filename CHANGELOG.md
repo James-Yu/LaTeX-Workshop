@@ -1,5 +1,15 @@
 # Change Log
 
+## [10.5.1] - 2024-10-14
+
+### Fixed
+- Suggestions of packages defined in local class files can now be provided.
+- (#4430) Escape `$` when surround macros.
+- (#4432) Upgrade to PDF.js 4.7.76, tweak toolbar hiding.
+  - Add a config `view.pdf.toolbar.hide.timeout` to control toolbar hiding timeout.
+- (#4433) Stringify chunk before merging chunks during formatting breaks character at the end.
+- (#4434) Deduplicate package options.
+
 ## [10.5.0] - 2024-10-08
 
 ### Added
