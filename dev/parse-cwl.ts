@@ -167,7 +167,9 @@ function parseKeys(pkg: PackageRaw, lines: string[], tag: string): void {
 function assignKeys(pkg: PackageRaw, tag: string) {
     for (let context of tag.split(',')) {
         if (context.startsWith('\\documentclass') || context.startsWith('\\usepackage')) {
-            pkg.args.push(tag)
+            if (!pkg.args.includes(tag)) {
+                pkg.args.push(tag)
+            }
             continue
         }
         // \includepdf,includepdfmerge,\includepdfset => \includepdf,\includepdfmerge,\includepdfset
