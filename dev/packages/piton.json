@@ -13,6 +13,9 @@
       "name": "xcolor"
     },
     {
+      "name": "amstext"
+    },
+    {
       "name": "footnote",
       "if": "footnote"
     },
@@ -282,7 +285,8 @@
     "\\usepackage/piton#c": [
       "footnote",
       "footnotehyper",
-      "beamer"
+      "beamer",
+      "old-PitonInputFile"
     ],
     "\\PitonInputFile,\\PitonInputFileTF,\\PitonInputFileT,\\PitonInputFileF": [
       "first-line=${1:integer}",
@@ -296,6 +300,8 @@
       "comment-latex=${1:string}",
       "math-comments",
       "detected-commands={${1:csname1,csname2,...}}",
+      "detected-beamer-commands={${1:csname1,csname2,...}}",
+      "detected-beamer-environments={${1:envname1,envname2,...}}",
       "line-numbers/absolute",
       "marker={${1:options}}",
       "marker/beginning=${1:spec}",
@@ -311,6 +317,7 @@
     ],
     "\\PitonOptions,\\begin{Piton}": [
       "language=",
+      "font-command=${1:font commands}",
       "gobble=${1:integer}",
       "auto-gobble",
       "tabs-auto-gobble",
@@ -321,8 +328,11 @@
       "line-numbers/label-empty-lines",
       "line-numbers/resume",
       "line-numbers/sep=",
+      "line-numbers/format=${1:font commands}",
       "splittable",
       "splittable=${1:integer}",
+      "splittable-on-empty-lines",
+      "env-used-by-split=${1:envname}",
       "background-color=",
       "prompt-background-color=",
       "width=",
@@ -364,6 +374,7 @@
       "Comment.LaTeX=${1:formatting}",
       "Keyword.Constant=${1:formatting}",
       "Keyword=${1:formatting}",
+      "Keyword.Governing=${1:formatting}",
       "Name.Type=${1:formatting}",
       "Name.Field=${1:formatting}",
       "Name.Constructor=${1:formatting}",
@@ -373,6 +384,7 @@
       "Name.Table=${1:formatting}",
       "Directive=${1:formatting}",
       "FormattingType=${1:formatting}",
+      "Identifier.Internal=${1:formatting}",
       "Comment.Math=${1:formatting}",
       "Discard=${1:formatting}",
       "Identifier=${1:formatting}",
@@ -384,10 +396,10 @@
       "Keyword7=${1:formatting}",
       "Keyword8=${1:formatting}",
       "Keyword9=${1:formatting}",
-      "ParseAgain.noCR=${1:formatting}",
       "ParseAgain=${1:formatting}",
       "Prompt=${1:formatting}",
-      "Tag=${1:formatting}"
+      "Tag=${1:formatting}",
+      "TypeExpression=${1:formatting}"
     ],
     "\\PitonStyle": [
       "Number",
@@ -411,6 +423,7 @@
       "Comment.LaTeX",
       "Keyword.Constant",
       "Keyword",
+      "Keyword.Governing",
       "Name.Type",
       "Name.Field",
       "Name.Constructor",
@@ -420,6 +433,7 @@
       "Name.Table",
       "Directive",
       "FormattingType",
+      "Identifier.Internal",
       "Comment.Math",
       "Discard",
       "Identifier",
@@ -431,10 +445,10 @@
       "Keyword7",
       "Keyword8",
       "Keyword9",
-      "ParseAgain.noCR",
       "ParseAgain",
       "Prompt",
-      "Tag"
+      "Tag",
+      "TypeExpression"
     ],
     "\\NewPitonLanguage": [
       "morekeywords={${1:list of keywords}}",

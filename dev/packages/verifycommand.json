@@ -13,7 +13,7 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "VerifyCommand{${1:cmd}}{${2:md5 checksum}}"
+        "snippet": "VerifyCommand{${1:command}}{${2:md5 checksum}}"
       }
     },
     {
@@ -21,7 +21,7 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}",
-        "snippet": "VerifyCommand[${3:your package}]{${1:cmd}}{${2:md5 checksum}}"
+        "snippet": "VerifyCommand[${3:your package}]{${1:command}}{${2:md5 checksum}}"
       }
     },
     {
@@ -29,7 +29,7 @@
       "unusual": true,
       "arg": {
         "format": "[][]{}{}",
-        "snippet": "VerifyCommand[${3:your package}][${4:other package}]{${1:cmd}}{${2:md5 checksum}}"
+        "snippet": "VerifyCommand[${3:your package}][${4:their package}]{${1:command}}{${2:md5 checksum}}"
       }
     },
     {
@@ -53,7 +53,107 @@
       "unusual": true,
       "arg": {
         "format": "[][]{}{}{}",
-        "snippet": "VerifyEnvironment[${4:your package}][${5:other package}]{${1:envname}}{${2:begin md5 checksum}}{${3:end md5 checksum}}"
+        "snippet": "VerifyEnvironment[${4:your package}][${5:their package}]{${1:envname}}{${2:begin md5 checksum}}{${3:end md5 checksum}}"
+      }
+    },
+    {
+      "name": "IfVerifyCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "IfVerifyCommand{${1:command}}{${2:md5 checksum}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "IfVerifyCommand",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "IfVerifyCommand[${5:your package}]{${1:command}}{${2:md5 checksum}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "IfVerifyCommand",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}{}{}",
+        "snippet": "IfVerifyCommand[${5:your package}][${6:their package}]{${1:command}}{${2:md5 checksum}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "IfVerifyEnvironmentBegin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "IfVerifyEnvironmentBegin{${1:envname}}{${2:begin md5 checksum}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "IfVerifyEnvironmentBegin",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "IfVerifyEnvironmentBegin[${5:your package}]{${1:envname}}{${2:begin md5 checksum}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "IfVerifyEnvironmentBegin",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}{}{}",
+        "snippet": "IfVerifyEnvironmentBegin[${5:your package}][${6:their package}]{${1:envname}}{${2:begin md5 checksum}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "IfVerifyEnvironmentEnd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "IfVerifyEnvironmentEnd{${1:envname}}{${2:end md5 checksum}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "IfVerifyEnvironmentEnd",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "IfVerifyEnvironmentEnd[${5:your package}]{${1:envname}}{${2:end md5 checksum}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "IfVerifyEnvironmentEnd",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}{}{}",
+        "snippet": "IfVerifyEnvironmentEnd[${5:your package}][${6:their package}]{${1:envname}}{${2:end md5 checksum}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "TestVerifyCommands",
+      "unusual": true
+    },
+    {
+      "name": "IfVerifyCommandPassed",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "IfVerifyCommandPassed{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "IfVerifyCommandFailed",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "IfVerifyCommandFailed{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "VERCMDWarning",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "VERCMDWarning{${1:your package}}{${2:their package}}{${3:defn name}}"
       }
     }
   ],

@@ -19,6 +19,9 @@
       "name": "xeCJK"
     },
     {
+      "name": "zhlineskip"
+    },
+    {
       "name": "titletoc"
     },
     {
@@ -407,7 +410,7 @@
       "cover/date=${1:任意字符串}",
       "cover/headerImage=${1:图片路径}",
       "cover/xiheiFont=${1:字体路径}",
-      "cover/dilimiter=${1:任意字符串}",
+      "cover/delimiter=${1:任意字符串}",
       "cover/autoWidth",
       "cover/autoWidthPadding=",
       "cover/labelMaxWidth=",
@@ -418,6 +421,9 @@
       "cover/underlineOffset=",
       "cover/hideCoverInPeerReview",
       "cover/showSpecialTypeBox",
+      "cover/prefer-zh",
+      "cover/reverse-titles",
+      "cover/addTitleZh",
       "info={${1:键值列表}}",
       "info/title=${1:字符串}",
       "info/titleEn=${1:字符串}",
@@ -457,6 +463,7 @@
       "style/headline=${1:字符串}",
       "style/bibliographyIndent",
       "style/pageVerticalAlign=${1|top,scattered|}",
+      "style/non-CJK-font-in-headings=${1|serif,sans|}",
       "style/mathFont=${1|asana,bonum,cm,concrete,dejavu,erewhon,euler,fira,garamond,gfsneohellenic,kp,libertinus,lm,newcm,pagella,schola,stix,stix2,termes,xcharter,xits,none|}",
       "style/windowsSimSunFakeBold",
       "style/unicodeMathOptions=${1:任意选项}",
@@ -465,8 +472,10 @@
       "style/mathBelowDisplaySkip=",
       "style/betterTimesNewRoman",
       "TOC={${1:键值列表}}",
+      "TOC/title=${1:字符串}",
       "TOC/abstract",
       "TOC/abstractEn",
+      "TOC/TOC",
       "TOC/symbols",
       "appendices={${1:键值列表}}",
       "appendices/chapterLeveltrue,false",
@@ -488,7 +497,8 @@
       "const={${1:键值列表}}",
       "const/autoref={${1:键值列表}}",
       "const/style/substituteSymbol=${1:字符串}",
-      "const/info={${1:键值列表}}"
+      "const/info={${1:键值列表}}",
+      "const/heading={${1:键值列表}}"
     ]
   },
   "args": [

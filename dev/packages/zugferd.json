@@ -1,0 +1,71 @@
+{
+  "deps": [
+    {
+      "name": "siunitx"
+    }
+  ],
+  "macros": [
+    {
+      "name": "SetZUGFeRDData",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetZUGFeRDData{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "SetZUGFeRDData*",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetZUGFeRDData*{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "InsertZUGFeRDData",
+      "arg": {
+        "format": "{}",
+        "snippet": "InsertZUGFeRDData{${1:data-selection}}"
+      }
+    },
+    {
+      "name": "InsertZUGFeRDData",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "InsertZUGFeRDData[${2:special mode option}]{${1:data-selection}}"
+      }
+    },
+    {
+      "name": "startWritingZUGFeRDxml",
+      "unusual": true
+    },
+    {
+      "name": "stopWritingZUGFeRDxml",
+      "unusual": true
+    },
+    {
+      "name": "setupZUGFeRDStrings",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setupZUGFeRDStrings{${1:property}}{${2:settings}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "ZUGFeRD",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/zugferd#c": [
+      "format=${1|xrechnung,xrechnung3.0,xrechnung2.3,basic|}",
+      "zugferd",
+      "write-xml",
+      "xml-file=${1:filename}",
+      "auto-exemption"
+    ]
+  },
+  "args": [
+    "\\usepackage/zugferd#c"
+  ]
+}

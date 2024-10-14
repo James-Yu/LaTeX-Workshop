@@ -10,6 +10,12 @@
       "name": "pgfopts"
     },
     {
+      "name": "xspace"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
       "name": "tikz"
     },
     {
@@ -20,6 +26,38 @@
     }
   ],
   "macros": [
+    {
+      "name": "AF",
+      "if": "macros=true"
+    },
+    {
+      "name": "arguments",
+      "if": "macros=true"
+    },
+    {
+      "name": "attacks",
+      "if": "macros=true"
+    },
+    {
+      "name": "AFcomplete",
+      "if": "macros=true"
+    },
+    {
+      "name": "afref",
+      "if": "macros=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "afref{${1:label}}"
+      }
+    },
+    {
+      "name": "fullafref",
+      "if": "macros=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "fullafref{${1:label}}"
+      }
+    },
     {
       "name": "setargumentstyle",
       "arg": {
@@ -203,10 +241,11 @@
   ],
   "keys": {
     "\\usepackage/argumentation#c": [
-      "namestyle=${1|none,math,italics,bold,monospace|}",
-      "argumentstyle=${1|standard,large,thick|}",
+      "namestyle=${1|none,math,bold,monospace,monoemph|}",
+      "argumentstyle=${1|standard,large,thick,gray,colored|}",
       "attackstyle=${1|standard,large,modern|}",
-      "supportstyle=${1|standard,dashed,double|}"
+      "supportstyle=${1|standard,dashed,double|}",
+      "macros=true"
     ]
   },
   "args": [

@@ -1,148 +1,19 @@
 {
   "deps": [
     {
-      "name": "everypage-1x"
-    },
-    {
       "name": "tikz"
     }
   ],
   "macros": [
     {
-      "name": "PageSetup",
+      "name": "MagicWatermark",
       "arg": {
         "format": "{}",
-        "snippet": "PageSetup{${1:content for watermark%text}}"
-      }
-    },
-    {
-      "name": "PageSetup",
-      "arg": {
-        "format": "[]{}",
-        "snippet": "PageSetup[${2:options%keyvals}]{${1:content for watermark%text}}",
-        "keys": [
-          "\\PageSetup,\\EvenPageSetup,\\OddPageSetup,\\MyPageSetup"
-        ],
-        "keyPos": 0
-      }
-    },
-    {
-      "name": "PageSetup*",
-      "arg": {
-        "format": "{}",
-        "snippet": "PageSetup*{${1:content for watermark%text}}"
-      }
-    },
-    {
-      "name": "Watermark"
-    },
-    {
-      "name": "EvenPageSetup",
-      "arg": {
-        "format": "{}",
-        "snippet": "EvenPageSetup{${1:content for watermark%text}}"
-      }
-    },
-    {
-      "name": "EvenPageSetup",
-      "arg": {
-        "format": "[]{}",
-        "snippet": "EvenPageSetup[${2:options%keyvals}]{${1:content for watermark%text}}",
-        "keys": [
-          "\\PageSetup,\\EvenPageSetup,\\OddPageSetup,\\MyPageSetup"
-        ],
-        "keyPos": 0
-      }
-    },
-    {
-      "name": "EvenPageSetup*",
-      "arg": {
-        "format": "{}",
-        "snippet": "EvenPageSetup*{${1:content for watermark%text}}"
-      }
-    },
-    {
-      "name": "EvenWatermark"
-    },
-    {
-      "name": "OddPageSetup",
-      "arg": {
-        "format": "{}",
-        "snippet": "OddPageSetup{${1:content for watermark%text}}"
-      }
-    },
-    {
-      "name": "OddPageSetup",
-      "arg": {
-        "format": "[]{}",
-        "snippet": "OddPageSetup[${2:options%keyvals}]{${1:content for watermark%text}}",
-        "keys": [
-          "\\PageSetup,\\EvenPageSetup,\\OddPageSetup,\\MyPageSetup"
-        ],
-        "keyPos": 0
-      }
-    },
-    {
-      "name": "OddPageSetup*",
-      "arg": {
-        "format": "{}",
-        "snippet": "OddPageSetup*{${1:content for watermark%text}}"
-      }
-    },
-    {
-      "name": "OddWatermark"
-    },
-    {
-      "name": "NewWatermark",
-      "arg": {
-        "format": "{}",
-        "snippet": "NewWatermark{${1:watermark name}}"
-      }
-    },
-    {
-      "name": "MyPageSetup",
-      "arg": {
-        "format": "{}{}",
-        "snippet": "MyPageSetup{${1:watermark name}}{${2:content for watermark%text}}"
-      }
-    },
-    {
-      "name": "MyPageSetup",
-      "arg": {
-        "format": "[]{}{}",
-        "snippet": "MyPageSetup[${3:options%keyvals}]{${1:watermark name}}{${2:content for watermark%text}}",
-        "keys": [
-          "\\PageSetup,\\EvenPageSetup,\\OddPageSetup,\\MyPageSetup"
-        ],
-        "keyPos": 0
-      }
-    },
-    {
-      "name": "MyWatermark",
-      "arg": {
-        "format": "{}",
-        "snippet": "MyWatermark{${1:watermark name}}"
-      }
-    },
-    {
-      "name": "ClearWatermark",
-      "arg": {
-        "format": "{}",
-        "snippet": "ClearWatermark{${1:watermark list}}"
+        "snippet": "MagicWatermark{${1:keyvals}}"
       }
     }
   ],
   "envs": [],
-  "keys": {
-    "\\PageSetup,\\EvenPageSetup,\\OddPageSetup,\\MyPageSetup": [
-      "scale=${1:factor}",
-      "opacity=${1:factor}",
-      "shift={(${1:x,y})}",
-      "color=",
-      "rotate=${1:degrees}",
-      "align=${1|center,left,right|}",
-      "showframe"
-    ]
-  },
+  "keys": {},
   "args": []
 }

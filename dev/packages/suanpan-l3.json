@@ -1,0 +1,127 @@
+{
+  "deps": [
+    {
+      "name": "tikz"
+    }
+  ],
+  "macros": [
+    {
+      "name": "rod",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "rod{${1:num}}{${2:val}}"
+      }
+    },
+    {
+      "name": "rod*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "rod*{${1:num}}{${2:val}}"
+      }
+    },
+    {
+      "name": "rods",
+      "arg": {
+        "format": "{}",
+        "snippet": "rods{${1:val list}}"
+      }
+    },
+    {
+      "name": "bid",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "bid{${1:num}}{${2:pos list}}{${3:fill color}}[${4:draw color}]"
+      }
+    },
+    {
+      "name": "bids",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "bids{${1:num}}{${2:val}}{${3:color}}"
+      }
+    },
+    {
+      "name": "bids*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "bids*{${1:num}}{${2:val}}{${3:color}}"
+      }
+    },
+    {
+      "name": "rodmark",
+      "arg": {
+        "format": "{}",
+        "snippet": "rodmark{${1:marker list}}"
+      }
+    },
+    {
+      "name": "rodmark",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "rodmark[${2:start}]{${1:marker list}}"
+      }
+    },
+    {
+      "name": "mkframe"
+    },
+    {
+      "name": "lrframe",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "lrframe{${1:first num}}{${2:last num}}"
+      }
+    },
+    {
+      "name": "suanpanset",
+      "arg": {
+        "format": "{}",
+        "snippet": "suanpanset{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/suanpan-l3#c,\\begin{suanpan},\\suanpanset"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "suanpan"
+    },
+    {
+      "name": "suanpan",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\usepackage/suanpan-l3#c,\\begin{suanpan},\\suanpanset"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/suanpan-l3#c,\\begin{suanpan},\\suanpanset": [
+      "draft",
+      "empty",
+      "linewd=",
+      "bidh=",
+      "bidd=",
+      "rodd=",
+      "framew=",
+      "rodsep=",
+      "bidsep=",
+      "scale=${1:factor}",
+      "framedraw=",
+      "roddraw=",
+      "rodfill=",
+      "outerdraw=",
+      "outerfill=",
+      "innerdraw=",
+      "innerfill=",
+      "font=${1:font commands}"
+    ]
+  },
+  "args": [
+    "\\usepackage/suanpan-l3#c,\\begin{suanpan},\\suanpanset"
+  ]
+}

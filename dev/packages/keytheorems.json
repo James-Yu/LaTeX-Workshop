@@ -1,0 +1,539 @@
+{
+  "deps": [
+    {
+      "name": "aliascnt"
+    },
+    {
+      "name": "amsthm"
+    },
+    {
+      "name": "refcount"
+    },
+    {
+      "name": "translations"
+    },
+    {
+      "name": "unique"
+    }
+  ],
+  "macros": [
+    {
+      "name": "declaretheorem",
+      "if": "thmtools-compat",
+      "arg": {
+        "format": "{}",
+        "snippet": "declaretheorem{${1:envname}}"
+      }
+    },
+    {
+      "name": "declaretheorem",
+      "if": "thmtools-compat",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "declaretheorem[${2:options%keyvals}]{${1:envname}}",
+        "keys": [
+          "\\newkeytheorem#c,\\declaretheorem#c,\\newkeytheoremstyle#c,\\renewkeytheoremstyle#c,\\providekeytheoremstyle#c,\\declarekeytheoremstyle#c,\\declaretheoremstyle#c",
+          "\\newkeytheorem#c,\\renewkeytheorem#c,\\providekeytheorem#c,\\declarekeytheorem#c,\\declaretheorem#c",
+          "\\newkeytheorem#c,\\renewkeytheorem#c,\\providekeytheorem#c,\\declarekeytheorem#c,\\declaretheorem#c,\\newkeytheoremstyle#c,\\renewkeytheoremstyle#c,\\providekeytheoremstyle#c,\\declarekeytheoremstyle#c,\\declaretheoremstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "declaretheoremstyle",
+      "if": "thmtools-compat",
+      "arg": {
+        "format": "{}",
+        "snippet": "declaretheoremstyle{${1:style}}"
+      }
+    },
+    {
+      "name": "declaretheoremstyle",
+      "if": "thmtools-compat",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "declaretheoremstyle[${2:options%keyvals}]{${1:style}}",
+        "keys": [
+          "\\newkeytheorem#c,\\declaretheorem#c,\\newkeytheoremstyle#c,\\renewkeytheoremstyle#c,\\providekeytheoremstyle#c,\\declarekeytheoremstyle#c,\\declaretheoremstyle#c",
+          "\\newkeytheorem#c,\\renewkeytheorem#c,\\providekeytheorem#c,\\declarekeytheorem#c,\\declaretheorem#c,\\newkeytheoremstyle#c,\\renewkeytheoremstyle#c,\\providekeytheoremstyle#c,\\declarekeytheoremstyle#c,\\declaretheoremstyle#c",
+          "\\newkeytheoremstyle#c,\\renewkeytheoremstyle#c,\\providekeytheoremstyle#c,\\declarekeytheoremstyle#c,\\declaretheoremstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "listoftheorems",
+      "if": "thmtools-compat"
+    },
+    {
+      "name": "listoftheorems",
+      "if": "thmtools-compat",
+      "arg": {
+        "format": "[]",
+        "snippet": "listoftheorems[${1:options%keyvals}]",
+        "keys": [
+          "\\listofkeytheorems#c,\\keytheoremlistset#c,\\listoftheorems#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "listtheoremname",
+      "if": "thmtools-compat",
+      "unusual": true
+    },
+    {
+      "name": "addtotheorempreheadhook",
+      "if": "thmtools-compat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addtotheorempreheadhook{${1:code}}"
+      }
+    },
+    {
+      "name": "addtotheorempreheadhook",
+      "if": "thmtools-compat",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "addtotheorempreheadhook[${2:envname}]{${1:code}}"
+      }
+    },
+    {
+      "name": "addtotheorempostheadhook",
+      "if": "thmtools-compat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addtotheorempostheadhook{${1:code}}"
+      }
+    },
+    {
+      "name": "addtotheorempostheadhook",
+      "if": "thmtools-compat",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "addtotheorempostheadhook[${2:envname}]{${1:code}}"
+      }
+    },
+    {
+      "name": "addtotheoremprefoothook",
+      "if": "thmtools-compat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addtotheoremprefoothook{${1:code}}"
+      }
+    },
+    {
+      "name": "addtotheoremprefoothook",
+      "if": "thmtools-compat",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "addtotheoremprefoothook[${2:envname}]{${1:code}}"
+      }
+    },
+    {
+      "name": "addtotheorempostfoothook",
+      "if": "thmtools-compat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addtotheorempostfoothook{${1:code}}"
+      }
+    },
+    {
+      "name": "addtotheorempostfoothook",
+      "if": "thmtools-compat",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "addtotheorempostfoothook[${2:envname}]{${1:code}}"
+      }
+    },
+    {
+      "name": "keytheoremset",
+      "arg": {
+        "format": "{}",
+        "snippet": "keytheoremset{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/keytheorems#c,\\keytheoremset#c",
+          "\\keytheoremset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "newkeytheorem",
+      "arg": {
+        "format": "{}",
+        "snippet": "newkeytheorem{${1:envname}}"
+      }
+    },
+    {
+      "name": "newkeytheorem",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "newkeytheorem{${1:envname}}[${2:options%keyvals}]",
+        "keys": [
+          "\\newkeytheorem#c,\\renewkeytheorem#c,\\providekeytheorem#c,\\declarekeytheorem#c,\\declaretheorem#c",
+          "\\newkeytheorem#c,\\renewkeytheorem#c,\\providekeytheorem#c,\\declarekeytheorem#c,\\declaretheorem#c,\\newkeytheoremstyle#c,\\renewkeytheoremstyle#c,\\providekeytheoremstyle#c,\\declarekeytheoremstyle#c,\\declaretheoremstyle#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "renewkeytheorem",
+      "arg": {
+        "format": "{}",
+        "snippet": "renewkeytheorem{${1:envname}}"
+      }
+    },
+    {
+      "name": "renewkeytheorem",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "renewkeytheorem{${1:envname}}[${2:options%keyvals}]",
+        "keys": [
+          "\\newkeytheorem#c,\\renewkeytheorem#c,\\providekeytheorem#c,\\declarekeytheorem#c,\\declaretheorem#c",
+          "\\newkeytheorem#c,\\renewkeytheorem#c,\\providekeytheorem#c,\\declarekeytheorem#c,\\declaretheorem#c,\\newkeytheoremstyle#c,\\renewkeytheoremstyle#c,\\providekeytheoremstyle#c,\\declarekeytheoremstyle#c,\\declaretheoremstyle#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "providekeytheorem",
+      "arg": {
+        "format": "{}",
+        "snippet": "providekeytheorem{${1:envname}}"
+      }
+    },
+    {
+      "name": "providekeytheorem",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "providekeytheorem{${1:envname}}[${2:options%keyvals}]",
+        "keys": [
+          "\\newkeytheorem#c,\\renewkeytheorem#c,\\providekeytheorem#c,\\declarekeytheorem#c,\\declaretheorem#c",
+          "\\newkeytheorem#c,\\renewkeytheorem#c,\\providekeytheorem#c,\\declarekeytheorem#c,\\declaretheorem#c,\\newkeytheoremstyle#c,\\renewkeytheoremstyle#c,\\providekeytheoremstyle#c,\\declarekeytheoremstyle#c,\\declaretheoremstyle#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "declarekeytheorem",
+      "arg": {
+        "format": "{}",
+        "snippet": "declarekeytheorem{${1:envname}}"
+      }
+    },
+    {
+      "name": "declarekeytheorem",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "declarekeytheorem{${1:envname}}[${2:options%keyvals}]",
+        "keys": [
+          "\\newkeytheorem#c,\\renewkeytheorem#c,\\providekeytheorem#c,\\declarekeytheorem#c,\\declaretheorem#c",
+          "\\newkeytheorem#c,\\renewkeytheorem#c,\\providekeytheorem#c,\\declarekeytheorem#c,\\declaretheorem#c,\\newkeytheoremstyle#c,\\renewkeytheoremstyle#c,\\providekeytheoremstyle#c,\\declarekeytheoremstyle#c,\\declaretheoremstyle#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newkeytheoremstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newkeytheoremstyle{${1:style}}{${2:options%keyvals}}",
+        "keys": [
+          "\\newkeytheoremstyle#c,\\renewkeytheoremstyle#c,\\providekeytheoremstyle#c,\\declarekeytheoremstyle#c,\\declaretheoremstyle#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "renewkeytheoremstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewkeytheoremstyle{${1:style}}{${2:options%keyvals}}",
+        "keys": [
+          "\\newkeytheoremstyle#c,\\renewkeytheoremstyle#c,\\providekeytheoremstyle#c,\\declarekeytheoremstyle#c,\\declaretheoremstyle#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "providekeytheoremstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "providekeytheoremstyle{${1:style}}{${2:options%keyvals}}",
+        "keys": [
+          "\\newkeytheoremstyle#c,\\renewkeytheoremstyle#c,\\providekeytheoremstyle#c,\\declarekeytheoremstyle#c,\\declaretheoremstyle#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "declarekeytheoremstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "declarekeytheoremstyle{${1:style}}{${2:options%keyvals}}",
+        "keys": [
+          "\\newkeytheoremstyle#c,\\renewkeytheoremstyle#c,\\providekeytheoremstyle#c,\\declarekeytheoremstyle#c,\\declaretheoremstyle#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "NAME",
+      "unusual": true
+    },
+    {
+      "name": "NUMBER",
+      "unusual": true
+    },
+    {
+      "name": "NOTE",
+      "unusual": true
+    },
+    {
+      "name": "getkeytheorem",
+      "arg": {
+        "format": "{}",
+        "snippet": "getkeytheorem{${1:tag}}"
+      }
+    },
+    {
+      "name": "getkeytheorem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "getkeytheorem[${2:property%keyvals}]{${1:tag}}",
+        "keys": [
+          "\\getkeytheorem#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "IfRestatingTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "IfRestatingTF{${1:true code}}{${2:false code}}"
+      }
+    },
+    {
+      "name": "IfRestatingT",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "IfRestatingT{${1:true code}}"
+      }
+    },
+    {
+      "name": "IfRestatingF",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "IfRestatingF{${1:false code}}"
+      }
+    },
+    {
+      "name": "listofkeytheorems"
+    },
+    {
+      "name": "listofkeytheorems",
+      "arg": {
+        "format": "[]",
+        "snippet": "listofkeytheorems[${1:options%keyvals}]",
+        "keys": [
+          "\\listofkeytheorems#c,\\keytheoremlistset#c,\\listoftheorems#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "keytheoremlistset",
+      "arg": {
+        "format": "{}",
+        "snippet": "keytheoremlistset{${1:options%keyvals}}",
+        "keys": [
+          "\\listofkeytheorems#c,\\keytheoremlistset#c,\\listoftheorems#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addtheoremcontentsline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "addtheoremcontentsline{${1:level}}{${2:text}}"
+      }
+    },
+    {
+      "name": "addtotheoremcontents",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addtotheoremcontents{${1:code}}"
+      }
+    },
+    {
+      "name": "addtotheoremhook",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "addtotheoremhook{${1:hook name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "addtotheoremhook",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "addtotheoremhook[${3:envname}]{${1:hook name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "Autoref",
+      "arg": {
+        "format": "{}",
+        "snippet": "Autoref{${1:label}}"
+      }
+    },
+    {
+      "name": "Autoref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "Autoref*{${1:label}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "restatable",
+      "if": "thmtools-compat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:tag}}"
+      }
+    },
+    {
+      "name": "restatable",
+      "if": "thmtools-compat",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:envname}}{${2:tag}}"
+      }
+    },
+    {
+      "name": "restatable*",
+      "if": "thmtools-compat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:tag}}"
+      }
+    },
+    {
+      "name": "restatable*",
+      "if": "thmtools-compat",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:envname}}{${2:tag}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/key-theorems#c": [
+      "overload",
+      "thmtools-compat",
+      "store-all"
+    ],
+    "\\newkeytheorem#c,\\declaretheorem#c,\\newkeytheoremstyle#c,\\renewkeytheoremstyle#c,\\providekeytheoremstyle#c,\\declarekeytheoremstyle#c,\\declaretheoremstyle#c": [
+      "thmbox",
+      "thmbox=${1|L,M,S|}",
+      "shaded",
+      "shaded={${1:shade options}}"
+    ],
+    "\\usepackage/keytheorems#c,\\keytheoremset#c": [
+      "overload",
+      "thmtools-compat",
+      "store-all",
+      "restate-counter",
+      "qed-symbol=${1:symbol}",
+      "auto-translate",
+      "store-sets-label"
+    ],
+    "\\keytheoremset#c": [
+      "continues-code=${1:code}"
+    ],
+    "\\newkeytheorem#c,\\renewkeytheorem#c,\\providekeytheorem#c,\\declarekeytheorem#c,\\declaretheorem#c": [
+      "name=${1:display name}",
+      "numbered=${1|true,false,unless-unique|}",
+      "parent=${1:counter}",
+      "sibling=${1:counter}",
+      "refname=${1:ref name}",
+      "Refname=${1:ref name}"
+    ],
+    "\\newkeytheorem#c,\\renewkeytheorem#c,\\providekeytheorem#c,\\declarekeytheorem#c,\\declaretheorem#c,\\newkeytheoremstyle#c,\\renewkeytheoremstyle#c,\\providekeytheoremstyle#c,\\declarekeytheoremstyle#c,\\declaretheoremstyle#c": [
+      "preheadhook=${1:code}",
+      "postheadhook=${1:code}",
+      "prefoothook=${1:code}",
+      "postfoothook=${1:code}",
+      "qed",
+      "qed=${1:symbol}",
+      "tcolorbox",
+      "tcolorbox={${1:tcolorbox options}}",
+      "tcolorbox-no-titlebar",
+      "tcolorbox-no-titlebar={${1:tcolorbox options}}"
+    ],
+    "\\newkeytheoremstyle#c,\\renewkeytheoremstyle#c,\\providekeytheoremstyle#c,\\declarekeytheoremstyle#c,\\declaretheoremstyle#c": [
+      "spaceabove=",
+      "spacebelow=",
+      "bodyfont=${1:font commands}",
+      "headindent=",
+      "headfont=${1:font commands}",
+      "headpunct=${1:code}",
+      "postheadspace=",
+      "break",
+      "notefont=${1:font commands}",
+      "notebraces={${1:left brace}}{${2:right brace}}",
+      "headformat=${2|margin,swapnumber,${1:code}|}",
+      "inherit-style=${1:style name}",
+      "noteseparator=${1:separator}",
+      "numberfont=${1:font commands}"
+    ],
+    "\\getkeytheorem#c": [
+      "body"
+    ],
+    "\\listofkeytheorems#c,\\keytheoremlistset#c,\\listoftheorems#c": [
+      "numwidth=",
+      "indent=",
+      "ignore={${1:env1,env2,...}}",
+      "show={${1:env1,env2,...}}",
+      "onlynamed",
+      "onlynamed={${1:env1,env2,...}}",
+      "ignoreall",
+      "showall",
+      "title=${1:text}",
+      "swapnumber",
+      "onlynumbered",
+      "onlynumbered={${1:env1,env2,...}}",
+      "seq=${1:name}",
+      "title-code=${1:code}",
+      "no-title",
+      "note-code=${1:code}",
+      "print-body",
+      "no-continues",
+      "no-chapter-skip",
+      "chapter-skip-length=",
+      "no-toc",
+      "format-code=${1:code}"
+    ]
+  },
+  "args": [
+    "\\usepackage/key-theorems#c",
+    "\\usepackage/keytheorems#c,\\keytheoremset#c"
+  ]
+}
