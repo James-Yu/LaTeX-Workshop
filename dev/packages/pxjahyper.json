@@ -56,6 +56,14 @@
         "format": "{}{}{}{}",
         "snippet": "pxDeclarePdfTextComposite{${1:cmd}}{${2:arg}}{${3:jis}}{${4:ucs}}"
       }
+    },
+    {
+      "name": "pxjahyperBadCharacter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pxjahyperBadCharacter{${1:label}}"
+      }
     }
   ],
   "envs": [],
@@ -66,7 +74,6 @@
       "dvips",
       "nodvidriver",
       "resetdvidriver",
-      "autodvidriver",
       "tounicode",
       "notounicode",
       "out2uni",
@@ -88,11 +95,12 @@
       "otfcid",
       "nootfcid",
       "otfmacros",
-      "nootfmacros",
-      "force-unicode"
+      "nootfmacros"
     ],
     "\\pxjahypersetup#c,\\usepackage/pxjahyper#c": [
       "fallback=${1|geta,delete|}",
+      "fallback-warn",
+      "fallback-cidm",
       "extjis",
       "ajhankaku-chars"
     ]

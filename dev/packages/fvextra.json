@@ -91,7 +91,8 @@
         "format": "[]",
         "snippet": "VerbatimInsertBuffer[${1:options%keyvals}]",
         "keys": [
-          "\\begin{VerbatimBuffer},\\VerbatimInsertBuffer,\\VerbatimClearBuffer"
+          "\\begin{VerbatimBuffer},\\VerbatimInsertBuffer,\\VerbatimClearBuffer,\\fvset",
+          "\\VerbatimInsertBuffer"
         ],
         "keyPos": 0
       }
@@ -105,7 +106,7 @@
         "format": "[]",
         "snippet": "VerbatimClearBuffer[${1:options%keyvals}]",
         "keys": [
-          "\\begin{VerbatimBuffer},\\VerbatimInsertBuffer,\\VerbatimClearBuffer"
+          "\\begin{VerbatimBuffer},\\VerbatimInsertBuffer,\\VerbatimClearBuffer,\\fvset"
         ],
         "keyPos": 0
       }
@@ -184,6 +185,14 @@
       "arg": {
         "format": "{}",
         "snippet": "FVExtraReadVArg{${1:arg}}"
+      }
+    },
+    {
+      "name": "FVExtraReadVArgSingleLine",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "FVExtraReadVArgSingleLine{${1:arg}}"
       }
     },
     {
@@ -557,6 +566,18 @@
     {
       "name": "FancyVerbSpaceBreak",
       "unusual": true
+    },
+    {
+      "name": "FancyVerbBackgroundColor",
+      "unusual": true
+    },
+    {
+      "name": "FancyVerbBackgroundColorVPhantom",
+      "unusual": true
+    },
+    {
+      "name": "FancyVerbBackgroundColorPadding",
+      "unusual": true
     }
   ],
   "envs": [
@@ -593,7 +614,7 @@
         "format": "[]",
         "snippet": "[${1:options%keyvals}]",
         "keys": [
-          "\\begin{VerbatimBuffer},\\VerbatimInsertBuffer,\\VerbatimClearBuffer"
+          "\\begin{VerbatimBuffer},\\VerbatimInsertBuffer,\\VerbatimClearBuffer,\\fvset"
         ],
         "keyPos": 0
       }
@@ -601,6 +622,12 @@
   ],
   "keys": {
     "\\Verb,\\Verb*,\\DefineShortVerb,\\begin{Verbatim},\\begin{Verbatim*},\\begin{BVerbatim},\\begin{BVerbatim*},\\begin{LVerbatim},\\begin{LVerbatim*},\\fvset,\\DefineVerbatimEnvironment,\\CustomVerbatimEnvironment,\\RecustomVerbatimEnvironment,\\CustomVerbatimCommand,\\RecustomVerbatimCommand,\\SaveVerb,\\SaveVerb*,\\UseVerb,\\UseVerb*,\\begin{SaveVerbatim},\\UseVerbatim,\\BUseVerbatim,\\LUseVerbatim,\\VerbatimInput,\\BVerbatimInput,\\LLVerbatimInput,\\fvinlineset,\\EscVerb,\\EscVerb*,\\begin{VerbEnv},\\VerbatimInsertBuffer,\\VerbatimClearBuffer,\\RobustVerb,\\RobustVerb*,\\RobustUseVerb,\\RobustUseVerb*,\\RobustEscVerb,\\RobustEscVerb*": [
+      "backgroundcolor=",
+      "backgroundcolorpadding=",
+      "backgroundcolorvphantom=${1:macro}",
+      "bgcolor=",
+      "bgcolorpadding=",
+      "bgcolorvphantom=${1:macro}",
       "beameroverlays",
       "curlyquotes",
       "extra",
@@ -618,12 +645,14 @@
       "stepnumberoffsetvalues",
       "tab=${1:macro}",
       "tabcolor=",
+      "vargsingleline",
       "breakafter=${1:string}",
       "breakafterinrun",
       "breakaftersymbolpre=${1:string}",
       "breakaftersymbolpost=${1:string}",
       "breakanywhere",
       "breakanywheresymbolpre=${1:string}",
+      "breakanywhereinlinestretch=",
       "breakanywheresymbolpost=${1:string}",
       "breakautoindent",
       "breakbefore=${1:string}",
@@ -635,6 +664,7 @@
       "breakindentnchars=${1:integer}",
       "breaklines",
       "breaknonspaceingroup",
+      "breakpreferspaces",
       "breaksymbol=${1:string}",
       "breaksymbolleft=${1:string}",
       "breaksymbolright=${1:string}",
@@ -704,13 +734,16 @@
       "writefilehandle=${1:file handle}",
       "writer=${1:macro}"
     ],
-    "\\begin{VerbatimBuffer},\\VerbatimInsertBuffer,\\VerbatimClearBuffer": [
+    "\\begin{VerbatimBuffer},\\VerbatimInsertBuffer,\\VerbatimClearBuffer,\\fvset": [
       "afterbuffer=${1:macro}",
       "bufferer=${1:macro}",
       "bufferlengthname=${1:string}",
       "bufferlinename=${1:string}",
       "buffername=${1:string}",
       "globalbuffer"
+    ],
+    "\\VerbatimInsertBuffer": [
+      "insertenvname=${1:string}"
     ]
   },
   "args": []

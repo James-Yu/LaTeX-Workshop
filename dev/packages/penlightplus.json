@@ -11,6 +11,9 @@
     },
     {
       "name": "etoolbox"
+    },
+    {
+      "name": "tokcycle"
     }
   ],
   "macros": [
@@ -190,6 +193,13 @@
       }
     },
     {
+      "name": "tblsetN",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tblsetN{${1:index}}{${2:value}}"
+      }
+    },
+    {
       "name": "tblget",
       "arg": {
         "format": "{}",
@@ -270,10 +280,24 @@
       }
     },
     {
+      "name": "tblappN",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tblappN{${1:name}}{${2:value}}"
+      }
+    },
+    {
       "name": "tblcon",
       "arg": {
         "format": "{}{}",
         "snippet": "tblcon{${1:name}}{${2:csv}}"
+      }
+    },
+    {
+      "name": "tblconN",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tblconN{${1:name}}{${2:csv}}"
       }
     },
     {
@@ -296,6 +320,51 @@
         "format": "{}",
         "snippet": "tblprt{${1:name}}"
       }
+    },
+    {
+      "name": "caseswitch",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "caseswitch{${1:case}}{${2:key-val choices}}"
+      }
+    },
+    {
+      "name": "caseswitch*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "caseswitch*{${1:case}}{${2:key-val choices}}"
+      }
+    },
+    {
+      "name": "writePDFmetadatakv",
+      "arg": {
+        "format": "{}",
+        "snippet": "writePDFmetadatakv{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "writePDFmetadatakv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "writePDFmetadatakv[${2:expansion type}]{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "writePDFmetadatakv*",
+      "arg": {
+        "format": "{}",
+        "snippet": "writePDFmetadatakv*{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "writePDFmetadatakv*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "writePDFmetadatakv*[${2:expansion type}]{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "writePDFmetadata"
     }
   ],
   "envs": [],

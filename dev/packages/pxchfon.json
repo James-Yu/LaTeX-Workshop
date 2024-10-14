@@ -25,6 +25,17 @@
   ],
   "macros": [
     {
+      "name": "pxchfonsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "pxchfonsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/pxchfon#c,\\pxchfonsetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
       "name": "gid",
       "if": "glyphid",
       "arg": {
@@ -734,6 +745,14 @@
       }
     },
     {
+      "name": "pxchfonNoCheckMultiweight",
+      "unusual": true
+    },
+    {
+      "name": "pxchfonNoCheckExpert",
+      "unusual": true
+    },
+    {
       "name": "jfmsync",
       "unusual": true
     },
@@ -746,10 +765,15 @@
       }
     }
   ],
-  "envs": [],
+  "envs": [
+    {
+      "name": "usefontmaplines"
+    }
+  ],
   "keys": {
-    "\\usepackage/pxchfon#c": [
+    "\\usepackage/pxchfon#c,\\pxchfonsetup#c": [
       "nodvidriver",
+      "resetdvidriver",
       "dvips",
       "dviout",
       "xdvi",
@@ -789,6 +813,7 @@
       "glyphid",
       "noglyphid",
       "maybe-multiweight",
+      "nocheck-expert",
       "autojfmsync",
       "noautojfmsync",
       "noembed",
@@ -831,6 +856,6 @@
     ]
   },
   "args": [
-    "\\usepackage/pxchfon#c"
+    "\\usepackage/pxchfon#c,\\pxchfonsetup#c"
   ]
 }

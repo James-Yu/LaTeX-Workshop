@@ -7,7 +7,18 @@
         "format": "{}",
         "snippet": "fontscalesetup{${1:keyvals}}",
         "keys": [
-          "\\fontscalesetup"
+          "\\fontscalesetup,\\fontscalesetup*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fontscalesetup*",
+      "arg": {
+        "format": "{}",
+        "snippet": "fontscalesetup*{${1:keyvals}}",
+        "keys": [
+          "\\fontscalesetup,\\fontscalesetup*"
         ],
         "keyPos": 0
       }
@@ -56,14 +67,14 @@
       "name": "SetFontSize",
       "arg": {
         "format": "{}",
-        "snippet": "SetFontSize{${1:size}}"
+        "snippet": "SetFontSize{${1:dimen}}"
       }
     },
     {
       "name": "SetFontSize*",
       "arg": {
         "format": "{}",
-        "snippet": "SetFontSize*{${1:size}}"
+        "snippet": "SetFontSize*{${1:dimen}}"
       }
     },
     {
@@ -77,33 +88,41 @@
       "name": "SetFontSizeBaselineskip",
       "arg": {
         "format": "{}{}",
-        "snippet": "SetFontSizeBaselineskip{${1:size}}{${2:skip%l}}"
+        "snippet": "SetFontSizeBaselineskip{${1:dimen}}{${2:skip%l}}"
       }
     },
     {
-      "name": "PrintFontParameters"
+      "name": "SetFontBaselineskip",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetFontBaselineskip{${1:skip%l}}"
+      }
     },
     {
-      "name": "PrintAllFontParameters"
+      "name": "SetFontBaselineskip*",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetFontBaselineskip*{${1:skip%l}}"
+      }
     },
     {
-      "name": "PrintSampleText"
+      "name": "PrintFontSizeParameters"
+    },
+    {
+      "name": "PrintAllFontSizeParameters"
     },
     {
       "name": "PrintSampleText",
       "arg": {
-        "format": "[]",
-        "snippet": "PrintSampleText[${1:text}]"
+        "format": "{}",
+        "snippet": "PrintSampleText{${1:text}}"
       }
-    },
-    {
-      "name": "PrintSampleText*"
     },
     {
       "name": "PrintSampleText*",
       "arg": {
-        "format": "[]",
-        "snippet": "PrintSampleText*[${1:text}]"
+        "format": "{}",
+        "snippet": "PrintSampleText*{${1:text}}"
       }
     },
     {
@@ -112,18 +131,14 @@
   ],
   "envs": [],
   "keys": {
-    "\\fontscalesetup": [
-      "reset",
-      "reset=${1|initial,preamble|}",
-      "ignore-order",
+    "\\fontscalesetup,\\fontscalesetup*": [
       "baselineskip-size-ratio=${1:number}",
-      "typographic-scale=${1|classic-10pt,classic-11pt,classic-12pt,modular,musical|}",
+      "typographic-scale=${1|classic-10pt,classic-11pt,classic-12pt,musical|}",
       "classic-10pt",
       "classic-11pt",
       "classic-12pt",
-      "modular",
       "musical",
-      "modular/ratio=${1:number}",
+      "musical/base=",
       "musical/ratio=${1:number}",
       "musical/notes=${1:integer}",
       "tiny/scale=${1:number}",

@@ -1,40 +1,28 @@
 {
   "deps": [
     {
-      "name": "keyval"
-    },
-    {
-      "name": "kvoptions"
-    },
-    {
-      "name": "fvextra"
-    },
-    {
-      "name": "ifthen"
-    },
-    {
-      "name": "shellesc"
-    },
-    {
-      "name": "ifplatform"
-    },
-    {
-      "name": "pdftexcmds"
+      "name": "catchfile"
     },
     {
       "name": "etoolbox"
     },
     {
-      "name": "xstring"
+      "name": "fvextra"
     },
     {
-      "name": "lineno"
+      "name": "latex2pydata"
     },
     {
-      "name": "framed"
+      "name": "pdftexcmds"
     },
     {
-      "name": "catchfile"
+      "name": "pgfkeys"
+    },
+    {
+      "name": "pgfopts"
+    },
+    {
+      "name": "shellesc"
     },
     {
       "name": "xcolor"
@@ -264,50 +252,6 @@
         ],
         "keyPos": 2
       }
-    },
-    {
-      "name": "DeleteFile",
-      "unusual": true,
-      "arg": {
-        "format": "{}",
-        "snippet": "DeleteFile{${1:file}}"
-      }
-    },
-    {
-      "name": "DeleteFile",
-      "unusual": true,
-      "arg": {
-        "format": "[]{}",
-        "snippet": "DeleteFile[${2:directory}]{${1:file}}"
-      }
-    },
-    {
-      "name": "ProvideDirectory",
-      "unusual": true,
-      "arg": {
-        "format": "{}",
-        "snippet": "ProvideDirectory{${1:directory}}"
-      }
-    },
-    {
-      "name": "ifAppExists",
-      "unusual": true
-    },
-    {
-      "name": "TestAppExists",
-      "unusual": true,
-      "arg": {
-        "format": "{}",
-        "snippet": "TestAppExists{${1:application}}"
-      }
-    },
-    {
-      "name": "MintedPygmentize",
-      "unusual": true
-    },
-    {
-      "name": "MintedPython",
-      "unusual": true
     }
   ],
   "envs": [
@@ -346,107 +290,121 @@
       "section",
       "cache",
       "cachedir=${1:directory}",
-      "finalizecache",
-      "fontencoding=${1:encoding}",
+      "debug",
       "frozencache",
-      "draft",
-      "final",
-      "inputlanglinenos",
-      "kpsewhich",
-      "langlinenos",
+      "highlightmode=${1|fastfirst,fast,immediate|}",
+      "inputlexerlinenos",
+      "lexerlinenos",
       "newfloat",
-      "outputdir=${1:directory}"
+      "placeholder",
+      "verbatim"
     ],
     "\\begin{minted},\\mint,\\mintinline,\\inputminted,\\setminted,\\setmintedinline,\\newminted,\\newmint,\\newmintinline,\\newmintedfile": [
       "autogobble",
       "baselinestretch=",
       "beameroverlays",
-      "breakbytoken",
-      "breakbytokenanywhere",
-      "breaklines",
       "bgcolor=",
-      "codetagify=${1:string list}",
-      "curlyquotes",
-      "encoding=${1:encoding}",
-      "escapeinside=${1:two chars}",
-      "firstline=${1:int}",
-      "firstnumber=${2|auto,last,${1:integer}|}",
-      "fontfamily=${1:family name}",
-      "fontseries=${1:series name}",
-      "fontsize=${1:size command}",
-      "fontshape=${1:shape name}",
-      "formatcom=${1:command}",
-      "frame=${1|none,leftline,topline,bottomline,lines,single|}",
-      "framerule=",
-      "framesep=",
-      "funcnamehighlighting",
-      "gobble=${1:int}",
-      "highlightcolor=",
-      "highlightlines=${1:list of lineno ranges}",
-      "ignorelexererrors",
-      "keywordcase=${1|lower,upper,capitalize|}",
-      "label=${1:string}",
-      "labelposition=${1|none,topline,bottomline,all|}",
-      "lastline=${1:int}",
-      "linenos",
-      "numberfirstline",
-      "numbers=${1|left,right,both,none|}",
-      "mathescape",
-      "numberblanklines",
-      "numbersep=",
-      "obeytabs",
-      "outencoding=${1:encoding}",
-      "python3",
-      "resetmargins",
-      "rulecolor=",
-      "samepage",
-      "showspaces",
-      "showtabs",
-      "space=${1:command}",
-      "spacecolor=",
-      "startinline",
-      "style=${1:pytments style}",
-      "stepnumber=${1:int}",
-      "stepnumberfromfirst",
-      "stepnumberoffsetvalues",
-      "stripall",
-      "stripnl",
-      "tab=${1:commnd}",
-      "tabcolor=",
-      "tabsize=${1:int}",
-      "texcl",
-      "texcomments",
-      "xleftmargin=",
-      "xrightmargin=",
+      "bgcolorpadding=",
+      "bgcolorvphantom=${1:macro}",
       "breakafter=${1:string}",
       "breakafterinrun",
-      "breakaftersymbolpre=${1:string}",
       "breakaftersymbolpost=${1:string}",
+      "breakaftersymbolpre=${1:string}",
       "breakanywhere",
-      "breakanywheresymbolpre=${1:string}",
+      "breakanywhereinlinestretch=",
       "breakanywheresymbolpost=${1:string}",
+      "breakanywheresymbolpre=${1:string}",
       "breakautoindent",
       "breakbefore=${1:string}",
       "breakbeforeinrun",
-      "breakbeforesymbolpre=${1:string}",
       "breakbeforesymbolpost=${1:string}",
+      "breakbeforesymbolpre=${1:string}",
+      "breakbytoken",
+      "breakbytokenanywhere",
       "breakindent=",
-      "breakindentnchars=${1:int}",
+      "breakindentnchars=${1:integer}",
+      "breaklines",
       "breaksymbol=${1:string}",
-      "breaksymbolleft=${1:string}",
-      "breaksymbolright=${1:string}",
       "breaksymbolindent=",
-      "breaksymbolindentnchars=${1:int}",
+      "breaksymbolindentnchars=${1:integer}",
       "breaksymbolindentleft=",
       "breaksymbolindentleftnchars=${1:int}",
       "breaksymbolindentritht=",
       "breaksymbolindentrightnchars=${1:int}",
+      "breaksymbolleft=${1:string}",
+      "breaksymbolright=${1:string}",
       "breaksymbolsep=",
       "breaksymbolsepnchars=${1:int}",
       "breaksymbolsepleft=",
       "breaksymbolsepleftnchars=${1:int}",
       "breaksymbolsepright=",
-      "breaksymbolseprightnchars=${1:int}"
+      "breaksymbolseprightnchars=${1:int}",
+      "codetagify=${1:string list}",
+      "curlyquotes",
+      "encoding=${1:encoding}",
+      "envname=${1:string}",
+      "escapeinside=${1:two chars}",
+      "firstline=${1:integer}",
+      "firstnumber=${2|auto,last,${1:integer}|}",
+      "fontencoding=${1:font encoding}",
+      "fontfamily=${1:family name}",
+      "fontseries=${1:series name}",
+      "fontshape=${1:shape name}",
+      "fontsize=${1:size command}",
+      "formatcom=${1:command}",
+      "frame=${1|none,leftline,topline,bottomline,lines,single|}",
+      "framerule=",
+      "framesep=",
+      "funcnamehighlighting",
+      "gobble=${1:integer}",
+      "gobblefilter=${1:integer}",
+      "highlightcolor=",
+      "highlightlines=${1:list of lineno ranges}",
+      "ignorelexererrors",
+      "keywordcase=${1|lower,upper,capitalize,none|}",
+      "label=${1:string}",
+      "labelposition=${1|none,topline,bottomline,all|}",
+      "lastline=${1:integer}",
+      "linenos",
+      "listparameters=${1:macro}",
+      "literalenvname=${1:string}",
+      "literatecomment=${1:macro}",
+      "mathescape",
+      "numberblanklines",
+      "numberfirstline",
+      "numbers=${1|left,right,both,none|}",
+      "numbersep=",
+      "obeytabs",
+      "python3",
+      "rangeregex=${1:macro}",
+      "rangeregexmatchnumber=${1:integer}",
+      "rangeregexdotall",
+      "rangeregexmultiline",
+      "rangestartafterstring=${1:macro}",
+      "rangestartstring=${1:macro}",
+      "rangestopbeforestring=${1:macro}",
+      "rangestopstring=${1:macro}",
+      "resetmargins",
+      "rulecolor=",
+      "samepage",
+      "showspaces",
+      "showtabs",
+      "space=${1:macro}",
+      "spacecolor=",
+      "startinline",
+      "stepnumber=${1:integer}",
+      "stepnumberfromfirst",
+      "stepnumberoffsetvalues",
+      "stripall",
+      "stripnl",
+      "style=${1:pygments style}",
+      "tab=${1:macro}",
+      "tabcolor=",
+      "tabsize=${1:integer}",
+      "texcl",
+      "texcomments",
+      "xleftmargin=",
+      "xrightmargin="
     ]
   },
   "args": [
