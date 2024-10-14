@@ -14,6 +14,7 @@ with open(args.web + '/viewer.html', 'rt', encoding='utf-8') as fin:
                     .replace('''<link rel="stylesheet" href="viewer.css">''', '''<link rel="stylesheet" href="viewer.css">\n    <link rel="stylesheet" href="latexworkshop.css">''')
                     .replace('''<script src="../build/pdf.mjs" type="module"></script>''', '''<script src="build/pdf.mjs" type="module"></script>''')
                     .replace('''<script src="viewer.mjs" type="module"></script>''', '''<script src="out/viewer/latexworkshop.js" type="module"></script>''')
+                    .replace('''<div class="toolbar">''', '''<div class="toolbar hide">''')
                     .replace('''<div class="toolbarButtonSpacer"></div>''', '''<!-- <div class="toolbarButtonSpacer"></div> -->''')
             )
 

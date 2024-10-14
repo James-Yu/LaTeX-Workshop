@@ -8,7 +8,19 @@ import type { PDFViewerApplicationType } from './interface.js'
 
 declare const PDFViewerApplication: PDFViewerApplicationType
 
-let hideToolbar: number | undefined
+let hideToolbarTimeout: number | undefined
+function hideToolbar(params: Awaited<ReturnType<typeof utils.getParams>>) {
+    if (typeof PDFViewerApplication === 'undefined') {
+        return
+    }
+    if (hideToolbarTimeout === undefined && !PDFViewerApplication.findBar.opened && !PDFViewerApplication.pdfSidebar.isOpen && !PDFViewerApplication.secondaryToolbar.isOpen) {
+        hideToolbarTimeout = setTimeout(() => {
+            const toolbarDom = document.getElementsByClassName('toolbar')[0]
+            toolbarDom.classList.add('hide')
+            hideToolbarTimeout = undefined
+        }, params.toolbar * 1000)
+    }
+}
 export async function patchViewerUI() {
     if (utils.isEmbedded()) {
         // Cannot simply remove this element, as pdf.js indeed require it to
@@ -18,38 +30,34 @@ export async function patchViewerUI() {
 
     const params = await utils.getParams()
 
+    if (params.toolbar === 0) {
+        document.getElementsByClassName('toolbar')[0]?.classList.remove('hide')
+        document.getElementById('viewerContainer')!.style.top = '32px'
+    }
+
+    document.getElementById('outerContainer')!.onmouseleave = () => {
+        if (params.toolbar !== 0) {
+            hideToolbar(params)
+        }
+    }
+
     document.getElementById('outerContainer')!.onmousemove = (e) => {
         if (params.toolbar === 0) {
             return
         }
         if (e.clientY <= 64) {
-            if (hideToolbar) {
-                clearTimeout(hideToolbar)
-                hideToolbar = undefined
+            if (hideToolbarTimeout) {
+                clearTimeout(hideToolbarTimeout)
+                hideToolbarTimeout = undefined
             }
             showToolbar()
         } else {
-            if (typeof PDFViewerApplication === 'undefined') {
-                return
-            }
-            if (hideToolbar === undefined && !PDFViewerApplication.findBar.opened && !PDFViewerApplication.pdfSidebar.isOpen && !PDFViewerApplication.secondaryToolbar.isOpen) {
-                hideToolbar = setTimeout(() => {
-                    const toolbarDom = document.getElementsByClassName('toolbar')[0]
-                    toolbarDom.classList.add('hide')
-                    const containerDom = document.getElementById('viewerContainer')!
-                    containerDom.classList.add('topped')
-                    hideToolbar = undefined
-                }, params.toolbar * 1000)
-            }
+            hideToolbar(params)
         }
     }
 
     document.getElementById('sidebarResizer')?.classList.add('hidden')
     document.getElementById('firstPage')?.previousElementSibling?.classList.add('visibleLargeView')
-    if (params.toolbar !== 0) {
-        document.getElementsByClassName('toolbar')[0]?.classList.add('hide')
-        document.getElementById('viewerContainer')!.classList.add('topped')
-    }
 
     const template = document.createElement('template')
     template.innerHTML =
@@ -241,6 +249,4 @@ export function repositionAnnotation() {
 function showToolbar() {
     const toolbarDom = document.getElementsByClassName('toolbar')[0]
     toolbarDom.classList.remove('hide')
-    const containerDom = document.getElementById('viewerContainer')!
-    containerDom.classList.remove('topped')
 }
