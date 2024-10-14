@@ -382,11 +382,16 @@ function kpsewhich(target: string, isBib: boolean = false): string | undefined {
 
     try {
         const args = isBib ? ['-format=.bib', target] : [target]
-        const kpsewhichReturn = lw.external.sync(command, args, {cwd: lw.root.dir.path || vscode.workspace.workspaceFolders?.[0].uri.path})
+        const cwd = lw.root.dir.path || vscode.workspace.workspaceFolders?.[0].uri.path
+        const kpsewhichReturn = lw.external.sync(command, args, { cwd })
         if (kpsewhichReturn.status === 0) {
-            const output = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
+            let output = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
             logger.log(`kpsewhich returned with '${output}'.`)
             if (output !== '') {
+                if (!path.isAbsolute(output) && cwd) {
+                    output = path.resolve(cwd, output)
+                    logger.log(`kpsewhich resolved to '${output}'.`)
+                }
                 kpsecache[query] = output
             }
             return output
