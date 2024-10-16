@@ -1,5 +1,11 @@
 # Change Log
 
+## [10.5.3] - 2024-10-16
+
+### Fixed
+- Hide pdf viewer sidebar notification green dot.
+- (#4438) Fix link to `latex-workshop.texcount.autorun` setting.
+
 ## [10.5.2] - 2024-10-14
 
 ### Fixed
