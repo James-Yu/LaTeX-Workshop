@@ -5,7 +5,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
 
     constructor() {
         const sections = vscode.workspace.getConfiguration('latex-workshop').get('view.outline.sections') as string[]
-        this.sectionRegex = sections.map(section => RegExp(`\\\\(?:${section})(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}`, 'm'))
+        this.sectionRegex = this.buildSectionRegex(sections)
     }
 
     public provideFoldingRanges(
@@ -16,7 +16,11 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
         return [...this.getSectionFoldingRanges(document), ...this.getEnvironmentFoldingRanges(document)]
     }
 
-    private getSectionFoldingRanges(document: vscode.TextDocument) {
+    protected buildSectionRegex(sections: string[]) {
+        return sections.map(section => RegExp(`\\\\(?:${section})(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}`, 'm'))
+    }
+
+    protected getSectionFoldingRanges(document: vscode.TextDocument) {
         const startingIndices: number[] = this.sectionRegex.map(_ => -1)
         const lines = document.getText().split(/\r?\n/g)
         let documentClassLine = -1
@@ -78,7 +82,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
         return sections.map(section => new vscode.FoldingRange(section.from, section.to))
     }
 
-    private getEnvironmentFoldingRanges(document: vscode.TextDocument) {
+    protected getEnvironmentFoldingRanges(document: vscode.TextDocument) {
         const ranges: vscode.FoldingRange[] = []
         const opStack: { keyword: string, index: number }[] = []
         const text: string = document.getText()
@@ -125,6 +129,73 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
         }
     }
 }
+
+export class DoctexFoldingProvider extends FoldingProvider {
+
+    protected buildSectionRegex(sections: string[]) {
+        return sections.map(section => RegExp(`%\\s*\\\\(?:${section})(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}`, 'm'))
+    }
+
+    protected getEnvironmentFoldingRanges(document: vscode.TextDocument) {
+        const ranges: vscode.FoldingRange[] = []
+        const opStack: { keyword: string, index: number }[] = []
+        const text: string = document.getText()
+        const envRegex = /\\(begin){(.*?)}|\\(begingroup)[%\s\\]|\\(end){(.*?)}|\\(endgroup)[%\s\\]|^%\s*#?([rR]egion)|^%\s*#?([eE]ndregion)|^%\s*<\*([|,&!()_\-a-zA-Z0-9]+)>|^%\s*<\/([|,&!()_\-a-zA-Z0-9]+)>|^%\s*\\iffalse\s*(meta-comment)|^%\s*\\(fi)/gm //to match one 'begin' OR 'end'
+
+        while (true) {
+            const match = envRegex.exec(text)
+            if (match === null) {
+                //TODO: if opStack still not empty
+                return ranges
+            }
+            //for 'begin': match[1] contains 'begin', match[2] contains keyword
+            //for 'end':   match[4] contains 'end',   match[5] contains keyword
+            //for 'begingroup': match[3] contains 'begingroup', keyword is 'group'
+            //for 'endgroup': match[6] contains 'endgroup', keyword is 'group'
+            //for '% region': match[7] contains 'region', keyword is 'region'
+            //for '% endregion': match[8] contains 'endregion', keyword is 'region'
+            //DocTeX folding support
+            //for '%<*abc>': match[9] contains '%<*abc>', keyword is '%<abc>'
+            //for '%</abc>': match[10] contains '%</abc>', keyword is '%<abc>'
+            //for '% \iffalse meta-comment': match[11] contains '% \iffalse meta-comment', keyword is '%\\iffalse meta-comment'
+            //for '% \fi': match[12] contains '% \fi', keyword is '%\\iffalse meta-comment'
+            let keyword: string = ''
+            if (match[1]) {
+                keyword = match[2]
+            } else if (match[4]) {
+                keyword = match[5]
+            } else if (match[3] || match[6]) {
+                keyword = 'group'
+            } else if (match[7] || match[8]) {
+                keyword = 'region'
+            } else if (match[9]) {
+                keyword = '%<' + match[9] + '>'
+            } else if (match[10]) {
+                keyword = '%<' + match[10] + '>'
+            } else if (match[11] || match[12]) {
+                keyword = '%\\iffalse meta-comment'
+            }
+
+            const item = {
+                keyword,
+                index: match.index
+            }
+            const lastItem = opStack[opStack.length - 1]
+
+            if ((match[4] || match[6] || match[8] || match[10] || match[12]) && lastItem && lastItem.keyword === item.keyword) { // match 'end' with its 'begin'
+                const lastLineTune: number = match[10] || match[12] ? 0 : -1
+                opStack.pop()
+                ranges.push(new vscode.FoldingRange(
+                    document.positionAt(lastItem.index).line,
+                    document.positionAt(item.index).line + lastLineTune
+                ))
+            } else {
+                opStack.push(item)
+            }
+        }
+    }
+}
+
 
 export class WeaveFoldingProvider implements vscode.FoldingRangeProvider {
     public provideFoldingRanges(
