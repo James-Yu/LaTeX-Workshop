@@ -120,6 +120,26 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(!snippet.value.includes('%keyvals'), snippet.value)
         })
 
+        it('should remove `%:translatable` from macro argument hints', async () => {
+            readStub.resolves('\\usepackage{amsmath}')
+            await lw.cache.refreshCache(texPath)
+
+            const suggestion = getSuggestions().find(s => s.label === '\\dfrac{}{}')
+            const snippet = suggestion?.insertText
+            assert.ok(snippet instanceof vscode.SnippetString)
+            assert.ok(!snippet.value.includes('%:translatable'), snippet.value)
+        })
+
+        it('should remove other `%` components from macro argument hints', async () => {
+            readStub.resolves('\\usepackage{acro}')
+            await lw.cache.refreshCache(texPath)
+
+            const suggestion = getSuggestions().find(s => s.label === '\\acrotranslate{}')
+            const snippet = suggestion?.insertText
+            assert.ok(snippet instanceof vscode.SnippetString)
+            assert.ok(!snippet.value.includes('%'), snippet.value)
+        })
+
         it('should not provide argument hints if `intellisense.argumentHint.enabled` is false', async () => {
             readStub.resolves('\\usepackage{import}')
             await lw.cache.refreshCache(texPath)
