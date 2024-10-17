@@ -131,6 +131,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should remove other `%` components from macro argument hints', async () => {
+            set.config('intellisense.package.unusual', true)
             readStub.resolves('\\usepackage{acro}')
             await lw.cache.refreshCache(texPath)
 
