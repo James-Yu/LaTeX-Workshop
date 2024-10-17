@@ -1,5 +1,12 @@
 # Change Log
 
+## [10.5.4] - 2024-10-17
+
+### Fixed
+- (#4426) Code folding for DocTeX
+- (#4440) Remove `dev/packages/expl3.json`.
+- (#4441) Remove `%` components from macro suggestion snippets.
+
 ## [10.5.3] - 2024-10-16
 
 ### Fixed
