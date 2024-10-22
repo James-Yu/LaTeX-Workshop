@@ -1,5 +1,10 @@
 # Change Log
 
+## [10.5.5] - 2024-10-22
+
+### Fixed
+- Update `unified-latex` to version 1.8.1.
+
 ## [10.5.4] - 2024-10-17
 
 ### Fixed
