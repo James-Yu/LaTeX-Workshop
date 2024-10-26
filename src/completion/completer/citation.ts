@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
 import { bibtexParser } from 'latex-utensils'
 import { lw } from '../../lw'
 import type { CitationField, CitationItem, CompletionArgs, CompletionItem, CompletionProvider } from '../../types'
@@ -245,9 +244,9 @@ async function parseBibFile(fileName: string) {
         return
     }
     const newEntry: CitationItem[] = []
-    const bibtex = fs.readFileSync(fileName).toString()
+    const bibtex = await lw.file.read(fileName)
     logger.log(`Parse BibTeX AST from ${fileName} .`)
-    const ast = await lw.parser.parse.bib(bibtex)
+    const ast = await lw.parser.parse.bib(vscode.Uri.file(fileName), bibtex ?? '')
     if (ast === undefined) {
         logger.log(`Parsed 0 bib entries from ${fileName}.`)
         lw.event.fire(lw.event.FileParsed, fileName)

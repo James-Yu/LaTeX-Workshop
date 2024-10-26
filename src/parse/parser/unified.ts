@@ -3,6 +3,7 @@ import type * as Ast from '@unified-latex/unified-latex-types'
 // import { getParser } from '@unified-latex/unified-latex-util-parse'
 // import { attachMacroArgs } from '@unified-latex/unified-latex-util-arguments'
 import { bibtexParser } from 'latex-utensils'
+import type { SyntaxError } from 'latex-utensils/out/types/src/pegjs/pegjs_types.js'
 
 // @ts-expect-error Load unified.js from /out/src/...
 import { getParser, attachMacroArgs } from '../../../../resources/unified.js'
@@ -26,12 +27,12 @@ function reset(macros: Ast.MacroInfoRecord, environments: Ast.EnvInfoRecord) {
     unifiedParser = getParser({ macros, environments, flags: { autodetectExpl3AndAtLetter: true } })
 }
 
-function parseBibTeX(s: string, options?: bibtexParser.ParserOptions): bibtexParser.BibtexAst | Error | undefined {
+function parseBibTeX(s: string): bibtexParser.BibtexAst | string | undefined {
     try {
-        return bibtexParser.parse(s, options)
+        return bibtexParser.parse(s)
     } catch (err) {
-        if (err instanceof Error) {
-            return err
+        if (bibtexParser.isSyntaxError(err)) {
+            return JSON.stringify(err)
         }
         return undefined
     }
