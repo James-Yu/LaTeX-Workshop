@@ -205,18 +205,6 @@ function addMasks() {
         div.appendChild(img)
         viewerContainer.appendChild(div)
         div.style.display = 'inherit'
-
-        // This workaround is for the last page of the document.
-        const anchor = document.createElement('div')
-        anchor.className = 'page-loading-anchor'
-        masks.push(anchor)
-        anchor.style.display = 'inherit'
-        anchor.style.position = 'absolute'
-        anchor.style.left = pageBound.x - viewerBound.x + 'px'
-        anchor.style.top = pageBound.y - viewerBound.y + pageBound.height + 'px'
-        anchor.style.width = '10px'
-        anchor.style.height = '10px'
-        viewerContainer.appendChild(anchor)
     }
     return masks
 }
