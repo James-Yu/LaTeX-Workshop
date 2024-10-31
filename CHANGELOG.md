@@ -1,5 +1,11 @@
 # Change Log
 
+## [10.5.6] - 2024-10-31
+
+### Fixed
+- Remove bottom 10px margin of last page in PDF viewer.
+- (#4449) Add a warning message when bibtex parser failed.
+
 ## [10.5.5] - 2024-10-22
 
 ### Fixed
