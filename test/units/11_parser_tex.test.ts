@@ -41,7 +41,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const ast = await parser.bib(vscode.Uri.file('/main.bib'), '@article{key, author = "author",')
 
             assert.strictEqual(ast, undefined)
-            assert.hasLog('Error when parsing bib file.')
+            assert.hasLog('Error when parsing bib file')
         })
     })
 
