@@ -77,7 +77,10 @@ export async function patchViewerUI() {
     for (const node of template.content.childNodes) {
         anchor.parentNode?.insertBefore(node, anchor)
     }
-
+    const trimButton = document.getElementById('TrimButton')! as HTMLButtonElement
+    trimButton.addEventListener('click', (e) => {
+        e.stopPropagation()
+    })
     registerSynctexCheckBox()
     registerAutoReloadCheckBox()
 
@@ -104,8 +107,9 @@ export async function patchViewerUI() {
 function registerSynctexCheckBox() {
     const synctexOn = document.getElementById('synctexOn')! as HTMLInputElement
     const synctexOnButton = document.getElementById('synctexOnButton')! as HTMLInputElement
-    synctexOnButton.addEventListener('click', () => {
+    synctexOnButton.addEventListener('click', (e) => {
         synctexOn.checked = toggleSyncTeX()
+        e.stopPropagation()
         // PDFViewerApplication.secondaryToolbar.close()
     })
 }
@@ -113,8 +117,9 @@ function registerSynctexCheckBox() {
 function registerAutoReloadCheckBox() {
     const autoRefreshOn = document.getElementById('autoRefreshOn')! as HTMLInputElement
     const autoRefreshOnButton = document.getElementById('autoRefreshOnButton')! as HTMLButtonElement
-    autoRefreshOnButton.addEventListener('click', () => {
+    autoRefreshOnButton.addEventListener('click', (e) => {
         autoRefreshOn.checked = toggleAutoRefresh()
+        e.stopPropagation()
         // PDFViewerApplication.secondaryToolbar.close()
     })
 }
