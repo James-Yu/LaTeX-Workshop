@@ -38,7 +38,7 @@ Getting a proper list of packages is tricky as the package names (as listed by C
   - If `pkg.sty` exists in the TeXLive Package database, store `pkg` for package intellisense.
   - If not, search if a package `pkg/` exists in the TeXLive Package database and look up a file whose lowercase name matches `pkg`. If it is found, then save it for package intellisense.
 
-As some packages cannot be properly detected using the above mechanism, we maintain a list of extra packages to be added to the list in [extra-packagenames.json](extra-packagenames.json). These packages are automatically added at the end of the [`ctanpkglist.py`](dev/ctanpkglist.py) script.
+As some packages cannot be properly detected using the above mechanism, we maintain a list of extra packages to be added to the list in [extra-packagenames.json](extra-packagenames.json). These packages are automatically added at the end of the [`ctanpkglist.py`](ctanpkglist.py) script.
 
 ### unimathsymbols.py
 
