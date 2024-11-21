@@ -98,6 +98,7 @@ function handleTmpDirError(error: Error) {
 function hasTeXExt(extname: string): boolean {
     return [
         ...lw.constant.TEX_EXT,
+        ...lw.constant.EXTRA_TEX_EXT,
         ...lw.constant.RSWEAVE_EXT,
         ...lw.constant.JLWEAVE_EXT,
         ...lw.constant.PWEAVE_EXT
@@ -123,6 +124,7 @@ function hasTeXExt(extname: string): boolean {
 function hasBinaryExt(extname: string): boolean {
     return ![
         ...lw.constant.TEX_EXT,
+        ...lw.constant.EXTRA_TEX_EXT,
         ...lw.constant.TEX_NOCACHE_EXT,
         ...lw.constant.RSWEAVE_EXT,
         ...lw.constant.JLWEAVE_EXT,

@@ -60,6 +60,7 @@ export const lw = {
 
 const constant = {
     TEX_EXT: ['.tex', '.bib'],
+    EXTRA_TEX_EXT: vscode.workspace.getConfiguration('latex-workshop').get('latex.extraExts', []) as string[],
     TEX_NOCACHE_EXT: ['.cls', '.sty', '.bst', '.bbx', '.cbx', '.def', '.cfg'],
     RSWEAVE_EXT: ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw'],
     JLWEAVE_EXT: ['.jnw', '.jtexw'],
@@ -69,7 +70,7 @@ const constant = {
     MAGIC_PROGRAM_ARGS_SUFFIX: '_WITH_ARGS',
     MAX_PRINT_LINE: '10000',
     /**
-     * Prefix that server.ts uses to distiguish requests on pdf files from
+     * Prefix that server.ts uses to distinguish requests on pdf files from
      * others. We use '.' because it is not converted by encodeURIComponent and
      * other functions.
      * See https://stackoverflow.com/questions/695438/safe-characters-for-friendly-url
