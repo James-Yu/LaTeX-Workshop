@@ -144,8 +144,8 @@ class Watcher {
 
         this.polling[uriString] = { size, time: firstChangeTime }
 
-        const pollingInterval = setInterval(async () => {
-            await this.handlePolling(uri, size, firstChangeTime, pollingInterval)
+        const pollingInterval = setInterval(() => {
+            void this.handlePolling(uri, size, firstChangeTime, pollingInterval)
         }, vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number)
     }
 
