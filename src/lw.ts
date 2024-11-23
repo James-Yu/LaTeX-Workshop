@@ -60,7 +60,6 @@ export const lw = {
 
 const constant = {
     TEX_EXT: ['.tex', '.bib'],
-    EXTRA_TEX_EXT: vscode.workspace.getConfiguration('latex-workshop').get('latex.extraExts', []) as string[],
     TEX_NOCACHE_EXT: ['.cls', '.sty', '.bst', '.bbx', '.cbx', '.def', '.cfg'],
     RSWEAVE_EXT: ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw'],
     JLWEAVE_EXT: ['.jnw', '.jtexw'],
