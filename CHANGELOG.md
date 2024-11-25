@@ -1,5 +1,19 @@
 # Change Log
 
+## [10.6.0] - 2024-11-25
+
+### Added
+- Update pdf.js to v4.8.69.
+- (#4466) Handle LaTeX files with non `.tex` extension.
+  - This includes a new config item `latex.extraExts`.
+  - See https://github.com/James-Yu/LaTeX-Workshop/issues/4457#issuecomment-2491096409 for usage.
+
+### Fixed
+- Binary file watcher polling should not await.
+  - This fix will benefit PDF change watcher.
+- (#4448) Fix link highlighting in `\ref` and `\input` for non-word characters.
+- (#4459) Additional menu buttons in PDF viewer drop down menu no longer hide menu on click.
+
 ## [10.5.6] - 2024-10-31
 
 ### Fixed
