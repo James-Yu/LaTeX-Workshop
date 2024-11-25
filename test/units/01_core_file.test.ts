@@ -395,6 +395,28 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(!lw.file.hasTeXExt('.sty'))
             assert.ok(!lw.file.hasTeXExt('.txt'))
         })
+
+        it('should return true for extensions defined in `latex.extraExts`', async () => {
+            await set.codeConfig('latex.extraExts', ['.txt'])
+            assert.ok(lw.file.hasTeXExt('.txt'))
+        })
+
+        it('should respond to changes to `latex.extraExts` on-the-fly', async () => {
+            assert.ok(!lw.file.hasTeXExt('.txt'))
+            assert.ok(!lw.file.hasTeXExt('.md'))
+
+            await set.codeConfig('latex.extraExts', ['.txt'])
+            assert.ok(lw.file.hasTeXExt('.txt'))
+            assert.ok(!lw.file.hasTeXExt('.md'))
+
+            await set.codeConfig('latex.extraExts', ['.txt', '.md'])
+            assert.ok(lw.file.hasTeXExt('.txt'))
+            assert.ok(lw.file.hasTeXExt('.md'))
+
+            await set.codeConfig('latex.extraExts', [])
+            assert.ok(!lw.file.hasTeXExt('.txt'))
+            assert.ok(!lw.file.hasTeXExt('.md'))
+        })
     })
 
     describe('lw.file.hasBinaryExt', () => {
@@ -410,6 +432,28 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(!lw.file.hasBinaryExt('.rnw'))
             assert.ok(!lw.file.hasBinaryExt('.jnw'))
             assert.ok(!lw.file.hasBinaryExt('.pnw'))
+        })
+
+        it('should return false for extensions defined in `latex.extraExts`', async () => {
+            await set.codeConfig('latex.extraExts', ['.txt'])
+            assert.ok(!lw.file.hasBinaryExt('.txt'))
+        })
+
+        it('should respond to changes to `latex.extraExts` on-the-fly', async () => {
+            assert.ok(lw.file.hasBinaryExt('.txt'))
+            assert.ok(lw.file.hasBinaryExt('.md'))
+
+            await set.codeConfig('latex.extraExts', ['.txt'])
+            assert.ok(!lw.file.hasBinaryExt('.txt'))
+            assert.ok(lw.file.hasBinaryExt('.md'))
+
+            await set.codeConfig('latex.extraExts', ['.txt', '.md'])
+            assert.ok(!lw.file.hasBinaryExt('.txt'))
+            assert.ok(!lw.file.hasBinaryExt('.md'))
+
+            await set.codeConfig('latex.extraExts', [])
+            assert.ok(lw.file.hasBinaryExt('.txt'))
+            assert.ok(lw.file.hasBinaryExt('.md'))
         })
     })
 

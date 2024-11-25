@@ -7,6 +7,7 @@ import { lw } from '../lw'
 
 const logger = lw.log('File')
 
+let extraTeXExts: string[]
 export const file = {
     tmpDirPath: '',
     getOutDir,
@@ -29,6 +30,12 @@ export const file = {
 initialize()
 export function initialize() {
     file.tmpDirPath = createTmpDir()
+}
+
+setExtraTeXExts()
+lw.onConfigChange('latex.extraExts', setExtraTeXExts)
+function setExtraTeXExts() {
+    extraTeXExts = vscode.workspace.getConfiguration('latex-workshop').get('latex.extraExts', []) as string[]
 }
 
 /**
@@ -87,8 +94,9 @@ function handleTmpDirError(error: Error) {
  * This function verifies whether a provided file extension string matches any
  * of the TeX-related extensions defined in several constant arrays. It
  * consolidates these arrays into a single collection and checks if the given
- * extension exists within this collection. The arrays include TeX extensions, R
- * Sweave extensions, Julia Weave extensions, and Python Weave extensions.
+ * extension exists within this collection. The arrays include TeX extensions
+ * (including those defined by the user ), R Sweave extensions, Julia Weave extensions,
+ * and Python Weave extensions.
  *
  * @param {string} extname - The file extension to be checked including the dot
  * (e.g., '.tex').
@@ -97,6 +105,7 @@ function handleTmpDirError(error: Error) {
  */
 function hasTeXExt(extname: string): boolean {
     return [
+        ...extraTeXExts,
         ...lw.constant.TEX_EXT,
         ...lw.constant.RSWEAVE_EXT,
         ...lw.constant.JLWEAVE_EXT,
@@ -111,9 +120,10 @@ function hasTeXExt(extname: string): boolean {
  * This function evaluates the given file extension and checks it against a
  * predefined list of TeX source extensions such as `.tex`, `.ltx`, `.sty`,
  * `.cls`, `.fd`, `.aux`, `.bbl`, `.blg`, `.brf`, `.log`, `.out`, and R Sweave
- * extensions, Julia Weave extensions, and Python Weave extensions. It returns
- * `true` if the extension is not found in this list, and `false` otherwise.
- * This is useful for filtering out non-TeX files from a collection of files.
+ * extensions, Julia Weave extensions, Python Weave extensions and user defined
+ * tex extensions. It returns `true` if the extension is not found in this list,
+ * and `false` otherwise. This is useful for filtering out non-TeX files from a
+ * collection of files.
  *
  * @param {string} extname - The file extension to be checked including the dot
  * (e.g., '.tex').
@@ -122,6 +132,7 @@ function hasTeXExt(extname: string): boolean {
  */
 function hasBinaryExt(extname: string): boolean {
     return ![
+        ...extraTeXExts,
         ...lw.constant.TEX_EXT,
         ...lw.constant.TEX_NOCACHE_EXT,
         ...lw.constant.RSWEAVE_EXT,
@@ -265,7 +276,7 @@ function getOutDir(texPath?: string): string {
  */
 function getLangId(filename: string): string | undefined {
     const ext = path.extname(filename).toLocaleLowerCase()
-    if (ext === '.tex') {
+    if (ext === '.tex' || extraTeXExts.includes(ext)) {
         return 'latex'
     } else if (lw.constant.PWEAVE_EXT.includes(ext)) {
         return 'pweave'
