@@ -145,7 +145,7 @@ class Watcher {
         this.polling[uriString] = { size, time: firstChangeTime }
 
         const pollingInterval = setInterval(() => {
-            void this.handlePolling(uri, size, firstChangeTime, pollingInterval)
+            void this.handlePolling(uri, firstChangeTime, pollingInterval)
         }, vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number)
     }
 
@@ -164,7 +164,7 @@ class Watcher {
      * @param {number} firstChangeTime - The timestamp of the first change.
      * @param {NodeJS.Timeout} interval - The polling interval.
      */
-    private async handlePolling(uri: vscode.Uri, size: number, firstChangeTime: number, interval: NodeJS.Timeout): Promise<void> {
+    private async handlePolling(uri: vscode.Uri, firstChangeTime: number, interval: NodeJS.Timeout): Promise<void> {
         const uriString = uri.toString(true)
         if (!await lw.file.exists(uri)) {
             clearInterval(interval)
@@ -174,9 +174,15 @@ class Watcher {
 
         const currentSize = (await lw.external.stat(uri)).size
 
-        if (currentSize !== size) {
+        if (currentSize !== this.polling[uriString].size) {
             this.polling[uriString].size = currentSize
             this.polling[uriString].time = Date.now()
+            return
+        }
+
+        // Resume vscode may cause accidental "change", do nothing
+        if (!(uriString in this.polling)) {
+            clearInterval(interval)
             return
         }
 
