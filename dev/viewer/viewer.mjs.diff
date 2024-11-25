@@ -1,5 +1,5 @@
 diff --git a/../../web/viewer.mjs b/../viewer/viewer.mjs
-index a8fcc2a9d..f48339c2b 100644
+index 043a14327..55f6640b3 100644
 --- a/../../web/viewer.mjs
 +++ b/../viewer/viewer.mjs
 @@ -758,7 +758,7 @@ const defaultOptions = {
@@ -38,7 +38,7 @@ index a8fcc2a9d..f48339c2b 100644
      kind: OptionKind.VIEWER
    };
    defaultOptions.viewerCssTheme = {
-@@ -2615,7 +2615,7 @@ class Localization {
+@@ -2614,7 +2614,7 @@ class Localization {
        if (typeof console !== "undefined") {
          const locale = bundle.locales[0];
          const ids = Array.from(missingIds).join(", ");
@@ -47,7 +47,7 @@ index a8fcc2a9d..f48339c2b 100644
        }
      }
      if (!hasAtLeastOneBundle && typeof console !== "undefined") {
-@@ -3095,11 +3095,11 @@ class GenericScripting {
+@@ -3097,11 +3097,11 @@ class GenericScripting {
  function initCom(app) {}
  class Preferences extends BasePreferences {
    async _writeToStorage(prefObj) {
@@ -61,7 +61,7 @@ index a8fcc2a9d..f48339c2b 100644
      };
    }
  }
-@@ -5165,7 +5165,7 @@ const FindState = {
+@@ -5184,7 +5184,7 @@ const FindState = {
    PENDING: 3
  };
  const FIND_TIMEOUT = 250;
@@ -70,7 +70,7 @@ index a8fcc2a9d..f48339c2b 100644
  const MATCH_SCROLL_OFFSET_LEFT = -400;
  const CHARACTERS_TO_NORMALIZE = {
    "\u2010": "-",
-@@ -7567,6 +7567,9 @@ function renderProgress(index, total) {
+@@ -7586,6 +7586,9 @@ function renderProgress(index, total) {
  }
  window.addEventListener("keydown", function (event) {
    if (event.keyCode === 80 && (event.ctrlKey || event.metaKey) && !event.altKey && (!event.shiftKey || window.chrome || window.opera)) {
@@ -80,7 +80,7 @@ index a8fcc2a9d..f48339c2b 100644
      window.print();
      event.preventDefault();
      event.stopImmediatePropagation();
-@@ -8151,7 +8154,7 @@ class PDFSidebar {
+@@ -8170,7 +8173,7 @@ class PDFSidebar {
        this.#dispatchEvent();
        return;
      }
@@ -89,7 +89,7 @@ index a8fcc2a9d..f48339c2b 100644
      if (!this.isInitialEventDispatched) {
        this.#dispatchEvent();
      }
-@@ -10870,7 +10873,7 @@ class PDFViewer {
+@@ -10892,7 +10895,7 @@ class PDFViewer {
      this.#enableNewAltTextWhenAddingImage = options.enableNewAltTextWhenAddingImage === true;
      this.imageResourcesPath = options.imageResourcesPath || "";
      this.enablePrintAutoRotate = options.enablePrintAutoRotate || false;
@@ -98,7 +98,7 @@ index a8fcc2a9d..f48339c2b 100644
      this.maxCanvasPixels = options.maxCanvasPixels;
      this.l10n = options.l10n;
      this.l10n ||= new genericl10n_GenericL10n();
-@@ -11608,12 +11611,12 @@ class PDFViewer {
+@@ -11630,12 +11633,12 @@ class PDFViewer {
            hPadding *= 2;
          }
        } else if (this.removePageBorders) {
@@ -114,7 +114,7 @@ index a8fcc2a9d..f48339c2b 100644
        switch (value) {
          case "page-actual":
            scale = 1;
-@@ -11724,7 +11727,7 @@ class PDFViewer {
+@@ -11746,7 +11749,7 @@ class PDFViewer {
          let hPadding = SCROLLBAR_PADDING,
            vPadding = VERTICAL_PADDING;
          if (this.removePageBorders) {
@@ -123,7 +123,7 @@ index a8fcc2a9d..f48339c2b 100644
          }
          widthScale = (this.container.clientWidth - hPadding) / width / PixelsPerInch.PDF_TO_CSS_UNITS;
          heightScale = (this.container.clientHeight - vPadding) / height / PixelsPerInch.PDF_TO_CSS_UNITS;
-@@ -12964,10 +12967,10 @@ class ViewHistory {
+@@ -12986,10 +12989,10 @@ class ViewHistory {
    }
    async _writeToStorage() {
      const databaseStr = JSON.stringify(this.database);
@@ -136,7 +136,7 @@ index a8fcc2a9d..f48339c2b 100644
    }
    async set(name, val) {
      await this._initializedPromise;
-@@ -13551,7 +13554,7 @@ const PDFViewerApplication = {
+@@ -13573,7 +13576,7 @@ const PDFViewerApplication = {
          title = decodeURIComponent(getFilenameFromUrl(url));
        } catch {}
      }
@@ -145,7 +145,7 @@ index a8fcc2a9d..f48339c2b 100644
    },
    setTitle(title = this._title) {
      this._title = title;
-@@ -13975,7 +13978,7 @@ const PDFViewerApplication = {
+@@ -13997,7 +14000,7 @@ const PDFViewerApplication = {
      this.metadata = metadata;
      this._contentDispositionFilename ??= contentDispositionFilename;
      this._contentLength ??= contentLength;
@@ -154,7 +154,7 @@ index a8fcc2a9d..f48339c2b 100644
      let pdfTitle = info.Title;
      const metadataTitle = metadata?.get("dc:title");
      if (metadataTitle) {
-@@ -14106,9 +14109,9 @@ const PDFViewerApplication = {
+@@ -14128,9 +14131,9 @@ const PDFViewerApplication = {
      this.pdfSidebar?.setInitialView(sidebarView);
      setViewerModes(scrollMode, spreadMode);
      if (this.initialBookmark) {
@@ -166,7 +166,7 @@ index a8fcc2a9d..f48339c2b 100644
        this.initialBookmark = null;
      } else if (storedHash) {
        setRotation(rotation);
-@@ -15370,7 +15373,7 @@ function webViewerLoad() {
+@@ -15308,7 +15311,7 @@ function webViewerLoad() {
    try {
      parent.document.dispatchEvent(event);
    } catch (ex) {
@@ -175,7 +175,7 @@ index a8fcc2a9d..f48339c2b 100644
      document.dispatchEvent(event);
    }
    PDFViewerApplication.run(config);
-@@ -15387,4 +15390,3 @@ var __webpack_exports__PDFViewerApplicationConstants = __webpack_exports__.PDFVi
+@@ -15325,4 +15328,3 @@ var __webpack_exports__PDFViewerApplicationConstants = __webpack_exports__.PDFVi
  var __webpack_exports__PDFViewerApplicationOptions = __webpack_exports__.PDFViewerApplicationOptions;
  export { __webpack_exports__PDFViewerApplication as PDFViewerApplication, __webpack_exports__PDFViewerApplicationConstants as PDFViewerApplicationConstants, __webpack_exports__PDFViewerApplicationOptions as PDFViewerApplicationOptions };
  
