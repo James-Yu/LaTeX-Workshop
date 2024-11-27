@@ -1,5 +1,11 @@
 # Change Log
 
+## [10.6.1] - 2024-11-27
+
+### Fixed
+- Correct binary file polling comparison.
+- (#4469) PDF viewer spread misaligned due to bottom margin.
+
 ## [10.6.0] - 2024-11-25
 
 ### Added
