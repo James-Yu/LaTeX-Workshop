@@ -43,9 +43,13 @@ async function formatDocument(document: vscode.TextDocument, range?: vscode.Rang
         })
     })
 
-    process.stdin?.write(document.getText(range))
+    // write the document to the process, and add a newline at the end
+    process.stdin?.write(document.getText(range)+'\n')
     process.stdin?.end()
     const edits = await promise
-
+    // remove extra newline at the end
+    if (edits) {
+        edits.newText = edits.newText.replace(/\n$/, '')
+    }
     return edits
 }
