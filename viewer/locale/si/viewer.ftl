@@ -182,7 +182,7 @@ pdfjs-find-highlight-checkbox = සියල්ල උද්දීපනය
 pdfjs-find-entire-word-checkbox-label = සමස්ත වචන
 pdfjs-find-reached-top = ලේඛනයේ මුදුනට ළඟා විය, පහළ සිට ඉහළට
 pdfjs-find-reached-bottom = ලේඛනයේ අවසානයට ළඟා විය, ඉහළ සිට පහළට
-pdfjs-find-not-found = වැකිකඩ හමු නොවිණි
+pdfjs-find-not-found = වැකිකඩ හමු නොවුණි
 
 ## Predefined zoom values
 
@@ -230,6 +230,9 @@ pdfjs-editor-free-text-button-label = පෙළ
 pdfjs-editor-ink-button =
     .title = අඳින්න
 pdfjs-editor-ink-button-label = අඳින්න
+pdfjs-editor-stamp-button =
+    .title = රූප සංස්කරණය හෝ එක් කරන්න
+pdfjs-editor-stamp-button-label = රූප සංස්කරණය හෝ එක් කරන්න
 
 ## Remove button for the various kind of editor.
 
@@ -247,6 +250,7 @@ pdfjs-free-text-default-content = ලිවීීම අරඹන්න…
 
 ## Alt-text dialog
 
+pdfjs-editor-alt-text-mark-decorative-description = මෙය දාර හෝ දිය සලකුණු වැනි අලංකාර රූප සඳහා භාවිතා වේ.
 
 ## Editor resizers
 ## This is used in an aria label to help to understand the role of the resizer.

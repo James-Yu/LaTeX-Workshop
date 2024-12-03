@@ -1287,16 +1287,37 @@
     transform:none;
   }
 
-[data-main-rotation="90"]:is(.canvasWrapper svg) mask,[data-main-rotation="90"]:is(.canvasWrapper svg) use:not(.clip,.mask){
-        transform:matrix(0, 1, -1, 0, 1, 0);
+.moving:is(.canvasWrapper svg){
+      z-index:100000;
+    }
+
+[data-main-rotation="90"]:is(.highlight:is(.canvasWrapper svg),.highlightOutline:is(.canvasWrapper svg)) mask,[data-main-rotation="90"]:is(.highlight:is(.canvasWrapper svg),.highlightOutline:is(.canvasWrapper svg)) use:not(.clip,.mask){
+          transform:matrix(0, 1, -1, 0, 1, 0);
+        }
+
+[data-main-rotation="180"]:is(.highlight:is(.canvasWrapper svg),.highlightOutline:is(.canvasWrapper svg)) mask,[data-main-rotation="180"]:is(.highlight:is(.canvasWrapper svg),.highlightOutline:is(.canvasWrapper svg)) use:not(.clip,.mask){
+          transform:matrix(-1, 0, 0, -1, 1, 1);
+        }
+
+[data-main-rotation="270"]:is(.highlight:is(.canvasWrapper svg),.highlightOutline:is(.canvasWrapper svg)) mask,[data-main-rotation="270"]:is(.highlight:is(.canvasWrapper svg),.highlightOutline:is(.canvasWrapper svg)) use:not(.clip,.mask){
+          transform:matrix(0, -1, 1, 0, 0, 1);
+        }
+
+.draw:is(.canvasWrapper svg){
+      position:absolute;
+      mix-blend-mode:normal;
+    }
+
+.draw[data-draw-rotation="90"]:is(.canvasWrapper svg){
+        transform:rotate(90deg);
       }
 
-[data-main-rotation="180"]:is(.canvasWrapper svg) mask,[data-main-rotation="180"]:is(.canvasWrapper svg) use:not(.clip,.mask){
-        transform:matrix(-1, 0, 0, -1, 1, 1);
+.draw[data-draw-rotation="180"]:is(.canvasWrapper svg){
+        transform:rotate(180deg);
       }
 
-[data-main-rotation="270"]:is(.canvasWrapper svg) mask,[data-main-rotation="270"]:is(.canvasWrapper svg) use:not(.clip,.mask){
-        transform:matrix(0, -1, 1, 0, 0, 1);
+.draw[data-draw-rotation="270"]:is(.canvasWrapper svg){
+        transform:rotate(270deg);
       }
 
 .highlight:is(.canvasWrapper svg){
@@ -1636,20 +1657,20 @@
 }
 
 .textLayer.highlighting{
-  cursor:var(--editorFreeHighlight-editing-cursor);
-}
-
-.textLayer.highlighting:not(.free) span{
-    cursor:var(--editorHighlight-editing-cursor);
-  }
-
-[role="img"]:is(.textLayer.highlighting:not(.free) span){
-      cursor:var(--editorFreeHighlight-editing-cursor);
-    }
-
-.textLayer.highlighting.free span{
     cursor:var(--editorFreeHighlight-editing-cursor);
   }
+
+.textLayer.highlighting:not(.free) span{
+      cursor:var(--editorHighlight-editing-cursor);
+    }
+
+[role="img"]:is(.textLayer.highlighting:not(.free) span){
+        cursor:var(--editorFreeHighlight-editing-cursor);
+      }
+
+.textLayer.highlighting.free span{
+      cursor:var(--editorFreeHighlight-editing-cursor);
+    }
 
 :is(#viewerContainer.pdfPresentationMode:fullscreen,.annotationEditorLayer.disabled) .noAltTextBadge{
     display:none !important;
@@ -1719,6 +1740,11 @@
 
 .annotationEditorLayer.inkEditing{
   cursor:var(--editorInk-editing-cursor);
+  touch-action:none;
+}
+
+.annotationEditorLayer .draw{
+  box-sizing:border-box;
 }
 
 .annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor){
@@ -1734,10 +1760,6 @@
 
 .draggable.selectedEditor:is(.annotationEditorLayer :is(.freeTextEditor,.inkEditor,.stampEditor)){
     cursor:move;
-  }
-
-.moving:is(.annotationEditorLayer :is(.freeTextEditor,.inkEditor,.stampEditor)){
-    touch-action:none;
   }
 
 .selectedEditor:is(.annotationEditorLayer :is(.freeTextEditor,.inkEditor,.stampEditor)){
@@ -1873,6 +1895,10 @@
       gap:0;
       height:100%;
     }
+
+:is(:is(:is(.annotationEditorLayer :is(.freeTextEditor,.inkEditor,.stampEditor,.highlightEditor),.textLayer) .editToolbar) .buttons) button{
+        padding:0;
+      }
 
 :is(:is(:is(.annotationEditorLayer :is(.freeTextEditor,.inkEditor,.stampEditor,.highlightEditor),.textLayer) .editToolbar) .buttons) .divider{
         width:0;
@@ -4226,6 +4252,7 @@ dialog :link{
   font:message-box;
   flex:none;
   position:relative;
+  padding:0;
 }
 
 .toolbarButton  > span{

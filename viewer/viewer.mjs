@@ -1311,6 +1311,7 @@ const {
   RenderingCancelledException,
   setLayerDimensions,
   shadow,
+  stopEvent,
   TextLayer,
   UnexpectedResponseException,
   Util,
@@ -4691,6 +4692,7 @@ class PDFAttachmentViewer extends BaseTreeViewer {
 }
 
 ;// ./web/grab_to_pan.js
+
 const CSS_CLASS_GRAB = "grab-to-pan-grab";
 class GrabToPan {
   #activateAC = null;
@@ -4760,8 +4762,7 @@ class GrabToPan {
       capture: true,
       signal: this.#scrollAC.signal
     });
-    event.preventDefault();
-    event.stopPropagation();
+    stopEvent(event);
     const focusedElement = document.activeElement;
     if (focusedElement && !focusedElement.contains(event.target)) {
       focusedElement.blur();
@@ -4960,13 +4961,11 @@ class PDFDocumentProperties {
       this.#updateUI();
       return;
     }
-    const {
+    const [{
       info,
       contentLength
-    } = await this.pdfDocument.getMetadata();
-    const [fileName, fileSize, creationDate, modificationDate, pageSize, isLinearized] = await Promise.all([this._fileNameLookup(), this.#parseFileSize(contentLength), this.#parseDate(info.CreationDate), this.#parseDate(info.ModDate), this.pdfDocument.getPage(currentPageNumber).then(pdfPage => {
-      return this.#parsePageSize(getPageSizeInches(pdfPage), pagesRotation);
-    }), this.#parseLinearization(info.IsLinearized)]);
+    }, pdfPage] = await Promise.all([this.pdfDocument.getMetadata(), this.pdfDocument.getPage(currentPageNumber)]);
+    const [fileName, fileSize, creationDate, modificationDate, pageSize, isLinearized] = await Promise.all([this._fileNameLookup(), this.#parseFileSize(contentLength), this.#parseDate(info.CreationDate), this.#parseDate(info.ModDate), this.#parsePageSize(getPageSizeInches(pdfPage), pagesRotation), this.#parseLinearization(info.IsLinearized)]);
     this.#fieldData = Object.freeze({
       fileName,
       fileSize,
@@ -5251,7 +5250,7 @@ function normalize(text) {
     rawDiacriticsPositions.push([m[0].length, m.index]);
   }
   let normalized = text.normalize("NFD");
-  const positions = [[0, 0]];
+  const positions = [0, 0];
   let rawDiacriticsIndex = 0;
   let syllableIndex = 0;
   let shift = 0;
@@ -5264,7 +5263,7 @@ function normalize(text) {
       const replacement = CHARACTERS_TO_NORMALIZE[p1];
       const jj = replacement.length;
       for (let j = 1; j < jj; j++) {
-        positions.push([i - shift + j, shift - j]);
+        positions.push(i - shift + j, shift - j);
       }
       shift -= jj - 1;
       return replacement;
@@ -5277,7 +5276,7 @@ function normalize(text) {
       }
       const jj = replacement.length;
       for (let j = 1; j < jj; j++) {
-        positions.push([i - shift + j, shift - j]);
+        positions.push(i - shift + j, shift - j);
       }
       shift -= jj - 1;
       return replacement;
@@ -5287,11 +5286,11 @@ function normalize(text) {
       if (i + eol === rawDiacriticsPositions[rawDiacriticsIndex]?.[1]) {
         ++rawDiacriticsIndex;
       } else {
-        positions.push([i - 1 - shift + 1, shift - 1]);
+        positions.push(i - 1 - shift + 1, shift - 1);
         shift -= 1;
         shiftOrigin += 1;
       }
-      positions.push([i - shift + 1, shift]);
+      positions.push(i - shift + 1, shift);
       shiftOrigin += 1;
       eol += 1;
       return p3.charAt(0);
@@ -5306,13 +5305,13 @@ function normalize(text) {
         ++rawDiacriticsIndex;
       }
       for (let j = 1; j <= jj; j++) {
-        positions.push([i - 1 - shift + j, shift - j]);
+        positions.push(i - 1 - shift + j, shift - j);
       }
       shift -= jj;
       shiftOrigin += jj;
       if (hasTrailingDashEOL) {
         i += len - 1;
-        positions.push([i - shift + 1, 1 + shift]);
+        positions.push(i - shift + 1, 1 + shift);
         shift += 1;
         shiftOrigin += 1;
         eol += 1;
@@ -5321,15 +5320,13 @@ function normalize(text) {
       return p4;
     }
     if (p5) {
-      positions.push([i - shift + 3, 1 + shift]);
-      shift += 1;
       shiftOrigin += 1;
       eol += 1;
       return p5.replace("\n", "");
     }
     if (p6) {
       const len = p6.length - 2;
-      positions.push([i - shift + len, 1 + shift]);
+      positions.push(i - shift + len, 1 + shift);
       shift += 1;
       shiftOrigin += 1;
       eol += 1;
@@ -5337,13 +5334,13 @@ function normalize(text) {
     }
     if (p7) {
       const len = p7.length - 1;
-      positions.push([i - shift + len, shift]);
+      positions.push(i - shift + len, shift);
       shiftOrigin += 1;
       eol += 1;
       return p7.slice(0, -1);
     }
     if (p8) {
-      positions.push([i - shift + 1, shift - 1]);
+      positions.push(i - shift + 1, shift - 1);
       shift -= 1;
       shiftOrigin += 1;
       eol += 1;
@@ -5353,32 +5350,39 @@ function normalize(text) {
       const newCharLen = syllablePositions[syllableIndex][0] - 1;
       ++syllableIndex;
       for (let j = 1; j <= newCharLen; j++) {
-        positions.push([i - (shift - j), shift - j]);
+        positions.push(i - (shift - j), shift - j);
       }
       shift -= newCharLen;
       shiftOrigin += newCharLen;
     }
     return p9;
   });
-  positions.push([normalized.length, shift]);
-  return [normalized, positions, hasDiacritics];
+  positions.push(normalized.length, shift);
+  const starts = new Uint32Array(positions.length >> 1);
+  const shifts = new Int32Array(positions.length >> 1);
+  for (let i = 0, ii = positions.length; i < ii; i += 2) {
+    starts[i >> 1] = positions[i];
+    shifts[i >> 1] = positions[i + 1];
+  }
+  return [normalized, [starts, shifts], hasDiacritics];
 }
 function getOriginalIndex(diffs, pos, len) {
   if (!diffs) {
     return [pos, len];
   }
+  const [starts, shifts] = diffs;
   const start = pos;
   const end = pos + len - 1;
-  let i = binarySearchFirstItem(diffs, x => x[0] >= start);
-  if (diffs[i][0] > start) {
+  let i = binarySearchFirstItem(starts, x => x >= start);
+  if (starts[i] > start) {
     --i;
   }
-  let j = binarySearchFirstItem(diffs, x => x[0] >= end, i);
-  if (diffs[j][0] > end) {
+  let j = binarySearchFirstItem(starts, x => x >= end, i);
+  if (starts[j] > end) {
     --j;
   }
-  const oldStart = start + diffs[i][1];
-  const oldEnd = end + diffs[j][1];
+  const oldStart = start + shifts[i];
+  const oldEnd = end + shifts[j];
   const oldLen = oldEnd + 1 - oldStart;
   return [oldStart, oldLen];
 }
@@ -9857,8 +9861,7 @@ class TextLayerBuilder {
         const selection = document.getSelection();
         event.clipboardData.setData("text/plain", removeNullCharacters(normalizeUnicode(selection.toString())));
       }
-      event.preventDefault();
-      event.stopPropagation();
+      stopEvent(event);
     });
     TextLayerBuilder.#textLayers.set(div, end);
     TextLayerBuilder.#enableGlobalSelectionListener();
@@ -10864,7 +10867,7 @@ class PDFViewer {
   #scaleTimeoutId = null;
   #textLayerMode = TextLayerMode.ENABLE;
   constructor(options) {
-    const viewerVersion = "4.8.69";
+    const viewerVersion = "4.9.124";
     if (version !== viewerVersion) {
       throw new Error(`The API version "${version}" does not match the Viewer version "${viewerVersion}".`);
     }
@@ -11179,8 +11182,7 @@ class PDFViewer {
     } = selection;
     if (anchorNode && focusNode && selection.containsNode(this.#hiddenCopyElement)) {
       if (this.#getAllTextInProgress || textLayerMode === TextLayerMode.ENABLE_PERMISSIONS) {
-        event.preventDefault();
-        event.stopPropagation();
+        stopEvent(event);
         return;
       }
       this.#getAllTextInProgress = true;
@@ -11204,8 +11206,7 @@ class PDFViewer {
         ac.abort();
         classList.remove("copyAll");
       });
-      event.preventDefault();
-      event.stopPropagation();
+      stopEvent(event);
     }
   }
   setDocument(pdfDocument) {
@@ -13056,6 +13057,7 @@ class ViewHistory {
 
 
 const FORCE_PAGES_LOADED_TIMEOUT = 10000;
+const MIN_TOUCH_DISTANCE_TO_PINCH = 35 / (window.devicePixelRatio || 1);
 const ViewOnLoad = {
   UNKNOWN: -1,
   PREVIOUS: 0,
@@ -13117,6 +13119,7 @@ const PDFViewerApplication = {
   _title: document.title,
   _printAnnotationStoragePromise: null,
   _touchInfo: null,
+  _isPinching: false,
   _isCtrlKeyDown: false,
   _caretBrowsing: null,
   _isScrolling: false,
@@ -13449,8 +13452,7 @@ const PDFViewerApplication = {
       for (const item of evt.dataTransfer.items) {
         if (item.type === "application/pdf") {
           evt.dataTransfer.dropEffect = evt.dataTransfer.effectAllowed === "copy" ? "copy" : "move";
-          evt.preventDefault();
-          evt.stopPropagation();
+          stopEvent(evt);
           return;
         }
       }
@@ -13459,8 +13461,7 @@ const PDFViewerApplication = {
       if (evt.dataTransfer.files?.[0].type !== "application/pdf") {
         return;
       }
-      evt.preventDefault();
-      evt.stopPropagation();
+      stopEvent(evt);
       eventBus.dispatch("fileinputchange", {
         source: this,
         fileInput: evt.dataTransfer
@@ -14741,10 +14742,10 @@ function onTouchStart(evt) {
     [touch0, touch1] = [touch1, touch0];
   }
   this._touchInfo = {
-    touch0X: touch0.pageX,
-    touch0Y: touch0.pageY,
-    touch1X: touch1.pageX,
-    touch1Y: touch1.pageY
+    touch0X: touch0.screenX,
+    touch0Y: touch0.screenY,
+    touch1X: touch1.screenX,
+    touch1Y: touch1.screenY
   };
 }
 function onTouchMove(evt) {
@@ -14761,12 +14762,12 @@ function onTouchMove(evt) {
     [touch0, touch1] = [touch1, touch0];
   }
   const {
-    pageX: page0X,
-    pageY: page0Y
+    screenX: screen0X,
+    screenY: screen0Y
   } = touch0;
   const {
-    pageX: page1X,
-    pageY: page1Y
+    screenX: screen1X,
+    screenY: screen1Y
   } = touch1;
   const {
     touch0X: pTouch0X,
@@ -14774,45 +14775,25 @@ function onTouchMove(evt) {
     touch1X: pTouch1X,
     touch1Y: pTouch1Y
   } = _touchInfo;
-  if (Math.abs(pTouch0X - page0X) <= 1 && Math.abs(pTouch0Y - page0Y) <= 1 && Math.abs(pTouch1X - page1X) <= 1 && Math.abs(pTouch1Y - page1Y) <= 1) {
+  const prevGapX = pTouch1X - pTouch0X;
+  const prevGapY = pTouch1Y - pTouch0Y;
+  const currGapX = screen1X - screen0X;
+  const currGapY = screen1Y - screen0Y;
+  const distance = Math.hypot(currGapX, currGapY) || 1;
+  const pDistance = Math.hypot(prevGapX, prevGapY) || 1;
+  if (!this._isPinching && Math.abs(pDistance - distance) <= MIN_TOUCH_DISTANCE_TO_PINCH) {
     return;
   }
-  _touchInfo.touch0X = page0X;
-  _touchInfo.touch0Y = page0Y;
-  _touchInfo.touch1X = page1X;
-  _touchInfo.touch1Y = page1Y;
-  if (pTouch0X === page0X && pTouch0Y === page0Y) {
-    const v1X = pTouch1X - page0X;
-    const v1Y = pTouch1Y - page0Y;
-    const v2X = page1X - page0X;
-    const v2Y = page1Y - page0Y;
-    const det = v1X * v2Y - v1Y * v2X;
-    if (Math.abs(det) > 0.02 * Math.hypot(v1X, v1Y) * Math.hypot(v2X, v2Y)) {
-      return;
-    }
-  } else if (pTouch1X === page1X && pTouch1Y === page1Y) {
-    const v1X = pTouch0X - page1X;
-    const v1Y = pTouch0Y - page1Y;
-    const v2X = page0X - page1X;
-    const v2Y = page0Y - page1Y;
-    const det = v1X * v2Y - v1Y * v2X;
-    if (Math.abs(det) > 0.02 * Math.hypot(v1X, v1Y) * Math.hypot(v2X, v2Y)) {
-      return;
-    }
-  } else {
-    const diff0X = page0X - pTouch0X;
-    const diff1X = page1X - pTouch1X;
-    const diff0Y = page0Y - pTouch0Y;
-    const diff1Y = page1Y - pTouch1Y;
-    const dotProduct = diff0X * diff1X + diff0Y * diff1Y;
-    if (dotProduct >= 0) {
-      return;
-    }
-  }
+  _touchInfo.touch0X = screen0X;
+  _touchInfo.touch0Y = screen0Y;
+  _touchInfo.touch1X = screen1X;
+  _touchInfo.touch1Y = screen1Y;
   evt.preventDefault();
-  const origin = [(page0X + page1X) / 2, (page0Y + page1Y) / 2];
-  const distance = Math.hypot(page0X - page1X, page0Y - page1Y) || 1;
-  const pDistance = Math.hypot(pTouch0X - pTouch1X, pTouch0Y - pTouch1Y) || 1;
+  if (!this._isPinching) {
+    this._isPinching = true;
+    return;
+  }
+  const origin = [(screen0X + screen1X) / 2, (screen0Y + screen1Y) / 2];
   if (supportsPinchToZoom) {
     const newScaleFactor = this._accumulateFactor(pdfViewer.currentScale, distance / pDistance, "_touchUnusedFactor");
     this.updateZoom(null, newScaleFactor, origin);
@@ -14830,6 +14811,7 @@ function onTouchEnd(evt) {
   this._touchInfo = null;
   this._touchUnusedTicks = 0;
   this._touchUnusedFactor = 1;
+  this._isPinching = false;
 }
 function onClick(evt) {
   if (!this.secondaryToolbar?.isOpen) {
@@ -15130,8 +15112,8 @@ function beforeUnload(evt) {
 
 
 
-const pdfjsVersion = "4.8.69";
-const pdfjsBuild = "3634dab10";
+const pdfjsVersion = "4.9.124";
+const pdfjsBuild = "867aaf01f";
 const AppConstants = {
   LinkTarget: LinkTarget,
   RenderingStates: RenderingStates,

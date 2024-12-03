@@ -1,5 +1,11 @@
 # Change Log
 
+## [10.7.0] - 2024-12-03
+
+### Added
+- Update pdf.js to v4.9.124.
+  - This version fixes #4468.
+
 ## [10.6.1] - 2024-11-27
 
 ### Fixed

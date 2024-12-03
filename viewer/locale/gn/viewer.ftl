@@ -343,6 +343,10 @@ pdfjs-editor-stamp-add-image-button-label = Embojuaju ta’ãnga
 pdfjs-editor-free-highlight-thickness-input = Anambusu
 pdfjs-editor-free-highlight-thickness-title =
     .title = Emoambue anambusukue embosa’ývo mba’eporu ha’e’ỹva moñe’ẽrã
+# .default-content is used as a placeholder in an empty text editor.
+pdfjs-free-text2 =
+    .aria-label = Moñe’ẽrã moheñoiha
+    .default-content = Eñepyrũ ehai…
 pdfjs-free-text =
     .aria-label = Moñe’ẽrã moheñoiha
 pdfjs-free-text-default-content = Ehai ñepyrũ…
@@ -353,8 +357,9 @@ pdfjs-ink-canvas =
 
 ## Alt-text dialog
 
-# Alternative text (alt text) helps when people can't see the image.
 pdfjs-editor-alt-text-button-label = Moñe’ẽrã mokõiháva
+pdfjs-editor-alt-text-edit-button =
+    .aria-label = Embojuruja moñe’ẽrã mokõiháva
 pdfjs-editor-alt-text-edit-button-label = Embojuruja moñe’ẽrã mokõiháva
 pdfjs-editor-alt-text-dialog-label = Eiporavo poravorã
 pdfjs-editor-alt-text-dialog-description = Moñe’ẽrã ykepegua (moñe’ẽrã ykepegua) nepytyvõ nderehecháiramo ta’ãnga térã nahenyhẽiramo.
@@ -368,6 +373,9 @@ pdfjs-editor-alt-text-decorative-tooltip = Jeguakárõ mongurusupyre
 # .placeholder: This is a placeholder for the alt text input area
 pdfjs-editor-alt-text-textarea =
     .placeholder = Techapyrã: “Peteĩ mitãrusu oguapy mesápe okaru hag̃ua”
+# Alternative text (alt text) helps when people can't see the image.
+pdfjs-editor-alt-text-button =
+    .aria-label = Moñe’ẽrã mokõiháva
 
 ## Editor resizers
 ## This is used in an aria label to help to understand the role of the resizer.
@@ -432,6 +440,10 @@ pdfjs-editor-new-alt-text-dialog-edit-label = Embosako’i moñe’ẽrã mokõi
 pdfjs-editor-new-alt-text-dialog-add-label = Embojuaju moñe’ẽrã mokõiha (ta’ãngáre ñeñe’ẽ)
 pdfjs-editor-new-alt-text-textarea =
     .placeholder = Edescribi ko’ápe…
+# This text refers to the alt text box above this description. It offers a definition of alt text.
+pdfjs-editor-new-alt-text-description = Ñemyesakã mbykymi opavave ohecha’ỹva upe ta’ãnga térã pe ta’ãnga nahenyhẽiramo.
+# This is a required legal disclaimer that refers to the automatically created text inside the alt text box above this text. It disappears if the text is edited by a human.
+pdfjs-editor-new-alt-text-disclaimer1 = Ko moñe’ẽrã mokõiha oñemoheñói ijehegui ha ikatu ndoikoporãi.
 pdfjs-editor-new-alt-text-disclaimer-learn-more-url = Eikuaave
 pdfjs-editor-new-alt-text-create-automatically-button-label = Emoheñói moñe’ẽrã mokõiha ijeheguíva
 pdfjs-editor-new-alt-text-not-now-button = Ani ko’ág̃a
@@ -445,10 +457,16 @@ pdfjs-editor-new-alt-text-error-close-button = Mboty
 pdfjs-editor-new-alt-text-ai-model-downloading-progress = Emboguejyhína IA moñe’ẽrã mokõiháva ({ $downloadedSize } { $totalSize } MB) mba’e
     .aria-valuetext = Emboguejyhína IA moñe’ẽrã mokõiháva ({ $downloadedSize } { $totalSize } MB) mba’e
 # This is a button that users can click to edit the alt text they have already added.
+pdfjs-editor-new-alt-text-added-button =
+    .aria-label = Moñe’ẽrã mokõiha mbojuajupyre
 pdfjs-editor-new-alt-text-added-button-label = Oñembojuaju moñe’ẽrã mokõiha
 # This is a button that users can click to open the alt text editor and add alt text when it is not present.
+pdfjs-editor-new-alt-text-missing-button =
+    .aria-label = Ndaipóri moñe’ẽrã mokõiha
 pdfjs-editor-new-alt-text-missing-button-label = Ndaipóri moñe’ẽrã mokõiha
 # This is a button that opens up the alt text modal where users should review the alt text that was automatically generated.
+pdfjs-editor-new-alt-text-to-review-button =
+    .aria-label = Ehechajey moñe’ẽrã mokõiha
 pdfjs-editor-new-alt-text-to-review-button-label = Ehechajey moñe’ẽrã mokõiha
 # "Created automatically" is a prefix that will be added to the beginning of any alt text that has been automatically generated. After the colon, the user will see/hear the actual alt text description. If the alt text has been edited by a human, this prefix will not appear.
 # Variables:
@@ -463,9 +481,11 @@ pdfjs-image-alt-text-settings-button-label = Ta’ãnga moñe’ẽrã mokõiha 
 pdfjs-editor-alt-text-settings-dialog-label = Ta’ãnga moñe’ẽrã mokõiha ñemboheko
 pdfjs-editor-alt-text-settings-automatic-title = Moñe’ẽrã mokõiha ijeheguíva
 pdfjs-editor-alt-text-settings-create-model-button-label = Emoheñói moñe’ẽrã mokõiha ijeheguíva
+pdfjs-editor-alt-text-settings-create-model-description = Ñemyesakã mbykymi opavave tapicha ohecha’ỹva upe ta’ãnga térã pe ta’ãnga nahenyhẽiramo.
 # Variables:
 #   $totalSize (Number) - the total size (in MB) of the AI model.
 pdfjs-editor-alt-text-settings-download-model-label = Peteĩva IA moñe’ẽrã mokõiha ({ $totalSize } MB)
+pdfjs-editor-alt-text-settings-ai-model-description = Oku’e mba’e’okaitépe umi mba’ekuaarã hekoñemi hag̃ua. Tekotevẽva moñe’ẽrã ykegua ijeheguívape.
 pdfjs-editor-alt-text-settings-delete-model-button = Mboguete
 pdfjs-editor-alt-text-settings-download-model-button = Mboguejy
 pdfjs-editor-alt-text-settings-downloading-model-button = Emboguejyhína…
