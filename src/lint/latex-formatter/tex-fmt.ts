@@ -42,10 +42,15 @@ async function formatDocument(document: vscode.TextDocument, range?: vscode.Rang
             resolve(vscode.TextEdit.replace(range ?? document.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE)), stdoutStr))
         })
     })
-
-    process.stdin?.write(document.getText(range))
-    process.stdin?.end()
-    const edits = await promise
-
+    
+    // 2024-12-4, for tex-fmt 0.4.7, when using `--stdin`, it requires a newline at the end of the input; Therefore, we need to add a newline at the end of the input if it doesn't exist, and remove it from the output if it exists.
+    const text = document.getText(range);
+    const endsWithNewline = text.endsWith('\n');
+    process.stdin?.write(endsWithNewline ? text : text + '\n');
+    process.stdin?.end();
+    const edits = await promise;
+    if (edits) {
+        edits.newText = endsWithNewline ? edits.newText : edits.newText.replace(/\n$/, '');
+    }
     return edits
 }
