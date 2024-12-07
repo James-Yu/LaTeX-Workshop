@@ -11,7 +11,7 @@ enum MatchType {
 interface MatchPath {
     type: MatchType,
     path: string,
-    directory: string,
+    directory?: string,
     matchedString: string,
     index: number
 }
@@ -87,24 +87,33 @@ export class InputFileRegExp {
      * @param rootFile
      */
     static async parseInputFilePath(match: MatchPath, currentFile: string, rootFile: string): Promise<string | undefined> {
-
         const rawTexDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
         const texDirs = rawTexDirs.map((texDir) => {return replaceArgumentPlaceholders('', '')(texDir)})
+
+        const matchedDir = sanitizeInputFilePath(match.directory ?? '')
+        const matchedPath = sanitizeInputFilePath(match.path ?? '')
         /* match of this.childReg */
         if (match.type === MatchType.Child) {
-            return resolveFile([path.dirname(currentFile), path.dirname(rootFile), ...texDirs], match.path)
+            return resolveFile([path.dirname(currentFile), path.dirname(rootFile), ...texDirs], matchedPath)
         }
 
         /* match of this.inputReg */
         if (match.type === MatchType.Input) {
             if (match.matchedString.startsWith('\\subimport') || match.matchedString.startsWith('\\subinputfrom') || match.matchedString.startsWith('\\subincludefrom')) {
-                return resolveFile([path.dirname(currentFile)], path.join(match.directory, match.path))
+                return resolveFile([path.dirname(currentFile)], path.join(matchedDir, matchedPath))
             } else if (match.matchedString.startsWith('\\import') || match.matchedString.startsWith('\\inputfrom') || match.matchedString.startsWith('\\includefrom')) {
-                return resolveFile([match.directory, path.join(path.dirname(rootFile), match.directory)], match.path)
+                return resolveFile([matchedDir, path.join(path.dirname(rootFile), matchedDir)], matchedPath)
             } else {
-                return resolveFile([path.dirname(currentFile), path.dirname(rootFile), ...texDirs], match.path)
+                return resolveFile([path.dirname(currentFile), path.dirname(rootFile), ...texDirs], matchedPath)
             }
         }
         return
     }
+}
+
+export function sanitizeInputFilePath(filePath: string): string {
+    if (filePath.startsWith('"') && filePath.endsWith('"')) {
+        return filePath.slice(1, -1)
+    }
+    return filePath
 }

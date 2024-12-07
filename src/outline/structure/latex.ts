@@ -4,7 +4,7 @@ import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
 import { type TeXElement, TeXElementType } from '../../types'
 import { resolveFile } from '../../utils/utils'
-import { InputFileRegExp } from '../../utils/inputfilepath'
+import { InputFileRegExp, sanitizeInputFilePath } from '../../utils/inputfilepath'
 
 
 import { argContentToStr } from '../../utils/parser'
@@ -168,7 +168,7 @@ async function parseNode(
             ...attributes
         }
     } else if (node.type === 'macro' && ['input', 'InputIfFileExists', 'include', 'SweaveInput', 'subfile', 'loadglsentries', 'markdownInput'].includes(node.content)) {
-        const arg0 = argContentToStr(node.args?.[0]?.content || [])
+        const arg0 = sanitizeInputFilePath(argContentToStr(node.args?.[0]?.content || []))
         const subFile = await resolveFile([ path.dirname(filePath), path.dirname(lw.root.file.path || ''), ...config.texDirs ], arg0)
         if (subFile) {
             element = {
@@ -182,8 +182,8 @@ async function parseNode(
             }
         }
     } else if (node.type === 'macro' && ['import', 'inputfrom', 'includefrom'].includes(node.content)) {
-        const arg0 = argContentToStr(node.args?.[0]?.content || [])
-        const arg1 = argContentToStr(node.args?.[1]?.content || [])
+        const arg0 = sanitizeInputFilePath(argContentToStr(node.args?.[0]?.content || []))
+        const arg1 = sanitizeInputFilePath(argContentToStr(node.args?.[1]?.content || []))
         const subFile = await resolveFile([ arg0, path.join(path.dirname(lw.root.file.path || ''), arg0 )], arg1)
         if (subFile) {
             element = {
@@ -197,8 +197,8 @@ async function parseNode(
             }
         }
     } else if (node.type === 'macro' && ['subimport', 'subinputfrom', 'subincludefrom'].includes(node.content)) {
-        const arg0 = argContentToStr(node.args?.[0]?.content || [])
-        const arg1 = argContentToStr(node.args?.[1]?.content || [])
+        const arg0 = sanitizeInputFilePath(argContentToStr(node.args?.[0]?.content || []))
+        const arg1 = sanitizeInputFilePath(argContentToStr(node.args?.[1]?.content || []))
         const subFile = await resolveFile([ path.dirname(filePath) ], path.join(arg0, arg1))
         if (subFile) {
             element = {
@@ -248,7 +248,7 @@ function insertSubFile(structs: FileStructureCache, struct?: TeXElement[], trave
     if (lw.root.file.path === undefined) {
         return []
     }
-    struct = struct ?? structs[lw.root.file.path] ?? []
+    struct = JSON.parse(JSON.stringify(struct ?? structs[lw.root.file.path] ?? [])) as TeXElement[]
     traversed = traversed ?? [lw.root.file.path]
     let elements: TeXElement[] = []
     for (const element of struct) {
