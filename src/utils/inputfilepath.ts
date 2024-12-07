@@ -10,8 +10,8 @@ enum MatchType {
 
 interface MatchPath {
     type: MatchType,
-    path: string,
-    directory: string,
+    path?: string,
+    directory?: string,
     matchedString: string,
     index: number
 }
@@ -90,8 +90,8 @@ export class InputFileRegExp {
         const rawTexDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
         const texDirs = rawTexDirs.map((texDir) => {return replaceArgumentPlaceholders('', '')(texDir)})
 
-        const matchedDir = sanitizeInputFilePath(match.directory)
-        const matchedPath = sanitizeInputFilePath(match.path)
+        const matchedDir = sanitizeInputFilePath(match.directory ?? '')
+        const matchedPath = sanitizeInputFilePath(match.path ?? '')
         /* match of this.childReg */
         if (match.type === MatchType.Child) {
             return resolveFile([path.dirname(currentFile), path.dirname(rootFile), ...texDirs], matchedPath)
