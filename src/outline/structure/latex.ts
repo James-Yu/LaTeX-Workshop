@@ -248,7 +248,7 @@ function insertSubFile(structs: FileStructureCache, struct?: TeXElement[], trave
     if (lw.root.file.path === undefined) {
         return []
     }
-    struct = struct ?? structs[lw.root.file.path] ?? []
+    struct = JSON.parse(JSON.stringify(struct ?? structs[lw.root.file.path] ?? [])) as TeXElement[]
     traversed = traversed ?? [lw.root.file.path]
     let elements: TeXElement[] = []
     for (const element of struct) {
