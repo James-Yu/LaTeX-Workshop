@@ -10,7 +10,7 @@ enum MatchType {
 
 interface MatchPath {
     type: MatchType,
-    path?: string,
+    path: string,
     directory?: string,
     matchedString: string,
     index: number
