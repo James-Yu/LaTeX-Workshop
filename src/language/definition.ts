@@ -4,6 +4,7 @@ import * as path from 'path'
 import { lw } from '../lw'
 import { tokenizer } from '../utils/tokenizer'
 import * as utils from '../utils/utils'
+import { sanitizeInputFilePath } from '../utils/inputfilepath'
 
 export class DefinitionProvider implements vscode.DefinitionProvider {
     private async onAFilename(document: vscode.TextDocument, position: vscode.Position, token: string): Promise<string | undefined> {
@@ -18,7 +19,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         }
 
         if (line.match(regexDocumentclass)) {
-            return utils.resolveFile([path.dirname(vscode.window.activeTextEditor.document.fileName)], token, '.cls')
+            return utils.resolveFile([path.dirname(vscode.window.activeTextEditor.document.fileName)], sanitizeInputFilePath(token), '.cls')
         }
 
         let dirs: string[] = []
@@ -31,11 +32,11 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
 
         const result = line.match(regexImport)
         if (result) {
-            dirs = [path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])]
+            dirs = [path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), sanitizeInputFilePath(result[1]))]
         }
 
         if (dirs.length > 0) {
-            return utils.resolveFile(dirs, token, '.tex')
+            return utils.resolveFile(dirs, sanitizeInputFilePath(token), '.tex')
         }
         return
     }
