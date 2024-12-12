@@ -14251,8 +14251,8 @@ const PDFViewerApplication = {
     eventBus._on("presentationmodechanged", evt => pdfViewer.presentationModeState = evt.state, opts);
     eventBus._on("presentationmode", this.requestPresentationMode.bind(this), opts);
     eventBus._on("switchannotationeditormode", evt => pdfViewer.annotationEditorMode = evt, opts);
-    eventBus._on("print", this.triggerPrinting.bind(this), opts);
-    eventBus._on("download", this.downloadOrSave.bind(this), opts);
+    // eventBus._on("print", this.triggerPrinting.bind(this), opts);
+    // eventBus._on("download", this.downloadOrSave.bind(this), opts);
     eventBus._on("firstpage", () => this.page = 1, opts);
     eventBus._on("lastpage", () => this.page = this.pagesCount, opts);
     eventBus._on("nextpage", () => pdfViewer.nextPage(), opts);
@@ -14275,7 +14275,7 @@ const PDFViewerApplication = {
     eventBus._on("updatefindmatchescount", onUpdateFindMatchesCount.bind(this), opts);
     eventBus._on("updatefindcontrolstate", onUpdateFindControlState.bind(this), opts);
     eventBus._on("fileinputchange", onFileInputChange.bind(this), opts);
-    eventBus._on("openfile", onOpenFile.bind(this), opts);
+    // eventBus._on("openfile", onOpenFile.bind(this), opts);
   },
   bindWindowEvents() {
     if (this._windowAbortController) {

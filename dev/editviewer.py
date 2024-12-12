@@ -44,7 +44,9 @@ with open(args.web + '/viewer.mjs', 'rt', encoding='utf-8') as fin:
                 .replace('''setRotation(this.initialRotation);''', '''// setRotation(this.initialRotation);''') \
                 .replace('''this.pdfLinkService.setHash(this.initialBookmark);''', '''// this.pdfLinkService.setHash(this.initialBookmark);''') \
                 .replace('''hPadding = vPadding = 0;''', '''if (this._scrollMode === ScrollMode.HORIZONTAL || this._spreadMode === SpreadMode.NONE) { hPadding = vPadding = 0; } else { hPadding = 10; vPadding = 0; }''') \
-                # .replace('''parent.document.dispatchEvent(event);''', '''parent.document.dispatchEvent(event); \n    document.dispatchEvent(event);''')
+                .replace('''eventBus._on("openfile"''', '''// eventBus._on("openfile"''') \
+                .replace('''eventBus._on("print"''', '''// eventBus._on("print"''') \
+                .replace('''eventBus._on("download"''', '''// eventBus._on("download"''')
             fout.write(line)
 
 os.system(f'git diff --no-index {args.web}/viewer.html {args.viewer}/viewer.html > {args.viewer}/../dev/viewer/viewer.html.diff')
