@@ -1,5 +1,15 @@
 # Change Log
 
+## [10.7.1] - 2024-12-24
+
+### Fixed
+- (#4317) Logs of failed xelatex compile should be parsed.
+- (#4474) Fix newline handling for tex-fmt input and output.
+- (#4476) Update LaTeX3 completion to `l3kernel` 2024-11-02.
+- (#4481) `\input` family file names can have double quotes.
+- (#4483) Update default arguments for tex-fmt to `--nowrap` instead of `--keep`.
+- (#4484) Disable open, print, save handlers of pdf viewer.
+
 ## [10.7.0] - 2024-12-03
 
 ### Added
