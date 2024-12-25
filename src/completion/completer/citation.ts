@@ -44,7 +44,10 @@ export const bibTools = {
     parseAbbrevations
 }
 
-function expandField(abbreviations: {[key: string]: string}, value: bibtexParser.FieldValue): string {
+function expandField(abbreviations: {[key: string]: string}, value: bibtexParser.FieldValue | undefined): string {
+    if (value === undefined) {
+        return ''
+    }
     if (value.kind === 'concat') {
         const args = value.content as bibtexParser.FieldValue[]
         return args.map(arg => expandField(abbreviations, arg)).join(' ')

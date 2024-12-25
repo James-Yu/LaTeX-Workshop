@@ -250,6 +250,7 @@ async function refreshCache(filePath: string, rootPath?: string): Promise<Promis
         elements: {},
         children: [],
         bibfiles: new Set(),
+        glossarybibfiles: new Set(),
         external: {}}
     caches.set(filePath, fileCache)
     rootPath = rootPath || lw.root.file.path
@@ -474,6 +475,7 @@ async function updateElements(fileCache: FileCache): Promise<void> {
     lw.completion.subsuperscript.parse(fileCache)
     lw.completion.input.parseGraphicsPath(fileCache)
     await updateBibfiles(fileCache)
+    await updateGlossaryBibFiles(fileCache)
     const elapsed = performance.now() - start
     logger.log(`Updated elements in ${elapsed.toFixed(2)} ms: ${fileCache.filePath} .`)
 }
@@ -511,6 +513,41 @@ async function updateBibfiles(fileCache: FileCache) {
                 if (!lw.watcher.bib.has(bibUri)) {
                     lw.watcher.bib.add(bibUri)
                 }
+            }
+        }
+    }
+}
+
+/**
+ * Updates the glossary files associated with a given file cache.
+ *
+ * This function parses the content of a file cache to find `\GlsXtrLoadResources``
+ * using a regular expression. It extracts the  file paths specified in these
+ * macros, resolves their full paths, and adds them to the set of glossary
+ * files in the file cache. If a glossary file is not excluded, it logs the
+ * action, adds the file to the cache, and ensures that it is being watched for
+ * changes.
+ *
+ * @param {FileCache} fileCache - The file cache object to update with
+ * bibliography files.
+ */
+async function updateGlossaryBibFiles(fileCache: FileCache) {
+    const glossaryReg = /\\GlsXtrLoadResources\s*\[.*?src=\{([^}]+)\}.*?\]/gs
+
+    let result: RegExpExecArray | null
+    while ((result = glossaryReg.exec(fileCache.contentTrimmed)) !== null) {
+        const bibs = (result[1] ? result[1] : result[2]).split(',').map(bib => bib.trim())
+
+        for (const bib of bibs) {
+            const bibPath = await utils.resolveFile([path.dirname(fileCache.filePath)], bib, '.bib')
+            if (!bibPath || isExcluded(bibPath)) {
+                continue
+            }
+            fileCache.glossarybibfiles.add(bibPath)
+            logger.log(`Glossary bib ${bibPath} from ${fileCache.filePath} .`)
+            const bibUri = vscode.Uri.file(bibPath)
+            if (!lw.watcher.bib.has(bibUri)) {
+                lw.watcher.bib.add(bibUri)
             }
         }
     }
