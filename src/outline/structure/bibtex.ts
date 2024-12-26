@@ -11,7 +11,7 @@ const logger = lw.log('Structure', 'BibTeX')
 * Convert a bibtexParser.FieldValue to a string
 * @param field the bibtexParser.FieldValue to parse
 */
-function fieldValueToString(field: bibtexParser.FieldValue, abbreviations: {[abbr: string]: string}): string {
+export function fieldValueToString(field: bibtexParser.FieldValue, abbreviations: {[abbr: string]: string}): string {
     if (field.kind === 'concat') {
         return field.content.map(value => fieldValueToString(value, abbreviations)).reduce((acc, cur) => {return acc + ' # ' + cur})
     } else if (field.kind === 'abbreviation') {

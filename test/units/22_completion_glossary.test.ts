@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as sinon from 'sinon'
 import { lw } from '../../src/lw'
 import { assert, get, mock, set } from './utils'
-import { provider } from '../../src/completion/completer/glossary'
+import { glossary, provider } from '../../src/completion/completer/glossary'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
@@ -24,16 +24,16 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         sinon.restore()
     })
 
-    describe('lw.completion->glossary', () => {
-        function getSuggestions() {
-            return provider.from(['', ''], {
-                uri: vscode.Uri.file(texPath),
-                langId: 'latex',
-                line: '',
-                position: new vscode.Position(0, 0),
-            })
-        }
+    function getSuggestions() {
+        return provider.from(['', ''], {
+            uri: vscode.Uri.file(texPath),
+            langId: 'latex',
+            line: '',
+            position: new vscode.Position(0, 0),
+        })
+    }
 
+    describe('lw.completion->glossary', () => {
         it('should parse and provide \\newacronym definition', async () => {
             readStub.resolves('\\newacronym{rf}{RF}{radio-frequency}')
             await lw.cache.refreshCache(texPath)
@@ -105,6 +105,26 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             assert.ok(suggestions.some(s => s.label === 'rf'))
             assert.strictEqual(suggestions.find(s => s.label === 'rf')?.detail, 'radio-frequency')
+        })
+    })
+
+    describe('lw.completion->glossary.parseBibFile', () => {
+        const bibFile = 'glossary.bib'
+        const bibPath = get.path(fixture, bibFile)
+
+        it('should parse the bib file', async () => {
+            readStub.withArgs(texPath).resolves(`\\GlsXtrLoadResources[src={${bibFile}}]`)
+            await lw.cache.refreshCache(texPath)
+            sinon.restore()
+
+            await glossary.parseBibFile(bibPath)
+
+            const suggestions = getSuggestions()
+            assert.ok(suggestions.find(item => item.label === 'fs' && item.detail?.includes('\\ensuremath{f_s}')))
+            assert.ok(suggestions.find(item => item.label === 'theta' && item.detail?.includes('\\ensuremath{\\theta}')))
+            assert.ok(suggestions.find(item => item.label === 'caesar' && item.detail?.includes('\\sortname{Gaius Julius}{Caesar}')))
+            assert.ok(suggestions.find(item => item.label === 'wellesley' && item.detail?.includes('\\sortname{Arthur}{Wellesley}')))
+            assert.ok(suggestions.find(item => item.label === 'wellington' && item.detail?.includes('Wellington')))
         })
     })
 })

@@ -44,7 +44,10 @@ export const bibTools = {
     parseAbbrevations
 }
 
-function expandField(abbreviations: {[key: string]: string}, value: bibtexParser.FieldValue): string {
+function expandField(abbreviations: {[key: string]: string}, value: bibtexParser.FieldValue | undefined): string {
+    if (value === undefined) {
+        return ''
+    }
     if (value.kind === 'concat') {
         const args = value.content as bibtexParser.FieldValue[]
         return args.map(arg => expandField(abbreviations, arg)).join(' ')
@@ -97,7 +100,7 @@ function provide(uri: vscode.Uri, line: string, position: vscode.Position): Comp
     const label = configuration.get('intellisense.citation.label') as string
     const fields = readCitationFormat(configuration)
     const range: vscode.Range | undefined = computeFilteringRange(line, position)
-    return updateAll(getIncludedBibs(lw.root.file.path)).map(item => {
+    return updateAll(lw.cache.getIncludedBib(lw.root.file.path)).map(item => {
         // Compile the completion item label
         switch(label) {
             case 'bibtex key':
@@ -128,7 +131,7 @@ function browser(args?: CompletionArgs) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', args?.uri)
     const label = configuration.get('intellisense.citation.label') as string
     const fields = readCitationFormat(configuration, label)
-    void vscode.window.showQuickPick(updateAll(getIncludedBibs(lw.root.file.path)).map(item => {
+    void vscode.window.showQuickPick(updateAll(lw.cache.getIncludedBib(lw.root.file.path)).map(item => {
         return {
             label: item.fields.title ? trimMultiLineString(item.fields.title) : '',
             description: item.key,
@@ -173,33 +176,6 @@ function getItem(key: string, configurationScope?: vscode.ConfigurationScope): C
         entry.documentation = new vscode.MarkdownString( '\n' + entry.fields.join(fields, true, '  \n') + '\n\n')
     }
     return entry
-}
-
-/**
- * Returns the array of the paths of `.bib` files referenced from `file`.
- *
- * @param file The path of a LaTeX file. If `undefined`, the keys of `bibEntries` are used.
- * @param visitedTeX Internal use only.
- */
-function getIncludedBibs(file?: string, visitedTeX: string[] = []): string[] {
-    if (file === undefined) {
-        // Only happens when rootFile is undefined
-        return Array.from(data.bibEntries.keys())
-    }
-    const cache = lw.cache.get(file)
-    if (cache === undefined) {
-        return []
-    }
-    let bibs = Array.from(cache.bibfiles)
-    visitedTeX.push(file)
-    for (const child of cache.children) {
-        if (visitedTeX.includes(child.filePath)) {
-            // Already included
-            continue
-        }
-        bibs = Array.from(new Set(bibs.concat(getIncludedBibs(child.filePath, visitedTeX))))
-    }
-    return bibs
 }
 
 /**

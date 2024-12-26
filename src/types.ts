@@ -37,6 +37,8 @@ export type FileCache = {
     }[],
     /** The array of the paths of `.bib` files referenced from the LaTeX file */
     bibfiles: Set<string>,
+    /** The array of the paths of `.bib` files listed by `\GlsXtrLoadResources` to provide glossary entries */
+    glossarybibfiles: Set<string>,
     /** A dictionary of external documents provided by `\externaldocument` of
      * `xr` package. The value is its prefix `\externaldocument[prefix]{*}` */
     external: {[filePath: string]: string},

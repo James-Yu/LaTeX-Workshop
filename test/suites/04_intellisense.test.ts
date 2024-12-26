@@ -420,6 +420,20 @@ suite.skip('Intellisense test suite', () => {
         assert.ok(suggestions.items.find(item => item.label === 'abbr_x' && item.detail === 'A first abbreviation'))
     })
 
+    test.run('glossary intellisense from .bib files', async (fixture: string) => {
+        await test.load(fixture, [
+            {src: 'intellisense/glossary_bib.tex', dst: 'main.tex'},
+            {src: 'intellisense/glossary.bib', dst: 'glos.bib'}
+        ])
+        const suggestions = test.suggest(7, 8)
+        assert.strictEqual(suggestions.items.length, 5)
+        assert.ok(suggestions.items.find(item => item.label === 'fs' && item.detail?.includes('\\ensuremath{f_s}')))
+        assert.ok(suggestions.items.find(item => item.label === 'theta' && item.detail?.includes('\\ensuremath{\theta}')))
+        assert.ok(suggestions.items.find(item => item.label === 'caesar' && item.detail?.includes('\\sortname{Gaius Julius}{Caesar}')))
+        assert.ok(suggestions.items.find(item => item.label === 'wellesley' && item.detail?.includes('\\sortname{Arthur}{Wellesley}')))
+        assert.ok(suggestions.items.find(item => item.label === 'wellington' && item.detail?.includes('Wellington')))
+    })
+
     test.run('@-snippet intellisense and configs intellisense.atSuggestion*', async (fixture: string) => {
         const replaces = {'@+': '\\sum', '@8': '', '@M': '\\sum'}
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.atSuggestion.user', replaces)
