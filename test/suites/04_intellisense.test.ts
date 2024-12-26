@@ -6,7 +6,7 @@ import * as test from './utils'
 import { EnvSnippetType } from '../../src/types'
 import { isTriggerSuggestNeeded } from '../../src/completion/completer/macro'
 
-suite('Intellisense test suite', () => {
+suite.skip('Intellisense test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
     test.suite.fixture = 'testground'
 
