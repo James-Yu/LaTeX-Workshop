@@ -21,7 +21,7 @@ const data = {
     glossaries: new Map<string, GlossaryItem>(),
     acronyms: new Map<string, GlossaryItem>(),
     // The keys are the paths of the `.bib` files.
-    bibEntries: new Map<string, GlossaryItem[]>(),
+    bibEntries: new Map<string, GlossaryItem[]>()
 }
 
 lw.watcher.bib.onCreate(uri => parseBibFile(uri.fsPath))
