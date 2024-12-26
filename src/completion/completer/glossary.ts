@@ -12,7 +12,8 @@ const logger = lw.log('Intelli', 'Glossary')
 export const provider: CompletionProvider = { from }
 export const glossary = {
     parse,
-    getItem
+    getItem,
+    parseBibFile
 }
 
 const data = {
