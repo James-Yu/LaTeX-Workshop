@@ -45,7 +45,8 @@ function callSynctex(e: MouseEvent, page: number, pageDom: HTMLElement, viewerCo
 
 export function registerSyncTeX() {
     const viewerDom = document.getElementById('viewer')!
-    for (const pageDom of viewerDom.childNodes as NodeListOf<HTMLElement>) {
+    const pageDomList = (viewerDom.childNodes[0] as HTMLElement).classList.contains('spread') ? viewerDom.childNodes[0].childNodes : viewerDom.childNodes
+    for (const pageDom of pageDomList as NodeListOf<HTMLElement>) {
         const page = Number(pageDom.dataset.pageNumber)
         const viewerContainer = document.getElementById('viewerContainer')!
         switch (reverseSynctexKeybinding) {
