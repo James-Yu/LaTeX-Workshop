@@ -29,7 +29,7 @@ lw.watcher.bib.onChange(uri => parseBibFile(uri.fsPath))
 lw.watcher.bib.onDelete(uri => removeEntriesInFile(uri.fsPath))
 
 function from(result: RegExpMatchArray): vscode.CompletionItem[] {
-    updateAll(getIncludedBibs(lw.root.file.path))
+    updateAll(lw.cache.getIncludedGlossaryBib(lw.root.file.path))
     let suggestions: Map<string, GlossaryItem>
 
     if (result[1] && result[1].match(/^ac/i)) {
@@ -44,35 +44,10 @@ function from(result: RegExpMatchArray): vscode.CompletionItem[] {
 }
 
 function getItem(token: string): GlossaryItem | undefined {
-    updateAll(getIncludedBibs(lw.root.file.path))
+    updateAll(lw.cache.getIncludedGlossaryBib(lw.root.file.path))
     return data.glossaries.get(token) || data.acronyms.get(token)
 }
 
-/**
- * Returns the array of the paths of glossary `.bib` files referenced from `file`.
- *
- * @param file The path of a LaTeX file.
- * @param visitedTeX Internal use only.
- */
-function getIncludedBibs(file?: string, visitedTeX: string[] = []): string[] {
-    if (file === undefined) {
-        return []
-    }
-    const cache = lw.cache.get(file)
-    if (cache === undefined) {
-        return []
-    }
-    let bibs = Array.from(cache.glossarybibfiles)
-    visitedTeX.push(file)
-    for (const child of cache.children) {
-        if (visitedTeX.includes(child.filePath)) {
-            // Already included
-            continue
-        }
-        bibs = Array.from(new Set(bibs.concat(getIncludedBibs(child.filePath, visitedTeX))))
-    }
-    return bibs
-}
 
 /**
  * Returns aggregated glossary entries from `.bib` files and glossary items defined on LaTeX files included in the root file.

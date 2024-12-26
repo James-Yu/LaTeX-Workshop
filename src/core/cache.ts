@@ -36,6 +36,7 @@ export const cache = {
     promises,
     getIncludedTeX,
     getIncludedBib,
+    getIncludedGlossaryBib,
     getFlsChildren,
     wait,
     reset,
@@ -721,29 +722,29 @@ async function parseAuxFile(filePath: string, srcDir: string) {
     }
 }
 
-
 /**
- * Retrieves a list of included bibliography files for a given file, ensuring
+ * Retrieves a list of included bib files for a given file, ensuring
  * uniqueness.
  *
  * This function processes a specified file path to extract and return all
- * associated bibliography files. It starts with the provided file path (or the
+ * associated bib files. It starts with the provided file path (or the
  * root file path if not specified) and checks its cache entry. If the cache
- * entry exists, the function collects the bibliography files associated with
+ * entry exists, the function collects the bib files associated with
  * the file and its children. The function ensures that the same file is not
  * processed multiple times by keeping track of checked files. The result is an
- * array of unique bibliography file paths.
+ * array of unique bib file paths.
  *
+ * @param {string} [bibType] - The type of .bib file to search for.
  * @param {string} [filePath] - The path to the file to check for included
- * bibliography files. Defaults to the root file path if not provided.
- * @param {string[]} [includedBib=[]] - An array to accumulate the bibliography
+ * bib files. Defaults to the root file path if not provided.
+ * @param {string[]} [includedBib=[]] - An array to accumulate the bib
  * files found.
  * @param {string[]} [checkedTeX=[]] - An array to store the paths of TeX files
  * already checked.
- * @returns {string[]} - An array of unique bibliography file paths included in
+ * @returns {string[]} - An array of unique bib file paths included in
  * the specified file and its children.
  */
-function getIncludedBib(filePath?: string, includedBib: string[] = [], checkedTeX: string[] = []): string[] {
+function getIncludedBibGeneric(bibType: 'bibtex' | 'glossary', filePath?: string, includedBib: string[] = [], checkedTeX: string[] = []): string[] {
     filePath = filePath ?? lw.root.file.path
     if (filePath === undefined) {
         return []
@@ -753,16 +754,46 @@ function getIncludedBib(filePath?: string, includedBib: string[] = [], checkedTe
         return []
     }
     checkedTeX.push(filePath)
-    includedBib.push(...fileCache.bibfiles)
+    if (bibType === 'bibtex') {
+        includedBib.push(...fileCache.bibfiles)
+    } else if (bibType === 'glossary') {
+        includedBib.push(...fileCache.glossarybibfiles)
+    }
     for (const child of fileCache.children) {
         if (checkedTeX.includes(child.filePath)) {
             // Already parsed
             continue
         }
-        getIncludedBib(child.filePath, includedBib, checkedTeX)
+        getIncludedBibGeneric(bibType, child.filePath, includedBib, checkedTeX)
     }
     // Make sure to return an array with unique entries
     return Array.from(new Set(includedBib))
+}
+
+/**
+ * Retrieves a list of included bibliography files for a given file, ensuring
+ * uniqueness.
+ *
+ * @param {string} [filePath] - The path to the file to check for included
+ * bibliography files.
+ * @returns {string[]} - An array of unique bibliography file paths included in
+ * the specified file and its children.
+ */
+function getIncludedBib(filePath?: string): string[] {
+    return getIncludedBibGeneric('bibtex', filePath)
+}
+
+/**
+ * Retrieves a list of included glossary bib files for a given file, ensuring
+ * uniqueness.
+ *
+ * @param {string} [filePath] - The path to the file to check for included
+ * bibliography files.
+ * @returns {string[]} - An array of unique glossary bib file paths included in
+ * the specified file and its children.
+ */
+function getIncludedGlossaryBib(filePath?: string): string[] {
+    return getIncludedBibGeneric('glossary', filePath)
 }
 
 /**
