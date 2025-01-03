@@ -497,3 +497,25 @@ pdfjs-editor-alt-text-settings-editor-title = Editor alternativního textu
 pdfjs-editor-alt-text-settings-show-dialog-button-label = Při přidávání obrázku hned zobrazit editor alternativního textu
 pdfjs-editor-alt-text-settings-show-dialog-description = Pomůže vám zajistit, aby všechny vaše obrázky obsahovaly alternativní text.
 pdfjs-editor-alt-text-settings-close-button = Zavřít
+
+## "Annotations removed" bar
+
+pdfjs-editor-undo-bar-message-highlight = Zvýraznění odebráno
+pdfjs-editor-undo-bar-message-freetext = Text odstraněn
+pdfjs-editor-undo-bar-message-ink = Kresba odstraněna
+pdfjs-editor-undo-bar-message-stamp = Obrázek odebrán
+# Variables:
+#   $count (Number) - the number of removed annotations.
+pdfjs-editor-undo-bar-message-multiple =
+    { $count ->
+        [one] { $count } anotace odebrána
+        [few] { $count } anotace odebrány
+        [many] { $count } anotací odebráno
+       *[other] { $count } anotací odebráno
+    }
+pdfjs-editor-undo-bar-undo-button =
+    .title = Zpět
+pdfjs-editor-undo-bar-undo-button-label = Zpět
+pdfjs-editor-undo-bar-close-button =
+    .title = Zavřít
+pdfjs-editor-undo-bar-close-button-label = Zavřít

@@ -493,3 +493,23 @@ pdfjs-editor-alt-text-settings-editor-title = Баламалы мәтін ред
 pdfjs-editor-alt-text-settings-show-dialog-button-label = Суретті қосқанда балама мәтін редакторын бірден көрсету
 pdfjs-editor-alt-text-settings-show-dialog-description = Барлық суреттерде балама мәтін бар екеніне көз жеткізуге көмектеседі.
 pdfjs-editor-alt-text-settings-close-button = Жабу
+
+## "Annotations removed" bar
+
+pdfjs-editor-undo-bar-message-highlight = Ерекшелеу өшірілді
+pdfjs-editor-undo-bar-message-freetext = Мәтін өшірілді
+pdfjs-editor-undo-bar-message-ink = Сызба өшірілді
+pdfjs-editor-undo-bar-message-stamp = Сурет өшірілді
+# Variables:
+#   $count (Number) - the number of removed annotations.
+pdfjs-editor-undo-bar-message-multiple =
+    { $count ->
+        [one] { $count } анимация өшірілді
+       *[other] { $count } анимация өшірілді
+    }
+pdfjs-editor-undo-bar-undo-button =
+    .title = Болдырмау
+pdfjs-editor-undo-bar-undo-button-label = Болдырмау
+pdfjs-editor-undo-bar-close-button =
+    .title = Жабу
+pdfjs-editor-undo-bar-close-button-label = Жабу

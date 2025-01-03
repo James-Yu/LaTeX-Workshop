@@ -298,7 +298,7 @@ pdfjs-password-label = Введіть пароль для відкриття ц�
 pdfjs-password-invalid = Неправильний пароль. Спробуйте ще раз.
 pdfjs-password-ok-button = OK
 pdfjs-password-cancel-button = Скасувати
-pdfjs-web-fonts-disabled = Веб-шрифти вимкнено: неможливо використати вбудовані у PDF шрифти.
+pdfjs-web-fonts-disabled = Вебшрифти вимкнено: неможливо використати вбудовані у PDF шрифти.
 
 ## Editing
 
@@ -495,3 +495,24 @@ pdfjs-editor-alt-text-settings-editor-title = Редактор альтерна�
 pdfjs-editor-alt-text-settings-show-dialog-button-label = Показувати редактор альтернативного тексту під час додавання зображення
 pdfjs-editor-alt-text-settings-show-dialog-description = Допомагає переконатися, що всі ваші зображення мають альтернативний текст.
 pdfjs-editor-alt-text-settings-close-button = Закрити
+
+## "Annotations removed" bar
+
+pdfjs-editor-undo-bar-message-highlight = Підсвічення вилучено
+pdfjs-editor-undo-bar-message-freetext = Текст вилучено
+pdfjs-editor-undo-bar-message-ink = Малюнок вилучено
+pdfjs-editor-undo-bar-message-stamp = Зображення вилучено
+# Variables:
+#   $count (Number) - the number of removed annotations.
+pdfjs-editor-undo-bar-message-multiple =
+    { $count ->
+        [one] { $count } анотацію вилучено
+        [few] { $count } анотації вилучено
+       *[many] { $count } анотацій вилучено
+    }
+pdfjs-editor-undo-bar-undo-button =
+    .title = Повернути
+pdfjs-editor-undo-bar-undo-button-label = Повернути
+pdfjs-editor-undo-bar-close-button =
+    .title = Закрити
+pdfjs-editor-undo-bar-close-button-label = Закрити

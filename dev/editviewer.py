@@ -32,7 +32,7 @@ with open(args.web + '/viewer.mjs', 'rt', encoding='utf-8') as fin:
                 .replace('''localStorage.setItem("pdfjs.preferences", JSON.stringify(prefObj));''', '''// localStorage.setItem("pdfjs.preferences", JSON.stringify(prefObj));''') \
                 .replace('''prefs: JSON.parse(localStorage.getItem("pdfjs.preferences"))''', '''prefs: undefined // JSON.parse(localStorage.getItem("pdfjs.preferences"))''') \
                 .replace('''(!event.shiftKey || window.chrome || window.opera)) {''', '''(!event.shiftKey || window.chrome || window.opera)) {\n    if (window.parent !== window) {\n      return;\n    }''') \
-                .replace('''console.error(`webviewerloaded: ''', '''// console.error(`webviewerloaded: ''') \
+                .replace('''console.error("webviewerloaded:", ex);''', '''// console.error("webviewerloaded:", ex);''') \
                 .replace('''//# sourceMappingURL=viewer.mjs.map''', '''''') \
                 .replace('''console.log(`PDF ${pdfDocument.''', '''// console.log(`PDF ${pdfDocument.''') \
                 .replace('''value: "../build/pdf.worker.mjs"''', '''value: "./build/pdf.worker.mjs"''') \
@@ -44,9 +44,9 @@ with open(args.web + '/viewer.mjs', 'rt', encoding='utf-8') as fin:
                 .replace('''setRotation(this.initialRotation);''', '''// setRotation(this.initialRotation);''') \
                 .replace('''this.pdfLinkService.setHash(this.initialBookmark);''', '''// this.pdfLinkService.setHash(this.initialBookmark);''') \
                 .replace('''hPadding = vPadding = 0;''', '''if (this._scrollMode === ScrollMode.HORIZONTAL || this._spreadMode === SpreadMode.NONE) { hPadding = vPadding = 0; } else { hPadding = 10; vPadding = 0; }''') \
-                .replace('''eventBus._on("openfile"''', '''// eventBus._on("openfile"''') \
-                .replace('''eventBus._on("print"''', '''// eventBus._on("print"''') \
-                .replace('''eventBus._on("download"''', '''// eventBus._on("download"''')
+                .replace(''' eventBus._on("openfile"''', ''' // eventBus._on("openfile"''') \
+                .replace(''' eventBus._on("print"''', ''' // eventBus._on("print"''') \
+                .replace(''' eventBus._on("download"''', ''' // eventBus._on("download"''')
             fout.write(line)
 
 os.system(f'git diff --no-index {args.web}/viewer.html {args.viewer}/viewer.html > {args.viewer}/../dev/viewer/viewer.html.diff')
