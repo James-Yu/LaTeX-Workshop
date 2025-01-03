@@ -1,5 +1,10 @@
 # Change Log
 
+## [10.7.3] - 2025-01-03
+
+### Fixed
+- (#4495) PDF viewer trimming failed due to PDF.js CSS canvas style changes.
+
 ## [10.7.2] - 2025-01-03
 
 ### Fixed
