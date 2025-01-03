@@ -1,5 +1,5 @@
 diff --git a/../../web/viewer.mjs b/../viewer/viewer.mjs
-index c3d794a27..085275c56 100644
+index c3d794a27..23ffd1ad0 100644
 --- a/../../web/viewer.mjs
 +++ b/../viewer/viewer.mjs
 @@ -758,7 +758,7 @@ const defaultOptions = {
@@ -89,7 +89,17 @@ index c3d794a27..085275c56 100644
      if (!this.isInitialEventDispatched) {
        this.#dispatchEvent();
      }
-@@ -10995,7 +10998,7 @@ class PDFViewer {
+@@ -10763,7 +10766,9 @@ class PDFPageView {
+     const canvasWidth = canvas.width = floorToDivide(calcRound(width * outputScale.sx), sfx[0]);
+     const canvasHeight = canvas.height = floorToDivide(calcRound(height * outputScale.sy), sfy[0]);
+     const pageWidth = floorToDivide(calcRound(width), sfx[1]);
++    canvas.style.width = pageWidth + "px";
+     const pageHeight = floorToDivide(calcRound(height), sfy[1]);
++    canvas.style.height = pageHeight + "px";
+     outputScale.sx = canvasWidth / pageWidth;
+     outputScale.sy = canvasHeight / pageHeight;
+     if (this.#scaleRoundX !== sfx[1]) {
+@@ -10995,7 +11000,7 @@ class PDFViewer {
      this.#enableNewAltTextWhenAddingImage = options.enableNewAltTextWhenAddingImage === true;
      this.imageResourcesPath = options.imageResourcesPath || "";
      this.enablePrintAutoRotate = options.enablePrintAutoRotate || false;
@@ -98,7 +108,7 @@ index c3d794a27..085275c56 100644
      this.maxCanvasPixels = options.maxCanvasPixels;
      this.l10n = options.l10n;
      this.l10n ||= new genericl10n_GenericL10n();
-@@ -11732,12 +11735,12 @@ class PDFViewer {
+@@ -11732,12 +11737,12 @@ class PDFViewer {
            hPadding *= 2;
          }
        } else if (this.removePageBorders) {
@@ -114,7 +124,7 @@ index c3d794a27..085275c56 100644
        switch (value) {
          case "page-actual":
            scale = 1;
-@@ -11848,7 +11851,7 @@ class PDFViewer {
+@@ -11848,7 +11853,7 @@ class PDFViewer {
          let hPadding = SCROLLBAR_PADDING,
            vPadding = VERTICAL_PADDING;
          if (this.removePageBorders) {
@@ -123,7 +133,7 @@ index c3d794a27..085275c56 100644
          }
          widthScale = (this.container.clientWidth - hPadding) / width / PixelsPerInch.PDF_TO_CSS_UNITS;
          heightScale = (this.container.clientHeight - vPadding) / height / PixelsPerInch.PDF_TO_CSS_UNITS;
-@@ -13088,10 +13091,10 @@ class ViewHistory {
+@@ -13088,10 +13093,10 @@ class ViewHistory {
    }
    async _writeToStorage() {
      const databaseStr = JSON.stringify(this.database);
@@ -136,7 +146,7 @@ index c3d794a27..085275c56 100644
    }
    async set(name, val) {
      await this._initializedPromise;
-@@ -13694,7 +13697,7 @@ const PDFViewerApplication = {
+@@ -13694,7 +13699,7 @@ const PDFViewerApplication = {
          title = decodeURIComponent(getFilenameFromUrl(url));
        } catch {}
      }
@@ -145,7 +155,7 @@ index c3d794a27..085275c56 100644
    },
    setTitle(title = this._title) {
      this._title = title;
-@@ -14118,7 +14121,7 @@ const PDFViewerApplication = {
+@@ -14118,7 +14123,7 @@ const PDFViewerApplication = {
      this.metadata = metadata;
      this._contentDispositionFilename ??= contentDispositionFilename;
      this._contentLength ??= contentLength;
@@ -154,7 +164,7 @@ index c3d794a27..085275c56 100644
      let pdfTitle = info.Title;
      const metadataTitle = metadata?.get("dc:title");
      if (metadataTitle) {
-@@ -14249,9 +14252,9 @@ const PDFViewerApplication = {
+@@ -14249,9 +14254,9 @@ const PDFViewerApplication = {
      this.pdfSidebar?.setInitialView(sidebarView);
      setViewerModes(scrollMode, spreadMode);
      if (this.initialBookmark) {
@@ -166,7 +176,7 @@ index c3d794a27..085275c56 100644
        this.initialBookmark = null;
      } else if (storedHash) {
        setRotation(rotation);
-@@ -14368,8 +14371,8 @@ const PDFViewerApplication = {
+@@ -14368,8 +14373,8 @@ const PDFViewerApplication = {
      eventBus._on("presentationmodechanged", evt => pdfViewer.presentationModeState = evt.state, opts);
      eventBus._on("presentationmode", this.requestPresentationMode.bind(this), opts);
      eventBus._on("switchannotationeditormode", evt => pdfViewer.annotationEditorMode = evt, opts);
@@ -177,7 +187,7 @@ index c3d794a27..085275c56 100644
      eventBus._on("firstpage", () => this.page = 1, opts);
      eventBus._on("lastpage", () => this.page = this.pagesCount, opts);
      eventBus._on("nextpage", () => pdfViewer.nextPage(), opts);
-@@ -14392,7 +14395,7 @@ const PDFViewerApplication = {
+@@ -14392,7 +14397,7 @@ const PDFViewerApplication = {
      eventBus._on("updatefindmatchescount", onUpdateFindMatchesCount.bind(this), opts);
      eventBus._on("updatefindcontrolstate", onUpdateFindControlState.bind(this), opts);
      eventBus._on("fileinputchange", onFileInputChange.bind(this), opts);
@@ -186,7 +196,7 @@ index c3d794a27..085275c56 100644
    },
    bindWindowEvents() {
      if (this._windowAbortController) {
-@@ -15345,7 +15348,7 @@ function webViewerLoad() {
+@@ -15345,7 +15350,7 @@ function webViewerLoad() {
    try {
      parent.document.dispatchEvent(event);
    } catch (ex) {
@@ -195,7 +205,7 @@ index c3d794a27..085275c56 100644
      document.dispatchEvent(event);
    }
    PDFViewerApplication.run(config);
-@@ -15362,4 +15365,3 @@ var __webpack_exports__PDFViewerApplicationConstants = __webpack_exports__.PDFVi
+@@ -15362,4 +15367,3 @@ var __webpack_exports__PDFViewerApplicationConstants = __webpack_exports__.PDFVi
  var __webpack_exports__PDFViewerApplicationOptions = __webpack_exports__.PDFViewerApplicationOptions;
  export { __webpack_exports__PDFViewerApplication as PDFViewerApplication, __webpack_exports__PDFViewerApplicationConstants as PDFViewerApplicationConstants, __webpack_exports__PDFViewerApplicationOptions as PDFViewerApplicationOptions };
  

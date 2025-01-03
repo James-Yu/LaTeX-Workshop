@@ -10766,7 +10766,9 @@ class PDFPageView {
     const canvasWidth = canvas.width = floorToDivide(calcRound(width * outputScale.sx), sfx[0]);
     const canvasHeight = canvas.height = floorToDivide(calcRound(height * outputScale.sy), sfy[0]);
     const pageWidth = floorToDivide(calcRound(width), sfx[1]);
+    canvas.style.width = pageWidth + "px";
     const pageHeight = floorToDivide(calcRound(height), sfy[1]);
+    canvas.style.height = pageHeight + "px";
     outputScale.sx = canvasWidth / pageWidth;
     outputScale.sy = canvasHeight / pageHeight;
     if (this.#scaleRoundX !== sfx[1]) {
