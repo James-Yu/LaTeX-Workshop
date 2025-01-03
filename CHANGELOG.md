@@ -1,5 +1,13 @@
 # Change Log
 
+## [10.7.2] - 2025-01-03
+
+### Fixed
+- Upgrade PDF.js to v4.10.38.
+- Spread mode should correctly register synctex handler.
+- (#4437) PDF viewer can be blurry after rescaling
+- (#4491) Parse glossary bib files to populate intellisense.
+
 ## [10.7.1] - 2024-12-24
 
 ### Fixed
