@@ -1,5 +1,10 @@
 # Change Log
 
+## [10.7.5] - 2025-01-06
+
+### Fixed
+- The minimal supported VS Code version is December 2024 due to changes of PDF.js (particularly the use of css `round()`).
+
 ## [10.7.4] - 2025-01-03
 
 ### Fixed
