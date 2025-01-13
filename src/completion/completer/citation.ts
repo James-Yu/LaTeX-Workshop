@@ -100,7 +100,23 @@ function provide(uri: vscode.Uri, line: string, position: vscode.Position): Comp
     const label = configuration.get('intellisense.citation.label') as string
     const fields = readCitationFormat(configuration)
     const range: vscode.Range | undefined = computeFilteringRange(line, position)
-    return updateAll(lw.cache.getIncludedBib(lw.root.file.path)).map(item => {
+
+    const items = updateAll(lw.cache.getIncludedBib(lw.root.file.path))
+    const alts: CitationItem[] = []
+    items.forEach(item => {
+        if (item.fields.has('ids')) {
+            const ids = item.fields.get('ids')?.split(',').map(id => id.trim())
+            if (ids === undefined || ids.length === 0) {
+                return
+            }
+            for (const id of ids) {
+                const alt = Object.assign({}, item)
+                alt.key = id
+                alts.push(alt)
+            }
+        }
+    })
+    return [...items, ...alts].map(item => {
         // Compile the completion item label
         switch(label) {
             case 'bibtex key':

@@ -92,5 +92,24 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(suggestion)
             assert.strictEqual(suggestion.fields.author, 'Jane Miller and Robert Smith')
         })
+
+        it('should handle biblatex ids field', async () => {
+            await citation.parseBibFile(bibPath)
+
+            const suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
+
+            assert.ok(suggestions.find(s => s.label === 'miller2024'))
+            assert.ok(suggestions.find(s => s.label === 'altid1'))
+        })
+
+        it('should handle biblatex ids field with multiple alt names', async () => {
+            await citation.parseBibFile(bibPath)
+
+            const suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
+
+            assert.ok(suggestions.find(s => s.label === 'miller2025'))
+            assert.ok(suggestions.find(s => s.label === 'altid2'))
+            assert.ok(suggestions.find(s => s.label === 'altid3'))
+        })
     })
 })
