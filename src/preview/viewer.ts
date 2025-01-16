@@ -33,7 +33,7 @@ lw.watcher.pdf.onChange(pdfUri => {
         refresh(pdfUri)
     }
 })
-lw.onConfigChange(['view.pdf.toolbar.hide.timeout', 'view.pdf.invert', 'view.pdf.invertMode', 'view.pdf.color', 'view.pdf.internal'], () => {
+lw.onConfigChange(['view.pdf.toolbar.hide.timeout', 'view.pdf.invert', 'view.pdf.invertMode', 'view.pdf.color', 'view.pdf.internal', 'view.pdf.reload.transition'], () => {
     reload()
 })
 
@@ -346,6 +346,7 @@ function getParams(): PdfViewerParams {
         keybindings: {
             synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click',
         },
+        reloadTransition: configuration.get('view.pdf.reload.transition') as 'none' | 'fade',
     }
     return pack
 }

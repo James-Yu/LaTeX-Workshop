@@ -54,7 +54,8 @@ export type PdfViewerParams = {
     codeColorTheme: 'light' | 'dark',
     keybindings: {
         synctex: 'ctrl-click' | 'double-click'
-    }
+    },
+    reloadTransition: 'none' | 'fade'
 }
 
 export type ClientRequest = {

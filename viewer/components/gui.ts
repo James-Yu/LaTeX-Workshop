@@ -30,6 +30,14 @@ export async function patchViewerUI() {
 
     const params = await utils.getParams()
 
+    if (params.reloadTransition === 'none') {
+        const css = document.styleSheets[document.styleSheets.length - 1]
+        css.insertRule(
+`.page-loading-mask.remove {
+    transition: none !important;
+}`)
+    }
+
     if (params.toolbar === 0) {
         document.getElementsByClassName('toolbar')[0]?.classList.remove('hide')
         document.getElementById('viewerContainer')!.style.top = '32px'
