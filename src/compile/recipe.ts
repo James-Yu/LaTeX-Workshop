@@ -77,7 +77,13 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
     const timestamp = Date.now()
     tools.forEach(tool => queue.add(tool, rootFile, recipeName || 'Build', timestamp))
 
-    lw.compile.compiledPDFPath = lw.file.getPdfPath(rootFile)
+    // #4513 If the recipe contains a forced latexmk compilation, don't set the
+    // compiledPDFPath so that PDF refresh is handled by file watcher.
+    if (!tools.some(tool => tool.command === 'latexmk' &&
+                            tool.args?.includes('-interaction=nonstopmode') &&
+                            tool.args?.includes('-f'))) {
+        lw.compile.compiledPDFPath = lw.file.getPdfPath(rootFile)
+    }
     // Execute the build loop
     await buildLoop()
 }
