@@ -116,6 +116,19 @@ function provide(uri: vscode.Uri, line: string, position: vscode.Position): Comp
             }
         }
     })
+    // Retrieve the list of fields to filter the completion items
+    const filterContents = configuration.get('latex-workshop.intellisense.citation.filterText') as ('bibtex key' | 'title' | 'other fields')[]
+    // Construct the filter text for each item
+    const getFilterText = (item: CitationItem): string => {
+        return filterContents
+            .map(filterContent => ({
+                    'bibtex key': item.key,
+                    'title': item.fields.title || '',
+                    'other fields': item.fields.join(fields.filter(field => field !== 'title'), false)
+                }[filterContent] || ''))
+            .filter(text => text !== '')
+            .join(' ')
+    }
     return [...items, ...alts].map(item => {
         // Compile the completion item label
         switch(label) {
@@ -134,7 +147,7 @@ function provide(uri: vscode.Uri, line: string, position: vscode.Position): Comp
                 }
                 break
         }
-        item.filterText = item.key + ' ' + item.fields.title + ' ' + item.fields.join(fields.filter(field => field !== 'title'), false)
+        item.filterText = getFilterText(item)
         item.insertText = item.key
         item.range = range
         // We need two spaces to ensure md newline

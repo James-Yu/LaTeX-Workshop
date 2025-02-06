@@ -1922,6 +1922,25 @@
             "Show publication authors in the inline mode."
           ]
         },
+        "latex-workshop.intellisense.citation.filterText": {
+          "scope": "resource",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "bibtex key",
+              "title",
+              "other fields"
+            ],
+            "enumDescriptions": [
+              "BibTeX keys.",
+              "Publication titles.",
+              "Other BibTeX fields except for title, order preserved as defined in BibTeX."
+            ]
+          },
+          "default": ["bibtex key", "title", "other fields"],
+          "markdownDescription": "Defines what contents are used to filter citation entries when user types characters in inline mode. Sorting is somewhat controlled by the order of contents defined by this config."
+        },
         "latex-workshop.intellisense.citation.format": {
           "scope": "resource",
           "type": "array",
