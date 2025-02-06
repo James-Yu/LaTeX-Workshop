@@ -93,7 +93,7 @@ export class Provider implements vscode.CompletionItemProvider {
         let provider: CompletionProvider | undefined
         switch (type) {
             case 'citation':
-                reg = /(?:\\[a-zA-Z]*[Cc]ite[a-zA-Z]*\*?(?:\([^[)]*\)){0,2}(?:<[^<>]*>|\[[^[\]]*\]|{[^{}]*})*{([^}]*)$)|(?:\\bibentry{([^}]*)$)/
+                reg = /(?:\\[a-zA-Z]*[Cc]ite[a-zA-Z]*\*?(?:\([^[)]*\)){0,2}(?:<[^<>]*>|\[[^[\]]*\]|{[^{}]*})*{([^}]*)$)|(?:\\[a-zA-Z]*cquote*\*?(?:\[[^[\]]*\]){0,2}{([^}]*)$)|(?:\\bibentry{([^}]*)$)/
                 provider = citationProvider
                 break
             case 'reference':
@@ -137,7 +137,7 @@ export class Provider implements vscode.CompletionItemProvider {
                 provider = subimportProvider
                 break
             case 'glossary':
-                reg = /\\(gls(?:pl|text|first|fmt(?:text|short|long)|plural|firstplural|name|symbol|desc|disp|user(?:i|ii|iii|iv|v|vi))?|Acr(?:long|full|short)?(?:pl)?|ac[slf]?p?)(?:\[[^[\]]*\])?{([^}]*)$/i
+                reg = /\\(gls(?:str)?(?:pl|text|first|fmt(?:text|short|long)|plural|firstplural|name|symbol|desc|disp|user(?:i|ii|iii|iv|v|vi))?|Acr(?:long|full|short)?(?:pl)?|ac[slf]?p?)(?:\[[^[\]]*\])?{([^}]*)$/i
                 provider = glossaryProvider
                 break
             case 'subsuper':
