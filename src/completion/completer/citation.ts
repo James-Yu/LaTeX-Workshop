@@ -117,7 +117,7 @@ function provide(uri: vscode.Uri, line: string, position: vscode.Position): Comp
         }
     })
     // Retrieve the list of fields to filter the completion items
-    const filterContents = configuration.get('latex-workshop.intellisense.citation.filterText') as ('bibtex key' | 'title' | 'other fields')[]
+    const filterContents = configuration.get('intellisense.citation.filterText') as ('bibtex key' | 'title' | 'other fields')[]
     // Construct the filter text for each item
     const getFilterText = (item: CitationItem): string => {
         return filterContents
