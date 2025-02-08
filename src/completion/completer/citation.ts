@@ -120,7 +120,7 @@ function provide(uri: vscode.Uri, line: string, position: vscode.Position): Comp
     const filterContents = configuration.get('intellisense.citation.filterText') as ('bibtex key' | 'title' | 'other fields')[]
     // Construct the filter text for each item
     const getFilterText = (item: CitationItem): string => {
-        return filterContents
+        const filterText = filterContents
             .map(filterContent => ({
                     'bibtex key': item.key,
                     'title': item.fields.title || '',
@@ -128,6 +128,12 @@ function provide(uri: vscode.Uri, line: string, position: vscode.Position): Comp
                 }[filterContent] || ''))
             .filter(text => text !== '')
             .join(' ')
+
+        if (filterText === '') {
+            return `${item.key} ${item.fields.title || ''} ${item.fields.join(fields.filter(field => field !== 'title'), false)}`
+        }
+
+        return filterText
     }
     return [...items, ...alts].map(item => {
         // Compile the completion item label

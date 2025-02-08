@@ -112,4 +112,67 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(suggestions.find(s => s.label === 'altid3'))
         })
     })
+
+    describe.only('latex-workshop.intellisense.citation.*', () => {
+        const texPath = get.path(fixture, 'bibitems.tex')
+        const bibPath = get.path(fixture, 'bibfile.bib')
+        beforeEach(async () => {
+            set.root(texPath)
+            await lw.cache.refreshCache(texPath)
+            await citation.parseBibFile(bibPath)
+        })
+
+        it('should follow `latex-workshop.intellisense.citation.label`', () => {
+            set.config('intellisense.citation.label', 'title')
+            let suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
+            let suggestion = suggestions.find(s => s.label === 'An Overview of Quantum Computing: Challenges and Future Directions') as CitationItem
+            assert.ok(suggestion)
+            assert.strictEqual(suggestion.label, suggestion.fields.title)
+
+            set.config('intellisense.citation.label', 'bibtex key')
+            suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
+            suggestion = suggestions.find(s => s.label === 'miller2024') as CitationItem
+            assert.ok(suggestion)
+            assert.strictEqual(suggestion.label, suggestion.key)
+
+            set.config('intellisense.citation.label', 'authors')
+            suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
+            suggestion = suggestions.find(s => s.label === 'Jane Miller and Robert Smith') as CitationItem
+            assert.ok(suggestion)
+            assert.strictEqual(suggestion.label, suggestion.fields.author)
+        })
+
+        it('should follow `latex-workshop.intellisense.citation.filterText`', () => {
+            const otherFields = 'Jane Miller and Robert Smith Journal of Advanced Computing 2024 Elsevier'
+
+            set.config('intellisense.citation.filterText', ['title', 'bibtex key'])
+            let suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
+            let suggestion = suggestions.find(s => s.label === 'An Overview of Quantum Computing: Challenges and Future Directions') as CitationItem
+            assert.ok(suggestion)
+            assert.strictEqual(suggestion.filterText, `${suggestion.fields.title} ${suggestion.key}`)
+
+            set.config('intellisense.citation.filterText', ['other fields'])
+            suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
+            suggestion = suggestions.find(s => s.label === 'An Overview of Quantum Computing: Challenges and Future Directions') as CitationItem
+            assert.ok(suggestion)
+            assert.strictEqual(suggestion.filterText, otherFields)
+
+            set.config('intellisense.citation.filterText', ['wrong config'])
+            suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
+            suggestion = suggestions.find(s => s.label === 'An Overview of Quantum Computing: Challenges and Future Directions') as CitationItem
+            assert.ok(suggestion)
+            assert.strictEqual(suggestion.filterText, `${suggestion.key} ${suggestion.fields.title} ${otherFields}`)
+        })
+
+        it('should follow `latex-workshop.intellisense.citation.format`', () => {
+            set.config('intellisense.citation.format', ['title', 'author'])
+            const suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
+            const suggestion = suggestions.find(s => s.label === 'An Overview of Quantum Computing: Challenges and Future Directions') as CitationItem
+            assert.ok(suggestion)
+            const documentation = (suggestion.documentation as vscode.MarkdownString | undefined)?.value
+            assert.ok(documentation?.includes('An Overview of Quantum Computing: Challenges and Future Directions'))
+            assert.ok(documentation?.includes('Jane Miller and Robert Smith'))
+            assert.ok(!documentation?.includes('Journal of Advanced Computing'))
+        })
+    })
 })
