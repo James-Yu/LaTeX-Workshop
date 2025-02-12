@@ -147,19 +147,19 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             set.config('intellisense.citation.filterText', ['title', 'bibtex key'])
             let suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
-            let suggestion = suggestions.find(s => s.label === 'An Overview of Quantum Computing: Challenges and Future Directions') as CitationItem
+            let suggestion = suggestions.find(s => (s as CitationItem).key === 'miller2024') as CitationItem
             assert.ok(suggestion)
             assert.strictEqual(suggestion.filterText, `${suggestion.fields.title} ${suggestion.key}`)
 
             set.config('intellisense.citation.filterText', ['other fields'])
             suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
-            suggestion = suggestions.find(s => s.label === 'An Overview of Quantum Computing: Challenges and Future Directions') as CitationItem
+            suggestion = suggestions.find(s => (s as CitationItem).key === 'miller2024') as CitationItem
             assert.ok(suggestion)
             assert.strictEqual(suggestion.filterText, otherFields)
 
             set.config('intellisense.citation.filterText', ['wrong config'])
             suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
-            suggestion = suggestions.find(s => s.label === 'An Overview of Quantum Computing: Challenges and Future Directions') as CitationItem
+            suggestion = suggestions.find(s => (s as CitationItem).key === 'miller2024') as CitationItem
             assert.ok(suggestion)
             assert.strictEqual(suggestion.filterText, `${suggestion.key} ${suggestion.fields.title} ${otherFields}`)
         })
@@ -167,7 +167,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should follow `latex-workshop.intellisense.citation.format`', () => {
             set.config('intellisense.citation.format', ['title', 'author'])
             const suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
-            const suggestion = suggestions.find(s => s.label === 'An Overview of Quantum Computing: Challenges and Future Directions') as CitationItem
+            const suggestion = suggestions.find(s => (s as CitationItem).key === 'miller2024') as CitationItem
             assert.ok(suggestion)
             const documentation = (suggestion.documentation as vscode.MarkdownString | undefined)?.value
             assert.ok(documentation?.includes('An Overview of Quantum Computing: Challenges and Future Directions'))
