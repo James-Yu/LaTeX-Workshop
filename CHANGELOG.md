@@ -1,5 +1,21 @@
 # Change Log
 
+## [10.8.0] - 2025-03-04
+
+### Added
+- (#4502) Handle `ids` biblatex field.
+- (#4509) Add a config to control pdf reload transition animation.
+  - `latex-workshop.view.pdf.reload.transition`
+- (#4522) Add a config to control the filter text of citation suggestions.
+  - `intellisense.citation.filterText`
+
+
+### Fixed
+- (#4513) Allow PDF refresh on change during build if `-f` and `nonstopmode` are present.
+- (#4520) Trigger citation completion for `[a-zA-Z]*cquote`.
+- (#4528) Use double bracket to render `\ll(rr)bracket` in MathJaX.
+- (#4534) Improve doctex folding.
+
 ## [10.7.5] - 2025-01-06
 
 ### Fixed
