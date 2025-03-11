@@ -914,7 +914,7 @@
 
 ### Fixed
 - (#3250) Add deprecation message to `intellisense.citation.maxfilesizeMB`.
-- (#3253) When editing a `internal_only_markdown_latex_combined` document, command `latex-workshop.onEnterKey` was not found.
+- (#3253) When editing a `markdown_latex_combined` document, command `latex-workshop.onEnterKey` was not found.
 - (#3256) Fix typo in `commands.json`.
 - (#3258) `isTriggerSuggestNeeded` must match from the beginning of the command name.
 
